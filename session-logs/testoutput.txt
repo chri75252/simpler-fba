@@ -1,0 +1,255 @@
+PS C:\Users\chris\Amazon-FBA-Agent-System\Amazon-FBA-Agent-System-v3> Get-ChildItem -Recurse -Path "OUTPUTS" | Where-Object {$_.LastWriteTime -gt (Get-Date).AddHours(-2)} | Sort-Object LastWriteTime
+
+    Directory: 
+C:\Users\chris\Amazon-FBA-Agent-System\Amazon-FBA-Agent-System-v3\OUTPUTS
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d----           5/30/2025  3:23 PM                cached_products
+
+    Directory: C:\Users\chris\Amazon-FBA-Agent-System\Amazon-FBA-Agent-System-v
+3\OUTPUTS\cached_products
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a---           5/30/2025  3:23 PM          20761 clearance-king_co_uk_products
+                                                  _cache.json
+
+    Directory: C:\Users\chris\Amazon-FBA-Agent-System\Amazon-FBA-Agent-System-v
+3\OUTPUTS\FBA_ANALYSIS
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d----           5/30/2025  4:01 PM                amazon_cache
+d----           5/30/2025  4:01 PM                ai_category_cache
+
+    Directory: 
+C:\Users\chris\Amazon-FBA-Agent-System\Amazon-FBA-Agent-System-v3\OUTPUTS
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d----           5/30/2025  4:01 PM                FBA_ANALYSIS
+
+PS C:\Users\chris\Amazon-FBA-Agent-System\Amazon-FBA-Agent-System-v3> q^D^C
+q♦♥: The term 'q♦♥' is not recognized as a name of a cmdlet, function, script file, or executable program.
+Check the spelling of the name, or if a path was included, verify that the path is correct and try again.
+PS C:\Users\chris\Amazon-FBA-Agent-System\Amazon-FBA-Agent-System-v3> Get-ChildItem -Recurse -Path "OUTPUTS" -Inclu                                                                                         Get-ChildItem -Recurse -Path "OUTPUTS" -Include "*.json", "*.csv" | Where-Object {$_.Name -ma     Get-ChildItem -Recurse -Path "OUTPUTS" -Include "*.json", "*.csv" | Where-Object {$_.Name -match "Get-ChildItem -Recurse -Path "OUTPUTS" -Include "*.json", "*.csv" | Where-Object {$_.Name -match "160239|160453|160259|160622"}
+PS C:\Users\chris\Amazon-FBA-Agent-System\Amazon-FBA-Agent-System-v3> Get-ChildItem -Recurse -Path "OUTPUTS" -Include "*.json", "*.csv" | Where-Object {$_.Name -match "160239|160453|160259|160622"}      Get-ChildItem -Recurse -Path "OUTPUTS" -Include "*.json", "*.csv" | Where-Object {$_.LastWriteTime -gt (Get-Date).Date} | Sort-Object LastWriteTime
+
+    Directory: C:\Users\chris\Amazon-FBA-Agent-System\Amazon-FBA-Agent-System-v3\OUTPUTS\cache_ba
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a---           5/30/2025  1:33 AM            295 sample_products_cache.json
+
+    Directory: C:\Users\chris\Amazon-FBA-Agent-System\Amazon-FBA-Agent-System-v3\OUTPUTS\cache_ba 
+ckups\linking_map_20250530_013354
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a---           5/30/2025  1:33 AM            143 linking_map.json
+
+    Directory:
+C:\Users\chris\Amazon-FBA-Agent-System\Amazon-FBA-Agent-System-v3\OUTPUTS\FBA_ANALYSIS\Linking    
+map
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a---           5/30/2025  1:33 AM            143 linking_map.json
+
+    Directory:
+C:\Users\chris\Amazon-FBA-Agent-System\Amazon-FBA-Agent-System-v3\OUTPUTS\FBA_ANALYSIS
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a---           5/30/2025  1:38 AM            574 report_20250530_013859.json
+-a---           5/30/2025  1:52 AM            283 report_20250530_015233.json
+-a---           5/30/2025  2:08 AM            575 report_20250530_020825.json
+-a---           5/30/2025 12:41 PM            575 report_20250530_124108.json
+
+    Directory:
+C:\Users\chris\Amazon-FBA-Agent-System\Amazon-FBA-Agent-System-v3\OUTPUTS\cached_products
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a---           5/30/2025  3:23 PM          20761 clearance-king_co_uk_products_cache.json        
+
+PS C:\Users\chris\Amazon-FBA-Agent-System\Amazon-FBA-Agent-System-v3> Get-ChildItem -Recurse -Path "OUTPUTS" -Include "*.json", "*.csv" | Where-Object {$_.LastWriteTime -gt (Get-Date).Date} | Sort-Object LastWriteTime      Get-ChildItem -Path "." -Include "*160239*", "*160453*", "*160259*", "*160622*" -Re                                           
+                                                                      Get-ChildItem -Path "." -Include "*160239*", "*160453*", "*160259*", "*160622*" -Recurse
+PS C:\Users\chris\Amazon-FBA-Agent-System\Amazon-FBA-Agent-System-v3> Get-ChildItem -Recurse -Path "." -Include "*                                      Get-ChildItem -Recurse -Path "." -Include "*clearance-king*" | Where-Object {$_.Name -like      Get-ChildItem -Recurse -Path "." -Include "*clearance-king*" | Where-Object {$_.Name -like "*category*" -or $_.Name -like "*ai*                                                                     Get-ChildItem -Recurse -Path "." -Include "*clearance-king*" | Where-Object {$_.Name -like "*category*" -or $_.Name -like "*ai*"}
+PS C:\Users\chris\Amazon-FBA-Agent-System\Amazon-FBA-Agent-System-v3> Get-Date -Format "yyyy-MM-dd HH:mm:ss"
+2025-05-30 16:36:35
+PS C:\Users\chris\Amazon-FBA-Agent-System\Amazon-FBA-Agent-System-v3> python tools/passive_extraction_workflow_latest.py --max-products 2 --supplier clearance-king.co.upython tools/passive_extraction_workflow_latest.py --max-products 2 --supplier clearance-king.co.uk --supplier-url https://www.clearance-king.co.uk
+================================================================================
+Amazon FBA Passive Extraction Workflow
+Version: 1.0.3 - 2025-05-30
+Output Directory: C:\Users\chris\Amazon-FBA-Agent-System\OUTPUTS\FBA_ANALYSIS
+Profitability Criteria: Min ROI 35.0%, Min Profit £3.0
+================================================================================
+2025-05-30 16:36:45,841 - __main__ - INFO - Initializing Passive Extraction Workflow...
+2025-05-30 16:36:46,598 - __main__ - INFO - OpenAI client initialized with model gpt-4o-mini-2024-07-18
+2025-05-30 16:36:46,600 - __main__ - INFO - Loaded linking map from C:\Users\chris\Amazon-FBA-Agent-System\OUTPUTS\FBA_ANALYSIS\Linking map\linking_map.json with 23 entries
+2025-05-30 16:36:46,600 - __main__ - INFO - PassiveExtractionWorkflow initialized WITH an AI client.
+2025-05-30 16:36:46,601 - amazon_playwright_extractor - INFO - Output directory set to: C:\Users\chris\Amazon-FBA-Agent-System\OUTPUTS\AMAZON_SCRAPE
+2025-05-30 16:36:46,602 - __main__ - INFO - Loaded linking map from C:\Users\chris\Amazon-FBA-Agen2025-05-30 16:36:46,607 - __main__ - INFO - Successfully got 40 products from clearance-king.co.uk2025-05-30 16:36:46,607 - __main__ - INFO - Found 40 valid supplier products, 40 within price range [£0.1-£20.0]
+2025-05-30 16:36:46,607 - __main__ - INFO - STAGE-COMPLETE: price_filtering - 40 records
+2025-05-30 16:36:46,608 - __main__ - INFO - Processing up to 2 products starting from index 39.   
+2025-05-30 16:36:46,609 - __main__ - INFO - --- Processing supplier product 1/1: 'MAGNETIC BOOKMARK- MY  PAGE CLIP, 2PCS' (EAN: 8012979226925) ---
+2025-05-30 16:36:46,609 - __main__ - INFO - Attempting Amazon search using EAN: 8012979226925     
+2025-05-30 16:36:46,610 - __main__ - INFO - Connecting to Chrome browser on debug port 9222 (FixedAmazonExtractor)
+2025-05-30 16:36:47,976 - __main__ - INFO - Successfully connected to Chrome on port 9222 (FixedAmazonExtractor)
+2025-05-30 16:36:47,976 - __main__ - INFO - Found 4 existing pages (FixedAmazonExtractor)
+2025-05-30 16:36:47,976 - __main__ - INFO - Using existing page: https://www.amazon.co.uk/dp/B002RI9QHG (FixedAmazonExtractor)
+2025-05-30 16:36:47,988 - __main__ - INFO - Searching Amazon by EAN: 8012979226925 for supplier product: 'MAGNETIC BOOKMARK- MY  PAGE CLIP, 2PCS' (FixedAmazonExtractor)
+2025-05-30 16:36:47,993 - __main__ - INFO - Navigating to Amazon UK to search for EAN: 8012979226925
+2025-05-30 16:36:51,558 - __main__ - INFO - Waiting for search results page to load for EAN 8012979226925...
+2025-05-30 16:36:51,929 - __main__ - INFO - Found search results container with selector: div.s-search-results
+2025-05-30 16:36:53,988 - __main__ - INFO - Found 4 search result elements using selector: div.s-result-item[data-asin]:not([data-asin=''])
+2025-05-30 16:36:53,989 - __main__ - INFO - Processing 4 search result elements for EAN 8012979226925
+2025-05-30 16:36:54,024 - __main__ - INFO - Skipping sponsored result: ASIN B0BL74HQ4P (detected by ad-specific class: 'AdHolder')
+2025-05-30 16:36:54,055 - __main__ - INFO - Skipping sponsored result: ASIN B0BPRJVHNY (detected by ad-specific class: 'AdHolder')
+2025-05-30 16:36:54,082 - __main__ - INFO - Skipping sponsored result: ASIN B0DH3GRN3P (detected by ad-specific class: 'AdHolder')
+2025-05-30 16:36:54,201 - __main__ - INFO - Skipping sponsored result: ASIN B0C22MW3BS (detected by ad-specific class: 'AdHolder')
+2025-05-30 16:36:54,202 - __main__ - WARNING - EAN 8012979226925 returned no organic results - skipping
+2025-05-30 16:36:54,202 - __main__ - WARNING - No Amazon results or error for EAN '8012979226925'. Details: no_organic_results
+2025-05-30 16:36:54,203 - __main__ - WARNING - EAN search for '8012979226925' failed or returned error: No results for EAN 8012979226925 or search error
+2025-05-30 16:36:54,203 - __main__ - INFO - EAN search failed for 'MAGNETIC BOOKMARK- MY  PAGE CLIP, 2PCS'. Falling back to title search.
+2025-05-30 16:36:54,203 - __main__ - INFO - Searching Amazon by title using search bar: 'MAGNETIC BOOKMARK- MY  PAGE CLIP, 2PCS'
+2025-05-30 16:36:54,208 - __main__ - INFO - Navigating to Amazon UK to search for title: MAGNETIC BOOKMARK- MY  PAGE CLIP, 2PCS
+2025-05-30 16:36:58,802 - __main__ - INFO - Title search found 71 elements using selector: div.s-search-results > div[data-asin]
+2025-05-30 16:37:00,661 - __main__ - INFO - Title search found 8 results for 'MAGNETIC BOOKMARK- MY  PAGE CLIP, 2PCS'
+2025-05-30 16:37:00,662 - __main__ - INFO - Extracting detailed Amazon data for ASIN: B0C38RCM3B (from title search)
+2025-05-30 16:37:00,662 - amazon_playwright_extractor - INFO - Reusing existing page: https://www.amazon.co.uk/s?k=MAGNETIC+BOOKMARK-+MY+PAGE+CLIP%2C+2PCS&ref=nb_sb_noss
+2025-05-30 16:37:04,444 - amazon_playwright_extractor - INFO - Checking for cookie consent pop-up...
+2025-05-30 16:37:05,445 - amazon_playwright_extractor - INFO - Finished checking for cookie consent pop-ups. If one was present and not handled, it might interfere.
+2025-05-30 16:37:06,453 - amazon_playwright_extractor - INFO - Checking for CAPTCHA...
+2025-05-30 16:37:09,461 - amazon_playwright_extractor - INFO - No CAPTCHA page detected by form selector.
+2025-05-30 16:37:09,462 - amazon_playwright_extractor - INFO - Checking for cookie consent pop-up...
+2025-05-30 16:37:09,778 - amazon_playwright_extractor - INFO - Finished checking for cookie consent pop-ups. If one was present and not handled, it might interfere.    
+2025-05-30 16:37:09,779 - amazon_playwright_extractor - INFO - Page should be ready. Waiting 5s for stabilization...
+2025-05-30 16:37:14,783 - amazon_playwright_extractor - INFO - Waiting an additional 7s for extensions (Keepa, SellerAmp)...
+2025-05-30 16:37:21,796 - amazon_playwright_extractor - INFO - Extracting all product data for ASIN: B0C38RCM3B 
+2025-05-30 16:37:21,797 - amazon_playwright_extractor - INFO - Extracting basic product information (Title, Price, Images, Amazon Details)...
+2025-05-30 16:37:21,848 - amazon_playwright_extractor - INFO - Title found: 'Skaaisont 10 Pcs Magnetic Clips Fridge Magnets have Anti-scratch Sticky Pads,Magnets for Whiteboard, Black Whiteboard ,Ideal for Homes,Offices and Schools,‎3 x 3.8 x 2.5 cm' vvia #productTitle
+2025-05-30 16:37:21,851 - amazon_playwright_extractor - INFO - Extracting price details...
+2025-05-30 16:37:21,884 - amazon_playwright_extractor - INFO - Current price: 6.29 via #corePrice_feature_div .a-offscreen
+2025-05-30 16:37:21,945 - amazon_playwright_extractor - INFO - Original price: 6.59 via span.a-price.a-text-price[data-a-strike='true'] span.a-offscreen
+2025-05-30 16:37:21,980 - amazon_playwright_extractor - INFO - Amazon sales badge found: 100 in container div#socialProofingAsinFaceout_feature_div
+2025-05-30 16:37:21,981 - amazon_playwright_extractor - INFO - Extracting image URLs...
+2025-05-30 16:37:22,021 - amazon_playwright_extractor - INFO - Main image: https://m.media-amazon.com/images/W/MEDIAX_1215821-T2/images/I/713QlfYDvUL._AC_SL1500_.jpg via #landingImage
+2025-05-30 16:37:22,112 - amazon_playwright_extractor - INFO - Found 7 thumbnails.  
+2025-05-30 16:37:22,119 - amazon_playwright_extractor - INFO - Extracting Amazon product details section...     
+2025-05-30 16:37:22,397 - amazon_playwright_extractor - INFO - Extracting sales rank information...
+2025-05-30 16:37:22,627 - amazon_playwright_extractor - WARNING - Sales rank not found by selectors. AI fallback.
+2025-05-30 16:37:22,911 - amazon_playwright_extractor - WARNING - HTML content for AI extraction truncated to 24000 chars.
+2025-05-30 16:37:25,634 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-30 16:37:25,638 - amazon_playwright_extractor - INFO - Extracting ratings and reviews...
+2025-05-30 16:37:25,660 - amazon_playwright_extractor - INFO - Rating: 4.4 via #acrPopover[title*='out of 5 stars']
+2025-05-30 16:37:25,681 - amazon_playwright_extractor - INFO - Review count: 85 via #acrCustomerReviewText      
+2025-05-30 16:37:25,682 - amazon_playwright_extractor - INFO - Extracting stock information...
+2025-05-30 16:37:25,701 - amazon_playwright_extractor - INFO - Availability text: 'In stock' via #availability span.a-size-medium.a-color-success
+2025-05-30 16:37:25,701 - amazon_playwright_extractor - INFO - Extracting features/bullets...
+2025-05-30 16:37:25,896 - amazon_playwright_extractor - INFO - Found 5 features.    
+2025-05-30 16:37:25,897 - amazon_playwright_extractor - INFO - Extracting product description...
+2025-05-30 16:37:25,941 - amazon_playwright_extractor - INFO - Description found using selector: #aplus_feature_div
+tion is currently disabled as per requirements (Fix 2.3).
+2025-05-30 16:37:26,521 - amazon_playwright_extractor - INFO - Extracting Keepa data (if present)...
+2025-05-30 16:37:26,521 - amazon_playwright_extractor - INFO - Attempting to extract Keepa data... 
+2025-05-30 16:37:32,630 - amazon_playwright_extractor - INFO - Keepa iframe found: iframe[id*='keepa']
+2025-05-30 16:37:32,755 - amazon_playwright_extractor - INFO - Keepa Sales Rank Details Table parsed.
+2025-05-30 16:37:32,756 - amazon_playwright_extractor - INFO - Keepa Graph AI Analysis is currently disabled as per requirements (Fix 2.4).
+2025-05-30 16:37:32,787 - amazon_playwright_extractor - INFO - Clicking Keepa 'Data' tab...
+2025-05-30 16:37:35,049 - amazon_playwright_extractor - INFO - Parsing Keepa AG Grid for Product Details from: div#MoreTab1 div#grid-product-detail
+2025-05-30 16:37:36,135 - amazon_playwright_extractor - INFO - Found 148 rows in Keepa Product Details AG Grid.
+2025-05-30 16:37:41,140 - amazon_playwright_extractor - INFO - Parsed 44 items from Keepa Product Details AG Grid.
+2025-05-30 16:37:41,140 - amazon_playwright_extractor - INFO - ASIN B0C38RCM3B: Attempting to extract EANs from Keepa product_details_tab_data.
+2025-05-30 16:37:41,140 - amazon_playwright_extractor - INFO - ASIN B0C38RCM3B: EAN '0793127276709' found in Keepa details via key 'Product Codes - EAN'.
+2025-05-30 16:37:41,140 - amazon_playwright_extractor - INFO - ASIN B0C38RCM3B: BSR not found or invalid from page. Attempting fallback from Keepa.
+2025-05-30 16:37:41,140 - amazon_playwright_extractor - INFO - ASIN B0C38RCM3B: BSR 6501 in 'Stationery & Office Supplies 18' from Keepa SalesRankDetailsTable.
+2025-05-30 16:37:41,142 - __main__ - INFO - Cached Amazon data for ASIN B0C38RCM3B as amazon_B0C38RCM3B_8012979226925.json
+2025-05-30 16:37:41,142 - __main__ - INFO - Added to linking map: EAN_8012979226925 -> B0C38RCM3B  
+2025-05-30 16:37:41,142 - __main__ - INFO - Skipping triage for ASIN B0C38RCM3B - proceeding directly to detailed extraction
+2025-05-30 16:37:41,142 - __main__ - INFO - Successfully got Amazon data for 'Skaaisont 10 Pcs Magnetic Clips Fridge Magnets have Anti-scratch Sticky Pads,Magnets for Whiteboard, Black Whiteboard ,Ideal for Homes,Offices and Schools,‎3 x 3.8 x 2.5 cm' (ASIN: B0C38RCM3B, EAN on page: 07931272767099)
+2025-05-30 16:37:41,143 - fba_calculator - INFO - Calculated FBA fees for product: {'fulfillment_fee': 158.49, 'referral_fee': 0.94, 'total_fees': 159.48, 'size_tier': 'special_oversize', 'monthly_storage_fee': 0.05, 'is_restricted': False, 'fee_breakdown': {'fulfillment_fee': 158.49, 'referral_fee': 0.94, 'monthly_storage_fee': 0.05, 'additional_fees': 0, 'total_fees': 159.48}, 'calculation_date': '2025-05-30T16:37:41.143741'}
+2025-05-30 16:37:41,144 - __main__ - INFO - FBA Calculator - Size tier: special_oversize, Total fees: £159.48
+2025-05-30 16:37:41,144 - __main__ - INFO - Using BSR-based estimated monthly sales: 50
+2025-05-30 16:37:41,145 - __main__ - WARNING - Low quality match (low) between supplier product 'MAGNETIC BOOKMARK- MY  PAGE CLIP, 2PCS' and Amazon product 'Skaaisont 10 Pcs Magnetic Clips Fridge Magnets have Anti-scratch Sticky Pads,Magnets for Whiteboard, Black Whiteboard ,Ideal for Homes,Offices and Schools,‎3 x 3.8 x 2.5 cm'. Skipping.
+2025-05-30 16:37:41,145 - __main__ - INFO - STAGE-COMPLETE: triage_stage - 0 passed, 0 rejected    
+2025-05-30 16:37:41,146 - __main__ - WARNING - STAGE-GUARD WARNING: Triage stage rejected all 1 products. Check SellerAmp connectivity or criteria.
+2025-05-30 16:37:41,146 - __main__ - INFO - STAGE-COMPLETE: deep_extraction - 0 successful extractions, 0 errors
+2025-05-30 16:37:41,146 - __main__ - INFO - STAGE-COMPLETE: profitable_filtering - 0 profitable products found
+2025-05-30 16:37:41,146 - __main__ - INFO - No profitable products found meeting all criteria in this run.
+2025-05-30 16:37:41,147 - __main__ - INFO - Workflow summary saved to C:\Users\chris\Amazon-FBA-Agent-System\OUTPUTS\FBA_ANALYSIS\fba_summary_clearance-king_co_uk_20250530_163646.json
+2025-05-30 16:37:41,148 - __main__ - INFO - 📋 Session Summary: 2 products analyzed, 0 profitable products found
+2025-05-30 16:37:41,150 - __main__ - INFO - Successfully saved linking map with 24 entries to C:\Users\chris\Amazon-FBA-Agent-System\OUTPUTS\FBA_ANALYSIS\Linking map\linking_map.json
+2025-05-30 16:37:41,150 - __main__ - INFO - Persistent linking map updated with 24 entries
+2025-05-30 16:37:41,150 - __main__ - INFO - Running FBA_Financial_calculator run_calculations...   
+2025-05-30 16:37:41,635 - __main__ - ERROR - Error running FBA_Financial_calculator: name 'workflow_instance' is not defined
+2025-05-30 16:37:41,635 - __main__ - INFO - Workflow completed. No profitable products found.      
+2025-05-30 16:37:41,635 - __main__ - INFO - Running FBA_Financial_calculator run_calculations...   
+Processing 40 supplier products...
+Loaded persistent linking map with 24 entries
+Found Amazon data via linking map: EAN_5056175922239 -> B0D31RM328
+Found Amazon data via linking map: EAN_5055257878532 -> B01LX41P0D
+Found Amazon data via linking map: EAN_5055257877009 -> B002TIEDAO
+Found Amazon data via linking map: EAN_5050375947825 -> B0DYV8W1YL
+Found Amazon data via linking map: EAN_5020535010997 -> B07RM4PZC3
+Found Amazon data via linking map: EAN_5060120173799 -> B08BZY43XF
+Found Amazon data via linking map: EAN_5053249240312 -> B08B1P9KWC
+Found Amazon data via linking map: EAN_5031413923490 -> B0D47ZBB59
+Found Amazon data via linking map: EAN_5060120163547 -> B01CC0GEEG
+Found Amazon data via linking map: EAN_05060072087823 -> B094KH8CDR
+Found Amazon data via linking map: EAN_5060120164131 -> B00V2DJHKI
+No price found for: EAN=5060120164131, ASIN=None, Title=Xpel Brand - Argan Oil Hydrating Hair Mask - Vegan - 220Ml - EXP: 09/25
+Found Amazon data via linking map: EAN_5060120163714 -> B004FIYZ0Y
+Found Amazon data via linking map: EAN_5060120163363 -> B01MCYQF2P
+Found Amazon data via linking map: EAN_182360 -> B074KS4KPP
+Found Amazon data via linking map: EAN_9780857510822 -> B016Q8FQM6
+Found Amazon data via linking map: EAN_9780863882678 -> B00XWUU1F4
+No price found for: EAN=9780863882678, ASIN=None, Title=SEMANTIC WORKBOOKS IN RING BINDER FOLDER   
+Found Amazon data via linking map: EAN_86388530 -> B0DK8SBSCR
+Found Amazon data via linking map: EAN_9780863887758 -> B0761YSSMY
+No price found for: EAN=9780863887758, ASIN=None, Title=HOW TO STOP BULLYING 101 STRATEGIES BOOK   
+Found Amazon data via linking map: EAN_9780863888120 -> B0168YKE16
+No price found for: EAN=9780863888120, ASIN=None, Title=DEMENTIA CARE THE ADAPTIVE RESPONSE BOOK
+Found Amazon data via linking map: EAN_9780863888212 -> B0D2L4N7BB
+No price found for: EAN=9780863888212, ASIN=None, Title=PLAY BETTER GAMES SPIRAL BOOK
+Found Amazon data via linking map: EAN_9781906517465 -> B07JN7STKD
+No price found for: EAN=9781906517465, ASIN=None, Title=BEYOUND TRANSITION RING BOOK
+Found Amazon data via linking map: EAN_9780007258352 -> B01B98DQLQ
+Found Amazon data via linking map: EAN_9780007261635 -> B002RI9QHG
+No price found for: EAN=9780007261635, ASIN=None, Title=HOW CAN I STOP CLIMATE CHANGE? BOOK        
+Found Amazon data via linking map: EAN_8012979226925 -> B0C38RCM3B
+2025-05-30 16:37:41,693 - __main__ - INFO - FBA financial report generated at: C:\Users\chris\Amazon-FBA-Agent-System\OUTPUTS\FBA_ANALYSIS\fba_financial_report_20250530_163741.csv
+2025-05-30 16:37:41,694 - __main__ - INFO - Amazon extractor browser connection intended to be kept open.
+2025-05-30 16:37:41,694 - __main__ - INFO - Web scraper session closed.
+2025-05-30 16:37:41,695 - __main__ - INFO - Main workflow execution finished.
+Exception ignored in: <function _ProactorBasePipeTransport.__del__ at 0x00000191959D3100>
+Traceback (most recent call last):
+  File "C:\Python313\Lib\asyncio\proactor_events.py", line 116, in __del__
+    _warn(f"unclosed transport {self!r}", ResourceWarning, source=self)
+  File "C:\Python313\Lib\asyncio\proactor_events.py", line 80, in __repr__
+    info.append(f'fd={self._sock.fileno()}')
+  File "C:\Python313\Lib\asyncio\windows_utils.py", line 102, in fileno
+    raise ValueError("I/O operation on closed pipe")
+ValueError: I/O operation on closed pipe
+Exception ignored in: <function BaseSubprocessTransport.__del__ at 0x00000191959D1760>
+Traceback (most recent call last):
+  File "C:\Python313\Lib\asyncio\base_subprocess.py", line 129, in __del__
+    _warn(f"unclosed transport {self!r}", ResourceWarning, source=self)
+  File "C:\Python313\Lib\asyncio\base_subprocess.py", line 73, in __repr__
+    info.append(f'stdin={stdin.pipe}')
+  File "C:\Python313\Lib\asyncio\proactor_events.py", line 80, in __repr__
+    info.append(f'fd={self._sock.fileno()}')
+  File "C:\Python313\Lib\asyncio\windows_utils.py", line 102, in fileno
+    raise ValueError("I/O operation on closed pipe")
+ValueError: I/O operation on closed pipe
+Exception ignored in: <function _ProactorBasePipeTransport.__del__ at 0x00000191959D3100>
+Traceback (most recent call last):
+  File "C:\Python313\Lib\asyncio\proactor_events.py", line 116, in __del__
+    _warn(f"unclosed transport {self!r}", ResourceWarning, source=self)
+  File "C:\Python313\Lib\asyncio\proactor_events.py", line 80, in __repr__
+    info.append(f'fd={self._sock.fileno()}')
+  File "C:\Python313\Lib\asyncio\windows_utils.py", line 102, in fileno
+    raise ValueError("I/O operation on closed pipe")
+ValueError: I/O operation on closed pipe
+PS C:\Users\chris\Amazon-FBA-Agent-System\Amazon

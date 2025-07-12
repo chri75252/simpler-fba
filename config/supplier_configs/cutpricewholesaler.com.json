@@ -1,0 +1,58 @@
+{
+  "supplier_id": "cutpricewholesaler-com",
+  "supplier_name": "Cutpricewholesaler.Com",
+  "base_url": "https://www.cutpricewholesaler.com/",
+  "field_mappings": {
+    "product_item": [
+      "div.productListing-data",
+      "div.productListing"
+    ],
+    "title": [
+      "div.productListing-data a.productListing-title",
+      "div.productListing-data h2.productListing-title a"
+    ],
+    "price": [
+      "meta[property=\"product:price:amount\"]",
+      "span.productListing-price"
+    ],
+    "price_login_required": [
+      "a.btn.customer-login-link.login-btn",
+      "div.productListing-data a.customer-login-link.login-btn"
+    ],
+    "url": [
+      "div.productListing-data a.productListing-title",
+      "div.productListing-data h2.productListing-title a"
+    ],
+    "image": [
+      "div.productListing-image img",
+      "div.productListing-image picture img"
+    ],
+    "ean": [
+      "meta[property=\"product:gtin13\"]",
+      "script[type=\"application/ld+json\"]"
+    ],
+    "barcode": [
+      "meta[property=\"product:gtin13\"]",
+      "script[type=\"application/ld+json\"]"
+    ],
+    "product_code": [
+      "div.productListing-data span.productListing-model",
+      "div.productListing-data span.productListing-sku"
+    ],
+    "sku": [
+      "div.productListing-data span.productListing-sku",
+      "div.productListing-data span.productListing-model"
+    ]
+  },
+  "pagination": {
+    "pattern": "?page={page_num}",
+    "next_button_selector": [
+      "a.next",
+      ".pagination .next a",
+      "a[rel='next']"
+    ]
+  },
+  "auto_discovered": true,
+  "discovery_timestamp": "2025-06-21T03:43:56.520380",
+  "success": true
+}

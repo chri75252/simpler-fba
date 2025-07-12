@@ -1,0 +1,274 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "amazon-fba-agent-system"
+version = "3.5.0"
+description = "Enterprise-grade Amazon FBA product analysis and automation system with AI-driven category discovery and multi-phase processing"
+readme = "docs/README.md"
+license = {file = "LICENSE"}
+authors = [
+    {name = "Amazon FBA Agent System Team"},
+]
+maintainers = [
+    {name = "Amazon FBA Agent System Team"},
+]
+keywords = [
+    "amazon",
+    "fba", 
+    "automation",
+    "ai",
+    "product-analysis",
+    "e-commerce",
+    "profit-analysis",
+    "scraping"
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Environment :: Console",
+    "Intended Audience :: End Users/Desktop",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Office/Business :: Financial",
+    "Topic :: Internet :: WWW/HTTP :: Dynamic Content",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+requires-python = ">=3.12"
+dependencies = [
+    # Core dependencies - exact versions from requirements.txt
+    "aiohttp==3.9.1",
+    "beautifulsoup4==4.12.2", 
+    "requests==2.31.0",
+    "pandas==2.1.4",
+    "numpy==1.26.2",
+    "lxml==4.9.3",
+    "aiofiles==23.2.1",
+    "python-json-logger==2.0.7",
+    "colorama==0.4.6",
+    "aiolimiter==1.1.0",
+    "python-dateutil==2.8.2",
+    "pytz==2023.3",
+    "python-dotenv==1.0.0",
+    "pyyaml==6.0.1",
+    "urllib3==2.1.0",
+    "certifi==2023.11.17",
+    "openpyxl==3.1.2",
+    "xlrd==2.0.1",
+    "psutil==5.9.6",
+]
+
+[project.optional-dependencies]
+# Development dependencies
+dev = [
+    "pytest==7.4.3",
+    "pytest-asyncio==0.21.1", 
+    "pytest-mock==3.12.0",
+    "pytest-cov>=4.0.0",
+    "black==23.12.0",
+    "ruff>=0.1.0",
+    "mypy==1.7.1",
+    "faker==20.1.0",
+    "factory-boy==3.3.0",
+]
+
+# Database support (optional)
+database = [
+    "sqlalchemy>=2.0.0",
+    "alembic>=1.13.0",
+]
+
+# Image processing (optional)
+images = [
+    "Pillow>=10.1.0",
+]
+
+# All optional dependencies
+all = [
+    "amazon-fba-agent-system[dev,database,images]",
+]
+
+[project.urls]
+Homepage = "https://github.com/amazon-fba-agent/amazon-fba-agent-system"
+Repository = "https://github.com/amazon-fba-agent/amazon-fba-agent-system"
+Documentation = "https://github.com/amazon-fba-agent/amazon-fba-agent-system/tree/main/docs"
+"Bug Reports" = "https://github.com/amazon-fba-agent/amazon-fba-agent-system/issues"
+
+[project.scripts]
+# Main entry points for CLI usage
+fba-extract = "tools.passive_extraction_workflow_latest:main"
+fba-monitor = "monitoring_system:main"
+
+[tool.setuptools.packages.find]
+# Include main package and subpackages
+include = ["tools*", "config*", "utils*"]
+exclude = ["tests*", "archive*", "dormant*"]
+
+[tool.setuptools.package-data]
+# Include configuration files and templates
+"config" = ["*.json", "*.yaml", "*.yml"]
+"tools" = ["*.json", "*.yaml", "*.yml"]
+
+# Black code formatting configuration
+[tool.black]
+line-length = 100
+target-version = ['py312']
+include = '\.pyi?$'
+extend-exclude = '''
+/(
+    # Exclude archived and generated files
+    archive
+    | dormant
+    | __pycache__
+    | \.git
+    | \.venv
+    | venv
+    | build
+    | dist
+)/
+'''
+
+# Ruff linting configuration  
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+extend-exclude = [
+    "archive",
+    "dormant", 
+    "__pycache__",
+    ".git",
+    ".venv",
+    "venv",
+    "build",
+    "dist",
+]
+
+[tool.ruff.lint]
+# Enable essential linting rules
+select = [
+    "E",  # pycodestyle errors
+    "W",  # pycodestyle warnings  
+    "F",  # pyflakes
+    "I",  # isort
+    "B",  # flake8-bugbear
+    "C4", # flake8-comprehensions
+    "UP", # pyupgrade
+    "SIM", # flake8-simplify
+]
+ignore = [
+    "E501",  # Line too long (handled by black)
+    "B008",  # Do not perform function calls in argument defaults
+    "W191",  # Indentation contains tabs
+]
+
+[tool.ruff.lint.isort]
+known-first-party = ["tools", "config", "utils"]
+force-single-line = false
+lines-after-imports = 2
+
+# MyPy type checking configuration
+[tool.mypy]
+python_version = "3.12"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = false  # Gradually enable as codebase improves
+disallow_incomplete_defs = false
+check_untyped_defs = true
+disallow_untyped_decorators = false
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_no_return = true
+warn_unreachable = true
+strict_equality = true
+exclude = [
+    "archive/",
+    "dormant/",
+    "__pycache__/",
+    ".venv/",
+    "venv/",
+    "build/",
+    "dist/",
+]
+
+[[tool.mypy.overrides]]
+# Allow untyped imports for third-party packages without stubs
+module = [
+    "beautifulsoup4.*",
+    "lxml.*",
+    "openpyxl.*",
+    "xlrd.*",
+    "aiolimiter.*",
+    "faker.*",
+    "factory_boy.*",
+]
+ignore_missing_imports = true
+
+# Pytest configuration
+[tool.pytest.ini_options]
+minversion = "7.0"
+addopts = [
+    "-ra",
+    "--strict-markers", 
+    "--strict-config",
+]
+testpaths = ["tests"]
+norecursedirs = [
+    "archive",
+    "archive_new", 
+    "dormant",
+    "tools/archive",
+    "backup_files_archive",
+    "__pycache__",
+    ".git",
+    ".venv",
+    "venv",
+    "build",
+    "dist",
+    "OUTPUTS"
+]
+python_files = ["test_*.py", "*_test.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+markers = [
+    "slow: marks tests as slow (deselect with '-m \"not slow\"')",
+    "integration: marks tests as integration tests",
+    "unit: marks tests as unit tests", 
+    "api: marks tests that require external API access",
+    "requires_browser: marks tests that require browser automation",
+]
+filterwarnings = [
+    "error",
+    "ignore::UserWarning",
+    "ignore::DeprecationWarning",
+    "ignore::PendingDeprecationWarning",
+]
+asyncio_mode = "auto"
+
+# Coverage configuration
+[tool.coverage.run]
+source = ["tools", "config", "utils"]
+omit = [
+    "*/tests/*",
+    "*/archive/*", 
+    "*/dormant/*",
+    "*/__pycache__/*",
+    "*/venv/*",
+    "*/.venv/*",
+]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "if self.debug:",
+    "if settings.DEBUG",
+    "raise AssertionError",
+    "raise NotImplementedError", 
+    "if 0:",
+    "if __name__ == .__main__.:",
+    "class .*\\bProtocol\\):",
+    "@(abc\\.)?abstractmethod",
+]

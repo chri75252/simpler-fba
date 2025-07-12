@@ -1,0 +1,66 @@
+{
+  "supplier_id": "harrisonsdirect-co-uk",
+  "supplier_name": "harrisonsdirect-co-uk",
+  "base_url": "https://www.harrisonsdirect.co.uk/",
+  "field_mappings": {
+    "product_item": [
+      ".product-item",
+      ".product",
+      "article"
+    ],
+    "title": [
+      ".product-title",
+      ".title",
+      "h2 a",
+      "h3 a"
+    ],
+    "price": [
+      ".price",
+      ".cost",
+      "[data-price]",
+      ".price-current"
+    ],
+    "price_login_required": [
+      ".login-required",
+      ".price-login",
+      "a[href*='login']"
+    ],
+    "url": [
+      "a.product-link",
+      ".product-item a",
+      "h2 a",
+      "h3 a"
+    ],
+    "image": [
+      "img.product-image",
+      ".product-item img",
+      "img"
+    ],
+    "ean": [
+      "[data-ean]",
+      "[data-gtin]",
+      "meta[itemprop='gtin13']"
+    ],
+    "barcode": [
+      "[data-barcode]",
+      "[data-upc]",
+      "meta[itemprop='gtin13']"
+    ],
+    "sku": [
+      "[data-sku]",
+      ".sku",
+      "meta[itemprop='sku']"
+    ]
+  },
+  "pagination": {
+    "pattern": "?page={page_num}",
+    "next_button_selector": [
+      "a.next",
+      ".pagination .next a",
+      "a[rel='next']"
+    ]
+  },
+  "auto_discovered": false,
+  "discovery_timestamp": "2025-07-05T21:37:59.546026",
+  "success": false
+}

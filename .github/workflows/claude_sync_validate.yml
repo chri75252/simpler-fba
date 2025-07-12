@@ -1,0 +1,230 @@
+name: Claude Standards Sync Validation
+
+# Tier-3 Safety Net: Automated validation of CLAUDE_STANDARDS.md sync status
+# This workflow ensures claude.md stays synchronized with CLAUDE_STANDARDS.md
+
+on:
+  push:
+    branches:
+      - master
+      - june-15
+      - "checkpoint/**"
+    paths:
+      - 'CLAUDE_STANDARDS.md'
+      - 'claude.md'
+      - 'tools/sync_claude_standards.py'
+      - '.github/workflows/claude_sync_validate.yml'
+  
+  pull_request:
+    branches:
+      - master
+      - june-15
+    paths:
+      - 'CLAUDE_STANDARDS.md'
+      - 'claude.md'
+      - 'tools/sync_claude_standards.py'
+  
+  workflow_dispatch:
+    inputs:
+      force_sync:
+        description: 'Force sync even if validation passes'
+        required: false
+        default: false
+        type: boolean
+
+jobs:
+  validate-sync:
+    name: Validate Claude Standards Sync
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          # Fetch full history to enable proper sync detection
+          fetch-depth: 0
+      
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+      
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          # Install minimal dependencies for sync script
+          pip install python-dotenv
+      
+      - name: Check sync status
+        id: sync_check
+        run: |
+          echo "🔍 Checking Claude Standards sync status..."
+          
+          # Run sync script in check-only mode
+          if python tools/sync_claude_standards.py --check-only; then
+            echo "sync_needed=false" >> $GITHUB_OUTPUT
+            echo "✅ Files are in sync"
+          else
+            echo "sync_needed=true" >> $GITHUB_OUTPUT
+            echo "❌ Files are out of sync"
+          fi
+      
+      - name: Validate file existence
+        run: |
+          echo "📁 Validating required files exist..."
+          
+          required_files=(
+            "CLAUDE_STANDARDS.md"
+            "tools/sync_claude_standards.py"
+            "docs/CLAUDE_STANDARDS.md"
+          )
+          
+          for file in "${required_files[@]}"; do
+            if [[ -f "$file" ]]; then
+              echo "✅ $file exists"
+            else
+              echo "❌ $file is missing"
+              exit 1
+            fi
+          done
+      
+      - name: Generate sync report
+        if: steps.sync_check.outputs.sync_needed == 'true' || github.event.inputs.force_sync == 'true'
+        run: |
+          echo "📊 Generating sync analysis report..."
+          
+          # Show differences if any
+          if [[ -f "claude.md" ]]; then
+            echo "## Current claude.md status" >> sync_report.md
+            echo "\`\`\`" >> sync_report.md
+            wc -l claude.md >> sync_report.md
+            echo "\`\`\`" >> sync_report.md
+          else
+            echo "⚠️ claude.md does not exist" >> sync_report.md
+          fi
+          
+          echo "" >> sync_report.md
+          echo "## CLAUDE_STANDARDS.md status" >> sync_report.md
+          echo "\`\`\`" >> sync_report.md
+          wc -l CLAUDE_STANDARDS.md >> sync_report.md
+          echo "\`\`\`" >> sync_report.md
+          
+          echo "" >> sync_report.md
+          echo "## Recommended action" >> sync_report.md
+          echo "Run: \`python tools/sync_claude_standards.py\`" >> sync_report.md
+      
+      - name: Auto-fix sync (if on protected branches)
+        if: |
+          (steps.sync_check.outputs.sync_needed == 'true' || github.event.inputs.force_sync == 'true') &&
+          (github.ref == 'refs/heads/june-15' || github.ref == 'refs/heads/master') &&
+          github.event_name == 'push'
+        run: |
+          echo "🔧 Auto-fixing sync on protected branch..."
+          
+          # Configure git for automated commit
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          
+          # Run sync script
+          python tools/sync_claude_standards.py
+          
+          # Check if there are changes to commit
+          if git diff --quiet; then
+            echo "ℹ️ No changes after sync"
+          else
+            echo "💾 Committing sync changes..."
+            git add claude.md docs/CLAUDE_STANDARDS.md
+            git commit -m "chore: auto-sync claude.md from CLAUDE_STANDARDS.md
+            
+            Automated sync triggered by GitHub Actions
+            Workflow: claude_sync_validate.yml
+            Trigger: ${{ github.event_name }}
+            Branch: ${{ github.ref_name }}
+            Commit: ${{ github.sha }}"
+            
+            # Push changes
+            git push
+            echo "✅ Auto-sync completed and pushed"
+          fi
+      
+      - name: Fail on sync needed (non-protected branches)
+        if: |
+          steps.sync_check.outputs.sync_needed == 'true' &&
+          github.ref != 'refs/heads/june-15' &&
+          github.ref != 'refs/heads/master' &&
+          github.event.inputs.force_sync != 'true'
+        run: |
+          echo "❌ Claude Standards sync validation failed!"
+          echo ""
+          echo "CLAUDE_STANDARDS.md changes detected that require sync to claude.md"
+          echo ""
+          echo "To fix this:"
+          echo "1. Run locally: python tools/sync_claude_standards.py"
+          echo "2. Commit the updated claude.md file"
+          echo "3. Push your changes"
+          echo ""
+          echo "Or use the pre-commit hook to catch this automatically:"
+          echo "cp .githooks/pre-commit .git/hooks/pre-commit"
+          echo "chmod +x .git/hooks/pre-commit"
+          
+          exit 1
+      
+      - name: Upload sync report
+        if: steps.sync_check.outputs.sync_needed == 'true' || github.event.inputs.force_sync == 'true'
+        uses: actions/upload-artifact@v3
+        with:
+          name: claude-sync-report
+          path: sync_report.md
+          retention-days: 7
+      
+      - name: Post success summary
+        if: steps.sync_check.outputs.sync_needed == 'false'
+        run: |
+          echo "🎉 Claude Standards Sync Validation Passed!"
+          echo ""
+          echo "✅ claude.md is in sync with CLAUDE_STANDARDS.md"
+          echo "✅ All required files exist"
+          echo "✅ Sync script is functional"
+          echo ""
+          echo "System Status: Ready for development"
+
+  # Optional: Create issue if sync fails repeatedly
+  create-sync-issue:
+    name: Create Sync Issue
+    runs-on: ubuntu-latest
+    needs: validate-sync
+    if: failure() && github.ref == 'refs/heads/june-15'
+    
+    steps:
+      - name: Create issue for persistent sync failures
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const issue = await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: '🚨 Claude Standards Sync Failure on Protected Branch',
+              body: `## Sync Validation Failed
+              
+              The Claude Standards sync validation has failed on the protected branch \`${context.ref}\`.
+              
+              **Workflow Run**: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+              **Commit**: ${{ github.sha }}
+              **Triggered by**: ${{ github.event_name }}
+              
+              ### Required Actions:
+              1. Review the failed workflow logs
+              2. Run \`python tools/sync_claude_standards.py\` locally
+              3. Commit and push the synced files
+              4. Verify the sync script is working correctly
+              
+              ### Prevention:
+              - Set up the pre-commit hook: \`cp .githooks/pre-commit .git/hooks/pre-commit && chmod +x .git/hooks/pre-commit\`
+              - Use the sync opportunity detector: \`python tools/sync_opportunity_detector.py --prompt-user\`
+              
+              This issue will auto-close when sync validation passes.`,
+              labels: ['bug', 'claude-standards', 'automation']
+            });
+            
+            console.log(`Created issue #${issue.data.number}`);

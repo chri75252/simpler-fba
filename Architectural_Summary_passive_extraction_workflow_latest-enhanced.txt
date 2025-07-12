@@ -1,0 +1,59 @@
+"""
+passive_extraction_workflow_latest.py - Architectural Summary & Script Index
+======================================================================
+
+**High-Level Summary:**
+This script is the central engine for a multi-stage workflow that identifies profitable products for Amazon FBA. When executed by a targeted runner like `run_custom_poundwholesale.py`, it operates in a deterministic mode, using a predefined list of category URLs to ensure reliable and repeatable scraping runs. The system is architected for resilience and statefulness, allowing it to resume interrupted sessions and handle supplier authentication, making it ideal for the thorough analysis of complex e-commerce websites.
+
+**Key Features & Concepts:**
+- **Targeted Scraping with Predefined Categories:** The primary execution path is driven by the `use_predefined_categories=True` flag. This bypasses all complex AI category analysis and instead uses a reliable, hard-coded list of category URLs from a supplier-specific JSON file. This architectural choice prioritizes predictability over dynamic discovery for known suppliers.
+- **Stateful Resume Capability:** The workflow's progress is meticulously tracked using an `EnhancedStateManager`. This component saves the index of the last processed product, allowing the script to be stopped and resumed without losing work—a critical feature for long-running, interruptible scraping tasks.
+- **Integrated Authentication & Retry:** The workflow is designed to handle supplier logins. It can detect authentication failures during a run, trigger a re-login attempt via the `SupplierAuthenticationService`, and retry the workflow, making it resilient to session timeouts.
+- **Robust Dual-Pronged Product Matching:** The system employs a powerful two-step process to find products on Amazon. It first attempts a high-confidence match using the product's EAN. If that fails, it falls back to a title-based search that uses an advanced similarity scoring algorithm to ensure the match is rational.
+- **Critical EAN Cross-Validation:** A crucial validation step is embedded in the workflow to prevent costly mismatches. When an Amazon product is found, its EAN (if available on the page) is cross-referenced with the supplier's EAN to definitively confirm the match.
+- **Comprehensive Financial Analysis:** After a match is validated, the script invokes the `FBA_Financial_calculator` to determine ROI, net profit, and other key financial metrics, ensuring only genuinely profitable products are flagged.
+- **Atomic & Batched Data Persistence:** To ensure data integrity against crashes, critical state files (like the linking map and processing state) are saved using an atomic write pattern (write to a temp file, then rename). These saves occur periodically in configurable batches during the main processing loop.
+
+**--(Latent AI Capabilities - Bypassed in this Workflow)--**
+*   **(Inactive) AI-Powered Category Selection:** The codebase contains sophisticated logic (`_get_ai_suggested_categories_enhanced`) to use an OpenAI client to intelligently select categories. This is bypassed when using a predefined category list.
+*   **(Inactive) Hierarchical Category Processing:** The script has the capability (`_hierarchical_category_selection`) to explore a supplier's site by prioritizing FBA-friendly categories first, then moving to other phases. This is not used in the custom Pound Wholesale run.
+*   **(Inactive) Subcategory Deduplication & Validation:** Advanced features to intelligently prune redundant subcategories and validate category productivity exist but are part of the AI selection funnel, which is inactive.
+
+**Core Workflow Logic (as executed by `run_custom_poundwholesale.py`):**
+1.  **Initialization and State Loading:** The workflow starts, initializing the `EnhancedStateManager` for the target supplier. This loads the complete state from the previous session, including the `last_processed_index`.
+2.  **Predefined Category Loading:** The `use_predefined_categories=True` flag is detected. The workflow bypasses all AI logic and instead calls `_get_predefined_categories` to load a hard-coded list of URLs from a specific config file.
+3.  **Supplier Product Scraping & Caching:** Using the predefined category list, `_extract_supplier_products` is called. This method first checks for a fresh local cache of supplier products to avoid re-scraping before leveraging the `ConfigurableSupplierScraper` to fetch data.
+4.  **Product Filtering and Resume Point Identification:** The scraped products are filtered by the configured price range. The script then slices the product list to start processing from the `last_processed_index` provided by the state manager.
+5.  **Main Processing Loop (Batching):** The script enters its main loop, iterating through the products in configurable batches (`max_products_per_cycle`).
+6.  **Amazon Data Retrieval:** For each supplier product, `_get_amazon_data` is called. This method orchestrates the search on Amazon, executing the EAN-first, title-fallback strategy.
+7.  **Data Caching & Linking:** The retrieved Amazon data is cached to disk. A "linking map" entry is created in memory to permanently associate the supplier product with the matched Amazon ASIN.
+8.  **Financial Calculation:** The `FBA_Financial_calculator` is run on the combined supplier and Amazon data.
+9.  **Profitability Check & State Update:** If the product meets the defined ROI and profit criteria, it's added to a list of profitable results. The product's URL is then marked as processed in the state manager to prevent re-analysis.
+10. **Periodic Saves:** At configurable intervals (e.g., every 4 products, per `linking_map_batch_size`), the entire state (including the linking map and processing index) is saved to disk using an atomic write pattern.
+11. **Finalization & Dual Reporting:** Once the loop completes, a final save is performed. Two reports are generated: a simple JSON list of profitable products from the current session, and a comprehensive CSV financial report for all cached products for the supplier.
+
+**Class & Function Directory (with Line Numbers):**
+
+- `FixedAmazonExtractor` (Lines: 435-848): A specialized class that extends the base `AmazonExtractor`. It is responsible for all interactions with Amazon.co.uk, including searching and data extraction.
+  - `search_by_ean_and_extract_data()` (Lines: 625-821): The primary, high-confidence search method. It searches by EAN, filters out sponsored ads, and uses title similarity scoring to select the best match.
+  - `extract_data()` (Lines: 824-848): The main data extraction method for a given ASIN. It reuses existing browser pages to ensure Chrome extensions function correctly.
+
+- `PassiveExtractionWorkflow` (Lines: 851-2647): The main orchestrator class for the entire product sourcing workflow.
+  - `__init__()` (Lines: 860-989): Initializes the system, loading configurations, setting up paths, and instantiating the scraper and extractor clients.
+  - `_get_predefined_categories()` (Lines: 1256-1277): **(Active in this workflow)** Loads a predefined list of category URLs from a supplier-specific JSON file located in the `/config` directory.
+  - `run()` (Lines: 1970-2316): The main execution entry point. Its conditional logic checks the `use_predefined_categories` flag to determine the execution path, orchestrating the entire process from state loading to final report generation.
+  - `_extract_supplier_products()` (Lines: 2318-2396): Manages scraping product data from a list of category URLs, respecting product limits and handling caching.
+  - `_get_amazon_data()` (Lines: 2398-2481): Implements the EAN-first, title-fallback logic for finding a supplier product on Amazon and performs the critical EAN cross-validation.
+  - `_save_final_report()` (Lines: 2483-2495): Saves the list of profitable products found during the current run to a final JSON report.
+  - `_validate_product_match()` (Lines: 2506-2521): A helper method that calculates a confidence score for a potential match based on title similarity.
+
+- **--(Inactive Methods in this Workflow)--**
+  - `_get_ai_suggested_categories_enhanced()` (Lines: 1412-1633): **(Bypassed)** The core AI interaction method. It builds a detailed prompt, calls the OpenAI API, and validates the JSON response.
+  - `_hierarchical_category_selection()` (Lines: 1809-1968): **(Bypassed)** Manages the high-level strategy for choosing categories, incorporating subcategory deduplication and phase transitions.
+  - `_detect_parent_child_urls()` & `_filter_urls_by_subcategory_deduplication()` (Lines: 1218-1320): **(Bypassed)** Helper methods for the hierarchical selection process to prune redundant subcategories.
+  - `_validate_category_productivity()` (Lines: 1635-1689): **(Bypassed)** Helper method to perform a quick check on a URL to see if it contains products before committing to a full scrape.
+
+- `main()` (Lines: 2634-2647): A generic command-line entry point. **(Note: The `run_custom_poundwholesale.py` script serves as the actual entry point for this specific workflow).**
+
+**Architect's Note:**
+This script should be viewed as a powerful, generic "engine." Its behavior is fundamentally defined by the "runner" script that calls it (like `run_custom_poundwholesale.py`) and the flags passed during instantiation. When analyzing this code, it is crucial to first identify the entry point to understand which architectural paths and features will be active.

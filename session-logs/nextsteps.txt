@@ -1,0 +1,109 @@
+
+## 4. Unresolved Issues & Next Steps
+
+### **Unresolved Issues**
+- **AI Category Suggestion Fails:**  
+  - AI JSON returned by OpenAI is missing required keys (`'skip_urls'`, `'top_3_urls'`, `'secondary_urls'`), causing the AI suggestion step to fail and no AI category cache file to be created.
+- **Linking Map Not Updated:**  
+  - `linking_map.json` is not updated after workflow runs, indicating a possible bug in the linking map update logic or in the product matching process.
+- **Amazon Analyzed Products Not Cached:**  
+  - No new files in `amazon_cache/` after workflow runs, possibly due to no matches or a bug in the caching logic.
+- **FBA Financial Report Path Issues:**  
+  - FBA financial report is created in an absolute path, which may not be accessible from the relative workspace, causing confusion in file discovery.
+- **Workflow Summary File Missing:**  
+  - `fba_summary_<supplier>_<timestamp>.json` is not found after workflow runs, possibly due to a bug in the summary file writing logic.
+- **State File Not Created:**  
+  - `clearance-king_co_uk_processing_state.json` is not found after workflow runs, possibly due to workflow errors or early termination.
+
+### **Next Troubleshooting Steps**
+1. **Fix AI Category Suggestion:**  
+   - Debug the `_get_ai_suggested_categories_enhanced` method to ensure the AI response includes all required keys.
+   - Add fallback logic or stricter validation to prevent workflow failure if AI response is malformed.
+
+2. **Verify Linking Map Update Logic:**  
+   - Trace the code path for updating and saving `linking_map.json` to ensure it is called after each product analysis.
+
+3. **Check Amazon Cache File Creation:**  
+   - Ensure that Amazon analyzed products are being cached correctly in `amazon_cache/` for each processed product.
+
+4. **Standardize Output File Paths:**  
+   - Refactor file writing logic to use consistent, relative paths for all output files.
+
+5. **Ensure Workflow Summary and State Files Are Written:**  
+   - Add error handling and logging to confirm that summary and state files are always written, even if no profitable products are found.
+
+6. **Re-run Tests After Fixes:**  
+   - After addressing the above issues, re-run Test 1 and Test 2, and verify that all expected output files are created and contain the correct data.
+
+---
+
+## 5. Critical Context & Constraints
+
+- **Strict Output Verification:**  
+  - After each test, every output file must be listed, opened, and its contents verified for correctness and completeness.
+  - No assumptions are to be made based on logs alone; file system state is the source of truth.
+
+- **Cache-Clearing Behavior:**  
+  - `clear_cache=false`, `selective_cache_clear=false`: No cache clearing; all caches and AI suggestions should be preserved.
+  - `clear_cache=false`, `selective_cache_clear=true`: Only non-analyzed supplier products should be cleared; analyzed data (linking map, Amazon cache, etc.) must be preserved; AI scraping must be triggered.
+  - Each test must start with a clean state (all relevant caches and AI suggestion files cleared).
+
+- **AI Category Suggestion:**  
+  - There must be two unique AI category suggestion files after running both Test 1 and Test 2, with no duplication of suggested categories/pages.
+
+- **FBA Financial Calculator:**  
+  - The FBA financial report must be generated and saved in the correct output directory after each workflow run.
+
+- **Documentation & Record-Keeping:**  
+  - Every action, file, and outcome must be documented in detail for session continuity.
+
+---
+
+## 6. File Paths, Variable Names, and Technical Specifications
+
+- **Main Workflow Script:**  
+  - `tools/passive_extraction_workflow_latest.py`
+- **Supplier Cache File:**  
+  - `OUTPUTS/cached_products/clearance-king_co_uk_products_cache.json`
+- **Amazon Cache Directory:**  
+  - `OUTPUTS/FBA_ANALYSIS/amazon_cache/`
+- **Linking Map:**  
+  - `OUTPUTS/FBA_ANALYSIS/Linking map/linking_map.json`
+- **AI Category Cache Directory:**  
+  - `OUTPUTS/FBA_ANALYSIS/ai_category_cache/`
+- **FBA Financial Report:**  
+  - `OUTPUTS/FBA_ANALYSIS/fba_financial_report_<timestamp>.csv`
+- **Workflow Summary:**  
+  - `OUTPUTS/FBA_ANALYSIS/fba_summary_<supplier>_<timestamp>.json`
+- **State File:**  
+  - `OUTPUTS/FBA_ANALYSIS/<supplier>_processing_state.json`
+- **System Config:**  
+  - `config/system_config.json`
+- **CacheManager Class:**  
+  - `tools/cache_manager.py`, method: `clear_cache(strategy=...)`
+- **AI Category Suggestion Method:**  
+  - `_get_ai_suggested_categories_enhanced` in `PassiveExtractionWorkflow`
+- **FBA Financial Calculator:**  
+  - `tools/FBA_Financial_calculator.py`, function: `run_calculations()`
+
+---
+
+## 7. Handoff Checklist
+
+- [x] All cache and AI suggestion files cleared before each test
+- [x] Test 1 and Test 2 run with correct config
+- [x] Every output file listed and read after each test
+- [x] All missing or incorrect files identified and documented
+- [x] All error messages and workflow issues recorded verbatim
+- [x] All attempted solutions and their outcomes documented
+- [x] Next troubleshooting steps clearly outlined
+
+---
+
+## 8. Immediate Next Action for Continuation
+
+**Begin by fixing the AI category suggestion bug and ensuring all output files are generated and updated as expected after each workflow run. Then, re-run Test 1 and Test 2, and verify every output file as described above.**
+
+---
+
+**This document is designed for direct handoff to any technical expert or AI agent for seamless session continuation. No detail has been omitted.**

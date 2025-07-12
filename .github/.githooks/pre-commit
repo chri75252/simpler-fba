@@ -1,0 +1,46 @@
+#!/bin/bash
+#
+# Pre-commit hook for Claude Standards Sync (Tier-3 Safety Net)
+# This hook ensures claude.md is synced with CLAUDE_STANDARDS.md before commits
+#
+
+# Cross-platform Python detection
+if command -v python3 >/dev/null 2>&1; then
+    PYTHON_CMD="python3"
+elif command -v python >/dev/null 2>&1; then
+    PYTHON_CMD="python"
+elif command -v py >/dev/null 2>&1; then
+    PYTHON_CMD="py -3"
+else
+    echo "❌ Error: Python not found in PATH"
+    echo "Please install Python 3.12+ and ensure it's in your PATH"
+    exit 1
+fi
+
+# Get project root directory
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
+
+echo "🔍 Checking Claude Standards sync status..."
+
+# Check if sync is needed using our detector
+"$PYTHON_CMD" "$PROJECT_ROOT/tools/sync_opportunity_detector.py" --check
+
+SYNC_NEEDED=$?
+
+if [ $SYNC_NEEDED -eq 1 ]; then
+    echo ""
+    echo "⚠️  CLAUDE STANDARDS SYNC REQUIRED"
+    echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+    echo "CLAUDE_STANDARDS.md changes detected that require sync to claude.md"
+    echo ""
+    echo "Options:"
+    echo "  1. Run sync now: python tools/sync_claude_standards.py"
+    echo "  2. Skip this check: git commit --no-verify"
+    echo ""
+    echo "❌ Commit blocked until sync is completed"
+    exit 1
+fi
+
+echo "✅ Claude Standards are in sync"
+exit 0

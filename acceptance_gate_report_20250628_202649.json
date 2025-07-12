@@ -1,0 +1,26 @@
+{
+  "acceptance_gate_timestamp": "2025-06-28T20:26:49.693254",
+  "total_criteria": 5,
+  "passed_criteria": 0,
+  "acceptance_status": "FAIL",
+  "criteria_results": {
+    "supplier_ready_flag": false,
+    "cache_products": false,
+    "linking_maps": false,
+    "category_json": false,
+    "login_flag": false
+  },
+  "validation_errors": [
+    "OPENAI_API_KEY missing",
+    "Missing .supplier_ready flag: suppliers/poundwholesale-co-uk/.supplier_ready",
+    "Missing cache file: OUTPUTS/cached_products/poundwholesale-co-uk_products_cache.json",
+    "No valid linking maps with matching_result in OUTPUTS/FBA_ANALYSIS/linking_maps/poundwholesale-co-uk",
+    "Missing category JSON: OUTPUTS/ai_suggested_categories/poundwholesale-co-uk.json",
+    "No login flag files found in logs/debug"
+  ],
+  "summary": {
+    "all_criteria_met": false,
+    "workflow_executed": false,
+    "ready_for_production": false
+  }
+}

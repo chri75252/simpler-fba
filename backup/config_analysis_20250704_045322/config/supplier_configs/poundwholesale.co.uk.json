@@ -1,0 +1,69 @@
+{
+  "supplier_id": "poundwholesale-co-uk",
+  "supplier_name": "Poundwholesale.Co.Uk",
+  "base_url": "https://www.poundwholesale.co.uk/",
+  "field_mappings": {
+    "product_item": [
+      ".product-item",
+      "li.product-item"
+    ],
+    "title": [
+      ".product-item .product-item-link",
+      ".product-item a.product-item-link"
+    ],
+    "price": [
+      "meta[property=\"product:price:amount\"]",
+      ".product-item .price"
+    ],
+    "price_login_required": [
+      "a.btn.customer-login-link.login-btn",
+      ".product-item a.btn.customer-login-link.login-btn"
+    ],
+    "url": [
+      ".product-item a.product-item-link",
+      ".product-item .product-item-link"
+    ],
+    "image": [
+      ".product-item img.product-image-photo",
+      ".product-item .product-image-photo"
+    ],
+    "ean": [
+      "dt:contains('Product Barcode') + dd",
+      "dt:contains('EAN') + dd", 
+      "dt:contains('Barcode') + dd",
+      "*:contains('Product Barcode/ASIN/EAN:') + *",
+      "[data-ean]",
+      "script[type=\"application/ld+json\"]",
+      "meta[itemprop=\"gtin13\"]",
+      "meta[property=\"product:ean\"]"
+    ],
+    "barcode": [
+      "dt:contains('Product Barcode') + dd",
+      "dt:contains('Barcode') + dd", 
+      "*:contains('Product Barcode/ASIN/EAN:') + *",
+      "[data-barcode]",
+      "script[type=\"application/ld+json\"]",
+      "meta[itemprop=\"gtin13\"]"
+    ],
+    "product_code": [
+      "[data-product-sku]",
+      ".product-item .sku",
+      "meta[itemprop=\"sku\"]"
+    ],
+    "sku": [
+      "[data-product-sku]",
+      ".product-item .sku"
+    ]
+  },
+  "pagination": {
+    "pattern": "?page={page_num}",
+    "next_button_selector": [
+      "a.next",
+      ".pagination .next a",
+      "a[rel='next']"
+    ]
+  },
+  "auto_discovered": true,
+  "discovery_timestamp": "2025-06-21T03:43:33.516852",
+  "success": true
+}

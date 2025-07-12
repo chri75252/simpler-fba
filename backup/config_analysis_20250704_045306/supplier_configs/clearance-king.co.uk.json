@@ -1,0 +1,32 @@
+{
+    "supplier_id": "clearance-king",
+    "supplier_name": "Clearance King UK",
+    "base_url": "https://www.clearance-king.co.uk",
+    "api_config": {
+        "base_url": "https://www.clearance-king.co.uk"
+    },
+    "scraping_config": {
+        "enabled": true,
+        "rate_limit": {
+            "requests_per_minute": 30,
+            "delay_between_requests": 2.0
+        }
+    },
+    "field_mappings": {
+        "product_item": ["li.item.product.product-item"],
+        "title": ["a.product-item-link"],
+        "price": ["span.price"],
+        "url": ["a.product-item-link"],
+        "image": ["img.product-image-photo"],
+        "ean": [""],
+        "barcode": [""]
+    },
+    "pagination": {
+        "pattern": "?p={page_num}",
+        "next_button_selector": "a.action.next"
+    },
+    "category_paths": ["/pound-lines.html", "/clearance.html", "/special-offers.html"],
+    "use_ai_category_progression": true,
+    "max_category_pages_to_scrape": 5,
+    "two_step_extraction": true
+}

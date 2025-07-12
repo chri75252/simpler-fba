@@ -1,0 +1,165 @@
+# Pre-commit configuration for Amazon FBA Agent System v3.5
+# ===========================================================
+# 
+# This configuration provides automated validation and formatting
+# using the pre-commit framework (https://pre-commit.com/)
+#
+# Installation:
+#   pip install pre-commit
+#   pre-commit install
+#
+# Manual run:
+#   pre-commit run --all-files
+
+repos:
+  # Local repository hooks (our custom scripts)
+  - repo: local
+    hooks:
+      # Claude Standards Sync Validation (Tier-3 Safety Net)
+      - id: claude-standards-sync
+        name: Claude Standards Sync Check
+        entry: python tools/sync_opportunity_detector.py --check
+        language: python
+        files: ^(CLAUDE_STANDARDS\.md|claude\.md|tools/sync_claude_standards\.py)$
+        pass_filenames: false
+        additional_dependencies:
+          - python-dotenv
+        description: "Ensures claude.md is synced with CLAUDE_STANDARDS.md before commits"
+      
+      # Python code formatting and linting
+      - id: python-black
+        name: Format Python code with Black
+        entry: black
+        language: python
+        types: [python]
+        args: [--line-length=100, --target-version=py312]
+        additional_dependencies: [black]
+        description: "Format Python code using Black formatter"
+      
+      - id: python-isort
+        name: Sort Python imports with isort
+        entry: isort
+        language: python
+        types: [python]
+        args: [--profile=black, --line-length=100]
+        additional_dependencies: [isort]
+        description: "Sort Python imports using isort"
+      
+      # Configuration file validation
+      - id: validate-json-configs
+        name: Validate JSON configuration files
+        entry: python -m json.tool
+        language: system
+        files: \.(json)$
+        description: "Validate JSON syntax in configuration files"
+      
+      # Security checks
+      - id: check-api-keys
+        name: Check for exposed API keys
+        entry: python tools/security_checks.py --check-api-keys
+        language: python
+        types: [text]
+        exclude: ^\.env$
+        description: "Scan for accidentally exposed API keys in code"
+        # Note: Excludes .env file which legitimately contains keys
+
+  # Standard pre-commit hooks
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      # File formatting
+      - id: trailing-whitespace
+        description: "Remove trailing whitespace"
+      
+      - id: end-of-file-fixer
+        description: "Ensure files end with newline"
+      
+      - id: mixed-line-ending
+        args: [--fix=lf]
+        description: "Normalize line endings to LF"
+      
+      # File validation
+      - id: check-yaml
+        description: "Validate YAML syntax"
+        exclude: ^\.github/workflows/
+      
+      - id: check-toml
+        description: "Validate TOML syntax"
+      
+      - id: check-json
+        description: "Validate JSON syntax"
+      
+      # Security and best practices
+      - id: detect-private-key
+        description: "Detect private keys in code"
+      
+      - id: check-merge-conflict
+        description: "Check for merge conflict markers"
+      
+      - id: check-added-large-files
+        args: [--maxkb=1000]
+        description: "Check for large files (>1MB)"
+      
+      # Code quality
+      - id: debug-statements
+        description: "Check for debug statements in Python"
+        language: python
+        types: [python]
+
+  # Python-specific linting
+  - repo: https://github.com/pycqa/flake8
+    rev: 7.0.0
+    hooks:
+      - id: flake8
+        args: [
+          --max-line-length=100,
+          --extend-ignore=E203,W503,  # Black compatibility
+          --exclude=archive/,archive_new/,  # Skip archived code
+          --per-file-ignores=__init__.py:F401  # Allow unused imports in __init__.py
+        ]
+        additional_dependencies:
+          - flake8-docstrings
+          - flake8-import-order
+        description: "Lint Python code with flake8"
+
+  # Markdown formatting and linting
+  - repo: https://github.com/igorshubovych/markdownlint-cli
+    rev: v0.39.0
+    hooks:
+      - id: markdownlint
+        args: [
+          --config=.markdownlint.yaml,
+          --fix
+        ]
+        exclude: ^(archive/|archive_new/|OUTPUTS/)
+        description: "Lint and format Markdown files"
+
+# Global configuration
+fail_fast: false  # Run all hooks even if one fails
+default_stages: [commit, push]
+
+# CI-specific configuration
+ci:
+  autofix_commit_msg: |
+    [pre-commit.ci] auto fixes from pre-commit hooks
+    
+    Applied automatic fixes from the following hooks:
+    - ${{ HOOKS }}
+  
+  autofix_prs: true
+  autoupdate_branch: 'june-15'
+  autoupdate_commit_msg: '[pre-commit.ci] pre-commit autoupdate'
+  autoupdate_schedule: monthly
+  skip: []  # Don't skip any hooks in CI
+
+# Performance optimization
+exclude: |
+  (?x)^(
+    archive/.*|
+    archive_new/.*|
+    OUTPUTS/.*|
+    logs/.*|
+    \.git/.*|
+    .*\.log$|
+    .*\.cache$
+  )$

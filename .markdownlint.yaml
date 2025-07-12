@@ -1,0 +1,89 @@
+# Markdownlint configuration for Amazon FBA Agent System v3.5
+# =============================================================
+# 
+# This configuration provides consistent Markdown formatting
+# across all documentation files in the project.
+#
+# See: https://github.com/markdownlint/markdownlint/blob/main/docs/RULES.md
+
+# Disable rules that conflict with our documentation style
+MD013: false  # Line length - we allow long lines for readability
+MD033: false  # HTML tags - we use HTML for enhanced formatting
+MD034: false  # Bare URLs - sometimes needed for reference
+MD041: false  # First line must be h1 - not required for all docs
+
+# Configure specific rules
+MD003:  # Header style
+  style: "atx"  # Use # style headers
+
+MD004:  # Unordered list style
+  style: "dash"  # Use - for bullet points
+
+MD007:  # Unordered list indentation
+  indent: 2  # 2 spaces for nested lists
+
+MD009:  # Trailing spaces
+  br_spaces: 2  # Allow 2 trailing spaces for line breaks
+
+MD010:  # Hard tabs
+  code_blocks: false  # Allow tabs in code blocks
+
+MD012:  # Multiple consecutive blank lines
+  maximum: 2  # Allow up to 2 blank lines
+
+MD022:  # Headers should be surrounded by blank lines
+  lines_above: 1
+  lines_below: 1
+
+MD024:  # Multiple headers with same content
+  allow_different_nesting: true  # Allow same headers at different levels
+
+MD025:  # Multiple top level headers
+  front_matter_title: ""  # Don't require front matter title
+
+MD026:  # Trailing punctuation in headers
+  punctuation: ".,;:!?"  # Standard punctuation to avoid
+
+MD029:  # Ordered list item prefix
+  style: "ordered"  # Use 1. 2. 3. style
+
+MD030:  # Spaces after list markers
+  ul_single: 1
+  ol_single: 1
+  ul_multi: 1
+  ol_multi: 1
+
+MD032:  # Lists should be surrounded by blank lines
+  false  # Allow lists without surrounding blank lines
+
+MD036:  # Emphasis used instead of header
+  punctuation: ".,;:!?。，；：！？"  # Extended punctuation list
+
+MD040:  # Fenced code blocks should have a language
+  allowed_languages: [
+    "bash", "shell", "sh",
+    "python", "py",
+    "javascript", "js",
+    "json",
+    "yaml", "yml",
+    "markdown", "md",
+    "html",
+    "css",
+    "sql",
+    "text", "txt",
+    "powershell", "ps1",
+    "dockerfile",
+    "ini", "toml"
+  ]
+  language_only: false  # Allow info strings beyond just language
+
+MD046:  # Code block style
+  style: "fenced"  # Prefer ``` style over indented
+
+MD048:  # Code fence style
+  style: "backtick"  # Use ``` instead of ~~~
+
+# Custom rules for our project
+MD051: false  # Link fragments - allow fragments in internal links
+MD052: false  # Reference links - allow reference-style links
+MD053: false  # Link definitions - allow unused link definitions

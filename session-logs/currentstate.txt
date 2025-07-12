@@ -1,0 +1,137 @@
+
+# Amazon FBA Agent System v3 – Session Continuity & Troubleshooting Handoff
+
+## 1. Session Overview
+
+**Primary Goal:**  
+To validate, troubleshoot, and document the cache integration and output file generation logic in the Amazon FBA Agent System v3, specifically focusing on the correct behavior of the cache-clearing mechanisms (`clear_cache` and `selective_cache_clear`), AI category suggestion, and output file creation for supplier scraping, Amazon analysis, linking maps, and FBA financial calculations.
+
+**Key Objectives:**
+- Ensure that all output files (supplier cache, Amazon analyzed products, linking map, AI category cache, FBA financial report) are generated as expected for each test scenario.
+- Validate that cache-clearing settings (`clear_cache`, `selective_cache_clear`) behave exactly as specified in the system configuration.
+- Confirm that AI category suggestion logic is triggered and produces unique, non-duplicated results across test runs.
+- Provide a complete, step-by-step record of all actions, issues, and system states for future troubleshooting and session continuation.
+
+---
+
+## 2. Chronological Problem Log
+
+### **Initial Issues Identified**
+- **Cache Integration:**  
+  - The main workflow (`tools/passive_extraction_workflow_latest.py`) was not respecting the `CacheManager` logic or the `clear_cache`/`selective_cache_clear` settings in `config/system_config.json`.
+  - The FBA Financial Calculator was not running or generating output files as expected.
+
+- **Output File Generation:**  
+  - Expected output files (supplier scraped products, Amazon analyzed products, linking map, AI category cache, FBA financial report) were missing or not updated after workflow runs.
+
+### **Key Error Messages & Symptoms**
+- Output files referenced in logs (e.g., `fba_summary_clearance-king_co_uk_20250530_165605.json`, `fba_financial_report_20250530_170011.csv`) were not found in the expected directories.
+- AI category suggestion step failed with:  
+  `ERROR - AI JSON invalid → "AI JSON missing keys: {'skip_urls', 'top_3_urls', 'secondary_urls'}"`
+- Linking map (`OUTPUTS/FBA_ANALYSIS/Linking map/linking_map.json`) was not updated after workflow runs.
+- FBA financial report was not generated or not found in the expected output directory.
+- Log files (e.g., `fba_extraction_20250530.log`) were empty after workflow runs.
+
+### **Attempted Solutions & Outcomes**
+- **CacheManager Integration:**  
+  - Refactored workflow logic to ensure `CacheManager` is initialized and invoked according to the four possible combinations of `clear_cache` and `selective_cache_clear`.
+  - Ensured that selective cache clearing triggers AI category progression as required.
+
+- **Output File Verification:**  
+  - Systematically listed and read every output file after each test run.
+  - Verified the content of each file (supplier cache, Amazon cache, linking map, AI category cache, FBA financial report).
+  - Identified that some files were not being created due to bugs in file path handling or workflow logic.
+
+- **Bug Fixes:**  
+  - Fixed a bug where `workflow_instance` was referenced instead of `self` in the `run()` method, which prevented the FBA Financial Calculator from running.
+  - Ensured that all output directories are created with `os.makedirs(..., exist_ok=True)` before file writes.
+  - Adjusted file path handling to ensure output files are written to the correct directories.
+
+- **Test Execution:**  
+  - Ran Test 1 (`clear_cache=false`, `selective_cache_clear=false`) and Test 2 (`clear_cache=false`, `selective_cache_clear=true`) after clearing all relevant cache and AI suggestion files.
+  - After each test, listed every output file, opened and read their contents, and compared them to expected results.
+
+- **Diagnostics:**  
+  - Used PowerShell and Python commands to list, delete, and verify files in all relevant output directories.
+  - Checked for file creation in both relative and absolute paths to account for possible path misconfigurations.
+
+---
+
+## 3. Current Technical State
+
+### **Scripts and Their Current Versions**
+- **Main Workflow:**  
+  - `tools/passive_extraction_workflow_latest.py`  
+    - Fully integrated with `CacheManager`.
+    - Contains logic for all four cache-clearing scenarios.
+    - Calls FBA Financial Calculator at the end of each run.
+    - Handles AI category suggestion and state file management.
+
+- **Cache Manager:**  
+  - `tools/cache_manager.py`  
+    - Provides `clear_cache(strategy=...)` with strategies: `smart_selective`, `size_based`, etc.
+
+- **FBA Financial Calculator:**  
+  - `tools/FBA_Financial_calculator.py`  
+    - Exposes `run_calculations()` for generating financial reports.
+
+### **Output Files and Their State (After Last Test 1 Run)**
+- **Supplier Scraped Products:**  
+  - `OUTPUTS/cached_products/clearance-king_co_uk_products_cache.json`  
+    - Contains 40 products (verified by reading file).
+    - Each product has fields: `title`, `price`, `url`, `image_url`, `ean`, etc.
+
+- **Amazon Analyzed Products:**  
+  - `OUTPUTS/FBA_ANALYSIS/amazon_cache/`  
+    - No new files created for the last run (possible bug or no matches found).
+
+- **Linking Map:**  
+  - `OUTPUTS/FBA_ANALYSIS/Linking map/linking_map.json`  
+    - Not updated after last run; still contains old entries.
+
+- **AI Category Cache:**  
+  - `OUTPUTS/FBA_ANALYSIS/ai_category_cache/`  
+    - No new files created after last run (AI suggestion step failed due to missing keys in AI JSON).
+
+- **FBA Financial Report:**  
+  - `C:\Users\chris\Amazon-FBA-Agent-System\OUTPUTS\FBA_ANALYSIS\fba_financial_report_20250530_170011.csv`  
+    - File exists in absolute path, but not accessible via relative workspace tools.
+
+- **Workflow Summary:**  
+  - `OUTPUTS/FBA_ANALYSIS/fba_summary_clearance-king_co_uk_20250530_165903.json`  
+    - Not found in expected directory after last run.
+
+- **State File:**  
+  - `OUTPUTS/FBA_ANALYSIS/clearance-king_co_uk_processing_state.json`  
+    - Not found after last run (may not have been created due to workflow errors).
+
+### **Expected Output Files (Per README and Workflow Spec)**
+- `OUTPUTS/cached_products/clearance-king_co_uk_products_cache.json`
+- `OUTPUTS/FBA_ANALYSIS/amazon_cache/amazon_<ASIN>.json`
+- `OUTPUTS/FBA_ANALYSIS/Linking map/linking_map.json`
+- `OUTPUTS/FBA_ANALYSIS/ai_category_cache/<supplier>_categories_<timestamp>.json`
+- `OUTPUTS/FBA_ANALYSIS/fba_summary_<supplier>_<timestamp>.json`
+- `OUTPUTS/FBA_ANALYSIS/fba_financial_report_<timestamp>.csv`
+- `OUTPUTS/FBA_ANALYSIS/<supplier>_processing_state.json`
+
+### **System Configurations and Settings**
+- `config/system_config.json` (current state for Test 1):  
+  ```json
+  {
+    "system": {
+      "clear_cache": false,
+      "selective_cache_clear": false,
+      ...
+    }
+  }
+  ```
+- **Environment:**  
+  - OS: Windows 10 (win32 10.0.22631)
+  - Python: (version not specified, but compatible with async/await and Playwright)
+  - Output directory: `C:\Users\chris\Amazon-FBA-Agent-System\OUTPUTS\FBA_ANALYSIS`
+
+### **Environment Variables and Dependencies**
+- `OPENAI_API_KEY` and `OPENAI_MODEL` set via config or environment.
+- Required Python packages: `openai`, `playwright`, `bs4`, `requests`, etc.
+
+---

@@ -1,0 +1,384 @@
+{
+  "system": {
+    "name": "Amazon FBA Agent System", // COMMENT: System identifier - used in logging and UI display
+    "version": "3.5.0", // COMMENT: Version tracking - used in logging and compatibility checks
+    "environment": "production", // COMMENT: Environment flag - NOT FOUND IN WORKFLOW SCRIPTS
+    "test_mode": false, // COMMENT: Used in main_orchestrator.py:93 to control AI scraping bypass conditions
+    "clear_cache": true, // COMMENT: Used in main_orchestrator.py:94,325-328 to control cache clearing behavior
+    "selective_cache_clear": false, // COMMENT: Used in main_orchestrator.py:95 to enable targeted cache clearing vs full wipes
+    "force_ai_scraping": false, // COMMENT: Used in run_complete_fba_system.py:394 to control OpenAI client initialization
+    "max_products": 15, // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - workflow uses CLI parameter override instead
+    "max_analyzed_products": 10, // COMMENT: Used in run_complete_fba_system.py:427 as workflow.run() parameter
+    "max_products_per_cycle": 5, // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - may be legacy parameter
+    "linking_map_batch_size": 5, // COMMENT: Used in run_complete_fba_system.py:414 for logging, actual usage UNSURE
+    "financial_report_batch_size": 5, // COMMENT: Used in run_complete_fba_system.py:415 for logging, actual usage UNSURE
+    "headless_probe_seconds": 0, // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS
+    "reuse_browser": true, // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - browser reuse is hardcoded in browser_manager.py
+    "max_tabs": 2, // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS
+    "supplier_login_max_retries": 3, // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS
+    "supplier_login_backoff_sec": 5, // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS
+    "output_root": "OUTPUTS", // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - output paths are hardcoded in path_manager.py
+
+    "enable_supplier_parser": false // COMMENT: Used in main_orchestrator.py:97,110,454-459 to control supplier parser activation
+  },
+  "chrome": {
+    "debug_port": 9222, // COMMENT: NOT DIRECTLY USED FROM CONFIG - hardcoded as chrome_debug_port=9222 in multiple files
+    "headless": false, // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - headless mode controlled by CLI --headed parameter
+    "extensions": [ // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - extensions must be manually loaded in Chrome
+      "Keepa",
+      "SellerAmp"
+    ]
+  },
+  "suppliers": {
+    "clearance-king": { // COMMENT: Supplier configuration section - loaded by supplier_config_loader.py but rate limits NOT USED
+      "name": "Clearance King UK", // COMMENT: Supplier display name - used in supplier configs
+      "base_url": "", // COMMENT: Supplier website URL - used by configurable_supplier_scraper.py
+      "api_config": {
+        "enabled": false, // COMMENT: API integration toggle - NOT FOUND IN WORKFLOW SCRIPTS
+        "base_url": "", // COMMENT: API endpoint URL - NOT FOUND IN WORKFLOW SCRIPTS
+        "auth_type": "bearer", // COMMENT: API authentication method - NOT FOUND IN WORKFLOW SCRIPTS
+        "rate_limit": {
+          "requests_per_minute": 60, // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - API rate limiting not implemented
+          "requests_per_hour": 1000 // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - API rate limiting not implemented
+        }
+      },
+      "scraping_config": {
+        "enabled": true, // COMMENT: Scraping toggle - used by supplier_config_loader.py
+        "rate_limit": {
+          "requests_per_minute": 30, // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - configurable_supplier_scraper.py uses hardcoded rate_limit_delay=1.0
+          "delay_between_requests": 2.0 // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - configurable_supplier_scraper.py uses hardcoded rate_limit_delay=1.0
+        }
+      },
+      "category_urls": {
+        "main_categories": [
+          "/pound-lines.html",
+          "/household.html",
+          "/health-beauty.html",
+          "/gifts-toys.html",
+          "/stationery-crafts.html",
+          "/pets.html",
+          "/baby-kids.html",
+          "/clearance-lines.html"
+        ],
+        "pagination_pattern": "?p={page_num}",
+        "max_pages_per_category": 10
+      }
+    },
+    "wholesale-supplier": {
+      "name": "Example Wholesale Supplier",
+      "base_url": "",
+      "api_config": {
+        "enabled": true,
+        "base_url": "",
+        "auth_type": "api_key",
+        "rate_limit": {
+          "requests_per_minute": 100,
+          "requests_per_hour": 2000
+        }
+      },
+      "scraping_config": {
+        "enabled": false
+      }
+    }
+  },
+  "analysis": {
+    "min_roi_percent": 30.0, // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - passive_extraction_workflow_latest.py uses environment variable MIN_ROI_PERCENT instead
+    "min_profit_per_unit": 0.75, // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - passive_extraction_workflow_latest.py uses environment variable MIN_PROFIT_PER_UNIT instead
+    "min_rating": 3.8, // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - passive_extraction_workflow_latest.py uses environment variable MIN_RATING instead
+    "min_reviews": 20, // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - passive_extraction_workflow_latest.py uses environment variable MIN_REVIEWS instead
+    "max_sales_rank": 150000, // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - passive_extraction_workflow_latest.py uses environment variable MAX_SALES_RANK instead
+    "min_monthly_sales": 10, // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - passive_extraction_workflow_latest.py uses environment variable MIN_MONTHLY_SALES instead
+    "max_competition_level": 12, // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - no usage found in codebase
+    "excluded_categories": [ // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - category filtering not implemented
+      "Adult Products",
+      "Dangerous Goods",
+      "Restricted Items"
+    ],
+    "target_categories": [ // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - category targeting not implemented
+      "Home & Kitchen",
+      "Pet Supplies",
+      "Toys",
+      "Health & Personal Care",
+      "Office Products",
+      "Sports & Outdoors",
+      "Baby Products"
+    ]
+  },
+  "amazon": {
+    "marketplace": "amazon.co.uk", // COMMENT: Used in FBA_Financial_calculator.py for Amazon marketplace identification
+    "currency": "GBP", // COMMENT: Used in FBA_Financial_calculator.py for currency calculations
+    "vat_rate": 0.2, // COMMENT: Used in FBA_Financial_calculator.py for VAT calculations
+    "fba_fees": {
+      "referral_fee_rate": 0.15, // COMMENT: Used in FBA_Financial_calculator.py for referral fee calculations
+      "fulfillment_fee_minimum": 2.41, // COMMENT: Used in FBA_Financial_calculator.py for fulfillment fee calculations
+      "storage_fee_per_cubic_foot": 0.75, // COMMENT: Used in FBA_Financial_calculator.py for storage fee calculations
+      "prep_house_fixed_fee": 0.55 // COMMENT: Used in FBA_Financial_calculator.py for prep house fee calculations
+    }
+  },
+  "supplier": {
+    "prices_include_vat": true // COMMENT: Used in FBA_Financial_calculator.py to determine if VAT should be added to supplier prices
+  },
+  "output": {
+    "base_dir": "OUTPUTS/FBA_ANALYSIS", // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - output paths are hardcoded in path_manager.py
+    "report_format": "json", // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - output format is hardcoded
+    "save_intermediate_results": true, // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - intermediate save logic is hardcoded
+    "file_naming": {
+      "pattern": "{supplier}_{timestamp}", // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - file naming patterns are hardcoded
+      "timestamp_format": "%Y%m%d_%H%M%S" // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - timestamp formats are hardcoded
+    },
+    "retention": {
+      "keep_days": 30, // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - file retention not implemented
+      "archive_after_days": 7 // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - archiving not implemented
+    }
+  },
+  "monitoring": {
+    "enabled": true, // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - monitoring system not integrated with config
+    "metrics_interval": 60, // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - monitoring_system.py uses hardcoded intervals
+    "health_check_interval": 300, // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - health checks not implemented
+    "log_level": "INFO", // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - log level set in individual scripts
+    "alert_thresholds": {
+      "cpu_percent": 80, // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - alert thresholds not implemented
+      "memory_percent": 85, // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - alert thresholds not implemented
+      "error_rate_per_hour": 10 // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - alert thresholds not implemented
+    }
+  },
+  "cache": {
+    "enabled": true, // COMMENT: Cache system always enabled - used implicitly in cache_manager.py
+    "ttl_hours": 1, // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - cache_manager.py uses hardcoded max_cache_age_hours=336
+    "max_size_mb": 500, // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - cache size limits not implemented
+    "selective_clear_config": {
+      "preserve_analyzed_products": true, // COMMENT: Used in main_orchestrator.py for selective cache clearing logic
+      "preserve_ai_categories": true, // COMMENT: Used in main_orchestrator.py for selective cache clearing logic
+      "preserve_linking_map": true, // COMMENT: Used in main_orchestrator.py for selective cache clearing logic
+      "clear_unanalyzed_only": false, // COMMENT: Used in main_orchestrator.py for selective cache clearing logic
+      "clear_failed_extractions": true // COMMENT: Used in main_orchestrator.py for selective cache clearing logic
+    },
+    "directories": {
+      "currency_rates": "OUTPUTS/CACHE/currency", // COMMENT: Used in passive_extraction_workflow_latest.py:280-281 for cache directory loading
+      "product_data": "OUTPUTS/CACHE/products", // COMMENT: Used in passive_extraction_workflow_latest.py:280-281 for cache directory loading
+      "analysis_results": "OUTPUTS/CACHE/analysis", // COMMENT: Used in passive_extraction_workflow_latest.py:280-281 for cache directory loading
+      "supplier_cache": "OUTPUTS/CACHE/supplier_data", // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - supplier cache path is hardcoded
+      "amazon_cache": "OUTPUTS/CACHE/amazon_data", // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - amazon cache path is hardcoded
+      "ai_category_cache": "OUTPUTS/CACHE/ai_categories", // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - AI cache path is hardcoded
+      "linking_map": "OUTPUTS/FBA_ANALYSIS/linking_maps", // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - linking map path is hardcoded
+      "processing_states": "OUTPUTS/CACHE/processing_states" // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - processing state path is hardcoded
+    }
+  },
+  "integrations": {
+    "keepa": {
+      "enabled": true, // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - Keepa integration exists but doesn't read from system_config.json
+      "api_key": "", // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - Keepa uses environment variables for API key
+      "rate_limit": {
+        "requests_per_minute": 100 // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - Keepa rate limiting is hardcoded
+      }
+    },
+    "selleramp": {
+      "enabled": false, // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - SellerAmp integration exists but doesn't read from system_config.json
+      "login_required": false, // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - SellerAmp login logic is hardcoded
+      "rate_limit": {
+        "requests_per_minute": 30 // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - SellerAmp rate limiting is hardcoded
+      }
+    },
+    "openai": {
+      "enabled": true, // COMMENT: Used in passive_extraction_workflow_latest.py:277 to control AI functionality
+      "api_key": "", // COMMENT: Used in passive_extraction_workflow_latest.py:275 with environment variable fallback
+      "model": "gpt-4.1-mini-2025-04-14", // COMMENT: Used in passive_extraction_workflow_latest.py but overridden by environment variable OPENAI_MODEL_PRIMARY
+      "max_tokens": 1200, // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - max tokens are hardcoded in AI calls
+      "temperature": 0.1, // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - temperature values are hardcoded in AI calls
+      "web_search_enabled": false // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - web search capability not implemented
+    }
+  },
+  "ai_features": {
+    "category_selection": {
+      "enabled": true, // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - AI category selection logic is hardcoded
+      "disable_ai_category_selection": false, // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - AI category disable logic is hardcoded
+      "mode": "v2", // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - AI prompt modes are hardcoded in ai_category_suggester.py
+      "available_modes": {
+        "legacy": "Original 86-line prompt with detailed instructions", // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - prompt templates are hardcoded
+        "v2": "New 25-line clearance-first prompt optimized for arbitrage", // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - prompt templates are hardcoded
+        "minimal": "Super terse 12-line prompt for fallback" // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - prompt templates are hardcoded
+      },
+      "dynamic_reordering": {
+        "enabled": false, // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - dynamic reordering not implemented
+        "trigger_interval_categories": 5, // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - dynamic reordering not implemented
+        "trigger_interval_products": 100 // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - dynamic reordering not implemented
+      },
+      "fallbacks": {
+        "max_retries": 2, // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - AI retry logic is hardcoded
+        "clear_cache_between_retries": true, // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - cache clearing between retries is hardcoded
+        "alternate_prompts": ["v2", "legacy", "minimal"], // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - fallback prompts are hardcoded
+        "temperature_escalation": [0.1, 0.3, 0.5], // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - temperature escalation is hardcoded
+        "model_escalation": ["gpt-4.1-mini-2025-04-14"] // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - model escalation is hardcoded
+      }
+    },
+    "product_matching": {
+      "quality_threshold": "medium", // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - matching quality thresholds are hardcoded
+      "available_thresholds": ["low", "medium", "high"], // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - threshold options are hardcoded
+      "skip_low_quality": true, // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - quality filtering is hardcoded
+      "ean_search_enabled": true, // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - EAN search logic is hardcoded
+      "title_search_fallback": true // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - title search fallback is hardcoded
+    }
+  },
+  "processing_limits": {
+    "min_price_gbp": 0.1, // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - price filtering not implemented from config
+    "max_price_gbp": 20.0, // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - price filtering not implemented from config
+    "max_products_per_run": 0, // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - workflow uses CLI max_products parameter instead
+    "max_products_per_category": 5, // COMMENT: Controls maximum products scraped per category before moving to next category. Used in passive_extraction_workflow_latest.py lines 3309-3365. When limit reached, stops current category extraction but does NOT trigger AI category suggestions. Higher values = more thorough category scraping, lower values = faster category cycling.
+    "min_products_per_category": 2, // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - minimum product filtering not implemented
+    "category_validation": {
+      "enabled": true, // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - category validation not implemented from config
+      "min_products_per_category": 2, // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - category validation not implemented from config
+      "timeout_seconds": 15 // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - category validation timeouts are hardcoded
+    }
+  },
+  "security": {
+    "encryption_enabled": false, // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - encryption not implemented
+    "api_key_rotation_days": 90, // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - API key rotation not implemented
+    "session_timeout_minutes": 60, // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - session timeout not implemented
+    "max_login_attempts": 3 // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - login attempt limits are hardcoded
+  },
+  "performance": {
+    "max_concurrent_requests": 10, // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - concurrency limits are hardcoded
+    "request_timeout_seconds": 30, // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - request timeouts are hardcoded in individual modules
+    "retry_attempts": 3, // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - retry logic is hardcoded
+    "retry_delay_seconds": 2, // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - retry delays are hardcoded
+    "batch_size": 50, // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - batch sizes are hardcoded per module
+    "rate_limiting": {
+      "rate_limit_delay": 3.0, // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - configurable_supplier_scraper.py uses hardcoded rate_limit_delay=1.0
+      "batch_delay": 15.0, // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - batch delays are hardcoded
+      "ai_batch_size": 5 // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - AI batch sizes are hardcoded
+    },
+    "timeouts": {
+      "navigation_timeout_ms": 60000, // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - navigation timeouts are hardcoded in playwright helpers
+      "search_input_timeout_ms": 5000, // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - search timeouts are hardcoded
+      "results_wait_timeout_ms": 15000, // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - wait timeouts are hardcoded
+      "selector_wait_timeout_ms": 20000, // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - selector timeouts are hardcoded
+      "page_load_timeout_ms": 10000, // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - page load timeouts are hardcoded
+      "http_request_timeout_seconds": 15, // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - HTTP timeouts are hardcoded
+      "sitemap_timeout_seconds": 10 // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - sitemap timeouts are hardcoded
+    },
+    "matching_thresholds": {
+      "title_similarity": 0.25, // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - similarity thresholds are hardcoded in matching logic
+      "brand_similarity": 0.85, // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - brand matching thresholds are hardcoded
+      "high_title_similarity": 0.75, // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - similarity tiers are hardcoded
+      "medium_title_similarity": 0.5, // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - similarity tiers are hardcoded
+      "confidence_high": 0.75, // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - confidence thresholds are hardcoded
+      "confidence_medium": 0.45, // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - confidence thresholds are hardcoded
+      "ai_boost_threshold": 0.80, // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - AI boost logic is hardcoded
+      "ai_penalty_threshold": 0.20 // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - AI penalty logic is hardcoded
+    }
+  },
+  "workflow_control": {
+    "ai_scraping_triggers": {
+      "enabled": false, // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - workflow control triggers not implemented from config
+      "bypass_conditions": {
+        "test_mode": false, // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - workflow bypass logic is hardcoded
+        "bypass_ai_scraping": true, // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - AI bypass logic is hardcoded
+        "direct_amazon_extraction": true, // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - direct extraction logic is hardcoded
+        "use_predefined_categories": false // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - predefined category logic is hardcoded
+      },
+      "fallback_behavior": {
+        "use_supplier_category_urls": false, // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - fallback behavior is hardcoded
+        "skip_ai_category_selection": true, // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - AI skip logic is hardcoded
+        "proceed_to_amazon_extraction": true // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - extraction proceed logic is hardcoded
+      }
+    },
+    "extraction_modes": {
+      "full_ai_workflow": {
+        "enabled": true, // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - workflow modes are hardcoded
+        "description": "Complete AI-driven supplier scraping + Amazon matching", // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - mode descriptions not used
+        "steps": [ // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - workflow steps are hardcoded in passive_extraction_workflow_latest.py
+          "ai_category_selection",
+          "supplier_scraping",
+          "amazon_matching",
+          "profitability_analysis"
+        ]
+      },
+      "direct_amazon_mode": {
+        "enabled": true, // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - workflow modes are hardcoded
+        "description": "Skip supplier scraping, go directly to Amazon extraction with predefined ASINs", // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - mode descriptions not used
+        "steps": [ // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - workflow steps are hardcoded
+          "amazon_extraction",
+          "profitability_analysis"
+        ],
+        "trigger_conditions": {
+          "bypass_ai_scraping": true, // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - trigger conditions are hardcoded
+          "direct_amazon_extraction": true // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - trigger conditions are hardcoded
+        }
+      },
+      "hybrid_mode": {
+        "enabled": false, // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - workflow modes are hardcoded
+        "description": "Use predefined categories, skip AI selection", // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - mode descriptions not used
+        "steps": [ // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - workflow steps are hardcoded
+          "predefined_categories",
+          "supplier_scraping",
+          "amazon_matching",
+          "profitability_analysis"
+        ],
+        "trigger_conditions": {
+          "bypass_ai_scraping": false, // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - trigger conditions are hardcoded
+          "use_predefined_categories": false // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - trigger conditions are hardcoded
+        }
+      }
+    }
+  },
+  "ai_category_cache_enhanced": {
+    "enabled": true, // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - enhanced AI category cache not implemented from config
+    "cache_structure": {
+      "supplier_domain": "string", // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - cache structure schema not used
+      "timestamp": "ISO_datetime", // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - cache timestamp format is hardcoded
+      "session_id": "string", // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - session ID tracking not implemented
+      "categories_suggested": {
+        "top_3_urls": [ // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - category URL structure not implemented from config
+          "array_of_urls"
+        ],
+        "secondary_urls": [ // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - secondary URL tracking not implemented
+          "array_of_urls"
+        ],
+        "skip_urls": [ // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - skip URL tracking not implemented
+          "array_of_urls"
+        ]
+      },
+      "performance_metrics": {
+        "products_found_per_category": {}, // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - performance metrics not tracked from config
+        "success_rate_per_category": {}, // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - success rate tracking not implemented
+        "avg_processing_time_per_category": {}, // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - timing metrics not tracked
+        "profitable_products_per_category": {} // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - profitability metrics not tracked
+      },
+      "ai_reasoning": {
+        "selection_criteria": "string", // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - AI reasoning tracking not implemented
+        "progression_strategy": "string", // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - strategy tracking not implemented
+        "detailed_reasoning": {}, // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - detailed reasoning not stored
+        "confidence_scores": {} // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - confidence scoring not implemented
+      },
+      "historical_context": {
+        "previous_sessions": [ // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - session history not tracked
+          "array_of_session_ids"
+        ],
+        "category_reuse_count": {}, // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - reuse tracking not implemented
+        "blacklisted_categories": [ // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - blacklist functionality not implemented
+          "array_of_urls"
+        ],
+        "high_performing_categories": [ // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - performance tracking not implemented
+          "array_of_urls"
+        ]
+      },
+      "next_suggestions": {
+        "recommended_categories": [ // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - recommendation engine not implemented
+          "array_of_urls"
+        ],
+        "avoid_categories": [ // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - avoidance logic not implemented
+          "array_of_urls"
+        ],
+        "exploration_areas": [ // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - exploration tracking not implemented
+          "array_of_category_types"
+        ]
+      }
+    },
+    "retention_policy": {
+      "max_cache_age_days": 60, // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - cache retention policies not implemented
+      "max_entries_per_supplier": 50, // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - cache size limits not implemented
+      "cleanup_frequency": "weekly" // COMMENT: NOT FOUND IN WORKFLOW SCRIPTS - cleanup scheduling not implemented
+    }
+  }
+}

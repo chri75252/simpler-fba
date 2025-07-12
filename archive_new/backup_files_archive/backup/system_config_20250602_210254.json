@@ -1,0 +1,299 @@
+{
+  "system": {
+    "name": "Amazon FBA Agent System",
+    "version": "3.0.0",
+    "environment": "production",
+    "test_mode": false,
+    "clear_cache": true,
+    "selective_cache_clear": false,
+    "force_ai_category_suggestion": false,
+    "bypass_ai_scraping": false,
+    "enable_supplier_parser": false
+  },
+  "chrome": {
+    "debug_port": 9222,
+    "headless": false,
+    "extensions": [
+      "Keepa",
+      "SellerAmp"
+    ]
+  },
+  "suppliers": {
+    "clearance-king": {
+      "name": "Clearance King UK",
+      "base_url": "https://www.clearance-king.co.uk",
+      "api_config": {
+        "enabled": false,
+        "base_url": "https://api.clearance-king.co.uk",
+        "auth_type": "bearer",
+        "rate_limit": {
+          "requests_per_minute": 60,
+          "requests_per_hour": 1000
+        }
+      },
+      "scraping_config": {
+        "enabled": true,
+        "rate_limit": {
+          "requests_per_minute": 30,
+          "delay_between_requests": 2.0
+        }
+      },
+      "category_urls": {
+        "main_categories": [
+          "/pound-lines.html",
+          "/household.html",
+          "/health-beauty.html",
+          "/toys-games.html",
+          "/stationery.html",
+          "/pet-supplies.html",
+          "/car-care.html"
+        ],
+        "pagination_pattern": "?p={page_num}",
+        "max_pages_per_category": 10
+      }
+    },
+    "wholesale-supplier": {
+      "name": "Example Wholesale Supplier",
+      "base_url": "https://www.wholesale-supplier.com",
+      "api_config": {
+        "enabled": true,
+        "base_url": "https://api.wholesale-supplier.com",
+        "auth_type": "api_key",
+        "rate_limit": {
+          "requests_per_minute": 100,
+          "requests_per_hour": 2000
+        }
+      },
+      "scraping_config": {
+        "enabled": false
+      }
+    }
+  },
+  "analysis": {
+    "min_roi_percent": 30.0,
+    "min_profit_per_unit": 0.75,
+    "min_rating": 3.8,
+    "min_reviews": 20,
+    "max_sales_rank": 150000,
+    "min_monthly_sales": 10,
+    "max_competition_level": 12,
+    "excluded_categories": [
+      "Adult Products",
+      "Dangerous Goods",
+      "Restricted Items"
+    ],
+    "target_categories": [
+      "Home & Kitchen",
+      "Pet Supplies",
+      "Toys",
+      "Health & Personal Care",
+      "Office Products",
+      "Sports & Outdoors",
+      "Baby Products"
+    ]
+  },
+  "amazon": {
+    "marketplace": "amazon.co.uk",
+    "currency": "GBP",
+    "vat_rate": 0.2,
+    "fba_fees": {
+      "referral_fee_rate": 0.15,
+      "fulfillment_fee_minimum": 2.41,
+      "storage_fee_per_cubic_foot": 0.75
+    }
+  },
+  "output": {
+    "base_dir": "OUTPUTS/FBA_ANALYSIS",
+    "report_format": "json",
+    "save_intermediate_results": true,
+    "file_naming": {
+      "pattern": "{supplier}_{timestamp}",
+      "timestamp_format": "%Y%m%d_%H%M%S"
+    },
+    "retention": {
+      "keep_days": 30,
+      "archive_after_days": 7
+    }
+  },
+  "monitoring": {
+    "enabled": true,
+    "metrics_interval": 60,
+    "health_check_interval": 300,
+    "log_level": "INFO",
+    "alert_thresholds": {
+      "cpu_percent": 80,
+      "memory_percent": 85,
+      "error_rate_per_hour": 10
+    }
+  },
+  "cache": {
+    "enabled": true,
+    "ttl_hours": 187,
+    "max_size_mb": 500,
+    "selective_clear_config": {
+      "preserve_analyzed_products": true,
+      "preserve_ai_categories": true,
+      "preserve_linking_map": true,
+      "clear_unanalyzed_only": false,
+      "clear_failed_extractions": true
+    },
+    "directories": {
+      "currency_rates": "cache/currency",
+      "product_data": "cache/products",
+      "analysis_results": "cache/analysis",
+      "supplier_cache": "OUTPUTS/cached_products",
+      "amazon_cache": "OUTPUTS/FBA_ANALYSIS/amazon_cache",
+      "ai_category_cache": "OUTPUTS/FBA_ANALYSIS/ai_category_cache",
+      "linking_map": "OUTPUTS/FBA_ANALYSIS/Linking map"
+    }
+  },
+  "integrations": {
+    "keepa": {
+      "enabled": true,
+      "api_key": "",
+      "rate_limit": {
+        "requests_per_minute": 100
+      }
+    },
+    "selleramp": {
+      "enabled": false,
+      "login_required": false,
+      "rate_limit": {
+        "requests_per_minute": 30
+      }
+    },
+    "openai": {
+      "enabled": true,
+      "api_key": "sk-tXEWZi669Oz8674FDG3CFqaQ9P71XruHFuyA7-xcmnT3BlbkFJq_ZCJjNmUfSrAVHyC6v8ba7MPaMjRx_msUEnP5hzwA",
+      "model": "gpt-4o-mini-2024-07-18",
+      "max_tokens": 1000,
+      "temperature": 0.1
+    }
+  },
+  "security": {
+    "encryption_enabled": false,
+    "api_key_rotation_days": 90,
+    "session_timeout_minutes": 60,
+    "max_login_attempts": 3
+  },
+  "performance": {
+    "max_concurrent_requests": 10,
+    "request_timeout_seconds": 30,
+    "retry_attempts": 3,
+    "retry_delay_seconds": 2,
+    "batch_size": 50
+  },
+  "workflow_control": {
+    "ai_scraping_triggers": {
+      "enabled": true,
+      "bypass_conditions": {
+        "test_mode": true,
+        "bypass_ai_scraping": true,
+        "direct_amazon_extraction": false,
+        "use_predefined_categories": false
+      },
+      "fallback_behavior": {
+        "use_supplier_category_urls": true,
+        "skip_ai_category_selection": true,
+        "proceed_to_amazon_extraction": true
+      }
+    },
+    "extraction_modes": {
+      "full_ai_workflow": {
+        "enabled": true,
+        "description": "Complete AI-driven supplier scraping + Amazon matching",
+        "steps": [
+          "ai_category_selection",
+          "supplier_scraping",
+          "amazon_matching",
+          "profitability_analysis"
+        ]
+      },
+      "direct_amazon_mode": {
+        "enabled": true,
+        "description": "Skip supplier scraping, go directly to Amazon extraction with predefined ASINs",
+        "steps": [
+          "amazon_extraction",
+          "profitability_analysis"
+        ],
+        "trigger_conditions": {
+          "bypass_ai_scraping": true,
+          "direct_amazon_extraction": true
+        }
+      },
+      "hybrid_mode": {
+        "enabled": false,
+        "description": "Use predefined categories, skip AI selection",
+        "steps": [
+          "predefined_categories",
+          "supplier_scraping",
+          "amazon_matching",
+          "profitability_analysis"
+        ],
+        "trigger_conditions": {
+          "bypass_ai_scraping": false,
+          "use_predefined_categories": false
+        }
+      }
+    }
+  },
+  "ai_category_cache_enhanced": {
+    "enabled": true,
+    "cache_structure": {
+      "supplier_domain": "string",
+      "timestamp": "ISO_datetime",
+      "session_id": "string",
+      "categories_suggested": {
+        "top_3_urls": [
+          "array_of_urls"
+        ],
+        "secondary_urls": [
+          "array_of_urls"
+        ],
+        "skip_urls": [
+          "array_of_urls"
+        ]
+      },
+      "performance_metrics": {
+        "products_found_per_category": {},
+        "success_rate_per_category": {},
+        "avg_processing_time_per_category": {},
+        "profitable_products_per_category": {}
+      },
+      "ai_reasoning": {
+        "selection_criteria": "string",
+        "progression_strategy": "string",
+        "detailed_reasoning": {},
+        "confidence_scores": {}
+      },
+      "historical_context": {
+        "previous_sessions": [
+          "array_of_session_ids"
+        ],
+        "category_reuse_count": {},
+        "blacklisted_categories": [
+          "array_of_urls"
+        ],
+        "high_performing_categories": [
+          "array_of_urls"
+        ]
+      },
+      "next_suggestions": {
+        "recommended_categories": [
+          "array_of_urls"
+        ],
+        "avoid_categories": [
+          "array_of_urls"
+        ],
+        "exploration_areas": [
+          "array_of_category_types"
+        ]
+      }
+    },
+    "retention_policy": {
+      "max_cache_age_days": 30,
+      "max_entries_per_supplier": 50,
+      "cleanup_frequency": "weekly"
+    }
+  }
+}

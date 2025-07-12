@@ -1,0 +1,59 @@
+{
+  "supplier_id": "cutpricewholesaler-com",
+  "supplier_name": "Cutpricewholesaler.Com",
+  "base_url": "https://www.cutpricewholesaler.com/",
+  "field_mappings": {
+    "product_item": [
+      ".product",
+      ".product-item",
+      ".product-container",
+      ".product-list-item"
+    ],
+    "title": [
+      ".product-title a",
+      ".product-name a",
+      ".product-title",
+      ".product-name"
+    ],
+    "price": [
+      ".product-price",
+      ".price",
+      ".product-price .price",
+      ".product-price .price span"
+    ],
+    "url": [
+      ".product-title a",
+      ".product-name a",
+      ".product-title a[href]",
+      ".product-name a[href]"
+    ],
+    "image": [
+      ".product-image img",
+      ".product-image-container img",
+      ".product-image img[src]",
+      ".product-image-container img[src]"
+    ],
+    "ean": [
+      ".product-ean",
+      ".product-sku",
+      ".product-code",
+      ".product-barcode"
+    ],
+    "barcode": [
+      ".product-barcode",
+      ".product-sku",
+      ".product-code",
+      ".product-ean"
+    ]
+  },
+  "pagination": {
+    "pattern": "?page={page_num}",
+    "next_button_selector": [
+      "a.next",
+      ".pagination .next a",
+      "a[rel='next']"
+    ]
+  },
+  "auto_discovered": true,
+  "discovery_timestamp": "2025-06-14T07:32:26.832535"
+}

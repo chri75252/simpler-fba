@@ -1,0 +1,60 @@
+{
+  "supplier_id": "poundwholesale-co-uk",
+  "supplier_url": "https://www.poundwholesale.co.uk/",
+  "last_validated_at": "2025-07-08T13:52:10.067918+00:00",
+  "validation_status": {
+    "login_validated": false,
+    "products_validated": true,
+    "pagination_validated": true,
+    "last_error": "Login test failed: Submit selector failed: button[type='submit']"
+  },
+  "config_files": {
+    "login": "suppliers/poundwholesale-co-uk/config/login_config.json",
+    "products": "suppliers/poundwholesale-co-uk/config/product_selectors.json"
+  },
+  "script_files": {
+    "login": "suppliers/poundwholesale-co-uk/scripts/poundwholesale-co-uk_login.py",
+    "product_extractor": "suppliers/poundwholesale-co-uk/scripts/poundwholesale-co-uk_product_extractor.py"
+  },
+  "test_results": {
+    "login": {
+      "success": false,
+      "error": "Submit selector failed: button[type='submit']",
+      "step": "submit"
+    },
+    "products": {
+      "success": true,
+      "products_extracted": 20,
+      "sample_products": [
+        {
+          "extraction_timestamp": "2025-07-08T17:52:00.019832",
+          "source_url": "https://www.poundwholesale.co.uk/",
+          "title": "Bello Cool Picnic Bag 30cm X 18cm X 35cm Assorted Colours",
+          "url": "#image-popup-list-23386",
+          "image_url": "https://www.poundwholesale.co.uk/media/catalog/product/cache/5ba196558aadfdbf642bb770ab3e4877/a/m-23386-30176/bello-cool-picnic-bag-30cm-x-18cm-x-35cm-assorted-colours.jpg"
+        },
+        {
+          "extraction_timestamp": "2025-07-08T17:52:00.647535",
+          "source_url": "https://www.poundwholesale.co.uk/",
+          "title": "Charta A4 75GSM Everyday Copier Paper 2500 Sheets",
+          "url": "#image-popup-list-23385",
+          "image_url": "https://www.poundwholesale.co.uk/media/catalog/product/cache/5ba196558aadfdbf642bb770ab3e4877/c/h-23385-30171/charta-a4-75gsm-everyday-copier-paper-2500-sheets.jpg"
+        },
+        {
+          "extraction_timestamp": "2025-07-08T17:52:01.138106",
+          "source_url": "https://www.poundwholesale.co.uk/",
+          "title": "Charta A4 75GSM Everyday Copier Paper 500 Sheets",
+          "url": "#image-popup-list-23384",
+          "image_url": "https://www.poundwholesale.co.uk/media/catalog/product/cache/5ba196558aadfdbf642bb770ab3e4877/c/h-23384-30170/charta-a4-75gsm-everyday-copier-paper-500-sheets.jpg"
+        }
+      ],
+      "total_products": 20
+    }
+  },
+  "generator_metadata": {
+    "generated_by": "IntelligentSupplierScriptGenerator",
+    "version": "1.0",
+    "ai_assistance_enabled": false,
+    "force_regenerate": true
+  }
+}

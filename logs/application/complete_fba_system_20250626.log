@@ -1,0 +1,485 @@
+2025-06-26 15:58:53,763 - __main__ - WARNING - ⚠️ No LangSmith API key provided - tracing may be limited
+2025-06-26 15:58:53,828 - __main__ - INFO - 🚀 Complete FBA System Runner initialized - Session: 20250626_155853
+2025-06-26 15:58:53,829 - __main__ - INFO - 🚀 Starting Complete FBA System Analysis
+2025-06-26 15:58:53,829 - __main__ - INFO - 📦 ASIN: B000BIUGTQ
+2025-06-26 15:58:53,830 - __main__ - INFO - 🏪 Supplier: https://www.poundwholesale.co.uk/
+2025-06-26 15:58:53,831 - __main__ - INFO - 📦 Phase 1: Supplier Generation Package
+2025-06-26 15:58:53,690 - tools.supplier_script_generator - INFO - 🏭 Initializing supplier script generator for: www.poundwholesale.co.uk
+2025-06-26 15:58:53,691 - tools.supplier_script_generator - INFO - 📁 Supplier directory: suppliers/poundwholesale-co-uk
+2025-06-26 15:58:53,692 - tools.supplier_script_generator - INFO - 🏭 Generating complete automation package for: www.poundwholesale.co.uk
+2025-06-26 15:58:53,692 - tools.supplier_script_generator - INFO - 📁 Creating supplier directory structure...
+2025-06-26 15:58:53,696 - tools.supplier_script_generator - INFO - ✅ Created: suppliers/poundwholesale-co-uk
+2025-06-26 15:58:53,703 - tools.supplier_script_generator - INFO - ✅ Created: suppliers/poundwholesale-co-uk/scripts
+2025-06-26 15:58:53,708 - tools.supplier_script_generator - INFO - ✅ Created: suppliers/poundwholesale-co-uk/cache
+2025-06-26 15:58:53,714 - tools.supplier_script_generator - INFO - ✅ Created: suppliers/poundwholesale-co-uk/discovery
+2025-06-26 15:58:53,720 - tools.supplier_script_generator - INFO - ✅ Created: suppliers/poundwholesale-co-uk/config
+2025-06-26 15:58:53,725 - tools.supplier_script_generator - INFO - ✅ Created supplier README.md
+2025-06-26 15:58:53,725 - tools.supplier_script_generator - INFO - 🔐 Generating login automation script...
+2025-06-26 15:58:53,738 - tools.supplier_script_generator - INFO - ✅ Generated login script: suppliers/poundwholesale-co-uk/scripts/poundwholesale-co-uk_login.py
+2025-06-26 15:58:53,738 - tools.supplier_script_generator - INFO - 🕷️ Generating product extraction script...
+2025-06-26 15:58:53,749 - tools.supplier_script_generator - INFO - ✅ Generated product extractor: suppliers/poundwholesale-co-uk/scripts/poundwholesale-co-uk_product_extractor.py
+2025-06-26 15:58:53,750 - tools.supplier_script_generator - INFO - ⚙️ Generating configuration files...
+2025-06-26 15:58:53,774 - tools.supplier_script_generator - INFO - ✅ Generated login config: suppliers/poundwholesale-co-uk/config/login_config.json
+2025-06-26 15:58:53,774 - tools.supplier_script_generator - INFO - ✅ Generated product config: suppliers/poundwholesale-co-uk/config/product_selectors.json
+2025-06-26 15:58:53,775 - tools.supplier_script_generator - INFO - ✅ Generated global config: config/supplier_configs/www.poundwholesale.co.uk.json
+2025-06-26 15:58:53,776 - tools.supplier_script_generator - INFO - 🔗 Generating LangGraph integration script...
+2025-06-26 15:58:53,786 - tools.supplier_script_generator - INFO - ✅ Generated LangGraph integration: suppliers/poundwholesale-co-uk/scripts/poundwholesale-co-uk_langgraph_integration.py
+2025-06-26 15:58:53,787 - tools.supplier_script_generator - INFO - 🎉 Complete automation package generated successfully!
+2025-06-26 15:58:53,787 - tools.supplier_script_generator - INFO - 📁 Location: suppliers/poundwholesale-co-uk
+2025-06-26 15:58:53,795 - tools.supplier_script_generator - INFO - 🔧 Scripts: [PosixPath('suppliers/poundwholesale-co-uk/scripts/poundwholesale-co-uk_langgraph_integration.py'), PosixPath('suppliers/poundwholesale-co-uk/scripts/poundwholesale-co-uk_login.py'), PosixPath('suppliers/poundwholesale-co-uk/scripts/poundwholesale-co-uk_product_extractor.py'), PosixPath('suppliers/poundwholesale-co-uk/scripts/poundwholesale_login_final.py'), PosixPath('suppliers/poundwholesale-co-uk/scripts/poundwholesale_targeted_login.py')]
+2025-06-26 15:58:53,803 - tools.supplier_script_generator - INFO - ⚙️ Configs: [PosixPath('suppliers/poundwholesale-co-uk/config/login_config.json'), PosixPath('suppliers/poundwholesale-co-uk/config/product_selectors.json')]
+2025-06-26 15:58:53,840 - __main__ - ERROR - ❌ Phase 1 failed: 'coroutine' object has no attribute 'get_page'
+2025-06-26 15:58:53,851 - __main__ - INFO - 🤖 Phase 2: AI-Suggested Categories
+2025-06-26 15:58:53,853 - __main__ - ERROR - ❌ Phase 2 failed: No module named 'passive_extraction_workflow_latest'
+2025-06-26 15:58:53,854 - __main__ - INFO - 🔍 Phase 3: Amazon Product Matching
+2025-06-26 15:58:53,993 - tools.amazon_playwright_extractor - INFO - AI features disabled in amazon_playwright_extractor - using only traditional selectors.
+2025-06-26 15:58:54,004 - tools.amazon_playwright_extractor - INFO - Output directory set to: /mnt/c/Users/chris/Cloud-Drive_christianhaddad8@gmail.com/Cloud-Drive/Full/claude code/Amazon-FBA-Agent-System-v3/OUTPUTS/CACHE/amazon_data
+2025-06-26 15:58:54,005 - __main__ - ERROR - ❌ Phase 3 failed: 'AmazonExtractor' object has no attribute 'extract_single_product'
+2025-06-26 15:58:54,007 - __main__ - INFO - 💰 Phase 4: Financial Analysis & Reports
+2025-06-26 15:58:54,789 - __main__ - ERROR - ❌ Phase 4 failed: cannot import name 'calculate_amazon_fees' from 'tools.FBA_Financial_calculator' (/mnt/c/Users/chris/Cloud-Drive_christianhaddad8@gmail.com/Cloud-Drive/Full/claude code/Amazon-FBA-Agent-System-v3/tools/FBA_Financial_calculator.py)
+2025-06-26 15:58:54,792 - __main__ - INFO - 🔗 Phase 5: Complete LangGraph Workflow
+2025-06-26 15:58:56,269 - langraph_integration.complete_fba_workflow - ERROR - ❌ Failed to initialize tools: create_vision_enhanced_tools() missing 1 required positional argument: 'openai_api_key'
+2025-06-26 15:58:56,320 - langraph_integration.complete_fba_workflow - INFO - ✅ Complete workflow graph created successfully
+2025-06-26 15:58:56,321 - langraph_integration.complete_fba_workflow - INFO - 🚀 Complete FBA Workflow initialized with full tool integration
+2025-06-26 15:58:56,323 - langraph_integration.complete_fba_workflow - INFO - 🚀 Starting complete FBA workflow for ASIN B000BIUGTQ and supplier https://www.poundwholesale.co.uk/
+2025-06-26 16:00:24,245 - langraph_integration.complete_fba_workflow - INFO - 🚀 Starting complete FBA workflow
+2025-06-26 16:00:24,246 - langraph_integration.complete_fba_workflow - INFO - ✅ Workflow initialized: fba_workflow_20250626_160024
+2025-06-26 16:00:24,250 - langraph_integration.complete_fba_workflow - INFO - 📦 Extracting Amazon data for ASIN: B000BIUGTQ
+2025-06-26 16:00:24,251 - langraph_integration.complete_fba_workflow - ERROR - ❌ Amazon extraction failed: Amazon extractor tool not found
+2025-06-26 16:00:24,253 - langraph_integration.complete_fba_workflow - INFO - 🏭 Setting up supplier automation for: https://www.poundwholesale.co.uk/
+2025-06-26 16:00:24,254 - tools.supplier_script_generator - INFO - 🏭 Initializing supplier script generator for: www.poundwholesale.co.uk
+2025-06-26 16:00:24,255 - tools.supplier_script_generator - INFO - 📁 Supplier directory: suppliers/poundwholesale-co-uk
+2025-06-26 16:00:24,255 - tools.supplier_script_generator - INFO - 🏭 Generating complete automation package for: www.poundwholesale.co.uk
+2025-06-26 16:00:24,255 - tools.supplier_script_generator - INFO - 📁 Creating supplier directory structure...
+2025-06-26 16:00:24,259 - tools.supplier_script_generator - INFO - ✅ Created: suppliers/poundwholesale-co-uk
+2025-06-26 16:00:24,263 - tools.supplier_script_generator - INFO - ✅ Created: suppliers/poundwholesale-co-uk/scripts
+2025-06-26 16:00:24,267 - tools.supplier_script_generator - INFO - ✅ Created: suppliers/poundwholesale-co-uk/cache
+2025-06-26 16:00:24,273 - tools.supplier_script_generator - INFO - ✅ Created: suppliers/poundwholesale-co-uk/discovery
+2025-06-26 16:00:24,280 - tools.supplier_script_generator - INFO - ✅ Created: suppliers/poundwholesale-co-uk/config
+2025-06-26 16:00:24,286 - tools.supplier_script_generator - INFO - ✅ Created supplier README.md
+2025-06-26 16:00:24,287 - tools.supplier_script_generator - INFO - 🔐 Generating login automation script...
+2025-06-26 16:00:24,299 - tools.supplier_script_generator - INFO - ✅ Generated login script: suppliers/poundwholesale-co-uk/scripts/poundwholesale-co-uk_login.py
+2025-06-26 16:00:24,299 - tools.supplier_script_generator - INFO - 🕷️ Generating product extraction script...
+2025-06-26 16:00:24,311 - tools.supplier_script_generator - INFO - ✅ Generated product extractor: suppliers/poundwholesale-co-uk/scripts/poundwholesale-co-uk_product_extractor.py
+2025-06-26 16:00:24,311 - tools.supplier_script_generator - INFO - ⚙️ Generating configuration files...
+2025-06-26 16:00:24,341 - tools.supplier_script_generator - INFO - ✅ Generated login config: suppliers/poundwholesale-co-uk/config/login_config.json
+2025-06-26 16:00:24,341 - tools.supplier_script_generator - INFO - ✅ Generated product config: suppliers/poundwholesale-co-uk/config/product_selectors.json
+2025-06-26 16:00:24,342 - tools.supplier_script_generator - INFO - ✅ Generated global config: config/supplier_configs/www.poundwholesale.co.uk.json
+2025-06-26 16:00:24,342 - tools.supplier_script_generator - INFO - 🔗 Generating LangGraph integration script...
+2025-06-26 16:00:24,356 - tools.supplier_script_generator - INFO - ✅ Generated LangGraph integration: suppliers/poundwholesale-co-uk/scripts/poundwholesale-co-uk_langgraph_integration.py
+2025-06-26 16:00:24,357 - tools.supplier_script_generator - INFO - 🎉 Complete automation package generated successfully!
+2025-06-26 16:00:24,358 - tools.supplier_script_generator - INFO - 📁 Location: suppliers/poundwholesale-co-uk
+2025-06-26 16:00:24,368 - tools.supplier_script_generator - INFO - 🔧 Scripts: [PosixPath('suppliers/poundwholesale-co-uk/scripts/poundwholesale-co-uk_langgraph_integration.py'), PosixPath('suppliers/poundwholesale-co-uk/scripts/poundwholesale-co-uk_login.py'), PosixPath('suppliers/poundwholesale-co-uk/scripts/poundwholesale-co-uk_product_extractor.py'), PosixPath('suppliers/poundwholesale-co-uk/scripts/poundwholesale_login_final.py'), PosixPath('suppliers/poundwholesale-co-uk/scripts/poundwholesale_targeted_login.py')]
+2025-06-26 16:00:24,375 - tools.supplier_script_generator - INFO - ⚙️ Configs: [PosixPath('suppliers/poundwholesale-co-uk/config/login_config.json'), PosixPath('suppliers/poundwholesale-co-uk/config/product_selectors.json')]
+2025-06-26 16:00:24,382 - langraph_integration.complete_fba_workflow - INFO - ✅ Supplier automation scripts generated
+2025-06-26 16:00:24,384 - langraph_integration.complete_fba_workflow - INFO - 🔍 Running supplier discovery
+2025-06-26 16:00:24,385 - langraph_integration.complete_fba_workflow - ERROR - ❌ Supplier discovery failed: 'coroutine' object has no attribute 'get_page'
+2025-06-26 16:00:24,393 - langraph_integration.complete_fba_workflow - INFO - 🕷️ Extracting supplier products
+2025-06-26 16:00:24,394 - langraph_integration.complete_fba_workflow - WARNING - ⚠️ Supplier scraper tool not found
+2025-06-26 16:00:24,396 - langraph_integration.complete_fba_workflow - INFO - 🔍 Analyzing product matching
+2025-06-26 16:00:24,396 - langraph_integration.complete_fba_workflow - ERROR - ❌ Product matching failed: 'NoneType' object has no attribute 'get'
+2025-06-26 16:00:24,398 - langraph_integration.complete_fba_workflow - INFO - 💰 Calculating financial analysis
+2025-06-26 16:00:24,399 - langraph_integration.complete_fba_workflow - WARNING - ⚠️ Financial calculator tool not found
+2025-06-26 16:00:24,404 - langraph_integration.complete_fba_workflow - INFO - 📊 Generating final recommendation
+2025-06-26 16:00:25,175 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+2025-06-26 16:00:25,187 - langsmith.client - WARNING - Failed to send compressed multipart ingest: langsmith.utils.LangSmithAuthError: Authentication failed for https://api.smith.langchain.com/runs/multipart. HTTPError('401 Client Error: Unauthorized for url: https://api.smith.langchain.com/runs/multipart', '{"error":"Unauthorized"}\n')trace=f6119f3b-0118-4d65-b187-1f4f122d0200,id=f6119f3b-0118-4d65-b187-1f4f122d0200; trace=f6119f3b-0118-4d65-b187-1f4f122d0200,id=5709eca0-aa61-4e05-8f2d-f3f18fcd5750; trace=f6119f3b-0118-4d65-b187-1f4f122d0200,id=5709eca0-aa61-4e05-8f2d-f3f18fcd5750; trace=f6119f3b-0118-4d65-b187-1f4f122d0200,id=f988bcb6-0c66-4528-9b1b-32b8603d5a00; trace=f6119f3b-0118-4d65-b187-1f4f122d0200,id=f988bcb6-0c66-4528-9b1b-32b8603d5a00; trace=f6119f3b-0118-4d65-b187-1f4f122d0200,id=43016d6d-d462-4ab8-a242-746010630b35; trace=f6119f3b-0118-4d65-b187-1f4f122d0200,id=43016d6d-d462-4ab8-a242-746010630b35; trace=f6119f3b-0118-4d65-b187-1f4f122d0200,id=d8c824ae-da2e-40d7-9511-88aa3267c023; trace=f6119f3b-0118-4d65-b187-1f4f122d0200,id=d8c824ae-da2e-40d7-9511-88aa3267c023; trace=f6119f3b-0118-4d65-b187-1f4f122d0200,id=27c6204b-05de-4593-a349-54f8c97a0739; trace=f6119f3b-0118-4d65-b187-1f4f122d0200,id=27c6204b-05de-4593-a349-54f8c97a0739; trace=f6119f3b-0118-4d65-b187-1f4f122d0200,id=bc4e5a70-452e-407d-acae-af615dd9c5a5; trace=f6119f3b-0118-4d65-b187-1f4f122d0200,id=bc4e5a70-452e-407d-acae-af615dd9c5a5; trace=f6119f3b-0118-4d65-b187-1f4f122d0200,id=ebe707ff-1523-46c7-bf08-8d060426922c; trace=f6119f3b-0118-4d65-b187-1f4f122d0200,id=ebe707ff-1523-46c7-bf08-8d060426922c; trace=f6119f3b-0118-4d65-b187-1f4f122d0200,id=cb476d1c-8aa1-4121-9d0f-f0082d1eb526; trace=f6119f3b-0118-4d65-b187-1f4f122d0200,id=3ece008c-5b0f-48ca-8c69-52436a1ce386
+2025-06-26 16:00:25,199 - langraph_integration.complete_fba_workflow - ERROR - ❌ Recommendation generation failed: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sk--7R0r***********************************************************************************0ygA. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+2025-06-26 16:00:25,205 - langraph_integration.complete_fba_workflow - INFO - 🏁 Finalizing workflow
+2025-06-26 16:00:25,205 - langraph_integration.complete_fba_workflow - INFO - ✅ Workflow finalized: completed_with_errors
+2025-06-26 16:00:25,208 - langraph_integration.complete_fba_workflow - INFO - ✅ Workflow completed with status: completed_with_errors
+2025-06-26 16:00:25,209 - __main__ - INFO - ✅ Phase 5 completed in 90.42s
+2025-06-26 16:00:25,263 - __main__ - INFO - 📁 Results saved to: /mnt/c/Users/chris/Cloud-Drive_christianhaddad8@gmail.com/Cloud-Drive/Full/claude code/Amazon-FBA-Agent-System-v3/OUTPUTS/FBA_ANALYSIS/complete_fba_analysis_20250626_155853.json
+2025-06-26 16:00:25,263 - __main__ - INFO - 📊 Summary saved to: /mnt/c/Users/chris/Cloud-Drive_christianhaddad8@gmail.com/Cloud-Drive/Full/claude code/Amazon-FBA-Agent-System-v3/OUTPUTS/REPORTS/fba_system_summary_20250626_155853.json
+2025-06-26 16:00:25,264 - __main__ - INFO - ✅ Complete FBA System Analysis finished successfully
+2025-06-26 16:00:25,613 - langsmith.client - WARNING - Failed to send compressed multipart ingest: langsmith.utils.LangSmithAuthError: Authentication failed for https://api.smith.langchain.com/runs/multipart. HTTPError('401 Client Error: Unauthorized for url: https://api.smith.langchain.com/runs/multipart', '{"error":"Unauthorized"}\n')trace=f6119f3b-0118-4d65-b187-1f4f122d0200,id=3ece008c-5b0f-48ca-8c69-52436a1ce386; trace=f6119f3b-0118-4d65-b187-1f4f122d0200,id=cb476d1c-8aa1-4121-9d0f-f0082d1eb526; trace=f6119f3b-0118-4d65-b187-1f4f122d0200,id=7f37cce0-2d64-4a4c-ab85-37780d0c67fe; trace=f6119f3b-0118-4d65-b187-1f4f122d0200,id=7f37cce0-2d64-4a4c-ab85-37780d0c67fe; trace=f6119f3b-0118-4d65-b187-1f4f122d0200,id=f6119f3b-0118-4d65-b187-1f4f122d0200
+2025-06-26 21:10:32,033 - __main__ - WARNING - ⚠️ No LangSmith API key provided - tracing may be limited
+2025-06-26 21:10:32,034 - __main__ - INFO - 🔐 Supplier credentials provided
+2025-06-26 21:10:32,100 - __main__ - INFO - 🚀 Complete FBA System Runner initialized - Session: 20250626_211032
+2025-06-26 21:10:32,100 - __main__ - INFO - 🚀 Starting Complete FBA System Analysis
+2025-06-26 21:10:32,101 - __main__ - INFO - 📦 ASIN: B000BIUGTQ
+2025-06-26 21:10:32,101 - __main__ - INFO - 🏪 Supplier: https://www.poundwholesale.co.uk/
+2025-06-26 21:10:32,102 - __main__ - INFO - 📦 Phase 1: Supplier Generation Package
+2025-06-26 21:10:34,825 - tools.supplier_script_generator - INFO - 🏭 Initializing supplier script generator for: www.poundwholesale.co.uk
+2025-06-26 21:10:34,826 - tools.supplier_script_generator - INFO - 📁 Supplier directory: suppliers/poundwholesale-co-uk
+2025-06-26 21:10:34,827 - tools.supplier_script_generator - INFO - 🏭 Generating complete automation package for: www.poundwholesale.co.uk
+2025-06-26 21:10:34,828 - tools.supplier_script_generator - INFO - 📁 Creating supplier directory structure...
+2025-06-26 21:10:34,836 - tools.supplier_script_generator - INFO - ✅ Created: suppliers/poundwholesale-co-uk
+2025-06-26 21:10:34,846 - tools.supplier_script_generator - INFO - ✅ Created: suppliers/poundwholesale-co-uk/scripts
+2025-06-26 21:10:34,854 - tools.supplier_script_generator - INFO - ✅ Created: suppliers/poundwholesale-co-uk/cache
+2025-06-26 21:10:34,864 - tools.supplier_script_generator - INFO - ✅ Created: suppliers/poundwholesale-co-uk/discovery
+2025-06-26 21:10:34,878 - tools.supplier_script_generator - INFO - ✅ Created: suppliers/poundwholesale-co-uk/config
+2025-06-26 21:10:34,887 - tools.supplier_script_generator - INFO - ✅ Created supplier README.md
+2025-06-26 21:10:34,887 - tools.supplier_script_generator - INFO - 🔐 Generating login automation script...
+2025-06-26 21:10:34,898 - tools.supplier_script_generator - INFO - ✅ Generated login script: suppliers/poundwholesale-co-uk/scripts/poundwholesale-co-uk_login.py
+2025-06-26 21:10:34,898 - tools.supplier_script_generator - INFO - 🕷️ Generating product extraction script...
+2025-06-26 21:10:34,909 - tools.supplier_script_generator - INFO - ✅ Generated product extractor: suppliers/poundwholesale-co-uk/scripts/poundwholesale-co-uk_product_extractor.py
+2025-06-26 21:10:34,910 - tools.supplier_script_generator - INFO - ⚙️ Generating configuration files...
+2025-06-26 21:10:34,936 - tools.supplier_script_generator - INFO - ✅ Generated login config: suppliers/poundwholesale-co-uk/config/login_config.json
+2025-06-26 21:10:34,936 - tools.supplier_script_generator - INFO - ✅ Generated product config: suppliers/poundwholesale-co-uk/config/product_selectors.json
+2025-06-26 21:10:34,937 - tools.supplier_script_generator - INFO - ✅ Generated global config: config/supplier_configs/www.poundwholesale.co.uk.json
+2025-06-26 21:10:34,937 - tools.supplier_script_generator - INFO - 🔗 Generating LangGraph integration script...
+2025-06-26 21:10:34,947 - tools.supplier_script_generator - INFO - ✅ Generated LangGraph integration: suppliers/poundwholesale-co-uk/scripts/poundwholesale-co-uk_langgraph_integration.py
+2025-06-26 21:10:34,947 - tools.supplier_script_generator - INFO - 🎉 Complete automation package generated successfully!
+2025-06-26 21:10:34,948 - tools.supplier_script_generator - INFO - 📁 Location: suppliers/poundwholesale-co-uk
+2025-06-26 21:10:34,955 - tools.supplier_script_generator - INFO - 🔧 Scripts: [PosixPath('suppliers/poundwholesale-co-uk/scripts/poundwholesale-co-uk_langgraph_integration.py'), PosixPath('suppliers/poundwholesale-co-uk/scripts/poundwholesale-co-uk_login.py'), PosixPath('suppliers/poundwholesale-co-uk/scripts/poundwholesale-co-uk_product_extractor.py'), PosixPath('suppliers/poundwholesale-co-uk/scripts/poundwholesale_login_final.py'), PosixPath('suppliers/poundwholesale-co-uk/scripts/poundwholesale_targeted_login.py')]
+2025-06-26 21:10:34,962 - tools.supplier_script_generator - INFO - ⚙️ Configs: [PosixPath('suppliers/poundwholesale-co-uk/config/login_config.json'), PosixPath('suppliers/poundwholesale-co-uk/config/product_selectors.json')]
+2025-06-26 21:10:34,997 - __main__ - ERROR - ❌ Phase 1 failed: 'coroutine' object has no attribute 'get_page'
+2025-06-26 21:10:35,007 - __main__ - INFO - 🤖 Phase 2: AI-Suggested Categories
+2025-06-26 21:10:35,008 - __main__ - ERROR - ❌ Phase 2 failed: No module named 'passive_extraction_workflow_latest'
+2025-06-26 21:10:35,009 - __main__ - INFO - 🔍 Phase 3: Amazon Product Matching
+2025-06-26 21:10:35,151 - tools.amazon_playwright_extractor - INFO - AI features disabled in amazon_playwright_extractor - using only traditional selectors.
+2025-06-26 21:10:35,158 - tools.amazon_playwright_extractor - INFO - Output directory set to: /mnt/c/Users/chris/Cloud-Drive_christianhaddad8@gmail.com/Cloud-Drive/Full/claude code/Amazon-FBA-Agent-System-v3/OUTPUTS/CACHE/amazon_data
+2025-06-26 21:10:35,159 - __main__ - ERROR - ❌ Phase 3 failed: 'AmazonExtractor' object has no attribute 'extract_single_product'
+2025-06-26 21:10:35,160 - __main__ - INFO - 💰 Phase 4: Financial Analysis & Reports
+2025-06-26 21:10:35,856 - __main__ - INFO - 📊 Financial analysis completed: {'SupplierPrice_incVAT': 15.5, 'SupplierPrice_exVAT': 12.916666666666668, 'SellingPrice_incVAT': 25.99, 'ReferralFee': 3.8984999999999994, 'FBAFee': 2.8, 'PrepHouseFee': 0.55, 'OutputVAT': 4.331666666666667, 'InputVAT': 2.5833333333333335, 'NetProceeds': 14.959833333333332, 'HMRC': 1.7483333333333335, 'NetProfit': 12.661499999999998, 'ROI': 94.02103960396036, 'Breakeven': 22.7485, 'ProfitMargin': 48.716814159292035}
+2025-06-26 21:10:36,257 - langraph_integration.enhanced_fba_tools - INFO - 💰 Calculating FBA financial analysis: $25.99 vs $15.5
+2025-06-26 21:10:36,257 - langraph_integration.enhanced_fba_tools - INFO - ✅ Financial calculation completed successfully
+2025-06-26 21:10:36,258 - __main__ - ERROR - ❌ Phase 4 failed: name 'fees' is not defined
+2025-06-26 21:10:36,259 - __main__ - INFO - 🔗 Phase 5: Complete LangGraph Workflow
+2025-06-26 21:10:37,045 - langraph_integration.complete_fba_workflow - ERROR - ❌ Failed to initialize tools: create_vision_enhanced_tools() missing 1 required positional argument: 'openai_api_key'
+2025-06-26 21:10:37,080 - langraph_integration.complete_fba_workflow - INFO - ✅ Complete workflow graph created successfully
+2025-06-26 21:10:37,081 - langraph_integration.complete_fba_workflow - INFO - 🚀 Complete FBA Workflow initialized with full tool integration
+2025-06-26 21:10:37,081 - langraph_integration.complete_fba_workflow - INFO - 🚀 Starting complete FBA workflow for ASIN B000BIUGTQ and supplier https://www.poundwholesale.co.uk/
+2025-06-26 21:10:40,151 - langraph_integration.complete_fba_workflow - INFO - 🚀 Starting complete FBA workflow
+2025-06-26 21:10:40,152 - langraph_integration.complete_fba_workflow - INFO - ✅ Workflow initialized: fba_workflow_20250626_211040
+2025-06-26 21:10:40,156 - langraph_integration.complete_fba_workflow - INFO - 📦 Extracting Amazon data for ASIN: B000BIUGTQ
+2025-06-26 21:10:40,156 - langraph_integration.complete_fba_workflow - ERROR - ❌ Amazon extraction failed: Amazon extractor tool not found
+2025-06-26 21:10:40,159 - langraph_integration.complete_fba_workflow - INFO - 🏭 Setting up supplier automation for: https://www.poundwholesale.co.uk/
+2025-06-26 21:10:40,159 - tools.supplier_script_generator - INFO - 🏭 Initializing supplier script generator for: www.poundwholesale.co.uk
+2025-06-26 21:10:40,159 - tools.supplier_script_generator - INFO - 📁 Supplier directory: suppliers/poundwholesale-co-uk
+2025-06-26 21:10:40,160 - tools.supplier_script_generator - INFO - 🏭 Generating complete automation package for: www.poundwholesale.co.uk
+2025-06-26 21:10:40,160 - tools.supplier_script_generator - INFO - 📁 Creating supplier directory structure...
+2025-06-26 21:10:40,164 - tools.supplier_script_generator - INFO - ✅ Created: suppliers/poundwholesale-co-uk
+2025-06-26 21:10:40,170 - tools.supplier_script_generator - INFO - ✅ Created: suppliers/poundwholesale-co-uk/scripts
+2025-06-26 21:10:40,174 - tools.supplier_script_generator - INFO - ✅ Created: suppliers/poundwholesale-co-uk/cache
+2025-06-26 21:10:40,178 - tools.supplier_script_generator - INFO - ✅ Created: suppliers/poundwholesale-co-uk/discovery
+2025-06-26 21:10:40,182 - tools.supplier_script_generator - INFO - ✅ Created: suppliers/poundwholesale-co-uk/config
+2025-06-26 21:10:40,188 - tools.supplier_script_generator - INFO - ✅ Created supplier README.md
+2025-06-26 21:10:40,189 - tools.supplier_script_generator - INFO - 🔐 Generating login automation script...
+2025-06-26 21:10:40,199 - tools.supplier_script_generator - INFO - ✅ Generated login script: suppliers/poundwholesale-co-uk/scripts/poundwholesale-co-uk_login.py
+2025-06-26 21:10:40,199 - tools.supplier_script_generator - INFO - 🕷️ Generating product extraction script...
+2025-06-26 21:10:40,209 - tools.supplier_script_generator - INFO - ✅ Generated product extractor: suppliers/poundwholesale-co-uk/scripts/poundwholesale-co-uk_product_extractor.py
+2025-06-26 21:10:40,210 - tools.supplier_script_generator - INFO - ⚙️ Generating configuration files...
+2025-06-26 21:10:40,243 - tools.supplier_script_generator - INFO - ✅ Generated login config: suppliers/poundwholesale-co-uk/config/login_config.json
+2025-06-26 21:10:40,243 - tools.supplier_script_generator - INFO - ✅ Generated product config: suppliers/poundwholesale-co-uk/config/product_selectors.json
+2025-06-26 21:10:40,244 - tools.supplier_script_generator - INFO - ✅ Generated global config: config/supplier_configs/www.poundwholesale.co.uk.json
+2025-06-26 21:10:40,244 - tools.supplier_script_generator - INFO - 🔗 Generating LangGraph integration script...
+2025-06-26 21:10:40,254 - tools.supplier_script_generator - INFO - ✅ Generated LangGraph integration: suppliers/poundwholesale-co-uk/scripts/poundwholesale-co-uk_langgraph_integration.py
+2025-06-26 21:10:40,254 - tools.supplier_script_generator - INFO - 🎉 Complete automation package generated successfully!
+2025-06-26 21:10:40,255 - tools.supplier_script_generator - INFO - 📁 Location: suppliers/poundwholesale-co-uk
+2025-06-26 21:10:40,262 - tools.supplier_script_generator - INFO - 🔧 Scripts: [PosixPath('suppliers/poundwholesale-co-uk/scripts/poundwholesale-co-uk_langgraph_integration.py'), PosixPath('suppliers/poundwholesale-co-uk/scripts/poundwholesale-co-uk_login.py'), PosixPath('suppliers/poundwholesale-co-uk/scripts/poundwholesale-co-uk_product_extractor.py'), PosixPath('suppliers/poundwholesale-co-uk/scripts/poundwholesale_login_final.py'), PosixPath('suppliers/poundwholesale-co-uk/scripts/poundwholesale_targeted_login.py')]
+2025-06-26 21:10:40,269 - tools.supplier_script_generator - INFO - ⚙️ Configs: [PosixPath('suppliers/poundwholesale-co-uk/config/login_config.json'), PosixPath('suppliers/poundwholesale-co-uk/config/product_selectors.json')]
+2025-06-26 21:10:40,276 - langraph_integration.complete_fba_workflow - INFO - ✅ Supplier automation scripts generated
+2025-06-26 21:10:40,278 - langraph_integration.complete_fba_workflow - INFO - 🔍 Running supplier discovery
+2025-06-26 21:10:40,279 - langraph_integration.complete_fba_workflow - ERROR - ❌ Supplier discovery failed: 'coroutine' object has no attribute 'get_page'
+2025-06-26 21:10:40,283 - langraph_integration.complete_fba_workflow - INFO - 🕷️ Extracting supplier products
+2025-06-26 21:10:40,283 - langraph_integration.complete_fba_workflow - WARNING - ⚠️ Supplier scraper tool not found
+2025-06-26 21:10:40,286 - langraph_integration.complete_fba_workflow - INFO - 🔍 Analyzing product matching
+2025-06-26 21:10:40,286 - langraph_integration.complete_fba_workflow - ERROR - ❌ Product matching failed: 'NoneType' object has no attribute 'get'
+2025-06-26 21:10:40,288 - langraph_integration.complete_fba_workflow - INFO - 💰 Calculating financial analysis
+2025-06-26 21:10:40,289 - langraph_integration.complete_fba_workflow - WARNING - ⚠️ Financial calculator tool not found
+2025-06-26 21:10:40,291 - langraph_integration.complete_fba_workflow - INFO - 📊 Generating final recommendation
+2025-06-26 21:10:40,849 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+2025-06-26 21:10:40,863 - langraph_integration.complete_fba_workflow - ERROR - ❌ Recommendation generation failed: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sk--7R0r***********************************************************************************0ygA. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+2025-06-26 21:10:40,866 - langraph_integration.complete_fba_workflow - INFO - 🏁 Finalizing workflow
+2025-06-26 21:10:40,866 - langraph_integration.complete_fba_workflow - INFO - ✅ Workflow finalized: completed_with_errors
+2025-06-26 21:10:40,869 - langraph_integration.complete_fba_workflow - INFO - ✅ Workflow completed with status: completed_with_errors
+2025-06-26 21:10:40,869 - __main__ - INFO - ✅ Phase 5 completed in 4.61s
+2025-06-26 21:10:40,898 - __main__ - INFO - 📁 Results saved to: /mnt/c/Users/chris/Cloud-Drive_christianhaddad8@gmail.com/Cloud-Drive/Full/claude code/Amazon-FBA-Agent-System-v3/OUTPUTS/FBA_ANALYSIS/complete_fba_analysis_20250626_211032.json
+2025-06-26 21:10:40,899 - __main__ - INFO - 📊 Summary saved to: /mnt/c/Users/chris/Cloud-Drive_christianhaddad8@gmail.com/Cloud-Drive/Full/claude code/Amazon-FBA-Agent-System-v3/OUTPUTS/REPORTS/fba_system_summary_20250626_211032.json
+2025-06-26 21:10:40,899 - __main__ - INFO - ✅ Complete FBA System Analysis finished successfully
+2025-06-26 21:52:38,365 - __main__ - WARNING - ⚠️ No LangSmith API key provided - tracing may be limited
+2025-06-26 21:52:38,366 - __main__ - INFO - 🔐 Supplier credentials provided
+2025-06-26 21:52:38,412 - __main__ - INFO - 🚀 Complete FBA System Runner initialized - Session: 20250626_215238
+2025-06-26 21:52:38,412 - __main__ - INFO - 🚀 Starting Complete FBA System Analysis
+2025-06-26 21:52:38,413 - __main__ - INFO - 📦 ASIN: B000BIUGTQ
+2025-06-26 21:52:38,413 - __main__ - INFO - 🏪 Supplier: https://www.poundwholesale.co.uk/
+2025-06-26 21:52:38,414 - __main__ - INFO - 📦 Phase 1: Supplier Generation Package
+2025-06-26 21:52:39,444 - tools.supplier_script_generator - INFO - 🏭 Initializing supplier script generator for: www.poundwholesale.co.uk
+2025-06-26 21:52:39,445 - tools.supplier_script_generator - INFO - 📁 Supplier directory: suppliers/poundwholesale-co-uk
+2025-06-26 21:52:39,445 - tools.supplier_script_generator - INFO - 🏭 Generating complete automation package for: www.poundwholesale.co.uk
+2025-06-26 21:52:39,446 - tools.supplier_script_generator - INFO - 📁 Creating supplier directory structure...
+2025-06-26 21:52:39,453 - tools.supplier_script_generator - INFO - ✅ Created: suppliers/poundwholesale-co-uk
+2025-06-26 21:52:39,460 - tools.supplier_script_generator - INFO - ✅ Created: suppliers/poundwholesale-co-uk/scripts
+2025-06-26 21:52:39,464 - tools.supplier_script_generator - INFO - ✅ Created: suppliers/poundwholesale-co-uk/cache
+2025-06-26 21:52:39,467 - tools.supplier_script_generator - INFO - ✅ Created: suppliers/poundwholesale-co-uk/discovery
+2025-06-26 21:52:39,471 - tools.supplier_script_generator - INFO - ✅ Created: suppliers/poundwholesale-co-uk/config
+2025-06-26 21:52:39,476 - tools.supplier_script_generator - INFO - ✅ Created supplier README.md
+2025-06-26 21:52:39,476 - tools.supplier_script_generator - INFO - 🔐 Generating login automation script...
+2025-06-26 21:52:39,483 - tools.supplier_script_generator - INFO - ✅ Generated login script: suppliers/poundwholesale-co-uk/scripts/poundwholesale-co-uk_login.py
+2025-06-26 21:52:39,483 - tools.supplier_script_generator - INFO - 🕷️ Generating product extraction script...
+2025-06-26 21:52:39,500 - tools.supplier_script_generator - INFO - ✅ Generated product extractor: suppliers/poundwholesale-co-uk/scripts/poundwholesale-co-uk_product_extractor.py
+2025-06-26 21:52:39,501 - tools.supplier_script_generator - INFO - ⚙️ Generating configuration files...
+2025-06-26 21:52:39,554 - tools.supplier_script_generator - INFO - ✅ Generated login config: suppliers/poundwholesale-co-uk/config/login_config.json
+2025-06-26 21:52:39,555 - tools.supplier_script_generator - INFO - ✅ Generated product config: suppliers/poundwholesale-co-uk/config/product_selectors.json
+2025-06-26 21:52:39,555 - tools.supplier_script_generator - INFO - ✅ Generated global config: config/supplier_configs/www.poundwholesale.co.uk.json
+2025-06-26 21:52:39,556 - tools.supplier_script_generator - INFO - 🔗 Generating LangGraph integration script...
+2025-06-26 21:52:39,566 - tools.supplier_script_generator - INFO - ✅ Generated LangGraph integration: suppliers/poundwholesale-co-uk/scripts/poundwholesale-co-uk_langgraph_integration.py
+2025-06-26 21:52:39,567 - tools.supplier_script_generator - INFO - 🎉 Complete automation package generated successfully!
+2025-06-26 21:52:39,567 - tools.supplier_script_generator - INFO - 📁 Location: suppliers/poundwholesale-co-uk
+2025-06-26 21:52:39,573 - tools.supplier_script_generator - INFO - 🔧 Scripts: [PosixPath('suppliers/poundwholesale-co-uk/scripts/poundwholesale-co-uk_langgraph_integration.py'), PosixPath('suppliers/poundwholesale-co-uk/scripts/poundwholesale-co-uk_login.py'), PosixPath('suppliers/poundwholesale-co-uk/scripts/poundwholesale-co-uk_product_extractor.py'), PosixPath('suppliers/poundwholesale-co-uk/scripts/poundwholesale_login_final.py'), PosixPath('suppliers/poundwholesale-co-uk/scripts/poundwholesale_targeted_login.py')]
+2025-06-26 21:52:39,584 - tools.supplier_script_generator - INFO - ⚙️ Configs: [PosixPath('suppliers/poundwholesale-co-uk/config/login_config.json'), PosixPath('suppliers/poundwholesale-co-uk/config/product_selectors.json')]
+2025-06-26 21:52:39,633 - __main__ - ERROR - ❌ Phase 1 failed: 'coroutine' object has no attribute 'get_page'
+2025-06-26 21:52:39,649 - __main__ - INFO - 🤖 Phase 2: AI-Suggested Categories
+2025-06-26 21:52:39,651 - __main__ - ERROR - ❌ Phase 2 failed: No module named 'passive_extraction_workflow_latest'
+2025-06-26 21:52:39,651 - __main__ - INFO - 🔍 Phase 3: Amazon Product Matching
+2025-06-26 21:52:39,789 - tools.amazon_playwright_extractor - INFO - AI features disabled in amazon_playwright_extractor - using only traditional selectors.
+2025-06-26 21:52:39,794 - tools.amazon_playwright_extractor - INFO - Output directory set to: /mnt/c/Users/chris/Cloud-Drive_christianhaddad8@gmail.com/Cloud-Drive/Full/claude code/Amazon-FBA-Agent-System-v3/OUTPUTS/CACHE/amazon_data
+2025-06-26 21:52:39,795 - __main__ - ERROR - ❌ Phase 3 failed: 'AmazonExtractor' object has no attribute 'extract_single_product'
+2025-06-26 21:52:39,796 - __main__ - INFO - 💰 Phase 4: Financial Analysis & Reports
+2025-06-26 21:52:40,163 - __main__ - INFO - 📊 Financial analysis completed: {'SupplierPrice_incVAT': 15.5, 'SupplierPrice_exVAT': 12.916666666666668, 'SellingPrice_incVAT': 25.99, 'ReferralFee': 3.8984999999999994, 'FBAFee': 2.8, 'PrepHouseFee': 0.55, 'OutputVAT': 4.331666666666667, 'InputVAT': 2.5833333333333335, 'NetProceeds': 14.959833333333332, 'HMRC': 1.7483333333333335, 'NetProfit': 12.661499999999998, 'ROI': 94.02103960396036, 'Breakeven': 22.7485, 'ProfitMargin': 48.716814159292035}
+2025-06-26 21:52:40,592 - langraph_integration.enhanced_fba_tools - INFO - 💰 Calculating FBA financial analysis: $25.99 vs $15.5
+2025-06-26 21:52:40,593 - langraph_integration.enhanced_fba_tools - INFO - ✅ Financial calculation completed successfully
+2025-06-26 21:52:40,593 - __main__ - INFO - ✅ Phase 4 completed in 0.80s
+2025-06-26 21:52:40,594 - __main__ - INFO - 🔗 Phase 5: Complete LangGraph Workflow
+2025-06-26 21:52:41,415 - langraph_integration.complete_fba_workflow - ERROR - ❌ Failed to initialize tools: create_vision_enhanced_tools() missing 1 required positional argument: 'openai_api_key'
+2025-06-26 21:52:41,470 - langraph_integration.complete_fba_workflow - INFO - ✅ Complete workflow graph created successfully
+2025-06-26 21:52:41,471 - langraph_integration.complete_fba_workflow - INFO - 🚀 Complete FBA Workflow initialized with full tool integration
+2025-06-26 21:52:41,471 - langraph_integration.complete_fba_workflow - INFO - 🚀 Starting complete FBA workflow for ASIN B000BIUGTQ and supplier https://www.poundwholesale.co.uk/
+2025-06-26 21:52:44,494 - langraph_integration.complete_fba_workflow - INFO - 🚀 Starting complete FBA workflow
+2025-06-26 21:52:44,494 - langraph_integration.complete_fba_workflow - INFO - ✅ Workflow initialized: fba_workflow_20250626_215244
+2025-06-26 21:52:44,500 - langraph_integration.complete_fba_workflow - INFO - 📦 Extracting Amazon data for ASIN: B000BIUGTQ
+2025-06-26 21:52:44,501 - langraph_integration.complete_fba_workflow - ERROR - ❌ Amazon extraction failed: Amazon extractor tool not found
+2025-06-26 21:52:44,503 - langraph_integration.complete_fba_workflow - INFO - 🏭 Setting up supplier automation for: https://www.poundwholesale.co.uk/
+2025-06-26 21:52:44,504 - tools.supplier_script_generator - INFO - 🏭 Initializing supplier script generator for: www.poundwholesale.co.uk
+2025-06-26 21:52:44,504 - tools.supplier_script_generator - INFO - 📁 Supplier directory: suppliers/poundwholesale-co-uk
+2025-06-26 21:52:44,505 - tools.supplier_script_generator - INFO - 🏭 Generating complete automation package for: www.poundwholesale.co.uk
+2025-06-26 21:52:44,505 - tools.supplier_script_generator - INFO - 📁 Creating supplier directory structure...
+2025-06-26 21:52:44,509 - tools.supplier_script_generator - INFO - ✅ Created: suppliers/poundwholesale-co-uk
+2025-06-26 21:52:44,513 - tools.supplier_script_generator - INFO - ✅ Created: suppliers/poundwholesale-co-uk/scripts
+2025-06-26 21:52:44,518 - tools.supplier_script_generator - INFO - ✅ Created: suppliers/poundwholesale-co-uk/cache
+2025-06-26 21:52:44,523 - tools.supplier_script_generator - INFO - ✅ Created: suppliers/poundwholesale-co-uk/discovery
+2025-06-26 21:52:44,528 - tools.supplier_script_generator - INFO - ✅ Created: suppliers/poundwholesale-co-uk/config
+2025-06-26 21:52:44,534 - tools.supplier_script_generator - INFO - ✅ Created supplier README.md
+2025-06-26 21:52:44,534 - tools.supplier_script_generator - INFO - 🔐 Generating login automation script...
+2025-06-26 21:52:44,546 - tools.supplier_script_generator - INFO - ✅ Generated login script: suppliers/poundwholesale-co-uk/scripts/poundwholesale-co-uk_login.py
+2025-06-26 21:52:44,546 - tools.supplier_script_generator - INFO - 🕷️ Generating product extraction script...
+2025-06-26 21:52:44,558 - tools.supplier_script_generator - INFO - ✅ Generated product extractor: suppliers/poundwholesale-co-uk/scripts/poundwholesale-co-uk_product_extractor.py
+2025-06-26 21:52:44,558 - tools.supplier_script_generator - INFO - ⚙️ Generating configuration files...
+2025-06-26 21:52:44,581 - tools.supplier_script_generator - INFO - ✅ Generated login config: suppliers/poundwholesale-co-uk/config/login_config.json
+2025-06-26 21:52:44,582 - tools.supplier_script_generator - INFO - ✅ Generated product config: suppliers/poundwholesale-co-uk/config/product_selectors.json
+2025-06-26 21:52:44,583 - tools.supplier_script_generator - INFO - ✅ Generated global config: config/supplier_configs/www.poundwholesale.co.uk.json
+2025-06-26 21:52:44,583 - tools.supplier_script_generator - INFO - 🔗 Generating LangGraph integration script...
+2025-06-26 21:52:44,596 - tools.supplier_script_generator - INFO - ✅ Generated LangGraph integration: suppliers/poundwholesale-co-uk/scripts/poundwholesale-co-uk_langgraph_integration.py
+2025-06-26 21:52:44,597 - tools.supplier_script_generator - INFO - 🎉 Complete automation package generated successfully!
+2025-06-26 21:52:44,597 - tools.supplier_script_generator - INFO - 📁 Location: suppliers/poundwholesale-co-uk
+2025-06-26 21:52:44,606 - tools.supplier_script_generator - INFO - 🔧 Scripts: [PosixPath('suppliers/poundwholesale-co-uk/scripts/poundwholesale-co-uk_langgraph_integration.py'), PosixPath('suppliers/poundwholesale-co-uk/scripts/poundwholesale-co-uk_login.py'), PosixPath('suppliers/poundwholesale-co-uk/scripts/poundwholesale-co-uk_product_extractor.py'), PosixPath('suppliers/poundwholesale-co-uk/scripts/poundwholesale_login_final.py'), PosixPath('suppliers/poundwholesale-co-uk/scripts/poundwholesale_targeted_login.py')]
+2025-06-26 21:52:44,613 - tools.supplier_script_generator - INFO - ⚙️ Configs: [PosixPath('suppliers/poundwholesale-co-uk/config/login_config.json'), PosixPath('suppliers/poundwholesale-co-uk/config/product_selectors.json')]
+2025-06-26 21:52:44,620 - langraph_integration.complete_fba_workflow - INFO - ✅ Supplier automation scripts generated
+2025-06-26 21:52:44,622 - langraph_integration.complete_fba_workflow - INFO - 🔍 Running supplier discovery
+2025-06-26 21:52:44,623 - langraph_integration.complete_fba_workflow - ERROR - ❌ Supplier discovery failed: 'coroutine' object has no attribute 'get_page'
+2025-06-26 21:52:44,629 - langraph_integration.complete_fba_workflow - INFO - 🕷️ Extracting supplier products
+2025-06-26 21:52:44,630 - langraph_integration.complete_fba_workflow - WARNING - ⚠️ Supplier scraper tool not found
+2025-06-26 21:52:44,632 - langraph_integration.complete_fba_workflow - INFO - 🔍 Analyzing product matching
+2025-06-26 21:52:44,633 - langraph_integration.complete_fba_workflow - ERROR - ❌ Product matching failed: 'NoneType' object has no attribute 'get'
+2025-06-26 21:52:44,635 - langraph_integration.complete_fba_workflow - INFO - 💰 Calculating financial analysis
+2025-06-26 21:52:44,636 - langraph_integration.complete_fba_workflow - WARNING - ⚠️ Financial calculator tool not found
+2025-06-26 21:52:44,638 - langraph_integration.complete_fba_workflow - INFO - 📊 Generating final recommendation
+2025-06-26 21:52:50,067 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-26 21:52:50,079 - langraph_integration.complete_fba_workflow - INFO - ✅ Recommendation generated
+2025-06-26 21:52:50,082 - langraph_integration.complete_fba_workflow - INFO - 🏁 Finalizing workflow
+2025-06-26 21:52:50,083 - langraph_integration.complete_fba_workflow - INFO - ✅ Workflow finalized: completed_with_errors
+2025-06-26 21:52:50,085 - langraph_integration.complete_fba_workflow - INFO - ✅ Workflow completed with status: completed_with_errors
+2025-06-26 21:52:50,086 - __main__ - INFO - ✅ Phase 5 completed in 9.49s
+2025-06-26 21:52:50,106 - __main__ - INFO - 📁 Results saved to: /mnt/c/Users/chris/Cloud-Drive_christianhaddad8@gmail.com/Cloud-Drive/Full/claude code/Amazon-FBA-Agent-System-v3/OUTPUTS/FBA_ANALYSIS/complete_fba_analysis_20250626_215238.json
+2025-06-26 21:52:50,106 - __main__ - INFO - 📊 Summary saved to: /mnt/c/Users/chris/Cloud-Drive_christianhaddad8@gmail.com/Cloud-Drive/Full/claude code/Amazon-FBA-Agent-System-v3/OUTPUTS/REPORTS/fba_system_summary_20250626_215238.json
+2025-06-26 21:52:50,107 - __main__ - INFO - ✅ Complete FBA System Analysis finished successfully
+2025-06-26 22:15:54,227 - __main__ - WARNING - ⚠️ No LangSmith API key provided - tracing may be limited
+2025-06-26 22:15:54,235 - __main__ - INFO - 🔐 Supplier credentials provided
+2025-06-26 22:15:54,301 - __main__ - INFO - 🚀 Complete FBA System Runner initialized - Session: 20250626_221554
+2025-06-26 22:15:54,301 - __main__ - INFO - 🚀 Starting Complete FBA System Analysis
+2025-06-26 22:15:54,302 - __main__ - INFO - 📦 ASIN: B000BIUGTQ
+2025-06-26 22:15:54,302 - __main__ - INFO - 🏪 Supplier: https://www.poundwholesale.co.uk/
+2025-06-26 22:15:54,303 - __main__ - INFO - 📦 Phase 1: Supplier Generation Package
+2025-06-26 22:15:55,240 - tools.supplier_script_generator - INFO - 🏭 Initializing supplier script generator for: www.poundwholesale.co.uk
+2025-06-26 22:15:55,241 - tools.supplier_script_generator - INFO - 📁 Supplier directory: suppliers/poundwholesale-co-uk
+2025-06-26 22:15:55,241 - tools.supplier_script_generator - INFO - 🏭 Generating complete automation package for: www.poundwholesale.co.uk
+2025-06-26 22:15:55,242 - tools.supplier_script_generator - INFO - 📁 Creating supplier directory structure...
+2025-06-26 22:15:55,247 - tools.supplier_script_generator - INFO - ✅ Created: suppliers/poundwholesale-co-uk
+2025-06-26 22:15:55,252 - tools.supplier_script_generator - INFO - ✅ Created: suppliers/poundwholesale-co-uk/scripts
+2025-06-26 22:15:55,258 - tools.supplier_script_generator - INFO - ✅ Created: suppliers/poundwholesale-co-uk/cache
+2025-06-26 22:15:55,264 - tools.supplier_script_generator - INFO - ✅ Created: suppliers/poundwholesale-co-uk/discovery
+2025-06-26 22:15:55,269 - tools.supplier_script_generator - INFO - ✅ Created: suppliers/poundwholesale-co-uk/config
+2025-06-26 22:15:55,278 - tools.supplier_script_generator - INFO - ✅ Created supplier README.md
+2025-06-26 22:15:55,279 - tools.supplier_script_generator - INFO - 🔐 Generating login automation script...
+2025-06-26 22:15:55,290 - tools.supplier_script_generator - INFO - ✅ Generated login script: suppliers/poundwholesale-co-uk/scripts/poundwholesale-co-uk_login.py
+2025-06-26 22:15:55,291 - tools.supplier_script_generator - INFO - 🕷️ Generating product extraction script...
+2025-06-26 22:15:55,304 - tools.supplier_script_generator - INFO - ✅ Generated product extractor: suppliers/poundwholesale-co-uk/scripts/poundwholesale-co-uk_product_extractor.py
+2025-06-26 22:15:55,305 - tools.supplier_script_generator - INFO - ⚙️ Generating configuration files...
+2025-06-26 22:15:55,329 - tools.supplier_script_generator - INFO - ✅ Generated login config: suppliers/poundwholesale-co-uk/config/login_config.json
+2025-06-26 22:15:55,329 - tools.supplier_script_generator - INFO - ✅ Generated product config: suppliers/poundwholesale-co-uk/config/product_selectors.json
+2025-06-26 22:15:55,329 - tools.supplier_script_generator - INFO - ✅ Generated global config: config/supplier_configs/www.poundwholesale.co.uk.json
+2025-06-26 22:15:55,330 - tools.supplier_script_generator - INFO - 🔗 Generating LangGraph integration script...
+2025-06-26 22:15:55,343 - tools.supplier_script_generator - INFO - ✅ Generated LangGraph integration: suppliers/poundwholesale-co-uk/scripts/poundwholesale-co-uk_langgraph_integration.py
+2025-06-26 22:15:55,343 - tools.supplier_script_generator - INFO - 🎉 Complete automation package generated successfully!
+2025-06-26 22:15:55,344 - tools.supplier_script_generator - INFO - 📁 Location: suppliers/poundwholesale-co-uk
+2025-06-26 22:15:55,351 - tools.supplier_script_generator - INFO - 🔧 Scripts: [PosixPath('suppliers/poundwholesale-co-uk/scripts/poundwholesale-co-uk_langgraph_integration.py'), PosixPath('suppliers/poundwholesale-co-uk/scripts/poundwholesale-co-uk_login.py'), PosixPath('suppliers/poundwholesale-co-uk/scripts/poundwholesale-co-uk_product_extractor.py'), PosixPath('suppliers/poundwholesale-co-uk/scripts/poundwholesale_login_final.py'), PosixPath('suppliers/poundwholesale-co-uk/scripts/poundwholesale_targeted_login.py')]
+2025-06-26 22:15:55,360 - tools.supplier_script_generator - INFO - ⚙️ Configs: [PosixPath('suppliers/poundwholesale-co-uk/config/login_config.json'), PosixPath('suppliers/poundwholesale-co-uk/config/product_selectors.json')]
+2025-06-26 22:15:55,394 - langraph_integration.playwright_browser_manager - DEBUG - Browser manager debug logging initialized - writing to /mnt/c/Users/chris/Cloud-Drive_christianhaddad8@gmail.com/Cloud-Drive/Full/claude code/Amazon-FBA-Agent-System-v3/logs/debug/browser_manager_20250626.log
+2025-06-26 22:15:55,395 - langraph_integration.playwright_browser_manager - INFO - Starting PlaywrightBrowserManager...
+2025-06-26 22:15:55,970 - langraph_integration.playwright_browser_manager - DEBUG - Launching new browser instance (headless=True)
+2025-06-26 22:15:56,425 - langraph_integration.playwright_browser_manager - INFO - Browser launched successfully. Total browsers: 1
+2025-06-26 22:15:56,426 - langraph_integration.playwright_browser_manager - INFO - Browser manager started with 1 browser(s)
+2025-06-26 22:15:56,448 - langraph_integration.playwright_browser_manager - DEBUG - Created regular context for supplier: poundwholesale-co-uk
+2025-06-26 22:15:56,449 - langraph_integration.playwright_browser_manager - INFO - Created new context for supplier: poundwholesale-co-uk (persistent=False)
+2025-06-26 22:15:56,559 - langraph_integration.playwright_browser_manager - DEBUG - Created new page for supplier: poundwholesale-co-uk
+2025-06-26 22:16:04,666 - tools.vision_discovery_engine - INFO - 🔍 Starting complete supplier discovery...
+2025-06-26 22:16:04,755 - tools.vision_discovery_engine - INFO - 🔍 Vision Discovery Engine initialized
+2025-06-26 22:16:04,756 - tools.vision_discovery_engine - INFO - 🔐 Starting vision-based login discovery...
+2025-06-26 22:16:14,512 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-26 22:16:14,519 - tools.vision_discovery_engine - ERROR - Vision login analysis failed: Expecting value: line 1 column 1 (char 0)
+2025-06-26 22:16:14,520 - tools.vision_discovery_engine - INFO - 🔄 Falling back to heuristic discovery...
+2025-06-26 22:16:14,521 - tools.vision_discovery_engine - INFO - 🔄 Running heuristic login discovery...
+2025-06-26 22:16:14,780 - tools.vision_discovery_engine - INFO - 🕷️ Starting vision-based product selector discovery...
+2025-06-26 22:16:14,781 - tools.vision_discovery_engine - INFO - 📄 Analyzing page 1...
+2025-06-26 22:16:26,590 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-26 22:16:26,592 - tools.vision_discovery_engine - ERROR - Vision product analysis failed: Expecting value: line 1 column 1 (char 0)
+2025-06-26 22:16:26,593 - tools.vision_discovery_engine - INFO - 📄 Analyzing page 2...
+2025-06-26 22:16:39,850 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-26 22:16:39,852 - tools.vision_discovery_engine - ERROR - Vision product analysis failed: Expecting value: line 1 column 1 (char 0)
+2025-06-26 22:16:39,852 - tools.vision_discovery_engine - INFO - 📄 Analyzing page 3...
+2025-06-26 22:16:54,584 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-26 22:16:54,586 - tools.vision_discovery_engine - ERROR - Vision product analysis failed: Expecting value: line 1 column 1 (char 0)
+2025-06-26 22:16:54,587 - tools.vision_discovery_engine - INFO - 🔄 Falling back to heuristic product discovery...
+2025-06-26 22:16:54,587 - tools.vision_discovery_engine - INFO - 🔄 Running heuristic product discovery...
+2025-06-26 22:16:54,724 - tools.vision_discovery_engine - INFO - ✅ Product selector validated: .product-item (5 elements)
+2025-06-26 22:16:54,888 - tools.vision_discovery_engine - INFO - ✅ Product selector validated: .product (5 elements)
+2025-06-26 22:16:55,041 - tools.vision_discovery_engine - INFO - ✅ Product selector validated: .item (4 elements)
+2025-06-26 22:16:55,226 - tools.vision_discovery_engine - INFO - ✅ Product selector validated: .title (3 elements)
+2025-06-26 22:16:55,337 - tools.vision_discovery_engine - INFO - ✅ Product selector validated: h2 a (4 elements)
+2025-06-26 22:16:55,394 - tools.vision_discovery_engine - INFO - ✅ Product selector validated: h3 a (2 elements)
+2025-06-26 22:16:55,510 - tools.vision_discovery_engine - INFO - ✅ Product selector validated: .product-name (5 elements)
+2025-06-26 22:16:55,821 - tools.vision_discovery_engine - INFO - ✅ Product selector validated: .product-item a (3 elements)
+2025-06-26 22:16:55,906 - tools.vision_discovery_engine - INFO - ✅ Product selector validated: h2 a (4 elements)
+2025-06-26 22:16:56,024 - tools.vision_discovery_engine - INFO - ✅ Product selector validated: a[href*='product'] (2 elements)
+2025-06-26 22:16:56,186 - tools.vision_discovery_engine - INFO - ✅ Product selector validated: .product-item img (3 elements)
+2025-06-26 22:16:56,326 - tools.vision_discovery_engine - INFO - ✅ Heuristic product discovery successful
+2025-06-26 22:16:56,326 - tools.vision_discovery_engine - INFO - 🧭 Discovering navigation patterns...
+2025-06-26 22:17:05,701 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-26 22:17:05,703 - tools.vision_discovery_engine - ERROR - Vision navigation analysis failed: Expecting value: line 1 column 1 (char 0)
+2025-06-26 22:17:05,703 - tools.vision_discovery_engine - INFO - ✅ Complete discovery finished: True
+2025-06-26 22:17:05,705 - __main__ - ERROR - ❌ Phase 1 failed: No module named 'tools.vision_login_automation'
+2025-06-26 22:17:05,705 - __main__ - INFO - 🤖 Phase 2: AI-Suggested Categories
+2025-06-26 22:17:06,459 - tools.passive_extraction_workflow_latest - INFO - No existing linking map found at /mnt/c/Users/chris/Cloud-Drive_christianhaddad8@gmail.com/Cloud-Drive/Full/claude code/Amazon-FBA-Agent-System-v3/OUTPUTS/FBA_ANALYSIS/Linking map/linking_map.json - Creating new map
+2025-06-26 22:17:06,462 - tools.passive_extraction_workflow_latest - INFO - PassiveExtractionWorkflow initialized WITH an AI client.
+2025-06-26 22:17:06,463 - amazon_playwright_extractor - INFO - AI features disabled in amazon_playwright_extractor - using only traditional selectors.
+2025-06-26 22:17:06,472 - amazon_playwright_extractor - INFO - Output directory set to: /mnt/c/Users/chris/Cloud-Drive_christianhaddad8@gmail.com/Cloud-Drive/Full/claude code/Amazon-FBA-Agent-System-v3/OUTPUTS/CACHE/amazon_data
+2025-06-26 22:17:06,475 - configurable_supplier_scraper - DEBUG - Debug logging initialized - writing to /mnt/c/Users/chris/Cloud-Drive_christianhaddad8@gmail.com/Cloud-Drive/Full/claude code/Amazon-FBA-Agent-System-v3/logs/debug/supplier_scraping_debug_20250626.log
+2025-06-26 22:17:06,476 - configurable_supplier_scraper - DEBUG - Headless mode: True
+2025-06-26 22:17:06,481 - tools.passive_extraction_workflow_latest - INFO - No existing linking map found at /mnt/c/Users/chris/Cloud-Drive_christianhaddad8@gmail.com/Cloud-Drive/Full/claude code/Amazon-FBA-Agent-System-v3/OUTPUTS/FBA_ANALYSIS/Linking map/linking_map.json - Creating new map
+2025-06-26 22:17:06,481 - tools.passive_extraction_workflow_latest - INFO - Loaded linking map with 0 entries
+2025-06-26 22:17:06,482 - tools.passive_extraction_workflow_latest - INFO - Starting passive extraction workflow for supplier: www-poundwholesale-co-uk (https://www.poundwholesale.co.uk/)
+2025-06-26 22:17:06,483 - tools.passive_extraction_workflow_latest - INFO - Session ID: www-poundwholesale-co-uk_20250626_221706
+2025-06-26 22:17:06,483 - tools.passive_extraction_workflow_latest - INFO - PRICE CRITERIA: Min Supplier Cost £0.1, Max Supplier Cost £20.0
+2025-06-26 22:17:06,492 - utils.enhanced_state_manager - INFO - No existing state file found for www-poundwholesale-co-uk, starting fresh
+2025-06-26 22:17:06,492 - tools.passive_extraction_workflow_latest - INFO - Starting fresh analysis - no previous state found
+2025-06-26 22:17:06,493 - __main__ - ERROR - ❌ Phase 2 failed: cannot access local variable 'os' where it is not associated with a value
+2025-06-26 22:17:06,494 - __main__ - INFO - 🔍 Phase 3: Amazon Product Matching
+2025-06-26 22:17:06,557 - tools.amazon_playwright_extractor - INFO - AI features disabled in amazon_playwright_extractor - using only traditional selectors.
+2025-06-26 22:17:06,567 - tools.amazon_playwright_extractor - INFO - Output directory set to: /mnt/c/Users/chris/Cloud-Drive_christianhaddad8@gmail.com/Cloud-Drive/Full/claude code/Amazon-FBA-Agent-System-v3/OUTPUTS/CACHE/amazon_data
+2025-06-26 22:17:06,568 - tools.amazon_playwright_extractor - INFO - Connecting to Chrome browser on debug port 9222
+2025-06-26 22:17:07,458 - tools.amazon_playwright_extractor - INFO - Successfully connected to Chrome on port 9222
+2025-06-26 22:17:07,458 - tools.amazon_playwright_extractor - INFO - Found 4 existing pages
+2025-06-26 22:17:07,458 - tools.amazon_playwright_extractor - INFO - Using existing page: https://www.amazon.co.uk/dp/B000BIUGTQ
+2025-06-26 22:17:07,502 - tools.amazon_playwright_extractor - INFO - Reusing existing page: https://www.amazon.co.uk/dp/B000BIUGTQ
+2025-06-26 22:17:10,789 - tools.amazon_playwright_extractor - INFO - Checking for cookie consent pop-up...
+2025-06-26 22:17:11,605 - tools.amazon_playwright_extractor - INFO - Finished checking for cookie consent pop-ups. If one was present and not handled, it might interfere.
+2025-06-26 22:17:12,607 - tools.amazon_playwright_extractor - INFO - Checking for CAPTCHA...
+2025-06-26 22:17:17,358 - tools.amazon_playwright_extractor - INFO - No CAPTCHA page detected by form selector.
+2025-06-26 22:17:17,359 - tools.amazon_playwright_extractor - INFO - Checking for cookie consent pop-up...
+2025-06-26 22:17:17,502 - tools.amazon_playwright_extractor - INFO - Finished checking for cookie consent pop-ups. If one was present and not handled, it might interfere.
+2025-06-26 22:17:17,503 - tools.amazon_playwright_extractor - INFO - Page should be ready. Waiting 5s for stabilization...
+2025-06-26 22:17:22,506 - tools.amazon_playwright_extractor - INFO - Waiting an additional 7s for extensions (Keepa, SellerAmp)...
+2025-06-26 22:17:29,510 - tools.amazon_playwright_extractor - INFO - Extracting all product data for ASIN: B000BIUGTQ
+2025-06-26 22:17:29,511 - tools.amazon_playwright_extractor - INFO - Extracting basic product information (Title, Price, Images, Amazon Details)...
+2025-06-26 22:17:29,561 - tools.amazon_playwright_extractor - INFO - Title found: 'Bumble and Bumble Sumotech 50ml / 2 fl.oz.' via #productTitle
+2025-06-26 22:17:29,562 - tools.amazon_playwright_extractor - INFO - Extracting price details...
+2025-06-26 22:17:29,609 - tools.amazon_playwright_extractor - INFO - Current price: 22.35 via #corePrice_feature_div .a-offscreen
+2025-06-26 22:17:29,837 - tools.amazon_playwright_extractor - INFO - Amazon sales badge found: 100 in container div#socialProofingAsinFaceout_feature_div
+2025-06-26 22:17:29,837 - tools.amazon_playwright_extractor - INFO - Extracting image URLs...
+2025-06-26 22:17:29,921 - tools.amazon_playwright_extractor - INFO - Main image: https://m.media-amazon.com/images/I/51xpLdjdlPL._AC_SL1300_.jpg via #landingImage
+2025-06-26 22:17:30,123 - tools.amazon_playwright_extractor - INFO - Found 7 thumbnails.
+2025-06-26 22:17:30,138 - tools.amazon_playwright_extractor - INFO - Extracting Amazon product details section...
+2025-06-26 22:17:31,249 - tools.amazon_playwright_extractor - INFO - Extracting sales rank information...
+2025-06-26 22:17:31,620 - tools.amazon_playwright_extractor - INFO - Extracting ratings and reviews...
+2025-06-26 22:17:31,668 - tools.amazon_playwright_extractor - INFO - Rating: 4.4 via #acrPopover[title*='out of 5 stars']
+2025-06-26 22:17:31,711 - tools.amazon_playwright_extractor - INFO - Review count: 901 via #acrCustomerReviewText
+2025-06-26 22:17:31,711 - tools.amazon_playwright_extractor - INFO - Extracting stock information...
+2025-06-26 22:17:31,760 - tools.amazon_playwright_extractor - INFO - Availability text: 'In stock' via #availability span.a-size-medium.a-color-success
+2025-06-26 22:17:31,761 - tools.amazon_playwright_extractor - INFO - Extracting features/bullets...
+2025-06-26 22:17:32,060 - tools.amazon_playwright_extractor - INFO - Found 3 features.
+2025-06-26 22:17:32,060 - tools.amazon_playwright_extractor - INFO - Extracting product description...
+2025-06-26 22:17:32,122 - tools.amazon_playwright_extractor - INFO - Description found using selector: #productDescription
+2025-06-26 22:17:32,123 - tools.amazon_playwright_extractor - INFO - Extracting product specifications table...
+2025-06-26 22:17:33,385 - tools.amazon_playwright_extractor - INFO - Specifications table parsed using selector: #productDetails_techSpec_section_1
+2025-06-26 22:17:33,386 - tools.amazon_playwright_extractor - INFO - Extracting SellerAmp data (if present)...
+2025-06-26 22:17:33,386 - tools.amazon_playwright_extractor - INFO - SellerAmp data extraction is currently disabled as per requirements (Fix 2.3).
+2025-06-26 22:17:33,386 - tools.amazon_playwright_extractor - INFO - Extracting Keepa data (if present)...
+2025-06-26 22:17:33,387 - tools.amazon_playwright_extractor - INFO - Attempting to extract Keepa data...
+2025-06-26 22:17:39,534 - tools.amazon_playwright_extractor - INFO - Keepa iframe found: iframe[id*='keepa']
+2025-06-26 22:17:39,716 - tools.amazon_playwright_extractor - INFO - Keepa Sales Rank Details Table parsed.
+2025-06-26 22:17:39,716 - tools.amazon_playwright_extractor - INFO - Keepa Graph AI Analysis is currently disabled as per requirements (Fix 2.4).
+2025-06-26 22:17:39,779 - tools.amazon_playwright_extractor - INFO - Clicking Keepa 'Data' tab...
+2025-06-26 22:17:52,826 - tools.amazon_playwright_extractor - ERROR - Product-Details wrapper did not appear after 11 s – aborting.
+2025-06-26 22:17:52,826 - tools.amazon_playwright_extractor - INFO - ASIN B000BIUGTQ: BSR not found or invalid from page. Attempting fallback from Keepa.
+2025-06-26 22:17:52,827 - tools.amazon_playwright_extractor - INFO - ASIN B000BIUGTQ: BSR 17235 in 'Beauty 35' from Keepa SalesRankDetailsTable.
+2025-06-26 22:17:53,159 - __main__ - WARNING - Vision extraction fallback failed: VisionAmazonExtractorTool.__init__() missing 1 required positional argument: 'openai_client'
+2025-06-26 22:17:53,159 - __main__ - INFO - ✅ Phase 3 completed in 46.66s
+2025-06-26 22:17:53,160 - __main__ - INFO - 💰 Phase 4: Financial Analysis & Reports
+2025-06-26 22:17:54,004 - __main__ - INFO - 📊 Financial analysis completed: {'SupplierPrice_incVAT': 15.5, 'SupplierPrice_exVAT': 12.916666666666668, 'SellingPrice_incVAT': 25.99, 'ReferralFee': 3.8984999999999994, 'FBAFee': 2.8, 'PrepHouseFee': 0.55, 'OutputVAT': 4.331666666666667, 'InputVAT': 2.5833333333333335, 'NetProceeds': 14.959833333333332, 'HMRC': 1.7483333333333335, 'NetProfit': 12.661499999999998, 'ROI': 94.02103960396036, 'Breakeven': 22.7485, 'ProfitMargin': 48.716814159292035}
+2025-06-26 22:17:54,042 - langraph_integration.enhanced_fba_tools - INFO - 💰 Calculating FBA financial analysis: $25.99 vs $15.5
+2025-06-26 22:17:54,043 - langraph_integration.enhanced_fba_tools - INFO - ✅ Financial calculation completed successfully
+2025-06-26 22:17:54,044 - __main__ - INFO - ✅ Phase 4 completed in 0.88s
+2025-06-26 22:17:54,044 - __main__ - INFO - 🔗 Phase 5: Complete LangGraph Workflow
+2025-06-26 22:17:54,468 - langraph_integration.complete_fba_workflow - ERROR - ❌ Failed to initialize tools: create_vision_enhanced_tools() missing 1 required positional argument: 'openai_api_key'
+2025-06-26 22:17:54,515 - langraph_integration.complete_fba_workflow - INFO - ✅ Complete workflow graph created successfully
+2025-06-26 22:17:54,516 - langraph_integration.complete_fba_workflow - INFO - 🚀 Complete FBA Workflow initialized with full tool integration
+2025-06-26 22:17:54,517 - langraph_integration.complete_fba_workflow - INFO - 🚀 Starting complete FBA workflow for ASIN B000BIUGTQ and supplier https://www.poundwholesale.co.uk/
+2025-06-26 22:17:57,441 - langraph_integration.complete_fba_workflow - INFO - 🚀 Starting complete FBA workflow
+2025-06-26 22:17:57,441 - langraph_integration.complete_fba_workflow - INFO - ✅ Workflow initialized: fba_workflow_20250626_221757
+2025-06-26 22:17:57,448 - langraph_integration.complete_fba_workflow - INFO - 📦 Extracting Amazon data for ASIN: B000BIUGTQ
+2025-06-26 22:17:57,448 - langraph_integration.complete_fba_workflow - ERROR - ❌ Amazon extraction failed: Amazon extractor tool not found
+2025-06-26 22:17:57,451 - langraph_integration.complete_fba_workflow - INFO - 🏭 Setting up supplier automation for: https://www.poundwholesale.co.uk/
+2025-06-26 22:17:57,451 - tools.supplier_script_generator - INFO - 🏭 Initializing supplier script generator for: www.poundwholesale.co.uk
+2025-06-26 22:17:57,452 - tools.supplier_script_generator - INFO - 📁 Supplier directory: suppliers/poundwholesale-co-uk
+2025-06-26 22:17:57,452 - tools.supplier_script_generator - INFO - 🏭 Generating complete automation package for: www.poundwholesale.co.uk
+2025-06-26 22:17:57,453 - tools.supplier_script_generator - INFO - 📁 Creating supplier directory structure...
+2025-06-26 22:17:57,456 - tools.supplier_script_generator - INFO - ✅ Created: suppliers/poundwholesale-co-uk
+2025-06-26 22:17:57,462 - tools.supplier_script_generator - INFO - ✅ Created: suppliers/poundwholesale-co-uk/scripts
+2025-06-26 22:17:57,467 - tools.supplier_script_generator - INFO - ✅ Created: suppliers/poundwholesale-co-uk/cache
+2025-06-26 22:17:57,474 - tools.supplier_script_generator - INFO - ✅ Created: suppliers/poundwholesale-co-uk/discovery
+2025-06-26 22:17:57,480 - tools.supplier_script_generator - INFO - ✅ Created: suppliers/poundwholesale-co-uk/config
+2025-06-26 22:17:57,486 - tools.supplier_script_generator - INFO - ✅ Created supplier README.md
+2025-06-26 22:17:57,487 - tools.supplier_script_generator - INFO - 🔐 Generating login automation script...
+2025-06-26 22:17:57,497 - tools.supplier_script_generator - INFO - ✅ Generated login script: suppliers/poundwholesale-co-uk/scripts/poundwholesale-co-uk_login.py
+2025-06-26 22:17:57,497 - tools.supplier_script_generator - INFO - 🕷️ Generating product extraction script...
+2025-06-26 22:17:57,508 - tools.supplier_script_generator - INFO - ✅ Generated product extractor: suppliers/poundwholesale-co-uk/scripts/poundwholesale-co-uk_product_extractor.py
+2025-06-26 22:17:57,509 - tools.supplier_script_generator - INFO - ⚙️ Generating configuration files...
+2025-06-26 22:17:57,534 - tools.supplier_script_generator - INFO - ✅ Generated login config: suppliers/poundwholesale-co-uk/config/login_config.json
+2025-06-26 22:17:57,535 - tools.supplier_script_generator - INFO - ✅ Generated product config: suppliers/poundwholesale-co-uk/config/product_selectors.json
+2025-06-26 22:17:57,536 - tools.supplier_script_generator - INFO - ✅ Generated global config: config/supplier_configs/www.poundwholesale.co.uk.json
+2025-06-26 22:17:57,536 - tools.supplier_script_generator - INFO - 🔗 Generating LangGraph integration script...
+2025-06-26 22:17:57,547 - tools.supplier_script_generator - INFO - ✅ Generated LangGraph integration: suppliers/poundwholesale-co-uk/scripts/poundwholesale-co-uk_langgraph_integration.py
+2025-06-26 22:17:57,547 - tools.supplier_script_generator - INFO - 🎉 Complete automation package generated successfully!
+2025-06-26 22:17:57,548 - tools.supplier_script_generator - INFO - 📁 Location: suppliers/poundwholesale-co-uk
+2025-06-26 22:17:57,555 - tools.supplier_script_generator - INFO - 🔧 Scripts: [PosixPath('suppliers/poundwholesale-co-uk/scripts/poundwholesale-co-uk_langgraph_integration.py'), PosixPath('suppliers/poundwholesale-co-uk/scripts/poundwholesale-co-uk_login.py'), PosixPath('suppliers/poundwholesale-co-uk/scripts/poundwholesale-co-uk_product_extractor.py'), PosixPath('suppliers/poundwholesale-co-uk/scripts/poundwholesale_login_final.py'), PosixPath('suppliers/poundwholesale-co-uk/scripts/poundwholesale_targeted_login.py')]
+2025-06-26 22:17:57,562 - tools.supplier_script_generator - INFO - ⚙️ Configs: [PosixPath('suppliers/poundwholesale-co-uk/config/login_config.json'), PosixPath('suppliers/poundwholesale-co-uk/config/product_selectors.json')]
+2025-06-26 22:17:57,568 - langraph_integration.complete_fba_workflow - INFO - ✅ Supplier automation scripts generated
+2025-06-26 22:17:57,570 - langraph_integration.complete_fba_workflow - INFO - 🔍 Running supplier discovery
+2025-06-26 22:17:57,571 - langraph_integration.complete_fba_workflow - ERROR - ❌ Supplier discovery failed: 'coroutine' object has no attribute 'get_page'
+2025-06-26 22:17:57,583 - langraph_integration.complete_fba_workflow - INFO - 🕷️ Extracting supplier products
+2025-06-26 22:17:57,584 - langraph_integration.complete_fba_workflow - WARNING - ⚠️ Supplier scraper tool not found
+2025-06-26 22:17:57,586 - langraph_integration.complete_fba_workflow - INFO - 🔍 Analyzing product matching
+2025-06-26 22:17:57,587 - langraph_integration.complete_fba_workflow - ERROR - ❌ Product matching failed: 'NoneType' object has no attribute 'get'
+2025-06-26 22:17:57,589 - langraph_integration.complete_fba_workflow - INFO - 💰 Calculating financial analysis
+2025-06-26 22:17:57,589 - langraph_integration.complete_fba_workflow - WARNING - ⚠️ Financial calculator tool not found
+2025-06-26 22:17:57,592 - langraph_integration.complete_fba_workflow - INFO - 📊 Generating final recommendation
+2025-06-26 22:18:01,746 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-26 22:18:01,758 - langraph_integration.complete_fba_workflow - INFO - ✅ Recommendation generated
+2025-06-26 22:18:01,760 - langraph_integration.complete_fba_workflow - INFO - 🏁 Finalizing workflow
+2025-06-26 22:18:01,761 - langraph_integration.complete_fba_workflow - INFO - ✅ Workflow finalized: completed_with_errors
+2025-06-26 22:18:01,763 - langraph_integration.complete_fba_workflow - INFO - ✅ Workflow completed with status: completed_with_errors
+2025-06-26 22:18:01,764 - __main__ - INFO - ✅ Phase 5 completed in 7.72s
+2025-06-26 22:18:01,791 - __main__ - INFO - 📁 Results saved to: /mnt/c/Users/chris/Cloud-Drive_christianhaddad8@gmail.com/Cloud-Drive/Full/claude code/Amazon-FBA-Agent-System-v3/OUTPUTS/FBA_ANALYSIS/complete_fba_analysis_20250626_221554.json
+2025-06-26 22:18:01,792 - __main__ - INFO - 📊 Summary saved to: /mnt/c/Users/chris/Cloud-Drive_christianhaddad8@gmail.com/Cloud-Drive/Full/claude code/Amazon-FBA-Agent-System-v3/OUTPUTS/REPORTS/fba_system_summary_20250626_221554.json
+2025-06-26 22:18:01,793 - __main__ - INFO - ✅ Complete FBA System Analysis finished successfully

@@ -1,0 +1,126 @@
+INFO:__main__:🔍 Enhanced detailed logging enabled - output: /mnt/c/Users/chris/Cloud-Drive_christianhaddad8@gmail.com/Cloud-Drive/Full/claude code/Amazon-FBA-Agent-System-v3/logs/debug/run_complete_fba_system_20250705_213738.log
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:__main__:🚀 Complete FBA System v3 initialized
+INFO:__main__:🏭 Processing supplier: harrisonsdirect-co-uk
+INFO:__main__:🔗 URL: https://www.harrisonsdirect.co.uk/
+INFO:__main__:📧 Email: info@theblacksmithmarket.com
+INFO:__main__:🖥️ Headed mode: False
+INFO:__main__:📦 Max products: 0
+INFO:__main__:🔄 Force regenerate: False
+INFO:__main__:📦 Archive system disabled - skipping file archiving
+INFO:tools.supplier_guard:🛡️ Supplier Guard initialized
+INFO:__main__:⚠️ Supplier harrisonsdirect-co-uk not ready: No .supplier_ready file found in suppliers/harrisonsdirect-co-uk
+INFO:utils.path_manager:Creating run output directory for supplier 'harrisonsdirect-co-uk' -> 'harrisonsdirect-co-uk/20250705_173738_run'
+DEBUG:utils.path_manager:Successfully created run output directory: /mnt/c/Users/chris/Cloud-Drive_christianhaddad8@gmail.com/Cloud-Drive/Full/claude code/Amazon-FBA-Agent-System-v3/OUTPUTS/harrisonsdirect-co-uk/20250705_173738_run
+INFO:__main__:📁 Run output directory: /mnt/c/Users/chris/Cloud-Drive_christianhaddad8@gmail.com/Cloud-Drive/Full/claude code/Amazon-FBA-Agent-System-v3/OUTPUTS/harrisonsdirect-co-uk/20250705_173738_run
+INFO:__main__:🔍 New supplier detected: harrisonsdirect-co-uk. Generating automation package...
+INFO:tools.supplier_script_generator:🏭 Initializing supplier script generator for: harrisonsdirect-co-uk
+INFO:tools.supplier_script_generator:📁 Supplier directory: suppliers/harrisonsdirect-co-uk
+INFO:tools.supplier_script_generator:🏭 Generating complete automation package for: harrisonsdirect-co-uk
+INFO:tools.supplier_script_generator:📁 Creating supplier directory structure...
+INFO:tools.supplier_script_generator:✅ Created: suppliers/harrisonsdirect-co-uk
+INFO:tools.supplier_script_generator:✅ Created: suppliers/harrisonsdirect-co-uk/scripts
+INFO:tools.supplier_script_generator:✅ Created: suppliers/harrisonsdirect-co-uk/cache
+INFO:tools.supplier_script_generator:✅ Created: suppliers/harrisonsdirect-co-uk/discovery
+INFO:tools.supplier_script_generator:✅ Created: suppliers/harrisonsdirect-co-uk/config
+INFO:tools.supplier_script_generator:✅ Created supplier README.md
+INFO:tools.supplier_script_generator:🔐 Generating login automation script...
+INFO:tools.supplier_script_generator:✅ Generated login script: suppliers/harrisonsdirect-co-uk/scripts/harrisonsdirect-co-uk_login.py
+INFO:tools.supplier_script_generator:🕷️ Generating product extraction script...
+INFO:tools.supplier_script_generator:✅ Generated product extractor: suppliers/harrisonsdirect-co-uk/scripts/harrisonsdirect-co-uk_product_extractor.py
+INFO:tools.supplier_script_generator:⚙️ Generating configuration files...
+INFO:tools.supplier_script_generator:🔍 Discovering login selectors using AI vision...
+DEBUG:vision_login_handler:Vision login debug logging initialized - writing to /mnt/c/Users/chris/Cloud-Drive_christianhaddad8@gmail.com/Cloud-Drive/Full/claude code/Amazon-FBA-Agent-System-v3/logs/debug/vision_login_20250705.log
+INFO:vision_login_handler:✅ Connected to shared Chrome instance at http://localhost:9222
+DEBUG:vision_login_handler:Using existing browser context
+DEBUG:vision_login_handler:Using existing page
+ERROR:tools.supplier_script_generator:❌ Vision discovery failed: Timeout 10000ms exceeded.
+=========================== logs ===========================
+"load" event fired
+============================================================
+INFO:tools.supplier_script_generator:✅ Vision discovery completed: False
+INFO:tools.supplier_script_generator:✅ Generated login config: suppliers/harrisonsdirect-co-uk/config/login_config.json
+INFO:tools.supplier_script_generator:✅ Generated product config: suppliers/harrisonsdirect-co-uk/config/product_selectors.json
+INFO:tools.supplier_script_generator:✅ Generated global config: config/supplier_configs/www.harrisonsdirect.co.uk.json
+INFO:tools.supplier_script_generator:🔗 Generating LangGraph integration script...
+INFO:tools.supplier_script_generator:✅ Generated LangGraph integration: suppliers/harrisonsdirect-co-uk/scripts/harrisonsdirect-co-uk_langgraph_integration.py
+INFO:tools.supplier_script_generator:✅ Marked supplier harrisonsdirect-co-uk as ready
+INFO:tools.supplier_script_generator:🎉 Complete automation package generated successfully!
+INFO:tools.supplier_script_generator:📁 Location: suppliers/harrisonsdirect-co-uk
+INFO:tools.supplier_script_generator:🔧 Scripts: [PosixPath('suppliers/harrisonsdirect-co-uk/scripts/harrisonsdirect-co-uk_langgraph_integration.py'), PosixPath('suppliers/harrisonsdirect-co-uk/scripts/harrisonsdirect-co-uk_login.py'), PosixPath('suppliers/harrisonsdirect-co-uk/scripts/harrisonsdirect-co-uk_product_extractor.py')]
+INFO:tools.supplier_script_generator:⚙️ Configs: [PosixPath('suppliers/harrisonsdirect-co-uk/config/login_config.json'), PosixPath('suppliers/harrisonsdirect-co-uk/config/product_selectors.json')]
+INFO:__main__:✅ Supplier automation package generated successfully for harrisonsdirect-co-uk
+INFO:__main__:🚀 Initializing centralized browser session...
+INFO:utils.browser_manager:🔧 BrowserManager singleton initialized
+INFO:utils.browser_manager:🔌 Connecting to Chrome on debug port 9222
+INFO:utils.browser_manager:📄 Using existing context with 1 pages
+INFO:utils.browser_manager:✅ Connected to Chrome successfully
+INFO:utils.browser_manager:📄 Created new page #1 for https://www.harrisonsdirect.co.uk
+INFO:utils.browser_manager:✅ Page ready for https://www.harrisonsdirect.co.uk/
+INFO:__main__:🔐 Performing supplier authentication...
+WARNING:tools.supplier_authentication_service:Could not load supplier config: [Errno 2] No such file or directory: '/mnt/c/Users/chris/Cloud-Drive_christianhaddad8@gmail.com/Cloud-Drive/Full/claude code/Amazon-FBA-Agent-System-v3/config/supplier_configs/harrisonsdirect.co.uk.json'
+DEBUG:vision_login_handler:Vision login debug logging initialized - writing to /mnt/c/Users/chris/Cloud-Drive_christianhaddad8@gmail.com/Cloud-Drive/Full/claude code/Amazon-FBA-Agent-System-v3/logs/debug/vision_login_20250705.log
+INFO:tools.supplier_authentication_service:✅ Authentication indicator found: 'my account'
+INFO:tools.supplier_authentication_service:✅ Session already authenticated - skipping login
+INFO:__main__:✅ Authentication successful using existing_session. Proceeding with authenticated workflow.
+INFO:__main__:🔄 Using standard workflow (LangGraph integration disabled)
+INFO:__main__:🔄 Starting passive extraction workflow...
+INFO:__main__:✅ Loaded system configuration from /mnt/c/Users/chris/Cloud-Drive_christianhaddad8@gmail.com/Cloud-Drive/Full/claude code/Amazon-FBA-Agent-System-v3/config/system_config.json
+INFO:__main__:✅ OpenAI client initialized for AI features
+WARNING:tools.passive_extraction_workflow_latest:Limiting scrape to 5 products per category. This is a low value suitable for testing only.
+INFO:tools.passive_extraction_workflow_latest:PassiveExtractionWorkflow initialized WITH an AI client.
+INFO:amazon_playwright_extractor:AI features disabled in amazon_playwright_extractor - using only traditional selectors.
+INFO:amazon_playwright_extractor:Output directory set to: /mnt/c/Users/chris/Cloud-Drive_christianhaddad8@gmail.com/Cloud-Drive/Full/claude code/Amazon-FBA-Agent-System-v3/OUTPUTS/CACHE/amazon_data
+INFO:amazon_playwright_extractor:🔧 AmazonExtractor will use centralized BrowserManager
+INFO:configurable_supplier_scraper:🔧 ConfigurableSupplierScraper will use centralized BrowserManager
+DEBUG:configurable_supplier_scraper:Debug logging initialized - writing to /mnt/c/Users/chris/Cloud-Drive_christianhaddad8@gmail.com/Cloud-Drive/Full/claude code/Amazon-FBA-Agent-System-v3/logs/debug/supplier_scraping_debug_20250705_213810.log
+DEBUG:configurable_supplier_scraper:Headless mode: False
+INFO:tools.passive_extraction_workflow_latest:✅ Linking map initialized - using previous version self-contained approach
+INFO:__main__:🔧 Workflow configured: force_ai_scraping=True, linking_batch=2, financial_batch=2, ai_client=enabled
+INFO:utils.enhanced_state_manager:No existing state file found for harrisonsdirect-co-uk, starting fresh
+INFO:tools.passive_extraction_workflow_latest:✅ No existing linking map found at /mnt/c/Users/chris/Cloud-Drive_christianhaddad8@gmail.com/Cloud-Drive/Full/claude code/Amazon-FBA-Agent-System-v3/OUTPUTS/FBA_ANALYSIS/linking_maps/harrisonsdirect-co-uk/linking_map.json - Creating new map
+INFO:tools.passive_extraction_workflow_latest:Starting passive extraction workflow for supplier: harrisonsdirect-co-uk (https://www.harrisonsdirect.co.uk/)
+INFO:tools.passive_extraction_workflow_latest:Session ID: harrisonsdirect-co-uk_20250705_213810
+INFO:tools.passive_extraction_workflow_latest:PRICE CRITERIA: Min Supplier Cost £0.1, Max Supplier Cost £20.0
+INFO:utils.enhanced_state_manager:No existing state file found for harrisonsdirect-co-uk, starting fresh
+INFO:tools.passive_extraction_workflow_latest:Starting fresh analysis - no previous state found
+INFO:tools.passive_extraction_workflow_latest:Extracting products from harrisonsdirect-co-uk...
+WARNING:config.supplier_config_loader:No selector config file found for domain: harrisonsdirect.co.uk and no default.json found.
+WARNING:configurable_supplier_scraper:No selector configuration found for domain harrisonsdirect.co.uk (derived from https://www.harrisonsdirect.co.uk/) using any method.
+WARNING:supplier_authentication_service:Could not load supplier config: [Errno 2] No such file or directory: '/mnt/c/Users/chris/Cloud-Drive_christianhaddad8@gmail.com/Cloud-Drive/Full/claude code/Amazon-FBA-Agent-System-v3/config/supplier_configs/harrisonsdirect.co.uk.json'
+DEBUG:vision_login_handler:Vision login debug logging initialized - writing to /mnt/c/Users/chris/Cloud-Drive_christianhaddad8@gmail.com/Cloud-Drive/Full/claude code/Amazon-FBA-Agent-System-v3/logs/debug/vision_login_20250705.log
+INFO:tools.passive_extraction_workflow_latest:✅ Using authenticated page from entry point
+INFO:tools.passive_extraction_workflow_latest:🧠 AI category discovery will work with authenticated session
+INFO:tools.passive_extraction_workflow_latest:🧠 AI category progression ENABLED for start-of-workflow category selection
+INFO:tools.passive_extraction_workflow_latest:Extracting products from harrisonsdirect-co-uk using two-step process.
+INFO:tools.passive_extraction_workflow_latest:🧠 AI CATEGORY PROGRESSION: Running AI category selection at START of workflow
+INFO:tools.passive_extraction_workflow_latest:🧠 AI Memory loaded: 6 previously suggested URLs, 0 products processed
+DEBUG:tools.passive_extraction_workflow_latest:🧠 Previously suggested URLs: ['https://www.harrisonsdirect.co.uk/product-category/health-beauty/?product_list_limit=64&product_list_order=price&product_list_dir=asc', 'https://www.harrisonsdirect.co.uk/product-category/sweets-snacks/pre-pack-bags/price-marked-packs/?product_list_limit=64&product_list_order=price&product_list_dir=asc', 'https://www.harrisonsdirect.co.uk/product-category/household/pet-leisure/pet-food-treats/', 'https://www.harrisonsdirect.co.uk/product-category/household/cleaning/air-fresheners/', 'https://www.harrisonsdirect.co.uk/product-category/household/pet-leisure/pet-accessories/?product_list_limit=64&product_list_order=price&product_list_dir=asc', 'https://www.harrisonsdirect.co.uk/product-category/sweets-snacks/kids-sweets/sweet-cups/']
+INFO:configurable_supplier_scraper:Extracting homepage categories from https://www.harrisonsdirect.co.uk/
+INFO:configurable_supplier_scraper:Fetching page content from: https://www.harrisonsdirect.co.uk/ (attempt 1/3)
+INFO:utils.browser_manager:♻️ Reusing existing Chrome connection (port 9222)
+INFO:utils.browser_manager:♻️ Reusing cached page for https://www.harrisonsdirect.co.uk
+INFO:configurable_supplier_scraper:🔧 Using BrowserManager page for https://www.harrisonsdirect.co.uk/
+INFO:configurable_supplier_scraper:🔧 BrowserManager already navigated to https://www.harrisonsdirect.co.uk/
+INFO:configurable_supplier_scraper:🔧 BrowserManager navigation assumed successful for https://www.harrisonsdirect.co.uk/
+INFO:configurable_supplier_scraper:Successfully fetched content from https://www.harrisonsdirect.co.uk/ (Size: 509043 bytes)
+INFO:configurable_supplier_scraper:Found 182 unique potential category URLs from homepage of https://www.harrisonsdirect.co.uk/
+INFO:configurable_supplier_scraper:Discovered 75 categories for https://www.harrisonsdirect.co.uk/
+INFO:tools.passive_extraction_workflow_latest:PHASE 3: Applying subcategory deduplication to 75 discovered categories
+INFO:tools.passive_extraction_workflow_latest:Parent-child URL analysis: 27 parent categories, 48 child categories
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.harrisonsdirect.co.uk/my-account/
+DEBUG:configurable_supplier_scraper:Created new aiohttp session.
+INFO:utils.browser_manager:🧹 Starting browser cleanup...
+INFO:utils.browser_manager:🗑️ Closed 1 cached pages
+INFO:utils.browser_manager:🔌 Disconnected from Chrome
+INFO:utils.browser_manager:🎭 Stopped Playwright
+INFO:utils.browser_manager:✅ Browser cleanup completed
+INFO:utils.browser_manager:🧹 Global browser cleanup completed
+INFO:__main__:🧹 Browser cleanup completed
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:utils.browser_manager:🧹 Starting browser cleanup...
+INFO:utils.browser_manager:🗑️ Closed 0 cached pages
+INFO:utils.browser_manager:✅ Browser cleanup completed
+INFO:utils.browser_manager:🧹 Global browser cleanup completed
+ERROR:asyncio:Unclosed client session
+client_session: <aiohttp.client.ClientSession object at 0x7fdc19d5d370>

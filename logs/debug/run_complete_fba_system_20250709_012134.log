@@ -1,0 +1,235 @@
+INFO:__main__:🔍 Enhanced detailed logging enabled - output: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/logs/debug/run_complete_fba_system_20250709_012134.log
+DEBUG:asyncio:Using selector: EpollSelector
+WARNING:__main__:Failed to load max_products from config: [Errno 2] No such file or directory: 'config/system_config.json', using default 0
+WARNING:__main__:Failed to load system config: [Errno 2] No such file or directory: 'config/system_config.json', using defaults
+INFO:__main__:🚀 Complete FBA System v3 initialized
+INFO:__main__:🏭 Processing supplier: poundwholesale-co-uk
+INFO:__main__:🔗 URL: https://www.poundwholesale.co.uk/
+INFO:__main__:📧 Email: info@theblacksmithmarket.com
+INFO:__main__:🖥️ Headed mode: False
+INFO:__main__:📦 Max products: 0
+INFO:__main__:🔄 Force regenerate: False
+INFO:__main__:📦 Archive system disabled - skipping file archiving
+INFO:tools.supplier_guard:🛡️ Supplier Guard initialized
+INFO:__main__:⚠️ Supplier poundwholesale-co-uk not ready: No .supplier_ready file found in suppliers/poundwholesale-co-uk
+INFO:__main__:🔍 New supplier detected: poundwholesale-co-uk. Generating automation package...
+WARNING:tools.supplier_script_generator:Failed to load system config: [Errno 2] No such file or directory: 'config/system_config.json'
+INFO:tools.supplier_guard:🛡️ Supplier Guard initialized
+INFO:tools.supplier_script_generator:🧠 Intelligent Supplier Script Generator initialized for: https://www.poundwholesale.co.uk/
+INFO:tools.supplier_script_generator:📁 Supplier directory: suppliers/poundwholesale-co-uk
+INFO:tools.supplier_script_generator:🚀 Starting intelligent supplier script generation...
+INFO:tools.supplier_script_generator:🔍 Checking existing supplier state...
+INFO:tools.supplier_script_generator:No .supplier_ready file found, proceeding with generation
+INFO:tools.supplier_script_generator:🌐 Initializing browser connection...
+INFO:tools.supplier_script_generator:✅ Connected to existing Chrome debug instance
+INFO:tools.supplier_script_generator:✅ Using active user page: https://www.poundwholesale.co.uk/...
+INFO:tools.supplier_script_generator:✅ Already on target domain www.poundwholesale.co.uk, preserving current page state
+INFO:tools.supplier_script_generator:📄 Navigated to: https://www.poundwholesale.co.uk/
+INFO:tools.supplier_script_generator:🧠 Starting AI-powered element discovery...
+INFO:tools.vision_discovery_engine:🔍 Enhanced Vision Discovery Engine initialized with multimodal AI capabilities
+INFO:tools.supplier_script_generator:🔐 Discovering login elements...
+INFO:tools.vision_discovery_engine:🔐 Starting enhanced multimodal login discovery...
+INFO:tools.vision_discovery_engine:📄 Extracting page HTML content...
+INFO:tools.vision_discovery_engine:🔍 Attempting local HTML analysis first...
+INFO:tools.vision_discovery_engine:🔍 Performing local HTML analysis for login selectors...
+INFO:tools.vision_discovery_engine:📄 Saved HTML to: logs/debug/login_html_analysis_20250709_012136.html
+INFO:tools.vision_discovery_engine:🔗 Found potential login URLs: ['https://www.poundwholesale.co.uk/customer/account/', 'https://www.poundwholesale.co.uk/customer/account/logout/', 'https://www.poundwholesale.co.uk/customer/account/create/', 'https://www.poundwholesale.co.uk/customer/account/forgotpassword/', 'https://www.poundwholesale.co.uk/customer/notes/view/', '#col-customer-care']
+INFO:tools.vision_discovery_engine:🎯 Local analysis found selectors: {'email_selector': '#newsletter', 'password_selector': '#pass', 'submit_selector': 'button[type="submit"]', 'login_urls': ['https://www.poundwholesale.co.uk/customer/account/', 'https://www.poundwholesale.co.uk/customer/account/logout/', 'https://www.poundwholesale.co.uk/customer/account/create/', 'https://www.poundwholesale.co.uk/customer/account/forgotpassword/', 'https://www.poundwholesale.co.uk/customer/notes/view/', '#col-customer-care']}
+INFO:tools.vision_discovery_engine:💾 Saved analysis to: logs/debug/login_analysis_20250709_012136.json
+INFO:tools.vision_discovery_engine:✅ Login elements discovered via local analysis
+INFO:tools.vision_discovery_engine:🔍 Validating locally discovered selectors...
+INFO:tools.vision_discovery_engine:🔍 Validating login selectors...
+INFO:tools.vision_discovery_engine:✅ Email selector validated: #newsletter
+INFO:tools.vision_discovery_engine:✅ Submit selector validated: button[type="submit"]
+WARNING:tools.vision_discovery_engine:⚠️ Local selectors failed validation, trying multimodal analysis...
+INFO:tools.vision_discovery_engine:🧠 Falling back to multimodal AI analysis...
+DEBUG:tools.vision_discovery_engine:🧹 Aggressively pruning HTML content for AI analysis...
+WARNING:tools.vision_discovery_engine:HTML content for AI analysis was truncated to 15000 characters. The original size was 210465. AI context may be incomplete.
+DEBUG:tools.vision_discovery_engine:✅ HTML aggressively pruned to 15000 characters
+INFO:tools.vision_discovery_engine:📊 HTML content processed: 15000 characters after pruning
+INFO:tools.vision_discovery_engine:📸 Capturing page screenshot...
+INFO:tools.vision_discovery_engine:🧠 Performing multimodal AI analysis for login elements...
+DEBUG:tools.vision_discovery_engine:🧠 Sending multimodal request to AI model...
+WARNING:tools.vision_discovery_engine:Could not load or apply AI assistance hint: [Errno 2] No such file or directory: 'config/system_config.json'
+DEBUG:httpcore.connection:connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=5.0 socket_options=None
+DEBUG:httpcore.connection:connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x7fc3151f2690>
+DEBUG:httpcore.connection:start_tls.started ssl_context=<ssl.SSLContext object at 0x7fc3154f7050> server_hostname='api.openai.com' timeout=5.0
+DEBUG:httpcore.connection:start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x7fc315922660>
+DEBUG:httpcore.http11:send_request_headers.started request=<Request [b'POST']>
+DEBUG:httpcore.http11:send_request_headers.complete
+DEBUG:httpcore.http11:send_request_body.started request=<Request [b'POST']>
+DEBUG:httpcore.http11:send_request_body.complete
+DEBUG:httpcore.http11:receive_response_headers.started request=<Request [b'POST']>
+DEBUG:httpcore.http11:receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Tue, 08 Jul 2025 21:21:43 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'access-control-expose-headers', b'X-Request-ID'), (b'openai-organization', b'user-eywvpvgw4dvq99ktk9fwsqol'), (b'openai-processing-ms', b'818'), (b'openai-version', b'2020-10-01'), (b'x-envoy-upstream-service-time', b'685'), (b'x-ratelimit-limit-input-images', b'50000'), (b'x-ratelimit-limit-requests', b'500'), (b'x-ratelimit-limit-tokens', b'200000'), (b'x-ratelimit-remaining-input-images', b'49999'), (b'x-ratelimit-remaining-requests', b'499'), (b'x-ratelimit-remaining-tokens', b'195200'), (b'x-ratelimit-reset-input-images', b'1ms'), (b'x-ratelimit-reset-requests', b'120ms'), (b'x-ratelimit-reset-tokens', b'1.44s'), (b'x-request-id', b'req_9d809ec37e851bacf59f1224ddaa6f5f'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'cf-cache-status', b'DYNAMIC'), (b'Set-Cookie', b'__cf_bm=.t2M4_mADC2.9JFR5WhiAATBX6787s6zU.diFzvmTcM-1752009703-1.0.1.1-0j6K2mJ91K469UtMQjrH7lRV5aGJfPR5QmOu3ANVShmPqqWvlitY2M9CDmaI41.LvGbQ_SPU1mgJ0W.ADZLeL8aIuzpB4LAoALwHHxuZjp0; path=/; expires=Tue, 08-Jul-25 21:51:43 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'X-Content-Type-Options', b'nosniff'), (b'Set-Cookie', b'_cfuvid=R_YurnuDGc.9DH.K2wkGqmDSrIiAoBD._EM6e4JBu4g-1752009703432-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'Server', b'cloudflare'), (b'CF-RAY', b'95c2a1eebc536122-DXB'), (b'Content-Encoding', b'br'), (b'alt-svc', b'h3=":443"; ma=86400')])
+INFO:httpx:HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+DEBUG:httpcore.http11:receive_response_body.started request=<Request [b'POST']>
+DEBUG:httpcore.http11:receive_response_body.complete
+DEBUG:httpcore.http11:response_closed.started
+DEBUG:httpcore.http11:response_closed.complete
+DEBUG:tools.vision_discovery_engine:🎯 AI response received: {
+  "email_selector": "input#email",
+  "password_selector": "input#pass",
+  "submit_selector": "butt...
+INFO:tools.vision_discovery_engine:✅ Login selectors extracted: {'email_selector': 'input#email', 'password_selector': 'input#pass', 'submit_selector': 'button#send2'}
+INFO:tools.vision_discovery_engine:✅ Login elements discovered successfully via multimodal analysis
+INFO:tools.vision_discovery_engine:🔍 Validating discovered selectors...
+INFO:tools.vision_discovery_engine:🔍 Validating login selectors...
+WARNING:tools.vision_discovery_engine:⚠️ Discovered selectors failed validation
+INFO:tools.vision_discovery_engine:🔄 Falling back to heuristic discovery...
+INFO:tools.vision_discovery_engine:🔄 Running heuristic login discovery...
+INFO:tools.supplier_script_generator:🛍️ Discovering product and pagination selectors...
+INFO:tools.vision_discovery_engine:🕷️ Starting vision-based product and pagination selector discovery...
+INFO:tools.vision_discovery_engine:📄 Extracting page HTML content...
+DEBUG:tools.vision_discovery_engine:🧹 Aggressively pruning HTML content for AI analysis...
+WARNING:tools.vision_discovery_engine:HTML content for AI analysis was truncated to 15000 characters. The original size was 211325. AI context may be incomplete.
+DEBUG:tools.vision_discovery_engine:✅ HTML aggressively pruned to 15000 characters
+INFO:tools.vision_discovery_engine:📊 HTML content processed: 15000 characters after pruning
+INFO:tools.vision_discovery_engine:📸 Capturing page screenshot...
+INFO:tools.vision_discovery_engine:🧠 Performing multimodal AI analysis for product and pagination elements...
+WARNING:tools.vision_discovery_engine:Could not load additional selectors from config: [Errno 2] No such file or directory: 'config/system_config.json'. Using core selectors only.
+WARNING:tools.vision_discovery_engine:Could not load or apply AI assistance hint: [Errno 2] No such file or directory: 'config/system_config.json'
+DEBUG:httpcore.http11:send_request_headers.started request=<Request [b'POST']>
+DEBUG:httpcore.http11:send_request_headers.complete
+DEBUG:httpcore.http11:send_request_body.started request=<Request [b'POST']>
+DEBUG:httpcore.http11:send_request_body.complete
+DEBUG:httpcore.http11:receive_response_headers.started request=<Request [b'POST']>
+DEBUG:httpcore.http11:receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Tue, 08 Jul 2025 21:21:52 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'access-control-expose-headers', b'X-Request-ID'), (b'openai-organization', b'user-eywvpvgw4dvq99ktk9fwsqol'), (b'openai-processing-ms', b'2253'), (b'openai-version', b'2020-10-01'), (b'x-envoy-upstream-service-time', b'2005'), (b'x-ratelimit-limit-input-images', b'50000'), (b'x-ratelimit-limit-requests', b'500'), (b'x-ratelimit-limit-tokens', b'200000'), (b'x-ratelimit-remaining-input-images', b'49999'), (b'x-ratelimit-remaining-requests', b'499'), (b'x-ratelimit-remaining-tokens', b'195128'), (b'x-ratelimit-reset-input-images', b'1ms'), (b'x-ratelimit-reset-requests', b'120ms'), (b'x-ratelimit-reset-tokens', b'1.461s'), (b'x-request-id', b'req_4e5be9d53140eabf686acfd9fc9eb3b1'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'cf-cache-status', b'DYNAMIC'), (b'X-Content-Type-Options', b'nosniff'), (b'Server', b'cloudflare'), (b'CF-RAY', b'95c2a21d9f896122-DXB'), (b'Content-Encoding', b'br'), (b'alt-svc', b'h3=":443"; ma=86400')])
+INFO:httpx:HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+DEBUG:httpcore.http11:receive_response_body.started request=<Request [b'POST']>
+DEBUG:httpcore.http11:receive_response_body.complete
+DEBUG:httpcore.http11:response_closed.started
+DEBUG:httpcore.http11:response_closed.complete
+DEBUG:tools.vision_discovery_engine:🎯 AI response received: {
+  "product_container_selector": "li.product-item",
+  "title_selector_relative": "strong.product-it...
+INFO:tools.vision_discovery_engine:✅ Product and pagination selectors extracted: {'product_container_selector': 'li.product-item', 'title_selector_relative': 'strong.product-item-name > a', 'price_selector_relative': 'div.product-item-pricing span.price', 'url_selector_relative': 'strong.product-item-name > a', 'ean_selector_relative': '', 'next_page_selector': 'a.action.next', 'category_links_selector': 'nav.categories a.category-link', 'breadcrumbs_selector': 'nav.breadcrumbs ol.items li.item > a'}
+INFO:tools.vision_discovery_engine:✅ Product and pagination elements discovered successfully via multimodal analysis
+INFO:tools.vision_discovery_engine:🔍 Validating discovered selectors...
+INFO:tools.vision_discovery_engine:🔍 Validating product and pagination selectors...
+WARNING:tools.vision_discovery_engine:⚠️ Discovered selectors failed validation
+INFO:tools.vision_discovery_engine:🔄 Falling back to heuristic discovery...
+INFO:tools.vision_discovery_engine:🔄 Running heuristic product discovery...
+INFO:tools.vision_discovery_engine:✅ Product selector validated: .product-item (4 elements)
+INFO:tools.vision_discovery_engine:✅ Product selector validated: .product (2 elements)
+INFO:tools.vision_discovery_engine:✅ Product selector validated: .item (3 elements)
+INFO:tools.vision_discovery_engine:✅ Product selector validated: .title (3 elements)
+INFO:tools.vision_discovery_engine:✅ Product selector validated: h2 a (3 elements)
+INFO:tools.vision_discovery_engine:✅ Product selector validated: h3 a (2 elements)
+INFO:tools.vision_discovery_engine:✅ Product selector validated: .product-name (5 elements)
+INFO:tools.vision_discovery_engine:✅ Product selector validated: .price (2 elements)
+INFO:tools.vision_discovery_engine:✅ Product selector validated: .product-item a (2 elements)
+INFO:tools.vision_discovery_engine:✅ Product selector validated: h2 a (3 elements)
+INFO:tools.vision_discovery_engine:✅ Product selector validated: .product-item img (3 elements)
+INFO:tools.vision_discovery_engine:✅ Heuristic product discovery successful
+WARNING:tools.supplier_script_generator:⚠️ Login discovery failed, creating empty config
+INFO:tools.supplier_script_generator:💾 Saved product selectors: suppliers/poundwholesale-co-uk/config/product_selectors.json
+INFO:tools.supplier_script_generator:📝 Generating scripts from templates...
+INFO:tools.supplier_script_generator:📝 Generated login script: suppliers/poundwholesale-co-uk/scripts/poundwholesale-co-uk_login.py
+INFO:tools.supplier_script_generator:📝 Generated product extractor script: suppliers/poundwholesale-co-uk/scripts/poundwholesale-co-uk_product_extractor.py
+INFO:tools.supplier_script_generator:🧪 Starting test-after-generate validation...
+INFO:tools.supplier_script_generator:🔐 Testing login script...
+INFO:login_module:🔐 Starting login to https://www.poundwholesale.co.uk/
+INFO:login_module:❌ Not logged in
+INFO:login_module:🔗 Clicking login trigger: header a:has-text('Sign in')
+INFO:login_module:✅ Email filled
+INFO:login_module:✅ Password filled
+INFO:login_module:🚫 Dismissing modal overlay: .modals-overlay
+INFO:login_module:🚫 Forcibly hid modal overlays with JavaScript
+INFO:login_module:🎯 Enhanced submit button visibility
+INFO:login_module:✅ Submit button clicked
+INFO:login_module:❌ Not logged in
+WARNING:login_module:❌ Login verification failed - analyzing current page state...
+INFO:login_module:📸 Screenshot saved: logs/debug/login_failure_screenshot_20250709_012241.png
+INFO:login_module:📄 Current page HTML length: 506055 characters
+WARNING:login_module:🚨 Detected potential error indicators: ['code']
+ERROR:login_module:Failed to analyze login failure: object str can't be used in 'await' expression
+INFO:tools.supplier_script_generator:🤖 Performing AI failure analysis for login...
+DEBUG:httpcore.connection:connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=5.0 socket_options=None
+DEBUG:httpcore.connection:connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x7fc314d9d4f0>
+DEBUG:httpcore.connection:start_tls.started ssl_context=<ssl.SSLContext object at 0x7fc3157cbbd0> server_hostname='api.openai.com' timeout=5.0
+DEBUG:httpcore.connection:start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x7fc314d9d220>
+DEBUG:httpcore.http11:send_request_headers.started request=<Request [b'POST']>
+DEBUG:httpcore.http11:send_request_headers.complete
+DEBUG:httpcore.http11:send_request_body.started request=<Request [b'POST']>
+DEBUG:httpcore.http11:send_request_body.complete
+DEBUG:httpcore.http11:receive_response_headers.started request=<Request [b'POST']>
+DEBUG:httpcore.http11:receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Tue, 08 Jul 2025 21:22:52 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'access-control-expose-headers', b'X-Request-ID'), (b'openai-organization', b'user-eywvpvgw4dvq99ktk9fwsqol'), (b'openai-processing-ms', b'2928'), (b'openai-version', b'2020-10-01'), (b'x-envoy-upstream-service-time', b'2539'), (b'x-ratelimit-limit-input-images', b'50000'), (b'x-ratelimit-limit-requests', b'500'), (b'x-ratelimit-limit-tokens', b'200000'), (b'x-ratelimit-remaining-input-images', b'49999'), (b'x-ratelimit-remaining-requests', b'499'), (b'x-ratelimit-remaining-tokens', b'199013'), (b'x-ratelimit-reset-input-images', b'1ms'), (b'x-ratelimit-reset-requests', b'120ms'), (b'x-ratelimit-reset-tokens', b'295ms'), (b'x-request-id', b'req_4ec18e561521ba78e910ea8fe1dafb81'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'cf-cache-status', b'DYNAMIC'), (b'Set-Cookie', b'__cf_bm=VZIpKqjqm1IMP3bLfhT8RYb4mjgfkOJ2iXucBtGIqhs-1752009772-1.0.1.1-LRVlQck_4dR_Yb5aGTEwOXuTK5_Cjl7vsWb1zw4xM5sVtly9S9j7a3TGhEgJqo9PAblMlLVbVwcNFohLv_THXD8fGJVOoQpdqdUgsInLzHQ; path=/; expires=Tue, 08-Jul-25 21:52:52 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'X-Content-Type-Options', b'nosniff'), (b'Set-Cookie', b'_cfuvid=7DKwO_rpGI1cY.uRtu15HerdJ9ipwn3X4IliwU73xMI-1752009772914-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'Server', b'cloudflare'), (b'CF-RAY', b'95c2a38a6c956122-DXB'), (b'Content-Encoding', b'br'), (b'alt-svc', b'h3=":443"; ma=86400')])
+INFO:httpx:HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+DEBUG:httpcore.http11:receive_response_body.started request=<Request [b'POST']>
+DEBUG:httpcore.http11:receive_response_body.complete
+DEBUG:httpcore.http11:response_closed.started
+DEBUG:httpcore.http11:response_closed.complete
+INFO:tools.supplier_script_generator:🤖 AI Diagnosis for login:
+INFO:tools.supplier_script_generator:   Likely Cause: Login page or login form is not visible or not loaded; the homepage is displayed instead of the login screen.
+INFO:tools.supplier_script_generator:   Suggested Fix: Add a step in the script to navigate explicitly to the login page or click the 'Register or Sign In' link at the top right corner before attempting to interact with login fields.
+INFO:tools.supplier_script_generator:🛍️ Testing product extraction script...
+INFO:product_module:🛍️ Starting product extraction for 2 pages
+INFO:product_module:📄 Processing page 1
+INFO:product_module:🔍 Found 20 product containers
+INFO:product_module:✅ Extracted 20 products from page 1
+INFO:product_module:🧪 Test mode: stopping after 5 products
+INFO:product_module:✅ Product extraction completed: 20 total products
+INFO:tools.supplier_script_generator:✅ Validation completed - Login: False, Products: True
+INFO:tools.supplier_script_generator:📋 Generating intelligent .supplier_ready file...
+INFO:tools.supplier_guard:✅ Created intelligent .supplier_ready file for poundwholesale-co-uk: suppliers/poundwholesale-co-uk/.supplier_ready
+INFO:tools.supplier_script_generator:✅ Created intelligent .supplier_ready file: suppliers/poundwholesale-co-uk/.supplier_ready
+INFO:tools.supplier_script_generator:✅ Intelligent supplier script generation completed successfully
+INFO:__main__:✅ Intelligent supplier automation package generated successfully for poundwholesale-co-uk
+INFO:__main__:🚀 Initializing centralized browser session...
+INFO:utils.browser_manager:🔧 BrowserManager singleton initialized
+INFO:utils.browser_manager:🔌 Connecting to Chrome on debug port 9222
+INFO:utils.browser_manager:📄 Using existing context with 2 pages
+INFO:utils.browser_manager:✅ Connected to Chrome successfully
+INFO:utils.browser_manager:📄 Created new page #1 for https://www.poundwholesale.co.uk
+INFO:utils.browser_manager:✅ Page ready for https://www.poundwholesale.co.uk/
+INFO:__main__:🔐 Performing dynamic supplier authentication...
+INFO:__main__:📦 Loading dynamic supplier login script: suppliers/poundwholesale-co-uk/scripts/poundwholesale-co-uk_login.py
+INFO:poundwholesale-co-uk_login:🔐 Starting login to https://www.poundwholesale.co.uk/
+INFO:poundwholesale-co-uk_login:✅ Already logged in
+INFO:__main__:✅ Dynamic supplier authentication successful. Proceeding with authenticated workflow.
+INFO:utils.path_manager:Creating run output directory for supplier 'poundwholesale-co-uk' -> 'poundwholesale-co-uk/20250708_212312_run'
+DEBUG:utils.path_manager:Successfully created run output directory: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/poundwholesale-co-uk/20250708_212312_run
+INFO:__main__:📁 Run output directory: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/poundwholesale-co-uk/20250708_212312_run
+INFO:__main__:🔄 Using standard workflow (LangGraph integration disabled)
+INFO:__main__:🔄 Starting passive extraction workflow...
+WARNING:__main__:⚠️ /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/config/system_config.json not found. Using default workflow parameters.
+INFO:__main__:ℹ️ AI features disabled (force_ai_scraping=False or no API key)
+WARNING:tools.passive_extraction_workflow_latest:Failed to load system config, using defaults: [Errno 2] No such file or directory: '/mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/config/system_config.json'
+ERROR:__main__:❌ Workflow execution failed: '<' not supported between instances of 'NoneType' and 'int'
+Traceback (most recent call last):
+  File "/mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/run_complete_fba_system.py", line 679, in _run_extraction_workflow
+    workflow = PassiveExtractionWorkflow(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/tools/passive_extraction_workflow_latest.py", line 866, in __init__
+    if max_products_per_category < 20:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: '<' not supported between instances of 'NoneType' and 'int'
+ERROR:__main__:❌ Extraction workflow failed
+INFO:__main__:🔍 Verifying files generated despite extraction failure...
+INFO:__main__:✅ Verified suppliers/poundwholesale-co-uk/config/login_config.json: 39 bytes, 2025-07-09T01:21:55.800343
+INFO:__main__:✅ Verified suppliers/poundwholesale-co-uk/scripts/poundwholesale-co-uk_login.py: 20178 bytes, 2025-07-09T01:21:55.814416
+ERROR:__main__:❌ Missing expected file: OUTPUTS/FBA_ANALYSIS/cached_products.json
+ERROR:__main__:❌ Missing expected file: OUTPUTS/FBA_ANALYSIS/ai_category_cache.json
+ERROR:__main__:❌ Missing expected file: OUTPUTS/FBA_ANALYSIS/linking_maps/linking_map.json
+ERROR:__main__:❌ Output verification FAILED - 5 issues found
+ERROR:__main__:  • suppliers/poundwholesale-co-uk/config/login_config.json: Missing vision_discovered field
+ERROR:__main__:  • suppliers/poundwholesale-co-uk/config/login_config.json: Missing auto_discovered field
+ERROR:__main__:  • OUTPUTS/FBA_ANALYSIS/cached_products.json: File does not exist
+ERROR:__main__:  • OUTPUTS/FBA_ANALYSIS/ai_category_cache.json: File does not exist
+ERROR:__main__:  • OUTPUTS/FBA_ANALYSIS/linking_maps/linking_map.json: File does not exist
+INFO:utils.browser_manager:🧹 Starting browser cleanup...
+INFO:utils.browser_manager:🗑️ Closed 1 cached pages
+INFO:utils.browser_manager:🔌 Disconnected from Chrome
+INFO:utils.browser_manager:🎭 Stopped Playwright
+INFO:utils.browser_manager:✅ Browser cleanup completed
+INFO:utils.browser_manager:🧹 Global browser cleanup completed
+INFO:__main__:🧹 Browser cleanup completed
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:utils.browser_manager:🧹 Starting browser cleanup...
+INFO:utils.browser_manager:🗑️ Closed 0 cached pages
+INFO:utils.browser_manager:✅ Browser cleanup completed
+INFO:utils.browser_manager:🧹 Global browser cleanup completed
+DEBUG:httpcore.connection:close.started
+DEBUG:httpcore.connection:close.complete
+DEBUG:httpcore.connection:close.started
+DEBUG:httpcore.connection:close.complete

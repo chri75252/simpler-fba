@@ -59,10 +59,11 @@ CAPTCHA_MANUAL_SOLVE_WAIT = 20    # 20 seconds
 EXTENSION_DATA_WAIT = 7         # Increased to ensure extensions have adequate time to load properly
 
 class AmazonExtractor:
-    def __init__(self, chrome_debug_port: int = 9222, ai_client: Optional[OpenAI] = None):
+    def __init__(self, chrome_debug_port: int = 9222, ai_client: Optional[OpenAI] = None, browser_manager=None):
         self.chrome_debug_port = chrome_debug_port
         self.browser: Optional[Browser] = None
-        self.use_browser_manager = get_browser_manager is not None
+        self.browser_manager = browser_manager
+        self.use_browser_manager = browser_manager is not None or get_browser_manager is not None
         
         # DISABLE AI features for now - force ai_client to None
         self.ai_client = None
@@ -87,9 +88,14 @@ class AmazonExtractor:
         """Connect to browser using BrowserManager if available, otherwise fallback to legacy method."""
         if self.use_browser_manager:
             try:
-                browser_manager = await get_browser_manager()
-                self.browser = await browser_manager.connect()
-                log.info("✅ Connected to Chrome via BrowserManager")
+                # Use passed browser_manager first, then fallback to get_browser_manager()
+                if self.browser_manager:
+                    self.browser = await self.browser_manager.get_browser()
+                    log.info("✅ Connected to Chrome via passed BrowserManager")
+                else:
+                    browser_manager = await get_browser_manager()
+                    self.browser = await browser_manager.connect()
+                    log.info("✅ Connected to Chrome via BrowserManager")
                 return self.browser
             except Exception as e:
                 log.warning(f"BrowserManager connection failed, falling back to legacy: {e}")

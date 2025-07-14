@@ -1,0 +1,147 @@
+2025-06-06 07:06:00,425 - __main__ - INFO - Initializing Passive Extraction Workflow...
+2025-06-06 07:06:00,764 - __main__ - INFO - OpenAI client initialized with model gpt-4o-mini-search-preview-2025-03-11
+2025-06-06 07:06:00,768 - __main__ - INFO - Loaded linking map from /mnt/c/Users/chris/Cloud-Drive_christianhaddad8@gmail.com/Cloud-Drive/Full/claude code/Amazon-FBA-Agent-System-v3/OUTPUTS/FBA_ANALYSIS/Linking map/linking_map.json with 376 entries
+2025-06-06 07:06:00,769 - __main__ - INFO - PassiveExtractionWorkflow initialized WITH an AI client.
+2025-06-06 07:06:00,770 - amazon_playwright_extractor - INFO - Output directory set to: /mnt/c/Users/chris/Cloud-Drive_christianhaddad8@gmail.com/Cloud-Drive/Full/claude code/Amazon-FBA-Agent-System-v3/C:\Users\chris\Amazon-FBA-Agent-System\OUTPUTS\AMAZON_SCRAPE
+2025-06-06 07:06:00,776 - __main__ - INFO - Loaded linking map from /mnt/c/Users/chris/Cloud-Drive_christianhaddad8@gmail.com/Cloud-Drive/Full/claude code/Amazon-FBA-Agent-System-v3/OUTPUTS/FBA_ANALYSIS/Linking map/linking_map.json with 376 entries
+2025-06-06 07:06:00,776 - __main__ - INFO - Loaded linking map with 376 entries
+2025-06-06 07:06:00,777 - __main__ - INFO - Forcing AI category progression due to supplier cache clearing or explicit config setting.
+2025-06-06 07:06:00,777 - __main__ - INFO - Running workflow for clearance-king.co.uk with max 2 products. Price range £0.1-£20.0.
+2025-06-06 07:06:00,777 - __main__ - INFO - Starting passive extraction workflow for supplier: clearance-king.co.uk (https://www.clearance-king.co.uk)
+2025-06-06 07:06:00,777 - __main__ - INFO - Session ID: clearance-king_co_uk_20250606_070600
+2025-06-06 07:06:00,777 - __main__ - INFO - PRICE CRITERIA: Min Supplier Cost £0.1, Max Supplier Cost £20.0
+2025-06-06 07:06:00,780 - __main__ - INFO - Resuming from index 158 (previous run state found)
+2025-06-06 07:06:00,788 - __main__ - INFO - Loaded 1110 products from supplier cache (0.0 hours old)
+2025-06-06 07:06:00,789 - __main__ - INFO - STAGE-COMPLETE: supplier_scrape - 1110 records
+2025-06-06 07:06:00,789 - __main__ - INFO - Successfully got 1110 products from clearance-king.co.uk
+2025-06-06 07:06:00,789 - __main__ - INFO - Found 1110 valid supplier products, 1101 within price range [£0.1-£20.0]
+2025-06-06 07:06:00,790 - __main__ - INFO - STAGE-COMPLETE: price_filtering - 1101 records
+2025-06-06 07:06:00,790 - __main__ - INFO - LIMITED MODE: Processing up to 2 products starting from index 158.
+2025-06-06 07:06:00,796 - __main__ - INFO - --- Processing supplier product 1/2: 'Dr Who Ice Warrior Dress Up Kit' (EAN: None) ---
+2025-06-06 07:06:00,797 - __main__ - INFO - No EAN for 'Dr Who Ice Warrior Dress Up Kit'. Using title search.
+2025-06-06 07:06:00,797 - __main__ - INFO - Connecting to Chrome browser on debug port 9222 (FixedAmazonExtractor)
+2025-06-06 07:06:06,618 - __main__ - INFO - Successfully connected to Chrome on port 9222 (FixedAmazonExtractor)
+2025-06-06 07:06:06,619 - __main__ - INFO - Found 4 existing pages (FixedAmazonExtractor)
+2025-06-06 07:06:06,619 - __main__ - INFO - Using existing page: https://www.amazon.co.uk/s?k=Superior+Quality+Westward+Ho%21+Multipurpose+Polishing+Glove&ref=nb_sb_noss (FixedAmazonExtractor)
+2025-06-06 07:06:06,642 - __main__ - INFO - Searching Amazon by title using search bar: 'Dr Who Ice Warrior Dress Up Kit'
+2025-06-06 07:06:06,657 - __main__ - INFO - Navigating to Amazon UK to search for title: Dr Who Ice Warrior Dress Up Kit
+2025-06-06 07:06:09,122 - __main__ - INFO - Title search found 1 elements using selector: div.s-search-results > div[data-asin]
+2025-06-06 07:06:09,147 - __main__ - WARNING - No valid ASINs found for title 'Dr Who Ice Warrior Dress Up Kit'
+2025-06-06 07:06:09,147 - __main__ - WARNING - No Amazon results for title 'Dr Who Ice Warrior Dress Up Kit'. Skipping. Details: No valid ASINs found for title 'Dr Who Ice Warrior Dress Up Kit'
+2025-06-06 07:06:12,153 - __main__ - INFO - --- Processing supplier product 2/2: 'Crocs Premium Pocket Lighter with Pre-Adjusted Flame - Electronic Ignition - Assorted Colours - Pack of 2' (EAN: None) ---
+2025-06-06 07:06:12,153 - __main__ - INFO - No EAN for 'Crocs Premium Pocket Lighter with Pre-Adjusted Flame - Electronic Ignition - Assorted Colours - Pack of 2'. Using title search.
+2025-06-06 07:06:12,153 - __main__ - INFO - Searching Amazon by title using search bar: 'Crocs Premium Pocket Lighter with Pre-Adjusted Flame - Electronic Ignition - Assorted Colours - Pack of 2'
+2025-06-06 07:06:12,162 - __main__ - INFO - Navigating to Amazon UK to search for title: Crocs Premium Pocket Lighter with Pre-Adjusted Flame - Electronic Ignition - Assorted Colours - Pack of 2
+2025-06-06 07:06:15,012 - __main__ - INFO - Title search found 70 elements using selector: div.s-search-results > div[data-asin]
+2025-06-06 07:06:16,300 - __main__ - INFO - Title search found 8 results for 'Crocs Premium Pocket Lighter with Pre-Adjusted Flame - Electronic Ignition - Assorted Colours - Pack of 2'
+2025-06-06 07:06:16,305 - __main__ - INFO - Extracting detailed Amazon data for ASIN: B0F2J7PGM8 (from title search)
+2025-06-06 07:06:16,305 - amazon_playwright_extractor - INFO - Reusing existing page: https://www.amazon.co.uk/s?k=Crocs+Premium+Pocket+Lighter+with+Pre-Adjusted+Flame+-+Electronic+Ignition+-+Assorted+Colours+-+Pack+of+2&ref=nb_sb_noss
+2025-06-06 07:06:19,862 - amazon_playwright_extractor - INFO - Checking for cookie consent pop-up...
+2025-06-06 07:06:20,276 - amazon_playwright_extractor - INFO - Finished checking for cookie consent pop-ups. If one was present and not handled, it might interfere.
+2025-06-06 07:06:21,278 - amazon_playwright_extractor - INFO - Checking for CAPTCHA...
+2025-06-06 07:06:24,289 - amazon_playwright_extractor - INFO - No CAPTCHA page detected by form selector.
+2025-06-06 07:06:24,295 - amazon_playwright_extractor - INFO - Checking for cookie consent pop-up...
+2025-06-06 07:06:24,466 - amazon_playwright_extractor - INFO - Finished checking for cookie consent pop-ups. If one was present and not handled, it might interfere.
+2025-06-06 07:06:24,467 - amazon_playwright_extractor - INFO - Page should be ready. Waiting 5s for stabilization...
+2025-06-06 07:06:29,473 - amazon_playwright_extractor - INFO - Waiting an additional 7s for extensions (Keepa, SellerAmp)...
+2025-06-06 07:06:36,481 - amazon_playwright_extractor - INFO - Extracting all product data for ASIN: B0F2J7PGM8
+2025-06-06 07:06:36,481 - amazon_playwright_extractor - INFO - Extracting basic product information (Title, Price, Images, Amazon Details)...
+2025-06-06 07:06:36,522 - amazon_playwright_extractor - INFO - Title found: 'ezkart | Pack of 5 - Multipack Assorted Colour Electronic Lighters with Adjustable Flame, Easy to use, these lighters are perfect for lighting candles, fireplaces, grills (Non-Refillable) (5)' via #productTitle
+2025-06-06 07:06:36,522 - amazon_playwright_extractor - INFO - Extracting price details...
+2025-06-06 07:06:36,563 - amazon_playwright_extractor - INFO - Current price: 5.19 via #corePrice_feature_div .a-offscreen
+2025-06-06 07:06:36,676 - amazon_playwright_extractor - INFO - Original price: 6.39 via span.a-price.a-text-price[data-a-strike='true'] span.a-offscreen
+2025-06-06 07:06:36,769 - amazon_playwright_extractor - INFO - Amazon sales badge found: 50 in container div#socialProofingAsinFaceout_feature_div
+2025-06-06 07:06:36,770 - amazon_playwright_extractor - INFO - Extracting image URLs...
+2025-06-06 07:06:36,873 - amazon_playwright_extractor - INFO - Main image: https://m.media-amazon.com/images/I/51e3IccyWfL._AC_SL1080_.jpg via #landingImage
+2025-06-06 07:06:37,026 - amazon_playwright_extractor - INFO - Found 7 thumbnails.
+2025-06-06 07:06:37,042 - amazon_playwright_extractor - INFO - Extracting Amazon product details section...
+2025-06-06 07:06:37,388 - amazon_playwright_extractor - INFO - Extracting sales rank information...
+2025-06-06 07:06:37,640 - amazon_playwright_extractor - WARNING - Sales rank not found by selectors. AI fallback.
+2025-06-06 07:06:37,759 - amazon_playwright_extractor - WARNING - HTML content for AI extraction truncated to 24000 chars.
+2025-06-06 07:06:39,751 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-06 07:06:39,756 - amazon_playwright_extractor - INFO - Extracting ratings and reviews...
+2025-06-06 07:06:39,789 - amazon_playwright_extractor - INFO - Rating: 5.0 via #acrPopover[title*='out of 5 stars']
+2025-06-06 07:06:39,816 - amazon_playwright_extractor - INFO - Review count: 8 via #acrCustomerReviewText
+2025-06-06 07:06:39,816 - amazon_playwright_extractor - INFO - Extracting stock information...
+2025-06-06 07:06:39,848 - amazon_playwright_extractor - INFO - Availability text: 'In stock' via #availability span.a-size-medium.a-color-success
+2025-06-06 07:06:39,848 - amazon_playwright_extractor - INFO - Extracting features/bullets...
+2025-06-06 07:06:40,239 - amazon_playwright_extractor - INFO - Found 6 features.
+2025-06-06 07:06:40,239 - amazon_playwright_extractor - INFO - Extracting product description...
+2025-06-06 07:06:40,282 - amazon_playwright_extractor - INFO - Description found using selector: #productDescription
+2025-06-06 07:06:40,282 - amazon_playwright_extractor - INFO - Extracting product specifications table...
+2025-06-06 07:06:40,706 - amazon_playwright_extractor - INFO - Specifications table parsed using selector: #productDetails_techSpec_section_1
+2025-06-06 07:06:40,706 - amazon_playwright_extractor - INFO - Extracting SellerAmp data (if present)...
+2025-06-06 07:06:40,706 - amazon_playwright_extractor - INFO - SellerAmp data extraction is currently disabled as per requirements (Fix 2.3).
+2025-06-06 07:06:40,707 - amazon_playwright_extractor - INFO - Extracting Keepa data (if present)...
+2025-06-06 07:06:40,707 - amazon_playwright_extractor - INFO - Attempting to extract Keepa data...
+2025-06-06 07:06:46,836 - amazon_playwright_extractor - INFO - Keepa iframe found: iframe[id*='keepa']
+2025-06-06 07:06:46,995 - amazon_playwright_extractor - INFO - Keepa Graph AI Analysis is currently disabled as per requirements (Fix 2.4).
+2025-06-06 07:06:47,067 - amazon_playwright_extractor - INFO - Clicking Keepa 'Data' tab...
+2025-06-06 07:06:53,312 - amazon_playwright_extractor - INFO - Parsing Keepa AG Grid for Product Details from: div#MoreTab1 div#grid-product-detail
+2025-06-06 07:06:54,433 - amazon_playwright_extractor - INFO - Found 124 rows in Keepa Product Details AG Grid.
+2025-06-06 07:06:59,733 - amazon_playwright_extractor - INFO - Parsed 39 items from Keepa Product Details AG Grid.
+2025-06-06 07:06:59,733 - amazon_playwright_extractor - INFO - ASIN B0F2J7PGM8: Attempting to extract EANs from Keepa product_details_tab_data.
+2025-06-06 07:06:59,734 - amazon_playwright_extractor - INFO - ASIN B0F2J7PGM8: EAN '5061066491572' found in Keepa details via key 'Product Codes - EAN'.
+2025-06-06 07:06:59,734 - amazon_playwright_extractor - INFO - ASIN B0F2J7PGM8: BSR not found or invalid from page. Attempting fallback from Keepa.
+2025-06-06 07:06:59,734 - amazon_playwright_extractor - WARNING - ASIN B0F2J7PGM8: Could not find BSR in any Keepa data source.
+2025-06-06 07:06:59,735 - __main__ - INFO - Using title-based filename for ASIN B0F2J7PGM8: amazon_B0F2J7PGM8_title_ccabe861.json (title: Crocs Premium Pocket Lighter with Pre-Adjusted Fla...)
+2025-06-06 07:06:59,739 - __main__ - INFO - Cached Amazon data for ASIN B0F2J7PGM8 as amazon_B0F2J7PGM8_title_ccabe861.json
+2025-06-06 07:06:59,739 - __main__ - INFO - Added to linking map: URL_https://www.clearance-king.co.uk/crocs-premium-pocket-lighter-with-pre-adjusted-flame-electronic-ignition-assorted-colours-pack-of-2.html -> B0F2J7PGM8
+2025-06-06 07:06:59,740 - __main__ - INFO - Skipping triage for ASIN B0F2J7PGM8 - proceeding directly to detailed extraction
+2025-06-06 07:06:59,740 - __main__ - INFO - Successfully got Amazon data for 'ezkart | Pack of 5 - Multipack Assorted Colour Electronic Lighters with Adjustable Flame, Easy to use, these lighters are perfect for lighting candles, fireplaces, grills (Non-Refillable) (5)' (ASIN: B0F2J7PGM8, EAN on page: 5061066491572)
+2025-06-06 07:06:59,740 - __main__ - INFO - Using fees from Keepa (or fallback): Referral Fee £0.00, FBA Fee £0.00, Total £0.00
+2025-06-06 07:06:59,741 - __main__ - WARNING - Low quality match (low) between supplier product 'Crocs Premium Pocket Lighter with Pre-Adjusted Flame - Electronic Ignition - Assorted Colours - Pack of 2' and Amazon product 'ezkart | Pack of 5 - Multipack Assorted Colour Electronic Lighters with Adjustable Flame, Easy to use, these lighters are perfect for lighting candles, fireplaces, grills (Non-Refillable) (5)'. Skipping.
+2025-06-06 07:06:59,741 - __main__ - INFO - STAGE-COMPLETE: triage_stage - 0 passed, 0 rejected (Triage Setting: DISABLED)
+2025-06-06 07:06:59,741 - __main__ - INFO - Triage was DISABLED. All 2 products processed in this batch proceeded to full analysis. No profitable products found post-analysis in this batch.
+2025-06-06 07:06:59,742 - __main__ - INFO - STAGE-COMPLETE: deep_extraction - 0 successful extractions, 0 errors
+2025-06-06 07:06:59,742 - __main__ - INFO - STAGE-COMPLETE: profitable_filtering - 0 profitable products found
+2025-06-06 07:06:59,742 - __main__ - INFO - No profitable products found meeting all criteria in this run.
+2025-06-06 07:06:59,745 - __main__ - INFO - Workflow summary saved to /mnt/c/Users/chris/Cloud-Drive_christianhaddad8@gmail.com/Cloud-Drive/Full/claude code/Amazon-FBA-Agent-System-v3/OUTPUTS/FBA_ANALYSIS/fba_summary_clearance-king_co_uk_20250606_070600.json
+2025-06-06 07:06:59,745 - __main__ - INFO - 📋 Session Summary: 2 products analyzed, 0 profitable products found
+2025-06-06 07:06:59,755 - __main__ - INFO - Successfully saved linking map with 377 entries to /mnt/c/Users/chris/Cloud-Drive_christianhaddad8@gmail.com/Cloud-Drive/Full/claude code/Amazon-FBA-Agent-System-v3/OUTPUTS/FBA_ANALYSIS/Linking map/linking_map.json
+2025-06-06 07:06:59,756 - __main__ - INFO - Persistent linking map updated with 377 entries
+2025-06-06 07:06:59,756 - __main__ - INFO - Running FBA_Financial_calculator run_calculations...
+2025-06-06 07:07:02,195 - FBA_Financial_calculator - INFO - FBA_Financial_calculator: amazon_dir confirmed to exist and is a directory: /mnt/c/Users/chris/Cloud-Drive_christianhaddad8@gmail.com/Cloud-Drive/Full/claude code/Amazon-FBA-Agent-System-v3/OUTPUTS/FBA_ANALYSIS/amazon_cache
+2025-06-06 07:07:06,458 - __main__ - INFO - FBA financial report generated at: /mnt/c/Users/chris/Cloud-Drive_christianhaddad8@gmail.com/Cloud-Drive/Full/claude code/Amazon-FBA-Agent-System-v3/OUTPUTS/FBA_ANALYSIS/financial_reports/fba_financial_report_20250606_070706.csv
+2025-06-06 07:07:06,459 - __main__ - INFO - 🔄 CATEGORIES EXHAUSTED: Triggering new AI cycle (products analyzed: 2)
+2025-06-06 07:07:06,459 - __main__ - INFO - 🔄 TRIGGERING NEW AI CATEGORY CYCLE - Requesting fresh category suggestions...
+2025-06-06 07:07:06,463 - __main__ - INFO - 🧠 AI Memory loaded: 11 previously suggested URLs, 0 products processed
+2025-06-06 07:07:06,463 - configurable_supplier_scraper - INFO - Extracting homepage categories from https://www.clearance-king.co.uk/crocs-premium-pocket-lighter-with-pre-adjusted-flame-electronic-ignition-assorted-colours-pack-of-2.html
+2025-06-06 07:07:06,463 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.clearance-king.co.uk/crocs-premium-pocket-lighter-with-pre-adjusted-flame-electronic-ignition-assorted-colours-pack-of-2.html (attempt 1/3)
+2025-06-06 07:07:08,830 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.clearance-king.co.uk/crocs-premium-pocket-lighter-with-pre-adjusted-flame-electronic-ignition-assorted-colours-pack-of-2.html (Size: 292564 bytes)
+2025-06-06 07:07:09,531 - configurable_supplier_scraper - INFO - Found 138 unique potential category URLs from homepage of https://www.clearance-king.co.uk/crocs-premium-pocket-lighter-with-pre-adjusted-flame-electronic-ignition-assorted-colours-pack-of-2.html
+2025-06-06 07:07:09,532 - configurable_supplier_scraper - INFO - Discovered 75 categories for https://www.clearance-king.co.uk/crocs-premium-pocket-lighter-with-pre-adjusted-flame-electronic-ignition-assorted-colours-pack-of-2.html
+2025-06-06 07:07:09,533 - __main__ - INFO - Category exhaustion status: {'friendly_total': 75, 'friendly_processed': 3, 'friendly_remaining': 72, 'neutral_total': 0, 'neutral_processed': 0, 'neutral_remaining': 0, 'should_continue': True, 'phase': 'friendly'}
+2025-06-06 07:07:09,533 - __main__ - INFO - Current price phase: low
+2025-06-06 07:07:09,539 - __main__ - INFO - 🧠 AI Memory loaded: 11 previously suggested URLs, 0 products processed
+2025-06-06 07:07:09,539 - __main__ - INFO - 🤖 OpenAI API Call - Model: gpt-4o-mini, Max Tokens: 1200
+2025-06-06 07:07:09,539 - __main__ - INFO - 🤖 Prompt Length: 13122 characters
+2025-06-06 07:07:20,311 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-06 07:07:20,315 - __main__ - INFO - 🤖 Token Usage - Input: 3357, Output: 512, Total: 3869
+2025-06-06 07:07:20,320 - __main__ - INFO - 💾 API call logged to /mnt/c/Users/chris/Cloud-Drive_christianhaddad8@gmail.com/Cloud-Drive/Full/claude code/Amazon-FBA-Agent-System-v3/OUTPUTS/LOGS/system/openai_api_calls_20250606.jsonl
+2025-06-06 07:07:20,321 - __main__ - INFO - Validating AI-suggested categories for product content...
+2025-06-06 07:07:20,321 - __main__ - INFO - Validating category productivity for: https://www.clearance-king.co.uk/health-beauty/dental.html
+2025-06-06 07:07:21,101 - __main__ - INFO - Category validation: https://www.clearance-king.co.uk/health-beauty/dental.html -> 48 products (productive: True)
+2025-06-06 07:07:21,101 - __main__ - INFO - ✅ Category validated: https://www.clearance-king.co.uk/health-beauty/dental.html (48 products)
+2025-06-06 07:07:21,102 - __main__ - INFO - Validating category productivity for: https://www.clearance-king.co.uk/household.html
+2025-06-06 07:07:21,522 - __main__ - INFO - Category validation: https://www.clearance-king.co.uk/household.html -> 48 products (productive: True)
+2025-06-06 07:07:21,523 - __main__ - INFO - ✅ Category validated: https://www.clearance-king.co.uk/household.html (48 products)
+2025-06-06 07:07:21,524 - __main__ - INFO - Validating category productivity for: https://www.clearance-king.co.uk/baby-kids/baby-accessories.html
+2025-06-06 07:07:22,051 - __main__ - INFO - Category validation: https://www.clearance-king.co.uk/baby-kids/baby-accessories.html -> 48 products (productive: True)
+2025-06-06 07:07:22,052 - __main__ - INFO - ✅ Category validated: https://www.clearance-king.co.uk/baby-kids/baby-accessories.html (48 products)
+/mnt/c/Users/chris/Cloud-Drive_christianhaddad8@gmail.com/Cloud-Drive/Full/claude code/Amazon-FBA-Agent-System-v3/tools/passive_extraction_workflow_latest.py:1153: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.utcnow().isoformat(timespec="seconds"),
+2025-06-06 07:07:22,059 - __main__ - INFO - Applying URL optimization parameters...
+2025-06-06 07:07:22,059 - __main__ - INFO - Optimized URL (no price filtering): https://www.clearance-king.co.uk/health-beauty/dental.html -> https://www.clearance-king.co.uk/health-beauty/dental.html?product_list_limit=64&product_list_order=price&product_list_dir=asc
+2025-06-06 07:07:22,059 - __main__ - INFO - Optimized URL (no price filtering): https://www.clearance-king.co.uk/household.html -> https://www.clearance-king.co.uk/household.html?product_list_limit=64&product_list_order=price&product_list_dir=asc
+2025-06-06 07:07:22,059 - __main__ - INFO - Optimized URL (no price filtering): https://www.clearance-king.co.uk/baby-kids/baby-accessories.html -> https://www.clearance-king.co.uk/baby-kids/baby-accessories.html?product_list_limit=64&product_list_order=price&product_list_dir=asc
+2025-06-06 07:07:22,059 - __main__ - INFO - Optimized 3 URLs with product display parameters for low price phase
+2025-06-06 07:07:22,068 - __main__ - INFO - 🧠 Appended AI suggestion #3 to cache with optimized URLs: /mnt/c/Users/chris/Cloud-Drive_christianhaddad8@gmail.com/Cloud-Drive/Full/claude code/Amazon-FBA-Agent-System-v3/OUTPUTS/FBA_ANALYSIS/ai_category_cache/clearance-king_co_uk_ai_category_cache.json
+2025-06-06 07:07:22,069 - __main__ - INFO - 🧠 Total AI history entries: 3
+2025-06-06 07:07:22,069 - __main__ - INFO - Hierarchical selection returned 3 optimized pages to scrape
+2025-06-06 07:07:22,070 - __main__ - INFO - URLs to scrape: ['https://www.clearance-king.co.uk/health-beauty/dental.html?product_list_limit=64&product_list_order=price&product_list_dir=asc', 'https://www.clearance-king.co.uk/household.html?product_list_limit=64&product_list_order=price&product_list_dir=asc', 'https://www.clearance-king.co.uk/baby-kids/baby-accessories.html?product_list_limit=64&product_list_order=price&product_list_dir=asc']
+2025-06-06 07:07:22,070 - __main__ - INFO - 🎯 NEW AI CYCLE: Found 3 new categories to process
+2025-06-06 07:07:22,070 - __main__ - INFO - 🔄 Scraping new AI-suggested categories...
+2025-06-06 07:07:22,071 - __main__ - INFO - 🔍 Scraping new category: https://www.clearance-king.co.uk/health-beauty/dental.html?product_list_limit=64&product_list_order=price&product_list_dir=asc
+2025-06-06 07:07:22,071 - __main__ - INFO - 🔍 Scraping category: https://www.clearance-king.co.uk/health-beauty/dental.html?product_list_limit=64&product_list_order=price&product_list_dir=asc
+2025-06-06 07:07:22,072 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.clearance-king.co.uk/health-beauty/dental.html?product_list_limit=64&product_list_order=price&product_list_dir=asc (attempt 1/3)

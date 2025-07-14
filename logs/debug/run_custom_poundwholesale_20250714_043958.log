@@ -1,0 +1,166 @@
+2025-07-14 04:39:58,993 - utils.logger - INFO - 🔧 Logging initialised – log file: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/logs/debug/run_custom_poundwholesale_20250714_043958.log
+2025-07-14 04:39:58,994 - __main__ - INFO - 📋 Debug log file: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/logs/debug/run_custom_poundwholesale_20250714_043958.log
+2025-07-14 04:39:58,994 - __main__ - DEBUG - Debug logging initialized - full system execution details will be captured
+2025-07-14 04:39:58,999 - utils.browser_manager - INFO - 🔧 BrowserManager singleton initialized
+2025-07-14 04:39:59,574 - utils.browser_manager - INFO - 🔌 Connecting to Chrome on debug port 9222
+2025-07-14 04:39:59,746 - utils.browser_manager - INFO - 📄 Using existing context with 1 pages
+2025-07-14 04:39:59,746 - utils.browser_manager - INFO - ✅ Connected to Chrome successfully
+2025-07-14 04:39:59,747 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-14 04:39:59,748 - __main__ - INFO - 🔐 Initializing authentication service for logout detection...
+2025-07-14 04:39:59,752 - __main__ - INFO - ✅ Using hardcoded credentials for poundwholesale.co.uk
+2025-07-14 04:39:59,752 - __main__ - INFO - 🌐 Connecting to existing Chrome debug port 9222 for authentication...
+2025-07-14 04:40:05,702 - tools.supplier_authentication_service - INFO - ✅ Authentication indicator found: 'logout'
+2025-07-14 04:40:05,767 - tools.supplier_authentication_service - INFO - ✅ Logout link found - user is authenticated
+2025-07-14 04:40:05,768 - tools.supplier_authentication_service - INFO - ✅ Session already authenticated - skipping login
+2025-07-14 04:40:05,783 - amazon_playwright_extractor - INFO - AI features disabled in amazon_playwright_extractor - using only traditional selectors.
+2025-07-14 04:40:05,789 - amazon_playwright_extractor - INFO - Output directory set to: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/CACHE/amazon_data
+2025-07-14 04:40:05,789 - amazon_playwright_extractor - WARNING - ⚠️ BrowserManager not available, using legacy browser connection
+2025-07-14 04:40:05,793 - configurable_supplier_scraper - INFO - ✅ Loaded system configuration from /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/config/system_config.json
+2025-07-14 04:40:05,794 - configurable_supplier_scraper - INFO - 🔧 ConfigurableSupplierScraper will use centralized BrowserManager
+2025-07-14 04:40:05,795 - configurable_supplier_scraper - DEBUG - AI model from config: gpt-4.1-mini-2025-04-14
+2025-07-14 04:40:05,796 - configurable_supplier_scraper - DEBUG - Extraction targets from config: {'product_data': ['price', 'title', 'ean', 'barcode', 'image', 'description', 'out_of_stock'], 'navigation': ['next_page', 'category_links', 'breadcrumbs'], 'pagination': ['next_page', 'previous_page', 'page_numbers'], 'filtering': ['price_filter', 'category_filter', 'search_box', 'products_per_page', 'product limiter'], 'interaction': ['add_to_cart', 'buy_now', 'product_link']}
+2025-07-14 04:40:05,798 - configurable_supplier_scraper - DEBUG - Discovery assistance from config: {'enabled': False, 'prompt_injection': {'login_discovery_hints': '', 'product_navigation_discovery_hints': "OUT OF STOCK products show a red/orange badge or overlay with text like 'Out of Stock', 'Sold Out', or 'Unavailable'"}, '_comment': 'Two API calls are made: 1) login_discovery_hints for login elements, 2) product_navigation_discovery_hints for product/navigation selectors. You can paste full console elements, XPath, or any hints here.'}
+2025-07-14 04:40:05,803 - configurable_supplier_scraper - INFO - [CONFIG] Initialized with AI model: gpt-4.1-mini-2025-04-14
+2025-07-14 04:40:05,806 - configurable_supplier_scraper - INFO - [TARGET] Extraction targets loaded: ['product_data', 'navigation', 'pagination', 'filtering', 'interaction']
+2025-07-14 04:40:05,806 - configurable_supplier_scraper - INFO - [ASSIST] Discovery assistance enabled: False
+2025-07-14 04:40:05,810 - PassiveExtractionWorkflow - INFO - ✅ Output directory set to: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS
+2025-07-14 04:40:05,811 - PassiveExtractionWorkflow - INFO - ✅ Initialization validation passed - all critical attributes verified
+2025-07-14 04:40:05,812 - PassiveExtractionWorkflow - INFO - --- Starting Passive Extraction Workflow for: poundwholesale.co.uk ---
+2025-07-14 04:40:05,812 - PassiveExtractionWorkflow - INFO - Session ID: poundwholesale.co.uk_20250714_044005
+2025-07-14 04:40:05,812 - PassiveExtractionWorkflow - INFO - 📊 CONFIGURATION VALUES:
+2025-07-14 04:40:05,813 - PassiveExtractionWorkflow - INFO -    max_products_to_process: 10
+2025-07-14 04:40:05,813 - PassiveExtractionWorkflow - INFO -    max_products_per_category: 5
+2025-07-14 04:40:05,814 - PassiveExtractionWorkflow - INFO -    max_analyzed_products: 5
+2025-07-14 04:40:05,815 - PassiveExtractionWorkflow - INFO -    max_products_per_cycle: 5
+2025-07-14 04:40:05,815 - PassiveExtractionWorkflow - INFO -    supplier_extraction_batch_size: 3
+2025-07-14 04:40:05,817 - PassiveExtractionWorkflow - INFO -    max_categories_per_request: 3
+2025-07-14 04:40:05,827 - utils.enhanced_state_manager - INFO - Loaded state for poundwholesale.co.uk - resuming from index 1
+2025-07-14 04:40:05,828 - PassiveExtractionWorkflow - INFO - 📋 Loaded existing processing state for poundwholesale.co.uk
+2025-07-14 04:40:05,829 - PassiveExtractionWorkflow - INFO - 🔄 Resuming from index 1
+2025-07-14 04:40:05,838 - PassiveExtractionWorkflow - INFO - ✅ No existing linking map found at /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/FBA_ANALYSIS/linking_maps/poundwholesale.co.uk/linking_map.json - Creating new map
+2025-07-14 04:40:05,841 - PassiveExtractionWorkflow - INFO - ✅ No existing linking map found at /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/FBA_ANALYSIS/linking_maps/poundwholesale.co.uk/linking_map.json - Creating new map
+2025-07-14 04:40:05,841 - PassiveExtractionWorkflow - INFO - CUSTOM MODE: Using predefined category list.
+2025-07-14 04:40:05,842 - tools.passive_extraction_workflow_latest - INFO - Attempting to load predefined categories for poundwholesale.co.uk
+2025-07-14 04:40:05,847 - tools.passive_extraction_workflow_latest - INFO - ✅ Successfully loaded 276 predefined category URLs from /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/config/poundwholesale_categories.json
+2025-07-14 04:40:05,852 - PassiveExtractionWorkflow - INFO - 🔄 SKIPPING SUPPLIER SCRAPING: Found fresh cached products (age: 0.2h) with processing progress (index: 1)
+2025-07-14 04:40:05,853 - PassiveExtractionWorkflow - INFO - 📋 Loading products from cache: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products/poundwholesale-co-uk_products_cache.json
+2025-07-14 04:40:05,857 - PassiveExtractionWorkflow - INFO - ✅ Loaded 10 cached products from /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products/poundwholesale-co-uk_products_cache.json
+2025-07-14 04:40:05,858 - PassiveExtractionWorkflow - INFO - Successfully got 10 products from poundwholesale.co.uk
+2025-07-14 04:40:05,858 - PassiveExtractionWorkflow - INFO - 💾 CACHE SAVE: Starting save of 10 products to cache...
+2025-07-14 04:40:05,875 - PassiveExtractionWorkflow - INFO - ✅ CACHE SAVE: Successfully saved 10 products (0 new) to poundwholesale-co-uk_products_cache.json
+2025-07-14 04:40:05,876 - PassiveExtractionWorkflow - INFO - Found 10 valid supplier products, 10 within price range [£0.1-£20.0]
+2025-07-14 04:40:05,876 - PassiveExtractionWorkflow - INFO - 🔄 LIMITED MODE: Processing 9 products (from index 1 to 9)
+2025-07-14 04:40:05,892 - PassiveExtractionWorkflow - INFO - 🚀 BATCH PROCESSING: 9 products in 2 batches of 5
+2025-07-14 04:40:05,893 - PassiveExtractionWorkflow - INFO - 🔄 Processing batch 1/2 (5 products)
+2025-07-14 04:40:05,893 - PassiveExtractionWorkflow - INFO - --- Processing supplier product 2/10: 'Home & Garden Multi-Purpose White Vinegar Cleaning Spray 500ml' ---
+2025-07-14 04:40:05,894 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Updating processing index to 2/10
+2025-07-14 04:40:05,913 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: State after update - last_processed_index: 2/10
+2025-07-14 04:40:05,913 - PassiveExtractionWorkflow - INFO - Attempting Amazon search using EAN: 5055319510769
+2025-07-14 04:40:05,914 - tools.passive_extraction_workflow_latest - INFO - Connecting to Chrome browser on debug port 9222 (FixedAmazonExtractor)
+2025-07-14 04:40:06,440 - tools.passive_extraction_workflow_latest - INFO - Successfully connected to Chrome on port 9222 (FixedAmazonExtractor)
+2025-07-14 04:40:06,440 - tools.passive_extraction_workflow_latest - INFO - Found 1 existing pages (FixedAmazonExtractor)
+2025-07-14 04:40:06,441 - tools.passive_extraction_workflow_latest - INFO - Using existing page: https://www.poundwholesale.co.uk/ (FixedAmazonExtractor)
+2025-07-14 04:40:06,459 - tools.passive_extraction_workflow_latest - INFO - Searching Amazon by EAN: 5055319510769 for supplier product: 'Home & Garden Multi-Purpose White Vinegar Cleaning Spray 500ml' (FixedAmazonExtractor)
+2025-07-14 04:40:06,460 - tools.passive_extraction_workflow_latest - INFO - No page provided to search_by_ean, getting one from BrowserManager.
+2025-07-14 04:40:06,460 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-14 04:40:06,461 - utils.browser_manager - INFO - 📄 Navigating to https://www.amazon.co.uk
+2025-07-14 04:40:08,081 - utils.browser_manager - INFO - ✅ Page ready for https://www.amazon.co.uk
+2025-07-14 04:40:08,082 - tools.passive_extraction_workflow_latest - INFO - Navigating to Amazon UK to search for EAN: 5055319510769
+2025-07-14 04:40:10,116 - tools.passive_extraction_workflow_latest - INFO - Waiting for search results page to load for EAN 5055319510769...
+2025-07-14 04:40:10,465 - tools.passive_extraction_workflow_latest - INFO - Found search results container with selector: div.s-search-results
+2025-07-14 04:40:12,546 - tools.passive_extraction_workflow_latest - INFO - Found 12 search result elements using selector: div.s-result-item[data-asin]:not([data-asin=''])
+2025-07-14 04:40:12,547 - tools.passive_extraction_workflow_latest - INFO - Processing 12 search result elements for EAN 5055319510769
+2025-07-14 04:40:12,570 - tools.passive_extraction_workflow_latest - DEBUG - Processing element 1: ASIN B0DHSDMSWQ
+2025-07-14 04:40:12,591 - tools.passive_extraction_workflow_latest - DEBUG - ASIN B0DHSDMSWQ HTML structure sample: <div role="listitem" data-asin="B0DHSDMSWQ" data-index="2" data-uuid="0dbe4da7-acfe-4866-b895-1c26ab7da503" id="0dbe4da7-acfe-4866-b895-1c26ab7da503" data-component-type="s-search-result" class="sg-col-4-of-4 sg-col-4-of-24 sg-col-4-of-12 s-result-item s-asin sg-col-4-of-16 AdHolder sg-col s-widget-spacing-small sg-col-4-of-8 sg-col-4-of-20" data-component-id="5" data-cel-widget="search_result_0"><div class="sg-col-inner"><div cel_widget_id="MAIN-SEARCH_RESULTS-2" class="s-widget-container s-spacing-small s-widget-container-height-small celwidget slot=MAIN template=SEARCH_RESULTS widgetId=sear...
+2025-07-14 04:40:12,592 - tools.passive_extraction_workflow_latest - DEBUG - Error checking sponsored badge for ASIN B0DHSDMSWQ: 'ElementHandle' object has no attribute 'locator'
+2025-07-14 04:40:12,593 - tools.passive_extraction_workflow_latest - DEBUG - Error checking aria-label for ASIN B0DHSDMSWQ: 'ElementHandle' object has no attribute 'locator'
+2025-07-14 04:40:12,633 - tools.passive_extraction_workflow_latest - INFO - Skipping sponsored result: ASIN B0DHSDMSWQ (detected by ad-specific class: 'AdHolder')
+2025-07-14 04:40:12,739 - tools.passive_extraction_workflow_latest - DEBUG - Processing element 2: ASIN B0BRYHL5ZV
+2025-07-14 04:40:12,760 - tools.passive_extraction_workflow_latest - DEBUG - ASIN B0BRYHL5ZV HTML structure sample: <div role="listitem" data-asin="B0BRYHL5ZV" data-index="3" data-uuid="99181950-34b4-4080-8e2c-f23cc36096f4" id="99181950-34b4-4080-8e2c-f23cc36096f4" data-component-type="s-search-result" class="sg-col-4-of-4 sg-col-4-of-24 sg-col-4-of-12 s-result-item s-asin sg-col-4-of-16 AdHolder sg-col s-widget-spacing-small sg-col-4-of-8 sg-col-4-of-20" data-component-id="8" data-cel-widget="search_result_1"><div class="sg-col-inner"><div cel_widget_id="MAIN-SEARCH_RESULTS-3" class="s-widget-container s-spacing-small s-widget-container-height-small celwidget slot=MAIN template=SEARCH_RESULTS widgetId=sear...
+2025-07-14 04:40:12,761 - tools.passive_extraction_workflow_latest - DEBUG - Error checking sponsored badge for ASIN B0BRYHL5ZV: 'ElementHandle' object has no attribute 'locator'
+2025-07-14 04:40:12,761 - tools.passive_extraction_workflow_latest - DEBUG - Error checking aria-label for ASIN B0BRYHL5ZV: 'ElementHandle' object has no attribute 'locator'
+2025-07-14 04:40:12,794 - tools.passive_extraction_workflow_latest - INFO - Skipping sponsored result: ASIN B0BRYHL5ZV (detected by ad-specific class: 'AdHolder')
+2025-07-14 04:40:12,813 - tools.passive_extraction_workflow_latest - DEBUG - Processing element 3: ASIN B0CWH2386T
+2025-07-14 04:40:12,831 - tools.passive_extraction_workflow_latest - DEBUG - ASIN B0CWH2386T HTML structure sample: <div role="listitem" data-asin="B0CWH2386T" data-index="4" data-uuid="ae65955f-8bb1-4b6a-8de2-0476d9a5198f" id="ae65955f-8bb1-4b6a-8de2-0476d9a5198f" data-component-type="s-search-result" class="sg-col-4-of-4 sg-col-4-of-24 sg-col-4-of-12 s-result-item s-asin sg-col-4-of-16 AdHolder sg-col s-widget-spacing-small sg-col-4-of-8 sg-col-4-of-20" data-component-id="11" data-cel-widget="search_result_2"><div class="sg-col-inner"><div cel_widget_id="MAIN-SEARCH_RESULTS-4" class="s-widget-container s-spacing-small s-widget-container-height-small celwidget slot=MAIN template=SEARCH_RESULTS widgetId=sea...
+2025-07-14 04:40:12,831 - tools.passive_extraction_workflow_latest - DEBUG - Error checking sponsored badge for ASIN B0CWH2386T: 'ElementHandle' object has no attribute 'locator'
+2025-07-14 04:40:12,832 - tools.passive_extraction_workflow_latest - DEBUG - Error checking aria-label for ASIN B0CWH2386T: 'ElementHandle' object has no attribute 'locator'
+2025-07-14 04:40:12,860 - tools.passive_extraction_workflow_latest - INFO - Skipping sponsored result: ASIN B0CWH2386T (detected by ad-specific class: 'AdHolder')
+2025-07-14 04:40:12,877 - tools.passive_extraction_workflow_latest - DEBUG - Processing element 4: ASIN B0DCBY1KDL
+2025-07-14 04:40:12,877 - tools.passive_extraction_workflow_latest - DEBUG - Error checking sponsored badge for ASIN B0DCBY1KDL: 'ElementHandle' object has no attribute 'locator'
+2025-07-14 04:40:12,878 - tools.passive_extraction_workflow_latest - DEBUG - Error checking aria-label for ASIN B0DCBY1KDL: 'ElementHandle' object has no attribute 'locator'
+2025-07-14 04:40:12,906 - tools.passive_extraction_workflow_latest - INFO - Skipping sponsored result: ASIN B0DCBY1KDL (detected by ad-specific class: 'AdHolder')
+2025-07-14 04:40:12,926 - tools.passive_extraction_workflow_latest - DEBUG - Processing element 5: ASIN B0D8VMRQM6
+2025-07-14 04:40:12,927 - tools.passive_extraction_workflow_latest - DEBUG - Error checking sponsored badge for ASIN B0D8VMRQM6: 'ElementHandle' object has no attribute 'locator'
+2025-07-14 04:40:12,927 - tools.passive_extraction_workflow_latest - DEBUG - Error checking aria-label for ASIN B0D8VMRQM6: 'ElementHandle' object has no attribute 'locator'
+2025-07-14 04:40:12,962 - tools.passive_extraction_workflow_latest - INFO - Skipping sponsored result: ASIN B0D8VMRQM6 (detected by ad-specific class: 'AdHolder')
+2025-07-14 04:40:12,981 - tools.passive_extraction_workflow_latest - DEBUG - Processing element 6: ASIN B0CSP38R6T
+2025-07-14 04:40:12,982 - tools.passive_extraction_workflow_latest - DEBUG - Error checking sponsored badge for ASIN B0CSP38R6T: 'ElementHandle' object has no attribute 'locator'
+2025-07-14 04:40:12,982 - tools.passive_extraction_workflow_latest - DEBUG - Error checking aria-label for ASIN B0CSP38R6T: 'ElementHandle' object has no attribute 'locator'
+2025-07-14 04:40:13,023 - tools.passive_extraction_workflow_latest - INFO - Skipping sponsored result: ASIN B0CSP38R6T (detected by ad-specific class: 'AdHolder')
+2025-07-14 04:40:13,043 - tools.passive_extraction_workflow_latest - DEBUG - Processing element 7: ASIN B0D8VPTJ6X
+2025-07-14 04:40:13,046 - tools.passive_extraction_workflow_latest - DEBUG - Error checking sponsored badge for ASIN B0D8VPTJ6X: 'ElementHandle' object has no attribute 'locator'
+2025-07-14 04:40:13,046 - tools.passive_extraction_workflow_latest - DEBUG - Error checking aria-label for ASIN B0D8VPTJ6X: 'ElementHandle' object has no attribute 'locator'
+2025-07-14 04:40:13,087 - tools.passive_extraction_workflow_latest - INFO - Skipping sponsored result: ASIN B0D8VPTJ6X (detected by ad-specific class: 'AdHolder')
+2025-07-14 04:40:13,117 - tools.passive_extraction_workflow_latest - DEBUG - Processing element 8: ASIN B0CSPKLX3D
+2025-07-14 04:40:13,118 - tools.passive_extraction_workflow_latest - DEBUG - Error checking sponsored badge for ASIN B0CSPKLX3D: 'ElementHandle' object has no attribute 'locator'
+2025-07-14 04:40:13,119 - tools.passive_extraction_workflow_latest - DEBUG - Error checking aria-label for ASIN B0CSPKLX3D: 'ElementHandle' object has no attribute 'locator'
+2025-07-14 04:40:13,165 - tools.passive_extraction_workflow_latest - INFO - Skipping sponsored result: ASIN B0CSPKLX3D (detected by ad-specific class: 'AdHolder')
+2025-07-14 04:40:13,182 - tools.passive_extraction_workflow_latest - DEBUG - Processing element 9: ASIN B0D8VQ8F6Y
+2025-07-14 04:40:13,183 - tools.passive_extraction_workflow_latest - DEBUG - Error checking sponsored badge for ASIN B0D8VQ8F6Y: 'ElementHandle' object has no attribute 'locator'
+2025-07-14 04:40:13,183 - tools.passive_extraction_workflow_latest - DEBUG - Error checking aria-label for ASIN B0D8VQ8F6Y: 'ElementHandle' object has no attribute 'locator'
+2025-07-14 04:40:13,214 - tools.passive_extraction_workflow_latest - INFO - Skipping sponsored result: ASIN B0D8VQ8F6Y (detected by ad-specific class: 'AdHolder')
+2025-07-14 04:40:13,237 - tools.passive_extraction_workflow_latest - DEBUG - Processing element 10: ASIN B0D8VQWY68
+2025-07-14 04:40:13,237 - tools.passive_extraction_workflow_latest - DEBUG - Error checking sponsored badge for ASIN B0D8VQWY68: 'ElementHandle' object has no attribute 'locator'
+2025-07-14 04:40:13,238 - tools.passive_extraction_workflow_latest - DEBUG - Error checking aria-label for ASIN B0D8VQWY68: 'ElementHandle' object has no attribute 'locator'
+2025-07-14 04:40:13,268 - tools.passive_extraction_workflow_latest - INFO - Skipping sponsored result: ASIN B0D8VQWY68 (detected by ad-specific class: 'AdHolder')
+2025-07-14 04:40:13,291 - tools.passive_extraction_workflow_latest - DEBUG - Processing element 11: ASIN B0CCW456H3
+2025-07-14 04:40:13,292 - tools.passive_extraction_workflow_latest - DEBUG - Error checking sponsored badge for ASIN B0CCW456H3: 'ElementHandle' object has no attribute 'locator'
+2025-07-14 04:40:13,292 - tools.passive_extraction_workflow_latest - DEBUG - Error checking aria-label for ASIN B0CCW456H3: 'ElementHandle' object has no attribute 'locator'
+2025-07-14 04:40:13,326 - tools.passive_extraction_workflow_latest - INFO - Skipping sponsored result: ASIN B0CCW456H3 (detected by ad-specific class: 'AdHolder')
+2025-07-14 04:40:13,343 - tools.passive_extraction_workflow_latest - DEBUG - Processing element 12: ASIN B0CSPQN18T
+2025-07-14 04:40:13,344 - tools.passive_extraction_workflow_latest - DEBUG - Error checking sponsored badge for ASIN B0CSPQN18T: 'ElementHandle' object has no attribute 'locator'
+2025-07-14 04:40:13,344 - tools.passive_extraction_workflow_latest - DEBUG - Error checking aria-label for ASIN B0CSPQN18T: 'ElementHandle' object has no attribute 'locator'
+2025-07-14 04:40:13,373 - tools.passive_extraction_workflow_latest - INFO - Skipping sponsored result: ASIN B0CSPQN18T (detected by ad-specific class: 'AdHolder')
+2025-07-14 04:40:13,374 - tools.passive_extraction_workflow_latest - WARNING - EAN 5055319510769 returned no organic results - skipping
+2025-07-14 04:40:13,374 - tools.passive_extraction_workflow_latest - WARNING - No Amazon results or error for EAN '5055319510769'. Details: no_organic_results
+2025-07-14 04:40:13,374 - PassiveExtractionWorkflow - INFO - EAN search failed. Falling back to title search.
+2025-07-14 04:40:13,375 - tools.passive_extraction_workflow_latest - INFO - Searching Amazon by title using search bar: 'Home & Garden Multi-Purpose White Vinegar Cleaning Spray 500ml'
+2025-07-14 04:40:13,375 - tools.passive_extraction_workflow_latest - INFO - No page provided to search_by_title, getting one from BrowserManager.
+2025-07-14 04:40:13,375 - utils.browser_manager - INFO - ♻️ Reusing cached page for https://www.amazon.co.uk
+2025-07-14 04:40:13,376 - tools.passive_extraction_workflow_latest - INFO - Navigating to Amazon UK to search for title: Home & Garden Multi-Purpose White Vinegar Cleaning Spray 500ml
+2025-07-14 04:40:16,140 - tools.passive_extraction_workflow_latest - INFO - Title search found 23 elements using selector: div.s-search-results > div[data-asin]
+2025-07-14 04:40:17,098 - tools.passive_extraction_workflow_latest - DEBUG - ASIN B07CVCF31P title extracted using selector 'h2': Dettol Mould Spray, Multipack of 6 X 750ml, Total ...
+2025-07-14 04:40:17,343 - tools.passive_extraction_workflow_latest - DEBUG - ASIN B0B1XTN27C title extracted using selector 'h2': Miniml Eco White Vinegar Cleaning - All Natural Mu...
+2025-07-14 04:40:17,543 - tools.passive_extraction_workflow_latest - DEBUG - ASIN B0BN417VKH title extracted using selector 'h2': Miniml Eco White Vinegar Cleaning Sorrento Lemon S...
+2025-07-14 04:40:17,707 - tools.passive_extraction_workflow_latest - DEBUG - ASIN B0BZDLHKBX title extracted using selector 'h2': Dettol Antibacterial Multipurpose Cleaner Multipac...
+2025-07-14 04:40:17,871 - tools.passive_extraction_workflow_latest - DEBUG - ASIN B0B5VJLJC5 title extracted using selector 'h2': Concentrated All Purpose Antibacterial Surface Cle...
+2025-07-14 04:40:18,067 - tools.passive_extraction_workflow_latest - DEBUG - ASIN B0C16YWDWM title extracted using selector 'h2': 500ml White Vinegar Cleaning Spray White vinegar f...
+2025-07-14 04:40:18,237 - tools.passive_extraction_workflow_latest - DEBUG - ASIN B0DR2Z5Y25 title extracted using selector 'h2': Astonish Multipurpose Cleaning Spray with White Vi...
+2025-07-14 04:40:18,474 - tools.passive_extraction_workflow_latest - DEBUG - ASIN B0C7WJKJXW title extracted using selector 'h2': Miniml Eco White Vinegar Cleaning Unscented 750ml ...
+2025-07-14 04:40:18,474 - tools.passive_extraction_workflow_latest - INFO - Title search found 8 results for 'Home & Garden Multi-Purpose White Vinegar Cleaning Spray 500ml'
+2025-07-14 04:40:18,475 - PassiveExtractionWorkflow - INFO - 🔍 PRODUCT VALIDATION: Evaluating 8 Amazon results for 'Home & Garden Multi-Purpose White Vinegar Cleaning Spray 500ml'
+2025-07-14 04:40:18,475 - PassiveExtractionWorkflow - DEBUG - 🔍 MATCH VALIDATION: 'Home & Garden Multi-Purpose White Vinegar Cleaning Spray 500ml' vs 'Dettol Mould Spray, Multipack of 6 X 750ml, Total 4L, Mould Remover, Mould Spray, Bleach Spray, Bathroom Mould Remover, Antibacterial, Disinfectant Sprays, Household Cleaners' = 0.11 (very_low, 10.0%)
+2025-07-14 04:40:18,475 - PassiveExtractionWorkflow - INFO - 📊 Result 1: ASIN B07CVCF31P - Confidence: 0.100 (very_low) - Overlap: 0.111 - 'Dettol Mould Spray, Multipack of 6 X 750ml, Total 4L, Mould ...'
+2025-07-14 04:40:18,476 - PassiveExtractionWorkflow - DEBUG - 🔍 MATCH VALIDATION: 'Home & Garden Multi-Purpose White Vinegar Cleaning Spray 500ml' vs 'Miniml Eco White Vinegar Cleaning - All Natural Multi-Surface & Multi-Purpose Cleaner, Limescale Remover, Laundry Softener & More - 100% Vegan & Cruelty Free (5L (Pack of 1)' = 0.56 (medium, 60.0%)
+2025-07-14 04:40:18,476 - PassiveExtractionWorkflow - INFO - 📊 Result 2: ASIN B0B1XTN27C - Confidence: 0.600 (medium) - Overlap: 0.556 - 'Miniml Eco White Vinegar Cleaning - All Natural Multi-Surfac...'
+2025-07-14 04:40:18,477 - PassiveExtractionWorkflow - DEBUG - 🔍 MATCH VALIDATION: 'Home & Garden Multi-Purpose White Vinegar Cleaning Spray 500ml' vs 'Miniml Eco White Vinegar Cleaning Sorrento Lemon Scented - All Natural Multi-Surface & Multi-Purpose Cleaner, Limescale Remover, Laundry Softener & More - 100% Vegan & Cruelty Free (5L (Pack of 1))' = 0.56 (medium, 60.0%)
+2025-07-14 04:40:18,477 - PassiveExtractionWorkflow - INFO - 📊 Result 3: ASIN B0BN417VKH - Confidence: 0.600 (medium) - Overlap: 0.556 - 'Miniml Eco White Vinegar Cleaning Sorrento Lemon Scented - A...'
+2025-07-14 04:40:18,477 - PassiveExtractionWorkflow - DEBUG - 🔍 MATCH VALIDATION: 'Home & Garden Multi-Purpose White Vinegar Cleaning Spray 500ml' vs 'Dettol Antibacterial Multipurpose Cleaner Multipack, Pomegranate & Lime, Summer Fruits, Sparkling Lemon Burst, 1L Each, Pack Of 3, Ideal For Home Hygiene And First Aid Kit Essentials' = 0.11 (very_low, 10.0%)
+2025-07-14 04:40:18,477 - PassiveExtractionWorkflow - INFO - 📊 Result 4: ASIN B0BZDLHKBX - Confidence: 0.100 (very_low) - Overlap: 0.111 - 'Dettol Antibacterial Multipurpose Cleaner Multipack, Pomegra...'
+2025-07-14 04:40:18,478 - PassiveExtractionWorkflow - DEBUG - 🔍 MATCH VALIDATION: 'Home & Garden Multi-Purpose White Vinegar Cleaning Spray 500ml' vs 'Concentrated All Purpose Antibacterial Surface Cleaner Spray - Up to 50 Litres from 1 Litre - Food-Safe, Cruelty-Free, & Vegan-Friendly Formula 5 Litre Spray Kit' = 0.22 (very_low, 10.0%)
+2025-07-14 04:40:18,478 - PassiveExtractionWorkflow - INFO - 📊 Result 5: ASIN B0B5VJLJC5 - Confidence: 0.100 (very_low) - Overlap: 0.222 - 'Concentrated All Purpose Antibacterial Surface Cleaner Spray...'
+2025-07-14 04:40:18,478 - PassiveExtractionWorkflow - INFO - ✅ BEST MATCH: ASIN B0B1XTN27C with 60.0% confidence
+2025-07-14 04:40:18,478 - PassiveExtractionWorkflow - ERROR - Unexpected error occurred during workflow execution: 'PassiveExtractionWorkflow' object has no attribute 'amazon_cache_dir'
+Traceback (most recent call last):
+  File "/mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/tools/passive_extraction_workflow_latest.py", line 1154, in run
+    amazon_data = await self._get_amazon_data(product_data)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/tools/passive_extraction_workflow_latest.py", line 2740, in _get_amazon_data
+    amazon_product_data = self._check_amazon_cache_by_asin(asin, supplier_ean)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/tools/passive_extraction_workflow_latest.py", line 2641, in _check_amazon_cache_by_asin
+    amazon_cache_dir = self.amazon_cache_dir
+                       ^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'PassiveExtractionWorkflow' object has no attribute 'amazon_cache_dir'
+2025-07-14 04:40:18,484 - __main__ - INFO - 🌐 Keeping browser persistent for next run - not closing browser
+2025-07-14 04:40:18,484 - utils.browser_manager - WARNING - Error during global cleanup: no running event loop

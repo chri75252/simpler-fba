@@ -85,7 +85,7 @@ class ConfigurableSupplierScraper:
 
     def __init__(self, ai_client: Optional[Any] = None, openai_model_name: str = None, 
                  headless: bool = False, use_shared_chrome: bool = True, 
-                 auth_callback: Optional[callable] = None):
+                 auth_callback: Optional[callable] = None, browser_manager=None):
         """
         Initialize the configurable supplier scraper with Playwright.
 
@@ -99,8 +99,9 @@ class ConfigurableSupplierScraper:
         # Load system configuration first
         self.system_config = self._load_system_config()
         
-        # Browser management - prefer BrowserManager if available
-        self.use_browser_manager = BROWSER_MANAGER_AVAILABLE and use_shared_chrome
+        # Browser management - prefer passed BrowserManager first, then check availability
+        self.browser_manager = browser_manager
+        self.use_browser_manager = (browser_manager is not None) or (BROWSER_MANAGER_AVAILABLE and use_shared_chrome)
         self.playwright = None
         self.browser: Optional[Browser] = None
         self.context: Optional[BrowserContext] = None
@@ -144,40 +145,44 @@ class ConfigurableSupplierScraper:
 
     def _setup_debug_logging(self):
         """Setup debug logging to logs/debug/supplier_scraping_debug_YYYYMMDD.log"""
-        try:
-            # Import path manager for standardized logging
-            import sys
-            import os
-            parent_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-            if parent_dir not in sys.path:
-                sys.path.insert(0, parent_dir)
-            try:
-                from utils.path_manager import get_log_path
-            except ImportError:
-                # Fallback path setup
-                log.warning("Could not import path_manager, using fallback logging")
-                return
+        # DISABLED: This was overriding the main script's logging configuration
+        # The main script (run_custom_poundwholesale.py) already sets up proper logging
+        return
+        
+        # try:
+        #     # Import path manager for standardized logging
+        #     import sys
+        #     import os
+        #     parent_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        #     if parent_dir not in sys.path:
+        #         sys.path.insert(0, parent_dir)
+        #     try:
+        #         from utils.path_manager import get_log_path
+        #     except ImportError:
+        #         # Fallback path setup
+        #         log.warning("Could not import path_manager, using fallback logging")
+        #         return
             
-            # Create debug log file with current date and time for separate runs
-            from datetime import datetime
-            date_time_str = datetime.now().strftime('%Y%m%d_%H%M%S')
-            debug_log_path = get_log_path("debug", f"supplier_scraping_debug_{date_time_str}.log")
+        #     # Create debug log file with current date and time for separate runs
+        #     from datetime import datetime
+        #     date_time_str = datetime.now().strftime('%Y%m%d_%H%M%S')
+        #     debug_log_path = get_log_path("debug", f"supplier_scraping_debug_{date_time_str}.log")
             
-            # Add file handler to logger
-            debug_handler = logging.FileHandler(debug_log_path)
-            debug_handler.setLevel(logging.DEBUG)
-            formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-            debug_handler.setFormatter(formatter)
+        #     # Add file handler to logger
+        #     debug_handler = logging.FileHandler(debug_log_path)
+        #     debug_handler.setLevel(logging.DEBUG)
+        #     formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+        #     debug_handler.setFormatter(formatter)
             
-            # Add handler to both module logger and class logger
-            log.addHandler(debug_handler)
-            log.setLevel(logging.DEBUG)
+        #     # Add handler to both module logger and class logger
+        #     log.addHandler(debug_handler)
+        #     log.setLevel(logging.DEBUG)
             
-            log.debug(f"Debug logging initialized - writing to {debug_log_path}")
-            log.debug(f"Headless mode: {self.headless}")
+        #     log.debug(f"Debug logging initialized - writing to {debug_log_path}")
+        #     log.debug(f"Headless mode: {self.headless}")
             
-        except Exception as e:
-            log.warning(f"Failed to setup debug logging: {e}")
+        # except Exception as e:
+        #     log.warning(f"Failed to setup debug logging: {e}")
     
     def _load_system_config(self) -> Dict[str, Any]:
         """Load system configuration from system_config.json"""
@@ -226,9 +231,14 @@ class ConfigurableSupplierScraper:
             # Try BrowserManager first if available
             if self.use_browser_manager:
                 try:
-                    browser_manager = await get_browser_manager()
-                    self.browser = await browser_manager.connect()
-                    log.info("✅ Connected to Chrome via BrowserManager")
+                    # Use passed browser_manager first, then fallback to get_browser_manager()
+                    if self.browser_manager:
+                        self.browser = await self.browser_manager.get_browser()
+                        log.info("✅ Connected to Chrome via passed BrowserManager")
+                    else:
+                        browser_manager = await get_browser_manager()
+                        self.browser = await browser_manager.connect()
+                        log.info("✅ Connected to Chrome via BrowserManager")
                     return self.browser
                 except Exception as e:
                     log.warning(f"BrowserManager connection failed, falling back to legacy: {e}")
@@ -328,10 +338,16 @@ class ConfigurableSupplierScraper:
                 log.info(f"Fetching page content from: {url} (attempt {attempt + 1}/{retry_count})")
                 
                 # Use BrowserManager for page creation if available
-                if self.use_browser_manager and get_page_for_url:
+                if self.use_browser_manager:
                     try:
-                        page = await get_page_for_url(url, reuse_existing=True)
-                        log.info(f"🔧 Using BrowserManager page for {url}")
+                        if self.browser_manager:
+                            page = await self.browser_manager.get_page()
+                            log.info(f"🔧 Using passed BrowserManager page for {url}")
+                        elif get_page_for_url:
+                            page = await get_page_for_url(url, reuse_existing=True)
+                            log.info(f"🔧 Using BrowserManager page for {url}")
+                        else:
+                            page = None
                     except Exception as e:
                         log.warning(f"BrowserManager page creation failed, using legacy: {e}")
                         self.use_browser_manager = False
@@ -534,8 +550,14 @@ class ConfigurableSupplierScraper:
         
         try:
             # Get current page from BrowserManager
-            if self.use_browser_manager and get_page_for_url:
-                page = await get_page_for_url(url, reuse_existing=True)
+            if self.use_browser_manager:
+                if self.browser_manager:
+                    page = await self.browser_manager.get_page()
+                elif get_page_for_url:
+                    page = await get_page_for_url(url, reuse_existing=True)
+                else:
+                    log.warning("BrowserManager not available for page limiter setup")
+                    return False
             else:
                 log.warning("BrowserManager not available for page limiter setup")
                 return False

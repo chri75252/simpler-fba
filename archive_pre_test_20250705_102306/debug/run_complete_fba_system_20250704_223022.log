@@ -1,0 +1,735 @@
+INFO:__main__:🔍 Enhanced detailed logging enabled - output: /mnt/c/Users/chris/Cloud-Drive_christianhaddad8@gmail.com/Cloud-Drive/Full/claude code/Amazon-FBA-Agent-System-v3/logs/debug/run_complete_fba_system_20250704_223022.log
+DEBUG:asyncio:Using selector: EpollSelector
+WARNING:__main__:Failed to load system config: name 'json' is not defined, using defaults
+INFO:__main__:🚀 Complete FBA System v3 initialized
+INFO:__main__:🏭 Processing supplier: poundwholesale-co-uk
+INFO:__main__:🔗 URL: https://www.poundwholesale.co.uk/
+INFO:__main__:📧 Email: info@theblacksmithmarket.com
+INFO:__main__:🖥️ Headed mode: True
+INFO:__main__:📦 Max products: 15
+INFO:__main__:🔄 Force regenerate: True
+INFO:__main__:📦 Archiving expected output files for verification...
+INFO:__main__:📦 Archived suppliers/poundwholesale-co-uk to archive_pre_test_20250704_223022/poundwholesale-co-uk
+INFO:__main__:📦 Archived OUTPUTS/FBA_ANALYSIS to archive_pre_test_20250704_223022/FBA_ANALYSIS
+INFO:__main__:📦 Archived OUTPUTS/CACHE to archive_pre_test_20250704_223022/CACHE
+INFO:__main__:📦 Archived logs/debug to archive_pre_test_20250704_223022/debug
+INFO:__main__:✅ Archive complete - 4 paths processed
+INFO:tools.supplier_guard:🛡️ Supplier Guard initialized
+INFO:tools.supplier_guard:📦 Archived supplier poundwholesale-co-uk to suppliers/poundwholesale-co-uk.bak_20250704183030UTC
+INFO:__main__:📦 Archived existing data to: suppliers/poundwholesale-co-uk.bak_20250704183030UTC
+INFO:utils.path_manager:Creating run output directory for supplier 'poundwholesale-co-uk' -> 'poundwholesale-co-uk/20250704_183030_run'
+DEBUG:utils.path_manager:Successfully created run output directory: /mnt/c/Users/chris/Cloud-Drive_christianhaddad8@gmail.com/Cloud-Drive/Full/claude code/Amazon-FBA-Agent-System-v3/OUTPUTS/poundwholesale-co-uk/20250704_183030_run
+INFO:__main__:📁 Run output directory: /mnt/c/Users/chris/Cloud-Drive_christianhaddad8@gmail.com/Cloud-Drive/Full/claude code/Amazon-FBA-Agent-System-v3/OUTPUTS/poundwholesale-co-uk/20250704_183030_run
+INFO:__main__:✅ Existing supplier package found for poundwholesale-co-uk. Bypassing script generation.
+INFO:__main__:🚀 Initializing centralized browser session...
+INFO:utils.browser_manager:🔧 BrowserManager singleton initialized
+INFO:utils.browser_manager:🔌 Connecting to Chrome on debug port 9222
+INFO:utils.browser_manager:📄 Using existing context with 4 pages
+INFO:utils.browser_manager:✅ Connected to Chrome successfully
+INFO:utils.browser_manager:📄 Created new page #1 for https://www.poundwholesale.co.uk
+INFO:utils.browser_manager:✅ Page ready for https://www.poundwholesale.co.uk/
+INFO:__main__:🔐 Performing supplier authentication...
+DEBUG:vision_login_handler:Vision login debug logging initialized - writing to /mnt/c/Users/chris/Cloud-Drive_christianhaddad8@gmail.com/Cloud-Drive/Full/claude code/Amazon-FBA-Agent-System-v3/logs/debug/vision_login_20250704.log
+INFO:tools.supplier_authentication_service:✅ Authentication indicator found: 'logout'
+INFO:tools.supplier_authentication_service:✅ Logout link found - user is authenticated
+INFO:tools.supplier_authentication_service:✅ Session already authenticated - skipping login
+INFO:__main__:✅ Authentication successful using existing_session. Proceeding with authenticated workflow.
+INFO:__main__:🔄 Using standard workflow (LangGraph integration disabled)
+INFO:__main__:🔄 Starting passive extraction workflow...
+INFO:__main__:✅ Loaded system configuration from /mnt/c/Users/chris/Cloud-Drive_christianhaddad8@gmail.com/Cloud-Drive/Full/claude code/Amazon-FBA-Agent-System-v3/config/system_config.json
+INFO:__main__:✅ OpenAI client initialized for AI features
+WARNING:tools.passive_extraction_workflow_latest:Limiting scrape to 5 products per category. This is a low value suitable for testing only.
+INFO:tools.passive_extraction_workflow_latest:PassiveExtractionWorkflow initialized WITH an AI client.
+INFO:amazon_playwright_extractor:AI features disabled in amazon_playwright_extractor - using only traditional selectors.
+INFO:amazon_playwright_extractor:Output directory set to: /mnt/c/Users/chris/Cloud-Drive_christianhaddad8@gmail.com/Cloud-Drive/Full/claude code/Amazon-FBA-Agent-System-v3/OUTPUTS/CACHE/amazon_data
+INFO:amazon_playwright_extractor:🔧 AmazonExtractor will use centralized BrowserManager
+INFO:configurable_supplier_scraper:🔧 ConfigurableSupplierScraper will use centralized BrowserManager
+DEBUG:configurable_supplier_scraper:Debug logging initialized - writing to /mnt/c/Users/chris/Cloud-Drive_christianhaddad8@gmail.com/Cloud-Drive/Full/claude code/Amazon-FBA-Agent-System-v3/logs/debug/supplier_scraping_debug_20250704_223041.log
+DEBUG:configurable_supplier_scraper:Headless mode: False
+INFO:tools.passive_extraction_workflow_latest:✅ Linking map initialized - using previous version self-contained approach
+INFO:__main__:🔧 Workflow configured: force_ai_scraping=True, linking_batch=5, financial_batch=5, ai_client=enabled
+INFO:utils.enhanced_state_manager:No existing state file found for poundwholesale-co-uk, starting fresh
+INFO:tools.passive_extraction_workflow_latest:✅ No existing linking map found at /mnt/c/Users/chris/Cloud-Drive_christianhaddad8@gmail.com/Cloud-Drive/Full/claude code/Amazon-FBA-Agent-System-v3/OUTPUTS/FBA_ANALYSIS/linking_maps/poundwholesale-co-uk/linking_map.json - Creating new map
+INFO:tools.passive_extraction_workflow_latest:Starting passive extraction workflow for supplier: poundwholesale-co-uk (https://www.poundwholesale.co.uk/)
+INFO:tools.passive_extraction_workflow_latest:Session ID: poundwholesale-co-uk_20250704_223041
+INFO:tools.passive_extraction_workflow_latest:PRICE CRITERIA: Min Supplier Cost £0.1, Max Supplier Cost £20.0
+INFO:utils.enhanced_state_manager:No existing state file found for poundwholesale-co-uk, starting fresh
+INFO:tools.passive_extraction_workflow_latest:Starting fresh analysis - no previous state found
+INFO:tools.passive_extraction_workflow_latest:Supplier cache too old (0.5 hours). Fetching new data.
+INFO:tools.passive_extraction_workflow_latest:Extracting products from poundwholesale-co-uk...
+INFO:config.supplier_config_loader:Loaded supplier selector config for domain: poundwholesale.co.uk
+INFO:configurable_supplier_scraper:Loaded selectors for domain poundwholesale.co.uk using load_supplier_selectors.
+DEBUG:vision_login_handler:Vision login debug logging initialized - writing to /mnt/c/Users/chris/Cloud-Drive_christianhaddad8@gmail.com/Cloud-Drive/Full/claude code/Amazon-FBA-Agent-System-v3/logs/debug/vision_login_20250704.log
+INFO:tools.passive_extraction_workflow_latest:Using fallback credentials for poundwholesale authentication
+INFO:tools.passive_extraction_workflow_latest:✅ Using authenticated page from entry point
+INFO:tools.passive_extraction_workflow_latest:🧠 AI category discovery will work with authenticated session
+INFO:tools.passive_extraction_workflow_latest:🧠 AI category progression ENABLED for start-of-workflow category selection
+INFO:tools.passive_extraction_workflow_latest:Extracting products from poundwholesale-co-uk using two-step process.
+INFO:tools.passive_extraction_workflow_latest:🧠 AI CATEGORY PROGRESSION: Running AI category selection at START of workflow
+INFO:tools.passive_extraction_workflow_latest:🧠 AI Memory loaded: 6 previously suggested URLs, 0 products processed
+DEBUG:tools.passive_extraction_workflow_latest:🧠 Previously suggested URLs: ['https://www.poundwholesale.co.uk/party-gift/wholesale-partyware', 'https://www.poundwholesale.co.uk/toys/wholesale-pocket-money-toys?product_list_limit=64&product_list_order=price&product_list_dir=asc', 'https://www.poundwholesale.co.uk/baby-supplies?product_list_limit=64&product_list_order=price&product_list_dir=asc', 'https://www.poundwholesale.co.uk/health-beauty/wholesale-skin-care?product_list_limit=64&product_list_order=price&product_list_dir=asc', 'https://www.poundwholesale.co.uk/homeware/wholesale-home-fragrance-candles-accessories', 'https://www.poundwholesale.co.uk/diy/wholesale-hand-tools/pliers']
+INFO:configurable_supplier_scraper:Extracting homepage categories from https://www.poundwholesale.co.uk/
+INFO:configurable_supplier_scraper:Fetching page content from: https://www.poundwholesale.co.uk/ (attempt 1/3)
+INFO:utils.browser_manager:♻️ Reusing existing Chrome connection (port 9222)
+INFO:utils.browser_manager:♻️ Reusing cached page for https://www.poundwholesale.co.uk
+INFO:configurable_supplier_scraper:🔧 Using BrowserManager page for https://www.poundwholesale.co.uk/
+INFO:configurable_supplier_scraper:🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/
+INFO:configurable_supplier_scraper:🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/
+INFO:configurable_supplier_scraper:Successfully fetched content from https://www.poundwholesale.co.uk/ (Size: 627280 bytes)
+INFO:configurable_supplier_scraper:Found 342 unique potential category URLs from homepage of https://www.poundwholesale.co.uk/
+INFO:configurable_supplier_scraper:Discovered 75 categories for https://www.poundwholesale.co.uk/
+INFO:tools.passive_extraction_workflow_latest:PHASE 3: Applying subcategory deduplication to 75 discovered categories
+INFO:tools.passive_extraction_workflow_latest:Parent-child URL analysis: 67 parent categories, 8 child categories
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/electrical
+DEBUG:configurable_supplier_scraper:Created new aiohttp session.
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/electrical: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/electrical -> 90 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/electrical (90 products) - SKIPPING 1 subcategories: ['https://www.poundwholesale.co.uk/electrical/wholesale-small-kitchen-appliances']
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/baby-supplies
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/baby-supplies: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/baby-supplies -> 90 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/baby-supplies (90 products) - SKIPPING 2 subcategories: ['https://www.poundwholesale.co.uk/baby-supplies/wholesale-baby-infant-toys', 'https://www.poundwholesale.co.uk/baby-supplies/wholesale-baby-accessories']
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/ebay-amazon-sellers
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/ebay-amazon-sellers: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/ebay-amazon-sellers -> 60 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/ebay-amazon-sellers (60 products) - SKIPPING 0 subcategories: []
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/leisure-hobbies
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/leisure-hobbies: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/leisure-hobbies -> 90 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/leisure-hobbies (90 products) - SKIPPING 1 subcategories: ['https://www.poundwholesale.co.uk/leisure-hobbies/wholesale-camping']
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/seasonal
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/seasonal: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/seasonal -> 90 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/seasonal (90 products) - SKIPPING 0 subcategories: []
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/testimonials
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/testimonials: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/testimonials -> 1 products (productive: False)
+INFO:tools.passive_extraction_workflow_latest:⚠️  PARENT CATEGORY INSUFFICIENT: https://www.poundwholesale.co.uk/testimonials (1 products) - INCLUDING 0 subcategories: []
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/homeware/wholesale-home-accessories
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/homeware/wholesale-home-accessories: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/homeware/wholesale-home-accessories -> 60 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/homeware/wholesale-home-accessories (60 products) - SKIPPING 0 subcategories: []
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/homeware/wholesale-home-fragrance-candles-accessories
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/homeware/wholesale-home-fragrance-candles-accessories: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/homeware/wholesale-home-fragrance-candles-accessories -> 60 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/homeware/wholesale-home-fragrance-candles-accessories (60 products) - SKIPPING 0 subcategories: []
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/party-gift/wholesale-gifts-toys
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/party-gift/wholesale-gifts-toys: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/party-gift/wholesale-gifts-toys -> 60 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/party-gift/wholesale-gifts-toys (60 products) - SKIPPING 0 subcategories: []
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/wholesale-garden/pegs-clotheslines
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/wholesale-garden/pegs-clotheslines: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/wholesale-garden/pegs-clotheslines -> 60 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/wholesale-garden/pegs-clotheslines (60 products) - SKIPPING 0 subcategories: []
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/health-beauty/wholesale-skin-care
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/health-beauty/wholesale-skin-care: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/health-beauty/wholesale-skin-care -> 60 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/health-beauty/wholesale-skin-care (60 products) - SKIPPING 0 subcategories: []
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/kitchenware/wholesale-storage-boxes-containers
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/kitchenware/wholesale-storage-boxes-containers: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/kitchenware/wholesale-storage-boxes-containers -> 60 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/kitchenware/wholesale-storage-boxes-containers (60 products) - SKIPPING 0 subcategories: []
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/toys/wholesale-slime-squish-toys
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/toys/wholesale-slime-squish-toys: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/toys/wholesale-slime-squish-toys -> 60 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/toys/wholesale-slime-squish-toys (60 products) - SKIPPING 0 subcategories: []
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/pound-lines/party-gift-pound-lines
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/pound-lines/party-gift-pound-lines: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/pound-lines/party-gift-pound-lines -> 60 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/pound-lines/party-gift-pound-lines (60 products) - SKIPPING 0 subcategories: []
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/stationery/wholesale-postal-supplies
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/stationery/wholesale-postal-supplies: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/stationery/wholesale-postal-supplies -> 60 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/stationery/wholesale-postal-supplies (60 products) - SKIPPING 0 subcategories: []
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/clothing/wholesale-clothing
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/clothing/wholesale-clothing: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/clothing/wholesale-clothing -> 51 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/clothing/wholesale-clothing (51 products) - SKIPPING 0 subcategories: []
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/preorder/
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/preorder/: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/preorder/ -> 1 products (productive: False)
+INFO:tools.passive_extraction_workflow_latest:⚠️  PARENT CATEGORY INSUFFICIENT: https://www.poundwholesale.co.uk/preorder/ (1 products) - INCLUDING 0 subcategories: []
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/toys/wholesale-battery-operated-toys
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/toys/wholesale-battery-operated-toys: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/toys/wholesale-battery-operated-toys -> 60 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/toys/wholesale-battery-operated-toys (60 products) - SKIPPING 0 subcategories: []
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/homeware/wholesale-wheelie-bin-stickers-numbers
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/homeware/wholesale-wheelie-bin-stickers-numbers: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/homeware/wholesale-wheelie-bin-stickers-numbers -> 6 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/homeware/wholesale-wheelie-bin-stickers-numbers (6 products) - SKIPPING 0 subcategories: []
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/pet-supplies/wholesale-pet-toys-treats
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/pet-supplies/wholesale-pet-toys-treats: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/pet-supplies/wholesale-pet-toys-treats -> 60 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/pet-supplies/wholesale-pet-toys-treats (60 products) - SKIPPING 0 subcategories: []
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/wholesale-cleaning/bowls-storage
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/wholesale-cleaning/bowls-storage: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/wholesale-cleaning/bowls-storage -> 60 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/wholesale-cleaning/bowls-storage (60 products) - SKIPPING 0 subcategories: []
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/health-beauty/wholesale-shoe-care
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/health-beauty/wholesale-shoe-care: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/health-beauty/wholesale-shoe-care -> 60 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/health-beauty/wholesale-shoe-care (60 products) - SKIPPING 0 subcategories: []
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/information-support/retail
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/information-support/retail: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/information-support/retail -> 2 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/information-support/retail (2 products) - SKIPPING 2 subcategories: ['https://www.poundwholesale.co.uk/information-support/retail/garden', 'https://www.poundwholesale.co.uk/information-support/retail/kitchenware']
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/health-beauty/wholesale-optical
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/health-beauty/wholesale-optical: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/health-beauty/wholesale-optical -> 60 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/health-beauty/wholesale-optical (60 products) - SKIPPING 0 subcategories: []
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/health-beauty/wholesale-foot-care
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/health-beauty/wholesale-foot-care: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/health-beauty/wholesale-foot-care -> 60 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/health-beauty/wholesale-foot-care (60 products) - SKIPPING 0 subcategories: []
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/toys/wholesale-money-tins
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/toys/wholesale-money-tins: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/toys/wholesale-money-tins -> 30 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/toys/wholesale-money-tins (30 products) - SKIPPING 0 subcategories: []
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/stationery/wholesale-ring-binders-folders
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/stationery/wholesale-ring-binders-folders: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/stationery/wholesale-ring-binders-folders -> 60 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/stationery/wholesale-ring-binders-folders (60 products) - SKIPPING 0 subcategories: []
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/toys/wholesale-pocket-money-toys
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/toys/wholesale-pocket-money-toys: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/toys/wholesale-pocket-money-toys -> 60 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/toys/wholesale-pocket-money-toys (60 products) - SKIPPING 0 subcategories: []
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/health-beauty/wholesale-hand-nail
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/health-beauty/wholesale-hand-nail: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/health-beauty/wholesale-hand-nail -> 60 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/health-beauty/wholesale-hand-nail (60 products) - SKIPPING 0 subcategories: []
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/diy/wholesale-home-security
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/diy/wholesale-home-security: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/diy/wholesale-home-security -> 60 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/diy/wholesale-home-security (60 products) - SKIPPING 0 subcategories: []
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/pound-lines/seasonal-pound-lines
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/pound-lines/seasonal-pound-lines: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/pound-lines/seasonal-pound-lines -> 60 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/pound-lines/seasonal-pound-lines (60 products) - SKIPPING 0 subcategories: []
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/health-beauty/wholesale-dental
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/health-beauty/wholesale-dental: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/health-beauty/wholesale-dental -> 60 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/health-beauty/wholesale-dental (60 products) - SKIPPING 0 subcategories: []
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/stationery/wholesale-notebooks-notepads
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/stationery/wholesale-notebooks-notepads: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/stationery/wholesale-notebooks-notepads -> 60 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/stationery/wholesale-notebooks-notepads (60 products) - SKIPPING 0 subcategories: []
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/health-beauty/wholesale-shaving-hair-removal
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/health-beauty/wholesale-shaving-hair-removal: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/health-beauty/wholesale-shaving-hair-removal -> 60 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/health-beauty/wholesale-shaving-hair-removal (60 products) - SKIPPING 0 subcategories: []
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/information-support/an-introduction-to-wholesale
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/information-support/an-introduction-to-wholesale: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/information-support/an-introduction-to-wholesale -> 2 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/information-support/an-introduction-to-wholesale (2 products) - SKIPPING 2 subcategories: ['https://www.poundwholesale.co.uk/information-support/an-introduction-to-wholesale/leading-uk-car-boot-sales-for-sellers', 'https://www.poundwholesale.co.uk/information-support/an-introduction-to-wholesale/b2b-b2c-everything-you-need-to-know']
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/diy/wholesale-painting-decorating/filling-scraping
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/diy/wholesale-painting-decorating/filling-scraping: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/diy/wholesale-painting-decorating/filling-scraping -> 60 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/diy/wholesale-painting-decorating/filling-scraping (60 products) - SKIPPING 0 subcategories: []
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/bathroom-cleaners
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/bathroom-cleaners: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/bathroom-cleaners -> 60 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/bathroom-cleaners (60 products) - SKIPPING 0 subcategories: []
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/diy/wholesale-hand-tools/hammers
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/diy/wholesale-hand-tools/hammers: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/diy/wholesale-hand-tools/hammers -> 60 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/diy/wholesale-hand-tools/hammers (60 products) - SKIPPING 0 subcategories: []
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/information-support/for-your-business/toys
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/information-support/for-your-business/toys: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/information-support/for-your-business/toys -> 2 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/information-support/for-your-business/toys (2 products) - SKIPPING 0 subcategories: []
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/information-support/buying-guides/homeware
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/information-support/buying-guides/homeware: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/information-support/buying-guides/homeware -> 20 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/information-support/buying-guides/homeware (20 products) - SKIPPING 0 subcategories: []
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/toys/wholesale-branded-toys/frozen-fever
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/toys/wholesale-branded-toys/frozen-fever: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/toys/wholesale-branded-toys/frozen-fever -> 6 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/toys/wholesale-branded-toys/frozen-fever (6 products) - SKIPPING 0 subcategories: []
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/diy/wholesale-dekton-tools/dekton-woodworking
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/diy/wholesale-dekton-tools/dekton-woodworking: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/diy/wholesale-dekton-tools/dekton-woodworking -> 48 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/diy/wholesale-dekton-tools/dekton-woodworking (48 products) - SKIPPING 0 subcategories: []
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/diy/wholesale-dekton-tools/dekton-building-saws
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/diy/wholesale-dekton-tools/dekton-building-saws: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/diy/wholesale-dekton-tools/dekton-building-saws -> 60 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/diy/wholesale-dekton-tools/dekton-building-saws (60 products) - SKIPPING 0 subcategories: []
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/diy/wholesale-car-care/pumps-compressors
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/diy/wholesale-car-care/pumps-compressors: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/diy/wholesale-car-care/pumps-compressors -> 36 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/diy/wholesale-car-care/pumps-compressors (36 products) - SKIPPING 0 subcategories: []
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/kitchenware/wholesale-plastic-disposable/wholesale-straws
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/kitchenware/wholesale-plastic-disposable/wholesale-straws: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/kitchenware/wholesale-plastic-disposable/wholesale-straws -> 45 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/kitchenware/wholesale-plastic-disposable/wholesale-straws (45 products) - SKIPPING 0 subcategories: []
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/wholesale-garden/garden-tools/rakes-brushes
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/wholesale-garden/garden-tools/rakes-brushes: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/wholesale-garden/garden-tools/rakes-brushes -> 60 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/wholesale-garden/garden-tools/rakes-brushes (60 products) - SKIPPING 0 subcategories: []
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/diy/wholesale-hand-tools/saw-cutting
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/diy/wholesale-hand-tools/saw-cutting: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/diy/wholesale-hand-tools/saw-cutting -> 60 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/diy/wholesale-hand-tools/saw-cutting (60 products) - SKIPPING 0 subcategories: []
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/drain-cleaners-unblockers
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/drain-cleaners-unblockers: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/drain-cleaners-unblockers -> 42 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/drain-cleaners-unblockers (42 products) - SKIPPING 0 subcategories: []
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/information-support/for-your-business/art-craft
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/information-support/for-your-business/art-craft: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/information-support/for-your-business/art-craft -> 2 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/information-support/for-your-business/art-craft (2 products) - SKIPPING 0 subcategories: []
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/diy/wholesale-dekton-tools/dekton-striking-tools
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/diy/wholesale-dekton-tools/dekton-striking-tools: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/diy/wholesale-dekton-tools/dekton-striking-tools -> 54 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/diy/wholesale-dekton-tools/dekton-striking-tools (54 products) - SKIPPING 0 subcategories: []
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/diy/wholesale-dekton-tools/dekton-screwdrivers
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/diy/wholesale-dekton-tools/dekton-screwdrivers: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/diy/wholesale-dekton-tools/dekton-screwdrivers -> 60 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/diy/wholesale-dekton-tools/dekton-screwdrivers (60 products) - SKIPPING 0 subcategories: []
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/stationery/wholesale-art-crafts/craft-supplies
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/stationery/wholesale-art-crafts/craft-supplies: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/stationery/wholesale-art-crafts/craft-supplies -> 60 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/stationery/wholesale-art-crafts/craft-supplies (60 products) - SKIPPING 0 subcategories: []
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/information-support/buying-guides/art-craft
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/information-support/buying-guides/art-craft: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/information-support/buying-guides/art-craft -> 20 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/information-support/buying-guides/art-craft (20 products) - SKIPPING 0 subcategories: []
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/stationery/wholesale-art-crafts/paints-paint-brushes
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/stationery/wholesale-art-crafts/paints-paint-brushes: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/stationery/wholesale-art-crafts/paints-paint-brushes -> 60 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/stationery/wholesale-art-crafts/paints-paint-brushes (60 products) - SKIPPING 0 subcategories: []
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/wholesale-garden/garden-tools/spades-forks-trowels
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/wholesale-garden/garden-tools/spades-forks-trowels: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/wholesale-garden/garden-tools/spades-forks-trowels -> 60 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/wholesale-garden/garden-tools/spades-forks-trowels (60 products) - SKIPPING 0 subcategories: []
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/information-support/for-your-business/garden
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/information-support/for-your-business/garden: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/information-support/for-your-business/garden -> 2 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/information-support/for-your-business/garden (2 products) - SKIPPING 0 subcategories: []
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/diy/wholesale-car-care/mechanics-tools
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/diy/wholesale-car-care/mechanics-tools: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/diy/wholesale-car-care/mechanics-tools -> 60 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/diy/wholesale-car-care/mechanics-tools (60 products) - SKIPPING 0 subcategories: []
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/homeware/wholesale-house-gate-number-stickers/house-number-stickers-black-and-silver
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/homeware/wholesale-house-gate-number-stickers/house-number-stickers-black-and-silver: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/homeware/wholesale-house-gate-number-stickers/house-number-stickers-black-and-silver -> 3 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/homeware/wholesale-house-gate-number-stickers/house-number-stickers-black-and-silver (3 products) - SKIPPING 0 subcategories: []
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/diy/wholesale-dekton-tools/dekton-painting-decorating
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/diy/wholesale-dekton-tools/dekton-painting-decorating: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/diy/wholesale-dekton-tools/dekton-painting-decorating -> 60 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/diy/wholesale-dekton-tools/dekton-painting-decorating (60 products) - SKIPPING 0 subcategories: []
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/kitchenware/wholesale-plastic-disposable/wholesale-cutlery
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/kitchenware/wholesale-plastic-disposable/wholesale-cutlery: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/kitchenware/wholesale-plastic-disposable/wholesale-cutlery -> 60 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/kitchenware/wholesale-plastic-disposable/wholesale-cutlery (60 products) - SKIPPING 0 subcategories: []
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/toys/wholesale-branded-toys/spider-man
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/toys/wholesale-branded-toys/spider-man: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/toys/wholesale-branded-toys/spider-man -> 30 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/toys/wholesale-branded-toys/spider-man (30 products) - SKIPPING 0 subcategories: []
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/window-glass-cleaners
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/window-glass-cleaners: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/window-glass-cleaners -> 51 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/window-glass-cleaners (51 products) - SKIPPING 0 subcategories: []
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/information-support/for-your-business/cleaning-supplies
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/information-support/for-your-business/cleaning-supplies: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/information-support/for-your-business/cleaning-supplies -> 2 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/information-support/for-your-business/cleaning-supplies (2 products) - SKIPPING 0 subcategories: []
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/kitchenware/wholesale-household-bags/food-freezer-bags
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/kitchenware/wholesale-household-bags/food-freezer-bags: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/kitchenware/wholesale-household-bags/food-freezer-bags -> 60 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/kitchenware/wholesale-household-bags/food-freezer-bags (60 products) - SKIPPING 0 subcategories: []
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/wholesale-garden/garden-tools/secateurs-shears-loppers
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/wholesale-garden/garden-tools/secateurs-shears-loppers: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/wholesale-garden/garden-tools/secateurs-shears-loppers -> 60 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/wholesale-garden/garden-tools/secateurs-shears-loppers (60 products) - SKIPPING 0 subcategories: []
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/diy/wholesale-car-care/de-icer-scrapers-winter
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/diy/wholesale-car-care/de-icer-scrapers-winter: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/diy/wholesale-car-care/de-icer-scrapers-winter -> 51 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/diy/wholesale-car-care/de-icer-scrapers-winter (51 products) - SKIPPING 0 subcategories: []
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/rma/returns/history/
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/rma/returns/history/: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/rma/returns/history/ -> 1 products (productive: False)
+INFO:tools.passive_extraction_workflow_latest:⚠️  PARENT CATEGORY INSUFFICIENT: https://www.poundwholesale.co.uk/rma/returns/history/ (1 products) - INCLUDING 0 subcategories: []
+INFO:tools.passive_extraction_workflow_latest:SUBCATEGORY DEDUPLICATION: Reduced 75 URLs to 67 (eliminated 8 redundant subcategories)
+INFO:tools.passive_extraction_workflow_latest:PHASE 3 RESULT: Eliminated 8 redundant subcategories, proceeding with 67 optimized categories
+INFO:tools.passive_extraction_workflow_latest:Category exhaustion status: {'friendly_total': 67, 'friendly_processed': 1, 'friendly_remaining': 66, 'neutral_total': 0, 'neutral_processed': 0, 'neutral_remaining': 0, 'should_continue': True, 'phase': 'friendly'}
+INFO:tools.passive_extraction_workflow_latest:Current price phase: low
+INFO:tools.passive_extraction_workflow_latest:🧠 AI Memory loaded: 6 previously suggested URLs, 0 products processed
+DEBUG:tools.passive_extraction_workflow_latest:🧠 Previously suggested URLs: ['https://www.poundwholesale.co.uk/party-gift/wholesale-partyware', 'https://www.poundwholesale.co.uk/toys/wholesale-pocket-money-toys?product_list_limit=64&product_list_order=price&product_list_dir=asc', 'https://www.poundwholesale.co.uk/baby-supplies?product_list_limit=64&product_list_order=price&product_list_dir=asc', 'https://www.poundwholesale.co.uk/health-beauty/wholesale-skin-care?product_list_limit=64&product_list_order=price&product_list_dir=asc', 'https://www.poundwholesale.co.uk/homeware/wholesale-home-fragrance-candles-accessories', 'https://www.poundwholesale.co.uk/diy/wholesale-hand-tools/pliers']
+INFO:tools.passive_extraction_workflow_latest:🤖 OpenAI API Call - Model: gpt-4o-mini, Max Tokens: 1200
+INFO:tools.passive_extraction_workflow_latest:🤖 Prompt Length: 12328 characters
+DEBUG:tools.passive_extraction_workflow_latest:🤖 Full Prompt: 
+AMAZON FBA UK CATEGORY ANALYSIS FOR: poundwholesale-co-uk
+
+You are an expert Amazon FBA consultant specializing in UK marketplace product sourcing and category analysis.
+
+DISCOVERED CATEGORIES FROM WEBSITE HOMEPAGE:
+- Wholesale Painting Decorating Filling Scraping: https://www.poundwholesale.co.uk/diy/wholesale-painting-decorating/filling-scraping
+- Electrical: https://www.poundwholesale.co.uk/electrical
+- Homeware Wholesale Home Accessories: https://www.poundwholesale.co.uk/homeware/wholesale-...
+DEBUG:openai._base_client:Request options: {'method': 'post', 'url': '/chat/completions', 'files': None, 'idempotency_key': 'stainless-python-retry-7802fd3f-b60c-4692-926b-874b1717f8f7', 'json_data': {'messages': [{'role': 'user', 'content': '\nAMAZON FBA UK CATEGORY ANALYSIS FOR: poundwholesale-co-uk\n\nYou are an expert Amazon FBA consultant specializing in UK marketplace product sourcing and category analysis.\n\nDISCOVERED CATEGORIES FROM WEBSITE HOMEPAGE:\n- Wholesale Painting Decorating Filling Scraping: https://www.poundwholesale.co.uk/diy/wholesale-painting-decorating/filling-scraping\n- Electrical: https://www.poundwholesale.co.uk/electrical\n- Homeware Wholesale Home Accessories: https://www.poundwholesale.co.uk/homeware/wholesale-home-accessories\n- Cleaning Wipes Sprays Bathroom Cleaners: https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/bathroom-cleaners\n- Party Gift Wholesale Gifts Toys: https://www.poundwholesale.co.uk/party-gift/wholesale-gifts-toys\n- Wholesale Garden Pegs Clotheslines: https://www.poundwholesale.co.uk/wholesale-garden/pegs-clotheslines\n- Wholesale Hand Tools Hammers: https://www.poundwholesale.co.uk/diy/wholesale-hand-tools/hammers\n- For Your Business Toys: https://www.poundwholesale.co.uk/information-support/for-your-business/toys\n- Buying Guides Homeware: https://www.poundwholesale.co.uk/information-support/buying-guides/homeware\n- Wholesale Branded Toys Frozen Fever: https://www.poundwholesale.co.uk/toys/wholesale-branded-toys/frozen-fever\n- Kitchenware Wholesale Storage Boxes Containers: https://www.poundwholesale.co.uk/kitchenware/wholesale-storage-boxes-containers\n- Toys Wholesale Slime Squish Toys: https://www.poundwholesale.co.uk/toys/wholesale-slime-squish-toys\n- Wholesale Dekton Tools Dekton Woodworking: https://www.poundwholesale.co.uk/diy/wholesale-dekton-tools/dekton-woodworking\n- Wholesale Dekton Tools Dekton Building Saws: https://www.poundwholesale.co.uk/diy/wholesale-dekton-tools/dekton-building-saws\n- Wholesale Car Care Pumps Compressors: https://www.poundwholesale.co.uk/diy/wholesale-car-care/pumps-compressors\n- Pound Lines Party Gift Pound Lines: https://www.poundwholesale.co.uk/pound-lines/party-gift-pound-lines\n- Wholesale Plastic Disposable Wholesale Straws: https://www.poundwholesale.co.uk/kitchenware/wholesale-plastic-disposable/wholesale-straws\n- Stationery Wholesale Postal Supplies: https://www.poundwholesale.co.uk/stationery/wholesale-postal-supplies\n- Garden Tools Rakes Brushes: https://www.poundwholesale.co.uk/wholesale-garden/garden-tools/rakes-brushes\n- Wholesale Hand Tools Saw Cutting: https://www.poundwholesale.co.uk/diy/wholesale-hand-tools/saw-cutting\n- Clothing Wholesale Clothing: https://www.poundwholesale.co.uk/clothing/wholesale-clothing\n- Cleaning Wipes Sprays Drain Cleaners Unblockers: https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/drain-cleaners-unblockers\n- For Your Business Art Craft: https://www.poundwholesale.co.uk/information-support/for-your-business/art-craft\n- Preorder: https://www.poundwholesale.co.uk/preorder/\n- Wholesale Dekton Tools Dekton Striking Tools: https://www.poundwholesale.co.uk/diy/wholesale-dekton-tools/dekton-striking-tools\n- Wholesale Dekton Tools Dekton Screwdrivers: https://www.poundwholesale.co.uk/diy/wholesale-dekton-tools/dekton-screwdrivers\n- Toys Wholesale Battery Operated Toys: https://www.poundwholesale.co.uk/toys/wholesale-battery-operated-toys\n- Homeware Wholesale Wheelie Bin Stickers Numbers: https://www.poundwholesale.co.uk/homeware/wholesale-wheelie-bin-stickers-numbers\n- Wholesale Art Crafts Craft Supplies: https://www.poundwholesale.co.uk/stationery/wholesale-art-crafts/craft-supplies\n- Buying Guides Art Craft: https://www.poundwholesale.co.uk/information-support/buying-guides/art-craft\n- Wholesale Art Crafts Paints Paint Brushes: https://www.poundwholesale.co.uk/stationery/wholesale-art-crafts/paints-paint-brushes\n- Garden Tools Spades Forks Trowels: https://www.poundwholesale.co.uk/wholesale-garden/garden-tools/spades-forks-trowels\n- For Your Business Garden: https://www.poundwholesale.co.uk/information-support/for-your-business/garden\n- Wholesale Car Care Mechanics Tools: https://www.poundwholesale.co.uk/diy/wholesale-car-care/mechanics-tools\n- Pet Supplies Wholesale Pet Toys Treats: https://www.poundwholesale.co.uk/pet-supplies/wholesale-pet-toys-treats\n- Wholesale Cleaning Bowls Storage: https://www.poundwholesale.co.uk/wholesale-cleaning/bowls-storage\n- Wholesale House Gate Number Stickers House Number Sticker...: https://www.poundwholesale.co.uk/homeware/wholesale-house-gate-number-stickers/house-number-stickers-black-and-silver\n- Wholesale Dekton Tools Dekton Painting Decorating: https://www.poundwholesale.co.uk/diy/wholesale-dekton-tools/dekton-painting-decorating\n- Health Beauty Wholesale Shoe Care: https://www.poundwholesale.co.uk/health-beauty/wholesale-shoe-care\n- Wholesale Plastic Disposable Wholesale Cutlery: https://www.poundwholesale.co.uk/kitchenware/wholesale-plastic-disposable/wholesale-cutlery\n- Information Support Retail: https://www.poundwholesale.co.uk/information-support/retail\n- Health Beauty Wholesale Optical: https://www.poundwholesale.co.uk/health-beauty/wholesale-optical\n- Health Beauty Wholesale Foot Care: https://www.poundwholesale.co.uk/health-beauty/wholesale-foot-care\n- Ebay Amazon Sellers: https://www.poundwholesale.co.uk/ebay-amazon-sellers\n- Toys Wholesale Money Tins: https://www.poundwholesale.co.uk/toys/wholesale-money-tins\n- Returns History: https://www.poundwholesale.co.uk/rma/returns/history/\n- Wholesale Branded Toys Spider Man: https://www.poundwholesale.co.uk/toys/wholesale-branded-toys/spider-man\n- Stationery Wholesale Ring Binders Folders: https://www.poundwholesale.co.uk/stationery/wholesale-ring-binders-folders\n- Leisure Hobbies: https://www.poundwholesale.co.uk/leisure-hobbies\n- Cleaning Wipes Sprays Window Glass Cleaners: https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/window-glass-cleaners\n- For Your Business Cleaning Supplies: https://www.poundwholesale.co.uk/information-support/for-your-business/cleaning-supplies\n- Wholesale Household Bags Food Freezer Bags: https://www.poundwholesale.co.uk/kitchenware/wholesale-household-bags/food-freezer-bags\n- Health Beauty Wholesale Hand Nail: https://www.poundwholesale.co.uk/health-beauty/wholesale-hand-nail\n- Diy Wholesale Home Security: https://www.poundwholesale.co.uk/diy/wholesale-home-security\n- Pound Lines Seasonal Pound Lines: https://www.poundwholesale.co.uk/pound-lines/seasonal-pound-lines\n- Garden Tools Secateurs Shears Loppers: https://www.poundwholesale.co.uk/wholesale-garden/garden-tools/secateurs-shears-loppers\n- Seasonal: https://www.poundwholesale.co.uk/seasonal\n- Health Beauty Wholesale Dental: https://www.poundwholesale.co.uk/health-beauty/wholesale-dental\n- Stationery Wholesale Notebooks Notepads: https://www.poundwholesale.co.uk/stationery/wholesale-notebooks-notepads\n- Health Beauty Wholesale Shaving Hair Removal: https://www.poundwholesale.co.uk/health-beauty/wholesale-shaving-hair-removal\n- Wholesale Car Care De Icer Scrapers Winter: https://www.poundwholesale.co.uk/diy/wholesale-car-care/de-icer-scrapers-winter\n- Information Support An Introduction To Wholesale: https://www.poundwholesale.co.uk/information-support/an-introduction-to-wholesale\n- Testimonials: https://www.poundwholesale.co.uk/testimonials\n\n\n\n🧠 IMPORTANT - PREVIOUSLY SUGGESTED CATEGORIES (DO NOT REPEAT):\n1. https://www.poundwholesale.co.uk/party-gift/wholesale-partyware\n2. https://www.poundwholesale.co.uk/toys/wholesale-pocket-money-toys?product_list_limit=64&product_list_order=price&product_list_dir=asc\n3. https://www.poundwholesale.co.uk/baby-supplies?product_list_limit=64&product_list_order=price&product_list_dir=asc\n4. https://www.poundwholesale.co.uk/health-beauty/wholesale-skin-care?product_list_limit=64&product_list_order=price&product_list_dir=asc\n5. https://www.poundwholesale.co.uk/homeware/wholesale-home-fragrance-candles-accessories\n6. https://www.poundwholesale.co.uk/diy/wholesale-hand-tools/pliers\n\n⚠️ You MUST suggest DIFFERENT categories that have NOT been suggested before!\n\nPREVIOUSLY PROCESSED CATEGORIES: [\'https://www.poundwholesale.co.uk/party-gift/wholesale-partyware\', \'https://www.poundwholesale.co.uk/toys/wholesale-pocket-money-toys?product_list_limit=64&product_list_order=price&product_list_dir=asc\', \'https://www.poundwholesale.co.uk/baby-supplies?product_list_limit=64&product_list_order=price&product_list_dir=asc\', \'https://www.poundwholesale.co.uk/health-beauty/wholesale-skin-care?product_list_limit=64&product_list_order=price&product_list_dir=asc\', \'https://www.poundwholesale.co.uk/homeware/wholesale-home-fragrance-candles-accessories\', \'https://www.poundwholesale.co.uk/diy/wholesale-hand-tools/pliers\']\nPREVIOUSLY PROCESSED PRODUCTS: None\n\n🚨 CRITICAL INSTRUCTIONS - READ CAREFULLY:\n1. **YOU MUST ONLY SELECT URLs FROM THE "DISCOVERED CATEGORIES" LIST ABOVE**\n2. **DO NOT INVENT OR CREATE NEW URLs - ONLY USE THE PROVIDED ONES**\n3. **DO NOT SUGGEST URLs THAT ARE NOT IN THE DISCOVERED CATEGORIES LIST**\n4. ONLY select URLs that appear to be PRODUCT LISTING PAGES, not search forms or filters\n5. Avoid URLs containing: "search", "advanced", "filter", "sort", "login", "account"\n6. Prioritize URLs with clear category names that suggest product listings\n7. Avoid URLs that look like individual product pages (containing specific product names)\n\nURL SELECTION RULES:\n- **ONLY SELECT FROM THE DISCOVERED CATEGORIES LIST ABOVE**\n- **DO NOT CREATE NEW URLs OR MODIFY EXISTING ONES**\n- GOOD patterns from the list: URLs ending in category names like "/household.html", "/baby-kids.html"\n- BAD patterns from the list: URLs containing "search", "advanced", "filter", "catalogsearch"\n\nBased on your FBA expertise, select categories from the DISCOVERED CATEGORIES list that are most likely to contain profitable, scrapeable products for Amazon FBA UK.\n\n⚠️ **IMPORTANT: ALL URLs in your response MUST come from the DISCOVERED CATEGORIES list above. Do not invent new URLs.**\n\nReturn a JSON object with EXACTLY these keys:\n{\n    "top_3_urls": [list of 3 best PRODUCT LISTING category URLs],\n    "secondary_urls": [list of 3-5 backup category URLs],\n    "skip_urls": [list of category URLs to avoid - include search/filter pages],\n    "detailed_reasoning": {"category_name": "detailed reason for selection/skipping including URL pattern analysis"},\n    "progression_strategy": "description of your category selection strategy focusing on product listing identification",\n    "url_pattern_confidence": {"high_confidence": ["urls you\'re very confident contain products"], "medium_confidence": ["urls that might contain products"], "low_confidence": ["urls unlikely to contain products"]}\n}\n\nPRIORITIZE CATEGORIES LIKELY TO CONTAIN:\nHIGH PRIORITY:\n- Home & Kitchen products (high profit margins, consistent demand)\n- Pet Supplies (growing market, good margins)\n- Beauty & Personal Care (repeat purchases, brand loyalty)\n- Sports & Outdoors (seasonal opportunities)\n- Office & Stationery (business demand)\n- DIY & Tools (practical demand)\n- Baby & Nursery products (premium pricing potential)\n- Toys & Games (consistent demand)\n- Kids Books (coloring books, sticker books, activity books, picture books)\n\nMEDIUM PRIORITY:\n- Clearance/Value categories (pound lines, 50p & under, clearance, sale, discount)\n- Crafts & Hobbies (creative supplies, art materials)\n- Seasonal items (Christmas, Halloween, party supplies)\n- Automotive accessories (small car accessories)\n\nAVOID CATEGORIES WITH:\n- Electronics (high competition, warranty issues)\n- Clothing/Fashion (size/fit issues, returns)\n- Medical/Pharmaceutical (regulatory restrictions)\n- Food/Beverages (expiry dates, regulations)\n- Large/bulky items (shipping costs, storage issues)\n- High-value jewelry (authentication, insurance)\n- Dangerous goods (batteries, flammables, restricted)\n- Adult Books (novels, fiction, textbooks, academic books - AVOID these)\n- Search/filter pages (no actual products)\n\nIMPORTANT BOOK DISTINCTION:\n- INCLUDE: Kids books, coloring books, sticker books, activity books, picture books\n- EXCLUDE: Adult novels, fiction, textbooks, academic books, biographies\n\nREASONING REQUIREMENTS:\nFor each selected URL, explain:\n1. Why the URL pattern suggests it contains product listings\n2. What type of products you expect to find\n3. Why those products are suitable for FBA\n4. Estimated profit potential (High/Medium/Low)\n\nReturn ONLY valid JSON, no additional text.'}], 'model': 'gpt-4o-mini', 'max_tokens': 1200, 'response_format': {'type': 'json_object'}}}
+DEBUG:openai._base_client:Sending HTTP Request: POST https://api.openai.com/v1/chat/completions
+DEBUG:httpcore.connection:connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=5.0 socket_options=None
+DEBUG:httpcore.connection:connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x7f3975d89cd0>
+DEBUG:httpcore.connection:start_tls.started ssl_context=<ssl.SSLContext object at 0x7f3976f17ed0> server_hostname='api.openai.com' timeout=5.0
+DEBUG:httpcore.connection:start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x7f3976ba7cb0>
+DEBUG:httpcore.http11:send_request_headers.started request=<Request [b'POST']>
+DEBUG:httpcore.http11:send_request_headers.complete
+DEBUG:httpcore.http11:send_request_body.started request=<Request [b'POST']>
+DEBUG:httpcore.http11:send_request_body.complete
+DEBUG:httpcore.http11:receive_response_headers.started request=<Request [b'POST']>
+DEBUG:httpcore.http11:receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 04 Jul 2025 18:32:45 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'access-control-expose-headers', b'X-Request-ID'), (b'openai-organization', b'user-eywvpvgw4dvq99ktk9fwsqol'), (b'openai-processing-ms', b'11910'), (b'openai-version', b'2020-10-01'), (b'x-envoy-upstream-service-time', b'11990'), (b'x-ratelimit-limit-requests', b'10000'), (b'x-ratelimit-limit-tokens', b'200000'), (b'x-ratelimit-remaining-requests', b'9999'), (b'x-ratelimit-remaining-tokens', b'196911'), (b'x-ratelimit-reset-requests', b'8.64s'), (b'x-ratelimit-reset-tokens', b'926ms'), (b'x-request-id', b'req_8bd0f5cec211ddeea4412d6cce770b10'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'cf-cache-status', b'DYNAMIC'), (b'Set-Cookie', b'__cf_bm=hkAzr3uJpcN06JEw03TaAjUYM2YxBfysisQkJUHoYU8-1751653965-1.0.1.1-9EJ764QnxqwuYCOjfSt8NptvQ6Fvh27BBmCKx7CVgRinLA6Zxv_yjPBRS16_sowl7NMJNoLJfyMskLrp7dS4fUCKcKSxd82e463pbp25MHk; path=/; expires=Fri, 04-Jul-25 19:02:45 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'X-Content-Type-Options', b'nosniff'), (b'Set-Cookie', b'_cfuvid=Rqb.dghR.DGwLC_DmTAxMEoz0WvpWbyYeUjT1HGODiI-1751653965352-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'Server', b'cloudflare'), (b'CF-RAY', b'95a0b4b3a9f86122-DXB'), (b'Content-Encoding', b'br'), (b'alt-svc', b'h3=":443"; ma=86400')])
+INFO:httpx:HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+DEBUG:httpcore.http11:receive_response_body.started request=<Request [b'POST']>
+DEBUG:httpcore.http11:receive_response_body.complete
+DEBUG:httpcore.http11:response_closed.started
+DEBUG:httpcore.http11:response_closed.complete
+DEBUG:openai._base_client:HTTP Response: POST https://api.openai.com/v1/chat/completions "200 OK" Headers([('date', 'Fri, 04 Jul 2025 18:32:45 GMT'), ('content-type', 'application/json'), ('transfer-encoding', 'chunked'), ('connection', 'keep-alive'), ('access-control-expose-headers', 'X-Request-ID'), ('openai-organization', 'user-eywvpvgw4dvq99ktk9fwsqol'), ('openai-processing-ms', '11910'), ('openai-version', '2020-10-01'), ('x-envoy-upstream-service-time', '11990'), ('x-ratelimit-limit-requests', '10000'), ('x-ratelimit-limit-tokens', '200000'), ('x-ratelimit-remaining-requests', '9999'), ('x-ratelimit-remaining-tokens', '196911'), ('x-ratelimit-reset-requests', '8.64s'), ('x-ratelimit-reset-tokens', '926ms'), ('x-request-id', 'req_8bd0f5cec211ddeea4412d6cce770b10'), ('strict-transport-security', 'max-age=31536000; includeSubDomains; preload'), ('cf-cache-status', 'DYNAMIC'), ('set-cookie', '__cf_bm=hkAzr3uJpcN06JEw03TaAjUYM2YxBfysisQkJUHoYU8-1751653965-1.0.1.1-9EJ764QnxqwuYCOjfSt8NptvQ6Fvh27BBmCKx7CVgRinLA6Zxv_yjPBRS16_sowl7NMJNoLJfyMskLrp7dS4fUCKcKSxd82e463pbp25MHk; path=/; expires=Fri, 04-Jul-25 19:02:45 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('x-content-type-options', 'nosniff'), ('set-cookie', '_cfuvid=Rqb.dghR.DGwLC_DmTAxMEoz0WvpWbyYeUjT1HGODiI-1751653965352-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('server', 'cloudflare'), ('cf-ray', '95a0b4b3a9f86122-DXB'), ('content-encoding', 'br'), ('alt-svc', 'h3=":443"; ma=86400')])
+DEBUG:openai._base_client:request_id: req_8bd0f5cec211ddeea4412d6cce770b10
+INFO:tools.passive_extraction_workflow_latest:🤖 Token Usage - Input: 3131, Output: 723, Total: 3854
+INFO:tools.passive_extraction_workflow_latest:💾 API call logged to /mnt/c/Users/chris/Cloud-Drive_christianhaddad8@gmail.com/Cloud-Drive/Full/claude code/Amazon-FBA-Agent-System-v3/logs/api_calls/openai_api_calls_20250704.jsonl
+INFO:tools.passive_extraction_workflow_latest:Validating AI-suggested categories for product content...
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/cleaning-wipes-sprays/bathroom-cleaners
+WARNING:tools.passive_extraction_workflow_latest:❌ Category rejected: https://www.poundwholesale.co.uk/cleaning-wipes-sprays/bathroom-cleaners (0 products - below minimum of 2)
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/wholesale-garden/garden-tools/rakes-brushes
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/wholesale-garden/garden-tools/rakes-brushes: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/wholesale-garden/garden-tools/rakes-brushes -> 60 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ Category validated: https://www.poundwholesale.co.uk/wholesale-garden/garden-tools/rakes-brushes (60 products)
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/wholesale-pet-supplies/wholesale-pet-toys-treats
+WARNING:tools.passive_extraction_workflow_latest:❌ Category rejected: https://www.poundwholesale.co.uk/wholesale-pet-supplies/wholesale-pet-toys-treats (0 products - below minimum of 2)
+DEBUG:tools.passive_extraction_workflow_latest:History saved with 3 categories, 0 pages
+DEBUG:tools.passive_extraction_workflow_latest:History saved with 4 categories, 0 pages
+INFO:tools.passive_extraction_workflow_latest:Applying URL optimization parameters...
+INFO:tools.passive_extraction_workflow_latest:Optimized URL (no price filtering): https://www.poundwholesale.co.uk/wholesale-garden/garden-tools/rakes-brushes -> https://www.poundwholesale.co.uk/wholesale-garden/garden-tools/rakes-brushes?product_list_limit=64&product_list_order=price&product_list_dir=asc
+INFO:tools.passive_extraction_workflow_latest:Optimized 1 URLs with product display parameters for low price phase
+INFO:tools.passive_extraction_workflow_latest:🧠 Appended AI suggestion #2 to cache with optimized URLs: /mnt/c/Users/chris/Cloud-Drive_christianhaddad8@gmail.com/Cloud-Drive/Full/claude code/Amazon-FBA-Agent-System-v3/OUTPUTS/FBA_ANALYSIS/ai_category_cache/poundwholesale-co-uk_ai_category_cache.json
+INFO:tools.passive_extraction_workflow_latest:🧠 Total AI history entries: 2
+INFO:tools.passive_extraction_workflow_latest:Hierarchical selection returned 1 optimized pages to scrape
+INFO:tools.passive_extraction_workflow_latest:URLs to scrape: ['https://www.poundwholesale.co.uk/wholesale-garden/garden-tools/rakes-brushes?product_list_limit=64&product_list_order=price&product_list_dir=asc']
+INFO:tools.passive_extraction_workflow_latest:✅ AI CATEGORIES: Using 1 AI-generated categories for supplier scraping
+INFO:tools.passive_extraction_workflow_latest:Scraping supplier category: https://www.poundwholesale.co.uk/wholesale-garden/garden-tools/rakes-brushes?product_list_limit=64&product_list_order=price&product_list_dir=asc
+INFO:tools.passive_extraction_workflow_latest:Fetching supplier category page 1: https://www.poundwholesale.co.uk/wholesale-garden/garden-tools/rakes-brushes?product_list_limit=64&product_list_order=price&product_list_dir=asc
+INFO:configurable_supplier_scraper:Fetching page content from: https://www.poundwholesale.co.uk/wholesale-garden/garden-tools/rakes-brushes?product_list_limit=64&product_list_order=price&product_list_dir=asc (attempt 1/3)
+INFO:utils.browser_manager:♻️ Reusing existing Chrome connection (port 9222)
+INFO:utils.browser_manager:♻️ Reusing cached page for https://www.poundwholesale.co.uk
+INFO:configurable_supplier_scraper:🔧 Using BrowserManager page for https://www.poundwholesale.co.uk/wholesale-garden/garden-tools/rakes-brushes?product_list_limit=64&product_list_order=price&product_list_dir=asc
+INFO:configurable_supplier_scraper:🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/wholesale-garden/garden-tools/rakes-brushes?product_list_limit=64&product_list_order=price&product_list_dir=asc
+INFO:configurable_supplier_scraper:🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/wholesale-garden/garden-tools/rakes-brushes?product_list_limit=64&product_list_order=price&product_list_dir=asc
+INFO:configurable_supplier_scraper:Successfully fetched content from https://www.poundwholesale.co.uk/wholesale-garden/garden-tools/rakes-brushes?product_list_limit=64&product_list_order=price&product_list_dir=asc (Size: 633486 bytes)
+INFO:tools.passive_extraction_workflow_latest:Found 21 product elements in category https://www.poundwholesale.co.uk/wholesale-garden/garden-tools/rakes-brushes?product_list_limit=64&product_list_order=price&product_list_dir=asc, page 1
+INFO:tools.passive_extraction_workflow_latest:Getting detailed info for product: PVC-Coated Fishing Net 90cm Assorted Colours from https://www.poundwholesale.co.uk/pvc-coated-fishing-net-90cm-assorted-colours
+INFO:configurable_supplier_scraper:Fetching page content from: https://www.poundwholesale.co.uk/pvc-coated-fishing-net-90cm-assorted-colours (attempt 1/3)
+INFO:utils.browser_manager:♻️ Reusing existing Chrome connection (port 9222)
+INFO:utils.browser_manager:♻️ Reusing cached page for https://www.poundwholesale.co.uk
+INFO:tools.passive_extraction_workflow_latest:Getting detailed info for product: Bamboo Neon Fishing Net 110cm X 20cm Assorted Colours from https://www.poundwholesale.co.uk/bamboo-neon-fishing-net-110cm-x-20cm-assorted-colours
+INFO:tools.passive_extraction_workflow_latest:Getting detailed info for product: Marksman Soft Coco Hand Brush 10.5" from https://www.poundwholesale.co.uk/marksman-soft-coco-hand-brush-10-5
+INFO:tools.passive_extraction_workflow_latest:Getting detailed info for product: Marksman Pick-Up & Reach Tool from https://www.poundwholesale.co.uk/marksman-pick-up-reach-tool
+INFO:tools.passive_extraction_workflow_latest:Getting detailed info for product: Bamboo Square Head Fishing Net Medium 142cm from https://www.poundwholesale.co.uk/bamboo-square-head-fishing-net-medium-142cm
+INFO:configurable_supplier_scraper:Fetching page content from: https://www.poundwholesale.co.uk/bamboo-square-head-fishing-net-medium-142cm (attempt 1/3)
+INFO:utils.browser_manager:♻️ Reusing existing Chrome connection (port 9222)
+INFO:configurable_supplier_scraper:Fetching page content from: https://www.poundwholesale.co.uk/marksman-soft-coco-hand-brush-10-5 (attempt 1/3)
+INFO:utils.browser_manager:♻️ Reusing existing Chrome connection (port 9222)
+INFO:configurable_supplier_scraper:Fetching page content from: https://www.poundwholesale.co.uk/marksman-pick-up-reach-tool (attempt 1/3)
+INFO:utils.browser_manager:♻️ Reusing existing Chrome connection (port 9222)
+INFO:configurable_supplier_scraper:Fetching page content from: https://www.poundwholesale.co.uk/bamboo-neon-fishing-net-110cm-x-20cm-assorted-colours (attempt 1/3)
+INFO:utils.browser_manager:♻️ Reusing existing Chrome connection (port 9222)
+INFO:configurable_supplier_scraper:🔧 Using BrowserManager page for https://www.poundwholesale.co.uk/pvc-coated-fishing-net-90cm-assorted-colours
+INFO:configurable_supplier_scraper:🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/pvc-coated-fishing-net-90cm-assorted-colours
+INFO:configurable_supplier_scraper:🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/pvc-coated-fishing-net-90cm-assorted-colours
+INFO:utils.browser_manager:♻️ Reusing cached page for https://www.poundwholesale.co.uk
+INFO:configurable_supplier_scraper:Successfully fetched content from https://www.poundwholesale.co.uk/pvc-coated-fishing-net-90cm-assorted-colours (Size: 438265 bytes)
+INFO:configurable_supplier_scraper:🎯 EAN found via pattern search: 5033849868673
+INFO:tools.passive_extraction_workflow_latest:✅ EAN extracted successfully: 5033849868673
+INFO:tools.passive_extraction_workflow_latest:Final extraction for https://www.poundwholesale.co.uk/pvc-coated-fishing-net-90cm-assorted-colours: EAN=5033849868673, UPC=None, SKU=None
+INFO:configurable_supplier_scraper:🔧 Using BrowserManager page for https://www.poundwholesale.co.uk/bamboo-square-head-fishing-net-medium-142cm
+INFO:configurable_supplier_scraper:🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/bamboo-square-head-fishing-net-medium-142cm
+INFO:configurable_supplier_scraper:🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/bamboo-square-head-fishing-net-medium-142cm
+INFO:utils.browser_manager:♻️ Reusing cached page for https://www.poundwholesale.co.uk
+INFO:configurable_supplier_scraper:Successfully fetched content from https://www.poundwholesale.co.uk/bamboo-square-head-fishing-net-medium-142cm (Size: 411940 bytes)
+INFO:configurable_supplier_scraper:🎯 EAN found via pattern search: 5033849008628
+INFO:tools.passive_extraction_workflow_latest:✅ EAN extracted successfully: 5033849008628
+INFO:tools.passive_extraction_workflow_latest:Final extraction for https://www.poundwholesale.co.uk/bamboo-square-head-fishing-net-medium-142cm: EAN=5033849008628, UPC=None, SKU=None
+INFO:configurable_supplier_scraper:🔧 Using BrowserManager page for https://www.poundwholesale.co.uk/marksman-soft-coco-hand-brush-10-5
+INFO:configurable_supplier_scraper:🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/marksman-soft-coco-hand-brush-10-5
+INFO:configurable_supplier_scraper:🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/marksman-soft-coco-hand-brush-10-5
+INFO:utils.browser_manager:♻️ Reusing cached page for https://www.poundwholesale.co.uk
+INFO:configurable_supplier_scraper:Successfully fetched content from https://www.poundwholesale.co.uk/marksman-soft-coco-hand-brush-10-5 (Size: 668741 bytes)
+INFO:configurable_supplier_scraper:🎯 EAN found via pattern search: 5038673240176
+INFO:tools.passive_extraction_workflow_latest:✅ EAN extracted successfully: 5038673240176
+INFO:tools.passive_extraction_workflow_latest:Final extraction for https://www.poundwholesale.co.uk/marksman-soft-coco-hand-brush-10-5: EAN=5038673240176, UPC=None, SKU=None
+INFO:configurable_supplier_scraper:🔧 Using BrowserManager page for https://www.poundwholesale.co.uk/marksman-pick-up-reach-tool
+INFO:configurable_supplier_scraper:🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/marksman-pick-up-reach-tool
+INFO:configurable_supplier_scraper:🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/marksman-pick-up-reach-tool
+INFO:utils.browser_manager:♻️ Reusing cached page for https://www.poundwholesale.co.uk
+INFO:configurable_supplier_scraper:Successfully fetched content from https://www.poundwholesale.co.uk/marksman-pick-up-reach-tool (Size: 564498 bytes)
+INFO:configurable_supplier_scraper:🎯 EAN found via pattern search: 5038673685953
+INFO:tools.passive_extraction_workflow_latest:✅ EAN extracted successfully: 5038673685953
+INFO:tools.passive_extraction_workflow_latest:Final extraction for https://www.poundwholesale.co.uk/marksman-pick-up-reach-tool: EAN=5038673685953, UPC=None, SKU=None
+INFO:configurable_supplier_scraper:🔧 Using BrowserManager page for https://www.poundwholesale.co.uk/bamboo-neon-fishing-net-110cm-x-20cm-assorted-colours
+INFO:configurable_supplier_scraper:🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/bamboo-neon-fishing-net-110cm-x-20cm-assorted-colours
+INFO:configurable_supplier_scraper:🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/bamboo-neon-fishing-net-110cm-x-20cm-assorted-colours
+INFO:configurable_supplier_scraper:Successfully fetched content from https://www.poundwholesale.co.uk/bamboo-neon-fishing-net-110cm-x-20cm-assorted-colours (Size: 426222 bytes)
+INFO:configurable_supplier_scraper:🎯 EAN found via pattern search: 5033849022068
+INFO:tools.passive_extraction_workflow_latest:✅ EAN extracted successfully: 5033849022068
+INFO:tools.passive_extraction_workflow_latest:Final extraction for https://www.poundwholesale.co.uk/bamboo-neon-fishing-net-110cm-x-20cm-assorted-colours: EAN=5033849022068, UPC=None, SKU=None
+INFO:tools.passive_extraction_workflow_latest:Reached max_products_per_category=5 for https://www.poundwholesale.co.uk/wholesale-garden/garden-tools/rakes-brushes?product_list_limit=64&product_list_order=price&product_list_dir=asc. Stopping category scrape.
+INFO:tools.passive_extraction_workflow_latest:Processed batch of 5 detailed products from page 1, total extracted so far: 5
+INFO:tools.passive_extraction_workflow_latest:Reached 5 products. Running FBA Financial Calculator (batch size: 5)...
+INFO:tools.passive_extraction_workflow_latest:Saved 8 products to cache (5 new)
+INFO:FBA_Financial_calculator:FBA_Financial_calculator: amazon_dir confirmed to exist and is a directory: /mnt/c/Users/chris/Cloud-Drive_christianhaddad8@gmail.com/Cloud-Drive/Full/claude code/Amazon-FBA-Agent-System-v3/OUTPUTS/FBA_ANALYSIS/amazon_cache
+ERROR:tools.passive_extraction_workflow_latest:Error running FBA Financial Calculator at 5 products: No matching records found. Check file paths and data consistency.
+INFO:tools.passive_extraction_workflow_latest:Stopping pagination for https://www.poundwholesale.co.uk/wholesale-garden/garden-tools/rakes-brushes?product_list_limit=64&product_list_order=price&product_list_dir=asc due to price threshold.
+INFO:tools.passive_extraction_workflow_latest:Cached 5 supplier products
+INFO:tools.passive_extraction_workflow_latest:STAGE-COMPLETE: supplier_scrape - 5 records
+INFO:tools.passive_extraction_workflow_latest:Successfully got 5 products from poundwholesale-co-uk
+INFO:tools.passive_extraction_workflow_latest:Found 5 valid supplier products, 5 within price range [£0.1-£20.0]
+INFO:tools.passive_extraction_workflow_latest:STAGE-COMPLETE: price_filtering - 5 records
+INFO:tools.passive_extraction_workflow_latest:LIMITED MODE: Processing up to 15 products starting from index 0.
+INFO:tools.passive_extraction_workflow_latest:--- Processing supplier product 1/5 (20.0%): 'PVC-Coated Fishing Net 90cm Assorted Colours' (EAN: 5033849868673) ---
+INFO:tools.passive_extraction_workflow_latest:Attempting Amazon search using EAN: 5033849868673
+INFO:tools.passive_extraction_workflow_latest:Connecting to Chrome browser on debug port 9222 (FixedAmazonExtractor)
+INFO:tools.passive_extraction_workflow_latest:Successfully connected to Chrome on port 9222 (FixedAmazonExtractor)
+INFO:tools.passive_extraction_workflow_latest:Found 5 existing pages (FixedAmazonExtractor)
+INFO:tools.passive_extraction_workflow_latest:Using existing page: https://www.poundwholesale.co.uk/bamboo-neon-fishing-net-110cm-x-20cm-assorted-colours (FixedAmazonExtractor)
+INFO:tools.passive_extraction_workflow_latest:Searching Amazon by EAN: 5033849868673 for supplier product: 'PVC-Coated Fishing Net 90cm Assorted Colours' (FixedAmazonExtractor)
+INFO:tools.passive_extraction_workflow_latest:Navigating to Amazon UK to search for EAN: 5033849868673
+INFO:tools.passive_extraction_workflow_latest:Waiting for search results page to load for EAN 5033849868673...
+INFO:tools.passive_extraction_workflow_latest:Found search results container with selector: div.s-search-results
+INFO:tools.passive_extraction_workflow_latest:Found 5 search result elements using selector: div.s-search-results > div[data-asin]
+INFO:tools.passive_extraction_workflow_latest:Processing 5 search result elements for EAN 5033849868673
+DEBUG:tools.passive_extraction_workflow_latest:Element 1: Invalid or missing ASIN: 
+DEBUG:tools.passive_extraction_workflow_latest:Element 2: Invalid or missing ASIN: 
+DEBUG:tools.passive_extraction_workflow_latest:Element 3: Invalid or missing ASIN: 
+DEBUG:tools.passive_extraction_workflow_latest:Element 4: Invalid or missing ASIN: 
+DEBUG:tools.passive_extraction_workflow_latest:Element 5: Invalid or missing ASIN: 
+WARNING:tools.passive_extraction_workflow_latest:EAN 5033849868673 returned no organic results - skipping
+WARNING:tools.passive_extraction_workflow_latest:No Amazon results or error for EAN '5033849868673'. Details: no_organic_results
+WARNING:tools.passive_extraction_workflow_latest:EAN search for '5033849868673' failed to identify an ASIN. Error: No results for EAN 5033849868673 or search error
+INFO:tools.passive_extraction_workflow_latest:EAN search failed for 'PVC-Coated Fishing Net 90cm Assorted Colours'. Falling back to title search.
+INFO:tools.passive_extraction_workflow_latest:Searching Amazon by title using search bar: 'PVC-Coated Fishing Net 90cm Assorted Colours'
+INFO:tools.passive_extraction_workflow_latest:Navigating to Amazon UK to search for title: PVC-Coated Fishing Net 90cm Assorted Colours
+INFO:tools.passive_extraction_workflow_latest:Title search found 1 elements using selector: div.s-search-results > div[data-asin]
+WARNING:tools.passive_extraction_workflow_latest:No valid ASINs found for title 'PVC-Coated Fishing Net 90cm Assorted Colours'
+WARNING:tools.passive_extraction_workflow_latest:No Amazon results for title 'PVC-Coated Fishing Net 90cm Assorted Colours'. Skipping. Details: No valid ASINs found for title 'PVC-Coated Fishing Net 90cm Assorted Colours'
+DEBUG:tools.passive_extraction_workflow_latest:Rate limiting: waiting 3.0s before processing product 2
+INFO:tools.passive_extraction_workflow_latest:--- Processing supplier product 2/5 (40.0%): 'Bamboo Neon Fishing Net 110cm X 20cm Assorted Colours' (EAN: 5033849022068) ---
+INFO:tools.passive_extraction_workflow_latest:Attempting Amazon search using EAN: 5033849022068
+INFO:tools.passive_extraction_workflow_latest:Searching Amazon by EAN: 5033849022068 for supplier product: 'Bamboo Neon Fishing Net 110cm X 20cm Assorted Colours' (FixedAmazonExtractor)
+INFO:tools.passive_extraction_workflow_latest:Navigating to Amazon UK to search for EAN: 5033849022068
+INFO:tools.passive_extraction_workflow_latest:Waiting for search results page to load for EAN 5033849022068...
+INFO:tools.passive_extraction_workflow_latest:Found search results container with selector: div.s-search-results
+INFO:tools.passive_extraction_workflow_latest:Found 6 search result elements using selector: div.s-result-item[data-asin]:not([data-asin=''])
+INFO:tools.passive_extraction_workflow_latest:Processing 6 search result elements for EAN 5033849022068
+DEBUG:tools.passive_extraction_workflow_latest:Processing element 1: ASIN B0DQ5N6BPT
+DEBUG:tools.passive_extraction_workflow_latest:ASIN B0DQ5N6BPT HTML structure sample: <div role="listitem" data-asin="B0DQ5N6BPT" data-index="2" data-uuid="08cb0f11-6256-4f77-b0d8-2ccbb2849d0e" id="08cb0f11-6256-4f77-b0d8-2ccbb2849d0e" data-component-type="s-search-result" class="sg-col-4-of-4 sg-col-4-of-24 sg-col-4-of-12 s-result-item s-asin sg-col-4-of-16 AdHolder sg-col s-widget-spacing-small sg-col-4-of-8 sg-col-4-of-20" data-component-id="5" data-cel-widget="search_result_0"><div class="sg-col-inner"><div cel_widget_id="MAIN-SEARCH_RESULTS-2" class="s-widget-container s-spacing-small s-widget-container-height-small celwidget slot=MAIN template=SEARCH_RESULTS widgetId=sear...
+DEBUG:tools.passive_extraction_workflow_latest:Error checking sponsored badge for ASIN B0DQ5N6BPT: 'ElementHandle' object has no attribute 'locator'
+DEBUG:tools.passive_extraction_workflow_latest:Error checking aria-label for ASIN B0DQ5N6BPT: 'ElementHandle' object has no attribute 'locator'
+INFO:tools.passive_extraction_workflow_latest:Skipping sponsored result: ASIN B0DQ5N6BPT (detected by ad-specific class: 'AdHolder')
+DEBUG:tools.passive_extraction_workflow_latest:Processing element 2: ASIN B0B56GJFGQ
+DEBUG:tools.passive_extraction_workflow_latest:ASIN B0B56GJFGQ HTML structure sample: <div role="listitem" data-asin="B0B56GJFGQ" data-index="3" data-uuid="a3db2548-dd5f-47fa-96f5-9cbe640de0c5" id="a3db2548-dd5f-47fa-96f5-9cbe640de0c5" data-component-type="s-search-result" class="sg-col-4-of-4 sg-col-4-of-24 sg-col-4-of-12 s-result-item s-asin sg-col-4-of-16 AdHolder sg-col s-widget-spacing-small sg-col-4-of-8 sg-col-4-of-20" data-component-id="9" data-cel-widget="search_result_1"><div class="sg-col-inner"><div cel_widget_id="MAIN-SEARCH_RESULTS-3" class="s-widget-container s-spacing-small s-widget-container-height-small celwidget slot=MAIN template=SEARCH_RESULTS widgetId=sear...
+DEBUG:tools.passive_extraction_workflow_latest:Error checking sponsored badge for ASIN B0B56GJFGQ: 'ElementHandle' object has no attribute 'locator'
+DEBUG:tools.passive_extraction_workflow_latest:Error checking aria-label for ASIN B0B56GJFGQ: 'ElementHandle' object has no attribute 'locator'
+INFO:tools.passive_extraction_workflow_latest:Skipping sponsored result: ASIN B0B56GJFGQ (detected by ad-specific class: 'AdHolder')
+DEBUG:tools.passive_extraction_workflow_latest:Processing element 3: ASIN B0CQMC2SXB
+DEBUG:tools.passive_extraction_workflow_latest:ASIN B0CQMC2SXB HTML structure sample: <div role="listitem" data-asin="B0CQMC2SXB" data-index="5" data-uuid="85ed5ce4-ad16-48c5-a82e-2522e8f3615e" id="85ed5ce4-ad16-48c5-a82e-2522e8f3615e" data-component-type="s-search-result" class="sg-col-4-of-4 sg-col-4-of-24 sg-col-4-of-12 s-result-item s-asin sg-col-4-of-16 AdHolder sg-col s-widget-spacing-small sg-col-4-of-8 sg-col-4-of-20" data-component-id="14" data-cel-widget="search_result_2"><div class="sg-col-inner"><div cel_widget_id="MAIN-SEARCH_RESULTS-5" class="s-widget-container s-spacing-small s-widget-container-height-small celwidget slot=MAIN template=SEARCH_RESULTS widgetId=sea...
+DEBUG:tools.passive_extraction_workflow_latest:Error checking sponsored badge for ASIN B0CQMC2SXB: 'ElementHandle' object has no attribute 'locator'
+DEBUG:tools.passive_extraction_workflow_latest:Error checking aria-label for ASIN B0CQMC2SXB: 'ElementHandle' object has no attribute 'locator'
+INFO:tools.passive_extraction_workflow_latest:Skipping sponsored result: ASIN B0CQMC2SXB (detected by ad-specific class: 'AdHolder')
+DEBUG:tools.passive_extraction_workflow_latest:Processing element 4: ASIN B07CRML64T
+DEBUG:tools.passive_extraction_workflow_latest:Error checking sponsored badge for ASIN B07CRML64T: 'ElementHandle' object has no attribute 'locator'
+DEBUG:tools.passive_extraction_workflow_latest:Error checking aria-label for ASIN B07CRML64T: 'ElementHandle' object has no attribute 'locator'
+INFO:tools.passive_extraction_workflow_latest:Skipping sponsored result: ASIN B07CRML64T (detected by ad-specific class: 'AdHolder')
+DEBUG:tools.passive_extraction_workflow_latest:Processing element 5: ASIN B0DSCBJL9N
+DEBUG:tools.passive_extraction_workflow_latest:Error checking sponsored badge for ASIN B0DSCBJL9N: 'ElementHandle' object has no attribute 'locator'
+DEBUG:tools.passive_extraction_workflow_latest:Error checking aria-label for ASIN B0DSCBJL9N: 'ElementHandle' object has no attribute 'locator'
+INFO:tools.passive_extraction_workflow_latest:Skipping sponsored result: ASIN B0DSCBJL9N (detected by ad-specific class: 'AdHolder')
+DEBUG:tools.passive_extraction_workflow_latest:Processing element 6: ASIN B0B1LX67RZ
+DEBUG:tools.passive_extraction_workflow_latest:Error checking sponsored badge for ASIN B0B1LX67RZ: 'ElementHandle' object has no attribute 'locator'
+DEBUG:tools.passive_extraction_workflow_latest:Error checking aria-label for ASIN B0B1LX67RZ: 'ElementHandle' object has no attribute 'locator'
+INFO:tools.passive_extraction_workflow_latest:Skipping sponsored result: ASIN B0B1LX67RZ (detected by ad-specific class: 'AdHolder')
+WARNING:tools.passive_extraction_workflow_latest:EAN 5033849022068 returned no organic results - skipping
+WARNING:tools.passive_extraction_workflow_latest:No Amazon results or error for EAN '5033849022068'. Details: no_organic_results
+WARNING:tools.passive_extraction_workflow_latest:EAN search for '5033849022068' failed to identify an ASIN. Error: No results for EAN 5033849022068 or search error
+INFO:tools.passive_extraction_workflow_latest:EAN search failed for 'Bamboo Neon Fishing Net 110cm X 20cm Assorted Colours'. Falling back to title search.
+INFO:tools.passive_extraction_workflow_latest:Searching Amazon by title using search bar: 'Bamboo Neon Fishing Net 110cm X 20cm Assorted Colours'
+INFO:tools.passive_extraction_workflow_latest:Navigating to Amazon UK to search for title: Bamboo Neon Fishing Net 110cm X 20cm Assorted Colours
+INFO:tools.passive_extraction_workflow_latest:Title search found 1 elements using selector: div.s-search-results > div[data-asin]
+WARNING:tools.passive_extraction_workflow_latest:No valid ASINs found for title 'Bamboo Neon Fishing Net 110cm X 20cm Assorted Colours'
+WARNING:tools.passive_extraction_workflow_latest:No Amazon results for title 'Bamboo Neon Fishing Net 110cm X 20cm Assorted Colours'. Skipping. Details: No valid ASINs found for title 'Bamboo Neon Fishing Net 110cm X 20cm Assorted Colours'
+DEBUG:tools.passive_extraction_workflow_latest:Rate limiting: waiting 3.0s before processing product 3
+INFO:tools.passive_extraction_workflow_latest:--- Processing supplier product 3/5 (60.0%): 'Marksman Soft Coco Hand Brush 10.5"' (EAN: 5038673240176) ---
+INFO:tools.passive_extraction_workflow_latest:Attempting Amazon search using EAN: 5038673240176
+INFO:tools.passive_extraction_workflow_latest:Searching Amazon by EAN: 5038673240176 for supplier product: 'Marksman Soft Coco Hand Brush 10.5"' (FixedAmazonExtractor)
+INFO:tools.passive_extraction_workflow_latest:Navigating to Amazon UK to search for EAN: 5038673240176
+INFO:tools.passive_extraction_workflow_latest:Waiting for search results page to load for EAN 5038673240176...
+INFO:tools.passive_extraction_workflow_latest:Found search results container with selector: div.s-search-results
+INFO:tools.passive_extraction_workflow_latest:Found 7 search result elements using selector: div.s-result-item[data-asin]:not([data-asin=''])
+INFO:tools.passive_extraction_workflow_latest:Processing 7 search result elements for EAN 5038673240176
+DEBUG:tools.passive_extraction_workflow_latest:Processing element 1: ASIN B089QJFWPC
+DEBUG:tools.passive_extraction_workflow_latest:ASIN B089QJFWPC HTML structure sample: <div role="listitem" data-asin="B089QJFWPC" data-index="2" data-uuid="cb53f7b4-b3b3-498a-8772-c4d01ee763a0" id="cb53f7b4-b3b3-498a-8772-c4d01ee763a0" data-component-type="s-search-result" class="sg-col-4-of-4 sg-col-4-of-24 sg-col-4-of-12 s-result-item s-asin sg-col-4-of-16 AdHolder sg-col s-widget-spacing-small sg-col-4-of-8 sg-col-4-of-20" data-component-id="5" data-cel-widget="search_result_0"><div class="sg-col-inner"><div cel_widget_id="MAIN-SEARCH_RESULTS-2" class="s-widget-container s-spacing-small s-widget-container-height-small celwidget slot=MAIN template=SEARCH_RESULTS widgetId=sear...
+DEBUG:tools.passive_extraction_workflow_latest:Error checking sponsored badge for ASIN B089QJFWPC: 'ElementHandle' object has no attribute 'locator'
+DEBUG:tools.passive_extraction_workflow_latest:Error checking aria-label for ASIN B089QJFWPC: 'ElementHandle' object has no attribute 'locator'
+INFO:tools.passive_extraction_workflow_latest:Skipping sponsored result: ASIN B089QJFWPC (detected by ad-specific class: 'AdHolder')
+DEBUG:tools.passive_extraction_workflow_latest:Processing element 2: ASIN B0DMNYP8V1
+DEBUG:tools.passive_extraction_workflow_latest:ASIN B0DMNYP8V1 HTML structure sample: <div role="listitem" data-asin="B0DMNYP8V1" data-index="3" data-uuid="354d5fd1-d2d1-439d-b0dc-f8d7d0700f40" id="354d5fd1-d2d1-439d-b0dc-f8d7d0700f40" data-component-type="s-search-result" class="sg-col-4-of-4 sg-col-4-of-24 sg-col-4-of-12 s-result-item s-asin sg-col-4-of-16 AdHolder sg-col s-widget-spacing-small sg-col-4-of-8 sg-col-4-of-20" data-component-id="8" data-cel-widget="search_result_1"><div class="sg-col-inner"><div cel_widget_id="MAIN-SEARCH_RESULTS-3" class="s-widget-container s-spacing-small s-widget-container-height-small celwidget slot=MAIN template=SEARCH_RESULTS widgetId=sear...
+DEBUG:tools.passive_extraction_workflow_latest:Error checking sponsored badge for ASIN B0DMNYP8V1: 'ElementHandle' object has no attribute 'locator'
+DEBUG:tools.passive_extraction_workflow_latest:Error checking aria-label for ASIN B0DMNYP8V1: 'ElementHandle' object has no attribute 'locator'
+INFO:tools.passive_extraction_workflow_latest:Skipping sponsored result: ASIN B0DMNYP8V1 (detected by ad-specific class: 'AdHolder')
+DEBUG:tools.passive_extraction_workflow_latest:Processing element 3: ASIN B01G6QBQUE
+DEBUG:tools.passive_extraction_workflow_latest:ASIN B01G6QBQUE HTML structure sample: <div role="listitem" data-asin="B01G6QBQUE" data-index="4" data-uuid="c7b66361-d8c6-4194-8859-eb565a7eaca4" id="c7b66361-d8c6-4194-8859-eb565a7eaca4" data-component-type="s-search-result" class="sg-col-4-of-4 sg-col-4-of-24 sg-col-4-of-12 s-result-item s-asin sg-col-4-of-16 AdHolder sg-col s-widget-spacing-small sg-col-4-of-8 sg-col-4-of-20" data-component-id="11" data-cel-widget="search_result_2"><div class="sg-col-inner"><div cel_widget_id="MAIN-SEARCH_RESULTS-4" class="s-widget-container s-spacing-small s-widget-container-height-small celwidget slot=MAIN template=SEARCH_RESULTS widgetId=sea...
+DEBUG:tools.passive_extraction_workflow_latest:Error checking sponsored badge for ASIN B01G6QBQUE: 'ElementHandle' object has no attribute 'locator'
+DEBUG:tools.passive_extraction_workflow_latest:Error checking aria-label for ASIN B01G6QBQUE: 'ElementHandle' object has no attribute 'locator'
+INFO:tools.passive_extraction_workflow_latest:Skipping sponsored result: ASIN B01G6QBQUE (detected by ad-specific class: 'AdHolder')
+DEBUG:tools.passive_extraction_workflow_latest:Processing element 4: ASIN B08FGCBZ92
+DEBUG:tools.passive_extraction_workflow_latest:Error checking sponsored badge for ASIN B08FGCBZ92: 'ElementHandle' object has no attribute 'locator'
+DEBUG:tools.passive_extraction_workflow_latest:Error checking aria-label for ASIN B08FGCBZ92: 'ElementHandle' object has no attribute 'locator'
+INFO:tools.passive_extraction_workflow_latest:Skipping sponsored result: ASIN B08FGCBZ92 (detected by ad-specific class: 'AdHolder')
+DEBUG:tools.passive_extraction_workflow_latest:Processing element 5: ASIN B0763DZ8SJ
+DEBUG:tools.passive_extraction_workflow_latest:Error checking sponsored badge for ASIN B0763DZ8SJ: 'ElementHandle' object has no attribute 'locator'
+DEBUG:tools.passive_extraction_workflow_latest:Error checking aria-label for ASIN B0763DZ8SJ: 'ElementHandle' object has no attribute 'locator'
+INFO:tools.passive_extraction_workflow_latest:Skipping sponsored result: ASIN B0763DZ8SJ (detected by ad-specific class: 'AdHolder')
+DEBUG:tools.passive_extraction_workflow_latest:Processing element 6: ASIN B0F496N432
+DEBUG:tools.passive_extraction_workflow_latest:Error checking sponsored badge for ASIN B0F496N432: 'ElementHandle' object has no attribute 'locator'
+DEBUG:tools.passive_extraction_workflow_latest:Error checking aria-label for ASIN B0F496N432: 'ElementHandle' object has no attribute 'locator'
+INFO:tools.passive_extraction_workflow_latest:Skipping sponsored result: ASIN B0F496N432 (detected by ad-specific class: 'AdHolder')
+DEBUG:tools.passive_extraction_workflow_latest:Processing element 7: ASIN B009LGTGZ4
+DEBUG:tools.passive_extraction_workflow_latest:Error checking sponsored badge for ASIN B009LGTGZ4: 'ElementHandle' object has no attribute 'locator'
+DEBUG:tools.passive_extraction_workflow_latest:Error checking aria-label for ASIN B009LGTGZ4: 'ElementHandle' object has no attribute 'locator'
+INFO:tools.passive_extraction_workflow_latest:Skipping sponsored result: ASIN B009LGTGZ4 (detected by ad-specific class: 'AdHolder')
+WARNING:tools.passive_extraction_workflow_latest:EAN 5038673240176 returned no organic results - skipping
+WARNING:tools.passive_extraction_workflow_latest:No Amazon results or error for EAN '5038673240176'. Details: no_organic_results
+WARNING:tools.passive_extraction_workflow_latest:EAN search for '5038673240176' failed to identify an ASIN. Error: No results for EAN 5038673240176 or search error
+INFO:tools.passive_extraction_workflow_latest:EAN search failed for 'Marksman Soft Coco Hand Brush 10.5"'. Falling back to title search.
+INFO:tools.passive_extraction_workflow_latest:Searching Amazon by title using search bar: 'Marksman Soft Coco Hand Brush 10.5"'
+INFO:tools.passive_extraction_workflow_latest:Navigating to Amazon UK to search for title: Marksman Soft Coco Hand Brush 10.5"
+INFO:tools.passive_extraction_workflow_latest:Title search found 1 elements using selector: div.s-search-results > div[data-asin]
+WARNING:tools.passive_extraction_workflow_latest:No valid ASINs found for title 'Marksman Soft Coco Hand Brush 10.5"'
+WARNING:tools.passive_extraction_workflow_latest:No Amazon results for title 'Marksman Soft Coco Hand Brush 10.5"'. Skipping. Details: No valid ASINs found for title 'Marksman Soft Coco Hand Brush 10.5"'
+DEBUG:tools.passive_extraction_workflow_latest:Rate limiting: waiting 3.0s before processing product 4
+INFO:tools.passive_extraction_workflow_latest:--- Processing supplier product 4/5 (80.0%): 'Marksman Pick-Up & Reach Tool' (EAN: 5038673685953) ---
+INFO:tools.passive_extraction_workflow_latest:Attempting Amazon search using EAN: 5038673685953
+INFO:tools.passive_extraction_workflow_latest:Searching Amazon by EAN: 5038673685953 for supplier product: 'Marksman Pick-Up & Reach Tool' (FixedAmazonExtractor)
+INFO:tools.passive_extraction_workflow_latest:Navigating to Amazon UK to search for EAN: 5038673685953
+INFO:tools.passive_extraction_workflow_latest:Waiting for search results page to load for EAN 5038673685953...
+INFO:tools.passive_extraction_workflow_latest:Found search results container with selector: div.s-search-results
+INFO:tools.passive_extraction_workflow_latest:Found 2 search result elements using selector: div[data-asin]:not([data-asin='']):not(.AdHolder):not([class*='s-widget-sponsored-product'])
+INFO:tools.passive_extraction_workflow_latest:Processing 2 search result elements for EAN 5038673685953
+DEBUG:tools.passive_extraction_workflow_latest:Processing element 1: ASIN B08Z4BYN6L
+DEBUG:tools.passive_extraction_workflow_latest:ASIN B08Z4BYN6L HTML structure sample: <div role="listitem" data-asin="B08Z4BYN6L" data-index="2" data-uuid="9adbc60e-1bd9-4eca-a988-ea491476365b" id="9adbc60e-1bd9-4eca-a988-ea491476365b" data-component-type="s-search-result" class="sg-col-4-of-4 sg-col-4-of-24 sg-col-4-of-12 s-result-item s-asin sg-col-4-of-16 sg-col s-widget-spacing-small sg-col-4-of-8 sg-col-4-of-20" data-component-id="5" data-cel-widget="search_result_1"><div class="sg-col-inner"><div cel_widget_id="MAIN-SEARCH_RESULTS-2" class="s-widget-container s-spacing-small s-widget-container-height-small celwidget slot=MAIN template=SEARCH_RESULTS widgetId=search-result...
+DEBUG:tools.passive_extraction_workflow_latest:Error checking sponsored badge for ASIN B08Z4BYN6L: 'ElementHandle' object has no attribute 'locator'
+DEBUG:tools.passive_extraction_workflow_latest:Error checking aria-label for ASIN B08Z4BYN6L: 'ElementHandle' object has no attribute 'locator'
+DEBUG:tools.passive_extraction_workflow_latest:Error checking text for ad indicators for ASIN B08Z4BYN6L: 'ElementHandle' object has no attribute 'locator'
+DEBUG:tools.passive_extraction_workflow_latest:ASIN B08Z4BYN6L title extracted using selector 'h2': Litter Picker Tool Pick Up & Reach Hand Tool Grabb...
+INFO:tools.passive_extraction_workflow_latest:Found organic result: ASIN B08Z4BYN6L - Litter Picker Tool Pick Up & Reach Hand Tool Grabber Mobilit...
+DEBUG:tools.passive_extraction_workflow_latest:Processing element 2: ASIN B08Z4F2PC2
+DEBUG:tools.passive_extraction_workflow_latest:ASIN B08Z4F2PC2 HTML structure sample: <div role="listitem" data-asin="B08Z4F2PC2" data-index="3" data-uuid="121560fa-d7a3-4916-9aaf-5d0ab974cd53" id="121560fa-d7a3-4916-9aaf-5d0ab974cd53" data-component-type="s-search-result" class="sg-col-4-of-4 sg-col-4-of-24 sg-col-4-of-12 s-result-item s-asin sg-col-4-of-16 sg-col s-widget-spacing-small sg-col-4-of-8 sg-col-4-of-20" data-component-id="6" data-cel-widget="search_result_2"><div class="sg-col-inner"><div cel_widget_id="MAIN-SEARCH_RESULTS-3" class="s-widget-container s-spacing-small s-widget-container-height-small celwidget slot=MAIN template=SEARCH_RESULTS widgetId=search-result...
+DEBUG:tools.passive_extraction_workflow_latest:Error checking sponsored badge for ASIN B08Z4F2PC2: 'ElementHandle' object has no attribute 'locator'
+DEBUG:tools.passive_extraction_workflow_latest:Error checking aria-label for ASIN B08Z4F2PC2: 'ElementHandle' object has no attribute 'locator'
+DEBUG:tools.passive_extraction_workflow_latest:Error checking text for ad indicators for ASIN B08Z4F2PC2: 'ElementHandle' object has no attribute 'locator'
+DEBUG:tools.passive_extraction_workflow_latest:ASIN B08Z4F2PC2 title extracted using selector 'h2': 4 Litter Picker Tool Pick Up & Reach Hand Tool Gra...
+INFO:tools.passive_extraction_workflow_latest:Found organic result: ASIN B08Z4F2PC2 - 4 Litter Picker Tool Pick Up & Reach Hand Tool Grabber Mobil...
+INFO:tools.passive_extraction_workflow_latest:Multiple organic results (2) found for EAN 5038673685953. Applying word overlap scoring.
+INFO:tools.passive_extraction_workflow_latest:ASIN B08Z4BYN6L: 0.80 overlap score with 'Litter Picker Tool Pick Up & Reach Hand Tool Grabb...'
+INFO:tools.passive_extraction_workflow_latest:ASIN B08Z4F2PC2: 0.80 overlap score with '4 Litter Picker Tool Pick Up & Reach Hand Tool Gra...'
+INFO:tools.passive_extraction_workflow_latest:Multiple matches - chose ASIN B08Z4BYN6L (0.80 word-overlap)
+INFO:tools.passive_extraction_workflow_latest:EAN search selected ASIN B08Z4BYN6L for 5038673685953
+INFO:tools.passive_extraction_workflow_latest:Single ASIN B08Z4BYN6L found for EAN 5038673685953.
+INFO:tools.passive_extraction_workflow_latest:Proceeding with ASIN: B08Z4BYN6L for EAN: 5038673685953
+INFO:utils.browser_manager:♻️ Reusing existing Chrome connection (port 9222)
+INFO:utils.browser_manager:📄 Created new page #2 for https://www.amazon.co.uk
+INFO:utils.browser_manager:✅ Page ready for https://www.amazon.co.uk/dp/B08Z4BYN6L
+INFO:amazon_playwright_extractor:🔧 Using BrowserManager page for https://www.amazon.co.uk/dp/B08Z4BYN6L
+INFO:amazon_playwright_extractor:Checking for cookie consent pop-up...
+INFO:amazon_playwright_extractor:Finished checking for cookie consent pop-ups. If one was present and not handled, it might interfere.
+INFO:amazon_playwright_extractor:Checking for CAPTCHA...
+INFO:amazon_playwright_extractor:No CAPTCHA page detected by form selector.
+INFO:amazon_playwright_extractor:Checking for cookie consent pop-up...
+INFO:amazon_playwright_extractor:Finished checking for cookie consent pop-ups. If one was present and not handled, it might interfere.
+INFO:amazon_playwright_extractor:Page should be ready. Waiting 5s for stabilization...
+INFO:amazon_playwright_extractor:Waiting an additional 7s for extensions (Keepa, SellerAmp)...
+INFO:amazon_playwright_extractor:Extracting all product data for ASIN: B08Z4BYN6L
+INFO:amazon_playwright_extractor:Extracting basic product information (Title, Price, Images, Amazon Details)...
+INFO:amazon_playwright_extractor:Title found: 'Litter Picker Tool Pick Up & Reach Hand Tool Grabber Mobility Stick Long 76cm' via #productTitle
+INFO:amazon_playwright_extractor:Extracting price details...
+INFO:amazon_playwright_extractor:Current price: 5.99 via #corePrice_feature_div .a-offscreen
+INFO:amazon_playwright_extractor:Original price: 10.99 via .basisPrice span.a-text-price span.a-offscreen
+INFO:amazon_playwright_extractor:Extracting image URLs...
+INFO:amazon_playwright_extractor:Main image: https://m.media-amazon.com/images/I/61IN3QPYMhL._AC_SL1500_.jpg via #landingImage
+INFO:amazon_playwright_extractor:Found 1 thumbnails.
+INFO:amazon_playwright_extractor:Extracting Amazon product details section...
+INFO:amazon_playwright_extractor:Extracting sales rank information...
+INFO:amazon_playwright_extractor:Extracting ratings and reviews...
+INFO:amazon_playwright_extractor:Rating: 3.6 via #acrPopover[title*='out of 5 stars']
+INFO:amazon_playwright_extractor:Review count: 20 via #acrCustomerReviewText
+INFO:amazon_playwright_extractor:Extracting stock information...
+INFO:amazon_playwright_extractor:Availability text: 'In stock' via #availability span.a-size-medium.a-color-success
+INFO:amazon_playwright_extractor:Extracting features/bullets...
+INFO:amazon_playwright_extractor:Found 5 features.
+INFO:amazon_playwright_extractor:Extracting product description...
+INFO:amazon_playwright_extractor:Description found using selector: #productDescription
+INFO:amazon_playwright_extractor:Extracting product specifications table...
+INFO:amazon_playwright_extractor:Specifications table parsed using selector: #productDetails_techSpec_section_1
+INFO:amazon_playwright_extractor:Extracting SellerAmp data (if present)...
+INFO:amazon_playwright_extractor:SellerAmp data extraction is currently disabled as per requirements (Fix 2.3).
+INFO:amazon_playwright_extractor:Extracting Keepa data (if present)...
+INFO:amazon_playwright_extractor:Attempting to extract Keepa data...
+DEBUG:amazon_playwright_extractor:Keepa iframe check failed for selector iframe[id*='keepaGraph']: Page.wait_for_selector: Timeout 3000ms exceeded.
+Call log:
+  - waiting for locator("iframe[id*='keepaGraph']")
+
+DEBUG:amazon_playwright_extractor:Keepa iframe check failed for selector iframe#keepaExtension: Page.wait_for_selector: Timeout 3000ms exceeded.
+Call log:
+  - waiting for locator("iframe#keepaExtension")
+
+INFO:amazon_playwright_extractor:Keepa iframe found: iframe[id*='keepa']
+INFO:amazon_playwright_extractor:Keepa Sales Rank Details Table parsed.
+INFO:amazon_playwright_extractor:Keepa Graph AI Analysis is currently disabled as per requirements (Fix 2.4).
+INFO:amazon_playwright_extractor:Keepa Data tab found. Currently active: False
+INFO:amazon_playwright_extractor:Clicking Keepa 'Data' tab...
+INFO:amazon_playwright_extractor:Attempt 1/2: Waiting 12000ms for Product-Details wrapper...
+INFO:amazon_playwright_extractor:✅ Product-Details wrapper appeared on attempt 1
+INFO:amazon_playwright_extractor:Parsing Keepa AG Grid for Product Details from: div#MoreTab1 div#grid-product-detail
+INFO:amazon_playwright_extractor:Primary attempt: Waiting 12 seconds for AG Grid rows to load...
+INFO:amazon_playwright_extractor:✅ Primary attempt successful: 94 rows found
+INFO:amazon_playwright_extractor:Processing 94 rows in Keepa Product Details AG Grid.
+INFO:amazon_playwright_extractor:Found potential fee key 'FBA Pick&Pack Fee' with raw value: '£ 4.67' in Keepa AG Grid.
+INFO:amazon_playwright_extractor:✅ Successfully parsed 28 items from Keepa Product Details AG Grid.
+INFO:amazon_playwright_extractor:ASIN B08Z4BYN6L: Attempting to extract EANs from Keepa product_details_tab_data.
+INFO:amazon_playwright_extractor:ASIN B08Z4BYN6L: EAN '5038673685953' found in Keepa details via key 'Product Codes - EAN'.
+INFO:amazon_playwright_extractor:ASIN B08Z4BYN6L: BSR not found or invalid from page. Attempting fallback from Keepa.
+INFO:amazon_playwright_extractor:ASIN B08Z4BYN6L: BSR 153813 in 'Health & Personal Care 0.3' from Keepa SalesRankDetailsTable.
+INFO:tools.passive_extraction_workflow_latest:Successfully extracted data for ASIN B08Z4BYN6L (EAN on page: 5038673685953)
+INFO:tools.passive_extraction_workflow_latest:EAN search for '5038673685953' identified ASIN: B08Z4BYN6L
+DEBUG:tools.passive_extraction_workflow_latest:No valid cache found for ASIN B08Z4BYN6L (tried 2 files)
+INFO:tools.passive_extraction_workflow_latest:Cached Amazon data for ASIN B08Z4BYN6L as amazon_B08Z4BYN6L_5038673685953.json
+INFO:tools.passive_extraction_workflow_latest:Added to linking map: EAN_5038673685953 -> B08Z4BYN6L
+INFO:tools.passive_extraction_workflow_latest:Cached (potentially partial) Amazon data from EAN search for ASIN: B08Z4BYN6L
+INFO:tools.passive_extraction_workflow_latest:Skipping triage for ASIN B08Z4BYN6L - proceeding directly to detailed extraction
+INFO:tools.passive_extraction_workflow_latest:Successfully got Amazon data for 'Litter Picker Tool Pick Up & Reach Hand Tool Grabber Mobility Stick Long 76cm' (ASIN: B08Z4BYN6L, EAN on page: 5038673685953)
+INFO:tools.passive_extraction_workflow_latest:Using fees from Keepa (or fallback): Referral Fee £0.00, FBA Fee £0.00, Total £0.00
+INFO:tools.passive_extraction_workflow_latest:Using BSR-based estimated monthly sales: 9
+DEBUG:tools.passive_extraction_workflow_latest:Financials for 'Litter Picker Tool Pick Up & Reach Hand Tool Grabber Mobility Stick Long 76cm': Cost (exVAT): 0.94, Sell (exVAT): 4.99, Fees: 0.00, Profit: 4.05, ROI: 430.09%
+INFO:tools.passive_extraction_workflow_latest:Match quality is medium (0.50) for ASIN B08Z4BYN6L. Attempting AI validation.
+DEBUG:openai._base_client:Request options: {'method': 'post', 'url': '/chat/completions', 'files': None, 'idempotency_key': 'stainless-python-retry-cf80ff7d-2d13-42da-846c-420b06f4504f', 'json_data': {'messages': [{'role': 'user', 'content': "Assess if the following two products are likely the same. Respond with only 'MATCH', 'MISMATCH', or 'UNCERTAIN'.\n\nSupplier Product:\nTitle: Marksman Pick-Up & Reach Tool\nBrand: N/A\nEAN: 5038673685953\nPrice: 1.13\nDescription: N/A...\n\nAmazon Product:\nTitle: Litter Picker Tool Pick Up & Reach Hand Tool Grabber Mobility Stick Long 76cm\nBrand: N/A\nASIN: B08Z4BYN6L\nEAN on Page: 5038673685953\nPrice: 5.99\nDescription: Litter Picker Tool Pick Up &amp; Reach Hand Tool Grabber Long handled 76cm. Pick up aid to reduce the strain on the back. Picks up bottles, twigs, leaves and paper. Rubber jaws for easy grip, non slip...\nFeatures: ['Litter Picker Tool', 'Pick Up & Reach Hand Tool Grabber', 'Long handled 76cm.', 'Pick up aid to reduce the strain on the back.', 'Picks up bottles, twigs, leaves and paper.']..."}], 'model': 'gpt-4o-mini-2024-07-18', 'max_tokens': 10, 'temperature': 0.1}}
+DEBUG:openai._base_client:Sending HTTP Request: POST https://api.openai.com/v1/chat/completions
+DEBUG:httpcore.connection:close.started
+DEBUG:httpcore.connection:close.complete
+DEBUG:httpcore.connection:connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=5.0 socket_options=None
+DEBUG:httpcore.connection:connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x7f3974a89340>
+DEBUG:httpcore.connection:start_tls.started ssl_context=<ssl.SSLContext object at 0x7f3976f17ed0> server_hostname='api.openai.com' timeout=5.0
+DEBUG:httpcore.connection:start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x7f397419e9f0>
+DEBUG:httpcore.http11:send_request_headers.started request=<Request [b'POST']>
+DEBUG:httpcore.http11:send_request_headers.complete
+DEBUG:httpcore.http11:send_request_body.started request=<Request [b'POST']>
+DEBUG:httpcore.http11:send_request_body.complete
+DEBUG:httpcore.http11:receive_response_headers.started request=<Request [b'POST']>
+DEBUG:httpcore.http11:receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 04 Jul 2025 18:35:04 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'access-control-expose-headers', b'X-Request-ID'), (b'openai-organization', b'user-eywvpvgw4dvq99ktk9fwsqol'), (b'openai-processing-ms', b'167'), (b'openai-version', b'2020-10-01'), (b'x-envoy-upstream-service-time', b'170'), (b'x-ratelimit-limit-requests', b'10000'), (b'x-ratelimit-limit-tokens', b'200000'), (b'x-ratelimit-remaining-requests', b'9999'), (b'x-ratelimit-remaining-tokens', b'199796'), (b'x-ratelimit-reset-requests', b'8.64s'), (b'x-ratelimit-reset-tokens', b'61ms'), (b'x-request-id', b'req_bf7c041a8bc7bee04a2d3fcae2ed7210'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'cf-cache-status', b'DYNAMIC'), (b'X-Content-Type-Options', b'nosniff'), (b'Server', b'cloudflare'), (b'CF-RAY', b'95a0b85fc9b0b47e-DXB'), (b'Content-Encoding', b'br'), (b'alt-svc', b'h3=":443"; ma=86400')])
+INFO:httpx:HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+DEBUG:httpcore.http11:receive_response_body.started request=<Request [b'POST']>
+DEBUG:httpcore.http11:receive_response_body.complete
+DEBUG:httpcore.http11:response_closed.started
+DEBUG:httpcore.http11:response_closed.complete
+DEBUG:openai._base_client:HTTP Response: POST https://api.openai.com/v1/chat/completions "200 OK" Headers({'date': 'Fri, 04 Jul 2025 18:35:04 GMT', 'content-type': 'application/json', 'transfer-encoding': 'chunked', 'connection': 'keep-alive', 'access-control-expose-headers': 'X-Request-ID', 'openai-organization': 'user-eywvpvgw4dvq99ktk9fwsqol', 'openai-processing-ms': '167', 'openai-version': '2020-10-01', 'x-envoy-upstream-service-time': '170', 'x-ratelimit-limit-requests': '10000', 'x-ratelimit-limit-tokens': '200000', 'x-ratelimit-remaining-requests': '9999', 'x-ratelimit-remaining-tokens': '199796', 'x-ratelimit-reset-requests': '8.64s', 'x-ratelimit-reset-tokens': '61ms', 'x-request-id': 'req_bf7c041a8bc7bee04a2d3fcae2ed7210', 'strict-transport-security': 'max-age=31536000; includeSubDomains; preload', 'cf-cache-status': 'DYNAMIC', 'x-content-type-options': 'nosniff', 'server': 'cloudflare', 'cf-ray': '95a0b85fc9b0b47e-DXB', 'content-encoding': 'br', 'alt-svc': 'h3=":443"; ma=86400'})
+DEBUG:openai._base_client:request_id: req_bf7c041a8bc7bee04a2d3fcae2ed7210
+DEBUG:tools.passive_extraction_workflow_latest:Criteria Fail (Rating): 3.6 < 4.0
+INFO:tools.passive_extraction_workflow_latest:Product does not meet criteria. ROI: 430.09%, Profit: £4.05
+DEBUG:tools.passive_extraction_workflow_latest:Rate limiting: waiting 3.0s before processing product 5

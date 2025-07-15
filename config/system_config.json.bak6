@@ -86,9 +86,9 @@
       "description": "Archive system with supplier-specific targeting. Modes: 'full' (all files) or 'specific_supplier' (target_supplier only)"
     },
     "force_ai_scraping": true,
-    "max_products": 8,
+    "max_products": 12,
     "max_analyzed_products": 15,
-    "max_products_per_category": 2,
+    "max_products_per_category": 6,
     "max_products_per_cycle": 4,
     "linking_map_batch_size": 4,
     "financial_report_batch_size": 4,
@@ -100,7 +100,7 @@
     "output_root": "OUTPUTS",
     "enable_supplier_parser": false,
     "force_ai_category_suggestion": false,
-    "supplier_extraction_batch_size": 3
+    "supplier_extraction_batch_size": 2
   },
   "chrome": {
     "debug_port": 9222,
@@ -521,17 +521,53 @@
   },
   "supplier_cache_control": {
     "enabled": true,
-    "update_frequency_products": 2,
-    "force_update_on_interruption": true
+    "update_frequency_products": 3,
+    "force_update_on_interruption": true,
+    "cache_modes": {
+      "conservative": {
+        "update_frequency_products": 2,
+        "force_validation": true
+      },
+      "balanced": {
+        "update_frequency_products": 25,
+        "force_validation": false
+      },
+      "aggressive": {
+        "update_frequency_products": 50,
+        "force_validation": false
+      }
+    },
+    "validation": {
+      "verify_cache_integrity": true,
+      "backup_before_update": false
+    }
   },
   "hybrid_processing": {
     "enabled": true,
     "switch_to_amazon_after_categories": 2,
     "processing_modes": {
+      "sequential": {
+        "description": "Complete all supplier extraction, then Amazon analysis",
+        "enabled": false
+      },
       "chunked": {
+        "description": "Alternate between supplier extraction and Amazon analysis",
         "enabled": true,
-        "chunk_size_categories": 2
+        "chunk_size_categories": 3
+      },
+      "balanced": {
+        "description": "Process suppliers in batches, analyze each batch",
+        "enabled": false,
+        "analysis_after_extraction_batch": true
       }
+    },
+    "memory_management": {
+      "clear_cache_between_phases": false,
+      "max_memory_threshold_mb": 2048
+    },
+    "chunked": {
+      "chunk_size_categories": 3,
+      "enabled": true
     }
   },
   "batch_synchronization": {

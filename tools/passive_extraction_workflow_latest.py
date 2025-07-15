@@ -171,6 +171,42 @@ FBA_NEUTRAL_PATTERNS = {
     "media_dvd_cd":    ["dvd","cd","music","movie","film","media"]  # Removed general "book" from here since it's now classified above
 }
 
+# ──────────────────────── BACKUP UTILITY FUNCTIONS ──────────────────────
+def create_backup_with_experiment_number(file_path: str, experiment_number: int) -> str:
+    """Create backup with .bakN suffix for experiment tracking"""
+    if not os.path.exists(file_path):
+        return None
+    
+    backup_path = f"{file_path}.bak{experiment_number}"
+    shutil.copy2(file_path, backup_path)
+    return backup_path
+
+def backup_experiment_files(experiment_number: int, output_root: str = "OUTPUTS") -> Dict[str, str]:
+    """Backup all files that need .bakN suffix (EXCEPT Amazon cache)"""
+    backup_results = {}
+    
+    # System config
+    config_path = "config/system_config.json"
+    if os.path.exists(config_path):
+        backup_results["system_config"] = create_backup_with_experiment_number(config_path, experiment_number)
+    
+    # Processing state
+    state_path = os.path.join(output_root, "CACHE/processing_states/poundwholesale_co_uk_processing_state.json")
+    if os.path.exists(state_path):
+        backup_results["processing_state"] = create_backup_with_experiment_number(state_path, experiment_number)
+    
+    # Linking map
+    linking_path = os.path.join(output_root, "FBA_ANALYSIS/linking_maps/poundwholesale.co.uk/linking_map.json")
+    if os.path.exists(linking_path):
+        backup_results["linking_map"] = create_backup_with_experiment_number(linking_path, experiment_number)
+    
+    # Supplier product cache
+    supplier_cache_path = os.path.join(output_root, "cached_products/poundwholesale-co-uk_products_cache.json")
+    if os.path.exists(supplier_cache_path):
+        backup_results["supplier_cache"] = create_backup_with_experiment_number(supplier_cache_path, experiment_number)
+    
+    return backup_results
+
 # ──────────────────────── ②  Add OpenAI client initialization (after imports) ────────────
 
 # Battery filtering patterns - products containing these will be excluded
@@ -785,17 +821,16 @@ class FixedAmazonExtractor(AmazonExtractor):
             chosen_asin_data = potential_asins_info[0]
             log.info(f"Single ASIN {chosen_asin_data.get('asin')} found for EAN {ean}.")
         elif len(potential_asins_info) > 1:
-            log.info(f"Multiple ASINs ({len(potential_asins_info)}) found for EAN {ean}. Prioritizing by title similarity to '{supplier_product_title}'.")
-            # The results from search_by_title are already sorted by similarity to the query (EAN in this case).
-            # We might want to re-score against the supplier_product_title if EAN search yields multiple items.
-            # For now, let's assume the top result from EAN search is most relevant, or use AI if available.
-            
-            # Simple approach: take the first result from EAN search if no AI.
-            chosen_asin_data = potential_asins_info[0] 
-            log.info(f"Taking first result from EAN search: ASIN {chosen_asin_data.get('asin')}")
+            # FIX 1: EAN search → stop title scoring when search initiated by EAN
+            # Trust Amazon's search relevance ranking for EAN searches
+            chosen_asin_data = potential_asins_info[0]
+            log.info(f"Multiple ASINs ({len(potential_asins_info)}) found for EAN {ean}. Using Amazon's first result: ASIN {chosen_asin_data.get('asin')}")
+            log.info(f"FIXED: No title scoring on EAN search results - using Amazon's search relevance ranking")
 
-            if self.ai_client:
-                log.info(f"Attempting AI disambiguation for EAN {ean} against supplier title '{supplier_product_title}'.")
+            # EAN search complete - skip AI disambiguation to trust Amazon's ranking
+            # AI disambiguation removed to prevent title scoring on EAN results
+            if False:  # Disabled AI disambiguation for EAN searches
+                log.info(f"AI disambiguation disabled for EAN {ean} - trusting Amazon's ranking")
                 prompt = (
                     f"The EAN '{ean}' (from supplier product '{supplier_product_title}') "
                     f"returned multiple products on Amazon. Which of the following Amazon products is the most likely match to the supplier product title?\n"
@@ -2203,26 +2238,37 @@ Return ONLY valid JSON, no additional text."""
                 except Exception as e:
                     log.warning(f"Could not load existing cache: {e}")
 
-            # FIX 3: Supplier cache deduplication - Merge with new products (avoid duplicates by URL and EAN)
+            # FIX 3: Supplier cache deduplication - Enhanced EAN-based deduplication
             existing_urls = {p.get('url', '') for p in existing_products}
-            existing_eans = {p.get('ean', '') for p in existing_products if p.get('ean')}
+            existing_eans = {p.get('ean', '') for p in existing_products if p.get('ean') and p.get('ean') != 'None'}
             
             # Filter out products with duplicate URLs or EANs
             new_products = []
+            ean_duplicates_skipped = 0
+            url_duplicates_skipped = 0
+            
             for p in products:
                 product_url = p.get('url', '')
                 product_ean = p.get('ean', '')
                 
                 # Skip if URL already exists
                 if product_url and product_url in existing_urls:
+                    url_duplicates_skipped += 1
                     continue
                 
-                # Skip if EAN already exists and is not empty
-                if product_ean and product_ean in existing_eans:
+                # FIX 3: Skip if EAN already exists and is not empty/None
+                if product_ean and product_ean != 'None' and product_ean in existing_eans:
+                    ean_duplicates_skipped += 1
                     self.log.debug(f"Skipping duplicate EAN: {product_ean}")
                     continue
                 
                 new_products.append(p)
+                
+                # Add to tracking sets to prevent duplicates within current batch
+                if product_url:
+                    existing_urls.add(product_url)
+                if product_ean and product_ean != 'None':
+                    existing_eans.add(product_ean)
 
             all_products = existing_products + new_products
 
@@ -2230,9 +2276,11 @@ Return ONLY valid JSON, no additional text."""
             with open(cache_file_path, 'w', encoding='utf-8') as f:
                 json.dump(all_products, f, indent=2, ensure_ascii=False)
 
-            # Enhanced progress feedback
+            # Enhanced progress feedback with deduplication statistics
             if cache_config.get("enabled", True):
                 self.log.info(f"✅ CACHE SAVE: Successfully saved {len(all_products)} products ({len(new_products)} new) to {os.path.basename(cache_file_path)}")
+                if ean_duplicates_skipped > 0 or url_duplicates_skipped > 0:
+                    self.log.info(f"🔄 DEDUPLICATION: Skipped {ean_duplicates_skipped} EAN duplicates and {url_duplicates_skipped} URL duplicates")
             else:
                 log.info(f"Saved {len(all_products)} products to cache ({len(new_products)} new)")
 
@@ -2639,19 +2687,28 @@ Return ONLY valid JSON, no additional text."""
         import glob
         import time
         
-        # Possible cache filename patterns
+        # FIX 2: Amazon cache reuse logic - Enhanced ASIN/EAN matching
+        amazon_cache_dir = self.amazon_cache_dir
+        
+        # First: Check for exact EAN match
+        if supplier_ean:
+            exact_pattern = f"amazon_{asin}_{supplier_ean}.json"
+            exact_file = os.path.join(amazon_cache_dir, exact_pattern)
+            if os.path.exists(exact_file):
+                try:
+                    with open(exact_file, 'r', encoding='utf-8') as f:
+                        self.log.info(f"📋 Found exact EAN match in cache: {exact_pattern}")
+                        return json.load(f)
+                except Exception as e:
+                    self.log.error(f"Error loading exact EAN match cache: {e}")
+        
+        # Second: Check for ASIN with different EAN - copy to new filename
         cache_patterns = [
-            f"amazon_{asin}_{supplier_ean}.json" if supplier_ean else None,
             f"amazon_{asin}_*.json",  # ASIN with any suffix
             f"amazon_{asin}.json"     # ASIN only
         ]
         
-        amazon_cache_dir = self.amazon_cache_dir
-        
         for pattern in cache_patterns:
-            if not pattern:
-                continue
-                
             cache_path_pattern = os.path.join(amazon_cache_dir, pattern)
             matching_files = glob.glob(cache_path_pattern)
             
@@ -2660,9 +2717,28 @@ Return ONLY valid JSON, no additional text."""
                 latest_file = max(matching_files, key=os.path.getmtime)
                 try:
                     with open(latest_file, 'r', encoding='utf-8') as f:
-                        return json.load(f)
+                        cached_data = json.load(f)
+                    
+                    # FIX 2: Copy existing cache to new EAN-specific filename
+                    if supplier_ean:
+                        new_filename = f"amazon_{asin}_{supplier_ean}.json"
+                        new_filepath = os.path.join(amazon_cache_dir, new_filename)
+                        
+                        # Only copy if the new file doesn't already exist
+                        if not os.path.exists(new_filepath):
+                            try:
+                                with open(new_filepath, 'w', encoding='utf-8') as f:
+                                    json.dump(cached_data, f, indent=2, ensure_ascii=False)
+                                self.log.info(f"📋 Copied existing cache to EAN-specific file: {new_filename}")
+                            except Exception as copy_error:
+                                self.log.error(f"Error copying cache to EAN-specific file: {copy_error}")
+                    
+                    self.log.info(f"📋 Found ASIN match in cache: {os.path.basename(latest_file)}")
+                    return cached_data
+                    
                 except Exception as e:
                     self.log.error(f"Error loading cached Amazon data from {latest_file}: {e}")
+        
         return None
 
     async def _get_amazon_data(self, product_data: Dict[str, Any]) -> Optional[Dict[str, Any]]:
@@ -2675,7 +2751,7 @@ Return ONLY valid JSON, no additional text."""
             self.log.info(f"Attempting Amazon search using EAN: {supplier_ean}")
             self.results_summary["products_analyzed_ean"] += 1
             
-            # FIX 2: Amazon cache reuse logic - Check cache before scraping
+            # FIX 2: Enhanced Amazon cache reuse logic - Check cache before scraping
             # First try to find cached data by EAN before performing any searches
             cached_data = None
             found_asin = None
@@ -2684,15 +2760,47 @@ Return ONLY valid JSON, no additional text."""
             amazon_cache_dir = os.path.join(self.output_dir, "FBA_ANALYSIS", "amazon_cache")
             if os.path.exists(amazon_cache_dir):
                 for cache_file in os.listdir(amazon_cache_dir):
-                    if cache_file.endswith(".json") and supplier_ean in cache_file:
-                        try:
-                            with open(os.path.join(amazon_cache_dir, cache_file), 'r', encoding='utf-8') as f:
-                                cached_data = json.load(f)
-                                found_asin = cached_data.get("asin") or cached_data.get("asin_extracted_from_page")
-                                self.log.info(f"📋 Found cached Amazon data for EAN {supplier_ean} in file: {cache_file}")
-                                break
-                        except Exception as e:
-                            self.log.debug(f"Error reading cache file {cache_file}: {e}")
+                    if cache_file.endswith(".json"):
+                        # Check if supplier EAN matches filename
+                        if supplier_ean in cache_file:
+                            try:
+                                with open(os.path.join(amazon_cache_dir, cache_file), 'r', encoding='utf-8') as f:
+                                    cached_data = json.load(f)
+                                    found_asin = cached_data.get("asin") or cached_data.get("asin_extracted_from_page")
+                                    self.log.info(f"📋 Found cached Amazon data for EAN {supplier_ean} in file: {cache_file}")
+                                    break
+                            except Exception as e:
+                                self.log.debug(f"Error reading cache file {cache_file}: {e}")
+                        
+                        # Check for ASIN matches that might need EAN-specific copying
+                        elif cache_file.startswith("amazon_") and cache_file.endswith(".json"):
+                            try:
+                                # Extract ASIN from filename
+                                asin_match = re.search(r'amazon_([A-Z0-9]{10})', cache_file)
+                                if asin_match:
+                                    cache_asin = asin_match.group(1)
+                                    with open(os.path.join(amazon_cache_dir, cache_file), 'r', encoding='utf-8') as f:
+                                        cache_data = json.load(f)
+                                        cache_ean = cache_data.get("ean") or cache_data.get("ean_on_page")
+                                        
+                                        # If ASIN matches but EAN differs, copy to EAN-specific file
+                                        if cache_asin and cache_ean and cache_ean != supplier_ean:
+                                            # Create EAN-specific cache file
+                                            supplier_title = product_data.get("title", "")
+                                            filename_identifier = self._sanitize_filename(supplier_title) if supplier_title else supplier_ean
+                                            new_cache_file = f"amazon_{cache_asin}_{filename_identifier}.json"
+                                            new_cache_path = os.path.join(amazon_cache_dir, new_cache_file)
+                                            
+                                            if not os.path.exists(new_cache_path):
+                                                with open(new_cache_path, 'w', encoding='utf-8') as nf:
+                                                    json.dump(cache_data, nf, indent=2, ensure_ascii=False)
+                                                self.log.info(f"📋 Copied ASIN {cache_asin} cache to EAN-specific file: {new_cache_file}")
+                                            
+                                            cached_data = cache_data
+                                            found_asin = cache_asin
+                                            break
+                            except Exception as e:
+                                self.log.debug(f"Error checking cache file {cache_file} for ASIN reuse: {e}")
             
             if cached_data:
                 amazon_product_data = cached_data
@@ -2711,8 +2819,16 @@ Return ONLY valid JSON, no additional text."""
                     actual_search_method = "EAN"  # EAN search succeeded
                 elif not found_asin:
                     actual_search_method = "EAN"  # EAN search succeeded but no ASIN found
+                
+                # FIX 1: EAN search successful - skip title search completely
+                self.log.info(f"✅ EAN search successful for {supplier_ean}. Using EAN result without title fallback.")
+                
+                # Add search method info and return immediately to prevent title search
+                amazon_product_data["_search_method_used"] = actual_search_method
+                return amazon_product_data
             else:
                 amazon_product_data = None # Reset if EAN search failed
+                self.log.info(f"❌ EAN search failed for {supplier_ean}. Will fall back to title search.")
                 
         if not amazon_product_data:
             if supplier_ean: self.log.info("EAN search failed. Falling back to title search.")
@@ -2813,6 +2929,15 @@ Return ONLY valid JSON, no additional text."""
         a = set(re.sub(r'[^\w\s]', ' ', title_a.lower()).split())
         b = set(re.sub(r'[^\w\s]', ' ', title_b.lower()).split())
         return len(a & b) / max(1, len(a))
+    
+    def _sanitize_filename(self, title: str) -> str:
+        """Sanitize product title for use in filename"""
+        if not title:
+            return "unknown_title"
+        # Remove or replace problematic characters
+        sanitized = re.sub(r'[^\w\s-]', '', title)
+        sanitized = re.sub(r'\s+', '_', sanitized)
+        return sanitized[:50]  # Limit length to 50 chars
 
     def _validate_product_match(self, supplier_product: Dict[str, Any], amazon_product: Dict[str, Any]) -> Dict[str, Any]:
         """Validate the match between supplier and Amazon products using configurable thresholds."""
@@ -3143,6 +3268,15 @@ Return ONLY valid JSON, no additional text."""
         a = set(re.sub(r'[^\w\s]', ' ', title_a.lower()).split())
         b = set(re.sub(r'[^\w\s]', ' ', title_b.lower()).split())
         return len(a & b) / max(1, len(a))
+    
+    def _sanitize_filename(self, title: str) -> str:
+        """Sanitize product title for use in filename"""
+        if not title:
+            return "unknown_title"
+        # Remove or replace problematic characters
+        sanitized = re.sub(r'[^\w\s-]', '', title)
+        sanitized = re.sub(r'\s+', '_', sanitized)
+        return sanitized[:50]  # Limit length to 50 chars
 
     def _validate_product_match(self, supplier_product: Dict[str, Any], amazon_product: Dict[str, Any]) -> Dict[str, Any]:
         """Validate the match between supplier and Amazon products using configurable thresholds."""
@@ -3473,6 +3607,15 @@ Return ONLY valid JSON, no additional text."""
         a = set(re.sub(r'[^\w\s]', ' ', title_a.lower()).split())
         b = set(re.sub(r'[^\w\s]', ' ', title_b.lower()).split())
         return len(a & b) / max(1, len(a))
+    
+    def _sanitize_filename(self, title: str) -> str:
+        """Sanitize product title for use in filename"""
+        if not title:
+            return "unknown_title"
+        # Remove or replace problematic characters
+        sanitized = re.sub(r'[^\w\s-]', '', title)
+        sanitized = re.sub(r'\s+', '_', sanitized)
+        return sanitized[:50]  # Limit length to 50 chars
 
     def _validate_product_match(self, supplier_product: Dict[str, Any], amazon_product: Dict[str, Any]) -> Dict[str, Any]:
         """Validate the match between supplier and Amazon products using configurable thresholds."""
@@ -3803,6 +3946,15 @@ Return ONLY valid JSON, no additional text."""
         a = set(re.sub(r'[^\w\s]', ' ', title_a.lower()).split())
         b = set(re.sub(r'[^\w\s]', ' ', title_b.lower()).split())
         return len(a & b) / max(1, len(a))
+    
+    def _sanitize_filename(self, title: str) -> str:
+        """Sanitize product title for use in filename"""
+        if not title:
+            return "unknown_title"
+        # Remove or replace problematic characters
+        sanitized = re.sub(r'[^\w\s-]', '', title)
+        sanitized = re.sub(r'\s+', '_', sanitized)
+        return sanitized[:50]  # Limit length to 50 chars
 
     def _validate_product_match(self, supplier_product: Dict[str, Any], amazon_product: Dict[str, Any]) -> Dict[str, Any]:
         """Validate the match between supplier and Amazon products using configurable thresholds."""
@@ -4133,6 +4285,15 @@ Return ONLY valid JSON, no additional text."""
         a = set(re.sub(r'[^\w\s]', ' ', title_a.lower()).split())
         b = set(re.sub(r'[^\w\s]', ' ', title_b.lower()).split())
         return len(a & b) / max(1, len(a))
+    
+    def _sanitize_filename(self, title: str) -> str:
+        """Sanitize product title for use in filename"""
+        if not title:
+            return "unknown_title"
+        # Remove or replace problematic characters
+        sanitized = re.sub(r'[^\w\s-]', '', title)
+        sanitized = re.sub(r'\s+', '_', sanitized)
+        return sanitized[:50]  # Limit length to 50 chars
 
     def _validate_product_match(self, supplier_product: Dict[str, Any], amazon_product: Dict[str, Any]) -> Dict[str, Any]:
         """Validate the match between supplier and Amazon products using configurable thresholds."""
@@ -4463,6 +4624,15 @@ Return ONLY valid JSON, no additional text."""
         a = set(re.sub(r'[^\w\s]', ' ', title_a.lower()).split())
         b = set(re.sub(r'[^\w\s]', ' ', title_b.lower()).split())
         return len(a & b) / max(1, len(a))
+    
+    def _sanitize_filename(self, title: str) -> str:
+        """Sanitize product title for use in filename"""
+        if not title:
+            return "unknown_title"
+        # Remove or replace problematic characters
+        sanitized = re.sub(r'[^\w\s-]', '', title)
+        sanitized = re.sub(r'\s+', '_', sanitized)
+        return sanitized[:50]  # Limit length to 50 chars
 
     def _validate_product_match(self, supplier_product: Dict[str, Any], amazon_product: Dict[str, Any]) -> Dict[str, Any]:
         """Validate the match between supplier and Amazon products using configurable thresholds."""
@@ -4793,6 +4963,15 @@ Return ONLY valid JSON, no additional text."""
         a = set(re.sub(r'[^\w\s]', ' ', title_a.lower()).split())
         b = set(re.sub(r'[^\w\s]', ' ', title_b.lower()).split())
         return len(a & b) / max(1, len(a))
+    
+    def _sanitize_filename(self, title: str) -> str:
+        """Sanitize product title for use in filename"""
+        if not title:
+            return "unknown_title"
+        # Remove or replace problematic characters
+        sanitized = re.sub(r'[^\w\s-]', '', title)
+        sanitized = re.sub(r'\s+', '_', sanitized)
+        return sanitized[:50]  # Limit length to 50 chars
 
     def _validate_product_match(self, supplier_product: Dict[str, Any], amazon_product: Dict[str, Any]) -> Dict[str, Any]:
         """Validate the match between supplier and Amazon products using configurable thresholds."""
@@ -5123,6 +5302,15 @@ Return ONLY valid JSON, no additional text."""
         a = set(re.sub(r'[^\w\s]', ' ', title_a.lower()).split())
         b = set(re.sub(r'[^\w\s]', ' ', title_b.lower()).split())
         return len(a & b) / max(1, len(a))
+    
+    def _sanitize_filename(self, title: str) -> str:
+        """Sanitize product title for use in filename"""
+        if not title:
+            return "unknown_title"
+        # Remove or replace problematic characters
+        sanitized = re.sub(r'[^\w\s-]', '', title)
+        sanitized = re.sub(r'\s+', '_', sanitized)
+        return sanitized[:50]  # Limit length to 50 chars
 
     def _validate_product_match(self, supplier_product: Dict[str, Any], amazon_product: Dict[str, Any]) -> Dict[str, Any]:
         """Validate the match between supplier and Amazon products using configurable thresholds."""
@@ -5453,6 +5641,15 @@ Return ONLY valid JSON, no additional text."""
         a = set(re.sub(r'[^\w\s]', ' ', title_a.lower()).split())
         b = set(re.sub(r'[^\w\s]', ' ', title_b.lower()).split())
         return len(a & b) / max(1, len(a))
+    
+    def _sanitize_filename(self, title: str) -> str:
+        """Sanitize product title for use in filename"""
+        if not title:
+            return "unknown_title"
+        # Remove or replace problematic characters
+        sanitized = re.sub(r'[^\w\s-]', '', title)
+        sanitized = re.sub(r'\s+', '_', sanitized)
+        return sanitized[:50]  # Limit length to 50 chars
 
     def _validate_product_match(self, supplier_product: Dict[str, Any], amazon_product: Dict[str, Any]) -> Dict[str, Any]:
         """Validate the match between supplier and Amazon products using configurable thresholds."""

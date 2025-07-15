@@ -14,7 +14,11 @@ class SystemConfigLoader:
     """
 
     def __init__(self, config_path: str | None = None):
-        self.config_path = config_path or os.path.join("config", "system_config.json")
+        if config_path:
+            self.config_path = config_path
+        else:
+            base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+            self.config_path = os.path.join(base_dir, "config", "system_config.json")
         self._config: Dict[str, Any] = {}
         self._load()
 

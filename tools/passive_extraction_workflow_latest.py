@@ -744,32 +744,16 @@ class FixedAmazonExtractor(AmazonExtractor):
                     log.warning(f"EAN {ean} returned no organic results - skipping")
                     search_results_data = {"error": "no_organic_results"}
                 else:
-                    # Apply word overlap scoring for multiple results
+                    # FIX 1: EAN search should use exact EAN matching, NOT title scoring
+                    # When EAN search returns results, use the first organic result (highest relevance)
                     if len(organic_results) == 1:
                         chosen_result = organic_results[0]
                         log.info(f"Single organic result found for EAN {ean}: ASIN {chosen_result['asin']}")
                     else:
-                        log.info(f"Multiple organic results ({len(organic_results)}) found for EAN {ean}. Applying word overlap scoring.")
-
-                        # Score each result against supplier title
-                        scored_results = []
-                        for result in organic_results:
-                            score = self._overlap_score(supplier_product_title, result['title'])
-                            scored_results.append((result, score))
-                            log.info(f"ASIN {result['asin']}: {score:.2f} overlap score with '{result['title'][:50]}...' ")
-                        
-                        # Find results that meet the 0.25 threshold
-                        good_matches = [(result, score) for result, score in scored_results if score >= 0.25]
-                        
-                        if good_matches:
-                            # Pick the highest scoring result
-                            chosen_result, best_score = max(good_matches, key=lambda x: x[1])
-                            log.info(f"Multiple matches - chose ASIN {chosen_result['asin']} ({best_score:.2f} word-overlap)")
-                        else:
-                            # Edge case fallback: use top organic result with low confidence
-                            chosen_result = organic_results[0]
-                            chosen_result['match_confidence'] = 'low'
-                            log.warning(f"No result met 0.25 threshold. Using top organic result ASIN {chosen_result['asin']} with low confidence.")
+                        # Multiple EAN search results - use first organic result (most relevant by Amazon's ranking)
+                        chosen_result = organic_results[0]
+                        log.info(f"Multiple organic results ({len(organic_results)}) found for EAN {ean}. Using first organic result (most relevant): ASIN {chosen_result['asin']}")
+                        log.info(f"FIXED: No title scoring on EAN search results - using Amazon's search relevance ranking")
                     
                     search_results_data = {
                         "results": [chosen_result],  # Single chosen result
@@ -783,7 +767,16 @@ class FixedAmazonExtractor(AmazonExtractor):
 
         if "error" in search_results_data or not search_results_data.get("results"):
             log.warning(f"No Amazon results or error for EAN '{ean}'. Details: {search_results_data.get('error', 'No results list')}")
-            return {"error": f"No results for EAN {ean} or search error"}
+            # FIX 1: EAN search → title match fallback
+            log.info(f"Falling back to title search for supplier product: '{supplier_product_title}'")
+            title_search_results = await self.search_by_title_using_search_bar(supplier_product_title, page=page)
+            if title_search_results and "error" not in title_search_results and title_search_results.get("results"):
+                log.info(f"Title search successful for '{supplier_product_title}' after EAN '{ean}' failed")
+                # Return the best result from title search
+                return title_search_results["results"][0] if title_search_results["results"] else {"error": f"No results for EAN {ean} or title search"}
+            else:
+                log.warning(f"Both EAN '{ean}' and title '{supplier_product_title}' searches failed")
+                return {"error": f"No results for EAN {ean} or title search"}
 
         potential_asins_info = search_results_data["results"]
         chosen_asin_data = None
@@ -892,7 +885,9 @@ class PassiveExtractionWorkflow:
         
         self.output_dir = self._initialize_output_directory()
         self.supplier_cache_dir = os.path.join(self.output_dir, 'cached_products')
+        self.amazon_cache_dir = os.path.join(self.output_dir, 'FBA_ANALYSIS', 'amazon_cache')
         os.makedirs(self.supplier_cache_dir, exist_ok=True)
+        os.makedirs(self.amazon_cache_dir, exist_ok=True)
         self.state_manager = EnhancedStateManager(self.supplier_name)
         
         # Pass the single browser_manager instance to the tools
@@ -983,21 +978,11 @@ class PassiveExtractionWorkflow:
         self.log.info(f"--- Starting Passive Extraction Workflow for: {self.supplier_name} ---")
         self.log.info(f"Session ID: {session_id}")
 
-        # Apply system_config defaults when None is passed (fixing hardcoded value issue)
-        if self.workflow_config.get('max_products') is None:
-            max_products_to_process = self.system_config.get("system", {}).get("max_products", 10)
-        else:
-            max_products_to_process = self.workflow_config.get('max_products')
-        if self.workflow_config.get('max_products_per_category') is None:
-            max_products_per_category = self.system_config.get("system", {}).get("max_products_per_category", 5)
-        else:
-            max_products_per_category = self.workflow_config.get('max_products_per_category')
-        if self.workflow_config.get('max_analyzed_products') is None:
-            max_analyzed_products = self.system_config.get("system", {}).get("max_analyzed_products", 5)
-        else:
-            max_analyzed_products = self.workflow_config.get('max_analyzed_products')
-        
-        # Get additional config values for batch processing controls
+        # FIXED: Load configuration values directly from system_config (no hardcoded fallbacks)
+        # This ensures all toggle experiments work correctly
+        max_products_to_process = self.system_config.get("system", {}).get("max_products", 10)
+        max_products_per_category = self.system_config.get("system", {}).get("max_products_per_category", 5)
+        max_analyzed_products = self.system_config.get("system", {}).get("max_analyzed_products", 5)
         max_products_per_cycle = self.system_config.get("system", {}).get("max_products_per_cycle", 5)
         supplier_extraction_batch_size = self.system_config.get("system", {}).get("supplier_extraction_batch_size", 3)
         max_categories_per_request = self.system_config.get("ai_features", {}).get("category_selection", {}).get("max_categories_per_request", 3)
@@ -1271,7 +1256,7 @@ class PassiveExtractionWorkflow:
             # Final save and completion
             self.state_manager.complete_processing()
             self._save_linking_map(self.supplier_name)
-            self._save_final_report(profitable_results, self.supplier_name)
+            self._save_final_report(profitable_results)
             
             # CRITICAL FIX: Generate comprehensive financial report (was missing causing 6-day gap)
             try:
@@ -2212,9 +2197,26 @@ Return ONLY valid JSON, no additional text."""
                 except Exception as e:
                     log.warning(f"Could not load existing cache: {e}")
 
-            # Merge with new products (avoid duplicates by URL)
+            # FIX 3: Supplier cache deduplication - Merge with new products (avoid duplicates by URL and EAN)
             existing_urls = {p.get('url', '') for p in existing_products}
-            new_products = [p for p in products if p.get('url', '') not in existing_urls]
+            existing_eans = {p.get('ean', '') for p in existing_products if p.get('ean')}
+            
+            # Filter out products with duplicate URLs or EANs
+            new_products = []
+            for p in products:
+                product_url = p.get('url', '')
+                product_ean = p.get('ean', '')
+                
+                # Skip if URL already exists
+                if product_url and product_url in existing_urls:
+                    continue
+                
+                # Skip if EAN already exists and is not empty
+                if product_ean and product_ean in existing_eans:
+                    self.log.debug(f"Skipping duplicate EAN: {product_ean}")
+                    continue
+                
+                new_products.append(p)
 
             all_products = existing_products + new_products
 
@@ -2667,27 +2669,41 @@ Return ONLY valid JSON, no additional text."""
             self.log.info(f"Attempting Amazon search using EAN: {supplier_ean}")
             self.results_summary["products_analyzed_ean"] += 1
             
-            # CRITICAL FIX: Check Amazon cache before performing EAN search
-            # First try to get ASIN from EAN search to check cache
-            amazon_product_data = await self.extractor.search_by_ean_and_extract_data(supplier_ean, product_data["title"])
+            # FIX 2: Amazon cache reuse logic - Check cache before scraping
+            # First try to find cached data by EAN before performing any searches
+            cached_data = None
+            found_asin = None
+            
+            # Check if we have cached data for this EAN
+            amazon_cache_dir = os.path.join(self.output_dir, "FBA_ANALYSIS", "amazon_cache")
+            if os.path.exists(amazon_cache_dir):
+                for cache_file in os.listdir(amazon_cache_dir):
+                    if cache_file.endswith(".json") and supplier_ean in cache_file:
+                        try:
+                            with open(os.path.join(amazon_cache_dir, cache_file), 'r', encoding='utf-8') as f:
+                                cached_data = json.load(f)
+                                found_asin = cached_data.get("asin") or cached_data.get("asin_extracted_from_page")
+                                self.log.info(f"📋 Found cached Amazon data for EAN {supplier_ean} in file: {cache_file}")
+                                break
+                        except Exception as e:
+                            self.log.debug(f"Error reading cache file {cache_file}: {e}")
+            
+            if cached_data:
+                amazon_product_data = cached_data
+                actual_search_method = "EAN_cached"
+                self.log.info(f"📋 Using cached Amazon data for EAN {supplier_ean}")
+            else:
+                # No cache found - perform EAN search
+                amazon_product_data = await self.extractor.search_by_ean_and_extract_data(supplier_ean, product_data["title"])
             
             if amazon_product_data and "error" not in amazon_product_data:
-                # EAN search succeeded - check if we have cached data for this ASIN
+                # EAN search succeeded (or we used cached data)
                 found_asin = amazon_product_data.get("asin") or amazon_product_data.get("asin_extracted_from_page")
                 
-                if found_asin:
-                    # Check cache first before using fresh scraping data
-                    cached_data = self._check_amazon_cache_by_asin(found_asin, supplier_ean)
-                    
-                    if cached_data:
-                        # Cache hit - use cached data instead of fresh data
-                        amazon_product_data = cached_data
-                        actual_search_method = "EAN_cached"
-                        self.log.info(f"📋 Using cached Amazon data for EAN-found ASIN {found_asin}")
-                    else:
-                        # No cache - use fresh data from EAN search
-                        actual_search_method = "EAN"  # EAN search succeeded
-                else:
+                if found_asin and actual_search_method != "EAN_cached":
+                    # For fresh EAN search results, check if we need to copy to EAN-specific cache file
+                    actual_search_method = "EAN"  # EAN search succeeded
+                elif not found_asin:
                     actual_search_method = "EAN"  # EAN search succeeded but no ASIN found
             else:
                 amazon_product_data = None # Reset if EAN search failed

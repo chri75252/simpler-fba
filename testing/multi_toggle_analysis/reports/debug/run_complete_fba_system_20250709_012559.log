@@ -1,0 +1,104 @@
+INFO:__main__:🔍 Enhanced detailed logging enabled - output: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/logs/debug/run_complete_fba_system_20250709_012559.log
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:__main__:🚀 Complete FBA System v3 initialized
+INFO:__main__:🏭 Processing supplier: poundwholesale-co-uk
+INFO:__main__:🔗 URL: https://www.poundwholesale.co.uk/
+INFO:__main__:📧 Email: info@theblacksmithmarket.com
+INFO:__main__:🖥️ Headed mode: False
+INFO:__main__:📦 Max products: 21
+INFO:__main__:🔄 Force regenerate: False
+INFO:__main__:📦 Archiving expected output files for verification...
+INFO:__main__:Archive mode set to: ''
+WARNING:__main__:Unknown archive mode: ''. Skipping archive.
+INFO:tools.supplier_guard:🛡️ Supplier Guard initialized
+INFO:__main__:⚠️ Supplier poundwholesale-co-uk not ready: .supplier_ready file missing supplier_name field
+INFO:__main__:✅ Existing supplier package found for poundwholesale-co-uk. Bypassing script generation.
+INFO:__main__:🚀 Initializing centralized browser session...
+INFO:utils.browser_manager:🔧 BrowserManager singleton initialized
+INFO:utils.browser_manager:🔌 Connecting to Chrome on debug port 9222
+INFO:utils.browser_manager:📄 Using existing context with 2 pages
+INFO:utils.browser_manager:✅ Connected to Chrome successfully
+INFO:utils.browser_manager:📄 Created new page #1 for https://www.poundwholesale.co.uk
+INFO:utils.browser_manager:✅ Page ready for https://www.poundwholesale.co.uk/
+INFO:__main__:🔐 Performing dynamic supplier authentication...
+INFO:__main__:📦 Loading dynamic supplier login script: suppliers/poundwholesale-co-uk/scripts/poundwholesale-co-uk_login.py
+INFO:poundwholesale-co-uk_login:🔐 Starting login to https://www.poundwholesale.co.uk/
+INFO:poundwholesale-co-uk_login:✅ Already logged in
+INFO:__main__:✅ Dynamic supplier authentication successful. Proceeding with authenticated workflow.
+INFO:utils.path_manager:Creating run output directory for supplier 'poundwholesale-co-uk' -> 'poundwholesale-co-uk/20250708_212608_run'
+DEBUG:utils.path_manager:Successfully created run output directory: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/poundwholesale-co-uk/20250708_212608_run
+INFO:__main__:📁 Run output directory: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/poundwholesale-co-uk/20250708_212608_run
+INFO:__main__:🔄 Using standard workflow (LangGraph integration disabled)
+INFO:__main__:🔄 Starting passive extraction workflow...
+INFO:__main__:✅ Loaded system configuration from /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/config/system_config.json
+INFO:__main__:✅ OpenAI client initialized for AI features
+WARNING:tools.passive_extraction_workflow_latest:Limiting scrape to 4 products per category. This is a low value suitable for testing only.
+INFO:tools.passive_extraction_workflow_latest:PassiveExtractionWorkflow initialized WITH an AI client.
+INFO:amazon_playwright_extractor:AI features disabled in amazon_playwright_extractor - using only traditional selectors.
+INFO:amazon_playwright_extractor:Output directory set to: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/CACHE/amazon_data
+INFO:amazon_playwright_extractor:🔧 AmazonExtractor will use centralized BrowserManager
+INFO:configurable_supplier_scraper:✅ Loaded system configuration from /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/config/system_config.json
+INFO:configurable_supplier_scraper:🔧 ConfigurableSupplierScraper will use centralized BrowserManager
+DEBUG:configurable_supplier_scraper:Extraction targets from config: {'product_data': ['price', 'title', 'ean', 'barcode', 'image', 'description', 'out_of_stock'], 'navigation': ['next_page', 'category_links', 'breadcrumbs'], 'pagination': ['next_page', 'previous_page', 'page_numbers'], 'filtering': ['price_filter', 'category_filter', 'search_box', 'products_per_page', 'product limiter'], 'interaction': ['add_to_cart', 'buy_now', 'product_link']}
+DEBUG:configurable_supplier_scraper:Discovery assistance from config: {'enabled': True, 'prompt_injection': {'login_discovery_hints': '', 'product_navigation_discovery_hints': "OUT OF STOCK products show a red/orange badge or overlay with text like 'Out of Stock', 'Sold Out', or 'Unavailable'"}, '_comment': 'Two API calls are made: 1) login_discovery_hints for login elements, 2) product_navigation_discovery_hints for product/navigation selectors. You can paste full console elements, XPath, or any hints here.'}
+DEBUG:configurable_supplier_scraper:Debug logging initialized - writing to /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/logs/debug/supplier_scraping_debug_20250709_012608.log
+DEBUG:configurable_supplier_scraper:Headless mode: False
+INFO:configurable_supplier_scraper:🔧 Initialized with AI model: gpt-4.1-mini-2025-04-14
+INFO:configurable_supplier_scraper:🎯 Extraction targets loaded: ['product_data', 'navigation', 'pagination', 'filtering', 'interaction']
+INFO:configurable_supplier_scraper:💡 Discovery assistance enabled: True
+INFO:tools.passive_extraction_workflow_latest:✅ Linking map initialized - using previous version self-contained approach
+INFO:__main__:🔧 Workflow configured: force_ai_scraping=True, linking_batch=4, financial_batch=4, ai_client=enabled
+INFO:utils.enhanced_state_manager:No existing state file found for poundwholesale-co-uk, starting fresh
+INFO:tools.passive_extraction_workflow_latest:✅ No existing linking map found at /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/FBA_ANALYSIS/linking_maps/poundwholesale-co-uk/linking_map.json - Creating new map
+INFO:tools.passive_extraction_workflow_latest:Starting passive extraction workflow for supplier: poundwholesale-co-uk (https://www.poundwholesale.co.uk/)
+INFO:tools.passive_extraction_workflow_latest:Session ID: poundwholesale-co-uk_20250709_012608
+INFO:tools.passive_extraction_workflow_latest:PRICE CRITERIA: Min Supplier Cost £0.1, Max Supplier Cost £20.0
+INFO:utils.enhanced_state_manager:No existing state file found for poundwholesale-co-uk, starting fresh
+INFO:tools.passive_extraction_workflow_latest:Starting fresh analysis - no previous state found
+INFO:tools.passive_extraction_workflow_latest:Extracting products from poundwholesale-co-uk...
+INFO:configurable_supplier_scraper:✅ Loaded VALIDATED supplier package selectors for poundwholesale.co.uk from /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/suppliers/poundwholesale-co-uk/config/product_selectors.json
+INFO:tools.passive_extraction_workflow_latest:✅ Using authenticated page from main orchestrator
+INFO:tools.passive_extraction_workflow_latest:🧠 Dynamic supplier authentication completed successfully
+INFO:tools.passive_extraction_workflow_latest:🧠 AI category progression ENABLED for start-of-workflow category selection
+INFO:tools.passive_extraction_workflow_latest:Extracting products from poundwholesale-co-uk using two-step process.
+INFO:tools.passive_extraction_workflow_latest:Using traditional category paths for supplier scraping: ['/']
+INFO:tools.passive_extraction_workflow_latest:Scraping supplier category: https://www.poundwholesale.co.uk/
+INFO:tools.passive_extraction_workflow_latest:Fetching supplier category page 1: https://www.poundwholesale.co.uk/
+INFO:configurable_supplier_scraper:Fetching page content from: https://www.poundwholesale.co.uk/ (attempt 1/3)
+INFO:utils.browser_manager:♻️ Reusing existing Chrome connection (port 9222)
+INFO:utils.browser_manager:♻️ Reusing cached page for https://www.poundwholesale.co.uk
+INFO:configurable_supplier_scraper:🔧 Using BrowserManager page for https://www.poundwholesale.co.uk/
+INFO:configurable_supplier_scraper:🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/
+INFO:configurable_supplier_scraper:🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/
+INFO:configurable_supplier_scraper:Successfully fetched content from https://www.poundwholesale.co.uk/ (Size: 627470 bytes)
+INFO:tools.passive_extraction_workflow_latest:✅ Loaded product selectors for poundwholesale-co-uk: suppliers/poundwholesale-co-uk/config/product_selectors.json
+INFO:tools.passive_extraction_workflow_latest:Using dynamic selectors for product extraction from poundwholesale-co-uk
+WARNING:tools.passive_extraction_workflow_latest:No container selector found in dynamic selectors
+WARNING:tools.passive_extraction_workflow_latest:No product elements found on https://www.poundwholesale.co.uk/ (Page 1).
+WARNING:tools.passive_extraction_workflow_latest:No products extracted from poundwholesale-co-uk. Workflow cannot continue.
+WARNING:__main__:⚠️ Workflow completed but no results returned
+ERROR:__main__:❌ Extraction workflow failed
+INFO:__main__:🔍 Verifying files generated despite extraction failure...
+INFO:__main__:✅ Verified suppliers/poundwholesale-co-uk/config/login_config.json: 39 bytes, 2025-07-09T01:21:55.800343
+INFO:__main__:✅ Verified suppliers/poundwholesale-co-uk/scripts/poundwholesale-co-uk_login.py: 20178 bytes, 2025-07-09T01:21:55.814416
+ERROR:__main__:❌ Missing expected file: OUTPUTS/FBA_ANALYSIS/cached_products.json
+ERROR:__main__:❌ Missing expected file: OUTPUTS/FBA_ANALYSIS/ai_category_cache.json
+ERROR:__main__:❌ Missing expected file: OUTPUTS/FBA_ANALYSIS/linking_maps/linking_map.json
+ERROR:__main__:❌ Output verification FAILED - 5 issues found
+ERROR:__main__:  • suppliers/poundwholesale-co-uk/config/login_config.json: Missing vision_discovered field
+ERROR:__main__:  • suppliers/poundwholesale-co-uk/config/login_config.json: Missing auto_discovered field
+ERROR:__main__:  • OUTPUTS/FBA_ANALYSIS/cached_products.json: File does not exist
+ERROR:__main__:  • OUTPUTS/FBA_ANALYSIS/ai_category_cache.json: File does not exist
+ERROR:__main__:  • OUTPUTS/FBA_ANALYSIS/linking_maps/linking_map.json: File does not exist
+INFO:utils.browser_manager:🧹 Starting browser cleanup...
+INFO:utils.browser_manager:🗑️ Closed 1 cached pages
+INFO:utils.browser_manager:🔌 Disconnected from Chrome
+INFO:utils.browser_manager:🎭 Stopped Playwright
+INFO:utils.browser_manager:✅ Browser cleanup completed
+INFO:utils.browser_manager:🧹 Global browser cleanup completed
+INFO:__main__:🧹 Browser cleanup completed
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:utils.browser_manager:🧹 Starting browser cleanup...
+INFO:utils.browser_manager:🗑️ Closed 0 cached pages
+INFO:utils.browser_manager:✅ Browser cleanup completed
+INFO:utils.browser_manager:🧹 Global browser cleanup completed

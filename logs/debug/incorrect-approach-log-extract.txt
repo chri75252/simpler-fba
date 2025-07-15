@@ -1,0 +1,200 @@
+using ean search result to get a title match is INCORRECT ! NEVER PERFORM TITLE MATCH USING EAN SEARCH. there should not be any title matching being done with products from search page if search done using EAN. when that happens it should revert to title search automatically ( refer to extract below the following). 
+line : 312 - 366 log output: "C:\Users\chris\Desktop\Amazon-FBA-Agent-System-v32\logs\debug\run_custom_poundwholesale_20250715_093614.log"
+2025-07-15 02:17:58,196 - PassiveExtractionWorkflow - INFO - Attempting Amazon search using EAN: 5055319510769
+2025-07-15 02:17:58,196 - tools.passive_extraction_workflow_latest - INFO - Searching Amazon by EAN: 5055319510769 for supplier product: 'Home & Garden Multi-Purpose White Vinegar Cleaning Spray 500ml' (FixedAmazonExtractor)
+2025-07-15 02:17:58,197 - tools.passive_extraction_workflow_latest - INFO - No page provided to search_by_ean, getting one from BrowserManager.
+2025-07-15 02:17:58,197 - utils.browser_manager - INFO - ♻️ Reusing cached page for https://www.amazon.co.uk
+2025-07-15 02:17:58,197 - tools.passive_extraction_workflow_latest - INFO - Navigating to Amazon UK to search for EAN: 5055319510769
+2025-07-15 02:17:59,176 - tools.passive_extraction_workflow_latest - INFO - Waiting for search results page to load for EAN 5055319510769...
+2025-07-15 02:17:59,531 - tools.passive_extraction_workflow_latest - INFO - Found search results container with selector: div.s-search-results
+2025-07-15 02:18:01,590 - tools.passive_extraction_workflow_latest - INFO - Found 4 search result elements using selector: div[data-asin]:not([data-asin='']):not(.AdHolder):not([class*='s-widget-sponsored-product'])
+2025-07-15 02:18:01,590 - tools.passive_extraction_workflow_latest - INFO - Processing 4 search result elements for EAN 5055319510769
+2025-07-15 02:18:01,613 - tools.passive_extraction_workflow_latest - DEBUG - Processing element 1: ASIN B07VKM2K2J
+2025-07-15 02:18:01,636 - tools.passive_extraction_workflow_latest - DEBUG - ASIN B07VKM2K2J HTML structure sample: <div data-asin="B07VKM2K2J" data-asinadattributesprops="{&quot;asin&quot;:&quot;B07VKM2K2J&quot;,&quot;productUrl&quot;:&quot;https://aax-eu.amazon.co.uk/x/c/JNt8mwkt-c2BiDYjIqqu7zkAAAGYCwQqQAMAAAH2AQBvbm9fdHhuX2JpZDEgICBvbm9fdHhuX2ltcDIgICAYq5ml/clv1_CEuOPUxokZA0iHrVALw8yQnrGy1pY5UUkpYi9CWTqP1S8X9LqA_oFf018HHz9hvQjq0yzpNb3XTP8T6iq2vfZiodbXqAHOHISBwfV25QbVqEHZ9l4iFRo4PYHxyKGK9HIY-QJA-u8o8XBktilVDrYU1NLUZODN84CU5tHqwgUVeQ1PuamBEzXFStNpmvOqssRHMHeJvHlJlDT3dnO8R8Yf5bksG5l94oD0zcLowv31UxlI9tr66CRFJ3pkWWnWl7FWXfMPjKtxhPimkmNJ1SbSmmW0WLyCr3J-CKyOjxR48tI0mU0qe21BKQWwrGGa-h4a4p_8dUaMPmyaTkAtuIDMFR3NFY...
+2025-07-15 02:18:01,636 - tools.passive_extraction_workflow_latest - DEBUG - Error checking sponsored badge for ASIN B07VKM2K2J: 'ElementHandle' object has no attribute 'locator'
+2025-07-15 02:18:01,637 - tools.passive_extraction_workflow_latest - DEBUG - Error checking aria-label for ASIN B07VKM2K2J: 'ElementHandle' object has no attribute 'locator'
+2025-07-15 02:18:01,676 - tools.passive_extraction_workflow_latest - DEBUG - Error checking text for ad indicators for ASIN B07VKM2K2J: 'ElementHandle' object has no attribute 'locator'
+2025-07-15 02:18:02,168 - tools.passive_extraction_workflow_latest - DEBUG - ASIN B07VKM2K2J title extracted using selector 'a[href*='/dp/'] span': 4.4...
+2025-07-15 02:18:02,169 - tools.passive_extraction_workflow_latest - INFO - Found organic result: ASIN B07VKM2K2J - 4.4...
+2025-07-15 02:18:02,191 - tools.passive_extraction_workflow_latest - DEBUG - Processing element 2: ASIN B0B3M7W2Q9
+2025-07-15 02:18:02,213 - tools.passive_extraction_workflow_latest - DEBUG - ASIN B0B3M7W2Q9 HTML structure sample: <div data-asin="B0B3M7W2Q9" data-asinadattributesprops="{&quot;asin&quot;:&quot;B0B3M7W2Q9&quot;,&quot;productUrl&quot;:&quot;https://aax-eu.amazon.co.uk/x/c/JNt8mwkt-c2BiDYjIqqu7zkAAAGYCwQqQAMAAAH2AQBvbm9fdHhuX2JpZDEgICBvbm9fdHhuX2ltcDIgICAYq5ml/clv1_CEuOPUxokZA0iHrVALw8yQnrGy1pY5UUkpYi9CWTqP1S8X9LqA_oFf018HHz9hvQjq0yzpNb3XTP8T6iq2vfZiodbXqAHOHISBwfV25QbVqEHZ9l4iFRo4PYHxyKGK9HIY-QJA-u8o8XBktilVDrYU1NLUZODN84CU5tHqwgUVeQ1PuamBEzXFStNpmvOqssRHMHeJvHlJlDT3dnO8R8Yf5bksG5l94oD0zcLowv31UxlI9tr66CRFJ3pkWWnWl7FWXfMPjKtxhPimkmNJ1SbSmmW0WLyCr3J-CKyOjxR48tI0mU0qe21BKQWwrGGa-h4a4p_8dUaMPmyaTkAtuIDMFR3NFY...
+2025-07-15 02:18:02,213 - tools.passive_extraction_workflow_latest - DEBUG - Error checking sponsored badge for ASIN B0B3M7W2Q9: 'ElementHandle' object has no attribute 'locator'
+2025-07-15 02:18:02,214 - tools.passive_extraction_workflow_latest - DEBUG - Error checking aria-label for ASIN B0B3M7W2Q9: 'ElementHandle' object has no attribute 'locator'
+2025-07-15 02:18:02,250 - tools.passive_extraction_workflow_latest - DEBUG - Error checking text for ad indicators for ASIN B0B3M7W2Q9: 'ElementHandle' object has no attribute 'locator'
+2025-07-15 02:18:02,768 - tools.passive_extraction_workflow_latest - DEBUG - ASIN B0B3M7W2Q9 title extracted using selector 'a[href*='/dp/'] span': 4.6...
+2025-07-15 02:18:02,768 - tools.passive_extraction_workflow_latest - INFO - Found organic result: ASIN B0B3M7W2Q9 - 4.6...
+2025-07-15 02:18:02,905 - tools.passive_extraction_workflow_latest - DEBUG - Processing element 3: ASIN B07VKM2K2J
+2025-07-15 02:18:02,923 - tools.passive_extraction_workflow_latest - DEBUG - ASIN B07VKM2K2J HTML structure sample: <div data-asin="B07VKM2K2J" data-asinadattributesprops="{&quot;asin&quot;:&quot;B07VKM2K2J&quot;,&quot;productUrl&quot;:&quot;https://aax-eu.amazon.co.uk/x/c/JNt8mwkt-c2BiDYjIqqu7zkAAAGYCwQqQAMAAAH2AQBvbm9fdHhuX2JpZDEgICBvbm9fdHhuX2ltcDIgICAYq5ml/clv1_CEuOPUxokZA0iHrVALw8yQnrGy1pY5UUkpYi9CWTqP1S8X9LqA_oFf018HHz9hvQjq0yzpNb3XTP8T6iq2vfZiodbXqAHOHISBwfV25QbVqEHZ9l4iFRo4PYHxyKGK9HIY-QJA-u8o8XBktilVDrYU1NLUZODN84CU5tHqwgUVeQ1PuamBEzXFStNpmvOqssRHMHeJvHlJlDT3dnO8R8Yf5bksG5l94oD0zcLowv31UxlI9tr66CRFJ3pkWWnWl7FWXfMPjKtxhPimkmNJ1SbSmmW0WLyCr3J-CKyOjxR48tI0mU0qe21BKQWwrGGa-h4a4p_8dUaMPmyaTkAtuIDMFR3NFY...
+2025-07-15 02:18:02,924 - tools.passive_extraction_workflow_latest - DEBUG - Error checking sponsored badge for ASIN B07VKM2K2J: 'ElementHandle' object has no attribute 'locator'
+2025-07-15 02:18:02,924 - tools.passive_extraction_workflow_latest - DEBUG - Error checking aria-label for ASIN B07VKM2K2J: 'ElementHandle' object has no attribute 'locator'
+2025-07-15 02:18:02,966 - tools.passive_extraction_workflow_latest - DEBUG - Error checking text for ad indicators for ASIN B07VKM2K2J: 'ElementHandle' object has no attribute 'locator'
+2025-07-15 02:18:03,378 - tools.passive_extraction_workflow_latest - DEBUG - ASIN B07VKM2K2J title extracted using selector 'a[href*='/dp/'] span': 4.4...
+2025-07-15 02:18:03,378 - tools.passive_extraction_workflow_latest - INFO - Found organic result: ASIN B07VKM2K2J - 4.4...
+2025-07-15 02:18:03,402 - tools.passive_extraction_workflow_latest - DEBUG - Processing element 4: ASIN B0B3M7W2Q9
+2025-07-15 02:18:03,403 - tools.passive_extraction_workflow_latest - DEBUG - Error checking sponsored badge for ASIN B0B3M7W2Q9: 'ElementHandle' object has no attribute 'locator'
+2025-07-15 02:18:03,403 - tools.passive_extraction_workflow_latest - DEBUG - Error checking aria-label for ASIN B0B3M7W2Q9: 'ElementHandle' object has no attribute 'locator'
+2025-07-15 02:18:03,443 - tools.passive_extraction_workflow_latest - DEBUG - Error checking text for ad indicators for ASIN B0B3M7W2Q9: 'ElementHandle' object has no attribute 'locator'
+2025-07-15 02:18:03,998 - tools.passive_extraction_workflow_latest - DEBUG - ASIN B0B3M7W2Q9 title extracted using selector 'a[href*='/dp/'] span': 4.6...
+2025-07-15 02:18:03,999 - tools.passive_extraction_workflow_latest - INFO - Found organic result: ASIN B0B3M7W2Q9 - 4.6...
+2025-07-15 02:18:03,999 - tools.passive_extraction_workflow_latest - INFO - Multiple organic results (4) found for EAN 5055319510769. Applying word overlap scoring.
+2025-07-15 02:18:04,000 - tools.passive_extraction_workflow_latest - INFO - ASIN B07VKM2K2J: 0.00 overlap score with '4.4...' 
+2025-07-15 02:18:04,000 - tools.passive_extraction_workflow_latest - INFO - ASIN B0B3M7W2Q9: 0.00 overlap score with '4.6...' 
+2025-07-15 02:18:04,000 - tools.passive_extraction_workflow_latest - INFO - ASIN B07VKM2K2J: 0.00 overlap score with '4.4...' 
+2025-07-15 02:18:04,001 - tools.passive_extraction_workflow_latest - INFO - ASIN B0B3M7W2Q9: 0.00 overlap score with '4.6...' 
+2025-07-15 02:18:04,001 - tools.passive_extraction_workflow_latest - WARNING - No result met 0.25 threshold. Using top organic result ASIN B07VKM2K2J with low confidence.
+2025-07-15 02:18:04,001 - tools.passive_extraction_workflow_latest - INFO - EAN search selected ASIN B07VKM2K2J for 5055319510769
+2025-07-15 02:18:04,002 - tools.passive_extraction_workflow_latest - INFO - Single ASIN B07VKM2K2J found for EAN 5055319510769.
+2025-07-15 02:18:04,002 - tools.passive_extraction_workflow_latest - INFO - Proceeding with ASIN: B07VKM2K2J for EAN: 5055319510769
+2025-07-15 02:18:04,003 - amazon_playwright_extractor - WARNING - No page object provided to extract_data for ASIN B07VKM2K2J. Getting a new one from BrowserManager.
+2025-07-15 02:18:04,003 - amazon_playwright_extractor - INFO - Reusing existing page: https://www.amazon.co.uk/s?k=5055319510769&ref=nb_sb_noss
+2025-07-15 02:18:07,135 - amazon_playwright_extractor - INFO - Checking for cookie consent pop-up...
+2025-07-15 02:18:08,215 - amazon_playwright_extractor - INFO - Finished checking for cookie consent pop-ups. If one was present and not handled, it might interfere.
+2025-07-15 02:18:09,232 - amazon_playwright_extractor - INFO - Checking for CAPTCHA...
+2025-07-15 02:18:12,256 - amazon_playwright_extractor - INFO - No CAPTCHA page detected by form selector.
+2025-07-15 02:18:12,257 - amazon_playwright_extractor - INFO - Checking for cookie consent pop-up...
+2025-07-15 02:18:12,506 - amazon_playwright_extractor - INFO - Finished checking for cookie consent pop-ups. If one was present and not handled, it might interfere.
+2025-07-15 02:18:12,507 - amazon_playwright_extractor - INFO - Page should be ready. Waiting 5s for stabilization...
+2025-07-15 02:18:17,543 - amazon_playwright_extractor 
+
+
+
+
+example when no ean in supplier product cache:
+when no EAN match occures ( above example ) system should follow the same steps as if there is no EAN ( in supplier produc cache) in terms of sequnce of steps; see below -
+line 251 - 309 : logoutput "C:\Users\chris\Desktop\Amazon-FBA-Agent-System-v32\logs\debug\run_custom_poundwholesale_20250715_093614.log"
+ 
+2025-07-15 02:17:45,550 - tools.passive_extraction_workflow_latest - INFO - Navigating to Amazon UK to search for EAN: 5055319510417
+2025-07-15 02:17:48,348 - tools.passive_extraction_workflow_latest - INFO - Waiting for search results page to load for EAN 5055319510417...
+2025-07-15 02:17:48,613 - tools.passive_extraction_workflow_latest - INFO - Found search results container with selector: div.s-search-results
+2025-07-15 02:17:50,717 - tools.passive_extraction_workflow_latest - INFO - Found 5 search result elements using selector: div.s-result-item[data-asin]:not([data-asin=''])
+2025-07-15 02:17:50,718 - tools.passive_extraction_workflow_latest - INFO - Processing 5 search result elements for EAN 5055319510417
+2025-07-15 02:17:50,742 - tools.passive_extraction_workflow_latest - DEBUG - Processing element 1: ASIN B071GV4YC3
+2025-07-15 02:17:50,765 - tools.passive_extraction_workflow_latest - DEBUG - ASIN B071GV4YC3 HTML structure sample: <div role="listitem" data-asin="B071GV4YC3" data-index="2" data-uuid="ffe404a2-2f3f-45ba-8dd3-2e719b98b110" id="ffe404a2-2f3f-45ba-8dd3-2e719b98b110" data-component-type="s-search-result" class="sg-col-4-of-4 sg-col-4-of-24 sg-col-4-of-12 s-result-item s-asin sg-col-4-of-16 AdHolder sg-col s-widget-spacing-small sg-col-4-of-8 sg-col-4-of-20" data-component-id="5" data-cel-widget="search_result_0"><div class="sg-col-inner"><div cel_widget_id="MAIN-SEARCH_RESULTS-2" class="s-widget-container s-spacing-small s-widget-container-height-small celwidget slot=MAIN template=SEARCH_RESULTS widgetId=sear...
+2025-07-15 02:17:50,765 - tools.passive_extraction_workflow_latest - DEBUG - Error checking sponsored badge for ASIN B071GV4YC3: 'ElementHandle' object has no attribute 'locator'
+2025-07-15 02:17:50,766 - tools.passive_extraction_workflow_latest - DEBUG - Error checking aria-label for ASIN B071GV4YC3: 'ElementHandle' object has no attribute 'locator'
+2025-07-15 02:17:50,811 - tools.passive_extraction_workflow_latest - INFO - Skipping sponsored result: ASIN B071GV4YC3 (detected by ad-specific class: 'AdHolder')
+2025-07-15 02:17:50,833 - tools.passive_extraction_workflow_latest - DEBUG - Processing element 2: ASIN B0DHSCSY1G
+2025-07-15 02:17:50,847 - tools.passive_extraction_workflow_latest - DEBUG - ASIN B0DHSCSY1G HTML structure sample: <div role="listitem" data-asin="B0DHSCSY1G" data-index="4" data-uuid="cc4331bc-8993-483e-9931-0d7467240f7d" id="cc4331bc-8993-483e-9931-0d7467240f7d" data-component-type="s-search-result" class="sg-col-4-of-4 sg-col-4-of-24 sg-col-4-of-12 s-result-item s-asin sg-col-4-of-16 AdHolder sg-col s-widget-spacing-small sg-col-4-of-8 sg-col-4-of-20" data-component-id="10" data-cel-widget="search_result_1"><div class="sg-col-inner"><div cel_widget_id="MAIN-SEARCH_RESULTS-4" class="s-widget-container s-spacing-small s-widget-container-height-small celwidget slot=MAIN template=SEARCH_RESULTS widgetId=sea...
+2025-07-15 02:17:50,847 - tools.passive_extraction_workflow_latest - DEBUG - Error checking sponsored badge for ASIN B0DHSCSY1G: 'ElementHandle' object has no attribute 'locator'
+2025-07-15 02:17:50,848 - tools.passive_extraction_workflow_latest - DEBUG - Error checking aria-label for ASIN B0DHSCSY1G: 'ElementHandle' object has no attribute 'locator'
+2025-07-15 02:17:50,898 - tools.passive_extraction_workflow_latest - INFO - Skipping sponsored result: ASIN B0DHSCSY1G (detected by ad-specific class: 'AdHolder')
+2025-07-15 02:17:50,933 - tools.passive_extraction_workflow_latest - DEBUG - Processing element 3: ASIN B0CWH1XC3W
+2025-07-15 02:17:50,954 - tools.passive_extraction_workflow_latest - DEBUG - ASIN B0CWH1XC3W HTML structure sample: <div role="listitem" data-asin="B0CWH1XC3W" data-index="5" data-uuid="043c390b-fb2c-4913-97f7-ba13b6fa21be" id="043c390b-fb2c-4913-97f7-ba13b6fa21be" data-component-type="s-search-result" class="sg-col-4-of-4 sg-col-4-of-24 sg-col-4-of-12 s-result-item s-asin sg-col-4-of-16 AdHolder sg-col s-widget-spacing-small sg-col-4-of-8 sg-col-4-of-20" data-component-id="13" data-cel-widget="search_result_2"><div class="sg-col-inner"><div cel_widget_id="MAIN-SEARCH_RESULTS-5" class="s-widget-container s-spacing-small s-widget-container-height-small celwidget slot=MAIN template=SEARCH_RESULTS widgetId=sea...
+2025-07-15 02:17:50,955 - tools.passive_extraction_workflow_latest - DEBUG - Error checking sponsored badge for ASIN B0CWH1XC3W: 'ElementHandle' object has no attribute 'locator'
+2025-07-15 02:17:50,955 - tools.passive_extraction_workflow_latest - DEBUG - Error checking aria-label for ASIN B0CWH1XC3W: 'ElementHandle' object has no attribute 'locator'
+2025-07-15 02:17:51,107 - tools.passive_extraction_workflow_latest - INFO - Skipping sponsored result: ASIN B0CWH1XC3W (detected by ad-specific class: 'AdHolder')
+2025-07-15 02:17:51,141 - tools.passive_extraction_workflow_latest - DEBUG - Processing element 4: ASIN B0F1GF5SM3
+2025-07-15 02:17:51,142 - tools.passive_extraction_workflow_latest - DEBUG - Error checking sponsored badge for ASIN B0F1GF5SM3: 'ElementHandle' object has no attribute 'locator'
+2025-07-15 02:17:51,142 - tools.passive_extraction_workflow_latest - DEBUG - Error checking aria-label for ASIN B0F1GF5SM3: 'ElementHandle' object has no attribute 'locator'
+2025-07-15 02:17:51,179 - tools.passive_extraction_workflow_latest - INFO - Skipping sponsored result: ASIN B0F1GF5SM3 (detected by ad-specific class: 'AdHolder')
+2025-07-15 02:17:51,197 - tools.passive_extraction_workflow_latest - DEBUG - Processing element 5: ASIN B0CMP9M725
+2025-07-15 02:17:51,197 - tools.passive_extraction_workflow_latest - DEBUG - Error checking sponsored badge for ASIN B0CMP9M725: 'ElementHandle' object has no attribute 'locator'
+2025-07-15 02:17:51,197 - tools.passive_extraction_workflow_latest - DEBUG - Error checking aria-label for ASIN B0CMP9M725: 'ElementHandle' object has no attribute 'locator'
+2025-07-15 02:17:51,226 - tools.passive_extraction_workflow_latest - INFO - Skipping sponsored result: ASIN B0CMP9M725 (detected by ad-specific class: 'AdHolder')
+2025-07-15 02:17:51,227 - tools.passive_extraction_workflow_latest - WARNING - EAN 5055319510417 returned no organic results - skipping
+2025-07-15 02:17:51,227 - tools.passive_extraction_workflow_latest - WARNING - No Amazon results or error for EAN '5055319510417'. Details: no_organic_results
+2025-07-15 02:17:51,228 - PassiveExtractionWorkflow - INFO - EAN search failed. Falling back to title search.
+2025-07-15 02:17:51,228 - tools.passive_extraction_workflow_latest - INFO - Searching Amazon by title using search bar: 'Home & Garden Stove Polish Fireplace Restorer 200ml'
+2025-07-15 02:17:51,228 - tools.passive_extraction_workflow_latest - INFO - No page provided to search_by_title, getting one from BrowserManager.
+2025-07-15 02:17:51,229 - utils.browser_manager - INFO - ♻️ Reusing cached page for https://www.amazon.co.uk
+2025-07-15 02:17:51,229 - tools.passive_extraction_workflow_latest - INFO - Navigating to Amazon UK to search for title: Home & Garden Stove Polish Fireplace Restorer 200ml
+2025-07-15 02:17:55,276 - tools.passive_extraction_workflow_latest - INFO - Title search found 34 elements using selector: div.s-search-results > div[data-asin]
+2025-07-15 02:17:56,491 - tools.passive_extraction_workflow_latest - DEBUG - ASIN B017ERHDUG title extracted using selector 'h2': Dirtbusters Stove Polish & Stove Cleaner for Wood ...
+2025-07-15 02:17:56,812 - tools.passive_extraction_workflow_latest - DEBUG - ASIN B00LC4S9MY title extracted using selector 'h2': Dirtbusters Stove Cleaning Care Kit, With Exterior...
+2025-07-15 02:17:57,021 - tools.passive_extraction_workflow_latest - DEBUG - ASIN B017DZT2SU title extracted using selector 'h2': Dirtbusters Stove Cleaner Spray, Powerful Pro Exte...
+2025-07-15 02:17:57,282 - tools.passive_extraction_workflow_latest - DEBUG - ASIN B00LBGI482 title extracted using selector 'h2': Dirtbusters Stove Glass Cleaner, Powerful Pro Clea...
+2025-07-15 02:17:57,521 - tools.passive_extraction_workflow_latest - DEBUG - ASIN B0BXQ3JDV7 title extracted using selector 'h2': STARWAX – Parquet & Laminate Floor Polish 5L – Res...
+2025-07-15 02:17:57,737 - tools.passive_extraction_workflow_latest - DEBUG - ASIN B0BT27GKNW title extracted using selector 'h2': Furniture Clinic Stove Restorer - Restores The Nat...
+2025-07-15 02:17:57,948 - tools.passive_extraction_workflow_latest - DEBUG - ASIN B017BQFYQA title extracted using selector 'h2': Dirtbusters Stove Polish For Log Burners & Grates ...
+2025-07-15 02:17:58,150 - tools.passive_extraction_workflow_latest - DEBUG - ASIN B000TAQU00 title extracted using selector 'h2': Hotspot Stove and Grate Polish Black – Restores Sh...
+2025-07-15 02:17:58,151 - tools.passive_extraction_workflow_latest - INFO - Title search found 8 results for 'Home & Garden Stove Polish Fireplace Restorer 200ml'
+2025-07-15 02:17:58,151 - PassiveExtractionWorkflow - INFO - 🔍 PRODUCT VALIDATION: Evaluating 8 Amazon results for 'Home & Garden Stove Polish Fireplace Restorer 200ml'
+2025-07-15 02:17:58,152 - PassiveExtractionWorkflow - DEBUG - 🔍 MATCH VALIDATION: 'Home & Garden Stove Polish Fireplace Restorer 200ml' vs 'Dirtbusters Stove Polish & Stove Cleaner for Wood & Log Burners & Fireplace Grates, Clean & Restore to Black (250ml & 750ml)' = 0.43 (low, 30.0%)
+2025-07-15 02:17:58,153 - PassiveExtractionWorkflow - INFO - 📊 Result 1: ASIN B017ERHDUG - Confidence: 0.300 (low) - Overlap: 0.429 - 'Dirtbusters Stove Polish & Stove Cleaner for Wood & Log Burn...'
+2025-07-15 02:17:58,153 - PassiveExtractionWorkflow - DEBUG - 🔍 MATCH VALIDATION: 'Home & Garden Stove Polish Fireplace Restorer 200ml' vs 'Dirtbusters Stove Cleaning Care Kit, With Exterior Spray, Glass Cleaner Paste & Stove Polish, Clean, Protect & Restore Log Burners & Grates' = 0.29 (low, 30.0%)
+2025-07-15 02:17:58,154 - PassiveExtractionWorkflow - INFO - 📊 Result 2: ASIN B00LC4S9MY - Confidence: 0.300 (low) - Overlap: 0.286 - 'Dirtbusters Stove Cleaning Care Kit, With Exterior Spray, Gl...'
+2025-07-15 02:17:58,154 - PassiveExtractionWorkflow - DEBUG - 🔍 MATCH VALIDATION: 'Home & Garden Stove Polish Fireplace Restorer 200ml' vs 'Dirtbusters Stove Cleaner Spray, Powerful Pro External Cleaning For Log Burner, Stove, Hearths & Fireplace (750ml)' = 0.29 (low, 30.0%)
+2025-07-15 02:17:58,155 - PassiveExtractionWorkflow - INFO - 📊 Result 3: ASIN B017DZT2SU - Confidence: 0.300 (low) - Overlap: 0.286 - 'Dirtbusters Stove Cleaner Spray, Powerful Pro External Clean...'
+2025-07-15 02:17:58,155 - PassiveExtractionWorkflow - DEBUG - 🔍 MATCH VALIDATION: 'Home & Garden Stove Polish Fireplace Restorer 200ml' vs 'Dirtbusters Stove Glass Cleaner, Powerful Pro Cleaning Paste For All Log Burner, Stove & Fireplace Window & Glass (500g)' = 0.29 (low, 30.0%)
+2025-07-15 02:17:58,155 - PassiveExtractionWorkflow - INFO - 📊 Result 4: ASIN B00LBGI482 - Confidence: 0.300 (low) - Overlap: 0.286 - 'Dirtbusters Stove Glass Cleaner, Powerful Pro Cleaning Paste...'
+2025-07-15 02:17:58,156 - PassiveExtractionWorkflow - DEBUG - 🔍 MATCH VALIDATION: 'Home & Garden Stove Polish Fireplace Restorer 200ml' vs 'STARWAX – Parquet & Laminate Floor Polish 5L – Restores Shine & Gloss – Fills Scratches, Protects from Stains & Wear – Easy Mop-On Application – No Sanding – Covers 30m² – Quick Drying' = 0.14 (very_low, 10.0%)
+2025-07-15 02:17:58,156 - PassiveExtractionWorkflow - INFO - 📊 Result 5: ASIN B0BXQ3JDV7 - Confidence: 0.100 (very_low) - Overlap: 0.143 - 'STARWAX – Parquet & Laminate Floor Polish 5L – Restores Shin...'
+2025-07-15 02:17:58,157 - PassiveExtractionWorkflow - WARNING - 🚨 NO CONFIDENT MATCH: All Amazon results below 50.0% confidence threshold for 'Home & Garden Stove Polish Fireplace Restorer 200ml'. Skipping to prevent irrational matches.
+2025-07-15 02:17:58,157 - PassiveExtractionWorkflow - WARNING - Could not retrieve valid Amazon data for 'Home & Garden Stove Polish Fireplace Restorer 200ml'. Skipping.
+2025-07-15 02:17:58,176 - PassiveExtractionWorkflow - INFO - --- Processing supplier product 2/10: 'Home & Garden Multi-Purpose White Vinegar Cleaning Spray 500ml' ---
+
+
+
+
+
+
+similar incoorect siuation to first example: 
+using ean search result to get a title match- INCORRECT ! NEVER PERFORM TITLE MATCH USING EAN SEARCH. 
+"C:\Users\chris\Desktop\Amazon-FBA-Agent-System-v32\logs\debug\run_custom_poundwholesale_20250715_012932.log"
+
+2025-07-15 01:31:08,059 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: State after update - last_processed_index: 2/10
+2025-07-15 01:31:08,060 - PassiveExtractionWorkflow - INFO - Attempting Amazon search using EAN: 5055319510769
+2025-07-15 01:31:08,060 - tools.passive_extraction_workflow_latest - INFO - Searching Amazon by EAN: 5055319510769 for supplier product: 'Home & Garden Multi-Purpose White Vinegar Cleaning Spray 500ml' (FixedAmazonExtractor)
+2025-07-15 01:31:08,061 - tools.passive_extraction_workflow_latest - INFO - No page provided to search_by_ean, getting one from BrowserManager.
+2025-07-15 01:31:08,062 - utils.browser_manager - INFO - ♻️ Reusing cached page for https://www.amazon.co.uk
+2025-07-15 01:31:08,063 - tools.passive_extraction_workflow_latest - INFO - Navigating to Amazon UK to search for EAN: 5055319510769
+2025-07-15 01:31:11,293 - tools.passive_extraction_workflow_latest - INFO - Waiting for search results page to load for EAN 5055319510769...
+2025-07-15 01:31:11,602 - tools.passive_extraction_workflow_latest - INFO - Found search results container with selector: div.s-search-results
+2025-07-15 01:31:13,629 - tools.passive_extraction_workflow_latest - INFO - Found 4 search result elements using selector: div[data-asin]:not([data-asin='']):not(.AdHolder):not([class*='s-widget-sponsored-product'])
+2025-07-15 01:31:13,629 - tools.passive_extraction_workflow_latest - INFO - Processing 4 search result elements for EAN 5055319510769
+2025-07-15 01:31:13,648 - tools.passive_extraction_workflow_latest - DEBUG - Processing element 1: ASIN B07VKM2K2J
+2025-07-15 01:31:13,662 - tools.passive_extraction_workflow_latest - DEBUG - ASIN B07VKM2K2J HTML structure sample: <div data-asin="B07VKM2K2J" data-asinadattributesprops="{&quot;asin&quot;:&quot;B07VKM2K2J&quot;,&quot;productUrl&quot;:&quot;https://aax-eu.amazon.co.uk/x/c/JB7jlUDq9oTH3feujCOooysAAAGYCtlQhAMAAAH2AQBvbm9fdHhuX2JpZDIgICBvbm9fdHhuX2ltcDIgICD82p1e/clv1_CEuOPUxokZA0iHrVevoK_Rv3Wip7d7Q55clZ0B3U9uFW138W3HrmFf018HHz9hvQjq0yzpNb3XTP8T6iq2vfZiodFzy2KPPUCRsNQ099GgX_OacivD1VhYPYHxyKGK9HIY-QJA-u8o8XBktilVDrYU1NLUZODN84CU5tHqwgUVeQ1PuamBEzXFStNpmvOqssRHMHeJvHlJlDT3dnO8R8Yf5bksG5l94oD0zcLowv31UxlI9tr66CRFJ3pkWWnWl7FWXfMPjKtxhPimkmNJ1SbSmlWVWDyCjnJ-CKyOjxR48tI0mU0qe21BKQWwrGGbGD-csm-M9QRtP6kKfmPPqTNfQt6dx1...
+2025-07-15 01:31:13,663 - tools.passive_extraction_workflow_latest - DEBUG - Error checking sponsored badge for ASIN B07VKM2K2J: 'ElementHandle' object has no attribute 'locator'
+2025-07-15 01:31:13,666 - tools.passive_extraction_workflow_latest - DEBUG - Error checking aria-label for ASIN B07VKM2K2J: 'ElementHandle' object has no attribute 'locator'
+2025-07-15 01:31:13,710 - tools.passive_extraction_workflow_latest - DEBUG - Error checking text for ad indicators for ASIN B07VKM2K2J: 'ElementHandle' object has no attribute 'locator'
+2025-07-15 01:31:14,260 - tools.passive_extraction_workflow_latest - DEBUG - ASIN B07VKM2K2J title extracted using selector 'a[href*='/dp/'] span': 4.4...
+2025-07-15 01:31:14,260 - tools.passive_extraction_workflow_latest - INFO - Found organic result: ASIN B07VKM2K2J - 4.4...
+2025-07-15 01:31:14,281 - tools.passive_extraction_workflow_latest - DEBUG - Processing element 2: ASIN B0B3M7W2Q9
+2025-07-15 01:31:14,299 - tools.passive_extraction_workflow_latest - DEBUG - ASIN B0B3M7W2Q9 HTML structure sample: <div data-asin="B0B3M7W2Q9" data-asinadattributesprops="{&quot;asin&quot;:&quot;B0B3M7W2Q9&quot;,&quot;productUrl&quot;:&quot;https://aax-eu.amazon.co.uk/x/c/JB7jlUDq9oTH3feujCOooysAAAGYCtlQhAMAAAH2AQBvbm9fdHhuX2JpZDIgICBvbm9fdHhuX2ltcDIgICD82p1e/clv1_CEuOPUxokZA0iHrVevoK_Rv3Wip7d7Q55clZ0B3U9uFW138W3HrmFf018HHz9hvQjq0yzpNb3XTP8T6iq2vfZiodFzy2KPPUCRsNQ099GgX_OacivD1VhYPYHxyKGK9HIY-QJA-u8o8XBktilVDrYU1NLUZODN84CU5tHqwgUVeQ1PuamBEzXFStNpmvOqssRHMHeJvHlJlDT3dnO8R8Yf5bksG5l94oD0zcLowv31UxlI9tr66CRFJ3pkWWnWl7FWXfMPjKtxhPimkmNJ1SbSmlWVWDyCjnJ-CKyOjxR48tI0mU0qe21BKQWwrGGbGD-csm-M9QRtP6kKfmPPqTNfQt6dx1...
+2025-07-15 01:31:14,299 - tools.passive_extraction_workflow_latest - DEBUG - Error checking sponsored badge for ASIN B0B3M7W2Q9: 'ElementHandle' object has no attribute 'locator'
+2025-07-15 01:31:14,300 - tools.passive_extraction_workflow_latest - DEBUG - Error checking aria-label for ASIN B0B3M7W2Q9: 'ElementHandle' object has no attribute 'locator'
+2025-07-15 01:31:14,343 - tools.passive_extraction_workflow_latest - DEBUG - Error checking text for ad indicators for ASIN B0B3M7W2Q9: 'ElementHandle' object has no attribute 'locator'
+2025-07-15 01:31:14,769 - tools.passive_extraction_workflow_latest - DEBUG - ASIN B0B3M7W2Q9 title extracted using selector 'a[href*='/dp/'] span': 4.6...
+2025-07-15 01:31:14,770 - tools.passive_extraction_workflow_latest - INFO - Found organic result: ASIN B0B3M7W2Q9 - 4.6...
+2025-07-15 01:31:14,794 - tools.passive_extraction_workflow_latest - DEBUG - Processing element 3: ASIN B07VKM2K2J
+2025-07-15 01:31:14,810 - tools.passive_extraction_workflow_latest - DEBUG - ASIN B07VKM2K2J HTML structure sample: <div data-asin="B07VKM2K2J" data-asinadattributesprops="{&quot;asin&quot;:&quot;B07VKM2K2J&quot;,&quot;productUrl&quot;:&quot;https://aax-eu.amazon.co.uk/x/c/JB7jlUDq9oTH3feujCOooysAAAGYCtlQhAMAAAH2AQBvbm9fdHhuX2JpZDIgICBvbm9fdHhuX2ltcDIgICD82p1e/clv1_CEuOPUxokZA0iHrVevoK_Rv3Wip7d7Q55clZ0B3U9uFW138W3HrmFf018HHz9hvQjq0yzpNb3XTP8T6iq2vfZiodFzy2KPPUCRsNQ099GgX_OacivD1VhYPYHxyKGK9HIY-QJA-u8o8XBktilVDrYU1NLUZODN84CU5tHqwgUVeQ1PuamBEzXFStNpmvOqssRHMHeJvHlJlDT3dnO8R8Yf5bksG5l94oD0zcLowv31UxlI9tr66CRFJ3pkWWnWl7FWXfMPjKtxhPimkmNJ1SbSmlWVWDyCjnJ-CKyOjxR48tI0mU0qe21BKQWwrGGbGD-csm-M9QRtP6kKfmPPqTNfQt6dx1...
+2025-07-15 01:31:14,810 - tools.passive_extraction_workflow_latest - DEBUG - Error checking sponsored badge for ASIN B07VKM2K2J: 'ElementHandle' object has no attribute 'locator'
+2025-07-15 01:31:14,811 - tools.passive_extraction_workflow_latest - DEBUG - Error checking aria-label for ASIN B07VKM2K2J: 'ElementHandle' object has no attribute 'locator'
+2025-07-15 01:31:14,845 - tools.passive_extraction_workflow_latest - DEBUG - Error checking text for ad indicators for ASIN B07VKM2K2J: 'ElementHandle' object has no attribute 'locator'
+2025-07-15 01:31:15,286 - tools.passive_extraction_workflow_latest - DEBUG - ASIN B07VKM2K2J title extracted using selector 'a[href*='/dp/'] span': 4.4...
+2025-07-15 01:31:15,287 - tools.passive_extraction_workflow_latest - INFO - Found organic result: ASIN B07VKM2K2J - 4.4...
+2025-07-15 01:31:15,309 - tools.passive_extraction_workflow_latest - DEBUG - Processing element 4: ASIN B0B3M7W2Q9
+2025-07-15 01:31:15,310 - tools.passive_extraction_workflow_latest - DEBUG - Error checking sponsored badge for ASIN B0B3M7W2Q9: 'ElementHandle' object has no attribute 'locator'
+2025-07-15 01:31:15,310 - tools.passive_extraction_workflow_latest - DEBUG - Error checking aria-label for ASIN B0B3M7W2Q9: 'ElementHandle' object has no attribute 'locator'
+2025-07-15 01:31:15,346 - tools.passive_extraction_workflow_latest - DEBUG - Error checking text for ad indicators for ASIN B0B3M7W2Q9: 'ElementHandle' object has no attribute 'locator'
+2025-07-15 01:31:15,720 - tools.passive_extraction_workflow_latest - DEBUG - ASIN B0B3M7W2Q9 title extracted using selector 'a[href*='/dp/'] span': 4.6...
+2025-07-15 01:31:15,721 - tools.passive_extraction_workflow_latest - INFO - Found organic result: ASIN B0B3M7W2Q9 - 4.6...
+2025-07-15 01:31:15,721 - tools.passive_extraction_workflow_latest - INFO - Multiple organic results (4) found for EAN 5055319510769. Applying word overlap scoring.
+2025-07-15 01:31:15,722 - tools.passive_extraction_workflow_latest - INFO - ASIN B07VKM2K2J: 0.00 overlap score with '4.4...' 
+2025-07-15 01:31:15,723 - tools.passive_extraction_workflow_latest - INFO - ASIN B0B3M7W2Q9: 0.00 overlap score with '4.6...' 
+2025-07-15 01:31:15,723 - tools.passive_extraction_workflow_latest - INFO - ASIN B07VKM2K2J: 0.00 overlap score with '4.4...' 
+2025-07-15 01:31:15,724 - tools.passive_extraction_workflow_latest - INFO - ASIN B0B3M7W2Q9: 0.00 overlap score with '4.6...' 
+2025-07-15 01:31:15,724 - tools.passive_extraction_workflow_latest - WARNING - No result met 0.25 threshold. Using top organic result ASIN B07VKM2K2J with low confidence.
+2025-07-15 01:31:15,725 - tools.passive_extraction_workflow_latest - INFO - EAN search selected ASIN B07VKM2K2J for 5055319510769
+2025-07-15 01:31:15,725 - tools.passive_extraction_workflow_latest - INFO - Single ASIN B07VKM2K2J found for EAN 5055319510769.
+2025-07-15 01:31:15,725 - tools.passive_extraction_workflow_latest - INFO - Proceeding with ASIN: B07VKM2K2J for EAN: 5055319510769
+2025-07-15 01:31:15,726 - amazon_playwright_extractor - WARNING - No page object provided to extract_data for ASIN B07VKM2K2J. Getting a new one from BrowserManager.
+2025-07-15 01:31:15,726 - amazon_playwright_extractor - INFO - Reusing existing page: https://www.amazon.co.uk/s?k=5055319510769&ref=nb_sb_noss
+2025-07-15 01:31:19,095 - amazon_playwright_extractor - INFO - Checking for cookie consent pop-up...
+2025-07-15 01:31:21,000 - amazon_playwright_extractor - INFO - Finished checking for cookie consent pop-ups. If one was present and not handled, it might interfere.
+2025-07-15 01:31:22,010 - amazon_playwright_extractor - INFO - Checking for CAPTCHA...
+2025-07-15 01:31:25,053 - amazon_playwright_extractor - INFO - No CAPTCHA page detected by form selector.
+2025-07-15 01:31:25,054 - amazon_playwright_extractor - INFO - Checking for cookie consent pop-up...
+2025-07-15 01:31:25,256 - amazon_playwright_extractor - INFO - Finished checking for cookie consent pop-ups. If one was present and not handled, it might interfere.
+2025-07-15 01:31:25,256 - amazon_playwright_extractor - INFO - Page should be ready. Waiting 5s for stabilization...
+2025-07-15 01:31:30,259 - amazon_playwright_extractor - INFO - Waiting an additional 7s for extensions (Keepa, SellerAmp)...
+2025-07-15 01:31:36,137 - amazon_playwright_extractor - INFO - Extracting all product data for ASIN: B07VKM2K2J
+2025-07-15 01:31:36,138 - amazon_playwright_extractor - INFO - Extracting basic product information (Title, Price, Images, Amazon Details)...
+2025-07-15 01:31:36,204 - amazon_playwright_extractor - INFO - Title found: 'OCUBE LED Digital Alarm Clock with 5 Optional Alarm Sounds, USB Charging Port, Full-Range Brightness Dimmer, Big White Digit Display, Snooze, Adjustable Alarm Volume, Mains Powered' via #productTitle
+2025-07-15 01:31:36,205 - amazon_playwright_extractor - INFO - Extracting price details...
+2025-07-15 01:31:36,284 - amazon_playwright_extractor - INFO - Current price: 21.99 via #corePrice_feature_div .a-offscreen
+2025-07-15 01:31:36,407 - amazon_playwright_extractor - INFO - Original price: 25.99 via .basisPrice span.a-text-price span.a-offscreen
+2025-07-15 01:31:36,498 - amazon_playwright_extractor - INFO - Amazon sales badge found: 400 in container div#socialProofingAsinFaceout_feature_div
+2025-07-15 01:31:36,499 - amazon_playwright_extractor - INFO - Extracting image URLs...
+2025-07-15 01:31:36,623 - amazon_playwright_extractor - INFO - Main image: https://m.media-amazon.com/images/I/51oqabrdvvL._AC_SL1500_.jpg via #landingImage
+2025-07-15 01:31:36,919 - amazon_playwright_extractor - INFO - Found 7 thumbnails.

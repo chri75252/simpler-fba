@@ -1,0 +1,45 @@
+TOGGLE-AGENT EXPERIMENT REPORT
+==================================================
+Experiment ID: 6
+Experiment Name: Performance Matching Thresholds
+Description: Amazon matching quality vs speed
+Success: True
+Timestamp: 20250715_084441
+
+TOGGLE CHANGES APPLIED:
+------------------------------
+performance.matching_thresholds.title_similarity:
+  FROM: 0.25
+  TO:   0.4
+
+performance.matching_thresholds.confidence_medium:
+  FROM: 0.45
+  TO:   0.6
+
+performance.matching_thresholds.high_title_similarity:
+  FROM: 0.75
+  TO:   0.85
+
+EXPECTED EFFECTS:
+------------------------------
+- Stricter matching criteria
+- Higher confidence requirements
+- Potentially fewer but higher quality matches
+
+TOGGLE-AGENT LOG:
+------------------------------
+[2025-07-15 08:44:14] [INFO] 🚀 TOGGLE-AGENT: Starting Experiment 6
+[2025-07-15 08:44:14] [INFO] 🧪 Applying Experiment 6: Performance Matching Thresholds
+[2025-07-15 08:44:14] [INFO] ✅ Loaded config from: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/config/system_config.json
+[2025-07-15 08:44:14] [INFO] 🔄 performance.matching_thresholds.title_similarity: 0.25 → 0.4
+[2025-07-15 08:44:14] [INFO] 🔄 performance.matching_thresholds.confidence_medium: 0.45 → 0.6
+[2025-07-15 08:44:14] [INFO] 🔄 performance.matching_thresholds.high_title_similarity: 0.75 → 0.85
+[2025-07-15 08:44:14] [INFO] 📄 Config backed up to: system_config.20250715_084414.bak
+[2025-07-15 08:44:14] [INFO] ✅ Config saved to: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/config/system_config.json
+[2025-07-15 08:44:14] [INFO] ✅ Loaded config from: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/config/system_config.json
+[2025-07-15 08:44:14] [INFO] ✅ Verified: performance.matching_thresholds.title_similarity = 0.4
+[2025-07-15 08:44:14] [INFO] ✅ Verified: performance.matching_thresholds.confidence_medium = 0.6
+[2025-07-15 08:44:14] [INFO] ✅ Verified: performance.matching_thresholds.high_title_similarity = 0.85
+[2025-07-15 08:44:41] [INFO] 📝 Git commit created for Experiment 6
+[2025-07-15 08:44:41] [INFO] ✅ Experiment 6 applied successfully
+[2025-07-15 08:44:41] [INFO] 📄 Updated toggle plan with Experiment 6 results

@@ -37,7 +37,7 @@ async def main():
         page = await browser_manager.get_page()
 
         supplier_url = workflow_config.get('supplier_url', f"https://{supplier_name}")
-        supplier_config_path = os.path.join("config", "supplier_configs", f"{supplier_name.replace('.', '-')}.json")
+        supplier_config_path = os.path.join("config", "supplier_configs", f"{supplier_name}.json")
 
         log.info(f"🔐 Initializing authentication service for logout detection...")
         auth_service = SupplierAuthenticationService(browser_manager)

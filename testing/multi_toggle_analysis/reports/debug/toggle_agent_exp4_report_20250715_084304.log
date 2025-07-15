@@ -1,0 +1,45 @@
+TOGGLE-AGENT EXPERIMENT REPORT
+==================================================
+Experiment ID: 4
+Experiment Name: Advanced Progress Tracking
+Description: Progress persistence and recovery
+Success: True
+Timestamp: 20250715_084304
+
+TOGGLE CHANGES APPLIED:
+------------------------------
+supplier_extraction_progress.recovery_mode:
+  FROM: subcategory_resume
+  TO:   product_resume
+
+supplier_extraction_progress.progress_display.update_frequency_products:
+  FROM: 1
+  TO:   2
+
+supplier_extraction_progress.state_persistence.batch_save_frequency:
+  FROM: 1
+  TO:   3
+
+EXPECTED EFFECTS:
+------------------------------
+- Finer-grained recovery granularity
+- Less frequent progress updates
+- Reduced state save frequency
+
+TOGGLE-AGENT LOG:
+------------------------------
+[2025-07-15 08:42:38] [INFO] 🚀 TOGGLE-AGENT: Starting Experiment 4
+[2025-07-15 08:42:38] [INFO] 🧪 Applying Experiment 4: Advanced Progress Tracking
+[2025-07-15 08:42:38] [INFO] ✅ Loaded config from: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/config/system_config.json
+[2025-07-15 08:42:38] [INFO] 🔄 supplier_extraction_progress.recovery_mode: subcategory_resume → product_resume
+[2025-07-15 08:42:38] [INFO] 🔄 supplier_extraction_progress.progress_display.update_frequency_products: 1 → 2
+[2025-07-15 08:42:38] [INFO] 🔄 supplier_extraction_progress.state_persistence.batch_save_frequency: 1 → 3
+[2025-07-15 08:42:38] [INFO] 📄 Config backed up to: system_config.20250715_084238.bak
+[2025-07-15 08:42:38] [INFO] ✅ Config saved to: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/config/system_config.json
+[2025-07-15 08:42:38] [INFO] ✅ Loaded config from: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/config/system_config.json
+[2025-07-15 08:42:38] [INFO] ✅ Verified: supplier_extraction_progress.recovery_mode = product_resume
+[2025-07-15 08:42:38] [INFO] ✅ Verified: supplier_extraction_progress.progress_display.update_frequency_products = 2
+[2025-07-15 08:42:38] [INFO] ✅ Verified: supplier_extraction_progress.state_persistence.batch_save_frequency = 3
+[2025-07-15 08:43:04] [INFO] 📝 Git commit created for Experiment 4
+[2025-07-15 08:43:04] [INFO] ✅ Experiment 4 applied successfully
+[2025-07-15 08:43:04] [INFO] 📄 Updated toggle plan with Experiment 4 results

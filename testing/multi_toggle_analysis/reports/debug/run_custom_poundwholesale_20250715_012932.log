@@ -1,0 +1,426 @@
+2025-07-15 01:29:32,061 - utils.logger - INFO - 🔧 Logging initialised – log file: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/logs/debug/run_custom_poundwholesale_20250715_012932.log
+2025-07-15 01:29:32,062 - __main__ - INFO - 📋 Debug log file: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/logs/debug/run_custom_poundwholesale_20250715_012932.log
+2025-07-15 01:29:32,062 - __main__ - DEBUG - Debug logging initialized - full system execution details will be captured
+2025-07-15 01:29:32,068 - utils.browser_manager - INFO - 🔧 BrowserManager singleton initialized
+2025-07-15 01:29:32,599 - utils.browser_manager - INFO - 🔌 Connecting to Chrome on debug port 9222
+2025-07-15 01:29:33,036 - utils.browser_manager - INFO - 📄 Using existing context with 2 pages
+2025-07-15 01:29:33,036 - utils.browser_manager - INFO - ✅ Connected to Chrome successfully
+2025-07-15 01:29:33,037 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-15 01:29:33,037 - __main__ - INFO - 🔐 Initializing authentication service for logout detection...
+2025-07-15 01:29:33,046 - __main__ - INFO - ✅ Using hardcoded credentials for poundwholesale.co.uk
+2025-07-15 01:29:33,046 - __main__ - INFO - 🌐 Connecting to existing Chrome debug port 9222 for authentication...
+2025-07-15 01:29:36,694 - tools.supplier_authentication_service - INFO - ❌ Login form detected - not authenticated
+2025-07-15 01:29:36,695 - tools.supplier_authentication_service - INFO - 🔐 Starting authentication for poundwholesale.co.uk
+2025-07-15 01:29:36,696 - tools.supplier_authentication_service - INFO - 🔧 Using standalone playwright authentication
+2025-07-15 01:29:36,696 - tools.standalone_playwright_login - INFO - 🔗 Connecting to shared Chrome instance...
+2025-07-15 01:29:37,300 - tools.standalone_playwright_login - INFO - ✅ Connected to shared Chrome instance at http://localhost:9222
+2025-07-15 01:29:37,300 - tools.standalone_playwright_login - DEBUG - Using existing browser context
+2025-07-15 01:29:37,301 - tools.standalone_playwright_login - DEBUG - Using existing page
+2025-07-15 01:29:37,302 - tools.standalone_playwright_login - INFO - 🔍 Checking if already logged in...
+2025-07-15 01:29:42,198 - tools.standalone_playwright_login - INFO - ❌ No login indicators found - need to log in
+2025-07-15 01:29:42,199 - tools.standalone_playwright_login - INFO - 🔐 Starting Playwright login...
+2025-07-15 01:29:42,199 - tools.standalone_playwright_login - INFO - 📍 Navigating to login page: https://www.poundwholesale.co.uk/customer/account/login/
+2025-07-15 01:29:46,807 - tools.standalone_playwright_login - INFO - ✅ Filled email using selector: input[name="email"]
+2025-07-15 01:29:48,901 - tools.standalone_playwright_login - INFO - ✅ Filled password using selector: input[type="password"]
+2025-07-15 01:29:53,537 - tools.standalone_playwright_login - INFO - ✅ Clicked submit using selector: button[type="submit"]
+2025-07-15 01:29:53,538 - tools.standalone_playwright_login - INFO - ⏳ Waiting for login to complete...
+2025-07-15 01:29:57,481 - tools.standalone_playwright_login - WARNING - ⚠️ Login status unclear - no clear success indicators
+2025-07-15 01:29:57,481 - tools.standalone_playwright_login - INFO - 💰 Verifying price access...
+2025-07-15 01:30:02,041 - tools.standalone_playwright_login - INFO - ✅ Price access confirmed: £1.02
+2025-07-15 01:30:02,042 - tools.standalone_playwright_login - ERROR - ❌ Login verification failed
+2025-07-15 01:30:02,079 - tools.standalone_playwright_login - DEBUG - Disconnected from shared Chrome browser
+2025-07-15 01:30:02,097 - tools.standalone_playwright_login - DEBUG - Playwright stopped
+2025-07-15 01:30:02,098 - tools.supplier_authentication_service - WARNING - ❌ Standalone authentication failed: Login form submitted but verification failed
+2025-07-15 01:30:02,099 - tools.supplier_authentication_service - ERROR - ❌ All authentication methods failed
+2025-07-15 01:30:02,130 - amazon_playwright_extractor - INFO - AI features disabled in amazon_playwright_extractor - using only traditional selectors.
+2025-07-15 01:30:02,143 - amazon_playwright_extractor - INFO - Output directory set to: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/CACHE/amazon_data
+2025-07-15 01:30:02,143 - amazon_playwright_extractor - WARNING - ⚠️ BrowserManager not available, using legacy browser connection
+2025-07-15 01:30:02,148 - configurable_supplier_scraper - INFO - ✅ Loaded system configuration from /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/config/system_config.json
+2025-07-15 01:30:02,149 - configurable_supplier_scraper - INFO - 🔧 ConfigurableSupplierScraper will use centralized BrowserManager
+2025-07-15 01:30:02,150 - configurable_supplier_scraper - DEBUG - AI model from config: gpt-4.1-mini-2025-04-14
+2025-07-15 01:30:02,150 - configurable_supplier_scraper - DEBUG - Extraction targets from config: {'product_data': ['price', 'title', 'ean', 'barcode', 'image', 'description', 'out_of_stock'], 'navigation': ['next_page', 'category_links', 'breadcrumbs'], 'pagination': ['next_page', 'previous_page', 'page_numbers'], 'filtering': ['price_filter', 'category_filter', 'search_box', 'products_per_page', 'product limiter'], 'interaction': ['add_to_cart', 'buy_now', 'product_link']}
+2025-07-15 01:30:02,151 - configurable_supplier_scraper - DEBUG - Discovery assistance from config: {'enabled': False, 'prompt_injection': {'login_discovery_hints': '', 'product_navigation_discovery_hints': "OUT OF STOCK products show a red/orange badge or overlay with text like 'Out of Stock', 'Sold Out', or 'Unavailable'"}, '_comment': 'Two API calls are made: 1) login_discovery_hints for login elements, 2) product_navigation_discovery_hints for product/navigation selectors. You can paste full console elements, XPath, or any hints here.'}
+2025-07-15 01:30:02,151 - configurable_supplier_scraper - INFO - [CONFIG] Initialized with AI model: gpt-4.1-mini-2025-04-14
+2025-07-15 01:30:02,152 - configurable_supplier_scraper - INFO - [TARGET] Extraction targets loaded: ['product_data', 'navigation', 'pagination', 'filtering', 'interaction']
+2025-07-15 01:30:02,153 - configurable_supplier_scraper - INFO - [ASSIST] Discovery assistance enabled: False
+2025-07-15 01:30:02,153 - PassiveExtractionWorkflow - INFO - ✅ Output directory set to: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS
+2025-07-15 01:30:02,154 - PassiveExtractionWorkflow - INFO - ✅ Initialization validation passed - all critical attributes verified
+2025-07-15 01:30:02,154 - PassiveExtractionWorkflow - INFO - --- Starting Passive Extraction Workflow for: poundwholesale.co.uk ---
+2025-07-15 01:30:02,155 - PassiveExtractionWorkflow - INFO - Session ID: poundwholesale.co.uk_20250715_013002
+2025-07-15 01:30:02,156 - PassiveExtractionWorkflow - INFO - 📊 CONFIGURATION VALUES:
+2025-07-15 01:30:02,157 - PassiveExtractionWorkflow - INFO -    max_products_to_process: 10
+2025-07-15 01:30:02,157 - PassiveExtractionWorkflow - INFO -    max_products_per_category: 5
+2025-07-15 01:30:02,158 - PassiveExtractionWorkflow - INFO -    max_analyzed_products: 5
+2025-07-15 01:30:02,158 - PassiveExtractionWorkflow - INFO -    max_products_per_cycle: 5
+2025-07-15 01:30:02,158 - PassiveExtractionWorkflow - INFO -    supplier_extraction_batch_size: 3
+2025-07-15 01:30:02,159 - PassiveExtractionWorkflow - INFO -    max_categories_per_request: 3
+2025-07-15 01:30:02,166 - utils.enhanced_state_manager - INFO - Loaded state for poundwholesale.co.uk - resuming from index 10
+2025-07-15 01:30:02,167 - PassiveExtractionWorkflow - INFO - 📋 Loaded existing processing state for poundwholesale.co.uk
+2025-07-15 01:30:02,167 - PassiveExtractionWorkflow - INFO - 🔄 Resuming from index 10
+2025-07-15 01:30:02,191 - PassiveExtractionWorkflow - INFO - ✅ Loaded linking map from /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/FBA_ANALYSIS/linking_maps/poundwholesale.co.uk/linking_map.json with 3 entries
+2025-07-15 01:30:02,205 - PassiveExtractionWorkflow - INFO - ✅ Loaded linking map from /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/FBA_ANALYSIS/linking_maps/poundwholesale.co.uk/linking_map.json with 3 entries
+2025-07-15 01:30:02,205 - PassiveExtractionWorkflow - INFO - CUSTOM MODE: Using predefined category list.
+2025-07-15 01:30:02,206 - tools.passive_extraction_workflow_latest - INFO - Attempting to load predefined categories for poundwholesale.co.uk
+2025-07-15 01:30:02,215 - tools.passive_extraction_workflow_latest - INFO - ✅ Successfully loaded 276 predefined category URLs from /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/config/poundwholesale_categories.json
+2025-07-15 01:30:02,223 - PassiveExtractionWorkflow - INFO - 🔄 SKIPPING SUPPLIER SCRAPING: Found fresh cached products (age: 5.2h) with processing progress (index: 10)
+2025-07-15 01:30:02,223 - PassiveExtractionWorkflow - INFO - 📋 Loading products from cache: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products/poundwholesale-co-uk_products_cache.json
+2025-07-15 01:30:02,233 - PassiveExtractionWorkflow - INFO - ✅ Loaded 10 cached products from /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products/poundwholesale-co-uk_products_cache.json
+2025-07-15 01:30:02,234 - PassiveExtractionWorkflow - INFO - Successfully got 10 products from poundwholesale.co.uk
+2025-07-15 01:30:02,235 - PassiveExtractionWorkflow - INFO - 💾 CACHE SAVE: Starting save of 10 products to cache...
+2025-07-15 01:30:02,263 - PassiveExtractionWorkflow - INFO - ✅ CACHE SAVE: Successfully saved 10 products (0 new) to poundwholesale-co-uk_products_cache.json
+2025-07-15 01:30:02,263 - PassiveExtractionWorkflow - INFO - Found 10 valid supplier products, 10 within price range [£0.1-£20.0]
+2025-07-15 01:30:02,264 - PassiveExtractionWorkflow - INFO - 📋 All cached products have been processed in previous runs (index 10 >= total 10). Continuing with fresh data...
+2025-07-15 01:30:02,264 - PassiveExtractionWorkflow - INFO - 🔄 LIMITED MODE: Processing 10 products (from index 0 to 9)
+2025-07-15 01:30:02,289 - PassiveExtractionWorkflow - INFO - 🚀 BATCH PROCESSING: 10 products in 2 batches of 5
+2025-07-15 01:30:02,289 - PassiveExtractionWorkflow - INFO - 🔄 Processing batch 1/2 (5 products)
+2025-07-15 01:30:02,290 - PassiveExtractionWorkflow - INFO - --- Processing supplier product 1/10: 'Rapide Lime Scented Tough Stuff Hand Cleaner 450ml' ---
+2025-07-15 01:30:02,291 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Updating processing index to 1/10
+2025-07-15 01:30:02,317 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: State after update - last_processed_index: 1/10
+2025-07-15 01:30:02,318 - PassiveExtractionWorkflow - INFO - Attempting Amazon search using EAN: 5055319520935
+2025-07-15 01:30:02,318 - tools.passive_extraction_workflow_latest - INFO - Connecting to Chrome browser on debug port 9222 (FixedAmazonExtractor)
+2025-07-15 01:30:02,951 - tools.passive_extraction_workflow_latest - INFO - Successfully connected to Chrome on port 9222 (FixedAmazonExtractor)
+2025-07-15 01:30:02,952 - tools.passive_extraction_workflow_latest - INFO - Found 2 existing pages (FixedAmazonExtractor)
+2025-07-15 01:30:02,953 - tools.passive_extraction_workflow_latest - INFO - Using existing page: https://www.poundwholesale.co.uk/sealapack-turkey-roasting-bags-2-pack (FixedAmazonExtractor)
+2025-07-15 01:30:03,014 - tools.passive_extraction_workflow_latest - INFO - Searching Amazon by EAN: 5055319520935 for supplier product: 'Rapide Lime Scented Tough Stuff Hand Cleaner 450ml' (FixedAmazonExtractor)
+2025-07-15 01:30:03,015 - tools.passive_extraction_workflow_latest - INFO - No page provided to search_by_ean, getting one from BrowserManager.
+2025-07-15 01:30:03,016 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-15 01:30:03,016 - utils.browser_manager - INFO - 📄 Navigating to https://www.amazon.co.uk
+2025-07-15 01:30:04,943 - utils.browser_manager - INFO - ✅ Page ready for https://www.amazon.co.uk
+2025-07-15 01:30:04,944 - tools.passive_extraction_workflow_latest - INFO - Navigating to Amazon UK to search for EAN: 5055319520935
+2025-07-15 01:30:08,055 - tools.passive_extraction_workflow_latest - INFO - Waiting for search results page to load for EAN 5055319520935...
+2025-07-15 01:30:08,378 - tools.passive_extraction_workflow_latest - INFO - Found search results container with selector: div.s-search-results
+2025-07-15 01:30:10,651 - tools.passive_extraction_workflow_latest - INFO - Found 1 search result elements using selector: div[data-asin]:not([data-asin='']):not(.AdHolder):not([class*='s-widget-sponsored-product'])
+2025-07-15 01:30:10,652 - tools.passive_extraction_workflow_latest - INFO - Processing 1 search result elements for EAN 5055319520935
+2025-07-15 01:30:10,678 - tools.passive_extraction_workflow_latest - DEBUG - Processing element 1: ASIN B086K4KPRX
+2025-07-15 01:30:10,704 - tools.passive_extraction_workflow_latest - DEBUG - ASIN B086K4KPRX HTML structure sample: <div role="listitem" data-asin="B086K4KPRX" data-index="2" data-uuid="1c20b894-c4eb-415c-a6d8-6e3b1b7eaa4a" id="1c20b894-c4eb-415c-a6d8-6e3b1b7eaa4a" data-component-type="s-search-result" class="sg-col-4-of-4 sg-col-4-of-24 sg-col-4-of-12 s-result-item s-asin sg-col-4-of-16 sg-col s-widget-spacing-small sg-col-4-of-8 sg-col-4-of-20" data-component-id="5"><div class="sg-col-inner"><div cel_widget_id="MAIN-SEARCH_RESULTS-2" class="s-widget-container s-spacing-small s-widget-container-height-small celwidget slot=MAIN template=SEARCH_RESULTS widgetId=search-results_1" data-csa-c-pos="1" data-csa-c...
+2025-07-15 01:30:10,705 - tools.passive_extraction_workflow_latest - DEBUG - Error checking sponsored badge for ASIN B086K4KPRX: 'ElementHandle' object has no attribute 'locator'
+2025-07-15 01:30:10,706 - tools.passive_extraction_workflow_latest - DEBUG - Error checking aria-label for ASIN B086K4KPRX: 'ElementHandle' object has no attribute 'locator'
+2025-07-15 01:30:10,747 - tools.passive_extraction_workflow_latest - DEBUG - Error checking text for ad indicators for ASIN B086K4KPRX: 'ElementHandle' object has no attribute 'locator'
+2025-07-15 01:30:11,116 - tools.passive_extraction_workflow_latest - DEBUG - ASIN B086K4KPRX title extracted using selector 'h2': Tough Stuff Heavy Duty Lime Hand Cleaner Soap Clea...
+2025-07-15 01:30:11,117 - tools.passive_extraction_workflow_latest - INFO - Found organic result: ASIN B086K4KPRX - Tough Stuff Heavy Duty Lime Hand Cleaner Soap Cleanser Garag...
+2025-07-15 01:30:11,118 - tools.passive_extraction_workflow_latest - INFO - Single organic result found for EAN 5055319520935: ASIN B086K4KPRX
+2025-07-15 01:30:11,118 - tools.passive_extraction_workflow_latest - INFO - EAN search selected ASIN B086K4KPRX for 5055319520935
+2025-07-15 01:30:11,118 - tools.passive_extraction_workflow_latest - INFO - Single ASIN B086K4KPRX found for EAN 5055319520935.
+2025-07-15 01:30:11,119 - tools.passive_extraction_workflow_latest - INFO - Proceeding with ASIN: B086K4KPRX for EAN: 5055319520935
+2025-07-15 01:30:11,120 - amazon_playwright_extractor - WARNING - No page object provided to extract_data for ASIN B086K4KPRX. Getting a new one from BrowserManager.
+2025-07-15 01:30:11,120 - amazon_playwright_extractor - INFO - Reusing existing page: https://www.amazon.co.uk/s?k=5055319520935&ref=nb_sb_noss
+2025-07-15 01:30:16,604 - amazon_playwright_extractor - INFO - Checking for cookie consent pop-up...
+2025-07-15 01:30:17,155 - amazon_playwright_extractor - INFO - Finished checking for cookie consent pop-ups. If one was present and not handled, it might interfere.
+2025-07-15 01:30:18,169 - amazon_playwright_extractor - INFO - Checking for CAPTCHA...
+2025-07-15 01:30:21,195 - amazon_playwright_extractor - INFO - No CAPTCHA page detected by form selector.
+2025-07-15 01:30:21,196 - amazon_playwright_extractor - INFO - Checking for cookie consent pop-up...
+2025-07-15 01:30:21,501 - amazon_playwright_extractor - INFO - Finished checking for cookie consent pop-ups. If one was present and not handled, it might interfere.
+2025-07-15 01:30:21,502 - amazon_playwright_extractor - INFO - Page should be ready. Waiting 5s for stabilization...
+2025-07-15 01:30:26,530 - amazon_playwright_extractor - INFO - Waiting an additional 7s for extensions (Keepa, SellerAmp)...
+2025-07-15 01:30:32,114 - amazon_playwright_extractor - INFO - Extracting all product data for ASIN: B086K4KPRX
+2025-07-15 01:30:32,115 - amazon_playwright_extractor - INFO - Extracting basic product information (Title, Price, Images, Amazon Details)...
+2025-07-15 01:30:32,190 - amazon_playwright_extractor - INFO - Title found: 'Tough Stuff Heavy Duty Lime Hand Cleaner Soap Cleanser Garage Solvent - 450ml' via #productTitle
+2025-07-15 01:30:32,190 - amazon_playwright_extractor - INFO - Extracting price details...
+2025-07-15 01:30:32,313 - amazon_playwright_extractor - INFO - Current price: 4.9 via #corePrice_feature_div .a-offscreen
+2025-07-15 01:30:32,480 - amazon_playwright_extractor - INFO - Original price: 6.49 via .basisPrice span.a-text-price span.a-offscreen
+2025-07-15 01:30:32,672 - amazon_playwright_extractor - INFO - Extracting image URLs...
+2025-07-15 01:30:32,832 - amazon_playwright_extractor - INFO - Main image: https://m.media-amazon.com/images/I/61HmzAdM0nL._AC_SL1000_.jpg via #landingImage
+2025-07-15 01:30:32,932 - amazon_playwright_extractor - INFO - Found 1 thumbnails.
+2025-07-15 01:30:32,969 - amazon_playwright_extractor - INFO - Extracting Amazon product details section...
+2025-07-15 01:30:34,417 - amazon_playwright_extractor - INFO - Extracting sales rank information...
+2025-07-15 01:30:34,998 - amazon_playwright_extractor - INFO - Extracting ratings and reviews...
+2025-07-15 01:30:35,092 - amazon_playwright_extractor - INFO - Rating: 3.7 via #acrPopover[title*='out of 5 stars']
+2025-07-15 01:30:35,149 - amazon_playwright_extractor - INFO - Review count: 191 via #acrCustomerReviewText
+2025-07-15 01:30:35,150 - amazon_playwright_extractor - INFO - Extracting stock information...
+2025-07-15 01:30:35,200 - amazon_playwright_extractor - INFO - Availability text: 'In stock' via #availability span.a-size-medium.a-color-success
+2025-07-15 01:30:35,200 - amazon_playwright_extractor - INFO - Extracting features/bullets...
+2025-07-15 01:30:35,775 - amazon_playwright_extractor - INFO - Found 4 features.
+2025-07-15 01:30:35,776 - amazon_playwright_extractor - INFO - Extracting product description...
+2025-07-15 01:30:35,820 - amazon_playwright_extractor - INFO - Description found using selector: #productDescription
+2025-07-15 01:30:35,820 - amazon_playwright_extractor - INFO - Extracting product specifications table...
+2025-07-15 01:30:37,534 - amazon_playwright_extractor - INFO - Specifications table parsed using selector: #productDetails_techSpec_section_1
+2025-07-15 01:30:37,535 - amazon_playwright_extractor - INFO - Extracting SellerAmp data (if present)...
+2025-07-15 01:30:37,536 - amazon_playwright_extractor - INFO - SellerAmp data extraction is currently disabled as per requirements (Fix 2.3).
+2025-07-15 01:30:37,537 - amazon_playwright_extractor - INFO - Extracting Keepa data (if present)...
+2025-07-15 01:30:37,538 - amazon_playwright_extractor - INFO - Attempting to extract Keepa data...
+2025-07-15 01:30:40,581 - amazon_playwright_extractor - DEBUG - Keepa iframe check failed for selector iframe[id*='keepaGraph']: Page.wait_for_selector: Timeout 3000ms exceeded.
+Call log:
+  - waiting for locator("iframe[id*='keepaGraph']")
+
+2025-07-15 01:30:43,611 - amazon_playwright_extractor - DEBUG - Keepa iframe check failed for selector iframe#keepaExtension: Page.wait_for_selector: Timeout 3000ms exceeded.
+Call log:
+  - waiting for locator("iframe#keepaExtension")
+
+2025-07-15 01:30:43,762 - amazon_playwright_extractor - INFO - Keepa iframe found: iframe[id*='keepa']
+2025-07-15 01:30:43,988 - amazon_playwright_extractor - INFO - Keepa Sales Rank Details Table parsed.
+2025-07-15 01:30:43,989 - amazon_playwright_extractor - INFO - Keepa Graph AI Analysis is currently disabled as per requirements (Fix 2.4).
+2025-07-15 01:30:44,091 - amazon_playwright_extractor - INFO - Keepa Data tab found. Currently active: False
+2025-07-15 01:30:44,092 - amazon_playwright_extractor - INFO - Clicking Keepa 'Data' tab...
+2025-07-15 01:30:46,316 - amazon_playwright_extractor - INFO - Attempt 1/2: Waiting 12000ms for Product-Details wrapper...
+2025-07-15 01:30:56,096 - amazon_playwright_extractor - INFO - ✅ Product-Details wrapper appeared on attempt 1
+2025-07-15 01:30:56,272 - amazon_playwright_extractor - INFO - Parsing Keepa AG Grid for Product Details from: div#MoreTab1 div#grid-product-detail
+2025-07-15 01:30:56,421 - amazon_playwright_extractor - INFO - Primary attempt: Waiting 12 seconds for AG Grid rows to load...
+2025-07-15 01:30:57,511 - amazon_playwright_extractor - INFO - ✅ Primary attempt successful: 136 rows found
+2025-07-15 01:30:57,552 - amazon_playwright_extractor - INFO - Processing 136 rows in Keepa Product Details AG Grid.
+2025-07-15 01:30:59,832 - amazon_playwright_extractor - INFO - Found potential fee key 'FBA Pick&Pack Fee' with raw value: '£ 3.04' in Keepa AG Grid.
+2025-07-15 01:31:00,154 - amazon_playwright_extractor - INFO - Found potential fee key 'Referral Fee based on current Buy Box price' with raw value: '£ 0.39' in Keepa AG Grid.
+2025-07-15 01:31:07,941 - amazon_playwright_extractor - INFO - ✅ Successfully parsed 41 items from Keepa Product Details AG Grid.
+2025-07-15 01:31:07,942 - amazon_playwright_extractor - INFO - ASIN B086K4KPRX: Attempting to extract EANs from Keepa product_details_tab_data.
+2025-07-15 01:31:07,943 - amazon_playwright_extractor - INFO - ASIN B086K4KPRX: EAN '5055319520935' found in Keepa details via key 'Product Codes - EAN'.
+2025-07-15 01:31:07,944 - amazon_playwright_extractor - INFO - ASIN B086K4KPRX: BSR not found or invalid from page. Attempting fallback from Keepa.
+2025-07-15 01:31:07,945 - amazon_playwright_extractor - INFO - ASIN B086K4KPRX: BSR 4419 in 'Business, Industry & Science 10' from Keepa SalesRankDetailsTable.
+2025-07-15 01:31:07,946 - tools.passive_extraction_workflow_latest - INFO - Successfully extracted data for ASIN B086K4KPRX (EAN on page: 5055319520935)
+2025-07-15 01:31:08,001 - PassiveExtractionWorkflow - INFO - Saved Amazon data to /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/FBA_ANALYSIS/amazon_cache/amazon_B086K4KPRX_5055319520935.json
+2025-07-15 01:31:08,002 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: supplier_ean='5055319520935', asin='B086K4KPRX', product_ean='5055319520935'
+2025-07-15 01:31:08,003 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Checking linking conditions - supplier_ean valid: True, asin valid: True
+2025-07-15 01:31:08,004 - PassiveExtractionWorkflow - INFO - ✅ Added linking map entry: EAN search 5055319520935 → ASIN B086K4KPRX
+2025-07-15 01:31:08,005 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Current linking_map size: 4 entries
+2025-07-15 01:31:08,006 - PassiveExtractionWorkflow - INFO - Product not profitable: 'Rapide Lime Scented Tough Stuff Hand Cleaner 450ml' (ROI: -44.16%, Profit: £-0.57)
+2025-07-15 01:31:08,032 - PassiveExtractionWorkflow - INFO - --- Processing supplier product 2/10: 'Home & Garden Multi-Purpose White Vinegar Cleaning Spray 500ml' ---
+2025-07-15 01:31:08,032 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Updating processing index to 2/10
+2025-07-15 01:31:08,059 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: State after update - last_processed_index: 2/10
+2025-07-15 01:31:08,060 - PassiveExtractionWorkflow - INFO - Attempting Amazon search using EAN: 5055319510769
+2025-07-15 01:31:08,060 - tools.passive_extraction_workflow_latest - INFO - Searching Amazon by EAN: 5055319510769 for supplier product: 'Home & Garden Multi-Purpose White Vinegar Cleaning Spray 500ml' (FixedAmazonExtractor)
+2025-07-15 01:31:08,061 - tools.passive_extraction_workflow_latest - INFO - No page provided to search_by_ean, getting one from BrowserManager.
+2025-07-15 01:31:08,062 - utils.browser_manager - INFO - ♻️ Reusing cached page for https://www.amazon.co.uk
+2025-07-15 01:31:08,063 - tools.passive_extraction_workflow_latest - INFO - Navigating to Amazon UK to search for EAN: 5055319510769
+2025-07-15 01:31:11,293 - tools.passive_extraction_workflow_latest - INFO - Waiting for search results page to load for EAN 5055319510769...
+2025-07-15 01:31:11,602 - tools.passive_extraction_workflow_latest - INFO - Found search results container with selector: div.s-search-results
+2025-07-15 01:31:13,629 - tools.passive_extraction_workflow_latest - INFO - Found 4 search result elements using selector: div[data-asin]:not([data-asin='']):not(.AdHolder):not([class*='s-widget-sponsored-product'])
+2025-07-15 01:31:13,629 - tools.passive_extraction_workflow_latest - INFO - Processing 4 search result elements for EAN 5055319510769
+2025-07-15 01:31:13,648 - tools.passive_extraction_workflow_latest - DEBUG - Processing element 1: ASIN B07VKM2K2J
+2025-07-15 01:31:13,662 - tools.passive_extraction_workflow_latest - DEBUG - ASIN B07VKM2K2J HTML structure sample: <div data-asin="B07VKM2K2J" data-asinadattributesprops="{&quot;asin&quot;:&quot;B07VKM2K2J&quot;,&quot;productUrl&quot;:&quot;https://aax-eu.amazon.co.uk/x/c/JB7jlUDq9oTH3feujCOooysAAAGYCtlQhAMAAAH2AQBvbm9fdHhuX2JpZDIgICBvbm9fdHhuX2ltcDIgICD82p1e/clv1_CEuOPUxokZA0iHrVevoK_Rv3Wip7d7Q55clZ0B3U9uFW138W3HrmFf018HHz9hvQjq0yzpNb3XTP8T6iq2vfZiodFzy2KPPUCRsNQ099GgX_OacivD1VhYPYHxyKGK9HIY-QJA-u8o8XBktilVDrYU1NLUZODN84CU5tHqwgUVeQ1PuamBEzXFStNpmvOqssRHMHeJvHlJlDT3dnO8R8Yf5bksG5l94oD0zcLowv31UxlI9tr66CRFJ3pkWWnWl7FWXfMPjKtxhPimkmNJ1SbSmlWVWDyCjnJ-CKyOjxR48tI0mU0qe21BKQWwrGGbGD-csm-M9QRtP6kKfmPPqTNfQt6dx1...
+2025-07-15 01:31:13,663 - tools.passive_extraction_workflow_latest - DEBUG - Error checking sponsored badge for ASIN B07VKM2K2J: 'ElementHandle' object has no attribute 'locator'
+2025-07-15 01:31:13,666 - tools.passive_extraction_workflow_latest - DEBUG - Error checking aria-label for ASIN B07VKM2K2J: 'ElementHandle' object has no attribute 'locator'
+2025-07-15 01:31:13,710 - tools.passive_extraction_workflow_latest - DEBUG - Error checking text for ad indicators for ASIN B07VKM2K2J: 'ElementHandle' object has no attribute 'locator'
+2025-07-15 01:31:14,260 - tools.passive_extraction_workflow_latest - DEBUG - ASIN B07VKM2K2J title extracted using selector 'a[href*='/dp/'] span': 4.4...
+2025-07-15 01:31:14,260 - tools.passive_extraction_workflow_latest - INFO - Found organic result: ASIN B07VKM2K2J - 4.4...
+2025-07-15 01:31:14,281 - tools.passive_extraction_workflow_latest - DEBUG - Processing element 2: ASIN B0B3M7W2Q9
+2025-07-15 01:31:14,299 - tools.passive_extraction_workflow_latest - DEBUG - ASIN B0B3M7W2Q9 HTML structure sample: <div data-asin="B0B3M7W2Q9" data-asinadattributesprops="{&quot;asin&quot;:&quot;B0B3M7W2Q9&quot;,&quot;productUrl&quot;:&quot;https://aax-eu.amazon.co.uk/x/c/JB7jlUDq9oTH3feujCOooysAAAGYCtlQhAMAAAH2AQBvbm9fdHhuX2JpZDIgICBvbm9fdHhuX2ltcDIgICD82p1e/clv1_CEuOPUxokZA0iHrVevoK_Rv3Wip7d7Q55clZ0B3U9uFW138W3HrmFf018HHz9hvQjq0yzpNb3XTP8T6iq2vfZiodFzy2KPPUCRsNQ099GgX_OacivD1VhYPYHxyKGK9HIY-QJA-u8o8XBktilVDrYU1NLUZODN84CU5tHqwgUVeQ1PuamBEzXFStNpmvOqssRHMHeJvHlJlDT3dnO8R8Yf5bksG5l94oD0zcLowv31UxlI9tr66CRFJ3pkWWnWl7FWXfMPjKtxhPimkmNJ1SbSmlWVWDyCjnJ-CKyOjxR48tI0mU0qe21BKQWwrGGbGD-csm-M9QRtP6kKfmPPqTNfQt6dx1...
+2025-07-15 01:31:14,299 - tools.passive_extraction_workflow_latest - DEBUG - Error checking sponsored badge for ASIN B0B3M7W2Q9: 'ElementHandle' object has no attribute 'locator'
+2025-07-15 01:31:14,300 - tools.passive_extraction_workflow_latest - DEBUG - Error checking aria-label for ASIN B0B3M7W2Q9: 'ElementHandle' object has no attribute 'locator'
+2025-07-15 01:31:14,343 - tools.passive_extraction_workflow_latest - DEBUG - Error checking text for ad indicators for ASIN B0B3M7W2Q9: 'ElementHandle' object has no attribute 'locator'
+2025-07-15 01:31:14,769 - tools.passive_extraction_workflow_latest - DEBUG - ASIN B0B3M7W2Q9 title extracted using selector 'a[href*='/dp/'] span': 4.6...
+2025-07-15 01:31:14,770 - tools.passive_extraction_workflow_latest - INFO - Found organic result: ASIN B0B3M7W2Q9 - 4.6...
+2025-07-15 01:31:14,794 - tools.passive_extraction_workflow_latest - DEBUG - Processing element 3: ASIN B07VKM2K2J
+2025-07-15 01:31:14,810 - tools.passive_extraction_workflow_latest - DEBUG - ASIN B07VKM2K2J HTML structure sample: <div data-asin="B07VKM2K2J" data-asinadattributesprops="{&quot;asin&quot;:&quot;B07VKM2K2J&quot;,&quot;productUrl&quot;:&quot;https://aax-eu.amazon.co.uk/x/c/JB7jlUDq9oTH3feujCOooysAAAGYCtlQhAMAAAH2AQBvbm9fdHhuX2JpZDIgICBvbm9fdHhuX2ltcDIgICD82p1e/clv1_CEuOPUxokZA0iHrVevoK_Rv3Wip7d7Q55clZ0B3U9uFW138W3HrmFf018HHz9hvQjq0yzpNb3XTP8T6iq2vfZiodFzy2KPPUCRsNQ099GgX_OacivD1VhYPYHxyKGK9HIY-QJA-u8o8XBktilVDrYU1NLUZODN84CU5tHqwgUVeQ1PuamBEzXFStNpmvOqssRHMHeJvHlJlDT3dnO8R8Yf5bksG5l94oD0zcLowv31UxlI9tr66CRFJ3pkWWnWl7FWXfMPjKtxhPimkmNJ1SbSmlWVWDyCjnJ-CKyOjxR48tI0mU0qe21BKQWwrGGbGD-csm-M9QRtP6kKfmPPqTNfQt6dx1...
+2025-07-15 01:31:14,810 - tools.passive_extraction_workflow_latest - DEBUG - Error checking sponsored badge for ASIN B07VKM2K2J: 'ElementHandle' object has no attribute 'locator'
+2025-07-15 01:31:14,811 - tools.passive_extraction_workflow_latest - DEBUG - Error checking aria-label for ASIN B07VKM2K2J: 'ElementHandle' object has no attribute 'locator'
+2025-07-15 01:31:14,845 - tools.passive_extraction_workflow_latest - DEBUG - Error checking text for ad indicators for ASIN B07VKM2K2J: 'ElementHandle' object has no attribute 'locator'
+2025-07-15 01:31:15,286 - tools.passive_extraction_workflow_latest - DEBUG - ASIN B07VKM2K2J title extracted using selector 'a[href*='/dp/'] span': 4.4...
+2025-07-15 01:31:15,287 - tools.passive_extraction_workflow_latest - INFO - Found organic result: ASIN B07VKM2K2J - 4.4...
+2025-07-15 01:31:15,309 - tools.passive_extraction_workflow_latest - DEBUG - Processing element 4: ASIN B0B3M7W2Q9
+2025-07-15 01:31:15,310 - tools.passive_extraction_workflow_latest - DEBUG - Error checking sponsored badge for ASIN B0B3M7W2Q9: 'ElementHandle' object has no attribute 'locator'
+2025-07-15 01:31:15,310 - tools.passive_extraction_workflow_latest - DEBUG - Error checking aria-label for ASIN B0B3M7W2Q9: 'ElementHandle' object has no attribute 'locator'
+2025-07-15 01:31:15,346 - tools.passive_extraction_workflow_latest - DEBUG - Error checking text for ad indicators for ASIN B0B3M7W2Q9: 'ElementHandle' object has no attribute 'locator'
+2025-07-15 01:31:15,720 - tools.passive_extraction_workflow_latest - DEBUG - ASIN B0B3M7W2Q9 title extracted using selector 'a[href*='/dp/'] span': 4.6...
+2025-07-15 01:31:15,721 - tools.passive_extraction_workflow_latest - INFO - Found organic result: ASIN B0B3M7W2Q9 - 4.6...
+2025-07-15 01:31:15,721 - tools.passive_extraction_workflow_latest - INFO - Multiple organic results (4) found for EAN 5055319510769. Applying word overlap scoring.
+2025-07-15 01:31:15,722 - tools.passive_extraction_workflow_latest - INFO - ASIN B07VKM2K2J: 0.00 overlap score with '4.4...' 
+2025-07-15 01:31:15,723 - tools.passive_extraction_workflow_latest - INFO - ASIN B0B3M7W2Q9: 0.00 overlap score with '4.6...' 
+2025-07-15 01:31:15,723 - tools.passive_extraction_workflow_latest - INFO - ASIN B07VKM2K2J: 0.00 overlap score with '4.4...' 
+2025-07-15 01:31:15,724 - tools.passive_extraction_workflow_latest - INFO - ASIN B0B3M7W2Q9: 0.00 overlap score with '4.6...' 
+2025-07-15 01:31:15,724 - tools.passive_extraction_workflow_latest - WARNING - No result met 0.25 threshold. Using top organic result ASIN B07VKM2K2J with low confidence.
+2025-07-15 01:31:15,725 - tools.passive_extraction_workflow_latest - INFO - EAN search selected ASIN B07VKM2K2J for 5055319510769
+2025-07-15 01:31:15,725 - tools.passive_extraction_workflow_latest - INFO - Single ASIN B07VKM2K2J found for EAN 5055319510769.
+2025-07-15 01:31:15,725 - tools.passive_extraction_workflow_latest - INFO - Proceeding with ASIN: B07VKM2K2J for EAN: 5055319510769
+2025-07-15 01:31:15,726 - amazon_playwright_extractor - WARNING - No page object provided to extract_data for ASIN B07VKM2K2J. Getting a new one from BrowserManager.
+2025-07-15 01:31:15,726 - amazon_playwright_extractor - INFO - Reusing existing page: https://www.amazon.co.uk/s?k=5055319510769&ref=nb_sb_noss
+2025-07-15 01:31:19,095 - amazon_playwright_extractor - INFO - Checking for cookie consent pop-up...
+2025-07-15 01:31:21,000 - amazon_playwright_extractor - INFO - Finished checking for cookie consent pop-ups. If one was present and not handled, it might interfere.
+2025-07-15 01:31:22,010 - amazon_playwright_extractor - INFO - Checking for CAPTCHA...
+2025-07-15 01:31:25,053 - amazon_playwright_extractor - INFO - No CAPTCHA page detected by form selector.
+2025-07-15 01:31:25,054 - amazon_playwright_extractor - INFO - Checking for cookie consent pop-up...
+2025-07-15 01:31:25,256 - amazon_playwright_extractor - INFO - Finished checking for cookie consent pop-ups. If one was present and not handled, it might interfere.
+2025-07-15 01:31:25,256 - amazon_playwright_extractor - INFO - Page should be ready. Waiting 5s for stabilization...
+2025-07-15 01:31:30,259 - amazon_playwright_extractor - INFO - Waiting an additional 7s for extensions (Keepa, SellerAmp)...
+2025-07-15 01:31:36,137 - amazon_playwright_extractor - INFO - Extracting all product data for ASIN: B07VKM2K2J
+2025-07-15 01:31:36,138 - amazon_playwright_extractor - INFO - Extracting basic product information (Title, Price, Images, Amazon Details)...
+2025-07-15 01:31:36,204 - amazon_playwright_extractor - INFO - Title found: 'OCUBE LED Digital Alarm Clock with 5 Optional Alarm Sounds, USB Charging Port, Full-Range Brightness Dimmer, Big White Digit Display, Snooze, Adjustable Alarm Volume, Mains Powered' via #productTitle
+2025-07-15 01:31:36,205 - amazon_playwright_extractor - INFO - Extracting price details...
+2025-07-15 01:31:36,284 - amazon_playwright_extractor - INFO - Current price: 21.99 via #corePrice_feature_div .a-offscreen
+2025-07-15 01:31:36,407 - amazon_playwright_extractor - INFO - Original price: 25.99 via .basisPrice span.a-text-price span.a-offscreen
+2025-07-15 01:31:36,498 - amazon_playwright_extractor - INFO - Amazon sales badge found: 400 in container div#socialProofingAsinFaceout_feature_div
+2025-07-15 01:31:36,499 - amazon_playwright_extractor - INFO - Extracting image URLs...
+2025-07-15 01:31:36,623 - amazon_playwright_extractor - INFO - Main image: https://m.media-amazon.com/images/I/51oqabrdvvL._AC_SL1500_.jpg via #landingImage
+2025-07-15 01:31:36,919 - amazon_playwright_extractor - INFO - Found 7 thumbnails.
+2025-07-15 01:31:36,948 - amazon_playwright_extractor - INFO - Extracting Amazon product details section...
+2025-07-15 01:31:37,609 - amazon_playwright_extractor - INFO - Extracting sales rank information...
+2025-07-15 01:31:38,156 - amazon_playwright_extractor - INFO - Extracting ratings and reviews...
+2025-07-15 01:31:38,211 - amazon_playwright_extractor - INFO - Rating: 4.4 via #acrPopover[title*='out of 5 stars']
+2025-07-15 01:31:38,258 - amazon_playwright_extractor - INFO - Review count: 9183 via #acrCustomerReviewText
+2025-07-15 01:31:38,258 - amazon_playwright_extractor - INFO - Extracting stock information...
+2025-07-15 01:31:38,308 - amazon_playwright_extractor - INFO - Availability text: 'In stock' via #availability span.a-size-medium.a-color-success
+2025-07-15 01:31:38,308 - amazon_playwright_extractor - INFO - Extracting features/bullets...
+2025-07-15 01:31:38,449 - amazon_playwright_extractor - INFO - Found 1 features.
+2025-07-15 01:31:38,450 - amazon_playwright_extractor - INFO - Extracting product description...
+2025-07-15 01:31:38,575 - amazon_playwright_extractor - INFO - Description found using selector: #aplus_feature_div
+2025-07-15 01:31:38,576 - amazon_playwright_extractor - INFO - Extracting product specifications table...
+2025-07-15 01:31:39,478 - amazon_playwright_extractor - INFO - Specifications table parsed using selector: #productDetails_techSpec_section_1
+2025-07-15 01:31:39,478 - amazon_playwright_extractor - INFO - Extracting SellerAmp data (if present)...
+2025-07-15 01:31:39,479 - amazon_playwright_extractor - INFO - SellerAmp data extraction is currently disabled as per requirements (Fix 2.3).
+2025-07-15 01:31:39,480 - amazon_playwright_extractor - INFO - Extracting Keepa data (if present)...
+2025-07-15 01:31:39,480 - amazon_playwright_extractor - INFO - Attempting to extract Keepa data...
+2025-07-15 01:31:42,505 - amazon_playwright_extractor - DEBUG - Keepa iframe check failed for selector iframe[id*='keepaGraph']: Page.wait_for_selector: Timeout 3000ms exceeded.
+Call log:
+  - waiting for locator("iframe[id*='keepaGraph']")
+
+2025-07-15 01:31:45,548 - amazon_playwright_extractor - DEBUG - Keepa iframe check failed for selector iframe#keepaExtension: Page.wait_for_selector: Timeout 3000ms exceeded.
+Call log:
+  - waiting for locator("iframe#keepaExtension")
+
+2025-07-15 01:31:45,658 - amazon_playwright_extractor - INFO - Keepa iframe found: iframe[id*='keepa']
+2025-07-15 01:31:45,865 - amazon_playwright_extractor - INFO - Keepa Sales Rank Details Table parsed.
+2025-07-15 01:31:45,866 - amazon_playwright_extractor - INFO - Keepa Graph AI Analysis is currently disabled as per requirements (Fix 2.4).
+2025-07-15 01:31:45,945 - amazon_playwright_extractor - INFO - Keepa Data tab found. Currently active: False
+2025-07-15 01:31:45,945 - amazon_playwright_extractor - INFO - Clicking Keepa 'Data' tab...
+2025-07-15 01:31:48,216 - amazon_playwright_extractor - INFO - Attempt 1/2: Waiting 12000ms for Product-Details wrapper...
+2025-07-15 01:31:48,268 - amazon_playwright_extractor - INFO - ✅ Product-Details wrapper appeared on attempt 1
+2025-07-15 01:31:48,363 - amazon_playwright_extractor - INFO - Parsing Keepa AG Grid for Product Details from: div#MoreTab1 div#grid-product-detail
+2025-07-15 01:31:48,453 - amazon_playwright_extractor - INFO - Primary attempt: Waiting 12 seconds for AG Grid rows to load...
+2025-07-15 01:31:49,589 - amazon_playwright_extractor - INFO - ✅ Primary attempt successful: 169 rows found
+2025-07-15 01:31:49,640 - amazon_playwright_extractor - INFO - Processing 169 rows in Keepa Product Details AG Grid.
+2025-07-15 01:31:54,727 - amazon_playwright_extractor - INFO - Found potential fee key 'FBA Pick&Pack Fee' with raw value: '£ 3.04' in Keepa AG Grid.
+2025-07-15 01:31:55,128 - amazon_playwright_extractor - INFO - Found potential fee key 'Referral Fee based on current Buy Box price' with raw value: '£ 3.30' in Keepa AG Grid.
+2025-07-15 01:32:02,983 - amazon_playwright_extractor - INFO - ✅ Successfully parsed 49 items from Keepa Product Details AG Grid.
+2025-07-15 01:32:02,984 - amazon_playwright_extractor - INFO - ASIN B07VKM2K2J: Attempting to extract EANs from Keepa product_details_tab_data.
+2025-07-15 01:32:02,984 - amazon_playwright_extractor - INFO - ASIN B07VKM2K2J: EAN '0783710391841' found in Keepa details via key 'Product Codes - EAN'.
+2025-07-15 01:32:02,985 - amazon_playwright_extractor - INFO - ASIN B07VKM2K2J: BSR not found or invalid from page. Attempting fallback from Keepa.
+2025-07-15 01:32:02,985 - amazon_playwright_extractor - INFO - ASIN B07VKM2K2J: BSR 5998 in 'Home & Kitchen 42' from Keepa SalesRankDetailsTable.
+2025-07-15 01:32:02,986 - tools.passive_extraction_workflow_latest - INFO - Successfully extracted data for ASIN B07VKM2K2J (EAN on page: 0783710391841)
+2025-07-15 01:32:03,024 - PassiveExtractionWorkflow - INFO - Saved Amazon data to /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/FBA_ANALYSIS/amazon_cache/amazon_B07VKM2K2J_5055319510769.json
+2025-07-15 01:32:03,025 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: supplier_ean='5055319510769', asin='B07VKM2K2J', product_ean='5055319510769'
+2025-07-15 01:32:03,025 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Checking linking conditions - supplier_ean valid: True, asin valid: True
+2025-07-15 01:32:03,026 - PassiveExtractionWorkflow - INFO - ✅ Added linking map entry: EAN search 5055319510769 → ASIN B07VKM2K2J
+2025-07-15 01:32:03,026 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Current linking_map size: 5 entries
+2025-07-15 01:32:03,027 - PassiveExtractionWorkflow - INFO - ✅ Profitable product found: 'Home & Garden Multi-Purpose White Vinegar Cleaning Spray 500ml' (ROI: 632.80%, Profit: £7.91)
+2025-07-15 01:32:03,045 - PassiveExtractionWorkflow - INFO - --- Processing supplier product 3/10: 'Duzzit Clean & Fresh Biodegradable Anti-Bacterial Wipes 50 Pack Pallet Deal' ---
+2025-07-15 01:32:03,045 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Updating processing index to 3/10
+2025-07-15 01:32:03,063 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: State after update - last_processed_index: 3/10
+2025-07-15 01:32:03,064 - PassiveExtractionWorkflow - INFO - Attempting Amazon search using EAN: 5053249260471
+2025-07-15 01:32:03,064 - tools.passive_extraction_workflow_latest - INFO - Searching Amazon by EAN: 5053249260471 for supplier product: 'Duzzit Clean & Fresh Biodegradable Anti-Bacterial Wipes 50 Pack Pallet Deal' (FixedAmazonExtractor)
+2025-07-15 01:32:03,065 - tools.passive_extraction_workflow_latest - INFO - No page provided to search_by_ean, getting one from BrowserManager.
+2025-07-15 01:32:03,065 - utils.browser_manager - INFO - ♻️ Reusing cached page for https://www.amazon.co.uk
+2025-07-15 01:32:03,065 - tools.passive_extraction_workflow_latest - INFO - Navigating to Amazon UK to search for EAN: 5053249260471
+2025-07-15 01:32:06,034 - tools.passive_extraction_workflow_latest - INFO - Waiting for search results page to load for EAN 5053249260471...
+2025-07-15 01:32:06,335 - tools.passive_extraction_workflow_latest - INFO - Found search results container with selector: div.s-search-results
+2025-07-15 01:32:08,380 - tools.passive_extraction_workflow_latest - INFO - Found 1 search result elements using selector: div[data-asin]:not([data-asin='']):not(.AdHolder):not([class*='s-widget-sponsored-product'])
+2025-07-15 01:32:08,380 - tools.passive_extraction_workflow_latest - INFO - Processing 1 search result elements for EAN 5053249260471
+2025-07-15 01:32:08,402 - tools.passive_extraction_workflow_latest - DEBUG - Processing element 1: ASIN B0C377FDT9
+2025-07-15 01:32:08,419 - tools.passive_extraction_workflow_latest - DEBUG - ASIN B0C377FDT9 HTML structure sample: <div role="listitem" data-asin="B0C377FDT9" data-index="2" data-uuid="46a0a9b9-ca15-44f0-abca-b19e4db76d85" id="46a0a9b9-ca15-44f0-abca-b19e4db76d85" data-component-type="s-search-result" class="sg-col-4-of-4 sg-col-4-of-24 sg-col-4-of-12 s-result-item s-asin sg-col-4-of-16 sg-col s-widget-spacing-small sg-col-4-of-8 sg-col-4-of-20" data-component-id="5" data-cel-widget="search_result_1"><div class="sg-col-inner"><div cel_widget_id="MAIN-SEARCH_RESULTS-2" class="s-widget-container s-spacing-small s-widget-container-height-small celwidget slot=MAIN template=SEARCH_RESULTS widgetId=search-result...
+2025-07-15 01:32:08,420 - tools.passive_extraction_workflow_latest - DEBUG - Error checking sponsored badge for ASIN B0C377FDT9: 'ElementHandle' object has no attribute 'locator'
+2025-07-15 01:32:08,420 - tools.passive_extraction_workflow_latest - DEBUG - Error checking aria-label for ASIN B0C377FDT9: 'ElementHandle' object has no attribute 'locator'
+2025-07-15 01:32:08,453 - tools.passive_extraction_workflow_latest - DEBUG - Error checking text for ad indicators for ASIN B0C377FDT9: 'ElementHandle' object has no attribute 'locator'
+2025-07-15 01:32:08,667 - tools.passive_extraction_workflow_latest - DEBUG - ASIN B0C377FDT9 title extracted using selector 'h2': Duzzit Antibacterial 100 Percent Biodegradable Wip...
+2025-07-15 01:32:08,668 - tools.passive_extraction_workflow_latest - INFO - Found organic result: ASIN B0C377FDT9 - Duzzit Antibacterial 100 Percent Biodegradable Wipes, Pack 5...
+2025-07-15 01:32:08,668 - tools.passive_extraction_workflow_latest - INFO - Single organic result found for EAN 5053249260471: ASIN B0C377FDT9
+2025-07-15 01:32:08,669 - tools.passive_extraction_workflow_latest - INFO - EAN search selected ASIN B0C377FDT9 for 5053249260471
+2025-07-15 01:32:08,670 - tools.passive_extraction_workflow_latest - INFO - Single ASIN B0C377FDT9 found for EAN 5053249260471.
+2025-07-15 01:32:08,670 - tools.passive_extraction_workflow_latest - INFO - Proceeding with ASIN: B0C377FDT9 for EAN: 5053249260471
+2025-07-15 01:32:08,671 - amazon_playwright_extractor - WARNING - No page object provided to extract_data for ASIN B0C377FDT9. Getting a new one from BrowserManager.
+2025-07-15 01:32:08,671 - amazon_playwright_extractor - INFO - Reusing existing page: https://www.amazon.co.uk/s?k=5053249260471&ref=nb_sb_noss
+2025-07-15 01:32:11,609 - amazon_playwright_extractor - INFO - Checking for cookie consent pop-up...
+2025-07-15 01:32:13,069 - amazon_playwright_extractor - INFO - Finished checking for cookie consent pop-ups. If one was present and not handled, it might interfere.
+2025-07-15 01:32:14,092 - amazon_playwright_extractor - INFO - Checking for CAPTCHA...
+2025-07-15 01:32:17,131 - amazon_playwright_extractor - INFO - No CAPTCHA page detected by form selector.
+2025-07-15 01:32:17,132 - amazon_playwright_extractor - INFO - Checking for cookie consent pop-up...
+2025-07-15 01:32:17,384 - amazon_playwright_extractor - INFO - Finished checking for cookie consent pop-ups. If one was present and not handled, it might interfere.
+2025-07-15 01:32:17,385 - amazon_playwright_extractor - INFO - Page should be ready. Waiting 5s for stabilization...
+2025-07-15 01:32:22,632 - amazon_playwright_extractor - INFO - Waiting an additional 7s for extensions (Keepa, SellerAmp)...
+2025-07-15 01:32:29,978 - amazon_playwright_extractor - INFO - Extracting all product data for ASIN: B0C377FDT9
+2025-07-15 01:32:29,979 - amazon_playwright_extractor - INFO - Extracting basic product information (Title, Price, Images, Amazon Details)...
+2025-07-15 01:32:30,038 - amazon_playwright_extractor - INFO - Title found: 'Duzzit Antibacterial 100 Percent Biodegradable Wipes, Pack 50 Wipes' via #productTitle
+2025-07-15 01:32:30,038 - amazon_playwright_extractor - INFO - Extracting price details...
+2025-07-15 01:32:30,094 - amazon_playwright_extractor - INFO - Current price: 5.74 via #corePrice_feature_div .a-offscreen
+2025-07-15 01:32:30,278 - amazon_playwright_extractor - INFO - Original price: 25.31 via span.a-price.a-text-price[data-a-strike='true'] span.a-offscreen
+2025-07-15 01:32:30,417 - amazon_playwright_extractor - INFO - Extracting image URLs...
+2025-07-15 01:32:30,562 - amazon_playwright_extractor - INFO - Main image: https://m.media-amazon.com/images/I/71Yp7DOrbhL._AC_SL1500_.jpg via #landingImage
+2025-07-15 01:32:30,817 - amazon_playwright_extractor - INFO - Found 5 thumbnails.
+2025-07-15 01:32:30,845 - amazon_playwright_extractor - INFO - Extracting Amazon product details section...
+2025-07-15 01:32:31,464 - amazon_playwright_extractor - INFO - Extracting sales rank information...
+2025-07-15 01:32:32,066 - amazon_playwright_extractor - INFO - Extracting ratings and reviews...
+2025-07-15 01:32:32,236 - amazon_playwright_extractor - INFO - Rating: 4.1 via i[class*='a-icon-star'] span.a-icon-alt
+2025-07-15 01:32:32,359 - amazon_playwright_extractor - INFO - Extracting stock information...
+2025-07-15 01:32:32,421 - amazon_playwright_extractor - INFO - Availability text: 'In stock' via #availability span.a-size-medium.a-color-success
+2025-07-15 01:32:32,421 - amazon_playwright_extractor - INFO - Extracting features/bullets...
+2025-07-15 01:32:31,516 - amazon_playwright_extractor - INFO - Found 5 features.
+2025-07-15 01:32:31,517 - amazon_playwright_extractor - INFO - Extracting product description...
+2025-07-15 01:32:31,578 - amazon_playwright_extractor - INFO - Description found using selector: #productDescription
+2025-07-15 01:32:31,578 - amazon_playwright_extractor - INFO - Extracting product specifications table...
+2025-07-15 01:32:32,549 - amazon_playwright_extractor - INFO - Specifications table parsed using selector: #productDetails_techSpec_section_1
+2025-07-15 01:32:32,550 - amazon_playwright_extractor - INFO - Extracting SellerAmp data (if present)...
+2025-07-15 01:32:32,550 - amazon_playwright_extractor - INFO - SellerAmp data extraction is currently disabled as per requirements (Fix 2.3).
+2025-07-15 01:32:32,551 - amazon_playwright_extractor - INFO - Extracting Keepa data (if present)...
+2025-07-15 01:32:32,551 - amazon_playwright_extractor - INFO - Attempting to extract Keepa data...
+2025-07-15 01:32:35,582 - amazon_playwright_extractor - DEBUG - Keepa iframe check failed for selector iframe[id*='keepaGraph']: Page.wait_for_selector: Timeout 3000ms exceeded.
+Call log:
+  - waiting for locator("iframe[id*='keepaGraph']")
+
+2025-07-15 01:32:38,615 - amazon_playwright_extractor - DEBUG - Keepa iframe check failed for selector iframe#keepaExtension: Page.wait_for_selector: Timeout 3000ms exceeded.
+Call log:
+  - waiting for locator("iframe#keepaExtension")
+
+2025-07-15 01:32:38,774 - amazon_playwright_extractor - INFO - Keepa iframe found: iframe[id*='keepa']
+2025-07-15 01:32:39,041 - amazon_playwright_extractor - INFO - Keepa Sales Rank Details Table parsed.
+2025-07-15 01:32:39,042 - amazon_playwright_extractor - INFO - Keepa Graph AI Analysis is currently disabled as per requirements (Fix 2.4).
+2025-07-15 01:32:39,123 - amazon_playwright_extractor - INFO - Keepa Data tab found. Currently active: False
+2025-07-15 01:32:39,124 - amazon_playwright_extractor - INFO - Clicking Keepa 'Data' tab...
+2025-07-15 01:32:41,369 - amazon_playwright_extractor - INFO - Attempt 1/2: Waiting 12000ms for Product-Details wrapper...
+2025-07-15 01:32:46,417 - amazon_playwright_extractor - INFO - ✅ Product-Details wrapper appeared on attempt 1
+2025-07-15 01:32:46,450 - amazon_playwright_extractor - WARNING - Product-Details tab visible, but inner grid still not ready – extending wait with retry logic.
+2025-07-15 01:32:46,451 - amazon_playwright_extractor - INFO - Grid attempt 1/3: Waiting 15000ms for grid container...
+2025-07-15 01:32:46,765 - amazon_playwright_extractor - INFO - ✅ Grid became visible after attempt 1 – continuing.
+2025-07-15 01:32:46,844 - amazon_playwright_extractor - INFO - Parsing Keepa AG Grid for Product Details from: div#MoreTab1 div#grid-product-detail
+2025-07-15 01:32:46,941 - amazon_playwright_extractor - INFO - Primary attempt: Waiting 12 seconds for AG Grid rows to load...
+2025-07-15 01:32:48,080 - amazon_playwright_extractor - INFO - ✅ Primary attempt successful: 124 rows found
+2025-07-15 01:32:48,115 - amazon_playwright_extractor - INFO - Processing 124 rows in Keepa Product Details AG Grid.
+2025-07-15 01:32:51,338 - amazon_playwright_extractor - INFO - Found potential fee key 'FBA Pick&Pack Fee' with raw value: '£ 4.73' in Keepa AG Grid.
+2025-07-15 01:32:51,668 - amazon_playwright_extractor - INFO - Found potential fee key 'Referral Fee based on current Buy Box price' with raw value: '£ 0.88' in Keepa AG Grid.
+2025-07-15 01:32:58,464 - amazon_playwright_extractor - INFO - ✅ Successfully parsed 38 items from Keepa Product Details AG Grid.
+2025-07-15 01:32:58,464 - amazon_playwright_extractor - INFO - ASIN B0C377FDT9: Attempting to extract EANs from Keepa product_details_tab_data.
+2025-07-15 01:32:58,465 - amazon_playwright_extractor - INFO - ASIN B0C377FDT9: EAN '5053249260471' found in Keepa details via key 'Product Codes - EAN'.
+2025-07-15 01:32:58,466 - amazon_playwright_extractor - INFO - ASIN B0C377FDT9: BSR not found or invalid from page. Attempting fallback from Keepa.
+2025-07-15 01:32:58,466 - amazon_playwright_extractor - INFO - ASIN B0C377FDT9: BSR 350416 in 'Grocery 0.3' from Keepa SalesRankDetailsTable.
+2025-07-15 01:32:58,466 - tools.passive_extraction_workflow_latest - INFO - Successfully extracted data for ASIN B0C377FDT9 (EAN on page: 5053249260471)
+2025-07-15 01:32:58,494 - PassiveExtractionWorkflow - INFO - Saved Amazon data to /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/FBA_ANALYSIS/amazon_cache/amazon_B0C377FDT9_5053249260471.json
+2025-07-15 01:32:58,495 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: supplier_ean='5053249260471', asin='B0C377FDT9', product_ean='5053249260471'
+2025-07-15 01:32:58,495 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Checking linking conditions - supplier_ean valid: True, asin valid: True
+2025-07-15 01:32:58,495 - PassiveExtractionWorkflow - INFO - ✅ Added linking map entry: EAN search 5053249260471 → ASIN B0C377FDT9
+2025-07-15 01:32:58,496 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Current linking_map size: 6 entries
+2025-07-15 01:32:58,496 - PassiveExtractionWorkflow - INFO - Product not profitable: 'Duzzit Clean & Fresh Biodegradable Anti-Bacterial Wipes 50 Pack Pallet Deal' (ROI: -192.46%, Profit: £-2.21)
+2025-07-15 01:32:58,528 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: _save_linking_map called with 6 entries for supplier poundwholesale.co.uk
+2025-07-15 01:32:58,547 - PassiveExtractionWorkflow - INFO - ✅ Successfully saved linking map with 6 entries to /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/FBA_ANALYSIS/linking_maps/poundwholesale.co.uk/linking_map.json
+2025-07-15 01:32:58,547 - PassiveExtractionWorkflow - INFO - 📊 Periodic save at product 3 (linking_map_batch_size: 3)
+2025-07-15 01:32:58,548 - PassiveExtractionWorkflow - INFO - --- Processing supplier product 4/10: 'Rapide Sealant Remover Spray 250ml' ---
+2025-07-15 01:32:58,548 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Updating processing index to 4/10
+2025-07-15 01:32:58,565 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: State after update - last_processed_index: 4/10
+2025-07-15 01:32:58,566 - PassiveExtractionWorkflow - INFO - Product already processed: https://www.poundwholesale.co.uk/rapide-sealant-remover-spray-250ml. Skipping.
+2025-07-15 01:32:58,566 - PassiveExtractionWorkflow - INFO - --- Processing supplier product 5/10: 'Duzzit Sweet Things Biodegradable Anti-Bacterial Wipes 50 Pack Pallet Deal' ---
+2025-07-15 01:32:58,566 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Updating processing index to 5/10
+2025-07-15 01:32:58,584 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: State after update - last_processed_index: 5/10
+2025-07-15 01:32:58,584 - PassiveExtractionWorkflow - INFO - Product already processed: https://www.poundwholesale.co.uk/duzzit-sweet-things-biodegradable-anti-bacterial-wipes-50-pack-pallet-deal. Skipping.
+2025-07-15 01:32:58,585 - PassiveExtractionWorkflow - INFO - 🔄 Processing batch 2/2 (5 products)
+2025-07-15 01:32:58,585 - PassiveExtractionWorkflow - INFO - --- Processing supplier product 6/10: 'Elbow Grease Essentials Bundle (78 Products)' ---
+2025-07-15 01:32:58,586 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Updating processing index to 6/10
+2025-07-15 01:32:58,604 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: State after update - last_processed_index: 6/10
+2025-07-15 01:32:58,604 - PassiveExtractionWorkflow - INFO - Product already processed: https://www.poundwholesale.co.uk/elbow-grease-planogram. Skipping.
+2025-07-15 01:32:58,605 - PassiveExtractionWorkflow - INFO - --- Processing supplier product 7/10: 'Elbow Grease Easy Tear Reusable Pink Microfibre Cloths 10 Pack' ---
+2025-07-15 01:32:58,605 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Updating processing index to 7/10
+2025-07-15 01:32:58,630 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: State after update - last_processed_index: 7/10
+2025-07-15 01:32:58,631 - PassiveExtractionWorkflow - INFO - Product already processed: https://www.poundwholesale.co.uk/elbow-grease-easy-tear-reusable-pink-microfibre-cloths-10-pack. Skipping.
+2025-07-15 01:32:58,631 - PassiveExtractionWorkflow - INFO - --- Processing supplier product 8/10: 'Duzzit Essentials Bundle (63 Products)' ---
+2025-07-15 01:32:58,632 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Updating processing index to 8/10
+2025-07-15 01:32:58,649 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: State after update - last_processed_index: 8/10
+2025-07-15 01:32:58,650 - PassiveExtractionWorkflow - INFO - Product already processed: https://www.poundwholesale.co.uk/duzzit-planogram-bundle. Skipping.
+2025-07-15 01:32:58,650 - PassiveExtractionWorkflow - INFO - --- Processing supplier product 9/10: 'Globe Mill Textiles Strong Absorbent Dishcloths 8 Pack 25cm X 30cm' ---
+2025-07-15 01:32:58,650 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Updating processing index to 9/10
+2025-07-15 01:32:58,667 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: State after update - last_processed_index: 9/10
+2025-07-15 01:32:58,668 - PassiveExtractionWorkflow - INFO - Product already processed: https://www.poundwholesale.co.uk/globe-mill-textiles-strong-absorbent-dishcloths-8-pack-25cm-x-30cm. Skipping.
+2025-07-15 01:32:58,668 - PassiveExtractionWorkflow - INFO - --- Processing supplier product 10/10: 'TidyZ Extra Large All Purpose Cloths 20 Pack' ---
+2025-07-15 01:32:58,668 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Updating processing index to 10/10
+2025-07-15 01:32:58,690 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: State after update - last_processed_index: 10/10
+2025-07-15 01:32:58,690 - PassiveExtractionWorkflow - INFO - Product already processed: https://www.poundwholesale.co.uk/tidyz-extra-large-all-purpose-cloths-20-pack. Skipping.
+2025-07-15 01:32:58,706 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: _save_linking_map called with 6 entries for supplier poundwholesale.co.uk
+2025-07-15 01:32:58,728 - PassiveExtractionWorkflow - INFO - ✅ Successfully saved linking map with 6 entries to /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/FBA_ANALYSIS/linking_maps/poundwholesale.co.uk/linking_map.json
+2025-07-15 01:32:58,729 - PassiveExtractionWorkflow - ERROR - Unexpected error occurred during workflow execution: PassiveExtractionWorkflow._save_final_report() takes 2 positional arguments but 3 were given
+Traceback (most recent call last):
+  File "/mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/tools/passive_extraction_workflow_latest.py", line 1276, in run
+    self._save_final_report(profitable_results, self.supplier_name)
+TypeError: PassiveExtractionWorkflow._save_final_report() takes 2 positional arguments but 3 were given
+2025-07-15 01:32:58,733 - __main__ - INFO - 🌐 Keeping browser persistent for next run - not closing browser
+2025-07-15 01:32:58,734 - utils.browser_manager - WARNING - Error during global cleanup: no running event loop

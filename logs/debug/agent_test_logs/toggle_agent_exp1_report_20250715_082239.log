@@ -1,0 +1,48 @@
+TOGGLE-AGENT EXPERIMENT REPORT
+==================================================
+Experiment ID: 1
+Experiment Name: Processing & System Limits
+Description: Core throughput and batch sizing
+Success: True
+Timestamp: 20250715_082239
+
+TOGGLE CHANGES APPLIED:
+------------------------------
+processing_limits.max_products_per_category:
+  FROM: 3
+  TO:   5
+
+processing_limits.max_price_gbp:
+  FROM: 20.0
+  TO:   25.0
+
+system.max_products_per_cycle:
+  FROM: 2
+  TO:   3
+
+EXPECTED EFFECTS:
+------------------------------
+- Increased product extraction per category
+- Higher price range coverage
+- Larger Amazon analysis batches
+
+TOGGLE-AGENT LOG:
+------------------------------
+[2025-07-15 08:22:05] [INFO] 🚀 TOGGLE-AGENT: Starting Experiment 1
+[2025-07-15 08:22:05] [INFO] 🧪 Applying Experiment 1: Processing & System Limits
+[2025-07-15 08:22:05] [INFO] ✅ Loaded config from: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/config/system_config.json
+[2025-07-15 08:22:05] [WARNING] ⚠️  processing_limits.max_products_per_category: Current value 5 != expected 3
+[2025-07-15 08:22:05] [INFO] 🔄 processing_limits.max_products_per_category: 5 → 5
+[2025-07-15 08:22:05] [WARNING] ⚠️  processing_limits.max_price_gbp: Current value 25.0 != expected 20.0
+[2025-07-15 08:22:05] [INFO] 🔄 processing_limits.max_price_gbp: 25.0 → 25.0
+[2025-07-15 08:22:05] [WARNING] ⚠️  system.max_products_per_cycle: Current value 3 != expected 2
+[2025-07-15 08:22:05] [INFO] 🔄 system.max_products_per_cycle: 3 → 3
+[2025-07-15 08:22:05] [INFO] 📄 Config backed up to: system_config.20250715_082205.bak
+[2025-07-15 08:22:05] [INFO] ✅ Config saved to: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/config/system_config.json
+[2025-07-15 08:22:05] [INFO] ✅ Loaded config from: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/config/system_config.json
+[2025-07-15 08:22:05] [INFO] ✅ Verified: processing_limits.max_products_per_category = 5
+[2025-07-15 08:22:05] [INFO] ✅ Verified: processing_limits.max_price_gbp = 25.0
+[2025-07-15 08:22:05] [INFO] ✅ Verified: system.max_products_per_cycle = 3
+[2025-07-15 08:22:39] [WARNING] ⚠️  Git commit failed: Command '['git', 'commit', '-m', 'Experiment 1: Processing & System Limits\n\nToggle changes:\n- processing_limits.max_products_per_category: 3 → 5\n- processing_limits.max_price_gbp: 20.0 → 25.0\n- system.max_products_per_cycle: 2 → 3\n\nExpected effects: Increased product extraction per category, Higher price range coverage, Larger Amazon analysis batches']' returned non-zero exit status 1.
+[2025-07-15 08:22:39] [INFO] ✅ Experiment 1 applied successfully
+[2025-07-15 08:22:39] [INFO] 📄 Updated toggle plan with Experiment 1 results

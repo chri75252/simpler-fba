@@ -1,0 +1,45 @@
+TOGGLE-AGENT EXPERIMENT REPORT
+==================================================
+Experiment ID: 7
+Experiment Name: Authentication & Circuit Breaker
+Description: System reliability and authentication behavior
+Success: True
+Timestamp: 20250715_084522
+
+TOGGLE CHANGES APPLIED:
+------------------------------
+authentication.primary_periodic_interval:
+  FROM: 100
+  TO:   150
+
+authentication.circuit_breaker.failure_threshold:
+  FROM: 3
+  TO:   2
+
+authentication.max_consecutive_auth_failures:
+  FROM: 3
+  TO:   5
+
+EXPECTED EFFECTS:
+------------------------------
+- Less frequent authentication checks
+- Earlier circuit breaker activation
+- Higher auth failure tolerance
+
+TOGGLE-AGENT LOG:
+------------------------------
+[2025-07-15 08:44:57] [INFO] 🚀 TOGGLE-AGENT: Starting Experiment 7
+[2025-07-15 08:44:57] [INFO] 🧪 Applying Experiment 7: Authentication & Circuit Breaker
+[2025-07-15 08:44:57] [INFO] ✅ Loaded config from: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/config/system_config.json
+[2025-07-15 08:44:57] [INFO] 🔄 authentication.primary_periodic_interval: 100 → 150
+[2025-07-15 08:44:57] [INFO] 🔄 authentication.circuit_breaker.failure_threshold: 3 → 2
+[2025-07-15 08:44:57] [INFO] 🔄 authentication.max_consecutive_auth_failures: 3 → 5
+[2025-07-15 08:44:57] [INFO] 📄 Config backed up to: system_config.20250715_084457.bak
+[2025-07-15 08:44:57] [INFO] ✅ Config saved to: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/config/system_config.json
+[2025-07-15 08:44:57] [INFO] ✅ Loaded config from: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/config/system_config.json
+[2025-07-15 08:44:57] [INFO] ✅ Verified: authentication.primary_periodic_interval = 150
+[2025-07-15 08:44:57] [INFO] ✅ Verified: authentication.circuit_breaker.failure_threshold = 2
+[2025-07-15 08:44:57] [INFO] ✅ Verified: authentication.max_consecutive_auth_failures = 5
+[2025-07-15 08:45:22] [INFO] 📝 Git commit created for Experiment 7
+[2025-07-15 08:45:22] [INFO] ✅ Experiment 7 applied successfully
+[2025-07-15 08:45:22] [INFO] 📄 Updated toggle plan with Experiment 7 results

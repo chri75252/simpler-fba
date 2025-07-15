@@ -31,7 +31,8 @@ class SupplierAuthenticationService:
             self.browser_manager = browser_manager
             self.supplier_name = "poundwholesale.co.uk"  # Default for backward compatibility
             self.supplier_url = "https://www.poundwholesale.co.uk"
-            self.config_path = "config/supplier_configs/poundwholesale-co-uk.json"
+            base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+            self.config_path = os.path.join(base_dir, "config", "supplier_configs", "poundwholesale-co-uk.json")
         else:
             # New three-parameter constructor
             self.supplier_name = supplier_name

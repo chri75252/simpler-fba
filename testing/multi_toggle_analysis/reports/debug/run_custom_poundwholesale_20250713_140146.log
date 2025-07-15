@@ -1,0 +1,46 @@
+2025-07-13 14:01:46,243 - utils.logger - INFO - 🔧 Logging initialised – log file: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/logs/debug/run_custom_poundwholesale_20250713_140146.log
+2025-07-13 14:01:46,243 - __main__ - INFO - 📋 Debug log file: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/logs/debug/run_custom_poundwholesale_20250713_140146.log
+2025-07-13 14:01:46,244 - __main__ - DEBUG - Debug logging initialized - full system execution details will be captured
+2025-07-13 14:01:46,245 - utils.browser_manager - INFO - 🔧 BrowserManager singleton initialized
+2025-07-13 14:01:46,577 - utils.browser_manager - INFO - 🔌 Connecting to Chrome on debug port 9222
+2025-07-13 14:01:46,606 - utils.browser_manager - WARNING - ⚠️ Could not connect to CDP on port 9222. Launching new browser. Error: BrowserType.connect_over_cdp: connect ECONNREFUSED 127.0.0.1:9222
+Call log:
+  - <ws preparing> retrieving websocket url from http://localhost:9222
+
+2025-07-13 14:01:47,441 - utils.browser_manager - INFO - 📄 Created new page in context.
+2025-07-13 14:01:47,442 - __main__ - INFO - 🔐 Initializing authentication service for logout detection...
+2025-07-13 14:01:47,530 - tools.archive.vision_login_handler - DEBUG - Vision login debug logging initialized - writing to /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/logs/debug/vision_login_20250713.log
+2025-07-13 14:01:47,531 - __main__ - INFO - ✅ Using hardcoded credentials for poundwholesale.co.uk
+2025-07-13 14:01:47,531 - __main__ - INFO - 🌐 Connecting to existing Chrome debug port 9222 for authentication...
+2025-07-13 14:01:50,809 - tools.supplier_authentication_service - WARNING - Could not verify authentication status: Page.goto: Target page, context or browser has been closed
+Call log:
+  - navigating to "https://poundwholesale.co.uk/", waiting until "load"
+
+2025-07-13 14:01:50,810 - tools.supplier_authentication_service - INFO - 🔐 Starting authentication for poundwholesale.co.uk
+2025-07-13 14:01:50,810 - tools.supplier_authentication_service - INFO - 🔍 Attempting vision-assisted authentication
+2025-07-13 14:01:50,811 - tools.archive.vision_login_handler - INFO - 🚀 Starting Vision-assisted login process...
+2025-07-13 14:01:50,812 - tools.archive.vision_login_handler - INFO - 📍 Navigating to login page: https://poundwholesale.co.uk/customer/account/login/
+2025-07-13 14:01:50,827 - tools.archive.vision_login_handler - ERROR - ❌ Vision-assisted login failed: Page.goto: Target page, context or browser has been closed
+2025-07-13 14:01:50,828 - tools.supplier_authentication_service - WARNING - ❌ Vision-assisted authentication failed
+2025-07-13 14:01:50,828 - tools.supplier_authentication_service - INFO - 🔧 Attempting fallback selector authentication
+2025-07-13 14:01:50,828 - tools.archive.vision_login_handler - INFO - 🔄 Attempting fallback selector-based login...
+2025-07-13 14:01:50,836 - tools.archive.vision_login_handler - ERROR - ❌ Fallback selector login failed: Page.goto: Target page, context or browser has been closed
+2025-07-13 14:01:50,841 - tools.supplier_authentication_service - ERROR - Fallback authentication error: Page.goto: Target page, context or browser has been closed
+2025-07-13 14:01:50,841 - tools.supplier_authentication_service - ERROR - ❌ All authentication methods failed
+2025-07-13 14:01:50,846 - __main__ - CRITICAL - 💥 A critical error occurred in the main workflow: AmazonExtractor.__init__() got an unexpected keyword argument 'config'
+Traceback (most recent call last):
+  File "/mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/run_custom_poundwholesale.py", line 62, in main
+    workflow = PassiveExtractionWorkflow(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/tools/passive_extraction_workflow_latest.py", line 897, in __init__
+    self.amazon_extractor = self._initialize_amazon_extractor()
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/tools/passive_extraction_workflow_latest.py", line 919, in _initialize_amazon_extractor
+    return AmazonExtractor(
+           ^^^^^^^^^^^^^^^^
+TypeError: AmazonExtractor.__init__() got an unexpected keyword argument 'config'
+2025-07-13 14:01:50,859 - utils.browser_manager - INFO - 🧹 Starting browser cleanup...
+2025-07-13 14:01:50,860 - utils.browser_manager - INFO - 🗑️ Closed pages, but leaving context open.
+2025-07-13 14:01:51,014 - utils.browser_manager - INFO - 🎭 Stopped Playwright instance.
+2025-07-13 14:01:51,015 - utils.browser_manager - INFO - ✅ Browser cleanup completed
+2025-07-13 14:01:51,015 - utils.browser_manager - WARNING - Error during global cleanup: no running event loop

@@ -1,0 +1,201 @@
+2025-07-15 08:35:58,085 - utils.logger - INFO - 🔧 Logging initialised – log file: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/logs/debug/run_custom_poundwholesale_20250715_083558.log
+2025-07-15 08:35:58,085 - __main__ - INFO - 📋 Debug log file: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/logs/debug/run_custom_poundwholesale_20250715_083558.log
+2025-07-15 08:35:58,086 - __main__ - DEBUG - Debug logging initialized - full system execution details will be captured
+2025-07-15 08:35:58,089 - utils.browser_manager - INFO - 🔧 BrowserManager singleton initialized
+2025-07-15 08:35:58,297 - utils.browser_manager - INFO - 🔌 Connecting to Chrome on debug port 9222
+2025-07-15 08:35:58,500 - utils.browser_manager - INFO - 📄 Using existing context with 2 pages
+2025-07-15 08:35:58,500 - utils.browser_manager - INFO - ✅ Connected to Chrome successfully
+2025-07-15 08:35:58,501 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-15 08:35:58,501 - __main__ - INFO - 🔐 Initializing authentication service for logout detection...
+2025-07-15 08:35:58,503 - __main__ - INFO - ✅ Using hardcoded credentials for poundwholesale.co.uk
+2025-07-15 08:35:58,503 - __main__ - INFO - 🌐 Connecting to existing Chrome debug port 9222 for authentication...
+2025-07-15 08:36:02,735 - tools.supplier_authentication_service - INFO - ✅ Authentication indicator found: 'logout'
+2025-07-15 08:36:02,767 - tools.supplier_authentication_service - INFO - ✅ Logout link found - user is authenticated
+2025-07-15 08:36:02,767 - tools.supplier_authentication_service - INFO - ✅ Session already authenticated - skipping login
+2025-07-15 08:36:02,776 - amazon_playwright_extractor - INFO - AI features disabled in amazon_playwright_extractor - using only traditional selectors.
+2025-07-15 08:36:02,778 - amazon_playwright_extractor - INFO - Output directory set to: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/CACHE/amazon_data
+2025-07-15 08:36:02,779 - amazon_playwright_extractor - WARNING - ⚠️ BrowserManager not available, using legacy browser connection
+2025-07-15 08:36:02,780 - configurable_supplier_scraper - INFO - ✅ Loaded system configuration from /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/config/system_config.json
+2025-07-15 08:36:02,781 - configurable_supplier_scraper - INFO - 🔧 ConfigurableSupplierScraper will use centralized BrowserManager
+2025-07-15 08:36:02,781 - configurable_supplier_scraper - DEBUG - AI model from config: gpt-4.1-mini-2025-04-14
+2025-07-15 08:36:02,781 - configurable_supplier_scraper - DEBUG - Extraction targets from config: {'product_data': ['price', 'title', 'ean', 'barcode', 'image', 'description', 'out_of_stock'], 'navigation': ['next_page', 'category_links', 'breadcrumbs'], 'pagination': ['next_page', 'previous_page', 'page_numbers'], 'filtering': ['price_filter', 'category_filter', 'search_box', 'products_per_page', 'product limiter'], 'interaction': ['add_to_cart', 'buy_now', 'product_link']}
+2025-07-15 08:36:02,781 - configurable_supplier_scraper - DEBUG - Discovery assistance from config: {'enabled': False, 'prompt_injection': {'login_discovery_hints': '', 'product_navigation_discovery_hints': "OUT OF STOCK products show a red/orange badge or overlay with text like 'Out of Stock', 'Sold Out', or 'Unavailable'"}, '_comment': 'Two API calls are made: 1) login_discovery_hints for login elements, 2) product_navigation_discovery_hints for product/navigation selectors. You can paste full console elements, XPath, or any hints here.'}
+2025-07-15 08:36:02,781 - configurable_supplier_scraper - INFO - [CONFIG] Initialized with AI model: gpt-4.1-mini-2025-04-14
+2025-07-15 08:36:02,781 - configurable_supplier_scraper - INFO - [TARGET] Extraction targets loaded: ['product_data', 'navigation', 'pagination', 'filtering', 'interaction']
+2025-07-15 08:36:02,781 - configurable_supplier_scraper - INFO - [ASSIST] Discovery assistance enabled: False
+2025-07-15 08:36:02,782 - PassiveExtractionWorkflow - INFO - ✅ Output directory set to: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS
+2025-07-15 08:36:02,782 - PassiveExtractionWorkflow - INFO - ✅ Initialization validation passed - all critical attributes verified
+2025-07-15 08:36:02,782 - PassiveExtractionWorkflow - INFO - --- Starting Passive Extraction Workflow for: poundwholesale.co.uk ---
+2025-07-15 08:36:02,782 - PassiveExtractionWorkflow - INFO - Session ID: poundwholesale.co.uk_20250715_083602
+2025-07-15 08:36:02,782 - PassiveExtractionWorkflow - INFO - 📊 CONFIGURATION VALUES:
+2025-07-15 08:36:02,782 - PassiveExtractionWorkflow - INFO -    max_products_to_process: 10
+2025-07-15 08:36:02,783 - PassiveExtractionWorkflow - INFO -    max_products_per_category: 5
+2025-07-15 08:36:02,783 - PassiveExtractionWorkflow - INFO -    max_analyzed_products: 5
+2025-07-15 08:36:02,783 - PassiveExtractionWorkflow - INFO -    max_products_per_cycle: 5
+2025-07-15 08:36:02,783 - PassiveExtractionWorkflow - INFO -    supplier_extraction_batch_size: 3
+2025-07-15 08:36:02,783 - PassiveExtractionWorkflow - INFO -    max_categories_per_request: 3
+2025-07-15 08:36:02,787 - utils.enhanced_state_manager - INFO - Loaded state for poundwholesale.co.uk - resuming from index 13
+2025-07-15 08:36:02,787 - PassiveExtractionWorkflow - INFO - 📋 Loaded existing processing state for poundwholesale.co.uk
+2025-07-15 08:36:02,787 - PassiveExtractionWorkflow - INFO - 🔄 Resuming from index 13
+2025-07-15 08:36:02,793 - PassiveExtractionWorkflow - INFO - ✅ Loaded linking map from /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/FBA_ANALYSIS/linking_maps/poundwholesale.co.uk/linking_map.json with 11 entries
+2025-07-15 08:36:02,797 - PassiveExtractionWorkflow - INFO - ✅ Loaded linking map from /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/FBA_ANALYSIS/linking_maps/poundwholesale.co.uk/linking_map.json with 11 entries
+2025-07-15 08:36:02,797 - PassiveExtractionWorkflow - INFO - CUSTOM MODE: Using predefined category list.
+2025-07-15 08:36:02,797 - tools.passive_extraction_workflow_latest - INFO - Attempting to load predefined categories for poundwholesale.co.uk
+2025-07-15 08:36:02,799 - tools.passive_extraction_workflow_latest - INFO - ✅ Successfully loaded 276 predefined category URLs from /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/config/poundwholesale_categories.json
+2025-07-15 08:36:02,801 - PassiveExtractionWorkflow - INFO - 🔄 SKIPPING SUPPLIER SCRAPING: Found fresh cached products (age: 0.2h) with processing progress (index: 13)
+2025-07-15 08:36:02,802 - PassiveExtractionWorkflow - INFO - 📋 Loading products from cache: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products/poundwholesale-co-uk_products_cache.json
+2025-07-15 08:36:02,804 - PassiveExtractionWorkflow - INFO - ✅ Loaded 13 cached products from /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products/poundwholesale-co-uk_products_cache.json
+2025-07-15 08:36:02,804 - PassiveExtractionWorkflow - INFO - Successfully got 13 products from poundwholesale.co.uk
+2025-07-15 08:36:02,804 - PassiveExtractionWorkflow - INFO - 💾 CACHE SAVE: Starting save of 13 products to cache...
+2025-07-15 08:36:02,811 - PassiveExtractionWorkflow - INFO - ✅ CACHE SAVE: Successfully saved 13 products (0 new) to poundwholesale-co-uk_products_cache.json
+2025-07-15 08:36:02,811 - PassiveExtractionWorkflow - INFO - Found 13 valid supplier products, 13 within price range [£0.1-£20.0]
+2025-07-15 08:36:02,811 - PassiveExtractionWorkflow - INFO - 📋 All cached products have been processed in previous runs (index 13 >= total 13). Continuing with fresh data...
+2025-07-15 08:36:02,811 - PassiveExtractionWorkflow - INFO - 🔄 LIMITED MODE: Processing 10 products (from index 0 to 9)
+2025-07-15 08:36:02,818 - PassiveExtractionWorkflow - INFO - 🚀 BATCH PROCESSING: 10 products in 2 batches of 5
+2025-07-15 08:36:02,818 - PassiveExtractionWorkflow - INFO - 🔄 Processing batch 1/2 (5 products)
+2025-07-15 08:36:02,818 - PassiveExtractionWorkflow - INFO - --- Processing supplier product 1/13: 'Rapide Lime Scented Tough Stuff Hand Cleaner 450ml' ---
+2025-07-15 08:36:02,819 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Updating processing index to 1/13
+2025-07-15 08:36:02,829 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: State after update - last_processed_index: 1/13
+2025-07-15 08:36:02,829 - PassiveExtractionWorkflow - INFO - Product already processed: https://www.poundwholesale.co.uk/rapide-lime-scented-tough-stuff-hand-cleaner-450ml. Skipping.
+2025-07-15 08:36:02,829 - PassiveExtractionWorkflow - INFO - --- Processing supplier product 2/13: 'Home & Garden Multi-Purpose White Vinegar Cleaning Spray 500ml' ---
+2025-07-15 08:36:02,829 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Updating processing index to 2/13
+2025-07-15 08:36:02,837 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: State after update - last_processed_index: 2/13
+2025-07-15 08:36:02,838 - PassiveExtractionWorkflow - INFO - Product already processed: https://www.poundwholesale.co.uk/home-garden-multi-purpose-white-vinegar-cleaning-spray-500ml. Skipping.
+2025-07-15 08:36:02,838 - PassiveExtractionWorkflow - INFO - --- Processing supplier product 3/13: 'Duzzit Clean & Fresh Biodegradable Anti-Bacterial Wipes 50 Pack Pallet Deal' ---
+2025-07-15 08:36:02,838 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Updating processing index to 3/13
+2025-07-15 08:36:02,848 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: State after update - last_processed_index: 3/13
+2025-07-15 08:36:02,848 - PassiveExtractionWorkflow - INFO - Product already processed: https://www.poundwholesale.co.uk/duzzit-clean-and-fresh-biodegradable-anti-bacterial-wipes-50-pack-pallet-deal. Skipping.
+2025-07-15 08:36:02,848 - PassiveExtractionWorkflow - INFO - --- Processing supplier product 4/13: 'Rapide Sealant Remover Spray 250ml' ---
+2025-07-15 08:36:02,849 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Updating processing index to 4/13
+2025-07-15 08:36:02,857 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: State after update - last_processed_index: 4/13
+2025-07-15 08:36:02,858 - PassiveExtractionWorkflow - INFO - Product already processed: https://www.poundwholesale.co.uk/rapide-sealant-remover-spray-250ml. Skipping.
+2025-07-15 08:36:02,858 - PassiveExtractionWorkflow - INFO - --- Processing supplier product 5/13: 'Duzzit Sweet Things Biodegradable Anti-Bacterial Wipes 50 Pack Pallet Deal' ---
+2025-07-15 08:36:02,858 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Updating processing index to 5/13
+2025-07-15 08:36:02,868 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: State after update - last_processed_index: 5/13
+2025-07-15 08:36:02,868 - PassiveExtractionWorkflow - INFO - Product already processed: https://www.poundwholesale.co.uk/duzzit-sweet-things-biodegradable-anti-bacterial-wipes-50-pack-pallet-deal. Skipping.
+2025-07-15 08:36:02,869 - PassiveExtractionWorkflow - INFO - 🔄 Processing batch 2/2 (5 products)
+2025-07-15 08:36:02,869 - PassiveExtractionWorkflow - INFO - --- Processing supplier product 6/13: 'Elbow Grease Essentials Bundle (78 Products)' ---
+2025-07-15 08:36:02,869 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Updating processing index to 6/13
+2025-07-15 08:36:02,878 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: State after update - last_processed_index: 6/13
+2025-07-15 08:36:02,878 - PassiveExtractionWorkflow - INFO - Product already processed: https://www.poundwholesale.co.uk/elbow-grease-planogram. Skipping.
+2025-07-15 08:36:02,878 - PassiveExtractionWorkflow - INFO - --- Processing supplier product 7/13: 'Elbow Grease Easy Tear Reusable Pink Microfibre Cloths 10 Pack' ---
+2025-07-15 08:36:02,878 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Updating processing index to 7/13
+2025-07-15 08:36:02,888 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: State after update - last_processed_index: 7/13
+2025-07-15 08:36:02,889 - PassiveExtractionWorkflow - INFO - Attempting Amazon search using EAN: 5053249279350
+2025-07-15 08:36:02,889 - tools.passive_extraction_workflow_latest - INFO - Connecting to Chrome browser on debug port 9222 (FixedAmazonExtractor)
+2025-07-15 08:36:03,275 - tools.passive_extraction_workflow_latest - INFO - Successfully connected to Chrome on port 9222 (FixedAmazonExtractor)
+2025-07-15 08:36:03,275 - tools.passive_extraction_workflow_latest - INFO - Found 2 existing pages (FixedAmazonExtractor)
+2025-07-15 08:36:03,275 - tools.passive_extraction_workflow_latest - INFO - Using existing page: https://www.poundwholesale.co.uk/ (FixedAmazonExtractor)
+2025-07-15 08:36:03,283 - tools.passive_extraction_workflow_latest - INFO - Searching Amazon by EAN: 5053249279350 for supplier product: 'Elbow Grease Easy Tear Reusable Pink Microfibre Cloths 10 Pack' (FixedAmazonExtractor)
+2025-07-15 08:36:03,284 - tools.passive_extraction_workflow_latest - INFO - No page provided to search_by_ean, getting one from BrowserManager.
+2025-07-15 08:36:03,284 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-15 08:36:03,284 - utils.browser_manager - INFO - 📄 Navigating to https://www.amazon.co.uk
+2025-07-15 08:36:05,003 - utils.browser_manager - INFO - ✅ Page ready for https://www.amazon.co.uk
+2025-07-15 08:36:05,004 - tools.passive_extraction_workflow_latest - INFO - Navigating to Amazon UK to search for EAN: 5053249279350
+2025-07-15 08:36:06,917 - tools.passive_extraction_workflow_latest - INFO - Waiting for search results page to load for EAN 5053249279350...
+2025-07-15 08:36:07,267 - tools.passive_extraction_workflow_latest - INFO - Found search results container with selector: div.s-search-results
+2025-07-15 08:36:09,285 - tools.passive_extraction_workflow_latest - INFO - Found 1 search result elements using selector: div[data-asin]:not([data-asin='']):not(.AdHolder):not([class*='s-widget-sponsored-product'])
+2025-07-15 08:36:09,285 - tools.passive_extraction_workflow_latest - INFO - Processing 1 search result elements for EAN 5053249279350
+2025-07-15 08:36:09,292 - tools.passive_extraction_workflow_latest - DEBUG - Processing element 1: ASIN B0FDX52B3W
+2025-07-15 08:36:09,298 - tools.passive_extraction_workflow_latest - DEBUG - ASIN B0FDX52B3W HTML structure sample: <div role="listitem" data-asin="B0FDX52B3W" data-index="7" data-uuid="96038b39-540d-402a-8c6a-b99f06643ec3" id="96038b39-540d-402a-8c6a-b99f06643ec3" data-component-type="s-search-result" class="sg-col-4-of-4 sg-col-4-of-24 sg-col-4-of-12 s-result-item s-asin sg-col-4-of-16 sg-col s-widget-spacing-small sg-col-4-of-8 sg-col-4-of-20" data-component-id="21" data-cel-widget="search_result_6"><div class="sg-col-inner"><div cel_widget_id="MAIN-SEARCH_RESULTS-7" class="s-widget-container s-spacing-small s-widget-container-height-small celwidget slot=MAIN template=SEARCH_RESULTS widgetId=search-resul...
+2025-07-15 08:36:09,298 - tools.passive_extraction_workflow_latest - DEBUG - Error checking sponsored badge for ASIN B0FDX52B3W: 'ElementHandle' object has no attribute 'locator'
+2025-07-15 08:36:09,298 - tools.passive_extraction_workflow_latest - DEBUG - Error checking aria-label for ASIN B0FDX52B3W: 'ElementHandle' object has no attribute 'locator'
+2025-07-15 08:36:09,316 - tools.passive_extraction_workflow_latest - DEBUG - Error checking text for ad indicators for ASIN B0FDX52B3W: 'ElementHandle' object has no attribute 'locator'
+2025-07-15 08:36:09,404 - tools.passive_extraction_workflow_latest - DEBUG - ASIN B0FDX52B3W title extracted using selector 'h2': Elbow Grease Easy Tear Microfibre Cleaning Cloths ...
+2025-07-15 08:36:09,404 - tools.passive_extraction_workflow_latest - INFO - Found organic result: ASIN B0FDX52B3W - Elbow Grease Easy Tear Microfibre Cleaning Cloths | Reusable...
+2025-07-15 08:36:09,404 - tools.passive_extraction_workflow_latest - INFO - Single organic result found for EAN 5053249279350: ASIN B0FDX52B3W
+2025-07-15 08:36:09,404 - tools.passive_extraction_workflow_latest - INFO - EAN search selected ASIN B0FDX52B3W for 5053249279350
+2025-07-15 08:36:09,404 - tools.passive_extraction_workflow_latest - INFO - Single ASIN B0FDX52B3W found for EAN 5053249279350.
+2025-07-15 08:36:09,405 - tools.passive_extraction_workflow_latest - INFO - Proceeding with ASIN: B0FDX52B3W for EAN: 5053249279350
+2025-07-15 08:36:09,405 - amazon_playwright_extractor - WARNING - No page object provided to extract_data for ASIN B0FDX52B3W. Getting a new one from BrowserManager.
+2025-07-15 08:36:09,405 - amazon_playwright_extractor - INFO - Reusing existing page: https://www.amazon.co.uk/s?k=5053249279350&ref=nb_sb_noss
+2025-07-15 08:36:12,033 - amazon_playwright_extractor - INFO - Checking for cookie consent pop-up...
+2025-07-15 08:36:12,343 - amazon_playwright_extractor - INFO - Finished checking for cookie consent pop-ups. If one was present and not handled, it might interfere.
+2025-07-15 08:36:13,344 - amazon_playwright_extractor - INFO - Checking for CAPTCHA...
+2025-07-15 08:36:16,353 - amazon_playwright_extractor - INFO - No CAPTCHA page detected by form selector.
+2025-07-15 08:36:16,353 - amazon_playwright_extractor - INFO - Checking for cookie consent pop-up...
+2025-07-15 08:36:16,429 - amazon_playwright_extractor - INFO - Finished checking for cookie consent pop-ups. If one was present and not handled, it might interfere.
+2025-07-15 08:36:16,429 - amazon_playwright_extractor - INFO - Page should be ready. Waiting 5s for stabilization...
+2025-07-15 08:36:21,434 - amazon_playwright_extractor - INFO - Waiting an additional 7s for extensions (Keepa, SellerAmp)...
+2025-07-15 08:36:28,435 - amazon_playwright_extractor - INFO - Extracting all product data for ASIN: B0FDX52B3W
+2025-07-15 08:36:28,435 - amazon_playwright_extractor - INFO - Extracting basic product information (Title, Price, Images, Amazon Details)...
+2025-07-15 08:36:28,464 - amazon_playwright_extractor - INFO - Title found: 'Elbow Grease Easy Tear Microfibre Cleaning Cloths | Reusable & Machine Washable | Dusts, Cleans, Soaks Up Liquid - Tear & Wipe 30cm x 24cm (Pink, 10 Pack)' via #productTitle
+2025-07-15 08:36:28,464 - amazon_playwright_extractor - INFO - Extracting price details...
+2025-07-15 08:36:28,489 - amazon_playwright_extractor - INFO - Current price: 6.99 via #corePrice_feature_div .a-offscreen
+2025-07-15 08:36:28,550 - amazon_playwright_extractor - INFO - Original price: 32.99 via span.a-price.a-text-price[data-a-strike='true'] span.a-offscreen
+2025-07-15 08:36:28,612 - amazon_playwright_extractor - INFO - Extracting image URLs...
+2025-07-15 08:36:28,666 - amazon_playwright_extractor - INFO - Main image: https://m.media-amazon.com/images/I/51QKafbI+wL._AC_SL1000_.jpg via #landingImage
+2025-07-15 08:36:28,706 - amazon_playwright_extractor - INFO - Found 1 thumbnails.
+2025-07-15 08:36:28,717 - amazon_playwright_extractor - INFO - Extracting Amazon product details section...
+2025-07-15 08:36:28,924 - amazon_playwright_extractor - INFO - Extracting sales rank information...
+2025-07-15 08:36:29,075 - amazon_playwright_extractor - INFO - Extracting ratings and reviews...
+2025-07-15 08:36:29,120 - amazon_playwright_extractor - INFO - Rating: 5.0 via i[class*='a-icon-star'] span.a-icon-alt
+2025-07-15 08:36:29,168 - amazon_playwright_extractor - INFO - Extracting stock information...
+2025-07-15 08:36:29,220 - amazon_playwright_extractor - INFO - Availability text: 'Stock30+' via #availability
+2025-07-15 08:36:29,220 - amazon_playwright_extractor - INFO - Extracting features/bullets...
+2025-07-15 08:36:29,732 - amazon_playwright_extractor - INFO - Found 10 features.
+2025-07-15 08:36:29,732 - amazon_playwright_extractor - INFO - Extracting product description...
+2025-07-15 08:36:29,755 - amazon_playwright_extractor - INFO - Description found using selector: #productDescription
+2025-07-15 08:36:29,755 - amazon_playwright_extractor - INFO - Extracting product specifications table...
+2025-07-15 08:36:30,000 - amazon_playwright_extractor - INFO - Specifications table parsed using selector: #productDetails_techSpec_section_1
+2025-07-15 08:36:30,000 - amazon_playwright_extractor - INFO - Extracting SellerAmp data (if present)...
+2025-07-15 08:36:30,001 - amazon_playwright_extractor - INFO - SellerAmp data extraction is currently disabled as per requirements (Fix 2.3).
+2025-07-15 08:36:30,001 - amazon_playwright_extractor - INFO - Extracting Keepa data (if present)...
+2025-07-15 08:36:30,001 - amazon_playwright_extractor - INFO - Attempting to extract Keepa data...
+2025-07-15 08:36:33,010 - amazon_playwright_extractor - DEBUG - Keepa iframe check failed for selector iframe[id*='keepaGraph']: Page.wait_for_selector: Timeout 3000ms exceeded.
+Call log:
+  - waiting for locator("iframe[id*='keepaGraph']")
+
+2025-07-15 08:36:36,021 - amazon_playwright_extractor - DEBUG - Keepa iframe check failed for selector iframe#keepaExtension: Page.wait_for_selector: Timeout 3000ms exceeded.
+Call log:
+  - waiting for locator("iframe#keepaExtension")
+
+2025-07-15 08:36:36,071 - amazon_playwright_extractor - INFO - Keepa iframe found: iframe[id*='keepa']
+2025-07-15 08:36:36,099 - amazon_playwright_extractor - INFO - Keepa Graph AI Analysis is currently disabled as per requirements (Fix 2.4).
+2025-07-15 08:36:36,124 - amazon_playwright_extractor - INFO - Keepa Data tab found. Currently active: False
+2025-07-15 08:36:36,124 - amazon_playwright_extractor - INFO - Clicking Keepa 'Data' tab...
+2025-07-15 08:36:38,190 - amazon_playwright_extractor - INFO - Attempt 1/2: Waiting 12000ms for Product-Details wrapper...
+2025-07-15 08:36:38,208 - amazon_playwright_extractor - INFO - ✅ Product-Details wrapper appeared on attempt 1
+2025-07-15 08:36:38,250 - amazon_playwright_extractor - INFO - Parsing Keepa AG Grid for Product Details from: div#MoreTab1 div#grid-product-detail
+2025-07-15 08:36:38,287 - amazon_playwright_extractor - INFO - Primary attempt: Waiting 12 seconds for AG Grid rows to load...
+2025-07-15 08:36:39,321 - amazon_playwright_extractor - INFO - ✅ Primary attempt successful: 133 rows found
+2025-07-15 08:36:39,334 - amazon_playwright_extractor - INFO - Processing 133 rows in Keepa Product Details AG Grid.
+2025-07-15 08:36:40,473 - amazon_playwright_extractor - INFO - Found potential fee key 'FBA Pick&Pack Fee' with raw value: '£ 2.70' in Keepa AG Grid.
+2025-07-15 08:36:40,589 - amazon_playwright_extractor - INFO - Found potential fee key 'Referral Fee based on current Buy Box price' with raw value: '£ 1.05' in Keepa AG Grid.
+2025-07-15 08:36:43,465 - amazon_playwright_extractor - INFO - ✅ Successfully parsed 40 items from Keepa Product Details AG Grid.
+2025-07-15 08:36:43,466 - amazon_playwright_extractor - INFO - ASIN B0FDX52B3W: Attempting to extract EANs from Keepa product_details_tab_data.
+2025-07-15 08:36:43,466 - amazon_playwright_extractor - INFO - ASIN B0FDX52B3W: EAN '5053249279350' found in Keepa details via key 'Product Codes - EAN'.
+2025-07-15 08:36:43,466 - amazon_playwright_extractor - INFO - ASIN B0FDX52B3W: BSR not found or invalid from page. Attempting fallback from Keepa.
+2025-07-15 08:36:43,466 - amazon_playwright_extractor - WARNING - ASIN B0FDX52B3W: Could not find BSR in any Keepa data source.
+2025-07-15 08:36:43,467 - tools.passive_extraction_workflow_latest - INFO - Successfully extracted data for ASIN B0FDX52B3W (EAN on page: 5053249279350)
+2025-07-15 08:36:43,473 - PassiveExtractionWorkflow - INFO - 📋 Using cached Amazon data for EAN-found ASIN B0FDX52B3W
+2025-07-15 08:36:43,476 - PassiveExtractionWorkflow - INFO - Saved Amazon data to /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/FBA_ANALYSIS/amazon_cache/amazon_B0FDX52B3W_5053249279350.json
+2025-07-15 08:36:43,476 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: supplier_ean='5053249279350', asin='B0FDX52B3W', product_ean='5053249279350'
+2025-07-15 08:36:43,476 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Checking linking conditions - supplier_ean valid: True, asin valid: True
+2025-07-15 08:36:43,476 - PassiveExtractionWorkflow - INFO - ✅ Added linking map entry: EAN_CACHED search 5053249279350 → ASIN B0FDX52B3W
+2025-07-15 08:36:43,476 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Current linking_map size: 12 entries
+2025-07-15 08:36:43,477 - PassiveExtractionWorkflow - INFO - Product not profitable: 'Elbow Grease Easy Tear Reusable Pink Microfibre Cloths 10 Pack' (ROI: 34.63%, Profit: £0.59)
+2025-07-15 08:36:43,484 - PassiveExtractionWorkflow - INFO - --- Processing supplier product 8/13: 'Duzzit Essentials Bundle (63 Products)' ---
+2025-07-15 08:36:43,484 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Updating processing index to 8/13
+2025-07-15 08:36:43,491 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: State after update - last_processed_index: 8/13
+2025-07-15 08:36:43,492 - PassiveExtractionWorkflow - INFO - Product already processed: https://www.poundwholesale.co.uk/duzzit-planogram-bundle. Skipping.
+2025-07-15 08:36:43,492 - PassiveExtractionWorkflow - INFO - --- Processing supplier product 9/13: 'Globe Mill Textiles Strong Absorbent Dishcloths 8 Pack 25cm X 30cm' ---
+2025-07-15 08:36:43,492 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Updating processing index to 9/13
+2025-07-15 08:36:43,499 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: State after update - last_processed_index: 9/13
+2025-07-15 08:36:43,499 - PassiveExtractionWorkflow - INFO - Product already processed: https://www.poundwholesale.co.uk/globe-mill-textiles-strong-absorbent-dishcloths-8-pack-25cm-x-30cm. Skipping.
+2025-07-15 08:36:43,500 - PassiveExtractionWorkflow - INFO - --- Processing supplier product 10/13: 'TidyZ Extra Large All Purpose Cloths 20 Pack' ---
+2025-07-15 08:36:43,500 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Updating processing index to 10/13
+2025-07-15 08:36:43,507 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: State after update - last_processed_index: 10/13
+2025-07-15 08:36:43,507 - PassiveExtractionWorkflow - INFO - Product already processed: https://www.poundwholesale.co.uk/tidyz-extra-large-all-purpose-cloths-20-pack. Skipping.
+2025-07-15 08:36:43,514 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: _save_linking_map called with 12 entries for supplier poundwholesale.co.uk
+2025-07-15 08:36:43,530 - PassiveExtractionWorkflow - INFO - ✅ Successfully saved linking map with 12 entries to /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/FBA_ANALYSIS/linking_maps/poundwholesale.co.uk/linking_map.json
+2025-07-15 08:36:43,530 - PassiveExtractionWorkflow - INFO - No profitable products found in this run.
+2025-07-15 08:36:43,539 - PassiveExtractionWorkflow - INFO - 🧮 Generating comprehensive financial report...
+2025-07-15 08:36:43,551 - tools.FBA_Financial_calculator - INFO - FBA_Financial_calculator: amazon_dir confirmed to exist and is a directory: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/FBA_ANALYSIS/amazon_cache
+2025-07-15 08:36:43,716 - PassiveExtractionWorkflow - WARNING - ⚠️ Financial report generated but no file path returned
+2025-07-15 08:36:43,716 - PassiveExtractionWorkflow - INFO - 📊 Processing state file saved: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/CACHE/processing_states/poundwholesale_co_uk_processing_state.json
+2025-07-15 08:36:43,717 - PassiveExtractionWorkflow - INFO - 📊 Final state summary: {'supplier': 'poundwholesale.co.uk', 'status': 'completed', 'progress': '10/13', 'successful': 0, 'profitable': 0, 'total_profit': 0.0, 'categories_processed': 0, 'errors': 0}
+2025-07-15 08:36:43,717 - PassiveExtractionWorkflow - INFO - --- Passive Extraction Workflow Finished ---
+2025-07-15 08:36:43,717 - PassiveExtractionWorkflow - INFO - Summary: {'total_supplier_products': 13, 'profitable_products': 0, 'products_analyzed_ean': 1, 'products_analyzed_title': 0, 'errors': 0}
+2025-07-15 08:36:43,717 - __main__ - INFO - 🌐 Keeping browser persistent for next run - not closing browser
+2025-07-15 08:36:43,718 - utils.browser_manager - WARNING - Error during global cleanup: no running event loop

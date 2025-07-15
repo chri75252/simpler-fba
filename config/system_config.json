@@ -86,10 +86,10 @@
       "description": "Archive system with supplier-specific targeting. Modes: 'full' (all files) or 'specific_supplier' (target_supplier only)"
     },
     "force_ai_scraping": true,
-    "max_products": 12,
-    "max_analyzed_products": 8,
+    "max_products": 10,
+    "max_analyzed_products": 5,
     "max_products_per_category": 5,
-    "max_products_per_cycle": 3,
+    "max_products_per_cycle": 5,
     "linking_map_batch_size": 3,
     "financial_report_batch_size": 1,
     "headless_probe_seconds": 0,
@@ -100,7 +100,7 @@
     "output_root": "OUTPUTS",
     "enable_supplier_parser": false,
     "force_ai_category_suggestion": false,
-    "supplier_extraction_batch_size": 2
+    "supplier_extraction_batch_size": 3
   },
   "chrome": {
     "debug_port": 9222,
@@ -530,7 +530,7 @@
   },
   "supplier_cache_control": {
     "enabled": true,
-    "update_frequency_products": 1,
+    "update_frequency_products": 3,
     "force_update_on_interruption": true,
     "cache_modes": {
       "conservative": {
@@ -557,11 +557,11 @@
     "processing_modes": {
       "sequential": {
         "description": "Complete all supplier extraction, then Amazon analysis",
-        "enabled": true
+        "enabled": false
       },
       "chunked": {
         "description": "Alternate between supplier extraction and Amazon analysis",
-        "enabled": false,
+        "enabled": true,
         "chunk_size_categories": 1
       },
       "balanced": {
@@ -580,9 +580,9 @@
     }
   },
   "batch_synchronization": {
-    "enabled": true,
-    "synchronize_all_batch_sizes": true,
-    "target_batch_size": 4,
+    "enabled": false,
+    "synchronize_all_batch_sizes": false,
+    "target_batch_size": 2,
     "affected_settings": [
       "system.supplier_extraction_batch_size",
       "system.linking_map_batch_size",

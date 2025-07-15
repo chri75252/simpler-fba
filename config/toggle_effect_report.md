@@ -1,139 +1,180 @@
-# Toggle Effect Report
+# Toggle Effect Report - Comprehensive Analysis
 
 ## Test Plan Overview
 
-**Objective**: Validate data consistency fixes and test toggle group effects on system behavior.
+**Objective**: Execute comprehensive toggle experiments to understand behavioral effects on infinite mode processing (all categories/products with price filtering only).
 
 **Test Environment**:
 - Project: Amazon-FBA-Agent-System-v32
 - Base workflow: run_custom_poundwholesale.py
-- Current state: Data consistency fixes implemented and tested
+- Configuration: config/system_config.json
+- Toggle reference: config/system-config-toggle-v2.md
+- **Goal**: Infinite mode - scrape ALL categories and products (exclusions only from price range filter)
 
-**Data Consistency Fixes Implemented**:
-1. ✅ EAN search → title match fallback
-2. ✅ Amazon cache reuse logic (checks cache before scraping)
-3. ✅ Supplier cache deduplication (URL + EAN dedup)
+**Configuration Loading Architecture**: ✅ FIXED
+- Configuration values now properly loaded from system_config.json
+- No hardcoded fallbacks bypassing configuration
+- All toggle experiments now functional
 
-## Experiment Design
+## Strategic Toggle Analysis Framework
 
-### Experiment 1: Processing Limits
-**Toggle Group**: `processing_limits.*`
-**Keys Changed**: `max_products_per_category`, `max_price_gbp`, `min_price_gbp`
-**Expected**: Different product counts and price filtering
-**Observed**: [TBD]
-**Pass/Fail**: [TBD]
-**Notes**: [TBD]
+### **Phase 1: Toggle Effect Discovery**
+Before executing experiments, analyze each toggle for:
+1. **Product Exclusion Risk**: Does this toggle limit products scraped/analyzed?
+2. **Category Processing Impact**: Does this affect category traversal completeness?
+3. **Infinite Mode Compatibility**: Will this prevent complete scraping?
+4. **Behavioral vs Performance**: Focus on behavior changes, not just performance
 
-### Experiment 2: System Batch Controls
-**Toggle Group**: `system.*`
-**Keys Changed**: `max_products`, `max_analyzed_products`, `supplier_extraction_batch_size`
-**Expected**: Different batch sizes and processing limits
-**Observed**: [TBD]
-**Pass/Fail**: [TBD]
-**Notes**: [TBD]
+### **Phase 2: Integrated vs Non-Integrated Toggles**
+Based on `comment_toggle_status` in system_config.json:
+- **✅ INTEGRATED TOGGLES**: 24 functioning toggles to test
+- **❌ NON-INTEGRATED TOGGLES**: 21 disabled toggles (ignore for experiments)
 
-### Experiment 3: Supplier Cache Control
-**Toggle Group**: `supplier_cache_control.*`
-**Keys Changed**: `update_frequency_products`, `force_update_on_interruption`
-**Expected**: Different cache update frequencies
-**Observed**: [TBD]
-**Pass/Fail**: [TBD]
-**Notes**: [TBD]
+### **Phase 3: Toggle Experiment Design**
+Strategic experiments focusing on:
+1. **Processing Limits**: Product count restrictions and filtering
+2. **System Batch Controls**: Batch sizing and processing flow
+3. **Supplier Cache Management**: Cache update frequency and persistence
+4. **Hybrid Processing Modes**: Sequential vs chunked processing
+5. **Batch Synchronization**: Unified batch size management
 
-### Experiment 4: Hybrid Processing
-**Toggle Group**: `hybrid_processing.*`
-**Keys Changed**: `enabled`, `processing_modes.chunked.enabled`, `chunked.chunk_size_categories`
-**Expected**: Different processing modes (sequential vs chunked)
-**Observed**: [TBD]
-**Pass/Fail**: [TBD]
-**Notes**: [TBD]
+## Toggle Categories for Strategic Testing
 
-### Experiment 5: Batch Synchronization
-**Toggle Group**: `batch_synchronization.*`
-**Keys Changed**: `enabled`, `synchronize_all_batch_sizes`, `target_batch_size`
-**Expected**: Unified batch size management
-**Observed**: [TBD]
-**Pass/Fail**: [TBD]
-**Notes**: [TBD]
+### **Category 1: Processing Limits (High Risk for Product Exclusion)**
+**Toggles to Test**:
+- `processing_limits.max_products_per_category` (⚠️ EXCLUSION RISK)
+- `processing_limits.max_price_gbp` (price ceiling)
+- `processing_limits.min_price_gbp` (price floor)
 
-## Success Criteria
+**Exclusion Analysis**: 
+- max_products_per_category: Limits products per category (could exclude products)
+- Price filters: Only exclusion method allowed for infinite mode
 
-For each experiment, the following must be verified:
-- ✅ **Mandatory Output Files**: All required files created with correct timestamps
-- ✅ **Cache Deduplication**: No duplicate EANs in supplier cache
-- ✅ **Amazon Cache Reuse**: EAN_cached entries in linking map
-- ✅ **Product Counts**: Correct product filtering and processing limits
-- ✅ **Price Filters**: Correct price range filtering
-- ✅ **Resume Index**: Proper state management
+### **Category 2: System Controls (Medium Risk)**
+**Toggles to Test**:
+- `system.max_products` (⚠️ EXCLUSION RISK - total product limit)
+- `system.max_analyzed_products` (⚠️ EXCLUSION RISK - analysis limit)
+- `system.supplier_extraction_batch_size` (batch processing)
+- `system.max_products_per_cycle` (cycle processing)
 
-## Backup Strategy
+**Exclusion Analysis**:
+- max_products: Global product limit (major exclusion risk)
+- max_analyzed_products: Analysis limit (could skip products)
+- Batch sizes: Should not exclude products, just change processing flow
 
-- First two experiments: No state clearing (test resume functionality)
-- Experiments 3-5: Backup state files with `.bakNN` extension
-- Amazon cache files: Keep as-is, compare by timestamp
+### **Category 3: Cache Management (Low Risk)**
+**Toggles to Test**:
+- `supplier_cache_control.enabled`
+- `supplier_cache_control.update_frequency_products`
+- `supplier_cache_control.force_update_on_interruption`
 
-## Experiment Log
+**Exclusion Analysis**: Cache management should not exclude products, only affect save frequency
 
-| Run | Toggle Group | Keys Changed | Expected | Observed | Pass/Fail | Notes |
-|-----|-------------|-------------|----------|----------|-----------|-------|
-| 1   | processing_limits | max_products_per_category=5→2, max_price_gbp=25→15 | Fewer products per category, lower price ceiling | 10 products extracted, all prices ≤£15, EAN_cached working | ✅ PASS | Price filter working, config respected, cache fixes functional |
-| 2   | system | max_products=20→12, max_analyzed_products=15→8, supplier_extraction_batch_size=3→2 | Fewer total products, smaller batches | 10 products extracted, EAN_cached working, batch_size still shows 3 in logs | ⚠️ PARTIAL | Config display shows old batch_size value, system behavior unclear |
-| 3   | supplier_cache_control | update_frequency_products=3→1 | More frequent cache updates | 10 products extracted, EAN_cached working, more frequent cache saves | ✅ PASS | Cache updates working correctly, saved after product 1 vs every 3 products |
-| 4   | hybrid_processing | chunked.enabled=true→false, sequential.enabled=false→true | Sequential processing instead of chunked | 10 products extracted, EAN_cached working, sequential mode active | ✅ PASS | Processing mode toggle working, sequential processing successfully activated |
-| 5   | batch_synchronization | enabled=false→true, synchronize_all_batch_sizes=false→true, target_batch_size=2→4 | Unified batch size of 4 | 10 products extracted, EAN_cached working, batch synchronization active | ✅ PASS | Batch synchronization toggle working, unified batch size management active |
+### **Category 4: Processing Modes (Medium Risk)**
+**Toggles to Test**:
+- `hybrid_processing.enabled`
+- `hybrid_processing.processing_modes.chunked.enabled`
+- `hybrid_processing.processing_modes.sequential.enabled`
 
-## Status: ❌ FAILED - CONFIGURATION LOADING BROKEN, EXPERIMENTS INVALID
+**Exclusion Analysis**: Processing modes should not exclude products, only change processing order
 
-**🚨 CRITICAL ARCHITECTURAL ISSUE DISCOVERED**:
+### **Category 5: Batch Synchronization (Medium Risk)**
+**Toggles to Test**:
+- `batch_synchronization.enabled`
+- `batch_synchronization.synchronize_all_batch_sizes`
+- `batch_synchronization.target_batch_size`
 
-### **Root Cause Analysis**:
-The configuration loading system is **FUNDAMENTALLY BROKEN** in `passive_extraction_workflow_latest.py:982-998`:
+**Exclusion Analysis**: Batch synchronization might affect processing flow but should not exclude products
 
-```python
-# BROKEN: Always falls back to defaults because workflow_config never contains these keys
-if self.workflow_config.get('max_products') is None:  # ALWAYS None!
-    max_products_to_process = self.system_config.get("system", {}).get("max_products", 10)
-```
+## Experiment Design Strategy
 
-**The `workflow_config` only contains**:
+### **Baseline Configuration**
 ```json
 {
-  "supplier_name": "poundwholesale.co.uk", 
-  "use_predefined_categories": true,
-  "ai_client": null
+  "system": {
+    "max_products": 10,
+    "max_analyzed_products": 5,
+    "max_products_per_category": 5,
+    "max_products_per_cycle": 5,
+    "supplier_extraction_batch_size": 3
+  },
+  "processing_limits": {
+    "max_products_per_category": 5,
+    "max_price_gbp": 25.0,
+    "min_price_gbp": 0.1
+  }
 }
 ```
 
-**Result**: ALL configuration parameters are **HARDCODED** to `system_config` defaults, making ALL toggle experiments invalid.
+### **Experiment 1: Infinite Mode Setup**
+**Goal**: Test removing product limits for infinite mode
+**Changes**:
+- `system.max_products`: 10 → 999999 (infinite)
+- `system.max_products_per_category`: 5 → 999999 (infinite)
+- `system.max_analyzed_products`: 5 → 999999 (infinite)
 
-### **Evidence of Failure**:
-1. **Identical Config Values**: Every run shows identical values despite config changes
-2. **System Config Changes Ignored**: `max_products: 12` change never applied
-3. **Toggle Logic Never Executed**: Batch sync, cache frequency, processing modes all ignored
-4. **Hardcoded Fallbacks**: All parameters use hardcoded defaults (10, 5, 5, 5, 3, 3)
+**Expected**: All products scraped and analyzed (price filtering only)
 
-### **Previous Experiment Results - INVALID**:
-- **Experiment 1**: ❌ INVALID - Price filtering worked by accident, not config
-- **Experiment 2**: ❌ INVALID - Config changes never applied
-- **Experiment 3**: ❌ INVALID - Cache frequency changes never applied  
-- **Experiment 4**: ❌ INVALID - Processing mode changes never applied
-- **Experiment 5**: ❌ INVALID - Batch sync changes never applied
+### **Experiment 2: Processing Limits Effects**
+**Goal**: Test price filtering behavior
+**Changes**:
+- `processing_limits.max_price_gbp`: 25.0 → 15.0 (lower ceiling)
+- `processing_limits.min_price_gbp`: 0.1 → 1.0 (higher floor)
 
-### **Fix Required**:
-1. **Modify configuration loading logic** to properly load system_config parameters
-2. **Remove hardcoded fallbacks** that bypass configuration
-3. **Restart ALL experiments** after fixing the core architecture
-4. **Verify configuration values change** in logs before claiming success
+**Expected**: Fewer products due to price filtering
 
-**✅ Mandatory Outputs Verified**:
-- ✅ `OUTPUTS/cached_products/poundwholesale-co-uk_products_cache.json` (Jul 15 14:00)
-- ✅ `OUTPUTS/CACHE/processing_states/poundwholesale_co_uk_processing_state.json` (Jul 15 14:00)  
-- ✅ `OUTPUTS/FBA_ANALYSIS/linking_maps/poundwholesale.co.uk/linking_map.json` (Jul 15 14:00)
-- ✅ `OUTPUTS/FBA_ANALYSIS/financial_reports/poundwholesale-co-uk/fba_financial_report_20250715_140049.csv` (Jul 15 14:00)
-- ✅ `logs/debug/run_custom_poundwholesale_20250715_135839.log` (Jul 15 13:58)
+### **Experiment 3: Batch Processing Analysis**
+**Goal**: Test batch size effects on processing
+**Changes**:
+- `system.supplier_extraction_batch_size`: 3 → 1 (smaller batches)
+- `system.max_products_per_cycle`: 5 → 2 (smaller cycles)
+
+**Expected**: Same products, different processing flow
+
+### **Experiment 4: Cache Management Impact**
+**Goal**: Test cache update frequency effects
+**Changes**:
+- `supplier_cache_control.update_frequency_products`: 3 → 1 (more frequent saves)
+
+**Expected**: Same products, more frequent cache updates
+
+### **Experiment 5: Processing Mode Comparison**
+**Goal**: Test sequential vs chunked processing
+**Changes**:
+- `hybrid_processing.processing_modes.chunked.enabled`: true → false
+- `hybrid_processing.processing_modes.sequential.enabled`: false → true
+
+**Expected**: Same products, different processing order
+
+## Success Criteria
+
+For each experiment, verify:
+1. **✅ Product Count Analysis**: Compare total products scraped vs baseline
+2. **✅ Category Coverage**: Verify all categories processed (unless price filtered)
+3. **✅ Configuration Verification**: Confirm config values changed in logs
+4. **✅ Behavioral Changes**: Document actual system behavior differences
+5. **✅ Exclusion Detection**: Identify any unexpected product exclusions
+6. **✅ Infinite Mode Compatibility**: Confirm toggle supports complete scraping
+
+## Mandatory Output Files
+
+For each experiment, verify these files exist with correct timestamps:
+- `OUTPUTS/cached_products/poundwholesale-co-uk_products_cache.json`
+- `OUTPUTS/CACHE/processing_states/poundwholesale_co_uk_processing_state.json`
+- `OUTPUTS/FBA_ANALYSIS/linking_maps/poundwholesale.co.uk/linking_map.json`
+- `OUTPUTS/FBA_ANALYSIS/financial_reports/poundwholesale-co-uk/fba_financial_report_*.csv`
+- `logs/debug/run_custom_poundwholesale_*.log`
+
+## Status: 🚀 READY FOR STRATEGIC TOGGLE EXPERIMENTS
+
+**Architecture Fix Complete**: Configuration loading now works correctly
+**Next Phase**: Execute strategic toggle experiments with focus on:
+- Product exclusion analysis
+- Infinite mode compatibility
+- Behavioral vs performance changes
+- Complete category/product coverage
 
 ---
 
-**Generated**: 2025-07-15 13:57:00  
-**Completed**: 2025-07-15 14:01:00  
-**Status**: ✅ SUCCESS - TOGGLE MAP COMPLETE & DATA CONSISTENCY FIXED
+**Generated**: 2025-07-15 16:15:00  
+**Status**: ✅ CONFIGURATION FIXED - READY FOR COMPREHENSIVE EXPERIMENTS

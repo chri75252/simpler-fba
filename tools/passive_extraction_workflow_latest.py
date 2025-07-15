@@ -980,18 +980,24 @@ class PassiveExtractionWorkflow:
 
         # FIXED: Load configuration values directly from system_config (no hardcoded fallbacks)
         # This ensures all toggle experiments work correctly
-        max_products_to_process = self.system_config.get("system", {}).get("max_products", 10)
-        max_products_per_category = self.system_config.get("system", {}).get("max_products_per_category", 5)
-        max_analyzed_products = self.system_config.get("system", {}).get("max_analyzed_products", 5)
-        max_products_per_cycle = self.system_config.get("system", {}).get("max_products_per_cycle", 5)
-        supplier_extraction_batch_size = self.system_config.get("system", {}).get("supplier_extraction_batch_size", 3)
-        max_categories_per_request = self.system_config.get("ai_features", {}).get("category_selection", {}).get("max_categories_per_request", 3)
+        
+        # CRITICAL FIX: The SystemConfigLoader.get_system_config() returns the "system" section directly
+        # So we don't need to access ["system"] again - it's already the system section
+        max_products_to_process = self.system_config.get("max_products", 10)
+        max_products_per_category = self.system_config.get("max_products_per_category", 5)
+        max_analyzed_products = self.system_config.get("max_analyzed_products", 5)
+        max_products_per_cycle = self.system_config.get("max_products_per_cycle", 5)
+        supplier_extraction_batch_size = self.system_config.get("supplier_extraction_batch_size", 3)
+        
+        # For AI features, we need to get the full config and access the ai_features section
+        full_config = self.config_loader._config
+        max_categories_per_request = full_config.get("ai_features", {}).get("category_selection", {}).get("max_categories_per_request", 3)
         
         # CRITICAL FIX: Initialize max_price from config to prevent AttributeError
-        self.max_price = self.system_config.get("processing_limits", {}).get("max_price_gbp", 20.0)
+        self.max_price = full_config.get("processing_limits", {}).get("max_price_gbp", 20.0)
         
         # Apply batch synchronization if enabled
-        batch_sync_config = self.system_config.get("batch_synchronization", {})
+        batch_sync_config = full_config.get("batch_synchronization", {})
         if batch_sync_config.get("enabled", False):
             max_products_per_cycle, supplier_extraction_batch_size = self._apply_batch_synchronization(
                 max_products_per_cycle, supplier_extraction_batch_size, batch_sync_config

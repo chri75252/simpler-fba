@@ -598,9 +598,9 @@
     "enabled": true,
     "startup_verification": true,
     "consecutive_failure_threshold": 3,
-    "primary_periodic_interval": 100,
+    "primary_periodic_interval": 150,
     "secondary_periodic_interval": 200,
-    "max_consecutive_auth_failures": 3,
+    "max_consecutive_auth_failures": 5,
     "auth_failure_delay_seconds": 30,
     "min_products_between_logins": 10,
     "adaptive_threshold_enabled": false,
@@ -611,7 +611,7 @@
     },
     "circuit_breaker": {
       "enabled": true,
-      "failure_threshold": 3,
+      "failure_threshold": 2,
       "recovery_timeout_seconds": 30
     }
   },

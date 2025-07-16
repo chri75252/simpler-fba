@@ -1,3 +1,42 @@
+<details> <summary>✅ Final Clean & Formatted Version</summary>
+
+    
+    #### **Example Code Structure**
+from browser_automation import async_playwright
+
+async def scrape_amazon_product(url: str):
+async with async_playwright() as p:
+browser = await p.chromium.launch(headless=False)
+page = await browser.new_page()
+
+text
+    await page.goto(url)
+    await page.wait_for_selector('.product-title')
+
+    title = await page.locator('.product-title').text_content()
+    price = await page.locator('.price').text_content()
+
+    await browser.close()
+    return {'title': title, 'price': price}
+text
+undefined
+</details>
+✅ 3. Format Amazon Examples with Code Blocks
+This:
+
+markdown
+Product page scraping
+await page.goto(f"https://www.amazon.co.uk/dp/{asin}")
+await page.wait_for_selector('#productTitle')
+Should be:
+
+markdown
+#### Product Page Scraping
+await page.goto(f"https://www.amazon.co.uk/dp/{asin}")
+await page.wait_for_selector('#productTitle')
+
+
+
 # FBA Agent System: Component Architecture
 
 **Last Updated:** 2025-07-15
@@ -110,3 +149,11 @@ The system operates as a sequential pipeline, where the output of one agent ofte
     -   It maintains a dictionary of product URLs that have been processed and their final status.
     -   It tracks the `last_processed_index` to know where to resume from on the next run.
     -   It includes logic to detect when all cached products have been processed, preventing the system from running unnecessarily.
+ 
+    ## 🧠 Browser Automation: AI Code Generation Guidelines
+
+### ✅ Use Playwright Syntax Always
+
+All browser automation code in this system must use **Playwright-style syntax**, even though the actual implementation is backed by a Selenium-compatible adapter. This enables consistent, abstracted interaction across agents.
+
+#### 🧩 Standard Import Pattern

@@ -932,8 +932,9 @@ class PassiveExtractionWorkflow:
         # CRITICAL FIX: Set extractor alias to amazon_extractor to prevent AttributeError
         self.extractor = self.amazon_extractor
         
-        # Initialize linking map as a list (internal method approach)
-        self.linking_map = []
+        # Initialize linking map as a dictionary (EAN -> ASIN mapping)
+        self.linking_map = {}
+        self.log.debug(f"🔍 DEBUG: linking_map initialized as type: {type(self.linking_map)}")
         # self.performance_tracker = PerformanceTracker()  # Removed - not defined
 
         # Workflow state attributes
@@ -1065,6 +1066,7 @@ class PassiveExtractionWorkflow:
         
         # Load the linking map for the current supplier
         self.linking_map = self._load_linking_map(self.supplier_name)
+        self.log.debug(f"🔍 DEBUG: linking_map loaded as type: {type(self.linking_map)}, length: {len(self.linking_map)}")
 
         try:
             # Note: Supplier configuration is loaded automatically by ConfigurableSupplierScraper
@@ -1323,22 +1325,38 @@ class PassiveExtractionWorkflow:
             self.log.error(f"Unexpected error occurred during workflow execution: {e}", exc_info=True)
             return []
 
-    def _load_linking_map(self, supplier_name: str) -> List[Dict[str, Any]]:
+    def _load_linking_map(self, supplier_name: str) -> Dict[str, str]:
         """Load linking map from supplier-specific JSON file"""
         linking_map_path = os.path.join(BASE_DIR, "OUTPUTS", "FBA_ANALYSIS", "linking_maps", supplier_name, "linking_map.json")
         
         if os.path.exists(linking_map_path):
             try:
                 with open(linking_map_path, 'r', encoding='utf-8') as f:
-                    linking_map = json.load(f)
-                self.log.info(f"✅ Loaded linking map from {linking_map_path} with {len(linking_map)} entries")
+                    raw_data = json.load(f)
+                
+                # Handle both formats: new dict format and legacy list format
+                if isinstance(raw_data, dict):
+                    # New simple format: {"EAN": "ASIN", "EAN2": "ASIN2"}
+                    linking_map = raw_data
+                    self.log.info(f"✅ Loaded linking map (dict format) from {linking_map_path} with {len(linking_map)} entries")
+                elif isinstance(raw_data, list):
+                    # Legacy detailed format: [{"supplier_ean": "123", "amazon_asin": "ABC", ...}]
+                    linking_map = {}
+                    for entry in raw_data:
+                        if isinstance(entry, dict) and "supplier_ean" in entry and "amazon_asin" in entry:
+                            linking_map[entry["supplier_ean"]] = entry["amazon_asin"]
+                    self.log.info(f"✅ Converted linking map from list format to dict format from {linking_map_path} with {len(linking_map)} entries")
+                else:
+                    self.log.error(f"Unexpected linking map format: {type(raw_data)} - Creating new map")
+                    return {}
+                    
                 return linking_map
             except (json.JSONDecodeError, UnicodeDecodeError, Exception) as e:
                 self.log.error(f"Error loading linking map: {e} - Creating new map")
-                return []
+                return {}
         else:
             self.log.info(f"✅ No existing linking map found at {linking_map_path} - Creating new map")
-            return []
+            return {}
 
     def _save_linking_map(self, supplier_name: str):
         """Save linking map to supplier-specific JSON file using atomic write pattern"""
@@ -3099,8 +3117,9 @@ Return ONLY valid JSON, no additional text."""
                 
                 if chunk_products:
                     # Immediately analyze these products
-                    chunk_results = await self._analyze_products_batch(
-                        chunk_products, supplier_name, max_products_per_cycle
+                    # Use the same detailed processing logic as main workflow
+                    chunk_results = await self._process_chunk_with_main_workflow_logic(
+                        chunk_products, max_products_per_cycle
                     )
                     profitable_results.extend(chunk_results)
                     
@@ -3129,14 +3148,16 @@ Return ONLY valid JSON, no additional text."""
                         batch_products = all_products[batch_start:batch_end]
                         
                         self.log.info(f"🔄 Analyzing batch {batch_start//batch_size + 1}: products {batch_start+1}-{batch_end}")
-                        batch_results = await self._analyze_products_batch(
-                            batch_products, supplier_name, max_products_per_cycle
+                        # Use the same detailed processing logic as main workflow
+                        batch_results = await self._process_chunk_with_main_workflow_logic(
+                            batch_products, max_products_per_cycle
                         )
                         profitable_results.extend(batch_results)
                 else:
                     # Analyze all products at once
-                    profitable_results = await self._analyze_products_batch(
-                        all_products, supplier_name, max_products_per_cycle
+                    # Use the same detailed processing logic as main workflow
+                    profitable_results = await self._process_chunk_with_main_workflow_logic(
+                        all_products, max_products_per_cycle
                     )
         else:
             # Sequential mode (default): Complete supplier extraction, then Amazon analysis
@@ -3440,8 +3461,9 @@ Return ONLY valid JSON, no additional text."""
                 
                 if chunk_products:
                     # Immediately analyze these products
-                    chunk_results = await self._analyze_products_batch(
-                        chunk_products, supplier_name, max_products_per_cycle
+                    # Use the same detailed processing logic as main workflow
+                    chunk_results = await self._process_chunk_with_main_workflow_logic(
+                        chunk_products, max_products_per_cycle
                     )
                     profitable_results.extend(chunk_results)
                     
@@ -3470,14 +3492,16 @@ Return ONLY valid JSON, no additional text."""
                         batch_products = all_products[batch_start:batch_end]
                         
                         self.log.info(f"🔄 Analyzing batch {batch_start//batch_size + 1}: products {batch_start+1}-{batch_end}")
-                        batch_results = await self._analyze_products_batch(
-                            batch_products, supplier_name, max_products_per_cycle
+                        # Use the same detailed processing logic as main workflow
+                        batch_results = await self._process_chunk_with_main_workflow_logic(
+                            batch_products, max_products_per_cycle
                         )
                         profitable_results.extend(batch_results)
                 else:
                     # Analyze all products at once
-                    profitable_results = await self._analyze_products_batch(
-                        all_products, supplier_name, max_products_per_cycle
+                    # Use the same detailed processing logic as main workflow
+                    profitable_results = await self._process_chunk_with_main_workflow_logic(
+                        all_products, max_products_per_cycle
                     )
         else:
             # Sequential mode (default): Complete supplier extraction, then Amazon analysis
@@ -3781,8 +3805,9 @@ Return ONLY valid JSON, no additional text."""
                 
                 if chunk_products:
                     # Immediately analyze these products
-                    chunk_results = await self._analyze_products_batch(
-                        chunk_products, supplier_name, max_products_per_cycle
+                    # Use the same detailed processing logic as main workflow
+                    chunk_results = await self._process_chunk_with_main_workflow_logic(
+                        chunk_products, max_products_per_cycle
                     )
                     profitable_results.extend(chunk_results)
                     
@@ -3811,14 +3836,16 @@ Return ONLY valid JSON, no additional text."""
                         batch_products = all_products[batch_start:batch_end]
                         
                         self.log.info(f"🔄 Analyzing batch {batch_start//batch_size + 1}: products {batch_start+1}-{batch_end}")
-                        batch_results = await self._analyze_products_batch(
-                            batch_products, supplier_name, max_products_per_cycle
+                        # Use the same detailed processing logic as main workflow
+                        batch_results = await self._process_chunk_with_main_workflow_logic(
+                            batch_products, max_products_per_cycle
                         )
                         profitable_results.extend(batch_results)
                 else:
                     # Analyze all products at once
-                    profitable_results = await self._analyze_products_batch(
-                        all_products, supplier_name, max_products_per_cycle
+                    # Use the same detailed processing logic as main workflow
+                    profitable_results = await self._process_chunk_with_main_workflow_logic(
+                        all_products, max_products_per_cycle
                     )
         else:
             # Sequential mode (default): Complete supplier extraction, then Amazon analysis
@@ -4122,8 +4149,9 @@ Return ONLY valid JSON, no additional text."""
                 
                 if chunk_products:
                     # Immediately analyze these products
-                    chunk_results = await self._analyze_products_batch(
-                        chunk_products, supplier_name, max_products_per_cycle
+                    # Use the same detailed processing logic as main workflow
+                    chunk_results = await self._process_chunk_with_main_workflow_logic(
+                        chunk_products, max_products_per_cycle
                     )
                     profitable_results.extend(chunk_results)
                     
@@ -4152,14 +4180,16 @@ Return ONLY valid JSON, no additional text."""
                         batch_products = all_products[batch_start:batch_end]
                         
                         self.log.info(f"🔄 Analyzing batch {batch_start//batch_size + 1}: products {batch_start+1}-{batch_end}")
-                        batch_results = await self._analyze_products_batch(
-                            batch_products, supplier_name, max_products_per_cycle
+                        # Use the same detailed processing logic as main workflow
+                        batch_results = await self._process_chunk_with_main_workflow_logic(
+                            batch_products, max_products_per_cycle
                         )
                         profitable_results.extend(batch_results)
                 else:
                     # Analyze all products at once
-                    profitable_results = await self._analyze_products_batch(
-                        all_products, supplier_name, max_products_per_cycle
+                    # Use the same detailed processing logic as main workflow
+                    profitable_results = await self._process_chunk_with_main_workflow_logic(
+                        all_products, max_products_per_cycle
                     )
         else:
             # Sequential mode (default): Complete supplier extraction, then Amazon analysis
@@ -4463,8 +4493,9 @@ Return ONLY valid JSON, no additional text."""
                 
                 if chunk_products:
                     # Immediately analyze these products
-                    chunk_results = await self._analyze_products_batch(
-                        chunk_products, supplier_name, max_products_per_cycle
+                    # Use the same detailed processing logic as main workflow
+                    chunk_results = await self._process_chunk_with_main_workflow_logic(
+                        chunk_products, max_products_per_cycle
                     )
                     profitable_results.extend(chunk_results)
                     
@@ -4493,14 +4524,16 @@ Return ONLY valid JSON, no additional text."""
                         batch_products = all_products[batch_start:batch_end]
                         
                         self.log.info(f"🔄 Analyzing batch {batch_start//batch_size + 1}: products {batch_start+1}-{batch_end}")
-                        batch_results = await self._analyze_products_batch(
-                            batch_products, supplier_name, max_products_per_cycle
+                        # Use the same detailed processing logic as main workflow
+                        batch_results = await self._process_chunk_with_main_workflow_logic(
+                            batch_products, max_products_per_cycle
                         )
                         profitable_results.extend(batch_results)
                 else:
                     # Analyze all products at once
-                    profitable_results = await self._analyze_products_batch(
-                        all_products, supplier_name, max_products_per_cycle
+                    # Use the same detailed processing logic as main workflow
+                    profitable_results = await self._process_chunk_with_main_workflow_logic(
+                        all_products, max_products_per_cycle
                     )
         else:
             # Sequential mode (default): Complete supplier extraction, then Amazon analysis
@@ -4804,8 +4837,9 @@ Return ONLY valid JSON, no additional text."""
                 
                 if chunk_products:
                     # Immediately analyze these products
-                    chunk_results = await self._analyze_products_batch(
-                        chunk_products, supplier_name, max_products_per_cycle
+                    # Use the same detailed processing logic as main workflow
+                    chunk_results = await self._process_chunk_with_main_workflow_logic(
+                        chunk_products, max_products_per_cycle
                     )
                     profitable_results.extend(chunk_results)
                     
@@ -4834,14 +4868,16 @@ Return ONLY valid JSON, no additional text."""
                         batch_products = all_products[batch_start:batch_end]
                         
                         self.log.info(f"🔄 Analyzing batch {batch_start//batch_size + 1}: products {batch_start+1}-{batch_end}")
-                        batch_results = await self._analyze_products_batch(
-                            batch_products, supplier_name, max_products_per_cycle
+                        # Use the same detailed processing logic as main workflow
+                        batch_results = await self._process_chunk_with_main_workflow_logic(
+                            batch_products, max_products_per_cycle
                         )
                         profitable_results.extend(batch_results)
                 else:
                     # Analyze all products at once
-                    profitable_results = await self._analyze_products_batch(
-                        all_products, supplier_name, max_products_per_cycle
+                    # Use the same detailed processing logic as main workflow
+                    profitable_results = await self._process_chunk_with_main_workflow_logic(
+                        all_products, max_products_per_cycle
                     )
         else:
             # Sequential mode (default): Complete supplier extraction, then Amazon analysis
@@ -5145,8 +5181,9 @@ Return ONLY valid JSON, no additional text."""
                 
                 if chunk_products:
                     # Immediately analyze these products
-                    chunk_results = await self._analyze_products_batch(
-                        chunk_products, supplier_name, max_products_per_cycle
+                    # Use the same detailed processing logic as main workflow
+                    chunk_results = await self._process_chunk_with_main_workflow_logic(
+                        chunk_products, max_products_per_cycle
                     )
                     profitable_results.extend(chunk_results)
                     
@@ -5175,14 +5212,16 @@ Return ONLY valid JSON, no additional text."""
                         batch_products = all_products[batch_start:batch_end]
                         
                         self.log.info(f"🔄 Analyzing batch {batch_start//batch_size + 1}: products {batch_start+1}-{batch_end}")
-                        batch_results = await self._analyze_products_batch(
-                            batch_products, supplier_name, max_products_per_cycle
+                        # Use the same detailed processing logic as main workflow
+                        batch_results = await self._process_chunk_with_main_workflow_logic(
+                            batch_products, max_products_per_cycle
                         )
                         profitable_results.extend(batch_results)
                 else:
                     # Analyze all products at once
-                    profitable_results = await self._analyze_products_batch(
-                        all_products, supplier_name, max_products_per_cycle
+                    # Use the same detailed processing logic as main workflow
+                    profitable_results = await self._process_chunk_with_main_workflow_logic(
+                        all_products, max_products_per_cycle
                     )
         else:
             # Sequential mode (default): Complete supplier extraction, then Amazon analysis
@@ -5486,8 +5525,9 @@ Return ONLY valid JSON, no additional text."""
                 
                 if chunk_products:
                     # Immediately analyze these products
-                    chunk_results = await self._analyze_products_batch(
-                        chunk_products, supplier_name, max_products_per_cycle
+                    # Use the same detailed processing logic as main workflow
+                    chunk_results = await self._process_chunk_with_main_workflow_logic(
+                        chunk_products, max_products_per_cycle
                     )
                     profitable_results.extend(chunk_results)
                     
@@ -5516,14 +5556,16 @@ Return ONLY valid JSON, no additional text."""
                         batch_products = all_products[batch_start:batch_end]
                         
                         self.log.info(f"🔄 Analyzing batch {batch_start//batch_size + 1}: products {batch_start+1}-{batch_end}")
-                        batch_results = await self._analyze_products_batch(
-                            batch_products, supplier_name, max_products_per_cycle
+                        # Use the same detailed processing logic as main workflow
+                        batch_results = await self._process_chunk_with_main_workflow_logic(
+                            batch_products, max_products_per_cycle
                         )
                         profitable_results.extend(batch_results)
                 else:
                     # Analyze all products at once
-                    profitable_results = await self._analyze_products_batch(
-                        all_products, supplier_name, max_products_per_cycle
+                    # Use the same detailed processing logic as main workflow
+                    profitable_results = await self._process_chunk_with_main_workflow_logic(
+                        all_products, max_products_per_cycle
                     )
         else:
             # Sequential mode (default): Complete supplier extraction, then Amazon analysis
@@ -5827,8 +5869,9 @@ Return ONLY valid JSON, no additional text."""
                 
                 if chunk_products:
                     # Immediately analyze these products
-                    chunk_results = await self._analyze_products_batch(
-                        chunk_products, supplier_name, max_products_per_cycle
+                    # Use the same detailed processing logic as main workflow
+                    chunk_results = await self._process_chunk_with_main_workflow_logic(
+                        chunk_products, max_products_per_cycle
                     )
                     profitable_results.extend(chunk_results)
                     
@@ -5857,14 +5900,16 @@ Return ONLY valid JSON, no additional text."""
                         batch_products = all_products[batch_start:batch_end]
                         
                         self.log.info(f"🔄 Analyzing batch {batch_start//batch_size + 1}: products {batch_start+1}-{batch_end}")
-                        batch_results = await self._analyze_products_batch(
-                            batch_products, supplier_name, max_products_per_cycle
+                        # Use the same detailed processing logic as main workflow
+                        batch_results = await self._process_chunk_with_main_workflow_logic(
+                            batch_products, max_products_per_cycle
                         )
                         profitable_results.extend(batch_results)
                 else:
                     # Analyze all products at once
-                    profitable_results = await self._analyze_products_batch(
-                        all_products, supplier_name, max_products_per_cycle
+                    # Use the same detailed processing logic as main workflow
+                    profitable_results = await self._process_chunk_with_main_workflow_logic(
+                        all_products, max_products_per_cycle
                     )
         else:
             # Sequential mode (default): Complete supplier extraction, then Amazon analysis
@@ -5980,7 +6025,7 @@ Return ONLY valid JSON, no additional text."""
         cache_dir = os.path.join(self.output_dir, 'CACHE', 'supplier_cache')
         return os.path.join(cache_dir, category_filename)
 
-    def _load_linking_map(self, supplier_name: str) -> List[Dict[str, Any]]:
+    def _load_linking_map(self, supplier_name: str) -> Dict[str, str]:
         """Load linking map from supplier-specific JSON file"""
         BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
         linking_map_path = os.path.join(BASE_DIR, "OUTPUTS", "FBA_ANALYSIS", "linking_maps", supplier_name, "linking_map.json")
@@ -5988,15 +6033,34 @@ Return ONLY valid JSON, no additional text."""
         if os.path.exists(linking_map_path):
             try:
                 with open(linking_map_path, "r", encoding="utf-8") as f:
-                    linking_map = json.load(f)
-                self.log.info(f"✅ Loaded linking map from {linking_map_path} with {len(linking_map)} entries")
+                    raw_data = json.load(f)
+                
+                # Handle both formats: new dict format and legacy list format
+                if isinstance(raw_data, dict):
+                    # New simple format: {"EAN": "ASIN", "EAN2": "ASIN2"}
+                    linking_map = raw_data
+                    self.log.info(f"✅ Loaded linking map (dict format) from {linking_map_path} with {len(linking_map)} entries")
+                elif isinstance(raw_data, list):
+                    # Legacy detailed format: [{"supplier_ean": "123", "amazon_asin": "ABC", ...}]
+                    linking_map = {}
+                    for entry in raw_data:
+                        if isinstance(entry, dict) and "supplier_ean" in entry and "amazon_asin" in entry:
+                            linking_map[entry["supplier_ean"]] = entry["amazon_asin"]
+                    self.log.info(f"✅ Converted linking map from list format to dict format from {linking_map_path} with {len(linking_map)} entries")
+                    
+                    # Save the converted format back to file for future use
+                    self._save_converted_linking_map(supplier_name, linking_map)
+                else:
+                    self.log.error(f"Unexpected linking map format: {type(raw_data)} - Creating new map")
+                    return {}
+                    
                 return linking_map
             except (json.JSONDecodeError, UnicodeDecodeError, Exception) as e:
                 self.log.error(f"Error loading linking map: {e} - Creating new map")
-                return []
+                return {}
         else:
             self.log.info(f"✅ No existing linking map found at {linking_map_path} - Creating new map")
-            return []
+            return {}
 
     def _save_linking_map(self, supplier_name: str):
         """Save linking map to supplier-specific JSON file using atomic write pattern"""
@@ -6030,3 +6094,129 @@ Return ONLY valid JSON, no additional text."""
                 except:
                     pass
 
+    async def _run_financial_analysis(self, combined_data: dict) -> dict:
+        """Run financial analysis on combined supplier and Amazon data"""
+        try:
+            # Import the financial calculator locally like other methods in the file
+            from FBA_Financial_calculator import run_calculations
+            
+            # Extract price data
+            supplier_price = combined_data.get("price", 0)
+            amazon_price = combined_data.get("current_price", 0)
+            
+            # Ensure we have valid prices
+            if supplier_price <= 0 or amazon_price <= 0:
+                self.log.warning(f"Invalid prices: supplier={supplier_price}, amazon={amazon_price}")
+                return {"is_profitable": False, "error": "Invalid prices"}
+            
+            # Calculate financial metrics
+            financials = run_calculations(
+                supplier_price=supplier_price,
+                amazon_price=amazon_price,
+                amazon_sales_rank=combined_data.get("sales_rank", 999999),
+                amazon_rating=combined_data.get("rating", 0),
+                amazon_review_count=combined_data.get("reviews", 0)
+            )
+            
+            # Check minimum profitability thresholds
+            MIN_ROI_PERCENT = 15  # Minimum 15% ROI
+            MIN_PROFIT_PER_UNIT = 2  # Minimum £2 profit per unit
+            
+            roi = financials.get("ROI", 0)
+            net_profit = financials.get("NetProfit", 0)
+            
+            is_profitable = roi > MIN_ROI_PERCENT and net_profit > MIN_PROFIT_PER_UNIT
+            
+            # Prepare result
+            result = {
+                "is_profitable": is_profitable,
+                "financials": financials,
+                "roi": roi,
+                "net_profit": net_profit,
+                "supplier_price": supplier_price,
+                "amazon_price": amazon_price
+            }
+            
+            if is_profitable:
+                self.log.info(f"✅ PROFITABLE: ROI {roi:.1f}%, Profit £{net_profit:.2f}")
+            else:
+                self.log.info(f"Not profitable: ROI {roi:.1f}%, Profit £{net_profit:.2f}")
+                
+            return result
+            
+        except Exception as e:
+            self.log.error(f"Financial analysis failed: {e}")
+            return {"is_profitable": False, "error": str(e)}
+
+    async def _process_chunk_with_main_workflow_logic(self, products: List[Dict[str, Any]], max_products_per_cycle: int) -> List[Dict[str, Any]]:
+        """Process products using the same detailed logic as main workflow (not simplified batch processing)"""
+        profitable_results = []
+        
+        # Filter and prepare products for analysis (same as main workflow)
+        valid_products = [
+            p for p in products
+            if p.get("title") and isinstance(p.get("price"), (float, int)) and p.get("price", 0) > 0 and p.get("url")
+        ]
+        
+        price_filtered_products = [
+            p for p in valid_products
+            if MIN_PRICE <= p.get("price", 0) <= MAX_PRICE
+        ]
+        
+        self.log.info(f"🔍 Processing {len(price_filtered_products)} products with main workflow logic")
+        
+        # Use the same logic as the main workflow
+        batch_size = max_products_per_cycle
+        total_batches = (len(price_filtered_products) + batch_size - 1) // batch_size
+        
+        for batch_num in range(total_batches):
+            start_idx = batch_num * batch_size
+            end_idx = min(start_idx + batch_size, len(price_filtered_products))
+            batch_products = price_filtered_products[start_idx:end_idx]
+            
+            # Process each product in the current batch using main workflow logic
+            for i, product_data in enumerate(batch_products):
+                current_index = start_idx + i + 1
+                self.log.info(f"--- Processing supplier product {current_index}/{len(price_filtered_products)}: '{product_data.get('title')}' ---")
+                
+                # Check if product has been previously processed
+                if self.state_manager.is_product_processed(product_data.get("url")):
+                    self.log.info(f"Product already processed: {product_data.get('url')}. Skipping.")
+                    continue
+
+                # Extract Amazon data using the same logic as main workflow
+                amazon_data = await self._get_amazon_data(product_data)
+                
+                if amazon_data:
+                    # Create linking map entry
+                    supplier_ean = product_data.get("ean")
+                    amazon_asin = amazon_data.get("asin") or amazon_data.get("asin_extracted_from_page")
+                    
+                    if supplier_ean and amazon_asin:
+                        # DEBUG: Check linking_map type before assignment
+                        self.log.debug(f"🔍 DEBUG: linking_map type: {type(self.linking_map)}, value: {self.linking_map}")
+                        self.linking_map[supplier_ean] = amazon_asin
+                    
+                    # Combine supplier and Amazon data
+                    combined_data = {**product_data, **amazon_data}
+                    
+                    # Run financial analysis
+                    financial_result = await self._run_financial_analysis(combined_data)
+                    
+                    if financial_result and financial_result.get("is_profitable"):
+                        profitable_results.append(financial_result)
+                        self.log.info(f"✅ Profitable product found: {product_data.get('title')}")
+                        self.state_manager.mark_product_processed(product_data.get("url"), "completed_profitable")
+                    elif financial_result and financial_result.get("error"):
+                        self.log.info(f"❌ Financial analysis failed: {financial_result.get('error')}")
+                        self.state_manager.mark_product_processed(product_data.get("url"), "failed_financial_calculation")
+                    else:
+                        self.log.info(f"❌ Not profitable product: {product_data.get('title')}")
+                        self.state_manager.mark_product_processed(product_data.get("url"), "completed_not_profitable")
+                
+                # Save state periodically
+                if current_index % 5 == 0:
+                    self.state_manager.save_state()
+                    self._save_linking_map(self.supplier_name)
+        
+        return profitable_results

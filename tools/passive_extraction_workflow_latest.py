@@ -1024,9 +1024,9 @@ class PassiveExtractionWorkflow:
         max_products_per_cycle = self.system_config.get("max_products_per_cycle", 5)
         supplier_extraction_batch_size = self.system_config.get("supplier_extraction_batch_size", 3)
         
-        # For AI features, we need to get the full config and access the ai_features section
+        # Get the full config for accessing root level values
         full_config = self.config_loader._config
-        max_categories_per_request = full_config.get("ai_features", {}).get("category_selection", {}).get("max_categories_per_request", 3)
+        max_categories_per_request = full_config.get("max_categories_per_request", 5)
         
         # CRITICAL FIX: Initialize max_price from config to prevent AttributeError
         self.max_price = full_config.get("processing_limits", {}).get("max_price_gbp", 20.0)
@@ -1090,18 +1090,18 @@ class PassiveExtractionWorkflow:
                     self.log.warning("No categories selected for scraping. Workflow cannot continue.")
                     return []
 
-            # Check hybrid processing configuration
-            hybrid_config = self.system_config.get("hybrid_processing", {})
+            # Check hybrid processing configuration (from full config, not system section)
+            hybrid_config = full_config.get("hybrid_processing", {})
             if hybrid_config.get("enabled", False):
                 self.log.info("🔄 HYBRID PROCESSING MODE: Enabled")
                 return await self._run_hybrid_processing_mode(
                     self.workflow_config.get('supplier_url'), self.supplier_name, category_urls_to_scrape, 
                     max_products_per_category, max_products_to_process, 
-                    max_analyzed_products, max_products_per_cycle
+                    max_analyzed_products, max_products_per_cycle, supplier_extraction_batch_size
                 )
             
             supplier_products = await self._extract_supplier_products(
-                self.workflow_config.get('supplier_url'), self.supplier_name, category_urls_to_scrape, max_products_per_category, max_products_to_process
+                self.workflow_config.get('supplier_url'), self.supplier_name, category_urls_to_scrape, max_products_per_category, max_products_to_process, supplier_extraction_batch_size
             )
 
             if not supplier_products:
@@ -2520,7 +2520,7 @@ Return ONLY valid JSON, no additional text."""
 
         return optimized_urls
 
-    async def _extract_supplier_products(self, supplier_url: str, supplier_name: str, category_urls: List[str], max_products_per_category: int, max_products_to_process: int = None) -> List[Dict[str, Any]]:
+    async def _extract_supplier_products(self, supplier_url: str, supplier_name: str, category_urls: List[str], max_products_per_category: int, max_products_to_process: int = None, supplier_extraction_batch_size: int = 3) -> List[Dict[str, Any]]:
         """Extract products from a list of category URLs with overall product limit enforcement."""
         
         # 🔄 SUPPLIER CACHE FRESHNESS CHECK
@@ -2562,12 +2562,14 @@ Return ONLY valid JSON, no additional text."""
                 self.log.warning(f"⚠️ Error checking supplier cache freshness: {e}, proceeding with scraping")
         
         # Proceed with normal supplier scraping with batching
-        supplier_extraction_batch_size = self.system_config.get("system", {}).get("supplier_extraction_batch_size", 3)
+        # supplier_extraction_batch_size is now passed as a parameter
         self.log.info(f"🕷️ PERFORMING SUPPLIER SCRAPING from {len(category_urls)} categories")
         self.log.info(f"📦 Using supplier extraction batch size: {supplier_extraction_batch_size}")
         
         # Process categories in batches for better memory management
         all_products = []
+        # Store as instance variable for progress callback access
+        self._current_all_products = all_products
         category_batches = [category_urls[i:i + supplier_extraction_batch_size] for i in range(0, len(category_urls), supplier_extraction_batch_size)]
         
         # Get progress tracking configuration
@@ -2613,37 +2615,21 @@ Return ONLY valid JSON, no additional text."""
                     break
                     
                 self.log.info(f"Scraping category: {category_url}")
+                # 🚨 DEFINITIVE FIX: Pass all_products as product_accumulator for real-time updates
                 products = await self.supplier_scraper.scrape_products_from_url(
                     category_url,
-                    max_products_per_category
+                    max_products_per_category,
+                    product_accumulator=all_products  # Share the list for real-time cache saves
                 )
                 
-                # CRITICAL FIX: Apply max_price_gbp filtering to scraped products
-                filtered_products = []
-                for product in products:
-                    try:
-                        price = float(product.get('price', 0))
-                        if price <= self.max_price:
-                            filtered_products.append(product)
-                        else:
-                            self.log.info(f"🛑 PRICE FILTER: Excluding '{product.get('title', 'Unknown')}' - £{price} > £{self.max_price} limit")
-                    except (ValueError, TypeError):
-                        # Keep products with invalid/missing prices for now
-                        filtered_products.append(product)
-                        self.log.warning(f"⚠️ Invalid price for '{product.get('title', 'Unknown')}': {product.get('price')}")
+                # 🚨 REMOVED: Price filtering and product extension now handled in progress callback
+                # Products are added to all_products immediately when found via progress_callback
+                # This ensures per-product cache saves work correctly with live data
+                self.log.info(f"📊 Category completed: {len(products)} raw products extracted, {len(all_products)} total products accumulated")
                 
-                if len(filtered_products) < len(products):
-                    self.log.info(f"🛑 PRICE FILTERING: {len(products) - len(filtered_products)} products excluded (>{self.max_price}), {len(filtered_products)} remain")
-                
-                all_products.extend(filtered_products)
-                
-                # 🚨 CRITICAL FIX: Implement missing supplier cache update frequency triggering
-                cache_update_frequency = cache_config.get("update_frequency_products", 10)
-                if cache_config.get("enabled", True) and len(all_products) % cache_update_frequency == 0:
-                    # Save products to cache every N products as configured
-                    cache_file_path = os.path.join(self.supplier_cache_dir, f"{supplier_name.replace('.', '-')}_products_cache.json")
-                    self._save_products_to_cache(all_products, cache_file_path)
-                    self.log.info(f"💾 CACHE UPDATE: Saved {len(all_products)} products to cache (every {cache_update_frequency} products)")
+                # 🚨 REMOVED: Category-based cache saving logic (now handled per-product in progress callback)
+                # This was causing the update_frequency_products to only save after complete categories
+                # instead of respecting the per-product frequency configuration
                 
                 # Check again after adding products from this category
                 if max_products_to_process and len(all_products) >= max_products_to_process:
@@ -2658,19 +2644,48 @@ Return ONLY valid JSON, no additional text."""
         return all_products
 
     def _create_product_progress_callback(self, category_url: str, progress_config: Dict[str, Any]):
-        """Create a progress callback for individual product extraction"""
+        """Create a progress callback for individual product extraction with proper caching"""
         # Initialize a simple counter if it doesn't exist
         if not hasattr(self, '_supplier_product_counter'):
             self._supplier_product_counter = 0
             
-        def progress_callback(operation_type: str, product_index: int, total_products: int, product_url: str):
+        def progress_callback(operation_type: str, product_index: int, total_products: int, product_url: str, product_data: dict = None):
             if operation_type == 'supplier_extraction':
                 # Increment global product counter
                 self._supplier_product_counter += 1
                 
+                # 🚨 DEFINITIVE FIX: Products are now added by scraper directly to shared list
+                # Progress callback only needs to track progress and trigger cache saves
+                if product_data and hasattr(self, '_current_all_products'):
+                    self.log.info(f"📊 PROGRESS: Product {self._supplier_product_counter} processed (total in cache: {len(self._current_all_products)})")
+                
                 # Simple index-based logging (matching Amazon analysis style)
                 if progress_config.get("progress_display", {}).get("show_product_progress", True):
                     self.log.info(f"🔄 SUPPLIER EXTRACTION: Processing product {self._supplier_product_counter}")
+                
+                # 🚨 NEW: Per-product cache saving logic (now works because list is populated)
+                cache_config = self.system_config.get("supplier_cache_control", {})
+                update_frequency = cache_config.get("update_frequency_products", 2)  # Use config value
+                
+                # Debug logging for cache save logic
+                self.log.info(f"🔍 CACHE CHECK: Product {self._supplier_product_counter}, frequency={update_frequency}, enabled={cache_config.get('enabled', True)}")
+                self.log.info(f"🔍 CACHE CHECK: List length={len(getattr(self, '_current_all_products', []))}, modulo={self._supplier_product_counter % update_frequency}")
+                
+                if (cache_config.get("enabled", True) and 
+                    hasattr(self, '_current_all_products') and
+                    len(self._current_all_products) > 0 and
+                    self._supplier_product_counter % update_frequency == 0):
+                    
+                    # Import path_manager for proper path handling
+                    from utils.path_manager import path_manager
+                    
+                    # Build cache path using path_manager
+                    cache_filename = f"{self.supplier_name.replace('.', '-')}_products_cache.json"
+                    cache_file_path = path_manager.get_output_path("cached_products", cache_filename)
+                    
+                    # Save current products to cache
+                    self._save_products_to_cache(self._current_all_products, cache_file_path)
+                    self.log.info(f"💾 PERIODIC CACHE SAVE: Saved {len(self._current_all_products)} products to cache (every {update_frequency} products)")
                     
                 # Update state for interruption recovery
                 if hasattr(self, 'state_manager'):
@@ -3049,13 +3064,15 @@ Return ONLY valid JSON, no additional text."""
     async def _run_hybrid_processing_mode(self, supplier_url: str, supplier_name: str, 
                                          category_urls_to_scrape: List[str], 
                                          max_products_per_category: int, max_products_to_process: int,
-                                         max_analyzed_products: int, max_products_per_cycle: int) -> List[Dict[str, Any]]:
+                                         max_analyzed_products: int, max_products_per_cycle: int, 
+                                         supplier_extraction_batch_size: int) -> List[Dict[str, Any]]:
         """
         Hybrid processing mode that allows switching between supplier extraction and Amazon analysis.
         Supports chunked, sequential, and balanced processing modes.
         """
         profitable_results: List[Dict[str, Any]] = []
-        hybrid_config = self.system_config.get("hybrid_processing", {})
+        full_config = self.config_loader._config
+        hybrid_config = full_config.get("hybrid_processing", {})
         processing_modes = hybrid_config.get("processing_modes", {})
         switch_after_categories = hybrid_config.get("switch_to_amazon_after_categories", 10)
         
@@ -3077,7 +3094,7 @@ Return ONLY valid JSON, no additional text."""
                 # Extract from this chunk of categories
                 chunk_products = await self._extract_supplier_products(
                     supplier_url, supplier_name, chunk_categories, 
-                    max_products_per_category, max_products_to_process
+                    max_products_per_category, max_products_to_process, supplier_extraction_batch_size
                 )
                 
                 if chunk_products:
@@ -3388,13 +3405,15 @@ Return ONLY valid JSON, no additional text."""
     async def _run_hybrid_processing_mode(self, supplier_url: str, supplier_name: str, 
                                          category_urls_to_scrape: List[str], 
                                          max_products_per_category: int, max_products_to_process: int,
-                                         max_analyzed_products: int, max_products_per_cycle: int) -> List[Dict[str, Any]]:
+                                         max_analyzed_products: int, max_products_per_cycle: int, 
+                                         supplier_extraction_batch_size: int) -> List[Dict[str, Any]]:
         """
         Hybrid processing mode that allows switching between supplier extraction and Amazon analysis.
         Supports chunked, sequential, and balanced processing modes.
         """
         profitable_results: List[Dict[str, Any]] = []
-        hybrid_config = self.system_config.get("hybrid_processing", {})
+        full_config = self.config_loader._config
+        hybrid_config = full_config.get("hybrid_processing", {})
         processing_modes = hybrid_config.get("processing_modes", {})
         switch_after_categories = hybrid_config.get("switch_to_amazon_after_categories", 10)
         
@@ -3416,7 +3435,7 @@ Return ONLY valid JSON, no additional text."""
                 # Extract from this chunk of categories
                 chunk_products = await self._extract_supplier_products(
                     supplier_url, supplier_name, chunk_categories, 
-                    max_products_per_category, max_products_to_process
+                    max_products_per_category, max_products_to_process, supplier_extraction_batch_size
                 )
                 
                 if chunk_products:
@@ -3727,13 +3746,15 @@ Return ONLY valid JSON, no additional text."""
     async def _run_hybrid_processing_mode(self, supplier_url: str, supplier_name: str, 
                                          category_urls_to_scrape: List[str], 
                                          max_products_per_category: int, max_products_to_process: int,
-                                         max_analyzed_products: int, max_products_per_cycle: int) -> List[Dict[str, Any]]:
+                                         max_analyzed_products: int, max_products_per_cycle: int, 
+                                         supplier_extraction_batch_size: int) -> List[Dict[str, Any]]:
         """
         Hybrid processing mode that allows switching between supplier extraction and Amazon analysis.
         Supports chunked, sequential, and balanced processing modes.
         """
         profitable_results: List[Dict[str, Any]] = []
-        hybrid_config = self.system_config.get("hybrid_processing", {})
+        full_config = self.config_loader._config
+        hybrid_config = full_config.get("hybrid_processing", {})
         processing_modes = hybrid_config.get("processing_modes", {})
         switch_after_categories = hybrid_config.get("switch_to_amazon_after_categories", 10)
         
@@ -3755,7 +3776,7 @@ Return ONLY valid JSON, no additional text."""
                 # Extract from this chunk of categories
                 chunk_products = await self._extract_supplier_products(
                     supplier_url, supplier_name, chunk_categories, 
-                    max_products_per_category, max_products_to_process
+                    max_products_per_category, max_products_to_process, supplier_extraction_batch_size
                 )
                 
                 if chunk_products:
@@ -4066,13 +4087,15 @@ Return ONLY valid JSON, no additional text."""
     async def _run_hybrid_processing_mode(self, supplier_url: str, supplier_name: str, 
                                          category_urls_to_scrape: List[str], 
                                          max_products_per_category: int, max_products_to_process: int,
-                                         max_analyzed_products: int, max_products_per_cycle: int) -> List[Dict[str, Any]]:
+                                         max_analyzed_products: int, max_products_per_cycle: int, 
+                                         supplier_extraction_batch_size: int) -> List[Dict[str, Any]]:
         """
         Hybrid processing mode that allows switching between supplier extraction and Amazon analysis.
         Supports chunked, sequential, and balanced processing modes.
         """
         profitable_results: List[Dict[str, Any]] = []
-        hybrid_config = self.system_config.get("hybrid_processing", {})
+        full_config = self.config_loader._config
+        hybrid_config = full_config.get("hybrid_processing", {})
         processing_modes = hybrid_config.get("processing_modes", {})
         switch_after_categories = hybrid_config.get("switch_to_amazon_after_categories", 10)
         
@@ -4094,7 +4117,7 @@ Return ONLY valid JSON, no additional text."""
                 # Extract from this chunk of categories
                 chunk_products = await self._extract_supplier_products(
                     supplier_url, supplier_name, chunk_categories, 
-                    max_products_per_category, max_products_to_process
+                    max_products_per_category, max_products_to_process, supplier_extraction_batch_size
                 )
                 
                 if chunk_products:
@@ -4405,13 +4428,15 @@ Return ONLY valid JSON, no additional text."""
     async def _run_hybrid_processing_mode(self, supplier_url: str, supplier_name: str, 
                                          category_urls_to_scrape: List[str], 
                                          max_products_per_category: int, max_products_to_process: int,
-                                         max_analyzed_products: int, max_products_per_cycle: int) -> List[Dict[str, Any]]:
+                                         max_analyzed_products: int, max_products_per_cycle: int, 
+                                         supplier_extraction_batch_size: int) -> List[Dict[str, Any]]:
         """
         Hybrid processing mode that allows switching between supplier extraction and Amazon analysis.
         Supports chunked, sequential, and balanced processing modes.
         """
         profitable_results: List[Dict[str, Any]] = []
-        hybrid_config = self.system_config.get("hybrid_processing", {})
+        full_config = self.config_loader._config
+        hybrid_config = full_config.get("hybrid_processing", {})
         processing_modes = hybrid_config.get("processing_modes", {})
         switch_after_categories = hybrid_config.get("switch_to_amazon_after_categories", 10)
         
@@ -4433,7 +4458,7 @@ Return ONLY valid JSON, no additional text."""
                 # Extract from this chunk of categories
                 chunk_products = await self._extract_supplier_products(
                     supplier_url, supplier_name, chunk_categories, 
-                    max_products_per_category, max_products_to_process
+                    max_products_per_category, max_products_to_process, supplier_extraction_batch_size
                 )
                 
                 if chunk_products:
@@ -4744,13 +4769,15 @@ Return ONLY valid JSON, no additional text."""
     async def _run_hybrid_processing_mode(self, supplier_url: str, supplier_name: str, 
                                          category_urls_to_scrape: List[str], 
                                          max_products_per_category: int, max_products_to_process: int,
-                                         max_analyzed_products: int, max_products_per_cycle: int) -> List[Dict[str, Any]]:
+                                         max_analyzed_products: int, max_products_per_cycle: int, 
+                                         supplier_extraction_batch_size: int) -> List[Dict[str, Any]]:
         """
         Hybrid processing mode that allows switching between supplier extraction and Amazon analysis.
         Supports chunked, sequential, and balanced processing modes.
         """
         profitable_results: List[Dict[str, Any]] = []
-        hybrid_config = self.system_config.get("hybrid_processing", {})
+        full_config = self.config_loader._config
+        hybrid_config = full_config.get("hybrid_processing", {})
         processing_modes = hybrid_config.get("processing_modes", {})
         switch_after_categories = hybrid_config.get("switch_to_amazon_after_categories", 10)
         
@@ -4772,7 +4799,7 @@ Return ONLY valid JSON, no additional text."""
                 # Extract from this chunk of categories
                 chunk_products = await self._extract_supplier_products(
                     supplier_url, supplier_name, chunk_categories, 
-                    max_products_per_category, max_products_to_process
+                    max_products_per_category, max_products_to_process, supplier_extraction_batch_size
                 )
                 
                 if chunk_products:
@@ -5083,13 +5110,15 @@ Return ONLY valid JSON, no additional text."""
     async def _run_hybrid_processing_mode(self, supplier_url: str, supplier_name: str, 
                                          category_urls_to_scrape: List[str], 
                                          max_products_per_category: int, max_products_to_process: int,
-                                         max_analyzed_products: int, max_products_per_cycle: int) -> List[Dict[str, Any]]:
+                                         max_analyzed_products: int, max_products_per_cycle: int, 
+                                         supplier_extraction_batch_size: int) -> List[Dict[str, Any]]:
         """
         Hybrid processing mode that allows switching between supplier extraction and Amazon analysis.
         Supports chunked, sequential, and balanced processing modes.
         """
         profitable_results: List[Dict[str, Any]] = []
-        hybrid_config = self.system_config.get("hybrid_processing", {})
+        full_config = self.config_loader._config
+        hybrid_config = full_config.get("hybrid_processing", {})
         processing_modes = hybrid_config.get("processing_modes", {})
         switch_after_categories = hybrid_config.get("switch_to_amazon_after_categories", 10)
         
@@ -5111,7 +5140,7 @@ Return ONLY valid JSON, no additional text."""
                 # Extract from this chunk of categories
                 chunk_products = await self._extract_supplier_products(
                     supplier_url, supplier_name, chunk_categories, 
-                    max_products_per_category, max_products_to_process
+                    max_products_per_category, max_products_to_process, supplier_extraction_batch_size
                 )
                 
                 if chunk_products:
@@ -5422,13 +5451,15 @@ Return ONLY valid JSON, no additional text."""
     async def _run_hybrid_processing_mode(self, supplier_url: str, supplier_name: str, 
                                          category_urls_to_scrape: List[str], 
                                          max_products_per_category: int, max_products_to_process: int,
-                                         max_analyzed_products: int, max_products_per_cycle: int) -> List[Dict[str, Any]]:
+                                         max_analyzed_products: int, max_products_per_cycle: int, 
+                                         supplier_extraction_batch_size: int) -> List[Dict[str, Any]]:
         """
         Hybrid processing mode that allows switching between supplier extraction and Amazon analysis.
         Supports chunked, sequential, and balanced processing modes.
         """
         profitable_results: List[Dict[str, Any]] = []
-        hybrid_config = self.system_config.get("hybrid_processing", {})
+        full_config = self.config_loader._config
+        hybrid_config = full_config.get("hybrid_processing", {})
         processing_modes = hybrid_config.get("processing_modes", {})
         switch_after_categories = hybrid_config.get("switch_to_amazon_after_categories", 10)
         
@@ -5450,7 +5481,7 @@ Return ONLY valid JSON, no additional text."""
                 # Extract from this chunk of categories
                 chunk_products = await self._extract_supplier_products(
                     supplier_url, supplier_name, chunk_categories, 
-                    max_products_per_category, max_products_to_process
+                    max_products_per_category, max_products_to_process, supplier_extraction_batch_size
                 )
                 
                 if chunk_products:
@@ -5761,13 +5792,15 @@ Return ONLY valid JSON, no additional text."""
     async def _run_hybrid_processing_mode(self, supplier_url: str, supplier_name: str, 
                                          category_urls_to_scrape: List[str], 
                                          max_products_per_category: int, max_products_to_process: int,
-                                         max_analyzed_products: int, max_products_per_cycle: int) -> List[Dict[str, Any]]:
+                                         max_analyzed_products: int, max_products_per_cycle: int, 
+                                         supplier_extraction_batch_size: int) -> List[Dict[str, Any]]:
         """
         Hybrid processing mode that allows switching between supplier extraction and Amazon analysis.
         Supports chunked, sequential, and balanced processing modes.
         """
         profitable_results: List[Dict[str, Any]] = []
-        hybrid_config = self.system_config.get("hybrid_processing", {})
+        full_config = self.config_loader._config
+        hybrid_config = full_config.get("hybrid_processing", {})
         processing_modes = hybrid_config.get("processing_modes", {})
         switch_after_categories = hybrid_config.get("switch_to_amazon_after_categories", 10)
         
@@ -5789,7 +5822,7 @@ Return ONLY valid JSON, no additional text."""
                 # Extract from this chunk of categories
                 chunk_products = await self._extract_supplier_products(
                     supplier_url, supplier_name, chunk_categories, 
-                    max_products_per_category, max_products_to_process
+                    max_products_per_category, max_products_to_process, supplier_extraction_batch_size
                 )
                 
                 if chunk_products:

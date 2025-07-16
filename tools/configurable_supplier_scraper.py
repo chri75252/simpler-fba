@@ -455,8 +455,14 @@ class ConfigurableSupplierScraper:
         """Set progress tracking callback for workflow integration"""
         self.progress_callback = callback_func
 
-    async def scrape_products_from_url(self, url: str, max_products: int = 50) -> List[Dict[str, Any]]:
-        """Enhanced method to scrape products with pagination and individual product page visits."""
+    async def scrape_products_from_url(self, url: str, max_products: int = 50, product_accumulator: List[Dict[str, Any]] = None) -> List[Dict[str, Any]]:
+        """Enhanced method to scrape products with pagination and individual product page visits.
+        
+        Args:
+            url: Category URL to scrape
+            max_products: Maximum products to extract
+            product_accumulator: Optional list to append products to in real-time for progress tracking
+        """
         log.info(f"Starting enhanced scraping from {url}")
         
         # Step 1: Set page limiter to 60 products per page
@@ -472,15 +478,12 @@ class ConfigurableSupplierScraper:
         log.info(f"Found {len(all_product_urls)} total product URLs across all pages")
         
         # Step 3: Visit individual product pages to extract detailed data
-        products = []
+        products = []  # Local list for return value
+        # Use product_accumulator for real-time updates if provided
         base_url = f"{urlparse(url).scheme}://{urlparse(url).netloc}"
         
         for i, product_url in enumerate(all_product_urls[:max_products]):
             try:
-                # Call progress callback if available
-                if self.progress_callback:
-                    self.progress_callback('supplier_extraction', i+1, len(all_product_urls[:max_products]), product_url)
-                
                 log.info(f"Visiting product page {i+1}/{len(all_product_urls[:max_products])}: {product_url}")
                 
                 # Get individual product page content
@@ -524,10 +527,37 @@ class ConfigurableSupplierScraper:
                     except Exception as auth_error:
                         log.warning(f"🔐 Authentication callback error for product {i+1}: {auth_error}")
                 
-                # Only include products with valid data
+                # Only include products with valid data and apply price filtering
                 if title and price:
-                    products.append(product)
-                    log.info(f"✅ Extracted product {i+1}: {title} - £{price} (EAN: {ean or 'N/A'})")
+                    # Apply price filtering if max_price is configured
+                    try:
+                        price_float = float(price)
+                        max_price = getattr(self, 'max_price', 20.0)  # Default from system config
+                        if hasattr(self, 'system_config') and self.system_config:
+                            max_price = self.system_config.get('processing_limits', {}).get('max_price_gbp', 20.0)
+                        
+                        if price_float <= max_price:
+                            products.append(product)  # Always add to local return list
+                            
+                            # 🚨 DEFINITIVE FIX: Add to shared accumulator for real-time progress tracking
+                            if product_accumulator is not None:
+                                product_accumulator.append(product)
+                                log.info(f"🔄 REAL-TIME: Added product {i+1} to shared accumulator (total: {len(product_accumulator)})")
+                            
+                            log.info(f"✅ Extracted product {i+1}: {title} - £{price} (EAN: {ean or 'N/A'})")
+                        else:
+                            log.info(f"🛑 PRICE FILTER: Excluding '{title}' - £{price} > £{max_price} limit")
+                    except (ValueError, TypeError):
+                        # Keep products with invalid/missing prices for now
+                        products.append(product)
+                        if product_accumulator is not None:
+                            product_accumulator.append(product)
+                        log.warning(f"⚠️ Invalid price for '{title}': {price}")
+                    
+                    # Call progress callback AFTER successful product extraction
+                    if self.progress_callback:
+                        self.progress_callback('supplier_extraction', i+1, len(all_product_urls[:max_products]), product_url, product)
+                        
                 else:
                     log.warning(f"⚠️ Skipping product {i+1} - missing title or price")
                     # Additional warning for authentication system

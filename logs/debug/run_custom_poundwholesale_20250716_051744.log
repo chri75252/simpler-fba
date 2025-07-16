@@ -1,0 +1,29 @@
+2025-07-16 05:17:44,714 - utils.logger - INFO - 🔧 Logging initialised – log file: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/logs/debug/run_custom_poundwholesale_20250716_051744.log
+2025-07-16 05:17:44,715 - __main__ - INFO - 📋 Debug log file: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/logs/debug/run_custom_poundwholesale_20250716_051744.log
+2025-07-16 05:17:44,716 - __main__ - DEBUG - Debug logging initialized - full system execution details will be captured
+2025-07-16 05:17:44,723 - config.system_config_loader - ERROR - Failed to parse system config JSON: Expecting value: line 24 column 34 (char 817)
+Traceback (most recent call last):
+  File "/mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/config/system_config_loader.py", line 55, in _load
+    self._config = json.load(fh)
+                   ^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/__init__.py", line 293, in load
+    return loads(fp.read(),
+           ^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 24 column 34 (char 817)
+2025-07-16 05:17:44,739 - utils.browser_manager - INFO - 🔧 BrowserManager singleton initialized
+2025-07-16 05:17:45,348 - utils.browser_manager - INFO - 🔌 Connecting to Chrome on debug port 9222
+2025-07-16 05:17:45,488 - utils.browser_manager - INFO - 📄 Using existing context with 1 pages
+2025-07-16 05:17:45,489 - utils.browser_manager - INFO - ✅ Connected to Chrome successfully
+2025-07-16 05:17:45,489 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-16 05:17:45,490 - __main__ - INFO - 🔐 Initializing authentication service for logout detection...
+2025-07-16 05:17:45,495 - __main__ - ERROR - 🚨 Credentials for poundwholesale.co.uk not found in config. Exiting.
+2025-07-16 05:17:45,496 - __main__ - INFO - 🌐 Keeping browser persistent for next run - not closing browser
+2025-07-16 05:17:45,497 - utils.browser_manager - WARNING - Error during global cleanup: no running event loop

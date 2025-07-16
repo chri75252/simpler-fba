@@ -370,7 +370,7 @@ def financials(supplier, amazon, supplier_price_inc_vat):
     
     amazon_price_ex_vat = selling_price_inc_vat / (1 + VAT_RATE)
     output_vat = selling_price_inc_vat * VAT_RATE / (1 + VAT_RATE)
-    net_proceeds = selling_price_inc_vat - referral_fee - fba_fee - output_vat
+    net_proceeds = selling_price_inc_vat - referral_fee - fba_fee - output_vat - supplier_price_inc_vat
     hmrc = output_vat - input_vat
     net_profit = net_proceeds - hmrc - PREP_COST - SHIP_COST
     

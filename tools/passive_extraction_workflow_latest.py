@@ -3002,8 +3002,9 @@ Return ONLY valid JSON, no additional text."""
         if not profitable_results:
             self.log.info("No profitable products found in this run.")
             return
+        from utils.path_manager import path_manager
         output_filename = f"fba_profitable_finds_{supplier_name}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
-        output_path = os.path.join(self.output_dir, output_filename)
+        output_path = path_manager.get_output_path("FBA_ANALYSIS", "profitable_reports", output_filename)
         try:
             with open(output_path, "w", encoding="utf-8") as f:
                 json.dump(profitable_results, f, indent=2, ensure_ascii=False)
@@ -3346,8 +3347,9 @@ Return ONLY valid JSON, no additional text."""
         if not profitable_products:
             self.log.info("No profitable products found in this run.")
             return
+        from utils.path_manager import path_manager
         output_filename = f"fba_profitable_finds_{self.supplier_name}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
-        output_path = os.path.join(self.output_dir, output_filename)
+        output_path = path_manager.get_output_path("FBA_ANALYSIS", "profitable_reports", output_filename)
         try:
             with open(output_path, "w", encoding="utf-8") as f:
                 json.dump(profitable_products, f, indent=2, ensure_ascii=False)
@@ -3690,8 +3692,9 @@ Return ONLY valid JSON, no additional text."""
         if not profitable_products:
             self.log.info("No profitable products found in this run.")
             return
+        from utils.path_manager import path_manager
         output_filename = f"fba_profitable_finds_{self.supplier_name}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
-        output_path = os.path.join(self.output_dir, output_filename)
+        output_path = path_manager.get_output_path("FBA_ANALYSIS", "profitable_reports", output_filename)
         try:
             with open(output_path, "w", encoding="utf-8") as f:
                 json.dump(profitable_products, f, indent=2, ensure_ascii=False)
@@ -4034,8 +4037,9 @@ Return ONLY valid JSON, no additional text."""
         if not profitable_products:
             self.log.info("No profitable products found in this run.")
             return
+        from utils.path_manager import path_manager
         output_filename = f"fba_profitable_finds_{self.supplier_name}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
-        output_path = os.path.join(self.output_dir, output_filename)
+        output_path = path_manager.get_output_path("FBA_ANALYSIS", "profitable_reports", output_filename)
         try:
             with open(output_path, "w", encoding="utf-8") as f:
                 json.dump(profitable_products, f, indent=2, ensure_ascii=False)
@@ -4378,8 +4382,9 @@ Return ONLY valid JSON, no additional text."""
         if not profitable_products:
             self.log.info("No profitable products found in this run.")
             return
+        from utils.path_manager import path_manager
         output_filename = f"fba_profitable_finds_{self.supplier_name}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
-        output_path = os.path.join(self.output_dir, output_filename)
+        output_path = path_manager.get_output_path("FBA_ANALYSIS", "profitable_reports", output_filename)
         try:
             with open(output_path, "w", encoding="utf-8") as f:
                 json.dump(profitable_products, f, indent=2, ensure_ascii=False)
@@ -4722,8 +4727,9 @@ Return ONLY valid JSON, no additional text."""
         if not profitable_products:
             self.log.info("No profitable products found in this run.")
             return
+        from utils.path_manager import path_manager
         output_filename = f"fba_profitable_finds_{self.supplier_name}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
-        output_path = os.path.join(self.output_dir, output_filename)
+        output_path = path_manager.get_output_path("FBA_ANALYSIS", "profitable_reports", output_filename)
         try:
             with open(output_path, "w", encoding="utf-8") as f:
                 json.dump(profitable_products, f, indent=2, ensure_ascii=False)
@@ -5066,8 +5072,9 @@ Return ONLY valid JSON, no additional text."""
         if not profitable_products:
             self.log.info("No profitable products found in this run.")
             return
+        from utils.path_manager import path_manager
         output_filename = f"fba_profitable_finds_{self.supplier_name}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
-        output_path = os.path.join(self.output_dir, output_filename)
+        output_path = path_manager.get_output_path("FBA_ANALYSIS", "profitable_reports", output_filename)
         try:
             with open(output_path, "w", encoding="utf-8") as f:
                 json.dump(profitable_products, f, indent=2, ensure_ascii=False)
@@ -5410,8 +5417,9 @@ Return ONLY valid JSON, no additional text."""
         if not profitable_products:
             self.log.info("No profitable products found in this run.")
             return
+        from utils.path_manager import path_manager
         output_filename = f"fba_profitable_finds_{self.supplier_name}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
-        output_path = os.path.join(self.output_dir, output_filename)
+        output_path = path_manager.get_output_path("FBA_ANALYSIS", "profitable_reports", output_filename)
         try:
             with open(output_path, "w", encoding="utf-8") as f:
                 json.dump(profitable_products, f, indent=2, ensure_ascii=False)
@@ -5754,8 +5762,9 @@ Return ONLY valid JSON, no additional text."""
         if not profitable_products:
             self.log.info("No profitable products found in this run.")
             return
+        from utils.path_manager import path_manager
         output_filename = f"fba_profitable_finds_{self.supplier_name}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
-        output_path = os.path.join(self.output_dir, output_filename)
+        output_path = path_manager.get_output_path("FBA_ANALYSIS", "profitable_reports", output_filename)
         try:
             with open(output_path, "w", encoding="utf-8") as f:
                 json.dump(profitable_products, f, indent=2, ensure_ascii=False)

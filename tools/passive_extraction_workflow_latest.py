@@ -2911,150 +2911,6 @@ Return ONLY valid JSON, no additional text."""
         return amazon_product_data
 
 
-    def _combine_data(self, supplier_data: Dict[str, Any], amazon_data: Dict[str, Any], session_id: str) -> Dict[str, Any]:
-        """Combine supplier and Amazon data and calculate financial metrics."""
-        combined = {
-            "supplier_product_info": supplier_data,
-            "amazon_product_info": amazon_data,
-            "analysis_timestamp": datetime.now().isoformat(),
-            "session_id": session_id
-        }
-        # Financial calculation is now handled within the main run loop before this function is called
-        # This function is primarily for combining data and adding match validation
-        match_validation = self._validate_product_match(supplier_data, amazon_data)
-        combined["match_validation"] = match_validation
-        return combined
-
-    def _overlap_score(self, title_a: str, title_b: str) -> float:
-        """Calculate word overlap score between two titles"""
-        a = set(re.sub(r'[^\w\s]', ' ', title_a.lower()).split())
-        b = set(re.sub(r'[^\w\s]', ' ', title_b.lower()).split())
-        return len(a & b) / max(1, len(a))
-    
-    def _sanitize_filename(self, title: str) -> str:
-        """Sanitize product title for use in filename"""
-        if not title:
-            return "unknown_title"
-        # Remove or replace problematic characters
-        sanitized = re.sub(r'[^\w\s-]', '', title)
-        sanitized = re.sub(r'\s+', '_', sanitized)
-        return sanitized[:50]  # Limit length to 50 chars
-
-    def _validate_product_match(self, supplier_product: Dict[str, Any], amazon_product: Dict[str, Any]) -> Dict[str, Any]:
-        """Validate the match between supplier and Amazon products using configurable thresholds."""
-        # CRITICAL FIX: Use configurable matching thresholds instead of hardcoded values
-        matching_thresholds = self.system_config.get("performance", {}).get("matching_thresholds", {})
-        
-        # Get configurable thresholds with fallback to more conservative defaults
-        title_similarity_threshold = matching_thresholds.get("title_similarity", 0.25)
-        medium_title_similarity = matching_thresholds.get("medium_title_similarity", 0.5) 
-        high_title_similarity = matching_thresholds.get("high_title_similarity", 0.75)
-        
-        title_overlap_score = self._overlap_score(supplier_product.get("title", ""), amazon_product.get("title", ""))
-
-        match_quality = "low"
-        confidence = 0.0
-        
-        # Use configurable thresholds - much more strict than previous hardcoded values
-        if title_overlap_score >= high_title_similarity:
-            match_quality = "high"
-            confidence = 0.9
-        elif title_overlap_score >= medium_title_similarity:
-            match_quality = "medium"
-            confidence = 0.6
-        elif title_overlap_score >= title_similarity_threshold:
-            match_quality = "low"
-            confidence = 0.3
-        else:
-            match_quality = "very_low"
-            confidence = 0.1
-
-        self.log.debug(f"🔍 MATCH VALIDATION: '{supplier_product.get('title', 'Unknown')}' vs '{amazon_product.get('title', 'Unknown')}' = {title_overlap_score:.2f} ({match_quality}, {confidence:.1%})")
-        
-        return {"match_quality": match_quality, "confidence": confidence, "title_overlap_score": title_overlap_score}
-
-    def _is_product_meeting_criteria(self, combined_data: Dict[str, Any]) -> bool:
-        """Check if a product meets all defined business criteria."""
-        # This function is now largely redundant as profitability checks are done in the main loop.
-        # However, it can be used for other criteria like sales rank, reviews, etc.
-        amazon_data = combined_data.get("amazon_product_info", {})
-        financials = combined_data.get("financials", {})
-        # Check profitability (already done, but for completeness)
-        is_profitable = financials.get("ROI", 0) > MIN_ROI_PERCENT and financials.get("NetProfit", 0) > MIN_PROFIT_PER_UNIT
-        # Check Amazon listing quality
-        meets_rating = amazon_data.get("rating", 0) >= MIN_RATING
-        meets_reviews = amazon_data.get("reviews", 0) >= MIN_REVIEWS
-        meets_sales_rank = amazon_data.get("sales_rank", MAX_SALES_RANK + 1) <= MAX_SALES_RANK
-        # Check for battery products (using the helper function)
-        is_battery = is_battery_title(amazon_data.get("title", "")) or is_battery_title(combined_data["supplier_product_info"].get("title", ""))
-        # Check for other non-FBA friendly keywords
-        is_non_fba_friendly = any(k in amazon_data.get("title", "").lower() for k in NON_FBA_FRIENDLY_KEYWORDS) or \
-                              any(k in combined_data["supplier_product_info"].get("title", "").lower() for k in NON_FBA_FRIENDLY_KEYWORDS)
-        # All criteria must be met
-        return is_profitable and meets_rating and meets_reviews and meets_sales_rank and not is_battery and not is_non_fba_friendly
-
-    def _apply_batch_synchronization(self, max_products_per_cycle: int, 
-                                   supplier_extraction_batch_size: int,
-                                   batch_sync_config: Dict[str, Any]) -> Tuple[int, int]:
-        """
-        Apply batch synchronization to align all batch sizes consistently.
-        Returns updated max_products_per_cycle and supplier_extraction_batch_size.
-        """
-        target_batch_size = batch_sync_config.get("target_batch_size", 3)
-        synchronize_all = batch_sync_config.get("synchronize_all_batch_sizes", False)
-        validation_config = batch_sync_config.get("validation", {})
-        
-        self.log.info(f"🔄 BATCH SYNCHRONIZATION: Enabled")
-        self.log.info(f"   target_batch_size: {target_batch_size}")
-        self.log.info(f"   synchronize_all_batch_sizes: {synchronize_all}")
-        
-        original_values = {
-            "max_products_per_cycle": max_products_per_cycle,
-            "supplier_extraction_batch_size": supplier_extraction_batch_size,
-            "linking_map_batch_size": self.system_config.get("system", {}).get("linking_map_batch_size", 3),
-            "financial_report_batch_size": self.system_config.get("system", {}).get("financial_report_batch_size", 3)
-        }
-        
-        # Check for mismatched sizes and warn if configured
-        if validation_config.get("warn_on_mismatched_sizes", True):
-            unique_sizes = set(original_values.values())
-            if len(unique_sizes) > 1:
-                self.log.warning(f"⚠️ BATCH SYNC WARNING: Mismatched batch sizes detected: {original_values}")
-                self.log.warning(f"   Unique sizes found: {sorted(unique_sizes)}")
-        
-        if synchronize_all:
-            # Synchronize all batch sizes to target
-            new_max_products_per_cycle = target_batch_size
-            new_supplier_extraction_batch_size = target_batch_size
-            
-            # Also update system config values in memory for consistency
-            if "system" in self.system_config:
-                self.system_config["system"]["max_products_per_cycle"] = target_batch_size
-                self.system_config["system"]["supplier_extraction_batch_size"] = target_batch_size
-                self.system_config["system"]["linking_map_batch_size"] = target_batch_size
-                self.system_config["system"]["financial_report_batch_size"] = target_batch_size
-            
-            self.log.info(f"✅ BATCH SYNC: All batch sizes synchronized to {target_batch_size}")
-            self.log.info(f"   Updated values: max_products_per_cycle={new_max_products_per_cycle}, supplier_extraction_batch_size={new_supplier_extraction_batch_size}")
-            
-        else:
-            # Only synchronize the two main processing batch sizes
-            new_max_products_per_cycle = target_batch_size
-            new_supplier_extraction_batch_size = target_batch_size
-            
-            self.log.info(f"✅ BATCH SYNC: Main processing batch sizes synchronized to {target_batch_size}")
-            self.log.info(f"   Updated values: max_products_per_cycle={new_max_products_per_cycle}, supplier_extraction_batch_size={new_supplier_extraction_batch_size}")
-        
-        return new_max_products_per_cycle, new_supplier_extraction_batch_size
-
-
-
-    def _get_cached_products_path(self, category_url: str):
-        """Helper to get the path for a category's product cache file."""
-        category_filename = f"{self.supplier_name}_{category_url.split('/')[-1]}_products.json"
-        cache_dir = os.path.join(self.output_dir, 'CACHE', 'supplier_cache')
-        return os.path.join(cache_dir, category_filename)
-
 
     def _combine_data(self, supplier_data: Dict[str, Any], amazon_data: Dict[str, Any], session_id: str) -> Dict[str, Any]:
         """Combine supplier and Amazon data and calculate financial metrics."""
@@ -3636,6 +3492,152 @@ Return ONLY valid JSON, no additional text."""
         return os.path.join(cache_dir, category_filename)
 
 
+
+    def _combine_data(self, supplier_data: Dict[str, Any], amazon_data: Dict[str, Any], session_id: str) -> Dict[str, Any]:
+        """Combine supplier and Amazon data and calculate financial metrics."""
+        combined = {
+            "supplier_product_info": supplier_data,
+            "amazon_product_info": amazon_data,
+            "analysis_timestamp": datetime.now().isoformat(),
+            "session_id": session_id
+        }
+        # Financial calculation is now handled within the main run loop before this function is called
+        # This function is primarily for combining data and adding match validation
+        match_validation = self._validate_product_match(supplier_data, amazon_data)
+        combined["match_validation"] = match_validation
+        return combined
+
+    def _overlap_score(self, title_a: str, title_b: str) -> float:
+        """Calculate word overlap score between two titles"""
+        a = set(re.sub(r'[^\w\s]', ' ', title_a.lower()).split())
+        b = set(re.sub(r'[^\w\s]', ' ', title_b.lower()).split())
+        return len(a & b) / max(1, len(a))
+    
+    def _sanitize_filename(self, title: str) -> str:
+        """Sanitize product title for use in filename"""
+        if not title:
+            return "unknown_title"
+        # Remove or replace problematic characters
+        sanitized = re.sub(r'[^\w\s-]', '', title)
+        sanitized = re.sub(r'\s+', '_', sanitized)
+        return sanitized[:50]  # Limit length to 50 chars
+
+    def _validate_product_match(self, supplier_product: Dict[str, Any], amazon_product: Dict[str, Any]) -> Dict[str, Any]:
+        """Validate the match between supplier and Amazon products using configurable thresholds."""
+        # CRITICAL FIX: Use configurable matching thresholds instead of hardcoded values
+        matching_thresholds = self.system_config.get("performance", {}).get("matching_thresholds", {})
+        
+        # Get configurable thresholds with fallback to more conservative defaults
+        title_similarity_threshold = matching_thresholds.get("title_similarity", 0.25)
+        medium_title_similarity = matching_thresholds.get("medium_title_similarity", 0.5) 
+        high_title_similarity = matching_thresholds.get("high_title_similarity", 0.75)
+        
+        title_overlap_score = self._overlap_score(supplier_product.get("title", ""), amazon_product.get("title", ""))
+
+        match_quality = "low"
+        confidence = 0.0
+        
+        # Use configurable thresholds - much more strict than previous hardcoded values
+        if title_overlap_score >= high_title_similarity:
+            match_quality = "high"
+            confidence = 0.9
+        elif title_overlap_score >= medium_title_similarity:
+            match_quality = "medium"
+            confidence = 0.6
+        elif title_overlap_score >= title_similarity_threshold:
+            match_quality = "low"
+            confidence = 0.3
+        else:
+            match_quality = "very_low"
+            confidence = 0.1
+
+        self.log.debug(f"🔍 MATCH VALIDATION: '{supplier_product.get('title', 'Unknown')}' vs '{amazon_product.get('title', 'Unknown')}' = {title_overlap_score:.2f} ({match_quality}, {confidence:.1%})")
+        
+        return {"match_quality": match_quality, "confidence": confidence, "title_overlap_score": title_overlap_score}
+
+    def _is_product_meeting_criteria(self, combined_data: Dict[str, Any]) -> bool:
+        """Check if a product meets all defined business criteria."""
+        # This function is now largely redundant as profitability checks are done in the main loop.
+        # However, it can be used for other criteria like sales rank, reviews, etc.
+        amazon_data = combined_data.get("amazon_product_info", {})
+        financials = combined_data.get("financials", {})
+        # Check profitability (already done, but for completeness)
+        is_profitable = financials.get("ROI", 0) > MIN_ROI_PERCENT and financials.get("NetProfit", 0) > MIN_PROFIT_PER_UNIT
+        # Check Amazon listing quality
+        meets_rating = amazon_data.get("rating", 0) >= MIN_RATING
+        meets_reviews = amazon_data.get("reviews", 0) >= MIN_REVIEWS
+        meets_sales_rank = amazon_data.get("sales_rank", MAX_SALES_RANK + 1) <= MAX_SALES_RANK
+        # Check for battery products (using the helper function)
+        is_battery = is_battery_title(amazon_data.get("title", "")) or is_battery_title(combined_data["supplier_product_info"].get("title", ""))
+        # Check for other non-FBA friendly keywords
+        is_non_fba_friendly = any(k in amazon_data.get("title", "").lower() for k in NON_FBA_FRIENDLY_KEYWORDS) or \
+                              any(k in combined_data["supplier_product_info"].get("title", "").lower() for k in NON_FBA_FRIENDLY_KEYWORDS)
+        # All criteria must be met
+        return is_profitable and meets_rating and meets_reviews and meets_sales_rank and not is_battery and not is_non_fba_friendly
+
+    def _apply_batch_synchronization(self, max_products_per_cycle: int, 
+                                   supplier_extraction_batch_size: int,
+                                   batch_sync_config: Dict[str, Any]) -> Tuple[int, int]:
+        """
+        Apply batch synchronization to align all batch sizes consistently.
+        Returns updated max_products_per_cycle and supplier_extraction_batch_size.
+        """
+        target_batch_size = batch_sync_config.get("target_batch_size", 3)
+        synchronize_all = batch_sync_config.get("synchronize_all_batch_sizes", False)
+        validation_config = batch_sync_config.get("validation", {})
+        
+        self.log.info(f"🔄 BATCH SYNCHRONIZATION: Enabled")
+        self.log.info(f"   target_batch_size: {target_batch_size}")
+        self.log.info(f"   synchronize_all_batch_sizes: {synchronize_all}")
+        
+        original_values = {
+            "max_products_per_cycle": max_products_per_cycle,
+            "supplier_extraction_batch_size": supplier_extraction_batch_size,
+            "linking_map_batch_size": self.system_config.get("system", {}).get("linking_map_batch_size", 3),
+            "financial_report_batch_size": self.system_config.get("system", {}).get("financial_report_batch_size", 3)
+        }
+        
+        # Check for mismatched sizes and warn if configured
+        if validation_config.get("warn_on_mismatched_sizes", True):
+            unique_sizes = set(original_values.values())
+            if len(unique_sizes) > 1:
+                self.log.warning(f"⚠️ BATCH SYNC WARNING: Mismatched batch sizes detected: {original_values}")
+                self.log.warning(f"   Unique sizes found: {sorted(unique_sizes)}")
+        
+        if synchronize_all:
+            # Synchronize all batch sizes to target
+            new_max_products_per_cycle = target_batch_size
+            new_supplier_extraction_batch_size = target_batch_size
+            
+            # Also update system config values in memory for consistency
+            if "system" in self.system_config:
+                self.system_config["system"]["max_products_per_cycle"] = target_batch_size
+                self.system_config["system"]["supplier_extraction_batch_size"] = target_batch_size
+                self.system_config["system"]["linking_map_batch_size"] = target_batch_size
+                self.system_config["system"]["financial_report_batch_size"] = target_batch_size
+            
+            self.log.info(f"✅ BATCH SYNC: All batch sizes synchronized to {target_batch_size}")
+            self.log.info(f"   Updated values: max_products_per_cycle={new_max_products_per_cycle}, supplier_extraction_batch_size={new_supplier_extraction_batch_size}")
+            
+        else:
+            # Only synchronize the two main processing batch sizes
+            new_max_products_per_cycle = target_batch_size
+            new_supplier_extraction_batch_size = target_batch_size
+            
+            self.log.info(f"✅ BATCH SYNC: Main processing batch sizes synchronized to {target_batch_size}")
+            self.log.info(f"   Updated values: max_products_per_cycle={new_max_products_per_cycle}, supplier_extraction_batch_size={new_supplier_extraction_batch_size}")
+        
+        return new_max_products_per_cycle, new_supplier_extraction_batch_size
+
+
+
+    def _get_cached_products_path(self, category_url: str):
+        """Helper to get the path for a category's product cache file."""
+        category_filename = f"{self.supplier_name}_{category_url.split('/')[-1]}_products.json"
+        cache_dir = os.path.join(self.output_dir, 'CACHE', 'supplier_cache')
+        return os.path.join(cache_dir, category_filename)
+
+
     def _combine_data(self, supplier_data: Dict[str, Any], amazon_data: Dict[str, Any], session_id: str) -> Dict[str, Any]:
         """Combine supplier and Amazon data and calculate financial metrics."""
         combined = {
@@ -3926,6 +3928,7 @@ Return ONLY valid JSON, no additional text."""
         return os.path.join(cache_dir, category_filename)
 
 
+
     def _combine_data(self, supplier_data: Dict[str, Any], amazon_data: Dict[str, Any], session_id: str) -> Dict[str, Any]:
         """Combine supplier and Amazon data and calculate financial metrics."""
         combined = {
@@ -4062,6 +4065,7 @@ Return ONLY valid JSON, no additional text."""
         
         return new_max_products_per_cycle, new_supplier_extraction_batch_size
 
+<
 
 
     def _get_cached_products_path(self, category_url: str):
@@ -4075,8 +4079,9 @@ Return ONLY valid JSON, no additional text."""
         if not profitable_products:
             self.log.info("No profitable products found in this run.")
             return
+        from utils.path_manager import path_manager
         output_filename = f"fba_profitable_finds_{self.supplier_name}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
-        output_path = os.path.join(self.output_dir, output_filename)
+        output_path = path_manager.get_output_path("FBA_ANALYSIS", "profitable_reports", output_filename)
         try:
             with open(output_path, "w", encoding="utf-8") as f:
                 json.dump(profitable_products, f, indent=2, ensure_ascii=False)

@@ -1179,9 +1179,20 @@ class PassiveExtractionWorkflow:
                         continue
 
                     # Extract Amazon data
+                    self.log.info(f"🔍 DEBUG: About to extract Amazon data for product: '{product_data.get('title')}'")
+                    self.log.info(f"🔍 DEBUG: Product EAN/barcode: {product_data.get('ean')} / {product_data.get('barcode')}")
+                    
                     amazon_data = await self._get_amazon_data(product_data)
+                    
+                    self.log.info(f"🔍 DEBUG: Amazon data extraction result: {type(amazon_data)}")
+                    if amazon_data:
+                        self.log.info(f"🔍 DEBUG: Amazon data keys: {list(amazon_data.keys()) if isinstance(amazon_data, dict) else 'not a dict'}")
+                        if isinstance(amazon_data, dict) and "error" not in amazon_data:
+                            self.log.info(f"🔍 DEBUG: Amazon ASIN extracted: {amazon_data.get('asin')}")
+                        
                     if not amazon_data or "error" in amazon_data:
                         self.log.warning(f"Could not retrieve valid Amazon data for '{product_data.get('title')}'. Skipping.")
+                        self.log.warning(f"🔍 DEBUG: Amazon data failure: {amazon_data}")
                         self.state_manager.mark_product_processed(product_data.get("url"), "failed_amazon_extraction")
                         continue
 
@@ -1218,6 +1229,12 @@ class PassiveExtractionWorkflow:
                     actual_search_method = amazon_data.get("_search_method_used", "unknown")
                     
                     # Create linking entry with accurate method and confidence
+                    self.log.info(f"🔍 DEBUG: Linking map entry conditions check:")
+                    self.log.info(f"   supplier_ean: '{supplier_ean}' (valid: {bool(supplier_ean)})")
+                    self.log.info(f"   product_title: '{product_data.get('title')}' (valid: {bool(product_data.get('title'))})")
+                    self.log.info(f"   asin: '{asin}' (valid: {bool(asin and asin != 'NO_ASIN')})")
+                    self.log.info(f"   overall condition: {bool((supplier_ean or product_data.get('title')) and asin and asin != 'NO_ASIN')}")
+                    
                     if (supplier_ean or product_data.get("title")) and asin and asin != "NO_ASIN":
                         # Determine confidence based on actual search success, not just supplier data availability
                         if actual_search_method == "EAN":
@@ -1239,30 +1256,35 @@ class PassiveExtractionWorkflow:
                             "created_at": datetime.now().isoformat(),
                             "supplier_url": product_data.get("url")
                         }
-                        self.linking_map.append(linking_entry)
+                        # CRITICAL FIX: Use dictionary assignment, not append
+                        self.linking_map[supplier_ean or product_data.get("url")] = linking_entry
                         self.log.info(f"✅ Added linking map entry: {actual_search_method.upper()} search {supplier_ean or 'NO_EAN'} → ASIN {asin}")
                         self.log.info(f"🔍 DEBUG: Current linking_map size: {len(self.linking_map)} entries")
+                        self.log.info(f"🔍 DEBUG: Linking entry created: {linking_entry}")
                     else:
-                        self.log.warning(f"⚠️ Could not create linking map entry: EAN={supplier_ean}, ASIN={asin}")
-                        self.log.warning(f"🔍 DEBUG: Condition failed - supplier_ean: '{supplier_ean}', asin: '{asin}'")
+                        self.log.error(f"❌ CRITICAL: Could not create linking map entry - condition failed!")
+                        self.log.error(f"   supplier_ean: '{supplier_ean}' (bool: {bool(supplier_ean)})")
+                        self.log.error(f"   product_title: '{product_data.get('title')}' (bool: {bool(product_data.get('title'))})")
+                        self.log.error(f"   asin: '{asin}' (bool: {bool(asin and asin != 'NO_ASIN')})")
+                        self.log.error(f"   This means NO linking map entries will be created and saved!")
 
                     # Perform financial analysis for individual product
                     try:
                         # Import financial calculation functions directly to avoid full cache dependency
                         from FBA_Financial_calculator import financials as calc_financials
                         
-                        # Extract supplier price with validation
-                        supplier_price = product_data.get("price", 0)
-                        if isinstance(supplier_price, str):
+                        # Extract supplier price with validation from the linking map entry
+                        supplier_price_inc_vat = linking_entry.get("supplier_price", 0)
+                        if isinstance(supplier_price_inc_vat, str):
                             # Clean price string and convert to float
                             import re
-                            price_clean = re.sub(r'[^0-9.]', '', supplier_price)
-                            supplier_price = float(price_clean) if price_clean else 0
-                        elif supplier_price is None:
-                            supplier_price = 0
+                            price_clean = re.sub(r'[^0-9.]', '', supplier_price_inc_vat)
+                            supplier_price_inc_vat = float(price_clean) if price_clean else 0
+                        elif supplier_price_inc_vat is None:
+                            supplier_price_inc_vat = 0
                             
                         # Calculate financial metrics for this specific product
-                        financials = calc_financials(product_data, amazon_data, supplier_price)
+                        financials = calc_financials(product_data, amazon_data, supplier_price_inc_vat)
                         
                         if not financials:
                             self.log.warning(f"Financial calculation returned empty for '{product_data.get('title')}'")
@@ -1297,23 +1319,25 @@ class PassiveExtractionWorkflow:
                         self.log.info(f"📊 Periodic save at product {overall_product_index} (linking_map_batch_size: {linking_map_batch})")
 
             # Final save and completion
-            self.state_manager.complete_processing()
-            self._save_linking_map(self.supplier_name)
-            self._save_final_report(profitable_results)
-            
-            # CRITICAL FIX: Generate comprehensive financial report (was missing causing 6-day gap)
+            self.log.info("🔍 DEBUG: Starting final save and completion phase...")
             try:
-                from tools.FBA_Financial_calculator import run_calculations
-                self.log.info("🧮 Generating comprehensive financial report...")
-                financial_results = run_calculations(self.supplier_name)
-                if financial_results and financial_results.get('file_path'):
-                    self.log.info(f"✅ Financial report generated: {financial_results['file_path']}")
-                else:
-                    self.log.warning("⚠️ Financial report generated but no file path returned")
-            except ImportError as ie:
-                self.log.error(f"❌ Could not import FBA_Financial_calculator: {ie}")
-            except Exception as e:
-                self.log.error(f"❌ Error generating financial report: {e}")
+                self.log.info("🔍 DEBUG: Calling state_manager.complete_processing()...")
+                self.state_manager.complete_processing()
+                self.log.info("✅ State manager processing completed")
+                
+                self.log.info(f"🔍 DEBUG: Calling _save_linking_map with supplier_name='{self.supplier_name}'...")
+                self._save_linking_map(self.supplier_name)
+                self.log.info("✅ Linking map save completed")
+                
+                self.log.info(f"🔍 DEBUG: Calling _save_final_report with {len(profitable_results)} profitable results...")
+                self._save_final_report(profitable_results, self.supplier_name)
+                self.log.info("✅ Final report save completed")
+                
+            except Exception as final_save_error:
+                self.log.error(f"❌ CRITICAL: Error during final save phase: {final_save_error}", exc_info=True)
+                self.log.error("This explains why linking map and financial reports are not being saved!")
+            
+            
             
             self.log.info(f"📊 Processing state file saved: {self.state_manager.state_file_path}")
             self.log.info(f"📊 Final state summary: {self.state_manager.get_state_summary()}")
@@ -1361,33 +1385,58 @@ class PassiveExtractionWorkflow:
     def _save_linking_map(self, supplier_name: str):
         """Save linking map to supplier-specific JSON file using atomic write pattern"""
         self.log.info(f"🔍 DEBUG: _save_linking_map called with {len(self.linking_map)} entries for supplier {supplier_name}")
+        self.log.info(f"🔍 DEBUG: linking_map type: {type(self.linking_map)}, value: {self.linking_map}")
+        
         if not self.linking_map:
-            self.log.info("Empty linking map - nothing to save.")
+            self.log.warning("⚠️ CRITICAL: Empty linking map - nothing to save. This suggests linking map entries are not being created!")
+            self.log.warning(f"⚠️ DEBUG: self.linking_map = {self.linking_map}")
             return
             
         # Create supplier-specific directory
         linking_map_dir = os.path.join(BASE_DIR, "OUTPUTS", "FBA_ANALYSIS", "linking_maps", supplier_name)
-        os.makedirs(linking_map_dir, exist_ok=True)
+        self.log.info(f"🔍 DEBUG: Creating directory: {linking_map_dir}")
+        
+        try:
+            os.makedirs(linking_map_dir, exist_ok=True)
+            self.log.info(f"✅ Directory created successfully: {linking_map_dir}")
+        except Exception as dir_error:
+            self.log.error(f"❌ CRITICAL: Failed to create directory {linking_map_dir}: {dir_error}")
+            return
         
         linking_map_path = os.path.join(linking_map_dir, "linking_map.json")
+        self.log.info(f"🔍 DEBUG: Target file path: {linking_map_path}")
         
         # Use atomic write pattern to prevent corruption
         temp_path = f"{linking_map_path}.tmp"
+        self.log.info(f"🔍 DEBUG: Temporary file path: {temp_path}")
+        
         try:
+            self.log.info(f"🔍 DEBUG: Writing linking map data to temporary file...")
             # First write to temporary file
             with open(temp_path, 'w', encoding='utf-8') as f:
                 json.dump(self.linking_map, f, indent=2, ensure_ascii=False)
+            self.log.info(f"✅ Temporary file written successfully: {temp_path}")
                 
             # Then atomically replace the original file
+            self.log.info(f"🔍 DEBUG: Moving temporary file to final location...")
             os.replace(temp_path, linking_map_path)
             self.log.info(f"✅ Successfully saved linking map with {len(self.linking_map)} entries to {linking_map_path}")
+            
+            # Verify the file was actually created and has content
+            if os.path.exists(linking_map_path):
+                file_size = os.path.getsize(linking_map_path)
+                self.log.info(f"✅ VERIFICATION: File exists at {linking_map_path} with size {file_size} bytes")
+            else:
+                self.log.error(f"❌ CRITICAL: File was not created at {linking_map_path}")
+                
         except Exception as e:
-            self.log.error(f"Error saving linking map: {e}")
+            self.log.error(f"❌ CRITICAL: Error saving linking map: {e}", exc_info=True)
             if os.path.exists(temp_path):
                 try:
                     os.remove(temp_path)
-                except:
-                    pass
+                    self.log.info(f"🧹 Cleaned up temporary file: {temp_path}")
+                except Exception as cleanup_error:
+                    self.log.error(f"❌ Failed to clean up temporary file: {cleanup_error}")
 
     def _classify_url(self, url: str) -> str:
         """return 'friendly' | 'avoid' | 'neutral' based on patterns (priority order)."""
@@ -2743,34 +2792,48 @@ Return ONLY valid JSON, no additional text."""
         
         for pattern in cache_patterns:
             cache_path_pattern = os.path.join(amazon_cache_dir, pattern)
-            matching_files = glob.glob(cache_path_pattern)
-            
-            if matching_files:
-                # Use the most recently modified file
-                latest_file = max(matching_files, key=os.path.getmtime)
+            matching_files = sorted(glob.glob(cache_path_pattern), key=os.path.getmtime, reverse=True)
+
+            for cache_file in matching_files:
                 try:
-                    with open(latest_file, 'r', encoding='utf-8') as f:
+                    with open(cache_file, 'r', encoding='utf-8') as f:
                         cached_data = json.load(f)
-                    
-                    # FIX 2: Copy existing cache to new EAN-specific filename
-                    if supplier_ean:
-                        new_filename = f"amazon_{asin}_{supplier_ean}.json"
-                        new_filepath = os.path.join(amazon_cache_dir, new_filename)
-                        
-                        # Only copy if the new file doesn't already exist
-                        if not os.path.exists(new_filepath):
-                            try:
-                                with open(new_filepath, 'w', encoding='utf-8') as f:
-                                    json.dump(cached_data, f, indent=2, ensure_ascii=False)
-                                self.log.info(f"📋 Copied existing cache to EAN-specific file: {new_filename}")
-                            except Exception as copy_error:
-                                self.log.error(f"Error copying cache to EAN-specific file: {copy_error}")
-                    
-                    self.log.info(f"📋 Found ASIN match in cache: {os.path.basename(latest_file)}")
-                    return cached_data
-                    
                 except Exception as e:
-                    self.log.error(f"Error loading cached Amazon data from {latest_file}: {e}")
+                    self.log.error(f"Error loading cached Amazon data from {cache_file}: {e}")
+                    continue
+
+                # Gather all EAN values present in the cache file
+                eans_in_cache = set()
+                if cached_data.get("ean"):
+                    eans_in_cache.add(str(cached_data.get("ean")))
+                if cached_data.get("ean_on_page"):
+                    eans_in_cache.add(str(cached_data.get("ean_on_page")))
+                for ean in cached_data.get("eans_on_page", []):
+                    eans_in_cache.add(str(ean))
+
+                if supplier_ean and supplier_ean not in eans_in_cache:
+                    self.log.info(
+                        f"Skipping cache file {os.path.basename(cache_file)} due to EAN mismatch"
+                    )
+                    continue
+
+                # Copy existing cache to new EAN-specific filename if needed
+                if supplier_ean:
+                    new_filename = f"amazon_{asin}_{supplier_ean}.json"
+                    new_filepath = os.path.join(amazon_cache_dir, new_filename)
+
+                    if not os.path.exists(new_filepath):
+                        try:
+                            with open(new_filepath, 'w', encoding='utf-8') as f:
+                                json.dump(cached_data, f, indent=2, ensure_ascii=False)
+                            self.log.info(
+                                f"📋 Copied existing cache to EAN-specific file: {new_filename}"
+                            )
+                        except Exception as copy_error:
+                            self.log.error(f"Error copying cache to EAN-specific file: {copy_error}")
+
+                self.log.info(f"📋 Found ASIN match in cache: {os.path.basename(cache_file)}")
+                return cached_data
         
         return None
 
@@ -2816,21 +2879,26 @@ Return ONLY valid JSON, no additional text."""
                                         cache_data = json.load(f)
                                         cache_ean = cache_data.get("ean") or cache_data.get("ean_on_page")
                                         
-                                        # If ASIN matches but EAN differs, copy to EAN-specific file
-                                        if cache_asin and cache_ean and cache_ean != supplier_ean:
-                                            # Create EAN-specific cache file
-                                            supplier_title = product_data.get("title", "")
-                                            filename_identifier = self._sanitize_filename(supplier_title) if supplier_title else supplier_ean
-                                            new_cache_file = f"amazon_{cache_asin}_{filename_identifier}.json"
-                                            new_cache_path = os.path.join(amazon_cache_dir, new_cache_file)
-                                            
-                                            if not os.path.exists(new_cache_path):
-                                                with open(new_cache_path, 'w', encoding='utf-8') as nf:
-                                                    json.dump(cache_data, nf, indent=2, ensure_ascii=False)
-                                                self.log.info(f"📋 Copied ASIN {cache_asin} cache to EAN-specific file: {new_cache_file}")
-                                            
+                                        # Apply EAN validation like the patched _check_amazon_cache_by_asin function
+                                        if cache_asin and cache_ean:
+                                            # Gather all EAN values present in the cache file
+                                            eans_in_cache = set()
+                                            if cache_data.get("ean"):
+                                                eans_in_cache.add(str(cache_data.get("ean")))
+                                            if cache_data.get("ean_on_page"):
+                                                eans_in_cache.add(str(cache_data.get("ean_on_page")))
+                                            for ean in cache_data.get("eans_on_page", []):
+                                                eans_in_cache.add(str(ean))
+
+                                            # Skip if supplier EAN not found in cache EANs
+                                            if supplier_ean not in eans_in_cache:
+                                                self.log.info(f"Skipping cache file {cache_file} due to EAN mismatch: {supplier_ean} not in {eans_in_cache}")
+                                                continue
+
+                                            # EAN matches - use this cache
                                             cached_data = cache_data
                                             found_asin = cache_asin
+                                            self.log.info(f"📋 Found matching EAN {supplier_ean} in cache file: {cache_file}")
                                             break
                             except Exception as e:
                                 self.log.debug(f"Error checking cache file {cache_file} for ASIN reuse: {e}")
@@ -6097,26 +6165,20 @@ Return ONLY valid JSON, no additional text."""
     async def _run_financial_analysis(self, combined_data: dict) -> dict:
         """Run financial analysis on combined supplier and Amazon data"""
         try:
-            # Import the financial calculator locally like other methods in the file
-            from FBA_Financial_calculator import run_calculations
+            # Import financial calculation functions directly to avoid full cache dependency (matches line 1253)
+            from FBA_Financial_calculator import financials as calc_financials
             
-            # Extract price data
-            supplier_price = combined_data.get("price", 0)
+            # Extract supplier price with validation (matches your Fix 1.4 pattern)
+            supplier_price_inc_vat = combined_data.get("price", 0)
             amazon_price = combined_data.get("current_price", 0)
             
             # Ensure we have valid prices
-            if supplier_price <= 0 or amazon_price <= 0:
-                self.log.warning(f"Invalid prices: supplier={supplier_price}, amazon={amazon_price}")
+            if supplier_price_inc_vat <= 0 or amazon_price <= 0:
+                self.log.warning(f"Invalid prices: supplier={supplier_price_inc_vat}, amazon={amazon_price}")
                 return {"is_profitable": False, "error": "Invalid prices"}
             
-            # Calculate financial metrics
-            financials = run_calculations(
-                supplier_price=supplier_price,
-                amazon_price=amazon_price,
-                amazon_sales_rank=combined_data.get("sales_rank", 999999),
-                amazon_rating=combined_data.get("rating", 0),
-                amazon_review_count=combined_data.get("reviews", 0)
-            )
+            # Calculate financial metrics (matches your Fix 1.1 pattern)
+            financials = calc_financials(combined_data, combined_data, supplier_price_inc_vat)
             
             # Check minimum profitability thresholds
             MIN_ROI_PERCENT = 15  # Minimum 15% ROI

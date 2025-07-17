@@ -4437,6 +4437,7 @@ Return ONLY valid JSON, no additional text."""
 
     def _load_linking_map(self, supplier_name: str) -> Dict[str, str]:
         """Load linking map from supplier-specific JSON file"""
+        from utils.path_manager import get_linking_map_path
         linking_map_path = get_linking_map_path(supplier_name)
         
         if os.path.exists(linking_map_path):
@@ -4473,6 +4474,7 @@ Return ONLY valid JSON, no additional text."""
 
     def _save_linking_map(self, supplier_name: str):
         """Save linking map to supplier-specific JSON file using atomic write pattern"""
+        from utils.path_manager import get_linking_map_path
         self.log.info(f"🔍 DEBUG: _save_linking_map called with {len(self.linking_map)} entries for supplier {supplier_name}")
         if not self.linking_map:
             self.log.info("Empty linking map - nothing to save.")

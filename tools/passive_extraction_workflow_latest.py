@@ -1350,8 +1350,8 @@ class PassiveExtractionWorkflow:
             return []
 
     def _load_linking_map(self, supplier_name: str) -> Dict[str, str]:
-        """Load linking map from supplier-specific JSON file"""
-        linking_map_path = os.path.join(BASE_DIR, "OUTPUTS", "FBA_ANALYSIS", "linking_maps", supplier_name, "linking_map.json")
+        """Load linking map using path_manager"""
+        linking_map_path = get_linking_map_path(supplier_name)
         
         if os.path.exists(linking_map_path):
             try:
@@ -1392,18 +1392,7 @@ class PassiveExtractionWorkflow:
             self.log.warning(f"⚠️ DEBUG: self.linking_map = {self.linking_map}")
             return
             
-        # Create supplier-specific directory
-        linking_map_dir = os.path.join(BASE_DIR, "OUTPUTS", "FBA_ANALYSIS", "linking_maps", supplier_name)
-        self.log.info(f"🔍 DEBUG: Creating directory: {linking_map_dir}")
-        
-        try:
-            os.makedirs(linking_map_dir, exist_ok=True)
-            self.log.info(f"✅ Directory created successfully: {linking_map_dir}")
-        except Exception as dir_error:
-            self.log.error(f"❌ CRITICAL: Failed to create directory {linking_map_dir}: {dir_error}")
-            return
-        
-        linking_map_path = os.path.join(linking_map_dir, "linking_map.json")
+        linking_map_path = get_linking_map_path(supplier_name)
         self.log.info(f"🔍 DEBUG: Target file path: {linking_map_path}")
         
         # Use atomic write pattern to prevent corruption
@@ -2106,7 +2095,7 @@ Return ONLY valid JSON, no additional text."""
             from pathlib import Path
 
             # Create API logs directory using proper path management (claude.md standards)
-            from utils.path_manager import get_api_log_path
+            from utils.path_manager import get_api_log_path, get_linking_map_path
             log_file = get_api_log_path("openai")  # This creates the proper path
 
             # Create log entry
@@ -6095,8 +6084,7 @@ Return ONLY valid JSON, no additional text."""
 
     def _load_linking_map(self, supplier_name: str) -> Dict[str, str]:
         """Load linking map from supplier-specific JSON file"""
-        BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-        linking_map_path = os.path.join(BASE_DIR, "OUTPUTS", "FBA_ANALYSIS", "linking_maps", supplier_name, "linking_map.json")
+        linking_map_path = get_linking_map_path(supplier_name)
         
         if os.path.exists(linking_map_path):
             try:
@@ -6137,12 +6125,7 @@ Return ONLY valid JSON, no additional text."""
             self.log.info("Empty linking map - nothing to save.")
             return
             
-        # Create supplier-specific directory
-        BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-        linking_map_dir = os.path.join(BASE_DIR, "OUTPUTS", "FBA_ANALYSIS", "linking_maps", supplier_name)
-        os.makedirs(linking_map_dir, exist_ok=True)
-        
-        linking_map_path = os.path.join(linking_map_dir, "linking_map.json")
+        linking_map_path = get_linking_map_path(supplier_name)
         
         # Use atomic write pattern to prevent corruption
         temp_path = f"{linking_map_path}.tmp"

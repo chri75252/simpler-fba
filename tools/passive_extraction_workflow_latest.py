@@ -4332,14 +4332,18 @@ Return ONLY valid JSON, no additional text."""
                     all_products, supplier_name, max_products_per_cycle
                 )
         
-        # Finalize hybrid processing by saving results and state
+        # Final save operations for hybrid mode
         try:
-            self._save_linking_map(supplier_name)
-            self._save_final_report(profitable_results, supplier_name)
-            self.state_manager.save_state()
+            self.state_manager.complete_processing()
+            self._save_linking_map(self.supplier_name)
+            self._save_final_report(profitable_results, self.supplier_name)
+            self.log.info(f"📊 Processing state file saved: {self.state_manager.state_file_path}")
+            self.log.info(f"📊 Final state summary: {self.state_manager.get_state_summary()}")
             self.log.info("--- Hybrid Processing Mode Finished ---")
+            self.log.info(f"Summary: {self.results_summary}")
         except Exception as save_error:
-            self.log.error(f"Error during hybrid finalization: {save_error}", exc_info=True)
+            self.log.error(f"❌ CRITICAL: Error during final save operations: {save_error}", exc_info=True)
+
 
         return profitable_results
 

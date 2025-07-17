@@ -3187,6 +3187,7 @@ Return ONLY valid JSON, no additional text."""
         try:
             self._save_linking_map(supplier_name)
             self._save_final_report(profitable_results)
+
             self.state_manager.save_state()
             self.log.info("--- Hybrid Processing Mode Finished ---")
         except Exception as save_error:

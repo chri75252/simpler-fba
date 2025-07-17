@@ -1,0 +1,290 @@
+{
+  "supplier_info": {
+    "name": "Pound Wholesale",
+    "domain": "poundwholesale.co.uk",
+    "base_url": "https://www.poundwholesale.co.uk",
+    "platform": "Magento 2",
+    "requires_login": true,
+    "wholesale_account_required": true,
+    "currency": "GBP",
+    "country": "UK"
+  },
+  
+  "login_configuration": {
+    "login_url": "https://www.poundwholesale.co.uk/customer/account/login/",
+    "login_required_for_prices": true,
+    "credentials": {
+      "email": "info@theblacksmithmarket.com",
+      "password": "0Dqixm9c&"
+    },
+    "login_selectors": {
+      "email_field": [
+        "input[name=\"email\"]",
+        "input[type=\"email\"]", 
+        "#email",
+        ".email-field"
+      ],
+      "password_field": [
+        "input[name=\"password\"]",
+        "input[type=\"password\"]", 
+        "#password",
+        ".password-field"
+      ],
+      "login_button": [
+        "button[type=\"submit\"]",
+        ".login-button",
+        "input[type=\"submit\"]",
+        "#login-btn"
+      ]
+    },
+    "login_success_indicators": [
+      "logout",
+      "account",
+      "welcome"
+    ],
+    "login_required_indicators": [
+      "text=Log in to view prices",
+      "text=Login to view prices",
+      "text=Sign in to see prices"
+    ]
+  },
+
+  "navigation_configuration": {
+    "sitemap_url": "https://www.poundwholesale.co.uk/sitemap.xml",
+    "navigation_strategy": "category_first",
+    "homepage_products_unreliable": true,
+    "use_sitemap_categories": true,
+    "category_selectors": {
+      "product_items": [
+        "li.product-item",
+        ".product-item",
+        ".product-card",
+        "div.item"
+      ],
+      "product_links": [
+        "a.product-item-link",
+        ".product-item a",
+        ".product-card a",
+        "a[href*=\"/\"][title]"
+      ],
+      "pagination_next": [
+        "a.action.next",
+        ".pages-item-next a",
+        "a[aria-label=\"Next\"]",
+        "a:contains(\"Next\")",
+        ".pagination .next"
+      ]
+    },
+    "product_url_pattern": "^https://www\\.poundwholesale\\.co\\.uk/[a-z0-9-]+/?$",
+    "category_url_pattern": "^https://www\\.poundwholesale\\.co\\.uk/[a-z-]+(/[a-z-]+)*/?$"
+  },
+
+  "product_page_selectors": {
+    "validation_selectors": [
+      "meta[property=\"og:type\"][content=\"product\"]",
+      "body.catalog-product-view",
+      ".product-info-main",
+      ".product-add-to-cart"
+    ],
+    "title_selectors": [
+      "h1.page-title",
+      "h1.product-title",
+      ".page-title-wrapper h1",
+      "h1"
+    ],
+    "price_selectors": [
+      ".price-box .price",
+      ".product-info-price .price",
+      "span.price",
+      ".price-container .price",
+      ".regular-price",
+      ".price-final_price",
+      ".price-including-tax",
+      ".price-excluding-tax",
+      "[data-price-amount]",
+      ".product-price .price"
+    ],
+    "sku_ean_selectors": [
+      ".product-attribute-ean",
+      ".product-info-sku",
+      ".sku",
+      ".barcode",
+      ".product-details .ean"
+    ],
+    "stock_status_selectors": [
+      ".stock.available",
+      ".stock.unavailable",
+      ".product-info-stock-sku .stock",
+      ".availability",
+      ".in-stock",
+      ".out-of-stock",
+      ".stock-status"
+    ],
+    "out_of_stock_indicators": [
+      "text=Out of Stock",
+      "text=OUT OF STOCK",
+      "text=Not Available",
+      "text=Unavailable",
+      "text=Sold Out",
+      "text=No Stock",
+      ".out-of-stock",
+      ".unavailable",
+      ".stock.unavailable",
+      "[class*=\"out-of-stock\"]",
+      "[class*=\"unavailable\"]"
+    ]
+  },
+
+  "data_extraction_rules": {
+    "identifier_classification": {
+      "ean_pattern": "\\b\\d{8,14}\\b",
+      "ean_minimum_length": 12,
+      "sku_fallback": true,
+      "sku_prefix_removal": ["SKU", "\\n"]
+    },
+    "amazon_matching_strategy": {
+      "ean_codes": "barcode_lookup",
+      "sku_codes": "title_search",
+      "no_identifier": "title_search"
+    },
+    "price_extraction": {
+      "requires_login": true,
+      "currency_symbol": "£",
+      "decimal_separator": ".",
+      "thousand_separator": ","
+    }
+  },
+
+  "specific_scripts": {
+    "primary_navigator": {
+      "script_name": "category_navigator.py",
+      "description": "Main navigation script specifically designed for PoundWholesale's Magento structure",
+      "usage": "python tools/category_navigator.py",
+      "features": [
+        "Sitemap-based category discovery",
+        "Pagination handling for product listings",
+        "Out-of-stock detection and separation",
+        "SKU vs EAN classification",
+        "Wholesale login management"
+      ],
+      "dependencies": [
+        "playwright",
+        "requests",
+        "utils.path_manager"
+      ]
+    },
+    "login_tester": {
+      "script_name": "login_tester.py", 
+      "description": "Comprehensive login testing and debugging tool",
+      "usage": "python tools/login_tester.py",
+      "purpose": "Diagnose login issues and find correct login selectors",
+      "when_to_use": "When login appears successful but prices remain hidden"
+    },
+    "login_health_checker": {
+      "script_name": "login_health_checker.py",
+      "description": "Validates login state and wholesale price access",
+      "usage": "python tools/login_health_checker.py", 
+      "purpose": "Verify login provides access to wholesale pricing"
+    }
+  },
+
+  "workflow_configuration": {
+    "processing_order": [
+      "parse_sitemap",
+      "authenticate_user", 
+      "discover_categories",
+      "extract_products",
+      "classify_stock_status",
+      "separate_analysis_queues"
+    ],
+    "analysis_workflow": {
+      "in_stock_first": true,
+      "out_of_stock_after_permission": true,
+      "out_of_stock_prompt": "Should I proceed with analyzing OUT OF STOCK products after completing in-stock analysis?"
+    },
+    "rate_limiting": {
+      "page_delay_seconds": 2,
+      "product_delay_seconds": 1,
+      "category_delay_seconds": 3
+    }
+  },
+
+  "output_configuration": {
+    "separate_stock_lists": true,
+    "linking_map_path": "OUTPUTS/FBA_ANALYSIS/linking_maps/poundwholesale-co-uk/<date>/",
+    "extraction_logs_path": "OUTPUTS/FBA_ANALYSIS/extraction_logs/poundwholesale-co-uk/",
+    "debug_logs_path": "logs/debug/",
+    "navigation_dumps_path": "OUTPUTS/FBA_ANALYSIS/navigation_dumps/poundwholesale-co-uk/"
+  },
+
+  "known_issues_and_solutions": {
+    "homepage_navigation_unreliable": {
+      "issue": "Homepage product links often lead to blog posts instead of actual products",
+      "solution": "Use category-first navigation via sitemap parsing",
+      "implemented_in": "category_navigator.py"
+    },
+    "login_session_persistence": {
+      "issue": "Login state may not persist across different pages",
+      "solution": "Verify login on each product page and re-authenticate if needed",
+      "implemented_in": "category_navigator.py login() method"
+    },
+    "price_visibility_requires_wholesale_account": {
+      "issue": "Prices only visible with proper wholesale account permissions",
+      "solution": "Use specific wholesale account credentials and verify price access",
+      "test_with": "login_health_checker.py"
+    },
+    "product_vs_blog_distinction": {
+      "issue": "Difficulty distinguishing product pages from blog content",
+      "solution": "Use product page validation selectors and URL pattern matching",
+      "implemented_in": "category_navigator.py _is_product_page() method"
+    }
+  },
+
+  "testing_products": [
+    {
+      "url": "https://www.poundwholesale.co.uk/sealapack-turkey-roasting-bags-2-pack",
+      "expected_sku": "SAP009",
+      "expected_stock": "in_stock",
+      "purpose": "Login and price extraction testing"
+    },
+    {
+      "url": "https://www.poundwholesale.co.uk/elpine-oil-filled-radiator-heater-1500w", 
+      "expected_sku": "31005c",
+      "expected_stock": "in_stock",
+      "purpose": "Selector validation"
+    },
+    {
+      "url": "https://www.poundwholesale.co.uk/farley-mill-men-s-3d-christmas-socks-assorted",
+      "expected_sku": "TEX8918OB",
+      "expected_stock": "out_of_stock",
+      "purpose": "Out-of-stock detection testing"
+    }
+  ],
+
+  "performance_notes": {
+    "categories_in_sitemap": 3607,
+    "typical_products_per_category": "20-100",
+    "pagination_limit": 5,
+    "extraction_success_rate": "100% for navigation, dependent on login for prices",
+    "cdn_browser_port": 9222,
+    "browser_profile": "C:\\ChromeDebugProfile"
+  },
+
+  "maintenance_schedule": {
+    "selector_validation": "monthly",
+    "login_credentials_check": "weekly", 
+    "sitemap_structure_review": "quarterly",
+    "performance_optimization": "as_needed"
+  },
+
+  "version_info": {
+    "config_version": "1.0",
+    "last_updated": "2025-06-23",
+    "created_by": "Amazon FBA Agent System v3.5",
+    "tested_with": [
+      "category_navigator.py",
+      "login_tester.py", 
+      "login_health_checker.py"
+    ]
+  }
+}

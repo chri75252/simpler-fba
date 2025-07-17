@@ -1,0 +1,45 @@
+TOGGLE-AGENT EXPERIMENT REPORT
+==================================================
+Experiment ID: 5
+Experiment Name: System Capacity & Analysis Limits
+Description: Maximum system throughput
+Success: True
+Timestamp: 20250715_084347
+
+TOGGLE CHANGES APPLIED:
+------------------------------
+system.max_products:
+  FROM: 12
+  TO:   18
+
+system.max_analyzed_products:
+  FROM: 6
+  TO:   10
+
+system.linking_map_batch_size:
+  FROM: 2
+  TO:   3
+
+EXPECTED EFFECTS:
+------------------------------
+- Higher total product processing
+- More products sent for Amazon analysis
+- Less frequent linking map saves
+
+TOGGLE-AGENT LOG:
+------------------------------
+[2025-07-15 08:43:20] [INFO] 🚀 TOGGLE-AGENT: Starting Experiment 5
+[2025-07-15 08:43:20] [INFO] 🧪 Applying Experiment 5: System Capacity & Analysis Limits
+[2025-07-15 08:43:20] [INFO] ✅ Loaded config from: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/config/system_config.json
+[2025-07-15 08:43:20] [INFO] 🔄 system.max_products: 12 → 18
+[2025-07-15 08:43:20] [INFO] 🔄 system.max_analyzed_products: 6 → 10
+[2025-07-15 08:43:20] [INFO] 🔄 system.linking_map_batch_size: 2 → 3
+[2025-07-15 08:43:20] [INFO] 📄 Config backed up to: system_config.20250715_084320.bak
+[2025-07-15 08:43:20] [INFO] ✅ Config saved to: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/config/system_config.json
+[2025-07-15 08:43:20] [INFO] ✅ Loaded config from: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/config/system_config.json
+[2025-07-15 08:43:20] [INFO] ✅ Verified: system.max_products = 18
+[2025-07-15 08:43:20] [INFO] ✅ Verified: system.max_analyzed_products = 10
+[2025-07-15 08:43:20] [INFO] ✅ Verified: system.linking_map_batch_size = 3
+[2025-07-15 08:43:47] [INFO] 📝 Git commit created for Experiment 5
+[2025-07-15 08:43:47] [INFO] ✅ Experiment 5 applied successfully
+[2025-07-15 08:43:47] [INFO] 📄 Updated toggle plan with Experiment 5 results

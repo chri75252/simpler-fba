@@ -1,0 +1,79 @@
+============================================================
+Command: find . -name *scraper*.py -type f
+Timestamp: Sun Jun  8 08:18:04 +04 2025
+============================================================
+./archive/old_versions/configurable_supplier_scraper20250523_2250.py
+./archive/old_versions/configurable_supplier_scraper_backup_20250523.py
+./tools/amazon_scraper.py
+./tools/configurable_supplier_scraper.py
+./tools/debug_homepage_scraper.py
+./tools/web_scraper.py
+./tools/web_scraper_clearance_king.py
+./tools/web_scraper_impl.py
+============================================================
+Command: grep -n -A 5 -B 5 max_products\|product.*limit\|limit.*product tools/configurable_supplier_scraper.py
+Timestamp: Sun Jun  8 08:18:34 +04 2025
+============================================================
+143-
+144-    async def fetch_html(self, url: str) -> Optional[str]:
+145-        """Alias for get_page_content for compatibility."""
+146-        return await self.get_page_content(url)
+147-
+148:    async def scrape_products_from_url(self, url: str, max_products: int = 50) -> List[Dict[str, Any]]:
+149-        """Main method to scrape products from a given URL."""
+150-        log.info(f"Starting to scrape products from {url}")
+151-        
+152-        html_content = await self.fetch_html(url)
+153-        if not html_content:
+--
+162-        log.info(f"Found {len(product_elements)} product elements on {url}")
+163-        
+164-        products = []
+165-        base_url = f"{urlparse(url).scheme}://{urlparse(url).netloc}"
+166-        
+167:        for i, element in enumerate(product_elements[:max_products]):
+168-            try:
+169-                element_html = str(element)
+170-                
+171-                # Extract product data using the configured methods
+172-                title = await self.extract_title(element, element_html, url)
+--
+357-        if not self.ai_client:
+358-            log.warning(f"AI client not available. Cannot extract '{field_description}' from HTML element for {context_url}.")
+359-            return None
+360-
+361-        try:
+362:            max_html_len = 4000 # Reduced to be safer with token limits and typical product snippets
+363-            truncated_html = element_html[:max_html_len]
+364-            if len(element_html) > max_html_len:
+365-                truncated_html += "... [truncated]"
+366-
+367-            prompt = (
+============================================================
+Command: grep -n -A 10 -B 5 scrape_products_from_url\|scrape_category tools/passive_extraction_workflow_latest.py
+Timestamp: Sun Jun  8 08:18:58 +04 2025
+============================================================
+============================================================
+Command: grep -n ConfigurableSupplierScraper\|supplier_scraper tools/passive_extraction_workflow_latest.py
+Timestamp: Sun Jun  8 08:19:24 +04 2025
+============================================================
+3:MODIFIED: To integrate ConfigurableSupplierScraper, Zero-Token Triage,
+41:# MODIFIED: Use ConfigurableSupplierScraper
+42:from configurable_supplier_scraper import ConfigurableSupplierScraper
+289:# REMOVED: SUPPLIER_CONFIGS dictionary, as this is now handled by ConfigurableSupplierScraper and supplier_config_loader.py
+855:        self.supplier_scraper = None
+881:        # MODIFIED: Use ConfigurableSupplierScraper
+882:        self.web_scraper = ConfigurableSupplierScraper(
+3305:        # MODIFIED: Get supplier configuration from ConfigurableSupplierScraper
+3363:                    # The ConfigurableSupplierScraper's get_next_page_url is designed to take soup.
+3367:                        # The ConfigurableSupplierScraper's get_next_page_url is designed for this.
+3508:        Relies on ConfigurableSupplierScraper for data extraction.
+3511:            # ConfigurableSupplierScraper methods take context_url to load appropriate selectors
+3518:            # If ConfigurableSupplierScraper is enhanced to get EAN from listing elements, it would be called here.
+3545:        Relies on ConfigurableSupplierScraper.
+3556:            # ConfigurableSupplierScraper methods will use product_url to load correct selectors
+3560:            # FIXED: Use ConfigurableSupplierScraper's proven extract_identifier method instead of duplicate logic
+3597:        MODIFIED: To use ConfigurableSupplierScraper for extracting additional details.
+3618:        # This method is now primarily in ConfigurableSupplierScraper.
+3622:        # The one in ConfigurableSupplierScraper is more advanced.
+3638:        # This utility is also in ConfigurableSupplierScraper.

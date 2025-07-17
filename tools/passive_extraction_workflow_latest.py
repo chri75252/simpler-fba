@@ -123,6 +123,8 @@ except ImportError:
     from enhanced_state_manager import EnhancedStateManager
 
 from playwright.async_api import async_playwright, Browser, Page, TimeoutError as PlaywrightTimeoutError
+from utils.browser_manager import BrowserManager
+from config.system_config_loader import SystemConfigLoader
 
 # Configure logging
 logging.basicConfig(
@@ -168,6 +170,42 @@ FBA_NEUTRAL_PATTERNS = {
     "collectibles":    ["collectible","vintage","antique","memorabilia"],
     "media_dvd_cd":    ["dvd","cd","music","movie","film","media"]  # Removed general "book" from here since it's now classified above
 }
+
+# ──────────────────────── BACKUP UTILITY FUNCTIONS ──────────────────────
+def create_backup_with_experiment_number(file_path: str, experiment_number: int) -> str:
+    """Create backup with .bakN suffix for experiment tracking"""
+    if not os.path.exists(file_path):
+        return None
+    
+    backup_path = f"{file_path}.bak{experiment_number}"
+    shutil.copy2(file_path, backup_path)
+    return backup_path
+
+def backup_experiment_files(experiment_number: int, output_root: str = "OUTPUTS") -> Dict[str, str]:
+    """Backup all files that need .bakN suffix (EXCEPT Amazon cache)"""
+    backup_results = {}
+    
+    # System config
+    config_path = "config/system_config.json"
+    if os.path.exists(config_path):
+        backup_results["system_config"] = create_backup_with_experiment_number(config_path, experiment_number)
+    
+    # Processing state
+    state_path = os.path.join(output_root, "CACHE/processing_states/poundwholesale_co_uk_processing_state.json")
+    if os.path.exists(state_path):
+        backup_results["processing_state"] = create_backup_with_experiment_number(state_path, experiment_number)
+    
+    # Linking map
+    linking_path = os.path.join(output_root, "FBA_ANALYSIS/linking_maps/poundwholesale.co.uk/linking_map.json")
+    if os.path.exists(linking_path):
+        backup_results["linking_map"] = create_backup_with_experiment_number(linking_path, experiment_number)
+    
+    # Supplier product cache
+    supplier_cache_path = os.path.join(output_root, "cached_products/poundwholesale-co-uk_products_cache.json")
+    if os.path.exists(supplier_cache_path):
+        backup_results["supplier_cache"] = create_backup_with_experiment_number(supplier_cache_path, experiment_number)
+    
+    return backup_results
 
 # ──────────────────────── ②  Add OpenAI client initialization (after imports) ────────────
 
@@ -742,32 +780,16 @@ class FixedAmazonExtractor(AmazonExtractor):
                     log.warning(f"EAN {ean} returned no organic results - skipping")
                     search_results_data = {"error": "no_organic_results"}
                 else:
-                    # Apply word overlap scoring for multiple results
+                    # FIX 1: EAN search should use exact EAN matching, NOT title scoring
+                    # When EAN search returns results, use the first organic result (highest relevance)
                     if len(organic_results) == 1:
                         chosen_result = organic_results[0]
                         log.info(f"Single organic result found for EAN {ean}: ASIN {chosen_result['asin']}")
                     else:
-                        log.info(f"Multiple organic results ({len(organic_results)}) found for EAN {ean}. Applying word overlap scoring.")
-
-                        # Score each result against supplier title
-                        scored_results = []
-                        for result in organic_results:
-                            score = self._overlap_score(supplier_product_title, result['title'])
-                            scored_results.append((result, score))
-                            log.info(f"ASIN {result['asin']}: {score:.2f} overlap score with '{result['title'][:50]}...' ")
-                        
-                        # Find results that meet the 0.25 threshold
-                        good_matches = [(result, score) for result, score in scored_results if score >= 0.25]
-                        
-                        if good_matches:
-                            # Pick the highest scoring result
-                            chosen_result, best_score = max(good_matches, key=lambda x: x[1])
-                            log.info(f"Multiple matches - chose ASIN {chosen_result['asin']} ({best_score:.2f} word-overlap)")
-                        else:
-                            # Edge case fallback: use top organic result with low confidence
-                            chosen_result = organic_results[0]
-                            chosen_result['match_confidence'] = 'low'
-                            log.warning(f"No result met 0.25 threshold. Using top organic result ASIN {chosen_result['asin']} with low confidence.")
+                        # Multiple EAN search results - use first organic result (most relevant by Amazon's ranking)
+                        chosen_result = organic_results[0]
+                        log.info(f"Multiple organic results ({len(organic_results)}) found for EAN {ean}. Using first organic result (most relevant): ASIN {chosen_result['asin']}")
+                        log.info(f"FIXED: No title scoring on EAN search results - using Amazon's search relevance ranking")
                     
                     search_results_data = {
                         "results": [chosen_result],  # Single chosen result
@@ -781,7 +803,16 @@ class FixedAmazonExtractor(AmazonExtractor):
 
         if "error" in search_results_data or not search_results_data.get("results"):
             log.warning(f"No Amazon results or error for EAN '{ean}'. Details: {search_results_data.get('error', 'No results list')}")
-            return {"error": f"No results for EAN {ean} or search error"}
+            # FIX 1: EAN search → title match fallback
+            log.info(f"Falling back to title search for supplier product: '{supplier_product_title}'")
+            title_search_results = await self.search_by_title_using_search_bar(supplier_product_title, page=page)
+            if title_search_results and "error" not in title_search_results and title_search_results.get("results"):
+                log.info(f"Title search successful for '{supplier_product_title}' after EAN '{ean}' failed")
+                # Return the best result from title search
+                return title_search_results["results"][0] if title_search_results["results"] else {"error": f"No results for EAN {ean} or title search"}
+            else:
+                log.warning(f"Both EAN '{ean}' and title '{supplier_product_title}' searches failed")
+                return {"error": f"No results for EAN {ean} or title search"}
 
         potential_asins_info = search_results_data["results"]
         chosen_asin_data = None
@@ -790,17 +821,16 @@ class FixedAmazonExtractor(AmazonExtractor):
             chosen_asin_data = potential_asins_info[0]
             log.info(f"Single ASIN {chosen_asin_data.get('asin')} found for EAN {ean}.")
         elif len(potential_asins_info) > 1:
-            log.info(f"Multiple ASINs ({len(potential_asins_info)}) found for EAN {ean}. Prioritizing by title similarity to '{supplier_product_title}'.")
-            # The results from search_by_title are already sorted by similarity to the query (EAN in this case).
-            # We might want to re-score against the supplier_product_title if EAN search yields multiple items.
-            # For now, let's assume the top result from EAN search is most relevant, or use AI if available.
-            
-            # Simple approach: take the first result from EAN search if no AI.
-            chosen_asin_data = potential_asins_info[0] 
-            log.info(f"Taking first result from EAN search: ASIN {chosen_asin_data.get('asin')}")
+            # FIX 1: EAN search → stop title scoring when search initiated by EAN
+            # Trust Amazon's search relevance ranking for EAN searches
+            chosen_asin_data = potential_asins_info[0]
+            log.info(f"Multiple ASINs ({len(potential_asins_info)}) found for EAN {ean}. Using Amazon's first result: ASIN {chosen_asin_data.get('asin')}")
+            log.info(f"FIXED: No title scoring on EAN search results - using Amazon's search relevance ranking")
 
-            if self.ai_client:
-                log.info(f"Attempting AI disambiguation for EAN {ean} against supplier title '{supplier_product_title}'.")
+            # EAN search complete - skip AI disambiguation to trust Amazon's ranking
+            # AI disambiguation removed to prevent title scoring on EAN results
+            if False:  # Disabled AI disambiguation for EAN searches
+                log.info(f"AI disambiguation disabled for EAN {ean} - trusting Amazon's ranking")
                 prompt = (
                     f"The EAN '{ean}' (from supplier product '{supplier_product_title}') "
                     f"returned multiple products on Amazon. Which of the following Amazon products is the most likely match to the supplier product title?\n"
@@ -878,171 +908,466 @@ class FixedAmazonExtractor(AmazonExtractor):
 
 
 class PassiveExtractionWorkflow:
-    def _load_system_config(self) -> Dict[str, Any]:
-        """Load system configuration from config/system_config.json"""
-        try:
-            config_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "config", "system_config.json")
-            with open(config_path, 'r', encoding='utf-8') as f:
-                config = json.load(f)
-            return config
-        except Exception as e:
-            log.warning(f"Failed to load system config, using defaults: {e}")
-            return {}
+    def __init__(self, config_loader: SystemConfigLoader, workflow_config: dict, browser_manager: BrowserManager):
+        self.config_loader = config_loader
+        self.workflow_config = workflow_config
+        self.browser_manager = browser_manager
+        self.log = logging.getLogger(self.__class__.__name__)
+        
+        # Core components initialized here
+        self.supplier_name = self.workflow_config.get('supplier_name')
+        self.system_config = self.config_loader.get_system_config()
+        
+        self.output_dir = self._initialize_output_directory()
+        self.supplier_cache_dir = os.path.join(self.output_dir, 'cached_products')
+        self.amazon_cache_dir = os.path.join(self.output_dir, 'FBA_ANALYSIS', 'amazon_cache')
+        os.makedirs(self.supplier_cache_dir, exist_ok=True)
+        os.makedirs(self.amazon_cache_dir, exist_ok=True)
+        self.state_manager = EnhancedStateManager(self.supplier_name)
+        
+        # Pass the single browser_manager instance to the tools
+        self.amazon_extractor = self._initialize_amazon_extractor()
+        self.supplier_scraper = self._initialize_supplier_scraper()
+        
+        # CRITICAL FIX: Set extractor alias to amazon_extractor to prevent AttributeError
+        self.extractor = self.amazon_extractor
+        
+        # Initialize linking map as a dictionary (EAN -> ASIN mapping)
+        self.linking_map = {}
+        self.log.debug(f"🔍 DEBUG: linking_map initialized as type: {type(self.linking_map)}")
+        # self.performance_tracker = PerformanceTracker()  # Removed - not defined
 
-    def __init__(self, chrome_debug_port: int = None, ai_client: Optional[OpenAI] = None, max_cache_age_hours: int = None, min_price: float = None, headless: bool = None, linking_map_batch_size: int = None, financial_report_batch_size: int = None, force_ai_scraping: bool = None, selective_cache_clear: bool = None):
-        # Load system configuration for fallback values
-        self.system_config = self._load_system_config()
+        # Workflow state attributes
+        self.consecutive_amazon_price_misses = 0
+        self.products_for_fba_analysis = []
+        self.last_processed_index = 0
         
-        # Apply configuration defaults, allowing parameter overrides
-        chrome_debug_port = chrome_debug_port if chrome_debug_port is not None else self.system_config.get("chrome", {}).get("debug_port", 9222)
-        max_cache_age_hours = max_cache_age_hours if max_cache_age_hours is not None else 0  # Keep cache infinite, not 336
-        min_price = min_price if min_price is not None else self.system_config.get("processing_limits", {}).get("min_price_gbp", 0.1)
-        max_price = self.system_config.get("processing_limits", {}).get("max_price_gbp", 20.0)
-        price_midpoint = self.system_config.get("processing_limits", {}).get("price_midpoint_gbp", 10.0)
-        headless = headless if headless is not None else self.system_config.get("chrome", {}).get("headless", True)
-        linking_map_batch_size = linking_map_batch_size if linking_map_batch_size is not None else self.system_config.get("system", {}).get("linking_map_batch_size")
-        financial_report_batch_size = financial_report_batch_size if financial_report_batch_size is not None else self.system_config.get("system", {}).get("financial_report_batch_size")
-        force_ai_scraping = force_ai_scraping if force_ai_scraping is not None else self.system_config.get("system", {}).get("force_ai_scraping", False)
-        selective_cache_clear = selective_cache_clear if selective_cache_clear is not None else self.system_config.get("system", {}).get("selective_cache_clear", False)
-        
-        # Initialize logging
-        self.log = logging.getLogger(__name__)
-        
-        # Log warnings for potentially low testing values (from config)
-        max_products_per_category = self.system_config.get("processing_limits", {}).get("max_products_per_category")
-        if max_products_per_category < 3:
-            self.log.warning(f"Limiting scrape to {max_products_per_category} products per category. This is a low value suitable for testing only.")
-        from pathlib import Path
-        # Enhanced state manager will be initialized per supplier in run() method
-        self.state_manager = None  # Will be initialized per supplier in run() method
-        self.state_path = Path(OUTPUT_DIR) / f"passive_extraction_state_{datetime.now().strftime('%Y%m%d')}.json"
-        self.chrome_debug_port = chrome_debug_port
-        self.ai_client = ai_client
-        self.max_cache_age_hours = max_cache_age_hours
-        self.min_price = min_price
-        self.max_price = max_price
-        self.price_midpoint = price_midpoint
-        self.headless = headless
-        self.log = logging.getLogger(__name__)
-        self.amazon_extractor = None
-        self.supplier_scraper = None
-        self.enable_quick_triage = False  # Default to False, can be enabled via CLI flag
-        self.last_processed_index = 0  # Initialize index tracker for resume feature
-        self._processed_count = 0  # CRITICAL FIX: Track processed products for periodic saves
-        self.linking_map_batch_size = linking_map_batch_size  # Configurable batch size for linking map saves
-        self.financial_report_batch_size = financial_report_batch_size  # Configurable batch size for financial reports
-        self.force_ai_scraping = force_ai_scraping  # Force AI category selection
-        self.selective_cache_clear = selective_cache_clear  # Use selective cache clearing
-        # Linking map will be loaded per supplier in run() method
-        # DEPRECATED: Replaced by EnhancedStateManager to prevent state conflicts
-        # self.history = self._load_history()
-        
-        # PHASE 4 FIX: Product cache periodic save support
-        self._current_extracted_products = []  # Track current extraction products
-        self._current_supplier_name = None     # Track current supplier for cache path
-        self._current_supplier_cache_path = None  # Track current supplier cache file path
-        
-        # REMOVED: Fallback OpenAI client initialization using module-level OPENAI_API_KEY.
-        # The ai_client should be passed in by the caller (e.g., MainOrchestrator)
-        # after loading the configuration, to ensure the correct API key is used.
-        # if not self.ai_client and OPENAI_API_KEY:
-        #     try:
-        #         self.ai_client = OpenAI(api_key=OPENAI_API_KEY)
-        #         log.info(f"OpenAI client initialized with model {OPENAI_MODEL_NAME}")
-        #     except Exception as e:
-        #         log.error(f"Failed to initialize OpenAI client: {e}")
-        #         self.ai_client = None
-
-        if self.ai_client:
-            log.info(f"PassiveExtractionWorkflow initialized WITH an AI client.")
-        else:
-            log.info(f"PassiveExtractionWorkflow initialized WITHOUT an AI client. AI-dependent features will be skipped or use fallbacks.")
-
-        self.extractor = FixedAmazonExtractor(
-            chrome_debug_port=chrome_debug_port,
-            ai_client=self.ai_client # Pass the ai_client (which could be None)
-        )
-        # MODIFIED: Use ConfigurableSupplierScraper
-        # Get OpenAI model from config
-        openai_model = self.system_config.get("integrations", {}).get("openai", {}).get("model", "gpt-4.1-mini-2025-04-14")
-        
-        self.web_scraper = ConfigurableSupplierScraper(
-            ai_client=self.ai_client, # Pass the ai_client (which could be None)
-            openai_model_name=openai_model, # Get from config instead of module constant
-            headless=headless
-        )
-        # Initialize FBA Calculator - Commented out
-        # self.fba_calculator = FBACalculator()
-        self.supplier_cache_dir = SUPPLIER_CACHE_DIR
-        self.amazon_cache_dir = AMAZON_CACHE_DIR
-        self.max_cache_age_seconds = max_cache_age_hours * 3600
-        
-        # Initialize linking map using previous version approach (self-contained)
-        self.linking_map = []  # Will be loaded per supplier in run() method with _load_linking_map()
-        log.info(f"✅ Linking map initialized - using previous version self-contained approach")
+        # CRITICAL FIX: Initialize results_summary to prevent AttributeError
         self.results_summary = {
             "total_supplier_products": 0,
+            "profitable_products": 0,
             "products_analyzed_ean": 0,
             "products_analyzed_title": 0,
-            "products_passed_triage": 0, # New counter
-            "products_rejected_by_triage": 0, # New counter
-            "products_previously_visited": 0, # Track resumed products
-            "profitable_products": 0,
-            "errors": 0,
-            "products_processed_total": 0,
-            "products_processed_per_category": {},
-            "start_time": datetime.now().isoformat(),
+            "errors": 0
+        }
+
+        self.log.info(f"✅ Output directory set to: {self.output_dir}")
+        
+        # CRITICAL FIX: Validate initialization to prevent AttributeError
+        self._validate_initialization()
+
+    def _initialize_output_directory(self):
+        """Creates and returns the absolute path to the output directory."""
+        output_dir = self.system_config.get("output_root", "OUTPUTS")
+        os.makedirs(output_dir, exist_ok=True)
+        return os.path.abspath(output_dir)
+
+    def _initialize_amazon_extractor(self):
+        """Initializes the Amazon extractor with the shared browser manager."""
+        chrome_debug_port = self.system_config.get('chrome_debug_port', 9222)
+        # CRITICAL FIX: Use FixedAmazonExtractor which has search_by_ean_and_extract_data method
+        return FixedAmazonExtractor(
+            chrome_debug_port=chrome_debug_port,
+            ai_client=None  # AI features disabled
+        )
+
+    def _initialize_supplier_scraper(self):
+        """Initializes the supplier scraper with the shared browser manager."""
+        return ConfigurableSupplierScraper(
+            ai_client=None,  # AI features disabled
+            headless=False,  # Keep browser visible for debugging
+            use_shared_chrome=True,  # Use existing Chrome instance
+            auth_callback=None,  # No authentication callback needed
+            browser_manager=self.browser_manager
+        )
+
+    def _validate_initialization(self):
+        """Validates that all critical attributes are properly initialized."""
+        required_attributes = {
+            'results_summary': dict,
+            'extractor': object,
+            'amazon_extractor': object,
+            'supplier_scraper': object,
+            'system_config': dict,
+            'output_dir': str,
+            'supplier_cache_dir': str,
+            'state_manager': object
         }
         
-        # Set up state tracking
-        self.state_path = None  # Will be set per supplier
-
-    def _load_linking_map(self, supplier_name: str) -> List[Dict[str, Any]]:
-        """Load linking map from supplier-specific JSON file"""
-        linking_map_path = os.path.join(BASE_DIR, "OUTPUTS", "FBA_ANALYSIS", "linking_maps", supplier_name, "linking_map.json")
+        for attr_name, expected_type in required_attributes.items():
+            if not hasattr(self, attr_name):
+                raise AttributeError(f"Critical attribute '{attr_name}' not initialized in PassiveExtractionWorkflow")
+            
+            attr_value = getattr(self, attr_name)
+            if attr_value is None:
+                raise AttributeError(f"Critical attribute '{attr_name}' is None in PassiveExtractionWorkflow")
+            
+            if not isinstance(attr_value, expected_type):
+                raise AttributeError(f"Critical attribute '{attr_name}' has wrong type. Expected {expected_type}, got {type(attr_value)}")
         
-        if os.path.exists(linking_map_path):
-            try:
-                with open(linking_map_path, 'r', encoding='utf-8') as f:
-                    linking_map = json.load(f)
-                self.log.info(f"✅ Loaded linking map from {linking_map_path} with {len(linking_map)} entries")
-                return linking_map
-            except (json.JSONDecodeError, UnicodeDecodeError, Exception) as e:
-                self.log.error(f"Error loading linking map: {e} - Creating new map")
+        self.log.info("✅ Initialization validation passed - all critical attributes verified")
+
+    async def run(self):
+        """Main execution loop for the workflow."""
+        profitable_results: List[Dict[str, Any]] = []
+        session_id = f"{self.supplier_name}_{datetime.now().strftime('%Y%m%d_%H%M%S')}"
+        self.log.info(f"--- Starting Passive Extraction Workflow for: {self.supplier_name} ---")
+        self.log.info(f"Session ID: {session_id}")
+
+        # FIXED: Load configuration values directly from system_config (no hardcoded fallbacks)
+        # This ensures all toggle experiments work correctly
+        
+        # CRITICAL FIX: The SystemConfigLoader.get_system_config() returns the "system" section directly
+        # So we don't need to access ["system"] again - it's already the system section
+        max_products_to_process = self.system_config.get("max_products", 10)
+        max_products_per_category = self.system_config.get("max_products_per_category", 5)
+        max_analyzed_products = self.system_config.get("max_analyzed_products", 5)
+        max_products_per_cycle = self.system_config.get("max_products_per_cycle", 5)
+        supplier_extraction_batch_size = self.system_config.get("supplier_extraction_batch_size", 3)
+        
+        # Get the full config for accessing root level values
+        full_config = self.config_loader._config
+        max_categories_per_request = full_config.get("max_categories_per_request", 5)
+        
+        # CRITICAL FIX: Initialize max_price from config to prevent AttributeError
+        self.max_price = full_config.get("processing_limits", {}).get("max_price_gbp", 20.0)
+        
+        # Apply batch synchronization if enabled
+        batch_sync_config = full_config.get("batch_synchronization", {})
+        if batch_sync_config.get("enabled", False):
+            max_products_per_cycle, supplier_extraction_batch_size = self._apply_batch_synchronization(
+                max_products_per_cycle, supplier_extraction_batch_size, batch_sync_config
+            )
+        
+        self.log.info(f"📊 CONFIGURATION VALUES:")
+        self.log.info(f"   max_products_to_process: {max_products_to_process}")
+        self.log.info(f"   max_products_per_category: {max_products_per_category}")
+        self.log.info(f"   max_analyzed_products: {max_analyzed_products}")
+        self.log.info(f"   max_products_per_cycle: {max_products_per_cycle}")
+        self.log.info(f"   supplier_extraction_batch_size: {supplier_extraction_batch_size}")
+        self.log.info(f"   max_categories_per_request: {max_categories_per_request}")
+
+        # Load state and linking map
+        self.state_manager.load_state()
+        self.last_processed_index = self.state_manager.get_resume_index()
+        self.consecutive_amazon_price_misses = self.state_manager.state_data.get('consecutive_amazon_price_misses', 0)
+        self.log.info(f"📋 Loaded existing processing state for {self.supplier_name}")
+        self.log.info(f"🔄 Resuming from index {self.last_processed_index}")
+
+        # Hard reset logic: General cache validation without category dependency
+        supplier_cache_file = os.path.join(self.supplier_cache_dir, f"{self.supplier_name.replace('.', '-')}_products_cache.json")
+        if not os.path.exists(supplier_cache_file) or os.path.getsize(supplier_cache_file) == 0:
+            if self.last_processed_index > 0:
+                self.log.warning("🔥 State file shows progress, but supplier cache is empty. Wiping state to restart.")
+                self.state_manager.hard_reset()
+                self.last_processed_index = 0
+            else:
+                self.log.info("✅ No previous progress found, starting fresh.")
+        
+        # Load the linking map for the current supplier
+        self.linking_map = self._load_linking_map(self.supplier_name)
+        self.log.debug(f"🔍 DEBUG: linking_map loaded as type: {type(self.linking_map)}, length: {len(self.linking_map)}")
+
+        try:
+            # Note: Supplier configuration is loaded automatically by ConfigurableSupplierScraper
+            # Load the linking map for the current supplier
+            self.linking_map = self._load_linking_map(self.supplier_name)
+
+            # --- CUSTOM CATEGORY LOGIC ---
+            if self.workflow_config.get('use_predefined_categories'):
+                self.log.info("CUSTOM MODE: Using predefined category list.")
+                category_urls_to_scrape = await self._get_predefined_categories(self.supplier_name)
+                if not category_urls_to_scrape:
+                    self.log.error("CUSTOM MODE FAILED: No URLs found in predefined list. Aborting.")
+                    return []
+                max_categories_to_process = self.workflow_config.get('max_categories_to_process', 0)
+                if max_categories_to_process > 0:
+                    self.log.info(f"Limiting to {max_categories_to_process} categories as per configuration.")
+                    category_urls_to_scrape = category_urls_to_scrape[:max_categories_to_process]
+            else:
+                # Original AI-based category selection
+                self.log.info("STANDARD MODE: Using AI-based hierarchical category selection.")
+                category_urls_to_scrape = await self._hierarchical_category_selection(self.workflow_config.get('supplier_url'), self.supplier_name)
+                if not category_urls_to_scrape:
+                    self.log.warning("No categories selected for scraping. Workflow cannot continue.")
+                    return []
+
+            # Check hybrid processing configuration (from full config, not system section)
+            hybrid_config = full_config.get("hybrid_processing", {})
+            if hybrid_config.get("enabled", False):
+                self.log.info("🔄 HYBRID PROCESSING MODE: Enabled")
+                return await self._run_hybrid_processing_mode(
+                    self.workflow_config.get('supplier_url'), self.supplier_name, category_urls_to_scrape, 
+                    max_products_per_category, max_products_to_process, 
+                    max_analyzed_products, max_products_per_cycle, supplier_extraction_batch_size
+                )
+            
+            supplier_products = await self._extract_supplier_products(
+                self.workflow_config.get('supplier_url'), self.supplier_name, category_urls_to_scrape, max_products_per_category, max_products_to_process, supplier_extraction_batch_size
+            )
+
+            if not supplier_products:
+                self.log.warning(f"No products extracted from {self.supplier_name}. Workflow cannot continue.")
                 return []
-        else:
-            self.log.info(f"✅ No existing linking map found at {linking_map_path} - Creating new map")
+
+            self.results_summary["total_supplier_products"] = len(supplier_products)
+            self.log.info(f"Successfully got {len(supplier_products)} products from {self.supplier_name}")
+            
+            # Save supplier products to cache immediately after extraction
+            supplier_cache_file = os.path.join(self.supplier_cache_dir, f"{self.supplier_name.replace('.', '-')}_products_cache.json")
+            self._save_products_to_cache(supplier_products, supplier_cache_file)
+
+            # Filter products based on price and validity
+            valid_supplier_products = [
+                p for p in supplier_products
+                if p.get("title") and isinstance(p.get("price"), (float, int)) and p.get("price", 0) > 0 and p.get("url")
+            ]
+            price_filtered_products = [
+                p for p in valid_supplier_products
+                if MIN_PRICE <= p.get("price", 0) <= MAX_PRICE
+            ]
+            self.log.info(f"Found {len(valid_supplier_products)} valid supplier products, {len(price_filtered_products)} within price range [£{MIN_PRICE}-£{MAX_PRICE}]")
+            
+            # Check if all cached products have been processed
+            if self.last_processed_index >= len(price_filtered_products):
+                self.log.info(f"📋 All cached products have been processed in previous runs (index {self.last_processed_index} >= total {len(price_filtered_products)}). Continuing with fresh data...")
+                self.last_processed_index = 0
+            
+            # Apply max_products_to_process limit starting from resume index
+            if max_products_to_process <= 0:
+                # Unlimited mode - process all remaining products
+                products_to_analyze = price_filtered_products[self.last_processed_index:]
+                self.log.info(f"🔄 UNLIMITED MODE: Processing ALL {len(products_to_analyze)} remaining products starting from index {self.last_processed_index}")
+            else:
+                # Limited mode - process up to max_products_to_process starting from resume index
+                end_index = min(self.last_processed_index + max_products_to_process, len(price_filtered_products))
+                products_to_analyze = price_filtered_products[self.last_processed_index:end_index]
+                self.log.info(f"🔄 LIMITED MODE: Processing {len(products_to_analyze)} products (from index {self.last_processed_index} to {end_index-1})")
+            
+            # Update processing state with total products to analyze
+            self.state_manager.update_processing_index(self.last_processed_index, len(price_filtered_products))
+
+            # Batch processing logic - group products by max_products_per_cycle
+            batch_size = max_products_per_cycle
+            total_batches = (len(products_to_analyze) + batch_size - 1) // batch_size
+            self.log.info(f"🚀 BATCH PROCESSING: {len(products_to_analyze)} products in {total_batches} batches of {batch_size}")
+
+            # Process products in batches
+            for batch_num in range(total_batches):
+                start_idx = batch_num * batch_size
+                end_idx = min(start_idx + batch_size, len(products_to_analyze))
+                batch_products = products_to_analyze[start_idx:end_idx]
+                
+                self.log.info(f"🔄 Processing batch {batch_num + 1}/{total_batches} ({len(batch_products)} products)")
+                
+                # Process each product in the current batch
+                for i, product_data in enumerate(batch_products):
+                    # Calculate the absolute index in the full product list (considering resume index)
+                    current_index = self.last_processed_index + start_idx + i + 1
+                    self.log.info(f"--- Processing supplier product {current_index}/{len(price_filtered_products)}: '{product_data.get('title')}' ---")
+                    
+                    # Update processing index for resumability (CRITICAL FIX)
+                    self.log.info(f"🔍 DEBUG: Updating processing index to {current_index}/{len(price_filtered_products)}")
+                    self.state_manager.update_processing_index(current_index, len(price_filtered_products))
+                    # Verify the update worked
+                    current_state = self.state_manager.get_state_summary()
+                    self.log.info(f"🔍 DEBUG: State after update - last_processed_index: {current_state.get('progress', 'unknown')}")
+                    
+                    # Check if product has been previously processed
+                    if self.state_manager.is_product_processed(product_data.get("url")):
+                        self.log.info(f"Product already processed: {product_data.get('url')}. Skipping.")
+                        continue
+
+                    # Extract Amazon data
+                    self.log.info(f"🔍 DEBUG: About to extract Amazon data for product: '{product_data.get('title')}'")
+                    self.log.info(f"🔍 DEBUG: Product EAN/barcode: {product_data.get('ean')} / {product_data.get('barcode')}")
+                    
+                    amazon_data = await self._get_amazon_data(product_data)
+                    
+                    self.log.info(f"🔍 DEBUG: Amazon data extraction result: {type(amazon_data)}")
+                    if amazon_data:
+                        self.log.info(f"🔍 DEBUG: Amazon data keys: {list(amazon_data.keys()) if isinstance(amazon_data, dict) else 'not a dict'}")
+                        if isinstance(amazon_data, dict) and "error" not in amazon_data:
+                            self.log.info(f"🔍 DEBUG: Amazon ASIN extracted: {amazon_data.get('asin')}")
+                        
+                    if not amazon_data or "error" in amazon_data:
+                        self.log.warning(f"Could not retrieve valid Amazon data for '{product_data.get('title')}'. Skipping.")
+                        self.log.warning(f"🔍 DEBUG: Amazon data failure: {amazon_data}")
+                        self.state_manager.mark_product_processed(product_data.get("url"), "failed_amazon_extraction")
+                        continue
+
+                    # Save the Amazon data with the correct filename
+                    supplier_ean = product_data.get("ean") or product_data.get("barcode")
+                    # Ensure we don't get None values
+                    if supplier_ean == "None" or supplier_ean is None:
+                        supplier_ean = None
+                    
+                    # Use supplier product title when EAN is not available
+                    if not supplier_ean:
+                        # Sanitize supplier product title for filename
+                        supplier_title = product_data.get("title", "NO_TITLE")
+                        # Remove/replace characters that aren't safe for filenames
+                        import re
+                        filename_identifier = re.sub(r'[<>:"/\\|?*]', '_', supplier_title)
+                        filename_identifier = re.sub(r'\s+', '_', filename_identifier)  # Replace spaces with underscores
+                        filename_identifier = filename_identifier[:50]  # Limit length to prevent long filenames
+                        self.log.info(f"🔧 Using supplier title for Amazon cache filename: '{supplier_title}' -> '{filename_identifier}'")
+                    else:
+                        filename_identifier = supplier_ean
+                    
+                    asin = amazon_data.get("asin", "NO_ASIN")
+                    amazon_cache_path = os.path.join(self.amazon_cache_dir, f"amazon_{asin}_{filename_identifier}.json")
+                    with open(amazon_cache_path, 'w', encoding='utf-8') as f:
+                        json.dump(amazon_data, f, indent=2, ensure_ascii=False)
+                    self.log.info(f"Saved Amazon data to {amazon_cache_path}")
+
+                    # Add EAN→ASIN mapping to linking map (CRITICAL FIX: Track actual search method)
+                    self.log.info(f"🔍 DEBUG: supplier_ean='{supplier_ean}', asin='{asin}', product_ean='{product_data.get('ean')}'")
+                    self.log.info(f"🔍 DEBUG: Checking linking conditions - supplier_ean valid: {bool(supplier_ean)}, asin valid: {bool(asin and asin != 'NO_ASIN')}")
+                    
+                    # Get actual search method used (fixed logic)
+                    actual_search_method = amazon_data.get("_search_method_used", "unknown")
+                    
+                    # Create linking entry with accurate method and confidence
+                    self.log.info(f"🔍 DEBUG: Linking map entry conditions check:")
+                    self.log.info(f"   supplier_ean: '{supplier_ean}' (valid: {bool(supplier_ean)})")
+                    self.log.info(f"   product_title: '{product_data.get('title')}' (valid: {bool(product_data.get('title'))})")
+                    self.log.info(f"   asin: '{asin}' (valid: {bool(asin and asin != 'NO_ASIN')})")
+                    self.log.info(f"   overall condition: {bool((supplier_ean or product_data.get('title')) and asin and asin != 'NO_ASIN')}")
+                    
+                    if (supplier_ean or product_data.get("title")) and asin and asin != "NO_ASIN":
+                        # Determine confidence based on actual search success, not just supplier data availability
+                        if actual_search_method == "EAN":
+                            confidence = "high"  # EAN search actually worked
+                        elif actual_search_method == "title":
+                            confidence = "medium"  # Title search worked
+                        else:
+                            confidence = "low"  # Unknown method
+                            
+                        linking_entry = {
+                            "supplier_ean": supplier_ean,
+                            "amazon_asin": asin,
+                            "supplier_title": product_data.get("title"),
+                            "amazon_title": amazon_data.get("title"),
+                            "supplier_price": product_data.get("price"),
+                            "amazon_price": amazon_data.get("current_price"),
+                            "match_method": actual_search_method,  # Use actual method, not assumption
+                            "confidence": confidence,
+                            "created_at": datetime.now().isoformat(),
+                            "supplier_url": product_data.get("url")
+                        }
+                        # CRITICAL FIX: Use dictionary assignment, not append
+                        self.linking_map[supplier_ean or product_data.get("url")] = linking_entry
+                        self.log.info(f"✅ Added linking map entry: {actual_search_method.upper()} search {supplier_ean or 'NO_EAN'} → ASIN {asin}")
+                        self.log.info(f"🔍 DEBUG: Current linking_map size: {len(self.linking_map)} entries")
+                        self.log.info(f"🔍 DEBUG: Linking entry created: {linking_entry}")
+                    else:
+                        self.log.error(f"❌ CRITICAL: Could not create linking map entry - condition failed!")
+                        self.log.error(f"   supplier_ean: '{supplier_ean}' (bool: {bool(supplier_ean)})")
+                        self.log.error(f"   product_title: '{product_data.get('title')}' (bool: {bool(product_data.get('title'))})")
+                        self.log.error(f"   asin: '{asin}' (bool: {bool(asin and asin != 'NO_ASIN')})")
+                        self.log.error(f"   This means NO linking map entries will be created and saved!")
+
+                    # Perform financial analysis for individual product
+                    try:
+                        # Import financial calculation functions directly to avoid full cache dependency
+                        from FBA_Financial_calculator import financials as calc_financials
+                        
+                        # Extract supplier price with validation from the linking map entry
+                        supplier_price_inc_vat = linking_entry.get("supplier_price", 0)
+                        if isinstance(supplier_price_inc_vat, str):
+                            # Clean price string and convert to float
+                            import re
+                            price_clean = re.sub(r'[^0-9.]', '', supplier_price_inc_vat)
+                            supplier_price_inc_vat = float(price_clean) if price_clean else 0
+                        elif supplier_price_inc_vat is None:
+                            supplier_price_inc_vat = 0
+                            
+                        # Calculate financial metrics for this specific product
+                        financials = calc_financials(product_data, amazon_data, supplier_price_inc_vat)
+                        
+                        if not financials:
+                            self.log.warning(f"Financial calculation returned empty for '{product_data.get('title')}'")
+                            financials = {}
+                            
+                    except Exception as e:
+                        self.log.error(f"Financial calculation failed for '{product_data.get('title')}': {e}")
+                        self.state_manager.mark_product_processed(product_data.get("url"), "failed_financial_calculation")
+                        # Continue with empty financials rather than failing completely
+                        financials = {}
+
+                    # Combine all data
+                    combined_data = {**product_data, "amazon_data": amazon_data, "financials": financials}
+                                
+                    # Check for profitability
+                    if financials.get("ROI", 0) > MIN_ROI_PERCENT and financials.get("NetProfit", 0) > MIN_PROFIT_PER_UNIT:
+                        self.log.info(f"✅ Profitable product found: '{product_data.get('title')}' (ROI: {financials.get('ROI'):.2f}%, Profit: £{financials.get('NetProfit'):.2f})")
+                        profitable_results.append(combined_data)
+                        self.results_summary["profitable_products"] += 1
+                        self.state_manager.mark_product_processed(product_data.get("url"), "profitable")
+                    else:
+                        self.log.info(f"Product not profitable: '{product_data.get('title')}' (ROI: {financials.get('ROI', 0):.2f}%, Profit: £{financials.get('NetProfit', 0):.2f})")
+                        self.state_manager.mark_product_processed(product_data.get("url"), "not_profitable")
+
+                    # Save state periodically using configurable batch sizes
+                    overall_product_index = start_idx + i + 1
+                    linking_map_batch = self.system_config.get("system", {}).get("linking_map_batch_size", 3)
+                    
+                    if overall_product_index % linking_map_batch == 0:
+                        self.state_manager.save_state()
+                        self._save_linking_map(self.supplier_name)
+                        self.log.info(f"📊 Periodic save at product {overall_product_index} (linking_map_batch_size: {linking_map_batch})")
+
+            # Final save and completion
+            self.log.info("🔍 DEBUG: Starting final save and completion phase...")
+            try:
+                self.log.info("🔍 DEBUG: Calling state_manager.complete_processing()...")
+                self.state_manager.complete_processing()
+                self.log.info("✅ State manager processing completed")
+                
+                self.log.info(f"🔍 DEBUG: Calling _save_linking_map with supplier_name='{self.supplier_name}'...")
+                self._save_linking_map(self.supplier_name)
+                self.log.info("✅ Linking map save completed")
+                
+                self.log.info(f"🔍 DEBUG: Calling _save_final_report with {len(profitable_results)} profitable results...")
+                self._save_final_report(profitable_results)
+                self.log.info("✅ Final report save completed")
+                
+            except Exception as final_save_error:
+                self.log.error(f"❌ CRITICAL: Error during final save phase: {final_save_error}", exc_info=True)
+                self.log.error("This explains why linking map and financial reports are not being saved!")
+            
+            
+            
+            self.log.info(f"📊 Processing state file saved: {self.state_manager.state_file_path}")
+            self.log.info(f"📊 Final state summary: {self.state_manager.get_state_summary()}")
+            self.log.info("--- Passive Extraction Workflow Finished ---")
+            self.log.info(f"Summary: {self.results_summary}")
+            return profitable_results
+
+        except Exception as e:
+            self.log.error(f"Unexpected error occurred during workflow execution: {e}", exc_info=True)
             return []
 
-    def _save_linking_map(self, supplier_name: str):
-        """Save linking map to supplier-specific JSON file using atomic write pattern"""
-        self.log.info(f"🔍 DEBUG: _save_linking_map called with {len(self.linking_map)} entries for supplier {supplier_name}")
-        if not self.linking_map:
-            self.log.info("Empty linking map - nothing to save.")
-            return
-            
-        # Create supplier-specific directory
-        linking_map_dir = os.path.join(BASE_DIR, "OUTPUTS", "FBA_ANALYSIS", "linking_maps", supplier_name)
-        os.makedirs(linking_map_dir, exist_ok=True)
-        
-        linking_map_path = os.path.join(linking_map_dir, "linking_map.json")
-        
-        # Use atomic write pattern to prevent corruption
+
+    def _save_converted_linking_map(self, supplier_name: str, linking_map: Dict[str, str]) -> None:
+        """Write converted linking map back to disk using path_manager."""
+        from utils.path_manager import get_linking_map_path
+
+        linking_map_path = get_linking_map_path(supplier_name)
         temp_path = f"{linking_map_path}.tmp"
+
         try:
-            # First write to temporary file
-            with open(temp_path, 'w', encoding='utf-8') as f:
-                json.dump(self.linking_map, f, indent=2, ensure_ascii=False)
-                
-            # Then atomically replace the original file
+            with open(temp_path, "w", encoding="utf-8") as f:
+                json.dump(linking_map, f, indent=2, ensure_ascii=False)
             os.replace(temp_path, linking_map_path)
-            self.log.info(f"✅ Successfully saved linking map with {len(self.linking_map)} entries to {linking_map_path}")
+            self.log.info(f"✅ Saved converted linking map to {linking_map_path}")
         except Exception as e:
-            self.log.error(f"Error saving linking map: {e}")
+            self.log.error(f"Error saving converted linking map: {e}")
             if os.path.exists(temp_path):
                 try:
                     os.remove(temp_path)
-                except:
+                except Exception:
                     pass
 
     def _classify_url(self, url: str) -> str:
@@ -1713,7 +2038,7 @@ Return ONLY valid JSON, no additional text."""
             from pathlib import Path
 
             # Create API logs directory using proper path management (claude.md standards)
-            from utils.path_manager import get_api_log_path
+            from utils.path_manager import get_api_log_path, get_linking_map_path
             log_file = get_api_log_path("openai")  # This creates the proper path
 
             # Create log entry
@@ -1912,9 +2237,37 @@ Return ONLY valid JSON, no additional text."""
                 except Exception as e:
                     log.warning(f"Could not load existing cache: {e}")
 
-            # Merge with new products (avoid duplicates by URL)
+            # FIX 3: Supplier cache deduplication - Enhanced EAN-based deduplication
             existing_urls = {p.get('url', '') for p in existing_products}
-            new_products = [p for p in products if p.get('url', '') not in existing_urls]
+            existing_eans = {p.get('ean', '') for p in existing_products if p.get('ean') and p.get('ean') != 'None'}
+            
+            # Filter out products with duplicate URLs or EANs
+            new_products = []
+            ean_duplicates_skipped = 0
+            url_duplicates_skipped = 0
+            
+            for p in products:
+                product_url = p.get('url', '')
+                product_ean = p.get('ean', '')
+                
+                # Skip if URL already exists
+                if product_url and product_url in existing_urls:
+                    url_duplicates_skipped += 1
+                    continue
+                
+                # FIX 3: Skip if EAN already exists and is not empty/None
+                if product_ean and product_ean != 'None' and product_ean in existing_eans:
+                    ean_duplicates_skipped += 1
+                    self.log.debug(f"Skipping duplicate EAN: {product_ean}")
+                    continue
+                
+                new_products.append(p)
+                
+                # Add to tracking sets to prevent duplicates within current batch
+                if product_url:
+                    existing_urls.add(product_url)
+                if product_ean and product_ean != 'None':
+                    existing_eans.add(product_ean)
 
             all_products = existing_products + new_products
 
@@ -1922,9 +2275,11 @@ Return ONLY valid JSON, no additional text."""
             with open(cache_file_path, 'w', encoding='utf-8') as f:
                 json.dump(all_products, f, indent=2, ensure_ascii=False)
 
-            # Enhanced progress feedback
+            # Enhanced progress feedback with deduplication statistics
             if cache_config.get("enabled", True):
                 self.log.info(f"✅ CACHE SAVE: Successfully saved {len(all_products)} products ({len(new_products)} new) to {os.path.basename(cache_file_path)}")
+                if ean_duplicates_skipped > 0 or url_duplicates_skipped > 0:
+                    self.log.info(f"🔄 DEDUPLICATION: Skipped {ean_duplicates_skipped} EAN duplicates and {url_duplicates_skipped} URL duplicates")
             else:
                 log.info(f"Saved {len(all_products)} products to cache ({len(new_products)} new)")
 
@@ -2164,326 +2519,7 @@ Return ONLY valid JSON, no additional text."""
 
         return optimized_urls
 
-    async def run(self, supplier_name: str, supplier_url: str, max_products_to_process: int = None, 
-                  max_products_per_category: int = None, max_analyzed_products: int = None, 
-                  max_categories_to_process: int = 0, cache_supplier_data: bool = True, 
-                  force_config_reload: bool = False, debug_smoke: bool = False, 
-                  resume_from_last: bool = True, authenticated_page: Optional[Page] = None, 
-                  use_predefined_categories: bool = False) -> List[Dict[str, Any]]:
-        """Main execution loop for the workflow."""
-        profitable_results: List[Dict[str, Any]] = []
-        session_id = f"{supplier_name}_{datetime.now().strftime('%Y%m%d_%H%M%S')}"
-        self.log.info(f"--- Starting Passive Extraction Workflow for: {supplier_name} ---")
-        self.log.info(f"Session ID: {session_id}")
-
-        # Apply system_config defaults when None is passed (fixing hardcoded value issue)
-        if max_products_to_process is None:
-            max_products_to_process = self.system_config.get("system", {}).get("max_products", 10)
-        if max_products_per_category is None:
-            max_products_per_category = self.system_config.get("system", {}).get("max_products_per_category", 5)
-        if max_analyzed_products is None:
-            max_analyzed_products = self.system_config.get("system", {}).get("max_analyzed_products", 5)
-        
-        # Get additional config values for batch processing controls
-        max_products_per_cycle = self.system_config.get("system", {}).get("max_products_per_cycle", 5)
-        supplier_extraction_batch_size = self.system_config.get("system", {}).get("supplier_extraction_batch_size", 3)
-        max_categories_per_request = self.system_config.get("ai_features", {}).get("category_selection", {}).get("max_categories_per_request", 3)
-        
-        # Apply batch synchronization if enabled
-        batch_sync_config = self.system_config.get("batch_synchronization", {})
-        if batch_sync_config.get("enabled", False):
-            max_products_per_cycle, supplier_extraction_batch_size = self._apply_batch_synchronization(
-                max_products_per_cycle, supplier_extraction_batch_size, batch_sync_config
-            )
-        
-        self.log.info(f"📊 CONFIGURATION VALUES:")
-        self.log.info(f"   max_products_to_process: {max_products_to_process}")
-        self.log.info(f"   max_products_per_category: {max_products_per_category}")
-        self.log.info(f"   max_analyzed_products: {max_analyzed_products}")
-        self.log.info(f"   max_products_per_cycle: {max_products_per_cycle}")
-        self.log.info(f"   supplier_extraction_batch_size: {supplier_extraction_batch_size}")
-        self.log.info(f"   max_categories_per_request: {max_categories_per_request}")
-
-        # Initialize state manager for the current supplier
-        self.state_manager = EnhancedStateManager(supplier_name)
-        
-        # Load existing state or start fresh
-        state_loaded = self.state_manager.load_state()
-        if state_loaded:
-            # CRITICAL FIX: Check for failed state and auto-reset if needed
-            if self.state_manager.auto_reset_failed_state():
-                self.last_processed_index = 0
-                self.log.info(f"📋 State auto-reset completed - starting fresh run")
-            else:
-                self.last_processed_index = self.state_manager.get_resume_index()
-                self.log.info(f"📋 Loaded existing processing state for {supplier_name}")
-                self.log.info(f"🔄 Resuming from index {self.last_processed_index}")
-        else:
-            self.last_processed_index = 0
-            self.log.info(f"📋 Starting fresh processing state for {supplier_name}")
-            
-        # Start processing with current configuration
-        config_hash = str(hash(str(self.system_config)))
-        runtime_settings = {
-            "max_products_to_process": max_products_to_process,
-            "max_products_per_category": max_products_per_category,
-            "max_analyzed_products": max_analyzed_products,
-            "max_products_per_cycle": max_products_per_cycle
-        }
-        self.state_manager.start_processing(config_hash, runtime_settings)
-
-        # Note: Supplier configuration is loaded automatically by ConfigurableSupplierScraper
-        # Load the linking map for the current supplier
-        self.linking_map = self._load_linking_map(supplier_name)
-
-        # --- CUSTOM CATEGORY LOGIC ---
-        if use_predefined_categories:
-            self.log.info("CUSTOM MODE: Using predefined category list.")
-            category_urls_to_scrape = await self._get_predefined_categories(supplier_name)
-            if not category_urls_to_scrape:
-                self.log.error("CUSTOM MODE FAILED: No URLs found in predefined list. Aborting.")
-                return []
-            if max_categories_to_process > 0:
-                self.log.info(f"Limiting to {max_categories_to_process} categories as per configuration.")
-                category_urls_to_scrape = category_urls_to_scrape[:max_categories_to_process]
-        else:
-            # Original AI-based category selection
-            self.log.info("STANDARD MODE: Using AI-based hierarchical category selection.")
-            category_urls_to_scrape = await self._hierarchical_category_selection(supplier_url, supplier_name)
-            if not category_urls_to_scrape:
-                self.log.warning("No categories selected for scraping. Workflow cannot continue.")
-                return []
-
-        # Check hybrid processing configuration
-        hybrid_config = self.system_config.get("hybrid_processing", {})
-        if hybrid_config.get("enabled", False):
-            self.log.info("🔄 HYBRID PROCESSING MODE: Enabled")
-            return await self._run_hybrid_processing_mode(
-                supplier_url, supplier_name, category_urls_to_scrape, 
-                max_products_per_category, max_products_to_process, 
-                max_analyzed_products, max_products_per_cycle
-            )
-        
-        supplier_products = await self._extract_supplier_products(
-            supplier_url, supplier_name, category_urls_to_scrape, max_products_per_category, max_products_to_process
-        )
-
-        if not supplier_products:
-            self.log.warning(f"No products extracted from {supplier_name}. Workflow cannot continue.")
-            return []
-
-        self.results_summary["total_supplier_products"] = len(supplier_products)
-        self.log.info(f"Successfully got {len(supplier_products)} products from {supplier_name}")
-        
-        # Save supplier products to cache immediately after extraction
-        supplier_cache_file = os.path.join(self.supplier_cache_dir, f"{supplier_name.replace('.', '-')}_products_cache.json")
-        self._save_products_to_cache(supplier_products, supplier_cache_file)
-
-        # Filter products based on price and validity
-        valid_supplier_products = [
-            p for p in supplier_products
-            if p.get("title") and isinstance(p.get("price"), (float, int)) and p.get("price", 0) > 0 and p.get("url")
-        ]
-        price_filtered_products = [
-            p for p in valid_supplier_products
-            if MIN_PRICE <= p.get("price", 0) <= MAX_PRICE
-        ]
-        self.log.info(f"Found {len(valid_supplier_products)} valid supplier products, {len(price_filtered_products)} within price range [£{MIN_PRICE}-£{MAX_PRICE}]")
-        
-        # Check if all cached products have been processed
-        if self.last_processed_index >= len(price_filtered_products):
-            self.log.info(f"📋 All cached products have been processed in previous runs (index {self.last_processed_index} >= total {len(price_filtered_products)}). Continuing with fresh data...")
-            self.last_processed_index = 0
-        
-        # Apply max_products_to_process limit starting from resume index
-        if max_products_to_process <= 0:
-            # Unlimited mode - process all remaining products
-            products_to_analyze = price_filtered_products[self.last_processed_index:]
-            self.log.info(f"🔄 UNLIMITED MODE: Processing ALL {len(products_to_analyze)} remaining products starting from index {self.last_processed_index}")
-        else:
-            # Limited mode - process up to max_products_to_process starting from resume index
-            end_index = min(self.last_processed_index + max_products_to_process, len(price_filtered_products))
-            products_to_analyze = price_filtered_products[self.last_processed_index:end_index]
-            self.log.info(f"🔄 LIMITED MODE: Processing {len(products_to_analyze)} products (from index {self.last_processed_index} to {end_index-1})")
-        
-        # Update processing state with total products to analyze
-        self.state_manager.update_processing_index(self.last_processed_index, len(price_filtered_products))
-
-        # Batch processing logic - group products by max_products_per_cycle
-        batch_size = max_products_per_cycle
-        total_batches = (len(products_to_analyze) + batch_size - 1) // batch_size
-        self.log.info(f"🚀 BATCH PROCESSING: {len(products_to_analyze)} products in {total_batches} batches of {batch_size}")
-
-        # Process products in batches
-        for batch_num in range(total_batches):
-            start_idx = batch_num * batch_size
-            end_idx = min(start_idx + batch_size, len(products_to_analyze))
-            batch_products = products_to_analyze[start_idx:end_idx]
-            
-            self.log.info(f"🔄 Processing batch {batch_num + 1}/{total_batches} ({len(batch_products)} products)")
-            
-            # Process each product in the current batch
-            for i, product_data in enumerate(batch_products):
-                # Calculate the absolute index in the full product list (considering resume index)
-                current_index = self.last_processed_index + start_idx + i + 1
-                self.log.info(f"--- Processing supplier product {current_index}/{len(price_filtered_products)}: '{product_data.get('title')}' ---")
-                
-                # Update processing index for resumability (CRITICAL FIX)
-                self.log.info(f"🔍 DEBUG: Updating processing index to {current_index}/{len(price_filtered_products)}")
-                self.state_manager.update_processing_index(current_index, len(price_filtered_products))
-                # Verify the update worked
-                current_state = self.state_manager.get_state_summary()
-                self.log.info(f"🔍 DEBUG: State after update - last_processed_index: {current_state.get('progress', 'unknown')}")
-                
-                # Check if product has been previously processed
-                if self.state_manager.is_product_processed(product_data.get("url")):
-                    self.log.info(f"Product already processed: {product_data.get('url')}. Skipping.")
-                    continue
-
-                # Extract Amazon data
-                amazon_data = await self._get_amazon_data(product_data)
-                if not amazon_data or "error" in amazon_data:
-                    self.log.warning(f"Could not retrieve valid Amazon data for '{product_data.get('title')}'. Skipping.")
-                    self.state_manager.mark_product_processed(product_data.get("url"), "failed_amazon_extraction")
-                    continue
-
-                # Save the Amazon data with the correct filename
-                supplier_ean = product_data.get("ean") or product_data.get("barcode")
-                # Ensure we don't get None values
-                if supplier_ean == "None" or supplier_ean is None:
-                    supplier_ean = None
-                
-                # Use supplier product title when EAN is not available
-                if not supplier_ean:
-                    # Sanitize supplier product title for filename
-                    supplier_title = product_data.get("title", "NO_TITLE")
-                    # Remove/replace characters that aren't safe for filenames
-                    import re
-                    filename_identifier = re.sub(r'[<>:"/\\|?*]', '_', supplier_title)
-                    filename_identifier = re.sub(r'\s+', '_', filename_identifier)  # Replace spaces with underscores
-                    filename_identifier = filename_identifier[:50]  # Limit length to prevent long filenames
-                    self.log.info(f"🔧 Using supplier title for Amazon cache filename: '{supplier_title}' -> '{filename_identifier}'")
-                else:
-                    filename_identifier = supplier_ean
-                
-                asin = amazon_data.get("asin", "NO_ASIN")
-                amazon_cache_path = os.path.join(self.amazon_cache_dir, f"amazon_{asin}_{filename_identifier}.json")
-                with open(amazon_cache_path, 'w', encoding='utf-8') as f:
-                    json.dump(amazon_data, f, indent=2, ensure_ascii=False)
-                self.log.info(f"Saved Amazon data to {amazon_cache_path}")
-
-                # Add EAN→ASIN mapping to linking map (CRITICAL FIX: Track actual search method)
-                self.log.info(f"🔍 DEBUG: supplier_ean='{supplier_ean}', asin='{asin}', product_ean='{product_data.get('ean')}'")
-                self.log.info(f"🔍 DEBUG: Checking linking conditions - supplier_ean valid: {bool(supplier_ean)}, asin valid: {bool(asin and asin != 'NO_ASIN')}")
-                
-                # Get actual search method used (fixed logic)
-                actual_search_method = amazon_data.get("_search_method_used", "unknown")
-                
-                # Create linking entry with accurate method and confidence
-                if (supplier_ean or product_data.get("title")) and asin and asin != "NO_ASIN":
-                    # Determine confidence based on actual search success, not just supplier data availability
-                    if actual_search_method == "EAN":
-                        confidence = "high"  # EAN search actually worked
-                    elif actual_search_method == "title":
-                        confidence = "medium"  # Title search worked
-                    else:
-                        confidence = "low"  # Unknown method
-                        
-                    linking_entry = {
-                        "supplier_ean": supplier_ean,
-                        "amazon_asin": asin,
-                        "supplier_title": product_data.get("title"),
-                        "amazon_title": amazon_data.get("title"),
-                        "supplier_price": product_data.get("price"),
-                        "amazon_price": amazon_data.get("current_price"),
-                        "match_method": actual_search_method,  # Use actual method, not assumption
-                        "confidence": confidence,
-                        "created_at": datetime.now().isoformat(),
-                        "supplier_url": product_data.get("url")
-                    }
-                    self.linking_map.append(linking_entry)
-                    self.log.info(f"✅ Added linking map entry: {actual_search_method.upper()} search {supplier_ean or 'NO_EAN'} → ASIN {asin}")
-                    self.log.info(f"🔍 DEBUG: Current linking_map size: {len(self.linking_map)} entries")
-                else:
-                    self.log.warning(f"⚠️ Could not create linking map entry: EAN={supplier_ean}, ASIN={asin}")
-                    self.log.warning(f"🔍 DEBUG: Condition failed - supplier_ean: '{supplier_ean}', asin: '{asin}'")
-
-                # Perform financial analysis for individual product
-                try:
-                    # Import financial calculation functions directly to avoid full cache dependency
-                    from FBA_Financial_calculator import financials as calc_financials
-                    
-                    # Extract supplier price with validation
-                    supplier_price = product_data.get("price", 0)
-                    if isinstance(supplier_price, str):
-                        # Clean price string and convert to float
-                        import re
-                        price_clean = re.sub(r'[^0-9.]', '', supplier_price)
-                        supplier_price = float(price_clean) if price_clean else 0
-                    elif supplier_price is None:
-                        supplier_price = 0
-                        
-                    # Calculate financial metrics for this specific product
-                    financials = calc_financials(product_data, amazon_data, supplier_price)
-                    
-                    if not financials:
-                        self.log.warning(f"Financial calculation returned empty for '{product_data.get('title')}'")
-                        financials = {}
-                        
-                except Exception as e:
-                    self.log.error(f"Financial calculation failed for '{product_data.get('title')}': {e}")
-                    self.state_manager.mark_product_processed(product_data.get("url"), "failed_financial_calculation")
-                    # Continue with empty financials rather than failing completely
-                    financials = {}
-
-                # Combine all data
-                combined_data = {**product_data, "amazon_data": amazon_data, "financials": financials}
-                            
-                # Check for profitability
-                if financials.get("ROI", 0) > MIN_ROI_PERCENT and financials.get("NetProfit", 0) > MIN_PROFIT_PER_UNIT:
-                    self.log.info(f"✅ Profitable product found: '{product_data.get('title')}' (ROI: {financials.get('ROI'):.2f}%, Profit: £{financials.get('NetProfit'):.2f})")
-                    profitable_results.append(combined_data)
-                    self.results_summary["profitable_products"] += 1
-                    self.state_manager.mark_product_processed(product_data.get("url"), "profitable")
-                else:
-                    self.log.info(f"Product not profitable: '{product_data.get('title')}' (ROI: {financials.get('ROI', 0):.2f}%, Profit: £{financials.get('NetProfit', 0):.2f})")
-                    self.state_manager.mark_product_processed(product_data.get("url"), "not_profitable")
-
-                # Save state periodically using configurable batch sizes
-                overall_product_index = start_idx + i + 1
-                linking_map_batch = self.system_config.get("system", {}).get("linking_map_batch_size", 3)
-                
-                if overall_product_index % linking_map_batch == 0:
-                    self.state_manager.save_state()
-                    self._save_linking_map(supplier_name)
-                    self.log.info(f"📊 Periodic save at product {overall_product_index} (linking_map_batch_size: {linking_map_batch})")
-
-        # Final save and completion
-        self.state_manager.complete_processing()
-        self._save_linking_map(supplier_name)
-        self._save_final_report(profitable_results, supplier_name)
-        
-        # CRITICAL FIX: Generate comprehensive financial report (was missing causing 6-day gap)
-        try:
-            from tools.FBA_Financial_calculator import run_calculations
-            self.log.info("🧮 Generating comprehensive financial report...")
-            financial_results = run_calculations(supplier_name)
-            if financial_results and financial_results.get('file_path'):
-                self.log.info(f"✅ Financial report generated: {financial_results['file_path']}")
-            else:
-                self.log.warning("⚠️ Financial report generated but no file path returned")
-        except ImportError as ie:
-            self.log.error(f"❌ Could not import FBA_Financial_calculator: {ie}")
-        except Exception as e:
-            self.log.error(f"❌ Error generating financial report: {e}")
-        
-        self.log.info(f"📊 Processing state file saved: {self.state_manager.state_file_path}")
-        self.log.info(f"📊 Final state summary: {self.state_manager.get_state_summary()}")
-        self.log.info("--- Passive Extraction Workflow Finished ---")
-        self.log.info(f"Summary: {self.results_summary}")
-        return profitable_results
-
-    async def _extract_supplier_products(self, supplier_url: str, supplier_name: str, category_urls: List[str], max_products_per_category: int, max_products_to_process: int = None) -> List[Dict[str, Any]]:
+    async def _extract_supplier_products(self, supplier_url: str, supplier_name: str, category_urls: List[str], max_products_per_category: int, max_products_to_process: int = None, supplier_extraction_batch_size: int = 3) -> List[Dict[str, Any]]:
         """Extract products from a list of category URLs with overall product limit enforcement."""
         
         # 🔄 SUPPLIER CACHE FRESHNESS CHECK
@@ -2525,12 +2561,14 @@ Return ONLY valid JSON, no additional text."""
                 self.log.warning(f"⚠️ Error checking supplier cache freshness: {e}, proceeding with scraping")
         
         # Proceed with normal supplier scraping with batching
-        supplier_extraction_batch_size = self.system_config.get("system", {}).get("supplier_extraction_batch_size", 3)
+        # supplier_extraction_batch_size is now passed as a parameter
         self.log.info(f"🕷️ PERFORMING SUPPLIER SCRAPING from {len(category_urls)} categories")
         self.log.info(f"📦 Using supplier extraction batch size: {supplier_extraction_batch_size}")
         
         # Process categories in batches for better memory management
         all_products = []
+        # Store as instance variable for progress callback access
+        self._current_all_products = all_products
         category_batches = [category_urls[i:i + supplier_extraction_batch_size] for i in range(0, len(category_urls), supplier_extraction_batch_size)]
         
         # Get progress tracking configuration
@@ -2568,45 +2606,29 @@ Return ONLY valid JSON, no additional text."""
                         self.log.info(f"🔄 EXTRACTION PROGRESS: Processing subcategory {subcategory_index}/{len(category_batch)} in batch {batch_num} (Category {category_index}/{len(category_urls)})")
                 
                 # Setup progress callback for individual product tracking
-                if hasattr(self.web_scraper, 'set_progress_callback'):
-                    self.web_scraper.set_progress_callback(self._create_product_progress_callback(category_url, progress_config))
+                if hasattr(self.supplier_scraper, 'set_progress_callback'):
+                    self.supplier_scraper.set_progress_callback(self._create_product_progress_callback(category_url, progress_config))
                 # Check if we've reached the overall product limit
                 if max_products_to_process and len(all_products) >= max_products_to_process:
                     self.log.info(f"🛑 STOPPING: Reached max_products_to_process limit of {max_products_to_process} products")
                     break
                     
                 self.log.info(f"Scraping category: {category_url}")
-                products = await self.web_scraper.scrape_products_from_url(
+                # 🚨 DEFINITIVE FIX: Pass all_products as product_accumulator for real-time updates
+                products = await self.supplier_scraper.scrape_products_from_url(
                     category_url,
-                    max_products_per_category
+                    max_products_per_category,
+                    product_accumulator=all_products  # Share the list for real-time cache saves
                 )
                 
-                # CRITICAL FIX: Apply max_price_gbp filtering to scraped products
-                filtered_products = []
-                for product in products:
-                    try:
-                        price = float(product.get('price', 0))
-                        if price <= self.max_price:
-                            filtered_products.append(product)
-                        else:
-                            self.log.info(f"🛑 PRICE FILTER: Excluding '{product.get('title', 'Unknown')}' - £{price} > £{self.max_price} limit")
-                    except (ValueError, TypeError):
-                        # Keep products with invalid/missing prices for now
-                        filtered_products.append(product)
-                        self.log.warning(f"⚠️ Invalid price for '{product.get('title', 'Unknown')}': {product.get('price')}")
+                # 🚨 REMOVED: Price filtering and product extension now handled in progress callback
+                # Products are added to all_products immediately when found via progress_callback
+                # This ensures per-product cache saves work correctly with live data
+                self.log.info(f"📊 Category completed: {len(products)} raw products extracted, {len(all_products)} total products accumulated")
                 
-                if len(filtered_products) < len(products):
-                    self.log.info(f"🛑 PRICE FILTERING: {len(products) - len(filtered_products)} products excluded (>{self.max_price}), {len(filtered_products)} remain")
-                
-                all_products.extend(filtered_products)
-                
-                # 🚨 CRITICAL FIX: Implement missing supplier cache update frequency triggering
-                cache_update_frequency = cache_config.get("update_frequency_products", 10)
-                if cache_config.get("enabled", True) and len(all_products) % cache_update_frequency == 0:
-                    # Save products to cache every N products as configured
-                    cache_file_path = os.path.join(self.supplier_cache_dir, f"{supplier_name.replace('.', '-')}_products_cache.json")
-                    self._save_products_to_cache(all_products, cache_file_path)
-                    self.log.info(f"💾 CACHE UPDATE: Saved {len(all_products)} products to cache (every {cache_update_frequency} products)")
+                # 🚨 REMOVED: Category-based cache saving logic (now handled per-product in progress callback)
+                # This was causing the update_frequency_products to only save after complete categories
+                # instead of respecting the per-product frequency configuration
                 
                 # Check again after adding products from this category
                 if max_products_to_process and len(all_products) >= max_products_to_process:
@@ -2621,19 +2643,48 @@ Return ONLY valid JSON, no additional text."""
         return all_products
 
     def _create_product_progress_callback(self, category_url: str, progress_config: Dict[str, Any]):
-        """Create a progress callback for individual product extraction"""
+        """Create a progress callback for individual product extraction with proper caching"""
         # Initialize a simple counter if it doesn't exist
         if not hasattr(self, '_supplier_product_counter'):
             self._supplier_product_counter = 0
             
-        def progress_callback(operation_type: str, product_index: int, total_products: int, product_url: str):
+        def progress_callback(operation_type: str, product_index: int, total_products: int, product_url: str, product_data: dict = None):
             if operation_type == 'supplier_extraction':
                 # Increment global product counter
                 self._supplier_product_counter += 1
                 
+                # 🚨 DEFINITIVE FIX: Products are now added by scraper directly to shared list
+                # Progress callback only needs to track progress and trigger cache saves
+                if product_data and hasattr(self, '_current_all_products'):
+                    self.log.info(f"📊 PROGRESS: Product {self._supplier_product_counter} processed (total in cache: {len(self._current_all_products)})")
+                
                 # Simple index-based logging (matching Amazon analysis style)
                 if progress_config.get("progress_display", {}).get("show_product_progress", True):
                     self.log.info(f"🔄 SUPPLIER EXTRACTION: Processing product {self._supplier_product_counter}")
+                
+                # 🚨 NEW: Per-product cache saving logic (now works because list is populated)
+                cache_config = self.system_config.get("supplier_cache_control", {})
+                update_frequency = cache_config.get("update_frequency_products", 2)  # Use config value
+                
+                # Debug logging for cache save logic
+                self.log.info(f"🔍 CACHE CHECK: Product {self._supplier_product_counter}, frequency={update_frequency}, enabled={cache_config.get('enabled', True)}")
+                self.log.info(f"🔍 CACHE CHECK: List length={len(getattr(self, '_current_all_products', []))}, modulo={self._supplier_product_counter % update_frequency}")
+                
+                if (cache_config.get("enabled", True) and 
+                    hasattr(self, '_current_all_products') and
+                    len(self._current_all_products) > 0 and
+                    self._supplier_product_counter % update_frequency == 0):
+                    
+                    # Import path_manager for proper path handling
+                    from utils.path_manager import path_manager
+                    
+                    # Build cache path using path_manager
+                    cache_filename = f"{self.supplier_name.replace('.', '-')}_products_cache.json"
+                    cache_file_path = path_manager.get_output_path("cached_products", cache_filename)
+                    
+                    # Save current products to cache
+                    self._save_products_to_cache(self._current_all_products, cache_file_path)
+                    self.log.info(f"💾 PERIODIC CACHE SAVE: Saved {len(self._current_all_products)} products to cache (every {update_frequency} products)")
                     
                 # Update state for interruption recovery
                 if hasattr(self, 'state_manager'):
@@ -2650,48 +2701,71 @@ Return ONLY valid JSON, no additional text."""
         import glob
         import time
         
-        # Possible cache filename patterns
+        # FIX 2: Amazon cache reuse logic - Enhanced ASIN/EAN matching
+        amazon_cache_dir = self.amazon_cache_dir
+        
+        # First: Check for exact EAN match
+        if supplier_ean:
+            exact_pattern = f"amazon_{asin}_{supplier_ean}.json"
+            exact_file = os.path.join(amazon_cache_dir, exact_pattern)
+            if os.path.exists(exact_file):
+                try:
+                    with open(exact_file, 'r', encoding='utf-8') as f:
+                        self.log.info(f"📋 Found exact EAN match in cache: {exact_pattern}")
+                        return json.load(f)
+                except Exception as e:
+                    self.log.error(f"Error loading exact EAN match cache: {e}")
+        
+        # Second: Check for ASIN with different EAN - copy to new filename
         cache_patterns = [
-            f"amazon_{asin}_{supplier_ean}.json" if supplier_ean else None,
             f"amazon_{asin}_*.json",  # ASIN with any suffix
             f"amazon_{asin}.json"     # ASIN only
         ]
         
-        amazon_cache_dir = os.path.join(self.output_dir, "amazon_cache")
-        
         for pattern in cache_patterns:
-            if not pattern:
-                continue
-                
             cache_path_pattern = os.path.join(amazon_cache_dir, pattern)
-            matching_files = glob.glob(cache_path_pattern)
-            
-            if matching_files:
-                # Use the most recent file if multiple matches
-                cache_file = max(matching_files, key=os.path.getmtime)
-                
+            matching_files = sorted(glob.glob(cache_path_pattern), key=os.path.getmtime, reverse=True)
+
+            for cache_file in matching_files:
                 try:
-                    # Check cache age (24 hour freshness)
-                    cache_age_hours = (time.time() - os.path.getmtime(cache_file)) / 3600
-                    if cache_age_hours < 24:
-                        with open(cache_file, 'r', encoding='utf-8') as f:
-                            cached_data = json.load(f)
-                        
-                        self.log.info(f"🔄 AMAZON CACHE HIT: Found fresh cached data for ASIN {asin} (age: {cache_age_hours:.1f}h)")
-                        self.log.info(f"📋 Using cached file: {os.path.basename(cache_file)}")
-                        
-                        # Add cache metadata
-                        cached_data["_cache_hit"] = True
-                        cached_data["_cache_file"] = cache_file
-                        cached_data["_cache_age_hours"] = cache_age_hours
-                        
-                        return cached_data
-                    else:
-                        self.log.info(f"🔄 AMAZON CACHE STALE: Cache for ASIN {asin} too old ({cache_age_hours:.1f}h > 24h)")
-                        
+                    with open(cache_file, 'r', encoding='utf-8') as f:
+                        cached_data = json.load(f)
                 except Exception as e:
-                    self.log.warning(f"⚠️ Error reading Amazon cache file {cache_file}: {e}")
+                    self.log.error(f"Error loading cached Amazon data from {cache_file}: {e}")
                     continue
+
+                # Gather all EAN values present in the cache file
+                eans_in_cache = set()
+                if cached_data.get("ean"):
+                    eans_in_cache.add(str(cached_data.get("ean")))
+                if cached_data.get("ean_on_page"):
+                    eans_in_cache.add(str(cached_data.get("ean_on_page")))
+                for ean in cached_data.get("eans_on_page", []):
+                    eans_in_cache.add(str(ean))
+
+                if supplier_ean and supplier_ean not in eans_in_cache:
+                    self.log.info(
+                        f"Skipping cache file {os.path.basename(cache_file)} due to EAN mismatch"
+                    )
+                    continue
+
+                # Copy existing cache to new EAN-specific filename if needed
+                if supplier_ean:
+                    new_filename = f"amazon_{asin}_{supplier_ean}.json"
+                    new_filepath = os.path.join(amazon_cache_dir, new_filename)
+
+                    if not os.path.exists(new_filepath):
+                        try:
+                            with open(new_filepath, 'w', encoding='utf-8') as f:
+                                json.dump(cached_data, f, indent=2, ensure_ascii=False)
+                            self.log.info(
+                                f"📋 Copied existing cache to EAN-specific file: {new_filename}"
+                            )
+                        except Exception as copy_error:
+                            self.log.error(f"Error copying cache to EAN-specific file: {copy_error}")
+
+                self.log.info(f"📋 Found ASIN match in cache: {os.path.basename(cache_file)}")
+                return cached_data
         
         return None
 
@@ -2705,30 +2779,89 @@ Return ONLY valid JSON, no additional text."""
             self.log.info(f"Attempting Amazon search using EAN: {supplier_ean}")
             self.results_summary["products_analyzed_ean"] += 1
             
-            # CRITICAL FIX: Check Amazon cache before performing EAN search
-            # First try to get ASIN from EAN search to check cache
-            amazon_product_data = await self.extractor.search_by_ean_and_extract_data(supplier_ean, product_data["title"])
+            # FIX 2: Enhanced Amazon cache reuse logic - Check cache before scraping
+            # First try to find cached data by EAN before performing any searches
+            cached_data = None
+            found_asin = None
+            
+            # Check if we have cached data for this EAN
+            amazon_cache_dir = os.path.join(self.output_dir, "FBA_ANALYSIS", "amazon_cache")
+            if os.path.exists(amazon_cache_dir):
+                for cache_file in os.listdir(amazon_cache_dir):
+                    if cache_file.endswith(".json"):
+                        # Check if supplier EAN matches filename
+                        if supplier_ean in cache_file:
+                            try:
+                                with open(os.path.join(amazon_cache_dir, cache_file), 'r', encoding='utf-8') as f:
+                                    cached_data = json.load(f)
+                                    found_asin = cached_data.get("asin") or cached_data.get("asin_extracted_from_page")
+                                    self.log.info(f"📋 Found cached Amazon data for EAN {supplier_ean} in file: {cache_file}")
+                                    break
+                            except Exception as e:
+                                self.log.debug(f"Error reading cache file {cache_file}: {e}")
+                        
+                        # Check for ASIN matches that might need EAN-specific copying
+                        elif cache_file.startswith("amazon_") and cache_file.endswith(".json"):
+                            try:
+                                # Extract ASIN from filename
+                                asin_match = re.search(r'amazon_([A-Z0-9]{10})', cache_file)
+                                if asin_match:
+                                    cache_asin = asin_match.group(1)
+                                    with open(os.path.join(amazon_cache_dir, cache_file), 'r', encoding='utf-8') as f:
+                                        cache_data = json.load(f)
+                                        cache_ean = cache_data.get("ean") or cache_data.get("ean_on_page")
+                                        
+                                        # Apply EAN validation like the patched _check_amazon_cache_by_asin function
+                                        if cache_asin and cache_ean:
+                                            # Gather all EAN values present in the cache file
+                                            eans_in_cache = set()
+                                            if cache_data.get("ean"):
+                                                eans_in_cache.add(str(cache_data.get("ean")))
+                                            if cache_data.get("ean_on_page"):
+                                                eans_in_cache.add(str(cache_data.get("ean_on_page")))
+                                            for ean in cache_data.get("eans_on_page", []):
+                                                eans_in_cache.add(str(ean))
+
+                                            # Skip if supplier EAN not found in cache EANs
+                                            if supplier_ean not in eans_in_cache:
+                                                self.log.info(f"Skipping cache file {cache_file} due to EAN mismatch: {supplier_ean} not in {eans_in_cache}")
+                                                continue
+
+                                            # EAN matches - use this cache
+                                            cached_data = cache_data
+                                            found_asin = cache_asin
+                                            self.log.info(f"📋 Found matching EAN {supplier_ean} in cache file: {cache_file}")
+                                            break
+                            except Exception as e:
+                                self.log.debug(f"Error checking cache file {cache_file} for ASIN reuse: {e}")
+            
+            if cached_data:
+                amazon_product_data = cached_data
+                actual_search_method = "EAN_cached"
+                self.log.info(f"📋 Using cached Amazon data for EAN {supplier_ean}")
+            else:
+                # No cache found - perform EAN search
+                amazon_product_data = await self.extractor.search_by_ean_and_extract_data(supplier_ean, product_data["title"])
             
             if amazon_product_data and "error" not in amazon_product_data:
-                # EAN search succeeded - check if we have cached data for this ASIN
+                # EAN search succeeded (or we used cached data)
                 found_asin = amazon_product_data.get("asin") or amazon_product_data.get("asin_extracted_from_page")
                 
-                if found_asin:
-                    # Check cache first before using fresh scraping data
-                    cached_data = self._check_amazon_cache_by_asin(found_asin, supplier_ean)
-                    
-                    if cached_data:
-                        # Cache hit - use cached data instead of fresh data
-                        amazon_product_data = cached_data
-                        actual_search_method = "EAN_cached"
-                        self.log.info(f"📋 Using cached Amazon data for EAN-found ASIN {found_asin}")
-                    else:
-                        # No cache - use fresh data from EAN search
-                        actual_search_method = "EAN"  # EAN search succeeded
-                else:
+                if found_asin and actual_search_method != "EAN_cached":
+                    # For fresh EAN search results, check if we need to copy to EAN-specific cache file
+                    actual_search_method = "EAN"  # EAN search succeeded
+                elif not found_asin:
                     actual_search_method = "EAN"  # EAN search succeeded but no ASIN found
+                
+                # FIX 1: EAN search successful - skip title search completely
+                self.log.info(f"✅ EAN search successful for {supplier_ean}. Using EAN result without title fallback.")
+                
+                # Add search method info and return immediately to prevent title search
+                amazon_product_data["_search_method_used"] = actual_search_method
+                return amazon_product_data
             else:
                 amazon_product_data = None # Reset if EAN search failed
+                self.log.info(f"❌ EAN search failed for {supplier_ean}. Will fall back to title search.")
                 
         if not amazon_product_data:
             if supplier_ean: self.log.info("EAN search failed. Falling back to title search.")
@@ -2796,17 +2929,26 @@ Return ONLY valid JSON, no additional text."""
         amazon_product_data["_search_method_used"] = actual_search_method
         return amazon_product_data
 
-    def _save_final_report(self, profitable_results: List[Dict[str, Any]], supplier_name: str):
+
+
+    def _get_cached_products_path(self, category_url: str):
+        """Helper to get the path for a category's product cache file."""
+        category_filename = f"{self.supplier_name}_{category_url.split('/')[-1]}_products.json"
+        cache_dir = os.path.join(self.output_dir, 'CACHE', 'supplier_cache')
+        return os.path.join(cache_dir, category_filename)
+
+    def _save_final_report(self, profitable_products: list):
         """Save the final report of profitable products to a JSON file."""
-        if not profitable_results:
+        if not profitable_products:
             self.log.info("No profitable products found in this run.")
             return
-        output_filename = f"fba_profitable_finds_{supplier_name}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
-        output_path = os.path.join(OUTPUT_DIR, output_filename)
+        from utils.path_manager import path_manager
+        output_filename = f"fba_profitable_finds_{self.supplier_name}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
+        output_path = path_manager.get_output_path("FBA_ANALYSIS", "profitable_reports", output_filename)
         try:
             with open(output_path, "w", encoding="utf-8") as f:
-                json.dump(profitable_results, f, indent=2, ensure_ascii=False)
-            self.log.info(f"Found {len(profitable_results)} profitable products. Results saved to {output_path}")
+                json.dump(profitable_products, f, indent=2, ensure_ascii=False)
+            self.log.info(f"Found {len(profitable_products)} profitable products. Results saved to {output_path}")
         except Exception as e:
             self.log.error(f"Error saving final report: {e}")
 
@@ -2829,6 +2971,15 @@ Return ONLY valid JSON, no additional text."""
         a = set(re.sub(r'[^\w\s]', ' ', title_a.lower()).split())
         b = set(re.sub(r'[^\w\s]', ' ', title_b.lower()).split())
         return len(a & b) / max(1, len(a))
+    
+    def _sanitize_filename(self, title: str) -> str:
+        """Sanitize product title for use in filename"""
+        if not title:
+            return "unknown_title"
+        # Remove or replace problematic characters
+        sanitized = re.sub(r'[^\w\s-]', '', title)
+        sanitized = re.sub(r'\s+', '_', sanitized)
+        return sanitized[:50]  # Limit length to 50 chars
 
     def _validate_product_match(self, supplier_product: Dict[str, Any], amazon_product: Dict[str, Any]) -> Dict[str, Any]:
         """Validate the match between supplier and Amazon products using configurable thresholds."""
@@ -2940,13 +3091,15 @@ Return ONLY valid JSON, no additional text."""
     async def _run_hybrid_processing_mode(self, supplier_url: str, supplier_name: str, 
                                          category_urls_to_scrape: List[str], 
                                          max_products_per_category: int, max_products_to_process: int,
-                                         max_analyzed_products: int, max_products_per_cycle: int) -> List[Dict[str, Any]]:
+                                         max_analyzed_products: int, max_products_per_cycle: int, 
+                                         supplier_extraction_batch_size: int) -> List[Dict[str, Any]]:
         """
         Hybrid processing mode that allows switching between supplier extraction and Amazon analysis.
         Supports chunked, sequential, and balanced processing modes.
         """
         profitable_results: List[Dict[str, Any]] = []
-        hybrid_config = self.system_config.get("hybrid_processing", {})
+        full_config = self.config_loader._config
+        hybrid_config = full_config.get("hybrid_processing", {})
         processing_modes = hybrid_config.get("processing_modes", {})
         switch_after_categories = hybrid_config.get("switch_to_amazon_after_categories", 10)
         
@@ -2968,13 +3121,14 @@ Return ONLY valid JSON, no additional text."""
                 # Extract from this chunk of categories
                 chunk_products = await self._extract_supplier_products(
                     supplier_url, supplier_name, chunk_categories, 
-                    max_products_per_category, max_products_to_process
+                    max_products_per_category, max_products_to_process, supplier_extraction_batch_size
                 )
                 
                 if chunk_products:
                     # Immediately analyze these products
-                    chunk_results = await self._analyze_products_batch(
-                        chunk_products, supplier_name, max_products_per_cycle
+                    # Use the same detailed processing logic as main workflow
+                    chunk_results = await self._process_chunk_with_main_workflow_logic(
+                        chunk_products, max_products_per_cycle
                     )
                     profitable_results.extend(chunk_results)
                     
@@ -3003,14 +3157,16 @@ Return ONLY valid JSON, no additional text."""
                         batch_products = all_products[batch_start:batch_end]
                         
                         self.log.info(f"🔄 Analyzing batch {batch_start//batch_size + 1}: products {batch_start+1}-{batch_end}")
-                        batch_results = await self._analyze_products_batch(
-                            batch_products, supplier_name, max_products_per_cycle
+                        # Use the same detailed processing logic as main workflow
+                        batch_results = await self._process_chunk_with_main_workflow_logic(
+                            batch_products, max_products_per_cycle
                         )
                         profitable_results.extend(batch_results)
                 else:
                     # Analyze all products at once
-                    profitable_results = await self._analyze_products_batch(
-                        all_products, supplier_name, max_products_per_cycle
+                    # Use the same detailed processing logic as main workflow
+                    profitable_results = await self._process_chunk_with_main_workflow_logic(
+                        all_products, max_products_per_cycle
                     )
         else:
             # Sequential mode (default): Complete supplier extraction, then Amazon analysis
@@ -3027,6 +3183,16 @@ Return ONLY valid JSON, no additional text."""
                     all_products, supplier_name, max_products_per_cycle
                 )
         
+        # Finalize hybrid processing by saving results and state
+        try:
+            self._save_linking_map(supplier_name)
+            self._save_final_report(profitable_results)
+
+            self.state_manager.save_state()
+            self.log.info("--- Hybrid Processing Mode Finished ---")
+        except Exception as save_error:
+            self.log.error(f"Error during hybrid finalization: {save_error}", exc_info=True)
+
         return profitable_results
 
     async def _analyze_products_batch(self, products: List[Dict[str, Any]], 
@@ -3088,16 +3254,11 @@ Return ONLY valid JSON, no additional text."""
                 try:
                     from FBA_Financial_calculator import financials as calc_financials
                     supplier_price = float(product_data.get("price", 0))
+                    supplier_price_inc_vat = supplier_price
                     current_price = amazon_data.get("current_price", 0)
-                    
+
                     if supplier_price > 0 and current_price > 0:
-                        financials = calc_financials(
-                            supplier_price=supplier_price,
-                            amazon_price=current_price,
-                            amazon_sales_rank=amazon_data.get("sales_rank", 999999),
-                            amazon_rating=amazon_data.get("rating", 0),
-                            amazon_review_count=amazon_data.get("reviews", 0)
-                        )
+                        financials = calc_financials(product_data, amazon_data, supplier_price_inc_vat)
                         
                         # Check profitability
                         if financials.get("ROI", 0) > MIN_ROI_PERCENT and financials.get("NetProfit", 0) > MIN_PROFIT_PER_UNIT:
@@ -3120,22 +3281,194 @@ Return ONLY valid JSON, no additional text."""
         
         return profitable_results
 
-async def main():
-    """Main function to run the workflow from command line."""
-    parser = argparse.ArgumentParser(description="Run passive FBA extraction workflow.")
-    parser.add_argument("--supplier_url", default=DEFAULT_SUPPLIER_URL, help="Supplier URL")
-    parser.add_argument("--supplier_name", default=DEFAULT_SUPPLIER_NAME, help="Supplier Name")
-    parser.add_argument("--max_products", type=int, default=100, help="Max products to process")
-    args = parser.parse_args()
-    if not args.supplier_url or not args.supplier_name:
-        log.error("Supplier URL and Name are required.")
-        return
-    # Initialize workflow and run
-    workflow = PassiveExtractionWorkflow()
-    await workflow.run(
-        supplier_url=args.supplier_url,
-        supplier_name=args.supplier_name,
-        max_products_to_process=args.max_products
-    )
-if __name__ == "__main__":
-    asyncio.run(main())
+    def _get_cached_products_path(self, category_url: str):
+        """Helper to get the path for a category's product cache file."""
+        category_filename = f"{self.supplier_name}_{category_url.split('/')[-1]}_products.json"
+        cache_dir = os.path.join(self.output_dir, 'CACHE', 'supplier_cache')
+        return os.path.join(cache_dir, category_filename)
+
+    def _load_linking_map(self, supplier_name: str) -> Dict[str, str]:
+        """Load linking map from supplier-specific JSON file"""
+        from utils.path_manager import get_linking_map_path
+        linking_map_path = get_linking_map_path(supplier_name)
+        
+        if os.path.exists(linking_map_path):
+            try:
+                with open(linking_map_path, "r", encoding="utf-8") as f:
+                    raw_data = json.load(f)
+                
+                # Handle both formats: new dict format and legacy list format
+                if isinstance(raw_data, dict):
+                    # New simple format: {"EAN": "ASIN", "EAN2": "ASIN2"}
+                    linking_map = raw_data
+                    self.log.info(f"✅ Loaded linking map (dict format) from {linking_map_path} with {len(linking_map)} entries")
+                elif isinstance(raw_data, list):
+                    # Legacy detailed format: [{"supplier_ean": "123", "amazon_asin": "ABC", ...}]
+                    linking_map = {}
+                    for entry in raw_data:
+                        if isinstance(entry, dict) and "supplier_ean" in entry and "amazon_asin" in entry:
+                            linking_map[entry["supplier_ean"]] = entry["amazon_asin"]
+                    self.log.info(f"✅ Converted linking map from list format to dict format from {linking_map_path} with {len(linking_map)} entries")
+                    
+                    # Save the converted format back to file for future use
+                    self._save_converted_linking_map(supplier_name, linking_map)
+                else:
+                    self.log.error(f"Unexpected linking map format: {type(raw_data)} - Creating new map")
+                    return {}
+                    
+                return linking_map
+            except (json.JSONDecodeError, UnicodeDecodeError, Exception) as e:
+                self.log.error(f"Error loading linking map: {e} - Creating new map")
+                return {}
+        else:
+            self.log.info(f"✅ No existing linking map found at {linking_map_path} - Creating new map")
+            return {}
+
+    def _save_linking_map(self, supplier_name: str):
+        """Save linking map to supplier-specific JSON file using atomic write pattern"""
+        from utils.path_manager import get_linking_map_path
+        self.log.info(f"🔍 DEBUG: _save_linking_map called with {len(self.linking_map)} entries for supplier {supplier_name}")
+        if not self.linking_map:
+            self.log.info("Empty linking map - nothing to save.")
+            return
+            
+        linking_map_path = get_linking_map_path(supplier_name)
+        
+        # Use atomic write pattern to prevent corruption
+        temp_path = f"{linking_map_path}.tmp"
+        try:
+            # First write to temporary file
+            with open(temp_path, "w", encoding="utf-8") as f:
+                json.dump(self.linking_map, f, indent=2, ensure_ascii=False)
+                
+            # Then atomically replace the original file
+            os.replace(temp_path, linking_map_path)
+            self.log.info(f"✅ Successfully saved linking map with {len(self.linking_map)} entries to {linking_map_path}")
+        except Exception as e:
+            self.log.error(f"Error saving linking map: {e}")
+            if os.path.exists(temp_path):
+                try:
+                    os.remove(temp_path)
+                except:
+                    pass
+
+    async def _run_financial_analysis(self, combined_data: dict) -> dict:
+        """Run financial analysis on combined supplier and Amazon data"""
+        try:
+            # Import financial calculation functions directly to avoid full cache dependency (matches line 1253)
+            from FBA_Financial_calculator import financials as calc_financials
+            
+            # Extract supplier price with validation (matches your Fix 1.4 pattern)
+            supplier_price_inc_vat = combined_data.get("price", 0)
+            amazon_price = combined_data.get("current_price", 0)
+            
+            # Ensure we have valid prices
+            if supplier_price_inc_vat <= 0 or amazon_price <= 0:
+                self.log.warning(f"Invalid prices: supplier={supplier_price_inc_vat}, amazon={amazon_price}")
+                return {"is_profitable": False, "error": "Invalid prices"}
+            
+            # Calculate financial metrics (matches your Fix 1.1 pattern)
+            financials = calc_financials(combined_data, combined_data, supplier_price_inc_vat)
+            
+            # Check minimum profitability thresholds
+            MIN_ROI_PERCENT = 15  # Minimum 15% ROI
+            MIN_PROFIT_PER_UNIT = 2  # Minimum £2 profit per unit
+            
+            roi = financials.get("ROI", 0)
+            net_profit = financials.get("NetProfit", 0)
+            
+            is_profitable = roi > MIN_ROI_PERCENT and net_profit > MIN_PROFIT_PER_UNIT
+            
+            # Prepare result
+            result = {
+                "is_profitable": is_profitable,
+                "financials": financials,
+                "roi": roi,
+                "net_profit": net_profit,
+                "supplier_price": supplier_price,
+                "amazon_price": amazon_price
+            }
+            
+            if is_profitable:
+                self.log.info(f"✅ PROFITABLE: ROI {roi:.1f}%, Profit £{net_profit:.2f}")
+            else:
+                self.log.info(f"Not profitable: ROI {roi:.1f}%, Profit £{net_profit:.2f}")
+                
+            return result
+            
+        except Exception as e:
+            self.log.error(f"Financial analysis failed: {e}")
+            return {"is_profitable": False, "error": str(e)}
+
+    async def _process_chunk_with_main_workflow_logic(self, products: List[Dict[str, Any]], max_products_per_cycle: int) -> List[Dict[str, Any]]:
+        """Process products using the same detailed logic as main workflow (not simplified batch processing)"""
+        profitable_results = []
+        
+        # Filter and prepare products for analysis (same as main workflow)
+        valid_products = [
+            p for p in products
+            if p.get("title") and isinstance(p.get("price"), (float, int)) and p.get("price", 0) > 0 and p.get("url")
+        ]
+        
+        price_filtered_products = [
+            p for p in valid_products
+            if MIN_PRICE <= p.get("price", 0) <= MAX_PRICE
+        ]
+        
+        self.log.info(f"🔍 Processing {len(price_filtered_products)} products with main workflow logic")
+        
+        # Use the same logic as the main workflow
+        batch_size = max_products_per_cycle
+        total_batches = (len(price_filtered_products) + batch_size - 1) // batch_size
+        
+        for batch_num in range(total_batches):
+            start_idx = batch_num * batch_size
+            end_idx = min(start_idx + batch_size, len(price_filtered_products))
+            batch_products = price_filtered_products[start_idx:end_idx]
+            
+            # Process each product in the current batch using main workflow logic
+            for i, product_data in enumerate(batch_products):
+                current_index = start_idx + i + 1
+                self.log.info(f"--- Processing supplier product {current_index}/{len(price_filtered_products)}: '{product_data.get('title')}' ---")
+                
+                # Check if product has been previously processed
+                if self.state_manager.is_product_processed(product_data.get("url")):
+                    self.log.info(f"Product already processed: {product_data.get('url')}. Skipping.")
+                    continue
+
+                # Extract Amazon data using the same logic as main workflow
+                amazon_data = await self._get_amazon_data(product_data)
+                
+                if amazon_data:
+                    # Create linking map entry
+                    supplier_ean = product_data.get("ean")
+                    amazon_asin = amazon_data.get("asin") or amazon_data.get("asin_extracted_from_page")
+                    
+                    if supplier_ean and amazon_asin:
+                        # DEBUG: Check linking_map type before assignment
+                        self.log.debug(f"🔍 DEBUG: linking_map type: {type(self.linking_map)}, value: {self.linking_map}")
+                        self.linking_map[supplier_ean] = amazon_asin
+                    
+                    # Combine supplier and Amazon data
+                    combined_data = {**product_data, **amazon_data}
+                    
+                    # Run financial analysis
+                    financial_result = await self._run_financial_analysis(combined_data)
+                    
+                    if financial_result and financial_result.get("is_profitable"):
+                        profitable_results.append(financial_result)
+                        self.log.info(f"✅ Profitable product found: {product_data.get('title')}")
+                        self.state_manager.mark_product_processed(product_data.get("url"), "completed_profitable")
+                    elif financial_result and financial_result.get("error"):
+                        self.log.info(f"❌ Financial analysis failed: {financial_result.get('error')}")
+                        self.state_manager.mark_product_processed(product_data.get("url"), "failed_financial_calculation")
+                    else:
+                        self.log.info(f"❌ Not profitable product: {product_data.get('title')}")
+                        self.state_manager.mark_product_processed(product_data.get("url"), "completed_not_profitable")
+                
+                # Save state periodically
+                if current_index % 5 == 0:
+                    self.state_manager.save_state()
+                    self._save_linking_map(self.supplier_name)
+        
+        return profitable_results

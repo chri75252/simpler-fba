@@ -1,0 +1,108 @@
+INFO:__main__:🔍 Enhanced detailed logging enabled - output: /mnt/c/Users/chris/Cloud-Drive_christianhaddad8@gmail.com/Cloud-Drive/Full/claude code/Amazon-FBA-Agent-System-v3/logs/debug/run_complete_fba_system_20250704_223543.log
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:__main__:🚀 Complete FBA System v3 initialized
+INFO:__main__:🏭 Processing supplier: poundwholesale-co-uk
+INFO:__main__:🔗 URL: https://www.poundwholesale.co.uk/
+INFO:__main__:📧 Email: info@theblacksmithmarket.com
+INFO:__main__:🖥️ Headed mode: True
+INFO:__main__:📦 Max products: 5
+INFO:__main__:🔄 Force regenerate: True
+INFO:__main__:📦 Archive system disabled - skipping file archiving
+INFO:__main__:📦 Archive system disabled - skipping supplier data backup
+INFO:utils.path_manager:Creating run output directory for supplier 'poundwholesale-co-uk' -> 'poundwholesale-co-uk/20250704_183543_run'
+DEBUG:utils.path_manager:Successfully created run output directory: /mnt/c/Users/chris/Cloud-Drive_christianhaddad8@gmail.com/Cloud-Drive/Full/claude code/Amazon-FBA-Agent-System-v3/OUTPUTS/poundwholesale-co-uk/20250704_183543_run
+INFO:__main__:📁 Run output directory: /mnt/c/Users/chris/Cloud-Drive_christianhaddad8@gmail.com/Cloud-Drive/Full/claude code/Amazon-FBA-Agent-System-v3/OUTPUTS/poundwholesale-co-uk/20250704_183543_run
+INFO:__main__:✅ Existing supplier package found for poundwholesale-co-uk. Bypassing script generation.
+INFO:__main__:🚀 Initializing centralized browser session...
+INFO:utils.browser_manager:🔧 BrowserManager singleton initialized
+INFO:utils.browser_manager:🔌 Connecting to Chrome on debug port 9222
+INFO:utils.browser_manager:📄 Using existing context with 6 pages
+INFO:utils.browser_manager:✅ Connected to Chrome successfully
+INFO:utils.browser_manager:📄 Created new page #1 for https://www.poundwholesale.co.uk
+INFO:utils.browser_manager:✅ Page ready for https://www.poundwholesale.co.uk/
+INFO:__main__:🔐 Performing supplier authentication...
+DEBUG:vision_login_handler:Vision login debug logging initialized - writing to /mnt/c/Users/chris/Cloud-Drive_christianhaddad8@gmail.com/Cloud-Drive/Full/claude code/Amazon-FBA-Agent-System-v3/logs/debug/vision_login_20250704.log
+INFO:tools.supplier_authentication_service:✅ Authentication indicator found: 'logout'
+INFO:tools.supplier_authentication_service:✅ Logout link found - user is authenticated
+INFO:tools.supplier_authentication_service:✅ Session already authenticated - skipping login
+INFO:__main__:✅ Authentication successful using existing_session. Proceeding with authenticated workflow.
+INFO:__main__:🔄 Using standard workflow (LangGraph integration disabled)
+INFO:__main__:🔄 Starting passive extraction workflow...
+INFO:__main__:✅ Loaded system configuration from /mnt/c/Users/chris/Cloud-Drive_christianhaddad8@gmail.com/Cloud-Drive/Full/claude code/Amazon-FBA-Agent-System-v3/config/system_config.json
+INFO:__main__:✅ OpenAI client initialized for AI features
+WARNING:tools.passive_extraction_workflow_latest:Limiting scrape to 5 products per category. This is a low value suitable for testing only.
+INFO:tools.passive_extraction_workflow_latest:PassiveExtractionWorkflow initialized WITH an AI client.
+INFO:amazon_playwright_extractor:AI features disabled in amazon_playwright_extractor - using only traditional selectors.
+INFO:amazon_playwright_extractor:Output directory set to: /mnt/c/Users/chris/Cloud-Drive_christianhaddad8@gmail.com/Cloud-Drive/Full/claude code/Amazon-FBA-Agent-System-v3/OUTPUTS/CACHE/amazon_data
+INFO:amazon_playwright_extractor:🔧 AmazonExtractor will use centralized BrowserManager
+INFO:configurable_supplier_scraper:🔧 ConfigurableSupplierScraper will use centralized BrowserManager
+DEBUG:configurable_supplier_scraper:Debug logging initialized - writing to /mnt/c/Users/chris/Cloud-Drive_christianhaddad8@gmail.com/Cloud-Drive/Full/claude code/Amazon-FBA-Agent-System-v3/logs/debug/supplier_scraping_debug_20250704_223555.log
+DEBUG:configurable_supplier_scraper:Headless mode: False
+INFO:tools.passive_extraction_workflow_latest:✅ Linking map initialized - using previous version self-contained approach
+INFO:__main__:🔧 Workflow configured: force_ai_scraping=True, linking_batch=5, financial_batch=5, ai_client=enabled
+INFO:utils.enhanced_state_manager:Loaded state for poundwholesale-co-uk - resuming from index 4
+INFO:tools.passive_extraction_workflow_latest:✅ No existing linking map found at /mnt/c/Users/chris/Cloud-Drive_christianhaddad8@gmail.com/Cloud-Drive/Full/claude code/Amazon-FBA-Agent-System-v3/OUTPUTS/FBA_ANALYSIS/linking_maps/poundwholesale-co-uk/linking_map.json - Creating new map
+INFO:tools.passive_extraction_workflow_latest:Starting passive extraction workflow for supplier: poundwholesale-co-uk (https://www.poundwholesale.co.uk/)
+INFO:tools.passive_extraction_workflow_latest:Session ID: poundwholesale-co-uk_20250704_223555
+INFO:tools.passive_extraction_workflow_latest:PRICE CRITERIA: Min Supplier Cost £0.1, Max Supplier Cost £20.0
+INFO:utils.enhanced_state_manager:Loaded state for poundwholesale-co-uk - resuming from index 4
+INFO:tools.passive_extraction_workflow_latest:Resuming from index 4 - {'supplier': 'poundwholesale-co-uk', 'status': 'in_progress', 'progress': '4/5', 'successful': 0, 'profitable': 0, 'total_profit': 0.0, 'categories_processed': 0, 'errors': 0}
+INFO:tools.passive_extraction_workflow_latest:Supplier cache too old (0.0 hours). Fetching new data.
+INFO:tools.passive_extraction_workflow_latest:Extracting products from poundwholesale-co-uk...
+INFO:config.supplier_config_loader:Loaded supplier selector config for domain: poundwholesale.co.uk
+INFO:configurable_supplier_scraper:Loaded selectors for domain poundwholesale.co.uk using load_supplier_selectors.
+DEBUG:vision_login_handler:Vision login debug logging initialized - writing to /mnt/c/Users/chris/Cloud-Drive_christianhaddad8@gmail.com/Cloud-Drive/Full/claude code/Amazon-FBA-Agent-System-v3/logs/debug/vision_login_20250704.log
+INFO:tools.passive_extraction_workflow_latest:Using fallback credentials for poundwholesale authentication
+INFO:tools.passive_extraction_workflow_latest:✅ Using authenticated page from entry point
+INFO:tools.passive_extraction_workflow_latest:🧠 AI category discovery will work with authenticated session
+INFO:tools.passive_extraction_workflow_latest:🧠 AI category progression ENABLED for start-of-workflow category selection
+INFO:tools.passive_extraction_workflow_latest:Extracting products from poundwholesale-co-uk using two-step process.
+INFO:tools.passive_extraction_workflow_latest:🧠 AI CATEGORY PROGRESSION: Running AI category selection at START of workflow
+INFO:tools.passive_extraction_workflow_latest:🧠 AI Memory loaded: 10 previously suggested URLs, 0 products processed
+DEBUG:tools.passive_extraction_workflow_latest:🧠 Previously suggested URLs: ['https://www.poundwholesale.co.uk/baby-supplies?product_list_limit=64&product_list_order=price&product_list_dir=asc', 'https://www.poundwholesale.co.uk/homeware/wholesale-home-accessories', 'https://www.poundwholesale.co.uk/toys/wholesale-pocket-money-toys?product_list_limit=64&product_list_order=price&product_list_dir=asc', 'https://www.poundwholesale.co.uk/diy/wholesale-hand-tools/pliers', 'https://www.poundwholesale.co.uk/stationery/wholesale-art-crafts/craft-supplies', 'https://www.poundwholesale.co.uk/health-beauty/wholesale-skin-care?product_list_limit=64&product_list_order=price&product_list_dir=asc', 'https://www.poundwholesale.co.uk/homeware/wholesale-home-fragrance-candles-accessories', 'https://www.poundwholesale.co.uk/wholesale-diy-tools/wholesale-hand-tools/hammers', 'https://www.poundwholesale.co.uk/wholesale-garden/garden-tools/rakes-brushes?product_list_limit=64&product_list_order=price&product_list_dir=asc', 'https://www.poundwholesale.co.uk/party-gift/wholesale-partyware']
+INFO:configurable_supplier_scraper:Extracting homepage categories from https://www.poundwholesale.co.uk/
+INFO:configurable_supplier_scraper:Fetching page content from: https://www.poundwholesale.co.uk/ (attempt 1/3)
+INFO:utils.browser_manager:♻️ Reusing existing Chrome connection (port 9222)
+INFO:utils.browser_manager:♻️ Reusing cached page for https://www.poundwholesale.co.uk
+INFO:configurable_supplier_scraper:🔧 Using BrowserManager page for https://www.poundwholesale.co.uk/
+INFO:configurable_supplier_scraper:🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/
+INFO:configurable_supplier_scraper:🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/
+INFO:configurable_supplier_scraper:Successfully fetched content from https://www.poundwholesale.co.uk/ (Size: 627264 bytes)
+INFO:configurable_supplier_scraper:Found 342 unique potential category URLs from homepage of https://www.poundwholesale.co.uk/
+INFO:configurable_supplier_scraper:Discovered 75 categories for https://www.poundwholesale.co.uk/
+INFO:tools.passive_extraction_workflow_latest:PHASE 3: Applying subcategory deduplication to 75 discovered categories
+INFO:tools.passive_extraction_workflow_latest:Parent-child URL analysis: 42 parent categories, 33 child categories
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/toys
+DEBUG:configurable_supplier_scraper:Created new aiohttp session.
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/toys: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/toys -> 90 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/toys (90 products) - SKIPPING 8 subcategories: ['https://www.poundwholesale.co.uk/toys/wholesale-dolls-soft-toys', 'https://www.poundwholesale.co.uk/toys/wholesale-display-box-toys', 'https://www.poundwholesale.co.uk/toys/wholesale-money-tins', 'https://www.poundwholesale.co.uk/toys/wholesale-branded-toys/thomas-the-tank-engine', 'https://www.poundwholesale.co.uk/toys/wholesale-branded-toys/despicable-me', 'https://www.poundwholesale.co.uk/toys/wholesale-branded-toys/avengers', 'https://www.poundwholesale.co.uk/toys/wholesale-action-play-sets-vehicle-toys/combat-shooting-military', 'https://www.poundwholesale.co.uk/toys/wholesale-action-play-sets-vehicle-toys/animals']
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/pet-supplies
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/pet-supplies: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/pet-supplies -> 90 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/pet-supplies (90 products) - SKIPPING 1 subcategories: ['https://www.poundwholesale.co.uk/pet-supplies/wholesale-pet-toys-treats']
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/wholesale-garden
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/wholesale-garden: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/wholesale-garden -> 90 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/wholesale-garden (90 products) - SKIPPING 5 subcategories: ['https://www.poundwholesale.co.uk/wholesale-garden/planting-growing', 'https://www.poundwholesale.co.uk/wholesale-garden/shed-garage', 'https://www.poundwholesale.co.uk/wholesale-garden/garden-wear', 'https://www.poundwholesale.co.uk/wholesale-garden/barbecue-picnic', 'https://www.poundwholesale.co.uk/wholesale-garden/pegs-clotheslines']
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/seasonal
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/seasonal: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/seasonal -> 90 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/seasonal (90 products) - SKIPPING 0 subcategories: []
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/health-beauty
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/health-beauty: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/health-beauty -> 90 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/health-beauty (90 products) - SKIPPING 4 subcategories: ['https://www.poundwholesale.co.uk/health-beauty/wholesale-foot-care', 'https://www.poundwholesale.co.uk/health-beauty/wholesale-hand-wash-sanitisers', 'https://www.poundwholesale.co.uk/health-beauty/wholesale-first-aid-medical', 'https://www.poundwholesale.co.uk/health-beauty/wholesale-makeup-supplies']
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/diy
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/diy: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/diy -> 90 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/diy (90 products) - SKIPPING 11 subcategories: ['https://www.poundwholesale.co.uk/diy/drilling-and-grinding', 'https://www.poundwholesale.co.uk/diy/wholesale-torches', 'https://www.poundwholesale.co.uk/diy/wholesale-sprays-chemicals', 'https://www.poundwholesale.co.uk/diy/wholesale-car-care', 'https://www.poundwholesale.co.uk/diy/screws-and-nails-new', 'https://www.poundwholesale.co.uk/diy/wholesale-painting-decorating/paint-rollers-trays', 'https://www.poundwholesale.co.uk/diy/wholesale-dekton-tools/dekton-pliers-wrenches', 'https://www.poundwholesale.co.uk/diy/wholesale-hand-tools/trowels-scrapers', 'https://www.poundwholesale.co.uk/diy/wholesale-hand-tools/saw-cutting', 'https://www.poundwholesale.co.uk/diy/wholesale-dekton-tools/dekton-automotive', 'https://www.poundwholesale.co.uk/diy/wholesale-dekton-tools/dekton-screwdrivers']
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/homeware
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/homeware: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/homeware -> 90 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/homeware (90 products) - SKIPPING 1 subcategories: ['https://www.poundwholesale.co.uk/homeware/wholesale-home-accessories']
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/wholesale-cleaning
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/wholesale-cleaning: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/wholesale-cleaning -> 90 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/wholesale-cleaning (90 products) - SKIPPING 2 subcategories: ['https://www.poundwholesale.co.uk/wholesale-cleaning/household-gloves', 'https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/window-glass-cleaners']
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/pound-lines/kitchenware-pound-lines

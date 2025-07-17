@@ -1,0 +1,73 @@
+{
+  "session_id": "20250626_155853",
+  "started_at": "2025-06-26T15:58:53.764775",
+  "phases": {
+    "phase1_supplier_generation": {
+      "status": "failed",
+      "error": "'coroutine' object has no attribute 'get_page'"
+    },
+    "phase2_ai_categories": {
+      "status": "failed",
+      "error": "No module named 'passive_extraction_workflow_latest'"
+    },
+    "phase3_amazon_matching": {
+      "status": "failed",
+      "error": "'AmazonExtractor' object has no attribute 'extract_single_product'"
+    },
+    "phase4_financial_analysis": {
+      "status": "failed",
+      "error": "cannot import name 'calculate_amazon_fees' from 'tools.FBA_Financial_calculator' (/mnt/c/Users/chris/Cloud-Drive_christianhaddad8@gmail.com/Cloud-Drive/Full/claude code/Amazon-FBA-Agent-System-v3/tools/FBA_Financial_calculator.py)"
+    },
+    "phase5_langgraph_workflow": {
+      "duration_seconds": 90.416904,
+      "workflow_result": {
+        "workflow_id": "fba_workflow_20250626_160024",
+        "status": "completed_with_errors",
+        "asin": "B000BIUGTQ",
+        "supplier_url": "https://www.poundwholesale.co.uk/",
+        "results": {
+          "amazon_data": null,
+          "supplier_discovery": null,
+          "product_extraction": null,
+          "financial_analysis": null,
+          "recommendation": null
+        },
+        "automation_status": {
+          "scripts_generated": true,
+          "vision_discovery": false,
+          "browser_connected": false
+        },
+        "errors": [
+          "Amazon extraction error: Amazon extractor tool not found",
+          "Discovery error: 'coroutine' object has no attribute 'get_page'",
+          "Scraper tool unavailable",
+          "Matching error: 'NoneType' object has no attribute 'get'",
+          "Calculator tool unavailable",
+          "Recommendation error: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sk--7R0r***********************************************************************************0ygA. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}"
+        ],
+        "messages": [
+          "Analyze ASIN B000BIUGTQ from supplier https://www.poundwholesale.co.uk/",
+          "🚀 Started FBA workflow fba_workflow_20250626_160024 for ASIN B000BIUGTQ and supplier https://www.poundwholesale.co.uk/",
+          "✅ Generated automation scripts for https://www.poundwholesale.co.uk/",
+          "🏁 Workflow fba_workflow_20250626_160024 completed with status: completed_with_errors (6 errors)"
+        ]
+      },
+      "workflow_status": "completed_with_errors",
+      "langsmith_tracing": "enabled",
+      "status": "completed"
+    }
+  },
+  "errors": [
+    "Phase 1 error: 'coroutine' object has no attribute 'get_page'",
+    "Phase 2 error: No module named 'passive_extraction_workflow_latest'",
+    "Phase 3 error: 'AmazonExtractor' object has no attribute 'extract_single_product'",
+    "Phase 4 error: cannot import name 'calculate_amazon_fees' from 'tools.FBA_Financial_calculator' (/mnt/c/Users/chris/Cloud-Drive_christianhaddad8@gmail.com/Cloud-Drive/Full/claude code/Amazon-FBA-Agent-System-v3/tools/FBA_Financial_calculator.py)"
+  ],
+  "status": "completed_with_errors",
+  "config": {
+    "supplier_url": "https://www.poundwholesale.co.uk/",
+    "asin": "B000BIUGTQ",
+    "has_credentials": false
+  },
+  "completed_at": "2025-06-26T16:00:25.210005"
+}

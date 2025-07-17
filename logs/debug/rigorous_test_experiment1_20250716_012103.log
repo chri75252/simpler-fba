@@ -1,0 +1,49 @@
+WARNING:root:OPENAI_API_KEY not supplied – using hard-coded fallback
+2025-07-16 01:21:05,852 - __main__ - INFO - 🔍 Enhanced detailed logging enabled - output: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/logs/debug/run_complete_fba_system_20250716_012105.log
+================================================================================
+Amazon FBA Agent System v3 - Complete System Runner
+Timestamp: 2025-07-16 01:21:05
+================================================================================
+2025-07-16 01:21:05,870 - __main__ - INFO - 🚀 Complete FBA System v3 initialized
+2025-07-16 01:21:05,871 - __main__ - INFO - 🏭 Processing supplier: poundwholesale-co-uk
+2025-07-16 01:21:05,872 - __main__ - INFO - 🔗 URL: https://www.poundwholesale.co.uk
+2025-07-16 01:21:05,872 - __main__ - INFO - 📧 Email: info@theblacksmithmarket.com
+2025-07-16 01:21:05,873 - __main__ - INFO - 🖥️ Headed mode: False
+2025-07-16 01:21:05,874 - __main__ - INFO - 📦 Max products: 12
+2025-07-16 01:21:05,874 - __main__ - INFO - 🔄 Force regenerate: False
+2025-07-16 01:21:05,875 - __main__ - INFO - 📦 Archiving expected output files for verification...
+2025-07-16 01:21:05,879 - __main__ - INFO - Archive mode set to: ''
+2025-07-16 01:21:05,880 - __main__ - WARNING - Unknown archive mode: ''. Skipping archive.
+2025-07-16 01:21:05,881 - tools.supplier_guard - INFO - 🛡️ Supplier Guard initialized
+2025-07-16 01:21:05,904 - __main__ - INFO - ⚠️ Supplier poundwholesale-co-uk not ready: .supplier_ready file missing supplier_name field
+2025-07-16 01:21:05,986 - __main__ - INFO - ✅ Existing supplier package found for poundwholesale-co-uk. Bypassing script generation.
+2025-07-16 01:21:05,987 - __main__ - INFO - 🚀 Initializing centralized browser session...
+2025-07-16 01:21:05,988 - utils.browser_manager - INFO - 🔧 BrowserManager singleton initialized
+2025-07-16 01:21:05,988 - __main__ - ERROR - ❌ Browser setup or dynamic authentication failed: Browser context not initialized. Call launch_browser() first.
+Traceback (most recent call last):
+  File "/mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/run_complete_fba_system.py", line 417, in run_complete_system
+    authenticated_page = await get_page_for_url(supplier_url, reuse_existing=True)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/utils/browser_manager.py", line 161, in get_page_for_url
+    return await manager.get_page(url, reuse_existing)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/utils/browser_manager.py", line 81, in get_page
+    raise Exception("Browser context not initialized. Call launch_browser() first.")
+Exception: Browser context not initialized. Call launch_browser() first.
+2025-07-16 01:21:06,002 - utils.browser_manager - INFO - 🧹 Performing global cleanup...
+2025-07-16 01:21:06,003 - utils.browser_manager - INFO - 🧹 Starting browser cleanup...
+2025-07-16 01:21:06,004 - utils.browser_manager - INFO - ✅ Browser cleanup completed
+2025-07-16 01:21:06,004 - __main__ - INFO - 🧹 Browser cleanup completed
+
+================================================================================
+SYSTEM EXECUTION RESULTS
+================================================================================
+Status: browser_setup_failed
+Supplier: poundwholesale-co-uk
+Processing Time: 0:00:00.140050
+
+Errors (1):
+  - Dynamic authentication error: Browser context not initialized. Call launch_browser() first.
+
+❌ System failed with status: browser_setup_failed
+2025-07-16 01:21:06,006 - utils.browser_manager - WARNING - Error during global cleanup: no running event loop

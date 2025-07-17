@@ -1,0 +1,80 @@
+2025-07-13 22:25:58,075 - utils.logger - INFO - 🔧 Logging initialised – log file: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/logs/debug/run_custom_poundwholesale_20250713_222558.log
+2025-07-13 22:25:58,076 - __main__ - INFO - 📋 Debug log file: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/logs/debug/run_custom_poundwholesale_20250713_222558.log
+2025-07-13 22:25:58,077 - __main__ - DEBUG - Debug logging initialized - full system execution details will be captured
+2025-07-13 22:25:58,083 - utils.browser_manager - INFO - 🔧 BrowserManager singleton initialized
+2025-07-13 22:25:58,386 - utils.browser_manager - INFO - 🔌 Connecting to Chrome on debug port 9222
+2025-07-13 22:25:58,564 - utils.browser_manager - INFO - 📄 Using existing context with 1 pages
+2025-07-13 22:25:58,564 - utils.browser_manager - INFO - ✅ Connected to Chrome successfully
+2025-07-13 22:25:58,565 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-13 22:25:58,565 - __main__ - INFO - 🔐 Initializing authentication service for logout detection...
+2025-07-13 22:25:58,571 - __main__ - INFO - ✅ Using hardcoded credentials for poundwholesale.co.uk
+2025-07-13 22:25:58,571 - __main__ - INFO - 🌐 Connecting to existing Chrome debug port 9222 for authentication...
+2025-07-13 22:26:04,386 - tools.supplier_authentication_service - INFO - ✅ Authentication indicator found: 'logout'
+2025-07-13 22:26:04,453 - tools.supplier_authentication_service - INFO - ✅ Logout link found - user is authenticated
+2025-07-13 22:26:04,453 - tools.supplier_authentication_service - INFO - ✅ Session already authenticated - skipping login
+2025-07-13 22:26:04,462 - amazon_playwright_extractor - INFO - AI features disabled in amazon_playwright_extractor - using only traditional selectors.
+2025-07-13 22:26:04,467 - amazon_playwright_extractor - INFO - Output directory set to: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/CACHE/amazon_data
+2025-07-13 22:26:04,468 - amazon_playwright_extractor - WARNING - ⚠️ BrowserManager not available, using legacy browser connection
+2025-07-13 22:26:04,471 - configurable_supplier_scraper - INFO - ✅ Loaded system configuration from /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/config/system_config.json
+2025-07-13 22:26:04,473 - configurable_supplier_scraper - INFO - 🔧 ConfigurableSupplierScraper will use centralized BrowserManager
+2025-07-13 22:26:04,473 - configurable_supplier_scraper - DEBUG - AI model from config: gpt-4.1-mini-2025-04-14
+2025-07-13 22:26:04,473 - configurable_supplier_scraper - DEBUG - Extraction targets from config: {'product_data': ['price', 'title', 'ean', 'barcode', 'image', 'description', 'out_of_stock'], 'navigation': ['next_page', 'category_links', 'breadcrumbs'], 'pagination': ['next_page', 'previous_page', 'page_numbers'], 'filtering': ['price_filter', 'category_filter', 'search_box', 'products_per_page', 'product limiter'], 'interaction': ['add_to_cart', 'buy_now', 'product_link']}
+2025-07-13 22:26:04,474 - configurable_supplier_scraper - DEBUG - Discovery assistance from config: {'enabled': False, 'prompt_injection': {'login_discovery_hints': '', 'product_navigation_discovery_hints': "OUT OF STOCK products show a red/orange badge or overlay with text like 'Out of Stock', 'Sold Out', or 'Unavailable'"}, '_comment': 'Two API calls are made: 1) login_discovery_hints for login elements, 2) product_navigation_discovery_hints for product/navigation selectors. You can paste full console elements, XPath, or any hints here.'}
+2025-07-13 22:26:04,474 - configurable_supplier_scraper - INFO - [CONFIG] Initialized with AI model: gpt-4.1-mini-2025-04-14
+2025-07-13 22:26:04,474 - configurable_supplier_scraper - INFO - [TARGET] Extraction targets loaded: ['product_data', 'navigation', 'pagination', 'filtering', 'interaction']
+2025-07-13 22:26:04,475 - configurable_supplier_scraper - INFO - [ASSIST] Discovery assistance enabled: False
+2025-07-13 22:26:04,475 - PassiveExtractionWorkflow - INFO - ✅ Output directory set to: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS
+2025-07-13 22:26:04,476 - PassiveExtractionWorkflow - INFO - --- Starting Passive Extraction Workflow for: poundwholesale.co.uk ---
+2025-07-13 22:26:04,476 - PassiveExtractionWorkflow - INFO - Session ID: poundwholesale.co.uk_20250713_222604
+2025-07-13 22:26:04,477 - PassiveExtractionWorkflow - INFO - 📊 CONFIGURATION VALUES:
+2025-07-13 22:26:04,477 - PassiveExtractionWorkflow - INFO -    max_products_to_process: 10
+2025-07-13 22:26:04,478 - PassiveExtractionWorkflow - INFO -    max_products_per_category: 5
+2025-07-13 22:26:04,478 - PassiveExtractionWorkflow - INFO -    max_analyzed_products: 5
+2025-07-13 22:26:04,478 - PassiveExtractionWorkflow - INFO -    max_products_per_cycle: 5
+2025-07-13 22:26:04,479 - PassiveExtractionWorkflow - INFO -    supplier_extraction_batch_size: 3
+2025-07-13 22:26:04,479 - PassiveExtractionWorkflow - INFO -    max_categories_per_request: 3
+2025-07-13 22:26:04,488 - utils.enhanced_state_manager - INFO - Loaded state for poundwholesale.co.uk - resuming from index 2
+2025-07-13 22:26:04,488 - PassiveExtractionWorkflow - INFO - 📋 Loaded existing processing state for poundwholesale.co.uk
+2025-07-13 22:26:04,488 - PassiveExtractionWorkflow - INFO - 🔄 Resuming from index 2
+2025-07-13 22:26:04,496 - PassiveExtractionWorkflow - INFO - ✅ No existing linking map found at /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/FBA_ANALYSIS/linking_maps/poundwholesale.co.uk/linking_map.json - Creating new map
+2025-07-13 22:26:04,500 - PassiveExtractionWorkflow - INFO - ✅ No existing linking map found at /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/FBA_ANALYSIS/linking_maps/poundwholesale.co.uk/linking_map.json - Creating new map
+2025-07-13 22:26:04,500 - PassiveExtractionWorkflow - INFO - CUSTOM MODE: Using predefined category list.
+2025-07-13 22:26:04,501 - tools.passive_extraction_workflow_latest - INFO - Attempting to load predefined categories for poundwholesale.co.uk
+2025-07-13 22:26:04,506 - tools.passive_extraction_workflow_latest - INFO - ✅ Successfully loaded 276 predefined category URLs from /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/config/poundwholesale_categories.json
+2025-07-13 22:26:04,512 - PassiveExtractionWorkflow - INFO - 🔄 SKIPPING SUPPLIER SCRAPING: Found fresh cached products (age: 0.0h) with processing progress (index: 2)
+2025-07-13 22:26:04,513 - PassiveExtractionWorkflow - INFO - 📋 Loading products from cache: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products/poundwholesale-co-uk_products_cache.json
+2025-07-13 22:26:04,517 - PassiveExtractionWorkflow - INFO - ✅ Loaded 10 cached products from /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products/poundwholesale-co-uk_products_cache.json
+2025-07-13 22:26:04,517 - PassiveExtractionWorkflow - INFO - Successfully got 10 products from poundwholesale.co.uk
+2025-07-13 22:26:04,517 - PassiveExtractionWorkflow - INFO - 💾 CACHE SAVE: Starting save of 10 products to cache...
+2025-07-13 22:26:04,534 - PassiveExtractionWorkflow - INFO - ✅ CACHE SAVE: Successfully saved 10 products (0 new) to poundwholesale-co-uk_products_cache.json
+2025-07-13 22:26:04,534 - PassiveExtractionWorkflow - INFO - Found 10 valid supplier products, 10 within price range [£0.1-£20.0]
+2025-07-13 22:26:04,534 - PassiveExtractionWorkflow - INFO - 🔄 LIMITED MODE: Processing 8 products (from index 2 to 9)
+2025-07-13 22:26:04,550 - PassiveExtractionWorkflow - INFO - 🚀 BATCH PROCESSING: 8 products in 2 batches of 5
+2025-07-13 22:26:04,550 - PassiveExtractionWorkflow - INFO - 🔄 Processing batch 1/2 (5 products)
+2025-07-13 22:26:04,551 - PassiveExtractionWorkflow - INFO - --- Processing supplier product 3/10: 'Duzzit Clean & Fresh Biodegradable Anti-Bacterial Wipes 50 Pack Pallet Deal' ---
+2025-07-13 22:26:04,551 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Updating processing index to 3/10
+2025-07-13 22:26:04,569 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: State after update - last_processed_index: 3/10
+2025-07-13 22:26:04,569 - PassiveExtractionWorkflow - INFO - Attempting Amazon search using EAN: 5053249260471
+2025-07-13 22:26:04,570 - tools.passive_extraction_workflow_latest - INFO - Connecting to Chrome browser on debug port 9222 (FixedAmazonExtractor)
+2025-07-13 22:26:05,088 - tools.passive_extraction_workflow_latest - INFO - Successfully connected to Chrome on port 9222 (FixedAmazonExtractor)
+2025-07-13 22:26:05,089 - tools.passive_extraction_workflow_latest - INFO - Found 1 existing pages (FixedAmazonExtractor)
+2025-07-13 22:26:05,089 - tools.passive_extraction_workflow_latest - INFO - Using existing page: https://www.poundwholesale.co.uk/ (FixedAmazonExtractor)
+2025-07-13 22:26:05,123 - tools.passive_extraction_workflow_latest - INFO - Searching Amazon by EAN: 5053249260471 for supplier product: 'Duzzit Clean & Fresh Biodegradable Anti-Bacterial Wipes 50 Pack Pallet Deal' (FixedAmazonExtractor)
+2025-07-13 22:26:05,124 - tools.passive_extraction_workflow_latest - INFO - No page provided to search_by_ean, getting one from BrowserManager.
+2025-07-13 22:26:05,125 - PassiveExtractionWorkflow - ERROR - Unexpected error occurred during workflow execution: BrowserManager.get_page() takes from 1 to 2 positional arguments but 3 were given
+Traceback (most recent call last):
+  File "/mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/tools/passive_extraction_workflow_latest.py", line 1125, in run
+    amazon_data = await self._get_amazon_data(product_data)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/tools/passive_extraction_workflow_latest.py", line 2643, in _get_amazon_data
+    amazon_product_data = await self.extractor.search_by_ean_and_extract_data(supplier_ean, product_data["title"])
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/tools/passive_extraction_workflow_latest.py", line 549, in search_by_ean_and_extract_data
+    page = await get_page_for_url("https://www.amazon.co.uk", reuse_existing=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/utils/browser_manager.py", line 161, in get_page_for_url
+    return await manager.get_page(url, reuse_existing)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: BrowserManager.get_page() takes from 1 to 2 positional arguments but 3 were given
+2025-07-13 22:26:05,130 - __main__ - INFO - 🌐 Keeping browser persistent for next run - not closing browser
+2025-07-13 22:26:05,131 - utils.browser_manager - WARNING - Error during global cleanup: no running event loop

@@ -1,0 +1,134 @@
+{
+  "Pound Wholesale": {
+    "status": "success",
+    "config": {
+      "supplier_id": "poundwholesale-co-uk",
+      "supplier_name": "Poundwholesale.Co.Uk",
+      "base_url": "https://www.poundwholesale.co.uk/",
+      "field_mappings": {
+        "product_item": [
+          ".product-item",
+          "li.product-item"
+        ],
+        "title": [
+          ".product-item .product-item-link",
+          ".product-item a.product-item-link"
+        ],
+        "price": [
+          "meta[property=\"product:price:amount\"]",
+          ".product-item .price"
+        ],
+        "price_login_required": [
+          "a.btn.customer-login-link.login-btn",
+          ".product-item a.btn.customer-login-link.login-btn"
+        ],
+        "url": [
+          ".product-item a.product-item-link",
+          ".product-item .product-item-link"
+        ],
+        "image": [
+          ".product-item img.product-image-photo",
+          ".product-item .product-image-photo"
+        ],
+        "ean": [
+          "[data-ean]",
+          "script[type=\"application/ld+json\"]",
+          "meta[itemprop=\"gtin13\"]"
+        ],
+        "barcode": [
+          "[data-barcode]",
+          "script[type=\"application/ld+json\"]",
+          "meta[itemprop=\"gtin13\"]"
+        ],
+        "product_code": [
+          "[data-product-sku]",
+          ".product-item .sku",
+          "meta[itemprop=\"sku\"]"
+        ],
+        "sku": [
+          "[data-product-sku]",
+          ".product-item .sku"
+        ]
+      },
+      "pagination": {
+        "pattern": "?page={page_num}",
+        "next_button_selector": [
+          "a.next",
+          ".pagination .next a",
+          "a[rel='next']"
+        ]
+      },
+      "auto_discovered": true,
+      "discovery_timestamp": "2025-06-21T03:43:33.516852",
+      "success": true
+    },
+    "test_extraction": {
+      "title": "Elmer's Crunchy Croquant Magical Liquid Slime Activator 98g",
+      "price": null,
+      "url": "https://www.poundwholesale.co.uk/elmer-s-crunchy-croquant-magical-liquid-slime-activator-98g",
+      "image": "https://www.poundwholesale.co.uk/media/catalog/product/cache/5ba196558aadfdbf642bb770ab3e4877/2/2-23371-30008/elmer-039-s-crunchy-croquant-magical-liquid-slime-activator-98g.jpg"
+    }
+  },
+  "Cut Price Wholesaler": {
+    "status": "partial_success",
+    "config": {
+      "supplier_id": "cutpricewholesaler-com",
+      "supplier_name": "Cutpricewholesaler.Com",
+      "base_url": "https://www.cutpricewholesaler.com/",
+      "field_mappings": {
+        "product_item": [
+          "div.productListing-data",
+          "div.productListing"
+        ],
+        "title": [
+          "div.productListing-data a.productListing-title",
+          "div.productListing-data h2.productListing-title a"
+        ],
+        "price": [
+          "meta[property=\"product:price:amount\"]",
+          "span.productListing-price"
+        ],
+        "price_login_required": [
+          "a.btn.customer-login-link.login-btn",
+          "div.productListing-data a.customer-login-link.login-btn"
+        ],
+        "url": [
+          "div.productListing-data a.productListing-title",
+          "div.productListing-data h2.productListing-title a"
+        ],
+        "image": [
+          "div.productListing-image img",
+          "div.productListing-image picture img"
+        ],
+        "ean": [
+          "meta[property=\"product:gtin13\"]",
+          "script[type=\"application/ld+json\"]"
+        ],
+        "barcode": [
+          "meta[property=\"product:gtin13\"]",
+          "script[type=\"application/ld+json\"]"
+        ],
+        "product_code": [
+          "div.productListing-data span.productListing-model",
+          "div.productListing-data span.productListing-sku"
+        ],
+        "sku": [
+          "div.productListing-data span.productListing-sku",
+          "div.productListing-data span.productListing-model"
+        ]
+      },
+      "pagination": {
+        "pattern": "?page={page_num}",
+        "next_button_selector": [
+          "a.next",
+          ".pagination .next a",
+          "a[rel='next']"
+        ]
+      },
+      "auto_discovered": true,
+      "discovery_timestamp": "2025-06-21T03:43:56.520380",
+      "success": true
+    },
+    "warning": "no products found on category page"
+  }
+}

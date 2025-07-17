@@ -1,0 +1,243 @@
+2025-07-15 16:22:52,518 - utils.logger - INFO - 🔧 Logging initialised – log file: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/logs/debug/run_custom_poundwholesale_20250715_162252.log
+2025-07-15 16:22:52,519 - __main__ - INFO - 📋 Debug log file: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/logs/debug/run_custom_poundwholesale_20250715_162252.log
+2025-07-15 16:22:52,519 - __main__ - DEBUG - Debug logging initialized - full system execution details will be captured
+2025-07-15 16:22:52,526 - utils.browser_manager - INFO - 🔧 BrowserManager singleton initialized
+2025-07-15 16:22:52,837 - utils.browser_manager - INFO - 🔌 Connecting to Chrome on debug port 9222
+2025-07-15 16:22:53,220 - utils.browser_manager - INFO - 📄 Using existing context with 3 pages
+2025-07-15 16:22:53,221 - utils.browser_manager - INFO - ✅ Connected to Chrome successfully
+2025-07-15 16:22:53,222 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-15 16:22:53,222 - __main__ - INFO - 🔐 Initializing authentication service for logout detection...
+2025-07-15 16:22:53,230 - __main__ - INFO - ✅ Using hardcoded credentials for poundwholesale.co.uk
+2025-07-15 16:22:53,230 - __main__ - INFO - 🌐 Connecting to existing Chrome debug port 9222 for authentication...
+2025-07-15 16:23:00,187 - tools.supplier_authentication_service - INFO - ✅ Authentication indicator found: 'logout'
+2025-07-15 16:23:00,290 - tools.supplier_authentication_service - INFO - ✅ Logout link found - user is authenticated
+2025-07-15 16:23:00,291 - tools.supplier_authentication_service - INFO - ✅ Session already authenticated - skipping login
+2025-07-15 16:23:00,308 - amazon_playwright_extractor - INFO - AI features disabled in amazon_playwright_extractor - using only traditional selectors.
+2025-07-15 16:23:00,314 - amazon_playwright_extractor - INFO - Output directory set to: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/CACHE/amazon_data
+2025-07-15 16:23:00,314 - amazon_playwright_extractor - WARNING - ⚠️ BrowserManager not available, using legacy browser connection
+2025-07-15 16:23:00,318 - configurable_supplier_scraper - INFO - ✅ Loaded system configuration from /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/config/system_config.json
+2025-07-15 16:23:00,318 - configurable_supplier_scraper - INFO - 🔧 ConfigurableSupplierScraper will use centralized BrowserManager
+2025-07-15 16:23:00,319 - configurable_supplier_scraper - DEBUG - AI model from config: gpt-4.1-mini-2025-04-14
+2025-07-15 16:23:00,319 - configurable_supplier_scraper - DEBUG - Extraction targets from config: {'product_data': ['price', 'title', 'ean', 'barcode', 'image', 'description', 'out_of_stock'], 'navigation': ['next_page', 'category_links', 'breadcrumbs'], 'pagination': ['next_page', 'previous_page', 'page_numbers'], 'filtering': ['price_filter', 'category_filter', 'search_box', 'products_per_page', 'product limiter'], 'interaction': ['add_to_cart', 'buy_now', 'product_link']}
+2025-07-15 16:23:00,320 - configurable_supplier_scraper - DEBUG - Discovery assistance from config: {'enabled': False, 'prompt_injection': {'login_discovery_hints': '', 'product_navigation_discovery_hints': "OUT OF STOCK products show a red/orange badge or overlay with text like 'Out of Stock', 'Sold Out', or 'Unavailable'"}, '_comment': 'Two API calls are made: 1) login_discovery_hints for login elements, 2) product_navigation_discovery_hints for product/navigation selectors. You can paste full console elements, XPath, or any hints here.'}
+2025-07-15 16:23:00,320 - configurable_supplier_scraper - INFO - [CONFIG] Initialized with AI model: gpt-4.1-mini-2025-04-14
+2025-07-15 16:23:00,320 - configurable_supplier_scraper - INFO - [TARGET] Extraction targets loaded: ['product_data', 'navigation', 'pagination', 'filtering', 'interaction']
+2025-07-15 16:23:00,321 - configurable_supplier_scraper - INFO - [ASSIST] Discovery assistance enabled: False
+2025-07-15 16:23:00,321 - PassiveExtractionWorkflow - INFO - ✅ Output directory set to: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS
+2025-07-15 16:23:00,322 - PassiveExtractionWorkflow - INFO - ✅ Initialization validation passed - all critical attributes verified
+2025-07-15 16:23:00,322 - PassiveExtractionWorkflow - INFO - --- Starting Passive Extraction Workflow for: poundwholesale.co.uk ---
+2025-07-15 16:23:00,322 - PassiveExtractionWorkflow - INFO - Session ID: poundwholesale.co.uk_20250715_162300
+2025-07-15 16:23:00,323 - PassiveExtractionWorkflow - INFO - 📊 CONFIGURATION VALUES:
+2025-07-15 16:23:00,323 - PassiveExtractionWorkflow - INFO -    max_products_to_process: 50
+2025-07-15 16:23:00,323 - PassiveExtractionWorkflow - INFO -    max_products_per_category: 50
+2025-07-15 16:23:00,323 - PassiveExtractionWorkflow - INFO -    max_analyzed_products: 50
+2025-07-15 16:23:00,323 - PassiveExtractionWorkflow - INFO -    max_products_per_cycle: 5
+2025-07-15 16:23:00,324 - PassiveExtractionWorkflow - INFO -    supplier_extraction_batch_size: 3
+2025-07-15 16:23:00,324 - PassiveExtractionWorkflow - INFO -    max_categories_per_request: 500
+2025-07-15 16:23:00,327 - utils.enhanced_state_manager - INFO - No existing state file found for poundwholesale.co.uk, starting fresh
+2025-07-15 16:23:00,327 - PassiveExtractionWorkflow - INFO - 📋 Loaded existing processing state for poundwholesale.co.uk
+2025-07-15 16:23:00,327 - PassiveExtractionWorkflow - INFO - 🔄 Resuming from index 0
+2025-07-15 16:23:00,329 - PassiveExtractionWorkflow - INFO - ✅ No previous progress found, starting fresh.
+2025-07-15 16:23:00,338 - PassiveExtractionWorkflow - INFO - ✅ Loaded linking map from /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/FBA_ANALYSIS/linking_maps/poundwholesale.co.uk/linking_map.json with 73 entries
+2025-07-15 16:23:00,353 - PassiveExtractionWorkflow - INFO - ✅ Loaded linking map from /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/FBA_ANALYSIS/linking_maps/poundwholesale.co.uk/linking_map.json with 73 entries
+2025-07-15 16:23:00,353 - PassiveExtractionWorkflow - INFO - CUSTOM MODE: Using predefined category list.
+2025-07-15 16:23:00,354 - tools.passive_extraction_workflow_latest - INFO - Attempting to load predefined categories for poundwholesale.co.uk
+2025-07-15 16:23:00,360 - tools.passive_extraction_workflow_latest - INFO - ✅ Successfully loaded 276 predefined category URLs from /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/config/poundwholesale_categories.json
+2025-07-15 16:23:00,364 - PassiveExtractionWorkflow - INFO - 🕷️ PERFORMING SUPPLIER SCRAPING from 276 categories
+2025-07-15 16:23:00,364 - PassiveExtractionWorkflow - INFO - 📦 Using supplier extraction batch size: 3
+2025-07-15 16:23:00,365 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS TRACKING: Extracting from 276 categories in 92 batches
+2025-07-15 16:23:00,365 - PassiveExtractionWorkflow - INFO - 📦 Processing category batch 1/92 (3 categories)
+2025-07-15 16:23:00,377 - PassiveExtractionWorkflow - INFO - 🔄 EXTRACTION PROGRESS: Processing subcategory 1/3 in batch 1 (Category 1/276)
+2025-07-15 16:23:00,378 - PassiveExtractionWorkflow - INFO - Scraping category: https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners
+2025-07-15 16:23:00,378 - configurable_supplier_scraper - INFO - Starting enhanced scraping from https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners
+2025-07-15 16:23:00,379 - configurable_supplier_scraper - INFO - Setting page limiter for https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners
+2025-07-15 16:23:00,379 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-15 16:23:00,394 - configurable_supplier_scraper - INFO - ✅ Loaded VALIDATED supplier package selectors for poundwholesale.co.uk from /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/suppliers/poundwholesale-co-uk/config/product_selectors.json
+2025-07-15 16:23:00,395 - configurable_supplier_scraper - INFO - No page limiter configuration found for www.poundwholesale.co.uk
+2025-07-15 16:23:00,395 - configurable_supplier_scraper - INFO - Collecting product URLs from paginated pages starting at: https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners
+2025-07-15 16:23:00,395 - configurable_supplier_scraper - INFO - Processing page 1: https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners
+2025-07-15 16:23:00,396 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners (attempt 1/3)
+2025-07-15 16:23:00,396 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-15 16:23:00,397 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners
+2025-07-15 16:23:03,313 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners in 2.09s...
+2025-07-15 16:23:05,413 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners (attempt 2/3)
+2025-07-15 16:23:05,414 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-15 16:23:05,415 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners
+2025-07-15 16:23:08,311 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners
+2025-07-15 16:23:08,312 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners
+2025-07-15 16:23:08,468 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners (Size: 656168 bytes)
+2025-07-15 16:23:08,713 - configurable_supplier_scraper - INFO - Found 20 new product URLs on page 1
+2025-07-15 16:23:08,714 - configurable_supplier_scraper - INFO - Processing page 2: https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners?p=2
+2025-07-15 16:23:08,716 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners?p=2 (attempt 1/3)
+2025-07-15 16:23:08,717 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-15 16:23:08,718 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners?p=2
+2025-07-15 16:23:11,611 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners?p=2 in 1.77s...
+2025-07-15 16:23:13,387 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners?p=2 (attempt 2/3)
+2025-07-15 16:23:13,387 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-15 16:23:13,388 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners?p=2
+2025-07-15 16:23:15,323 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners?p=2
+2025-07-15 16:23:15,324 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners?p=2
+2025-07-15 16:23:15,461 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners?p=2 (Size: 657536 bytes)
+2025-07-15 16:23:15,754 - configurable_supplier_scraper - INFO - Found 20 new product URLs on page 2
+2025-07-15 16:23:15,755 - configurable_supplier_scraper - INFO - Processing page 3: https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners?p=3
+2025-07-15 16:23:15,756 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners?p=3 (attempt 1/3)
+2025-07-15 16:23:15,757 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-15 16:23:15,758 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners?p=3
+2025-07-15 16:23:18,068 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners?p=3 in 1.92s...
+2025-07-15 16:23:20,001 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners?p=3 (attempt 2/3)
+2025-07-15 16:23:20,002 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-15 16:23:20,003 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners?p=3
+2025-07-15 16:23:22,038 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners?p=3
+2025-07-15 16:23:22,039 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners?p=3
+2025-07-15 16:23:22,181 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners?p=3 (Size: 661723 bytes)
+2025-07-15 16:23:22,411 - configurable_supplier_scraper - INFO - Found 10 new product URLs on page 3
+2025-07-15 16:23:22,412 - configurable_supplier_scraper - INFO - Collected 50 total product URLs across 3 pages
+2025-07-15 16:23:22,414 - configurable_supplier_scraper - INFO - Found 50 total product URLs across all pages
+2025-07-15 16:23:22,415 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Processing product 1
+2025-07-15 16:23:22,447 - configurable_supplier_scraper - INFO - Visiting product page 1/50: https://www.poundwholesale.co.uk/elbow-grease-xtra-tough-heavy-duty-degreaser-1l
+2025-07-15 16:23:22,447 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/elbow-grease-xtra-tough-heavy-duty-degreaser-1l (attempt 1/3)
+2025-07-15 16:23:22,448 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-15 16:23:22,449 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/elbow-grease-xtra-tough-heavy-duty-degreaser-1l
+2025-07-15 16:23:25,010 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/elbow-grease-xtra-tough-heavy-duty-degreaser-1l in 2.13s...
+2025-07-15 16:23:27,142 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/elbow-grease-xtra-tough-heavy-duty-degreaser-1l (attempt 2/3)
+2025-07-15 16:23:27,143 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-15 16:23:27,144 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/elbow-grease-xtra-tough-heavy-duty-degreaser-1l
+2025-07-15 16:23:29,299 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/elbow-grease-xtra-tough-heavy-duty-degreaser-1l
+2025-07-15 16:23:29,300 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/elbow-grease-xtra-tough-heavy-duty-degreaser-1l
+2025-07-15 16:23:29,451 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/elbow-grease-xtra-tough-heavy-duty-degreaser-1l (Size: 672725 bytes)
+2025-07-15 16:23:29,728 - configurable_supplier_scraper - INFO - ✅ Extracted product 1: Elbow Grease Xtra Tough Heavy Duty Degreaser 1l - £2.29 (EAN: 5053249261133)
+2025-07-15 16:23:29,728 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Processing product 2
+2025-07-15 16:23:29,752 - configurable_supplier_scraper - INFO - Visiting product page 2/50: https://www.poundwholesale.co.uk/duzzit-orange-burst-biodegradable-multi-surface-wipes-50-pack-pallet-deal
+2025-07-15 16:23:29,752 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/duzzit-orange-burst-biodegradable-multi-surface-wipes-50-pack-pallet-deal (attempt 1/3)
+2025-07-15 16:23:29,753 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-15 16:23:29,753 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/duzzit-orange-burst-biodegradable-multi-surface-wipes-50-pack-pallet-deal
+2025-07-15 16:23:32,504 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/duzzit-orange-burst-biodegradable-multi-surface-wipes-50-pack-pallet-deal in 2.30s...
+2025-07-15 16:23:34,817 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/duzzit-orange-burst-biodegradable-multi-surface-wipes-50-pack-pallet-deal (attempt 2/3)
+2025-07-15 16:23:34,818 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-15 16:23:34,819 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/duzzit-orange-burst-biodegradable-multi-surface-wipes-50-pack-pallet-deal
+2025-07-15 16:23:37,434 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/duzzit-orange-burst-biodegradable-multi-surface-wipes-50-pack-pallet-deal
+2025-07-15 16:23:37,435 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/duzzit-orange-burst-biodegradable-multi-surface-wipes-50-pack-pallet-deal
+2025-07-15 16:23:37,587 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/duzzit-orange-burst-biodegradable-multi-surface-wipes-50-pack-pallet-deal (Size: 675569 bytes)
+2025-07-15 16:23:37,964 - configurable_supplier_scraper - INFO - ✅ Extracted product 2: Duzzit Orange Burst Biodegradable Multi-Surface Wipes 50 Pack Pallet Deal - £0.72 (EAN: 5053249260914)
+2025-07-15 16:23:37,965 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Processing product 3
+2025-07-15 16:23:37,992 - configurable_supplier_scraper - INFO - Visiting product page 3/50: https://www.poundwholesale.co.uk/sugar-soap
+2025-07-15 16:23:37,993 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/sugar-soap (attempt 1/3)
+2025-07-15 16:23:37,993 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-15 16:23:37,994 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/sugar-soap
+2025-07-15 16:23:41,221 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/sugar-soap in 1.86s...
+2025-07-15 16:23:43,085 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/sugar-soap (attempt 2/3)
+2025-07-15 16:23:43,086 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-15 16:23:43,087 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/sugar-soap
+2025-07-15 16:23:44,750 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/sugar-soap
+2025-07-15 16:23:44,751 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/sugar-soap
+2025-07-15 16:23:44,916 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/sugar-soap (Size: 675429 bytes)
+2025-07-15 16:23:45,200 - configurable_supplier_scraper - INFO - ✅ Extracted product 3: 151 Trigger Spray Sugar Soap 750ml - £1.19 (EAN: 5013748060132)
+2025-07-15 16:23:45,201 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Processing product 4
+2025-07-15 16:23:45,221 - configurable_supplier_scraper - INFO - Visiting product page 4/50: https://www.poundwholesale.co.uk/elbow-grease-original-1l
+2025-07-15 16:23:45,222 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/elbow-grease-original-1l (attempt 1/3)
+2025-07-15 16:23:45,223 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-15 16:23:45,224 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/elbow-grease-original-1l
+2025-07-15 16:23:48,576 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/elbow-grease-original-1l in 2.20s...
+2025-07-15 16:23:50,775 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/elbow-grease-original-1l (attempt 2/3)
+2025-07-15 16:23:50,776 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-15 16:23:50,777 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/elbow-grease-original-1l
+2025-07-15 16:23:52,293 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/elbow-grease-original-1l
+2025-07-15 16:23:52,294 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/elbow-grease-original-1l
+2025-07-15 16:23:54,778 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/elbow-grease-original-1l (Size: 675626 bytes)
+2025-07-15 16:23:54,296 - configurable_supplier_scraper - INFO - ✅ Extracted product 4: Elbow Grease Original 1L - £1.67 (EAN: 5053249238937)
+2025-07-15 16:23:54,297 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Processing product 5
+2025-07-15 16:23:54,320 - configurable_supplier_scraper - INFO - Visiting product page 5/50: https://www.poundwholesale.co.uk/uniclean-salon-professional-cleaner-wipes-60-pack
+2025-07-15 16:23:54,320 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/uniclean-salon-professional-cleaner-wipes-60-pack (attempt 1/3)
+2025-07-15 16:23:54,321 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-15 16:23:54,321 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/uniclean-salon-professional-cleaner-wipes-60-pack
+2025-07-15 16:23:57,243 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/uniclean-salon-professional-cleaner-wipes-60-pack in 1.68s...
+2025-07-15 16:23:58,927 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/uniclean-salon-professional-cleaner-wipes-60-pack (attempt 2/3)
+2025-07-15 16:23:58,928 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-15 16:23:58,929 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/uniclean-salon-professional-cleaner-wipes-60-pack
+2025-07-15 16:24:00,881 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/uniclean-salon-professional-cleaner-wipes-60-pack
+2025-07-15 16:24:00,882 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/uniclean-salon-professional-cleaner-wipes-60-pack
+2025-07-15 16:24:01,025 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/uniclean-salon-professional-cleaner-wipes-60-pack (Size: 673955 bytes)
+2025-07-15 16:24:01,396 - configurable_supplier_scraper - INFO - ✅ Extracted product 5: Uniclean Salon Professional Cleaner Wipes 60 Pack - £0.6 (EAN: 7332832 001706)
+2025-07-15 16:24:01,397 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Processing product 6
+2025-07-15 16:24:01,424 - configurable_supplier_scraper - INFO - Visiting product page 6/50: https://www.poundwholesale.co.uk/duzzit-floor-wipes-24pk-pallet-deal
+2025-07-15 16:24:01,425 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/duzzit-floor-wipes-24pk-pallet-deal (attempt 1/3)
+2025-07-15 16:24:01,425 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-15 16:24:01,426 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/duzzit-floor-wipes-24pk-pallet-deal
+2025-07-15 16:24:05,883 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/duzzit-floor-wipes-24pk-pallet-deal in 1.93s...
+2025-07-15 16:24:07,815 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/duzzit-floor-wipes-24pk-pallet-deal (attempt 2/3)
+2025-07-15 16:24:07,816 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-15 16:24:07,817 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/duzzit-floor-wipes-24pk-pallet-deal
+2025-07-15 16:24:10,356 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/duzzit-floor-wipes-24pk-pallet-deal
+2025-07-15 16:24:10,356 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/duzzit-floor-wipes-24pk-pallet-deal
+2025-07-15 16:24:10,500 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/duzzit-floor-wipes-24pk-pallet-deal (Size: 669588 bytes)
+2025-07-15 16:24:10,772 - configurable_supplier_scraper - INFO - ✅ Extracted product 6: Duzzit Floor Wipes 24pk Pallet Deal - £0.66 (EAN: 5050375010819/5053249206844)
+2025-07-15 16:24:10,773 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Processing product 7
+2025-07-15 16:24:10,796 - configurable_supplier_scraper - INFO - Visiting product page 7/50: https://www.poundwholesale.co.uk/duzzit-clean-and-fresh-biodegradable-anti-bacterial-wipes-50-pack-pallet-deal
+2025-07-15 16:24:10,796 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/duzzit-clean-and-fresh-biodegradable-anti-bacterial-wipes-50-pack-pallet-deal (attempt 1/3)
+2025-07-15 16:24:10,796 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-15 16:24:10,797 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/duzzit-clean-and-fresh-biodegradable-anti-bacterial-wipes-50-pack-pallet-deal
+2025-07-15 16:24:13,295 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/duzzit-clean-and-fresh-biodegradable-anti-bacterial-wipes-50-pack-pallet-deal in 2.45s...
+2025-07-15 16:24:15,767 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/duzzit-clean-and-fresh-biodegradable-anti-bacterial-wipes-50-pack-pallet-deal (attempt 2/3)
+2025-07-15 16:24:15,768 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-15 16:24:15,768 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/duzzit-clean-and-fresh-biodegradable-anti-bacterial-wipes-50-pack-pallet-deal
+2025-07-15 16:24:17,618 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/duzzit-clean-and-fresh-biodegradable-anti-bacterial-wipes-50-pack-pallet-deal
+2025-07-15 16:24:17,619 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/duzzit-clean-and-fresh-biodegradable-anti-bacterial-wipes-50-pack-pallet-deal
+2025-07-15 16:24:17,750 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/duzzit-clean-and-fresh-biodegradable-anti-bacterial-wipes-50-pack-pallet-deal (Size: 676103 bytes)
+2025-07-15 16:24:18,022 - configurable_supplier_scraper - INFO - ✅ Extracted product 7: Duzzit Clean & Fresh Biodegradable Anti-Bacterial Wipes 50 Pack Pallet Deal - £0.72 (EAN: 5053249260471)
+2025-07-15 16:24:18,023 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Processing product 8
+2025-07-15 16:24:18,060 - configurable_supplier_scraper - INFO - Visiting product page 8/50: https://www.poundwholesale.co.uk/elbow-grease-pink-blush-antibacterial-wipes-80-pack-pallet-deal
+2025-07-15 16:24:18,061 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/elbow-grease-pink-blush-antibacterial-wipes-80-pack-pallet-deal (attempt 1/3)
+2025-07-15 16:24:18,062 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-15 16:24:18,063 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/elbow-grease-pink-blush-antibacterial-wipes-80-pack-pallet-deal
+2025-07-15 16:24:20,701 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/elbow-grease-pink-blush-antibacterial-wipes-80-pack-pallet-deal in 2.24s...
+2025-07-15 16:24:22,955 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/elbow-grease-pink-blush-antibacterial-wipes-80-pack-pallet-deal (attempt 2/3)
+2025-07-15 16:24:22,956 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-15 16:24:22,957 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/elbow-grease-pink-blush-antibacterial-wipes-80-pack-pallet-deal
+2025-07-15 16:24:25,921 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/elbow-grease-pink-blush-antibacterial-wipes-80-pack-pallet-deal
+2025-07-15 16:24:25,921 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/elbow-grease-pink-blush-antibacterial-wipes-80-pack-pallet-deal
+2025-07-15 16:24:26,046 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/elbow-grease-pink-blush-antibacterial-wipes-80-pack-pallet-deal (Size: 675544 bytes)
+2025-07-15 16:24:26,411 - configurable_supplier_scraper - INFO - ✅ Extracted product 8: Elbow Grease Pink Blush Antibacterial Wipes 80 Pack Pallet Deal - £1.0 (EAN: 5053249271057)
+2025-07-15 16:24:26,412 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Processing product 9
+2025-07-15 16:24:25,633 - configurable_supplier_scraper - INFO - Visiting product page 9/50: https://www.poundwholesale.co.uk/elbow-grease-natural-soda-crystals-500g
+2025-07-15 16:24:25,634 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/elbow-grease-natural-soda-crystals-500g (attempt 1/3)
+2025-07-15 16:24:25,634 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-15 16:24:25,634 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/elbow-grease-natural-soda-crystals-500g
+2025-07-15 16:24:28,953 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/elbow-grease-natural-soda-crystals-500g in 1.85s...
+2025-07-15 16:24:30,807 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/elbow-grease-natural-soda-crystals-500g (attempt 2/3)
+2025-07-15 16:24:30,808 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-15 16:24:30,809 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/elbow-grease-natural-soda-crystals-500g
+2025-07-15 16:24:33,670 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/elbow-grease-natural-soda-crystals-500g
+2025-07-15 16:24:33,671 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/elbow-grease-natural-soda-crystals-500g
+2025-07-15 16:24:33,816 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/elbow-grease-natural-soda-crystals-500g (Size: 674253 bytes)
+2025-07-15 16:24:34,086 - configurable_supplier_scraper - INFO - ✅ Extracted product 9: Elbow Grease Natural Soda Crystals 500g - £1.2 (EAN: 5053249263731)
+2025-07-15 16:24:34,087 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Processing product 10
+2025-07-15 16:24:34,114 - configurable_supplier_scraper - INFO - Visiting product page 10/50: https://www.poundwholesale.co.uk/home-garden-stove-polish-fireplace-restorer-200ml
+2025-07-15 16:24:34,114 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/home-garden-stove-polish-fireplace-restorer-200ml (attempt 1/3)
+2025-07-15 16:24:34,115 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-15 16:24:34,115 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/home-garden-stove-polish-fireplace-restorer-200ml
+2025-07-15 16:24:36,582 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/home-garden-stove-polish-fireplace-restorer-200ml in 2.34s...
+2025-07-15 16:24:38,927 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/home-garden-stove-polish-fireplace-restorer-200ml (attempt 2/3)
+2025-07-15 16:24:38,928 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-15 16:24:38,928 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/home-garden-stove-polish-fireplace-restorer-200ml
+2025-07-15 16:24:41,224 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/home-garden-stove-polish-fireplace-restorer-200ml
+2025-07-15 16:24:41,225 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/home-garden-stove-polish-fireplace-restorer-200ml
+2025-07-15 16:24:41,327 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/home-garden-stove-polish-fireplace-restorer-200ml (Size: 673145 bytes)
+2025-07-15 16:24:41,627 - configurable_supplier_scraper - INFO - ✅ Extracted product 10: Home & Garden Stove Polish Fireplace Restorer 200ml - £0.79 (EAN: 5055319510417)
+2025-07-15 16:24:41,628 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Processing product 11
+2025-07-15 16:24:41,654 - configurable_supplier_scraper - INFO - Visiting product page 11/50: https://www.poundwholesale.co.uk/elbow-grease-multipurpose-natural-cleaning-concentrated-vinegar-750ml
+2025-07-15 16:24:41,654 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/elbow-grease-multipurpose-natural-cleaning-concentrated-vinegar-750ml (attempt 1/3)
+2025-07-15 16:24:41,655 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-15 16:24:41,655 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/elbow-grease-multipurpose-natural-cleaning-concentrated-vinegar-750ml
+2025-07-15 16:24:44,622 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/elbow-grease-multipurpose-natural-cleaning-concentrated-vinegar-750ml in 2.35s...
+2025-07-15 16:24:46,975 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/elbow-grease-multipurpose-natural-cleaning-concentrated-vinegar-750ml (attempt 2/3)
+2025-07-15 16:24:46,976 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-15 16:24:46,977 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/elbow-grease-multipurpose-natural-cleaning-concentrated-vinegar-750ml
+2025-07-15 16:24:48,036 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/elbow-grease-multipurpose-natural-cleaning-concentrated-vinegar-750ml
+2025-07-15 16:24:48,036 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/elbow-grease-multipurpose-natural-cleaning-concentrated-vinegar-750ml
+2025-07-15 16:24:48,214 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/elbow-grease-multipurpose-natural-cleaning-concentrated-vinegar-750ml (Size: 675128 bytes)
+2025-07-15 16:24:48,609 - configurable_supplier_scraper - INFO - ✅ Extracted product 11: Elbow Grease Multipurpose Natural Cleaning Concentrated Vinegar 750ml - £1.27 (EAN: 5053249264059)
+2025-07-15 16:24:48,609 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Processing product 12
+2025-07-15 16:24:48,630 - configurable_supplier_scraper - INFO - Visiting product page 12/50: https://www.poundwholesale.co.uk/elbow-grease-antibacterial-surface-scrub-wipes-24pk
+2025-07-15 16:24:48,630 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/elbow-grease-antibacterial-surface-scrub-wipes-24pk (attempt 1/3)
+2025-07-15 16:24:48,631 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-15 16:24:48,631 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/elbow-grease-antibacterial-surface-scrub-wipes-24pk

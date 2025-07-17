@@ -1,0 +1,248 @@
+2025-07-16 00:55:32,580 - WARNING - OPENAI_API_KEY not supplied – using hard-coded fallback
+2025-07-16 00:55:34,678 - utils.logger - INFO - 🔧 Logging initialised – log file: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/logs/debug/run_custom_poundwholesale_20250716_005534.log
+2025-07-16 00:55:34,680 - __main__ - INFO - 📋 Debug log file: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/logs/debug/run_custom_poundwholesale_20250716_005534.log
+2025-07-16 00:55:34,681 - __main__ - DEBUG - Debug logging initialized - full system execution details will be captured
+2025-07-16 00:55:34,685 - utils.browser_manager - INFO - 🔧 BrowserManager singleton initialized
+2025-07-16 00:55:35,319 - utils.browser_manager - INFO - 🔌 Connecting to Chrome on debug port 9222
+2025-07-16 00:55:36,012 - utils.browser_manager - INFO - 📄 Using existing context with 3 pages
+2025-07-16 00:55:36,013 - utils.browser_manager - INFO - ✅ Connected to Chrome successfully
+2025-07-16 00:55:36,014 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-16 00:55:36,016 - __main__ - INFO - 🔐 Initializing authentication service for logout detection...
+2025-07-16 00:55:36,022 - __main__ - INFO - ✅ Using hardcoded credentials for poundwholesale.co.uk
+2025-07-16 00:55:36,023 - __main__ - INFO - 🌐 Connecting to existing Chrome debug port 9222 for authentication...
+2025-07-16 00:55:39,090 - tools.supplier_authentication_service - INFO - ❌ Login form detected - not authenticated
+2025-07-16 00:55:39,091 - tools.supplier_authentication_service - INFO - 🔐 Starting authentication for poundwholesale.co.uk
+2025-07-16 00:55:39,092 - tools.supplier_authentication_service - INFO - 🔧 Using standalone playwright authentication
+2025-07-16 00:55:39,092 - tools.standalone_playwright_login - INFO - 🔗 Connecting to shared Chrome instance...
+2025-07-16 00:55:40,090 - tools.standalone_playwright_login - INFO - ✅ Connected to shared Chrome instance at http://localhost:9222
+2025-07-16 00:55:40,091 - tools.standalone_playwright_login - DEBUG - Using existing browser context
+2025-07-16 00:55:40,091 - tools.standalone_playwright_login - DEBUG - Using existing page
+2025-07-16 00:55:40,111 - tools.standalone_playwright_login - INFO - 🔍 Checking if already logged in...
+2025-07-16 00:55:44,964 - tools.standalone_playwright_login - INFO - ❌ No login indicators found - need to log in
+2025-07-16 00:55:44,965 - tools.standalone_playwright_login - INFO - 🔐 Starting Playwright login...
+2025-07-16 00:55:44,966 - tools.standalone_playwright_login - INFO - 📍 Navigating to login page: https://www.poundwholesale.co.uk/customer/account/login/
+2025-07-16 00:55:48,194 - tools.standalone_playwright_login - INFO - ✅ Filled email using selector: input[name="email"]
+2025-07-16 00:55:48,725 - tools.standalone_playwright_login - INFO - ✅ Filled password using selector: input[type="password"]
+2025-07-16 00:55:51,615 - tools.standalone_playwright_login - INFO - ✅ Clicked submit using selector: button[type="submit"]
+2025-07-16 00:55:51,617 - tools.standalone_playwright_login - INFO - ⏳ Waiting for login to complete...
+2025-07-16 00:55:55,278 - tools.standalone_playwright_login - WARNING - ⚠️ Login status unclear - no clear success indicators
+2025-07-16 00:55:55,279 - tools.standalone_playwright_login - INFO - 💰 Verifying price access...
+2025-07-16 00:56:01,339 - tools.standalone_playwright_login - INFO - ✅ Price access confirmed: £1.02
+2025-07-16 00:56:01,341 - tools.standalone_playwright_login - INFO - 🎉 Playwright login successful! Price access confirmed. (took 16.4s)
+2025-07-16 00:56:01,370 - tools.standalone_playwright_login - DEBUG - Disconnected from shared Chrome browser
+2025-07-16 00:56:01,382 - tools.standalone_playwright_login - DEBUG - Playwright stopped
+2025-07-16 00:56:01,384 - tools.supplier_authentication_service - INFO - ✅ Standalone authentication successful: playwright_selectors
+2025-07-16 00:56:01,403 - amazon_playwright_extractor - INFO - AI features disabled in amazon_playwright_extractor - using only traditional selectors.
+2025-07-16 00:56:01,411 - amazon_playwright_extractor - INFO - Output directory set to: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/CACHE/amazon_data
+2025-07-16 00:56:01,412 - amazon_playwright_extractor - WARNING - ⚠️ BrowserManager not available, using legacy browser connection
+2025-07-16 00:56:01,417 - configurable_supplier_scraper - INFO - ✅ Loaded system configuration from /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/config/system_config.json
+2025-07-16 00:56:01,418 - configurable_supplier_scraper - INFO - 🔧 ConfigurableSupplierScraper will use centralized BrowserManager
+2025-07-16 00:56:01,419 - configurable_supplier_scraper - DEBUG - AI model from config: gpt-4.1-mini-2025-04-14
+2025-07-16 00:56:01,419 - configurable_supplier_scraper - DEBUG - Extraction targets from config: {'product_data': ['price', 'title', 'ean', 'barcode', 'image', 'description', 'out_of_stock'], 'navigation': ['next_page', 'category_links', 'breadcrumbs'], 'pagination': ['next_page', 'previous_page', 'page_numbers'], 'filtering': ['price_filter', 'category_filter', 'search_box', 'products_per_page', 'product limiter'], 'interaction': ['add_to_cart', 'buy_now', 'product_link']}
+2025-07-16 00:56:01,421 - configurable_supplier_scraper - DEBUG - Discovery assistance from config: {'enabled': False, 'prompt_injection': {'login_discovery_hints': '', 'product_navigation_discovery_hints': "OUT OF STOCK products show a red/orange badge or overlay with text like 'Out of Stock', 'Sold Out', or 'Unavailable'"}, '_comment': 'Two API calls are made: 1) login_discovery_hints for login elements, 2) product_navigation_discovery_hints for product/navigation selectors. You can paste full console elements, XPath, or any hints here.'}
+2025-07-16 00:56:01,422 - configurable_supplier_scraper - INFO - [CONFIG] Initialized with AI model: gpt-4.1-mini-2025-04-14
+2025-07-16 00:56:01,423 - configurable_supplier_scraper - INFO - [TARGET] Extraction targets loaded: ['product_data', 'navigation', 'pagination', 'filtering', 'interaction']
+2025-07-16 00:56:01,424 - configurable_supplier_scraper - INFO - [ASSIST] Discovery assistance enabled: False
+2025-07-16 00:56:01,425 - PassiveExtractionWorkflow - INFO - ✅ Output directory set to: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS
+2025-07-16 00:56:01,426 - PassiveExtractionWorkflow - INFO - ✅ Initialization validation passed - all critical attributes verified
+2025-07-16 00:56:01,427 - PassiveExtractionWorkflow - INFO - --- Starting Passive Extraction Workflow for: poundwholesale.co.uk ---
+2025-07-16 00:56:01,428 - PassiveExtractionWorkflow - INFO - Session ID: poundwholesale.co.uk_20250716_005601
+2025-07-16 00:56:01,428 - PassiveExtractionWorkflow - INFO - 📊 CONFIGURATION VALUES:
+2025-07-16 00:56:01,429 - PassiveExtractionWorkflow - INFO -    max_products_to_process: 12
+2025-07-16 00:56:01,429 - PassiveExtractionWorkflow - INFO -    max_products_per_category: 6
+2025-07-16 00:56:01,429 - PassiveExtractionWorkflow - INFO -    max_analyzed_products: 15
+2025-07-16 00:56:01,430 - PassiveExtractionWorkflow - INFO -    max_products_per_cycle: 4
+2025-07-16 00:56:01,430 - PassiveExtractionWorkflow - INFO -    supplier_extraction_batch_size: 2
+2025-07-16 00:56:01,431 - PassiveExtractionWorkflow - INFO -    max_categories_per_request: 500
+2025-07-16 00:56:01,434 - utils.enhanced_state_manager - INFO - No existing state file found for poundwholesale.co.uk, starting fresh
+2025-07-16 00:56:01,434 - PassiveExtractionWorkflow - INFO - 📋 Loaded existing processing state for poundwholesale.co.uk
+2025-07-16 00:56:01,435 - PassiveExtractionWorkflow - INFO - 🔄 Resuming from index 0
+2025-07-16 00:56:01,436 - PassiveExtractionWorkflow - INFO - ✅ No previous progress found, starting fresh.
+2025-07-16 00:56:01,440 - PassiveExtractionWorkflow - INFO - ✅ No existing linking map found at /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/FBA_ANALYSIS/linking_maps/poundwholesale.co.uk/linking_map.json - Creating new map
+2025-07-16 00:56:01,444 - PassiveExtractionWorkflow - INFO - ✅ No existing linking map found at /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/FBA_ANALYSIS/linking_maps/poundwholesale.co.uk/linking_map.json - Creating new map
+2025-07-16 00:56:01,445 - PassiveExtractionWorkflow - INFO - CUSTOM MODE: Using predefined category list.
+2025-07-16 00:56:01,445 - tools.passive_extraction_workflow_latest - INFO - Attempting to load predefined categories for poundwholesale.co.uk
+2025-07-16 00:56:01,449 - tools.passive_extraction_workflow_latest - INFO - ✅ Successfully loaded 276 predefined category URLs from /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/config/poundwholesale_categories.json
+2025-07-16 00:56:01,452 - PassiveExtractionWorkflow - INFO - 🕷️ PERFORMING SUPPLIER SCRAPING from 276 categories
+2025-07-16 00:56:01,452 - PassiveExtractionWorkflow - INFO - 📦 Using supplier extraction batch size: 3
+2025-07-16 00:56:01,453 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS TRACKING: Extracting from 276 categories in 92 batches
+2025-07-16 00:56:01,453 - PassiveExtractionWorkflow - INFO - 📦 Processing category batch 1/92 (3 categories)
+2025-07-16 00:56:01,467 - PassiveExtractionWorkflow - INFO - 🔄 EXTRACTION PROGRESS: Processing subcategory 1/3 in batch 1 (Category 1/276)
+2025-07-16 00:56:01,468 - PassiveExtractionWorkflow - INFO - Scraping category: https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners
+2025-07-16 00:56:01,468 - configurable_supplier_scraper - INFO - Starting enhanced scraping from https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners
+2025-07-16 00:56:01,469 - configurable_supplier_scraper - INFO - Setting page limiter for https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners
+2025-07-16 00:56:01,470 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-16 00:56:01,484 - configurable_supplier_scraper - INFO - ✅ Loaded VALIDATED supplier package selectors for poundwholesale.co.uk from /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/suppliers/poundwholesale-co-uk/config/product_selectors.json
+2025-07-16 00:56:01,485 - configurable_supplier_scraper - INFO - No page limiter configuration found for www.poundwholesale.co.uk
+2025-07-16 00:56:01,486 - configurable_supplier_scraper - INFO - Collecting product URLs from paginated pages starting at: https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners
+2025-07-16 00:56:01,487 - configurable_supplier_scraper - INFO - Processing page 1: https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners
+2025-07-16 00:56:01,487 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners (attempt 1/3)
+2025-07-16 00:56:01,488 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-16 00:56:01,488 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners
+2025-07-16 00:56:04,090 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners in 2.13s...
+2025-07-16 00:56:06,248 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners (attempt 2/3)
+2025-07-16 00:56:06,249 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-16 00:56:06,251 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners
+2025-07-16 00:56:08,819 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners
+2025-07-16 00:56:08,821 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners
+2025-07-16 00:56:11,498 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners (Size: 655307 bytes)
+2025-07-16 00:56:11,733 - configurable_supplier_scraper - INFO - Found 6 new product URLs on page 1
+2025-07-16 00:56:11,735 - configurable_supplier_scraper - INFO - Collected 6 total product URLs across 1 pages
+2025-07-16 00:56:11,736 - configurable_supplier_scraper - INFO - Found 6 total product URLs across all pages
+2025-07-16 00:56:11,738 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Processing product 1
+2025-07-16 00:56:11,772 - configurable_supplier_scraper - INFO - Visiting product page 1/6: https://www.poundwholesale.co.uk/rapide-sticker-gum-goo-remover-spray-250ml
+2025-07-16 00:56:11,773 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/rapide-sticker-gum-goo-remover-spray-250ml (attempt 1/3)
+2025-07-16 00:56:11,774 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-16 00:56:11,776 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/rapide-sticker-gum-goo-remover-spray-250ml
+2025-07-16 00:56:14,345 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/rapide-sticker-gum-goo-remover-spray-250ml in 1.69s...
+2025-07-16 00:56:16,041 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/rapide-sticker-gum-goo-remover-spray-250ml (attempt 2/3)
+2025-07-16 00:56:16,043 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-16 00:56:16,045 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/rapide-sticker-gum-goo-remover-spray-250ml
+2025-07-16 00:56:17,887 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/rapide-sticker-gum-goo-remover-spray-250ml
+2025-07-16 00:56:17,889 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/rapide-sticker-gum-goo-remover-spray-250ml
+2025-07-16 00:56:18,103 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/rapide-sticker-gum-goo-remover-spray-250ml (Size: 674197 bytes)
+2025-07-16 00:56:18,413 - configurable_supplier_scraper - INFO - ✅ Extracted product 1: Rapide Sticker Gum & Goo Remover Spray 250ml - £1.32 (EAN: 5055319531689)
+2025-07-16 00:56:18,415 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Processing product 2
+2025-07-16 00:56:18,447 - configurable_supplier_scraper - INFO - Visiting product page 2/6: https://www.poundwholesale.co.uk/rapide-sealant-remover-spray-250ml
+2025-07-16 00:56:18,449 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/rapide-sealant-remover-spray-250ml (attempt 1/3)
+2025-07-16 00:56:18,450 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-16 00:56:18,451 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/rapide-sealant-remover-spray-250ml
+2025-07-16 00:56:20,941 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/rapide-sealant-remover-spray-250ml in 2.21s...
+2025-07-16 00:56:23,178 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/rapide-sealant-remover-spray-250ml (attempt 2/3)
+2025-07-16 00:56:23,180 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-16 00:56:23,182 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/rapide-sealant-remover-spray-250ml
+2025-07-16 00:56:25,325 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/rapide-sealant-remover-spray-250ml
+2025-07-16 00:56:25,327 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/rapide-sealant-remover-spray-250ml
+2025-07-16 00:56:25,469 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/rapide-sealant-remover-spray-250ml (Size: 675069 bytes)
+2025-07-16 00:56:25,751 - configurable_supplier_scraper - INFO - ✅ Extracted product 2: Rapide Sealant Remover Spray 250ml - £1.32 (EAN: 5055319531696)
+2025-07-16 00:56:25,752 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Processing product 3
+2025-07-16 00:56:25,785 - configurable_supplier_scraper - INFO - Visiting product page 3/6: https://www.poundwholesale.co.uk/home-garden-stove-polish-fireplace-restorer-200ml
+2025-07-16 00:56:25,786 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/home-garden-stove-polish-fireplace-restorer-200ml (attempt 1/3)
+2025-07-16 00:56:25,787 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-16 00:56:25,788 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/home-garden-stove-polish-fireplace-restorer-200ml
+2025-07-16 00:56:28,214 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/home-garden-stove-polish-fireplace-restorer-200ml in 1.90s...
+2025-07-16 00:56:30,123 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/home-garden-stove-polish-fireplace-restorer-200ml (attempt 2/3)
+2025-07-16 00:56:30,125 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-16 00:56:30,127 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/home-garden-stove-polish-fireplace-restorer-200ml
+2025-07-16 00:56:32,737 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/home-garden-stove-polish-fireplace-restorer-200ml
+2025-07-16 00:56:32,739 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/home-garden-stove-polish-fireplace-restorer-200ml
+2025-07-16 00:56:32,846 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/home-garden-stove-polish-fireplace-restorer-200ml (Size: 673151 bytes)
+2025-07-16 00:56:33,239 - configurable_supplier_scraper - INFO - ✅ Extracted product 3: Home & Garden Stove Polish Fireplace Restorer 200ml - £0.79 (EAN: 5055319510417)
+2025-07-16 00:56:33,240 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Processing product 4
+2025-07-16 00:56:33,260 - configurable_supplier_scraper - INFO - Visiting product page 4/6: https://www.poundwholesale.co.uk/home-garden-multi-purpose-white-vinegar-cleaning-spray-500ml
+2025-07-16 00:56:33,260 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/home-garden-multi-purpose-white-vinegar-cleaning-spray-500ml (attempt 1/3)
+2025-07-16 00:56:33,261 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-16 00:56:33,261 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/home-garden-multi-purpose-white-vinegar-cleaning-spray-500ml
+2025-07-16 00:56:35,906 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/home-garden-multi-purpose-white-vinegar-cleaning-spray-500ml in 1.67s...
+2025-07-16 00:56:37,589 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/home-garden-multi-purpose-white-vinegar-cleaning-spray-500ml (attempt 2/3)
+2025-07-16 00:56:37,592 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-16 00:56:37,593 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/home-garden-multi-purpose-white-vinegar-cleaning-spray-500ml
+2025-07-16 00:56:39,704 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/home-garden-multi-purpose-white-vinegar-cleaning-spray-500ml
+2025-07-16 00:56:39,706 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/home-garden-multi-purpose-white-vinegar-cleaning-spray-500ml
+2025-07-16 00:56:39,851 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/home-garden-multi-purpose-white-vinegar-cleaning-spray-500ml (Size: 676538 bytes)
+2025-07-16 00:56:40,134 - configurable_supplier_scraper - INFO - ✅ Extracted product 4: Home & Garden Multi-Purpose White Vinegar Cleaning Spray 500ml - £0.84 (EAN: 5055319510769)
+2025-07-16 00:56:40,136 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Processing product 5
+2025-07-16 00:56:40,156 - configurable_supplier_scraper - INFO - Visiting product page 5/6: https://www.poundwholesale.co.uk/duzzit-sweet-things-biodegradable-anti-bacterial-wipes-50-pack-pallet-deal
+2025-07-16 00:56:40,157 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/duzzit-sweet-things-biodegradable-anti-bacterial-wipes-50-pack-pallet-deal (attempt 1/3)
+2025-07-16 00:56:40,157 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-16 00:56:40,158 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/duzzit-sweet-things-biodegradable-anti-bacterial-wipes-50-pack-pallet-deal
+2025-07-16 00:56:41,292 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/duzzit-sweet-things-biodegradable-anti-bacterial-wipes-50-pack-pallet-deal in 1.51s...
+2025-07-16 00:56:42,804 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/duzzit-sweet-things-biodegradable-anti-bacterial-wipes-50-pack-pallet-deal (attempt 2/3)
+2025-07-16 00:56:42,805 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-16 00:56:42,806 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/duzzit-sweet-things-biodegradable-anti-bacterial-wipes-50-pack-pallet-deal
+2025-07-16 00:56:44,048 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/duzzit-sweet-things-biodegradable-anti-bacterial-wipes-50-pack-pallet-deal
+2025-07-16 00:56:44,050 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/duzzit-sweet-things-biodegradable-anti-bacterial-wipes-50-pack-pallet-deal
+2025-07-16 00:56:44,380 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/duzzit-sweet-things-biodegradable-anti-bacterial-wipes-50-pack-pallet-deal (Size: 674814 bytes)
+2025-07-16 00:56:44,678 - configurable_supplier_scraper - INFO - ✅ Extracted product 5: Duzzit Sweet Things Biodegradable Anti-Bacterial Wipes 50 Pack Pallet Deal - £0.72 (EAN: 5053249260457)
+2025-07-16 00:56:44,679 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Processing product 6
+2025-07-16 00:56:44,700 - configurable_supplier_scraper - INFO - Visiting product page 6/6: https://www.poundwholesale.co.uk/rapide-lime-scented-tough-stuff-hand-cleaner-450ml
+2025-07-16 00:56:44,701 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/rapide-lime-scented-tough-stuff-hand-cleaner-450ml (attempt 1/3)
+2025-07-16 00:56:44,702 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-16 00:56:44,703 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/rapide-lime-scented-tough-stuff-hand-cleaner-450ml
+2025-07-16 00:56:47,175 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/rapide-lime-scented-tough-stuff-hand-cleaner-450ml in 1.61s...
+2025-07-16 00:56:48,790 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/rapide-lime-scented-tough-stuff-hand-cleaner-450ml (attempt 2/3)
+2025-07-16 00:56:48,792 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-16 00:56:48,794 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/rapide-lime-scented-tough-stuff-hand-cleaner-450ml
+2025-07-16 00:56:51,340 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/rapide-lime-scented-tough-stuff-hand-cleaner-450ml
+2025-07-16 00:56:51,342 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/rapide-lime-scented-tough-stuff-hand-cleaner-450ml
+2025-07-16 00:56:51,501 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/rapide-lime-scented-tough-stuff-hand-cleaner-450ml (Size: 673777 bytes)
+2025-07-16 00:56:51,882 - configurable_supplier_scraper - INFO - ✅ Extracted product 6: Rapide Lime Scented Tough Stuff Hand Cleaner 450ml - £0.88 (EAN: 5055319520935)
+2025-07-16 00:56:51,883 - configurable_supplier_scraper - INFO - Successfully extracted 6 products from https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners
+2025-07-16 00:56:51,909 - PassiveExtractionWorkflow - INFO - 🔄 EXTRACTION PROGRESS: Processing subcategory 2/3 in batch 1 (Category 2/276)
+2025-07-16 00:56:51,910 - PassiveExtractionWorkflow - INFO - Scraping category: https://www.poundwholesale.co.uk/wholesale-cleaning/sponges-scourers-cloths
+2025-07-16 00:56:51,911 - configurable_supplier_scraper - INFO - Starting enhanced scraping from https://www.poundwholesale.co.uk/wholesale-cleaning/sponges-scourers-cloths
+2025-07-16 00:56:51,912 - configurable_supplier_scraper - INFO - Setting page limiter for https://www.poundwholesale.co.uk/wholesale-cleaning/sponges-scourers-cloths
+2025-07-16 00:56:51,913 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-16 00:56:51,914 - configurable_supplier_scraper - INFO - No page limiter configuration found for www.poundwholesale.co.uk
+2025-07-16 00:56:51,915 - configurable_supplier_scraper - INFO - Collecting product URLs from paginated pages starting at: https://www.poundwholesale.co.uk/wholesale-cleaning/sponges-scourers-cloths
+2025-07-16 00:56:51,916 - configurable_supplier_scraper - INFO - Processing page 1: https://www.poundwholesale.co.uk/wholesale-cleaning/sponges-scourers-cloths
+2025-07-16 00:56:51,917 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/wholesale-cleaning/sponges-scourers-cloths (attempt 1/3)
+2025-07-16 00:56:51,918 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-16 00:56:51,919 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/wholesale-cleaning/sponges-scourers-cloths
+2025-07-16 00:56:54,274 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/wholesale-cleaning/sponges-scourers-cloths in 2.00s...
+2025-07-16 00:56:56,279 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/wholesale-cleaning/sponges-scourers-cloths (attempt 2/3)
+2025-07-16 00:56:56,281 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-16 00:56:56,284 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/wholesale-cleaning/sponges-scourers-cloths
+2025-07-16 00:56:57,768 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/wholesale-cleaning/sponges-scourers-cloths
+2025-07-16 00:56:57,771 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/wholesale-cleaning/sponges-scourers-cloths
+2025-07-16 00:56:57,928 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/wholesale-cleaning/sponges-scourers-cloths (Size: 634853 bytes)
+2025-07-16 00:56:58,147 - configurable_supplier_scraper - INFO - Found 6 new product URLs on page 1
+2025-07-16 00:56:58,149 - configurable_supplier_scraper - INFO - Collected 6 total product URLs across 1 pages
+2025-07-16 00:56:58,150 - configurable_supplier_scraper - INFO - Found 6 total product URLs across all pages
+2025-07-16 00:56:58,152 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Processing product 7
+2025-07-16 00:56:58,172 - configurable_supplier_scraper - INFO - Visiting product page 1/6: https://www.poundwholesale.co.uk/globe-mill-textiles-strong-absorbent-dishcloths-8-pack-25cm-x-30cm
+2025-07-16 00:56:58,173 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/globe-mill-textiles-strong-absorbent-dishcloths-8-pack-25cm-x-30cm (attempt 1/3)
+2025-07-16 00:56:58,174 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-16 00:56:58,174 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/globe-mill-textiles-strong-absorbent-dishcloths-8-pack-25cm-x-30cm
+2025-07-16 00:57:00,702 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/globe-mill-textiles-strong-absorbent-dishcloths-8-pack-25cm-x-30cm in 1.80s...
+2025-07-16 00:57:02,509 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/globe-mill-textiles-strong-absorbent-dishcloths-8-pack-25cm-x-30cm (attempt 2/3)
+2025-07-16 00:57:02,511 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-16 00:57:02,513 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/globe-mill-textiles-strong-absorbent-dishcloths-8-pack-25cm-x-30cm
+2025-07-16 00:57:04,595 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/globe-mill-textiles-strong-absorbent-dishcloths-8-pack-25cm-x-30cm
+2025-07-16 00:57:04,597 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/globe-mill-textiles-strong-absorbent-dishcloths-8-pack-25cm-x-30cm
+2025-07-16 00:57:04,727 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/globe-mill-textiles-strong-absorbent-dishcloths-8-pack-25cm-x-30cm (Size: 673280 bytes)
+2025-07-16 00:57:04,996 - configurable_supplier_scraper - INFO - ✅ Extracted product 1: Globe Mill Textiles Strong Absorbent Dishcloths 8 Pack 25cm X 30cm - £0.77 (EAN: 5053249255743)
+2025-07-16 00:57:04,998 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Processing product 8
+2025-07-16 00:57:05,020 - configurable_supplier_scraper - INFO - Visiting product page 2/6: https://www.poundwholesale.co.uk/globe-mill-textiles-extra-strong-dusters-8-pack-33cm-x-38cm
+2025-07-16 00:57:05,021 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/globe-mill-textiles-extra-strong-dusters-8-pack-33cm-x-38cm (attempt 1/3)
+2025-07-16 00:57:05,022 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-16 00:57:05,023 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/globe-mill-textiles-extra-strong-dusters-8-pack-33cm-x-38cm
+2025-07-16 00:57:08,471 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/globe-mill-textiles-extra-strong-dusters-8-pack-33cm-x-38cm in 2.12s...
+2025-07-16 00:57:10,596 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/globe-mill-textiles-extra-strong-dusters-8-pack-33cm-x-38cm (attempt 2/3)
+2025-07-16 00:57:10,598 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-16 00:57:10,601 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/globe-mill-textiles-extra-strong-dusters-8-pack-33cm-x-38cm
+2025-07-16 00:57:11,918 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/globe-mill-textiles-extra-strong-dusters-8-pack-33cm-x-38cm
+2025-07-16 00:57:11,926 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/globe-mill-textiles-extra-strong-dusters-8-pack-33cm-x-38cm
+2025-07-16 00:57:12,042 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/globe-mill-textiles-extra-strong-dusters-8-pack-33cm-x-38cm (Size: 668578 bytes)
+2025-07-16 00:57:12,446 - configurable_supplier_scraper - INFO - ✅ Extracted product 2: Globe Mill Textiles Extra Strong Dusters 8 Pack 33cm X 38cm - £0.77 (EAN: 5053249255712)
+2025-07-16 00:57:12,448 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Processing product 9
+2025-07-16 00:57:12,467 - configurable_supplier_scraper - INFO - Visiting product page 3/6: https://www.poundwholesale.co.uk/duzzit-planogram-bundle
+2025-07-16 00:57:12,468 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/duzzit-planogram-bundle (attempt 1/3)
+2025-07-16 00:57:12,468 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-16 00:57:12,469 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/duzzit-planogram-bundle
+2025-07-16 00:57:14,077 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/duzzit-planogram-bundle in 2.11s...
+2025-07-16 00:57:16,201 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/duzzit-planogram-bundle (attempt 2/3)
+2025-07-16 00:57:16,203 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-16 00:57:16,204 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/duzzit-planogram-bundle
+2025-07-16 00:57:17,721 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/duzzit-planogram-bundle
+2025-07-16 00:57:17,723 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/duzzit-planogram-bundle
+2025-07-16 00:57:17,861 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/duzzit-planogram-bundle (Size: 820557 bytes)
+2025-07-16 00:57:18,224 - configurable_supplier_scraper - INFO - ✅ Extracted product 3: Duzzit Essentials Bundle (63 Products) - £0.46 (EAN: N/A)
+2025-07-16 00:57:18,225 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Processing product 10
+2025-07-16 00:57:18,247 - configurable_supplier_scraper - INFO - Visiting product page 4/6: https://www.poundwholesale.co.uk/elbow-grease-planogram
+2025-07-16 00:57:18,248 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/elbow-grease-planogram (attempt 1/3)
+2025-07-16 00:57:18,249 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-16 00:57:18,251 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/elbow-grease-planogram
+2025-07-16 00:57:21,458 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/elbow-grease-planogram in 2.04s...
+2025-07-16 00:57:23,504 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/elbow-grease-planogram (attempt 2/3)
+2025-07-16 00:57:23,506 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-16 00:57:23,508 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/elbow-grease-planogram
+2025-07-16 00:57:24,561 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/elbow-grease-planogram
+2025-07-16 00:57:24,563 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/elbow-grease-planogram
+2025-07-16 00:57:24,709 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/elbow-grease-planogram (Size: 857102 bytes)
+2025-07-16 00:57:25,088 - configurable_supplier_scraper - INFO - ✅ Extracted product 4: Elbow Grease Essentials Bundle (78 Products) - £1.38 (EAN: N/A)
+2025-07-16 00:57:25,089 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Processing product 11
+2025-07-16 00:57:25,111 - configurable_supplier_scraper - INFO - Visiting product page 5/6: https://www.poundwholesale.co.uk/elbow-grease-easy-tear-reusable-pink-microfibre-cloths-10-pack
+2025-07-16 00:57:25,113 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/elbow-grease-easy-tear-reusable-pink-microfibre-cloths-10-pack (attempt 1/3)
+2025-07-16 00:57:25,114 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-16 00:57:25,114 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/elbow-grease-easy-tear-reusable-pink-microfibre-cloths-10-pack

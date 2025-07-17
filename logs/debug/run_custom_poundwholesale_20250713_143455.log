@@ -1,0 +1,66 @@
+2025-07-13 14:34:55,326 - utils.logger - INFO - 🔧 Logging initialised – log file: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/logs/debug/run_custom_poundwholesale_20250713_143455.log
+2025-07-13 14:34:55,326 - __main__ - INFO - 📋 Debug log file: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/logs/debug/run_custom_poundwholesale_20250713_143455.log
+2025-07-13 14:34:55,326 - __main__ - DEBUG - Debug logging initialized - full system execution details will be captured
+2025-07-13 14:34:55,328 - utils.browser_manager - INFO - 🔧 BrowserManager singleton initialized
+2025-07-13 14:34:55,512 - utils.browser_manager - INFO - 🔌 Connecting to Chrome on debug port 9222
+2025-07-13 14:34:55,588 - utils.browser_manager - INFO - 📄 Using existing context with 1 pages
+2025-07-13 14:34:55,588 - utils.browser_manager - INFO - ✅ Connected to Chrome successfully
+2025-07-13 14:34:55,588 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-13 14:34:55,589 - __main__ - INFO - 🔐 Initializing authentication service for logout detection...
+2025-07-13 14:34:55,591 - __main__ - INFO - ✅ Using hardcoded credentials for poundwholesale.co.uk
+2025-07-13 14:34:55,592 - __main__ - INFO - 🌐 Connecting to existing Chrome debug port 9222 for authentication...
+2025-07-13 14:34:58,915 - tools.supplier_authentication_service - INFO - ❌ Login form detected - not authenticated
+2025-07-13 14:34:58,915 - tools.supplier_authentication_service - INFO - 🔐 Starting authentication for poundwholesale.co.uk
+2025-07-13 14:34:58,916 - tools.supplier_authentication_service - INFO - 🔧 Using standalone playwright authentication
+2025-07-13 14:34:58,916 - tools.standalone_playwright_login - INFO - 🔗 Connecting to shared Chrome instance...
+2025-07-13 14:34:59,206 - tools.standalone_playwright_login - INFO - ✅ Connected to shared Chrome instance at http://localhost:9222
+2025-07-13 14:34:59,207 - tools.standalone_playwright_login - DEBUG - Using existing browser context
+2025-07-13 14:34:59,207 - tools.standalone_playwright_login - DEBUG - Using existing page
+2025-07-13 14:34:59,207 - tools.standalone_playwright_login - INFO - 🔍 Checking if already logged in...
+2025-07-13 14:35:04,075 - tools.standalone_playwright_login - INFO - ❌ No login indicators found - need to log in
+2025-07-13 14:35:04,076 - tools.standalone_playwright_login - INFO - 🔐 Starting Playwright login...
+2025-07-13 14:35:04,076 - tools.standalone_playwright_login - INFO - 📍 Navigating to login page: https://www.poundwholesale.co.uk/customer/account/login/
+2025-07-13 14:35:08,282 - tools.standalone_playwright_login - INFO - ✅ Filled email using selector: input[name="email"]
+2025-07-13 14:35:08,678 - tools.standalone_playwright_login - INFO - ✅ Filled password using selector: input[type="password"]
+2025-07-13 14:35:09,400 - tools.standalone_playwright_login - INFO - ✅ Clicked submit using selector: button[type="submit"]
+2025-07-13 14:35:09,400 - tools.standalone_playwright_login - INFO - ⏳ Waiting for login to complete...
+2025-07-13 14:35:12,302 - tools.standalone_playwright_login - INFO - ✅ Login success confirmed by indicator: text=Log out
+2025-07-13 14:35:12,303 - tools.standalone_playwright_login - INFO - 💰 Verifying price access...
+2025-07-13 14:35:16,721 - tools.standalone_playwright_login - INFO - ✅ Price access confirmed: £1.02
+2025-07-13 14:35:16,721 - tools.standalone_playwright_login - INFO - 🎉 Playwright login successful! (took 12.6s)
+2025-07-13 14:35:16,730 - tools.standalone_playwright_login - DEBUG - Disconnected from shared Chrome browser
+2025-07-13 14:35:16,735 - tools.standalone_playwright_login - DEBUG - Playwright stopped
+2025-07-13 14:35:16,736 - tools.supplier_authentication_service - INFO - ✅ Standalone authentication successful: playwright_selectors
+2025-07-13 14:35:16,741 - amazon_playwright_extractor - INFO - AI features disabled in amazon_playwright_extractor - using only traditional selectors.
+2025-07-13 14:35:16,744 - amazon_playwright_extractor - INFO - Output directory set to: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/CACHE/amazon_data
+2025-07-13 14:35:16,744 - amazon_playwright_extractor - WARNING - ⚠️ BrowserManager not available, using legacy browser connection
+2025-07-13 14:35:16,746 - configurable_supplier_scraper - INFO - ✅ Loaded system configuration from /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/config/system_config.json
+2025-07-13 14:35:16,746 - configurable_supplier_scraper - INFO - ⚠️ Using legacy browser management (BrowserManager not available or disabled)
+2025-07-13 14:35:16,746 - configurable_supplier_scraper - DEBUG - AI model from config: gpt-4.1-mini-2025-04-14
+2025-07-13 14:35:16,747 - configurable_supplier_scraper - DEBUG - Extraction targets from config: {'product_data': ['price', 'title', 'ean', 'barcode', 'image', 'description', 'out_of_stock'], 'navigation': ['next_page', 'category_links', 'breadcrumbs'], 'pagination': ['next_page', 'previous_page', 'page_numbers'], 'filtering': ['price_filter', 'category_filter', 'search_box', 'products_per_page', 'product limiter'], 'interaction': ['add_to_cart', 'buy_now', 'product_link']}
+2025-07-13 14:35:16,747 - configurable_supplier_scraper - DEBUG - Discovery assistance from config: {'enabled': False, 'prompt_injection': {'login_discovery_hints': '', 'product_navigation_discovery_hints': "OUT OF STOCK products show a red/orange badge or overlay with text like 'Out of Stock', 'Sold Out', or 'Unavailable'"}, '_comment': 'Two API calls are made: 1) login_discovery_hints for login elements, 2) product_navigation_discovery_hints for product/navigation selectors. You can paste full console elements, XPath, or any hints here.'}
+2025-07-13 14:35:16,747 - configurable_supplier_scraper - INFO - [CONFIG] Initialized with AI model: gpt-4.1-mini-2025-04-14
+2025-07-13 14:35:16,747 - configurable_supplier_scraper - INFO - [TARGET] Extraction targets loaded: ['product_data', 'navigation', 'pagination', 'filtering', 'interaction']
+2025-07-13 14:35:16,747 - configurable_supplier_scraper - INFO - [ASSIST] Discovery assistance enabled: False
+2025-07-13 14:35:16,747 - PassiveExtractionWorkflow - INFO - ✅ Output directory set to: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS
+2025-07-13 14:35:16,748 - PassiveExtractionWorkflow - INFO - --- Starting Passive Extraction Workflow for: poundwholesale.co.uk ---
+2025-07-13 14:35:16,748 - PassiveExtractionWorkflow - INFO - Session ID: poundwholesale.co.uk_20250713_143516
+2025-07-13 14:35:16,748 - PassiveExtractionWorkflow - INFO - 📊 CONFIGURATION VALUES:
+2025-07-13 14:35:16,748 - PassiveExtractionWorkflow - INFO -    max_products_to_process: 10
+2025-07-13 14:35:16,748 - PassiveExtractionWorkflow - INFO -    max_products_per_category: 5
+2025-07-13 14:35:16,748 - PassiveExtractionWorkflow - INFO -    max_analyzed_products: 5
+2025-07-13 14:35:16,749 - PassiveExtractionWorkflow - INFO -    max_products_per_cycle: 5
+2025-07-13 14:35:16,749 - PassiveExtractionWorkflow - INFO -    supplier_extraction_batch_size: 3
+2025-07-13 14:35:16,749 - PassiveExtractionWorkflow - INFO -    max_categories_per_request: 3
+2025-07-13 14:35:16,751 - utils.enhanced_state_manager - INFO - No existing state file found for poundwholesale.co.uk, starting fresh
+2025-07-13 14:35:16,751 - PassiveExtractionWorkflow - INFO - 📋 Loaded existing processing state for poundwholesale.co.uk
+2025-07-13 14:35:16,751 - PassiveExtractionWorkflow - INFO - 🔄 Resuming from index 0
+2025-07-13 14:35:16,752 - PassiveExtractionWorkflow - INFO - ✅ No previous progress found, starting fresh.
+2025-07-13 14:35:16,754 - PassiveExtractionWorkflow - INFO - ✅ No existing linking map found at /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/FBA_ANALYSIS/linking_maps/poundwholesale.co.uk/linking_map.json - Creating new map
+2025-07-13 14:35:16,765 - PassiveExtractionWorkflow - INFO - ✅ No existing linking map found at /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/FBA_ANALYSIS/linking_maps/poundwholesale.co.uk/linking_map.json - Creating new map
+2025-07-13 14:35:16,766 - PassiveExtractionWorkflow - INFO - CUSTOM MODE: Using predefined category list.
+2025-07-13 14:35:16,766 - tools.passive_extraction_workflow_latest - INFO - Attempting to load predefined categories for poundwholesale.co.uk
+2025-07-13 14:35:16,769 - tools.passive_extraction_workflow_latest - INFO - ✅ Successfully loaded 276 predefined category URLs from /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/config/poundwholesale_categories.json
+2025-07-13 14:35:16,769 - PassiveExtractionWorkflow - ERROR - Unexpected error occurred during workflow execution: '>' not supported between instances of 'NoneType' and 'int'
+2025-07-13 14:35:16,770 - __main__ - INFO - 🌐 Keeping browser persistent for next run - not closing browser
+2025-07-13 14:35:16,770 - utils.browser_manager - WARNING - Error during global cleanup: no running event loop

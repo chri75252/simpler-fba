@@ -1,0 +1,233 @@
+{
+  "supplier_extraction_progress": {
+    "experiment": "supplier_extraction_progress",
+    "log_file": "logs/debug/rigorous_test_supplier_extraction_progress_20250716_005532.log",
+    "config_changes": {
+      "supplier_extraction_progress.enabled": true,
+      "supplier_extraction_progress.track_subcategory_index": true,
+      "supplier_extraction_progress.track_product_index_within_category": true,
+      "supplier_extraction_progress.recovery_mode": "product_resume",
+      "supplier_extraction_progress.progress_display.show_subcategory_progress": true,
+      "supplier_extraction_progress.progress_display.show_product_progress": true,
+      "supplier_extraction_progress.progress_display.update_frequency_products": 2,
+      "supplier_extraction_progress.state_persistence.save_on_category_completion": true,
+      "supplier_extraction_progress.state_persistence.batch_save_frequency": 2,
+      "system.max_products": 12,
+      "system.max_products_per_category": 6
+    },
+    "file_evidence": {
+      "processing_state": {
+        "exists": true,
+        "size": 1470,
+        "modified": "2025-07-16T00:57:25.272663",
+        "content_analysis": {
+          "products_extracted_total": 11,
+          "current_batch_number": 1,
+          "current_category_index": 2,
+          "extraction_phase": "products",
+          "categories_completed": 0
+        }
+      },
+      "supplier_cache": {
+        "exists": false
+      },
+      "linking_map": {
+        "exists": false
+      }
+    },
+    "log_evidence": {
+      "\ud83d\udcca CONFIGURATION VALUES:": [
+        "\ud83d\udcca CONFIGURATION VALUES:"
+      ],
+      "max_products_to_process: (\\d+)": [
+        "12"
+      ],
+      "max_products_per_category: (\\d+)": [
+        "6"
+      ],
+      "supplier_extraction_batch_size: (\\d+)": [
+        "2"
+      ]
+    },
+    "toggle_verification": {},
+    "timestamp": "2025-07-16T00:57:26.453536"
+  },
+  "supplier_cache_control": {
+    "experiment": "supplier_cache_control",
+    "log_file": "logs/debug/rigorous_test_supplier_cache_control_20250716_005731.log",
+    "config_changes": {
+      "supplier_cache_control.enabled": true,
+      "supplier_cache_control.update_frequency_products": 3,
+      "supplier_cache_control.force_update_on_interruption": true,
+      "supplier_cache_control.cache_modes.conservative.update_frequency_products": 2,
+      "supplier_cache_control.cache_modes.conservative.force_validation": true,
+      "system.max_products": 10,
+      "system.max_products_per_category": 5
+    },
+    "file_evidence": {
+      "processing_state": {
+        "exists": true,
+        "size": 1846,
+        "modified": "2025-07-16T00:59:23.055798",
+        "content_analysis": {
+          "products_extracted_total": 10,
+          "current_batch_number": 1,
+          "current_category_index": 2,
+          "extraction_phase": "products",
+          "categories_completed": 0
+        }
+      },
+      "supplier_cache": {
+        "exists": true,
+        "size": 6100,
+        "modified": "2025-07-16T00:58:53.010648",
+        "content_analysis": {
+          "total_products": 10,
+          "products_per_category": {
+            "multi-purpose-cleaners": 5,
+            "sponges-scourers-cloths": 5
+          },
+          "price_range": {
+            "min": 0.46,
+            "max": 1.38
+          }
+        }
+      },
+      "linking_map": {
+        "exists": false
+      }
+    },
+    "log_evidence": {
+      "\ud83d\udcca CONFIGURATION VALUES:": [
+        "\ud83d\udcca CONFIGURATION VALUES:"
+      ],
+      "max_products_to_process: (\\d+)": [
+        "10"
+      ],
+      "max_products_per_category: (\\d+)": [
+        "5"
+      ],
+      "supplier_extraction_batch_size: (\\d+)": [
+        "2"
+      ]
+    },
+    "toggle_verification": {},
+    "timestamp": "2025-07-16T00:59:25.610865"
+  },
+  "hybrid_processing": {
+    "experiment": "hybrid_processing",
+    "log_file": "logs/debug/rigorous_test_hybrid_processing_20250716_005930.log",
+    "config_changes": {
+      "hybrid_processing.enabled": true,
+      "hybrid_processing.switch_to_amazon_after_categories": 2,
+      "hybrid_processing.processing_modes.sequential.enabled": false,
+      "hybrid_processing.processing_modes.chunked.enabled": true,
+      "hybrid_processing.processing_modes.chunked.chunk_size_categories": 3,
+      "hybrid_processing.processing_modes.balanced.enabled": false,
+      "hybrid_processing.chunked.enabled": true,
+      "hybrid_processing.chunked.chunk_size_categories": 3,
+      "system.max_products": 15,
+      "system.max_products_per_category": 5
+    },
+    "file_evidence": {
+      "processing_state": {
+        "exists": true,
+        "size": 1442,
+        "modified": "2025-07-16T01:01:19.938859",
+        "content_analysis": {
+          "products_extracted_total": 14,
+          "current_batch_number": 1,
+          "current_category_index": 3,
+          "extraction_phase": "products",
+          "categories_completed": 0
+        }
+      },
+      "supplier_cache": {
+        "exists": true,
+        "size": 6100,
+        "modified": "2025-07-16T01:00:53.293401",
+        "content_analysis": {
+          "total_products": 10,
+          "products_per_category": {
+            "multi-purpose-cleaners": 5,
+            "sponges-scourers-cloths": 5
+          },
+          "price_range": {
+            "min": 0.46,
+            "max": 1.38
+          }
+        }
+      },
+      "linking_map": {
+        "exists": false
+      }
+    },
+    "log_evidence": {
+      "\ud83d\udcca CONFIGURATION VALUES:": [
+        "\ud83d\udcca CONFIGURATION VALUES:"
+      ],
+      "max_products_to_process: (\\d+)": [
+        "15"
+      ],
+      "max_products_per_category: (\\d+)": [
+        "5"
+      ],
+      "supplier_extraction_batch_size: (\\d+)": [
+        "2"
+      ]
+    },
+    "toggle_verification": {},
+    "timestamp": "2025-07-16T01:01:24.797802"
+  },
+  "batch_synchronization": {
+    "experiment": "batch_synchronization",
+    "log_file": "logs/debug/rigorous_test_batch_synchronization_20250716_010129.log",
+    "config_changes": {
+      "batch_synchronization.enabled": true,
+      "batch_synchronization.synchronize_all_batch_sizes": true,
+      "batch_synchronization.target_batch_size": 4,
+      "system.supplier_extraction_batch_size": 4,
+      "system.linking_map_batch_size": 4,
+      "system.financial_report_batch_size": 4,
+      "system.max_products_per_cycle": 4,
+      "system.max_products": 16,
+      "system.max_products_per_category": 4
+    },
+    "file_evidence": {
+      "processing_state": {
+        "exists": true,
+        "size": 1446,
+        "modified": "2025-07-16T01:03:19.108921",
+        "content_analysis": {
+          "products_extracted_total": 14,
+          "current_batch_number": 2,
+          "current_category_index": 4,
+          "extraction_phase": "products",
+          "categories_completed": 0
+        }
+      },
+      "supplier_cache": {
+        "exists": false
+      },
+      "linking_map": {
+        "exists": false
+      }
+    },
+    "log_evidence": {
+      "\ud83d\udcca CONFIGURATION VALUES:": [
+        "\ud83d\udcca CONFIGURATION VALUES:"
+      ],
+      "max_products_to_process: (\\d+)": [
+        "16"
+      ],
+      "max_products_per_category: (\\d+)": [
+        "4"
+      ],
+      "supplier_extraction_batch_size: (\\d+)": [
+        "4"
+      ]
+    },
+    "toggle_verification": {},
+    "timestamp": "2025-07-16T01:03:24.093045"
+  }
+}

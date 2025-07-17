@@ -1,0 +1,88 @@
+2025-07-15 08:22:40,871 - utils.logger - INFO - 🔧 Logging initialised – log file: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/logs/debug/run_custom_poundwholesale_20250715_082240.log
+2025-07-15 08:22:40,872 - __main__ - INFO - 📋 Debug log file: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/logs/debug/run_custom_poundwholesale_20250715_082240.log
+2025-07-15 08:22:40,872 - __main__ - DEBUG - Debug logging initialized - full system execution details will be captured
+2025-07-15 08:22:40,874 - utils.browser_manager - INFO - 🔧 BrowserManager singleton initialized
+2025-07-15 08:22:41,059 - utils.browser_manager - INFO - 🔌 Connecting to Chrome on debug port 9222
+2025-07-15 08:22:41,220 - utils.browser_manager - INFO - 📄 Using existing context with 2 pages
+2025-07-15 08:22:41,220 - utils.browser_manager - INFO - ✅ Connected to Chrome successfully
+2025-07-15 08:22:41,220 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-15 08:22:41,221 - __main__ - INFO - 🔐 Initializing authentication service for logout detection...
+2025-07-15 08:22:41,225 - __main__ - INFO - ✅ Using hardcoded credentials for poundwholesale.co.uk
+2025-07-15 08:22:41,225 - __main__ - INFO - 🌐 Connecting to existing Chrome debug port 9222 for authentication...
+2025-07-15 08:22:45,732 - tools.supplier_authentication_service - INFO - ✅ Authentication indicator found: 'logout'
+2025-07-15 08:22:45,763 - tools.supplier_authentication_service - INFO - ✅ Logout link found - user is authenticated
+2025-07-15 08:22:45,763 - tools.supplier_authentication_service - INFO - ✅ Session already authenticated - skipping login
+2025-07-15 08:22:45,773 - amazon_playwright_extractor - INFO - AI features disabled in amazon_playwright_extractor - using only traditional selectors.
+2025-07-15 08:22:45,776 - amazon_playwright_extractor - INFO - Output directory set to: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/CACHE/amazon_data
+2025-07-15 08:22:45,777 - amazon_playwright_extractor - WARNING - ⚠️ BrowserManager not available, using legacy browser connection
+2025-07-15 08:22:45,779 - configurable_supplier_scraper - INFO - ✅ Loaded system configuration from /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/config/system_config.json
+2025-07-15 08:22:45,779 - configurable_supplier_scraper - INFO - 🔧 ConfigurableSupplierScraper will use centralized BrowserManager
+2025-07-15 08:22:45,780 - configurable_supplier_scraper - DEBUG - AI model from config: gpt-4.1-mini-2025-04-14
+2025-07-15 08:22:45,780 - configurable_supplier_scraper - DEBUG - Extraction targets from config: {'product_data': ['price', 'title', 'ean', 'barcode', 'image', 'description', 'out_of_stock'], 'navigation': ['next_page', 'category_links', 'breadcrumbs'], 'pagination': ['next_page', 'previous_page', 'page_numbers'], 'filtering': ['price_filter', 'category_filter', 'search_box', 'products_per_page', 'product limiter'], 'interaction': ['add_to_cart', 'buy_now', 'product_link']}
+2025-07-15 08:22:45,780 - configurable_supplier_scraper - DEBUG - Discovery assistance from config: {'enabled': False, 'prompt_injection': {'login_discovery_hints': '', 'product_navigation_discovery_hints': "OUT OF STOCK products show a red/orange badge or overlay with text like 'Out of Stock', 'Sold Out', or 'Unavailable'"}, '_comment': 'Two API calls are made: 1) login_discovery_hints for login elements, 2) product_navigation_discovery_hints for product/navigation selectors. You can paste full console elements, XPath, or any hints here.'}
+2025-07-15 08:22:45,780 - configurable_supplier_scraper - INFO - [CONFIG] Initialized with AI model: gpt-4.1-mini-2025-04-14
+2025-07-15 08:22:45,780 - configurable_supplier_scraper - INFO - [TARGET] Extraction targets loaded: ['product_data', 'navigation', 'pagination', 'filtering', 'interaction']
+2025-07-15 08:22:45,781 - configurable_supplier_scraper - INFO - [ASSIST] Discovery assistance enabled: False
+2025-07-15 08:22:45,781 - PassiveExtractionWorkflow - INFO - ✅ Output directory set to: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS
+2025-07-15 08:22:45,781 - PassiveExtractionWorkflow - INFO - ✅ Initialization validation passed - all critical attributes verified
+2025-07-15 08:22:45,781 - PassiveExtractionWorkflow - INFO - --- Starting Passive Extraction Workflow for: poundwholesale.co.uk ---
+2025-07-15 08:22:45,782 - PassiveExtractionWorkflow - INFO - Session ID: poundwholesale.co.uk_20250715_082245
+2025-07-15 08:22:45,782 - PassiveExtractionWorkflow - INFO - 📊 CONFIGURATION VALUES:
+2025-07-15 08:22:45,782 - PassiveExtractionWorkflow - INFO -    max_products_to_process: 10
+2025-07-15 08:22:45,782 - PassiveExtractionWorkflow - INFO -    max_products_per_category: 5
+2025-07-15 08:22:45,783 - PassiveExtractionWorkflow - INFO -    max_analyzed_products: 5
+2025-07-15 08:22:45,783 - PassiveExtractionWorkflow - INFO -    max_products_per_cycle: 5
+2025-07-15 08:22:45,783 - PassiveExtractionWorkflow - INFO -    supplier_extraction_batch_size: 3
+2025-07-15 08:22:45,783 - PassiveExtractionWorkflow - INFO -    max_categories_per_request: 3
+2025-07-15 08:22:45,788 - utils.enhanced_state_manager - INFO - Loaded state for poundwholesale.co.uk - resuming from index 7
+2025-07-15 08:22:45,788 - PassiveExtractionWorkflow - INFO - 📋 Loaded existing processing state for poundwholesale.co.uk
+2025-07-15 08:22:45,788 - PassiveExtractionWorkflow - INFO - 🔄 Resuming from index 7
+2025-07-15 08:22:45,795 - PassiveExtractionWorkflow - INFO - ✅ Loaded linking map from /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/FBA_ANALYSIS/linking_maps/poundwholesale.co.uk/linking_map.json with 11 entries
+2025-07-15 08:22:45,800 - PassiveExtractionWorkflow - INFO - ✅ Loaded linking map from /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/FBA_ANALYSIS/linking_maps/poundwholesale.co.uk/linking_map.json with 11 entries
+2025-07-15 08:22:45,800 - PassiveExtractionWorkflow - INFO - CUSTOM MODE: Using predefined category list.
+2025-07-15 08:22:45,800 - tools.passive_extraction_workflow_latest - INFO - Attempting to load predefined categories for poundwholesale.co.uk
+2025-07-15 08:22:45,802 - tools.passive_extraction_workflow_latest - INFO - ✅ Successfully loaded 276 predefined category URLs from /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/config/poundwholesale_categories.json
+2025-07-15 08:22:45,804 - PassiveExtractionWorkflow - INFO - 🔄 SKIPPING SUPPLIER SCRAPING: Found fresh cached products (age: 0.1h) with processing progress (index: 7)
+2025-07-15 08:22:45,804 - PassiveExtractionWorkflow - INFO - 📋 Loading products from cache: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products/poundwholesale-co-uk_products_cache.json
+2025-07-15 08:22:45,806 - PassiveExtractionWorkflow - INFO - ✅ Loaded 13 cached products from /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products/poundwholesale-co-uk_products_cache.json
+2025-07-15 08:22:45,806 - PassiveExtractionWorkflow - INFO - Successfully got 13 products from poundwholesale.co.uk
+2025-07-15 08:22:45,807 - PassiveExtractionWorkflow - INFO - 💾 CACHE SAVE: Starting save of 13 products to cache...
+2025-07-15 08:22:45,813 - PassiveExtractionWorkflow - INFO - ✅ CACHE SAVE: Successfully saved 13 products (0 new) to poundwholesale-co-uk_products_cache.json
+2025-07-15 08:22:45,813 - PassiveExtractionWorkflow - INFO - Found 13 valid supplier products, 13 within price range [£0.1-£20.0]
+2025-07-15 08:22:45,813 - PassiveExtractionWorkflow - INFO - 🔄 LIMITED MODE: Processing 6 products (from index 7 to 12)
+2025-07-15 08:22:45,818 - PassiveExtractionWorkflow - INFO - 🚀 BATCH PROCESSING: 6 products in 2 batches of 5
+2025-07-15 08:22:45,819 - PassiveExtractionWorkflow - INFO - 🔄 Processing batch 1/2 (5 products)
+2025-07-15 08:22:45,819 - PassiveExtractionWorkflow - INFO - --- Processing supplier product 8/13: 'Duzzit Essentials Bundle (63 Products)' ---
+2025-07-15 08:22:45,819 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Updating processing index to 8/13
+2025-07-15 08:22:45,824 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: State after update - last_processed_index: 8/13
+2025-07-15 08:22:45,824 - PassiveExtractionWorkflow - INFO - Product already processed: https://www.poundwholesale.co.uk/duzzit-planogram-bundle. Skipping.
+2025-07-15 08:22:45,824 - PassiveExtractionWorkflow - INFO - --- Processing supplier product 9/13: 'Globe Mill Textiles Strong Absorbent Dishcloths 8 Pack 25cm X 30cm' ---
+2025-07-15 08:22:45,825 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Updating processing index to 9/13
+2025-07-15 08:22:45,831 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: State after update - last_processed_index: 9/13
+2025-07-15 08:22:45,831 - PassiveExtractionWorkflow - INFO - Product already processed: https://www.poundwholesale.co.uk/globe-mill-textiles-strong-absorbent-dishcloths-8-pack-25cm-x-30cm. Skipping.
+2025-07-15 08:22:45,831 - PassiveExtractionWorkflow - INFO - --- Processing supplier product 10/13: 'TidyZ Extra Large All Purpose Cloths 20 Pack' ---
+2025-07-15 08:22:45,832 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Updating processing index to 10/13
+2025-07-15 08:22:45,837 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: State after update - last_processed_index: 10/13
+2025-07-15 08:22:45,837 - PassiveExtractionWorkflow - INFO - Product already processed: https://www.poundwholesale.co.uk/tidyz-extra-large-all-purpose-cloths-20-pack. Skipping.
+2025-07-15 08:22:45,837 - PassiveExtractionWorkflow - INFO - --- Processing supplier product 11/13: 'Home & Garden Stove Polish Fireplace Restorer 200ml' ---
+2025-07-15 08:22:45,837 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Updating processing index to 11/13
+2025-07-15 08:22:45,843 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: State after update - last_processed_index: 11/13
+2025-07-15 08:22:45,844 - PassiveExtractionWorkflow - INFO - Product already processed: https://www.poundwholesale.co.uk/home-garden-stove-polish-fireplace-restorer-200ml. Skipping.
+2025-07-15 08:22:45,844 - PassiveExtractionWorkflow - INFO - --- Processing supplier product 12/13: 'Rapide Sticker Gum & Goo Remover Spray 250ml' ---
+2025-07-15 08:22:45,844 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Updating processing index to 12/13
+2025-07-15 08:22:45,852 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: State after update - last_processed_index: 12/13
+2025-07-15 08:22:45,853 - PassiveExtractionWorkflow - INFO - Product already processed: https://www.poundwholesale.co.uk/rapide-sticker-gum-goo-remover-spray-250ml. Skipping.
+2025-07-15 08:22:45,853 - PassiveExtractionWorkflow - INFO - 🔄 Processing batch 2/2 (1 products)
+2025-07-15 08:22:45,853 - PassiveExtractionWorkflow - INFO - --- Processing supplier product 13/13: 'Globe Mill Textiles Extra Strong Dusters 8 Pack 33cm X 38cm' ---
+2025-07-15 08:22:45,853 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Updating processing index to 13/13
+2025-07-15 08:22:45,860 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: State after update - last_processed_index: 13/13
+2025-07-15 08:22:45,860 - PassiveExtractionWorkflow - INFO - Product already processed: https://www.poundwholesale.co.uk/globe-mill-textiles-extra-strong-dusters-8-pack-33cm-x-38cm. Skipping.
+2025-07-15 08:22:45,867 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: _save_linking_map called with 11 entries for supplier poundwholesale.co.uk
+2025-07-15 08:22:45,877 - PassiveExtractionWorkflow - INFO - ✅ Successfully saved linking map with 11 entries to /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/FBA_ANALYSIS/linking_maps/poundwholesale.co.uk/linking_map.json
+2025-07-15 08:22:45,877 - PassiveExtractionWorkflow - ERROR - Unexpected error occurred during workflow execution: PassiveExtractionWorkflow._save_final_report() takes 2 positional arguments but 3 were given
+Traceback (most recent call last):
+  File "/mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/tools/passive_extraction_workflow_latest.py", line 1276, in run
+    self._save_final_report(profitable_results, self.supplier_name)
+TypeError: PassiveExtractionWorkflow._save_final_report() takes 2 positional arguments but 3 were given
+2025-07-15 08:22:45,886 - __main__ - INFO - 🌐 Keeping browser persistent for next run - not closing browser
+2025-07-15 08:22:45,887 - utils.browser_manager - WARNING - Error during global cleanup: no running event loop

@@ -40,7 +40,7 @@ if not os.getenv("OPENAI_API_KEY"):
 from tools.supplier_guard import check_supplier_ready, archive_supplier_on_force_regenerate, create_supplier_ready_file
 from tools.passive_extraction_workflow_latest import PassiveExtractionWorkflow
 from tools.output_verification_node import verify_supplier_outputs, NeedsInterventionError
-from utils.browser_manager import cleanup_global_browser
+from utils.browser_manager import global_cleanup
 from utils.path_manager import get_run_output_dir, path_manager
 import shutil
 
@@ -408,7 +408,7 @@ class CompleteFBASystem:
                 logger.info(f"✅ Existing supplier package found for {supplier_name}. Bypassing script generation.")
             
             # Initialize centralized browser session and perform dynamic supplier authentication
-            from utils.browser_manager import get_page_for_url, cleanup_global_browser
+            from utils.browser_manager import get_page_for_url, global_cleanup
             import importlib.util
             
             authenticated_page = None
@@ -451,14 +451,14 @@ class CompleteFBASystem:
                                 logger.error(f"❌ Login script {supplier_script_path} missing 'perform_login' function or class")
                                 results["status"] = "authentication_failed"
                                 results["errors"].append("Invalid supplier login script - missing perform_login function or class")
-                                await cleanup_global_browser()
+                                await global_cleanup()
                                 return results
                         
                         if not login_successful:
                             logger.error("❌ Dynamic supplier authentication failed. Aborting workflow.")
                             results["status"] = "authentication_failed"
                             results["errors"].append("Dynamic supplier authentication failed")
-                            await cleanup_global_browser()
+                            await global_cleanup()
                             return results
                         
                         logger.info("✅ Dynamic supplier authentication successful. Proceeding with authenticated workflow.")
@@ -472,14 +472,14 @@ class CompleteFBASystem:
                         logger.error(f"❌ Failed to load supplier login script: {supplier_script_path}")
                         results["status"] = "authentication_failed" 
                         results["errors"].append("Failed to load supplier login script")
-                        await cleanup_global_browser()
+                        await global_cleanup()
                         return results
                 else:
                     logger.error(f"❌ Supplier login script not found: {supplier_script_path}")
                     logger.info("💡 Run supplier script generator to create login scripts")
                     results["status"] = "authentication_failed"
                     results["errors"].append(f"Supplier login script not found: {supplier_script_path}")
-                    await cleanup_global_browser()
+                    await global_cleanup()
                     return results
                 
             except Exception as e:
@@ -487,7 +487,7 @@ class CompleteFBASystem:
                 results["status"] = "browser_setup_failed"
                 results["errors"].append(f"Dynamic authentication error: {e}")
                 if authenticated_page:
-                    await cleanup_global_browser()
+                    await global_cleanup()
                 return results
             
             # Configure and run extraction workflow
@@ -595,7 +595,7 @@ class CompleteFBASystem:
             
             # Cleanup browser resources
             try:
-                await cleanup_global_browser()
+                await global_cleanup()
                 logger.info("🧹 Browser cleanup completed")
             except Exception as e:
                 logger.warning(f"Browser cleanup warning: {e}")

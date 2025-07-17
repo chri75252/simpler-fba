@@ -1,0 +1,43 @@
+VERIFY-AGENT VALIDATION REPORT
+==================================================
+Timestamp: 20250715_082321
+Project Root: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32
+
+VALIDATION SUMMARY:
+------------------------------
+Missing Outputs: 1
+Stale Outputs: 0
+
+MISSING OUTPUTS:
+  - financial_reports (pattern: OUTPUTS/FBA_ANALYSIS/financial_reports/*.csv)
+
+FILE DIFFERENCES vs .bak1:
+------------------------------
+poundwholesale-co-uk_products_cache.json: IDENTICAL
+poundwholesale_co_uk_processing_state.json: CHANGED (23 diff lines, +433 bytes)
+linking_map.json: CHANGED (13 diff lines, +565 bytes)
+
+VERIFY-AGENT LOG:
+------------------------------
+[2025-07-15 08:23:18] [INFO] 🚀 VERIFY-AGENT: Starting full verification workflow
+[2025-07-15 08:23:18] [INFO] 🔍 VERIFY-AGENT: Validating mandatory outputs
+[2025-07-15 08:23:18] [INFO] ✅ Fresh: OUTPUTS/cached_products/poundwholesale-co-uk_products_cache.json (modified: 2025-07-15 08:22:45.811123)
+[2025-07-15 08:23:18] [INFO] ✅ Fresh: OUTPUTS/CACHE/processing_states/poundwholesale_co_uk_processing_state.json (modified: 2025-07-15 08:22:45.858023)
+[2025-07-15 08:23:18] [INFO] ✅ Fresh: OUTPUTS/FBA_ANALYSIS/linking_maps/poundwholesale.co.uk/linking_map.json (modified: 2025-07-15 08:22:45.858023)
+[2025-07-15 08:23:20] [INFO] ✅ amazon_cache: 2 new files since baseline
+[2025-07-15 08:23:20] [INFO]    📄 amazon_B0C377FDT9_5053249260471.json
+[2025-07-15 08:23:20] [INFO]    📄 amazon_B0C3788XSK_5053249260457.json
+[2025-07-15 08:23:20] [ERROR] ❌ No files found for financial_reports: OUTPUTS/FBA_ANALYSIS/financial_reports/*.csv
+[2025-07-15 08:23:20] [ERROR] ❌ VALIDATION FAILED: 1 missing outputs
+[2025-07-15 08:23:20] [INFO] 📄 Latest execution log: run_custom_poundwholesale_20250715_082239.log
+[2025-07-15 08:23:20] [INFO] 📊 Execution log analysis: 4 errors, 1 critical
+[2025-07-15 08:23:20] [ERROR] ❌ Errors or critical issues found in execution log
+[2025-07-15 08:23:20] [ERROR]    🚨 2025-07-15 08:22:45,781 - PassiveExtractionWorkflow - INFO - ✅ Initialization validation passed - all critical attributes verified
+[2025-07-15 08:23:20] [ERROR]    🚨 2025-07-15 08:22:45,877 - PassiveExtractionWorkflow - ERROR - Unexpected error occurred during workflow execution: PassiveExtractionWorkflow._save_final_report() takes 2 positional arguments but 3 were given
+[2025-07-15 08:23:20] [ERROR]    🚨 TypeError: PassiveExtractionWorkflow._save_final_report() takes 2 positional arguments but 3 were given
+[2025-07-15 08:23:20] [INFO] 🔍 Analyzing file differences vs .bak1 versions
+[2025-07-15 08:23:21] [INFO] 🔹 poundwholesale-co-uk_products_cache.json: IDENTICAL to .bak1
+[2025-07-15 08:23:21] [INFO] 🔸 poundwholesale_co_uk_processing_state.json: 23 differences, size +433 bytes
+[2025-07-15 08:23:21] [INFO]    📄 Detailed diff saved: poundwholesale_co_uk_processing_state.json.changes.txt
+[2025-07-15 08:23:21] [INFO] 🔸 linking_map.json: 13 differences, size +565 bytes
+[2025-07-15 08:23:21] [INFO]    📄 Detailed diff saved: linking_map.json.changes.txt

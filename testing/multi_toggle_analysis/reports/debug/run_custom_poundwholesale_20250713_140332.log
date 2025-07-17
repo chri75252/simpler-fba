@@ -1,0 +1,32 @@
+2025-07-13 14:03:32,174 - utils.logger - INFO - 🔧 Logging initialised – log file: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/logs/debug/run_custom_poundwholesale_20250713_140332.log
+2025-07-13 14:03:32,175 - __main__ - INFO - 📋 Debug log file: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/logs/debug/run_custom_poundwholesale_20250713_140332.log
+2025-07-13 14:03:32,175 - __main__ - DEBUG - Debug logging initialized - full system execution details will be captured
+2025-07-13 14:03:32,177 - utils.browser_manager - INFO - 🔧 BrowserManager singleton initialized
+2025-07-13 14:03:32,423 - utils.browser_manager - INFO - 🔌 Connecting to Chrome on debug port 9222
+2025-07-13 14:03:32,488 - utils.browser_manager - INFO - 📄 Using existing context with 1 pages
+2025-07-13 14:03:32,488 - utils.browser_manager - INFO - ✅ Connected to Chrome successfully
+2025-07-13 14:03:32,488 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-13 14:03:32,489 - __main__ - INFO - 🔐 Initializing authentication service for logout detection...
+2025-07-13 14:03:32,550 - tools.archive.vision_login_handler - DEBUG - Vision login debug logging initialized - writing to /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/logs/debug/vision_login_20250713.log
+2025-07-13 14:03:32,550 - __main__ - INFO - ✅ Using hardcoded credentials for poundwholesale.co.uk
+2025-07-13 14:03:32,551 - __main__ - INFO - 🌐 Connecting to existing Chrome debug port 9222 for authentication...
+2025-07-13 14:03:38,297 - tools.supplier_authentication_service - INFO - ✅ Authentication indicator found: 'logout'
+2025-07-13 14:03:38,344 - tools.supplier_authentication_service - INFO - ✅ Logout link found - user is authenticated
+2025-07-13 14:03:38,344 - tools.supplier_authentication_service - INFO - ✅ Session already authenticated - skipping login
+2025-07-13 14:03:38,348 - __main__ - CRITICAL - 💥 A critical error occurred in the main workflow: AmazonExtractor.__init__() got an unexpected keyword argument 'config'
+Traceback (most recent call last):
+  File "/mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/run_custom_poundwholesale.py", line 62, in main
+    workflow = PassiveExtractionWorkflow(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/tools/passive_extraction_workflow_latest.py", line 897, in __init__
+    self.amazon_extractor = self._initialize_amazon_extractor()
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/tools/passive_extraction_workflow_latest.py", line 919, in _initialize_amazon_extractor
+    return AmazonExtractor(
+           ^^^^^^^^^^^^^^^^
+TypeError: AmazonExtractor.__init__() got an unexpected keyword argument 'config'
+2025-07-13 14:03:38,359 - utils.browser_manager - INFO - 🧹 Starting browser cleanup...
+2025-07-13 14:03:38,377 - utils.browser_manager - INFO - 🗑️ Closed pages, but leaving context open.
+2025-07-13 14:03:38,385 - utils.browser_manager - INFO - 🎭 Stopped Playwright instance.
+2025-07-13 14:03:38,386 - utils.browser_manager - INFO - ✅ Browser cleanup completed
+2025-07-13 14:03:38,387 - utils.browser_manager - WARNING - Error during global cleanup: no running event loop

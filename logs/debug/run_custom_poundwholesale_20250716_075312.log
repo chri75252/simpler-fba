@@ -1,0 +1,630 @@
+2025-07-16 07:53:12,807 - utils.logger - INFO - 🔧 Logging initialised – log file: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/logs/debug/run_custom_poundwholesale_20250716_075312.log
+2025-07-16 07:53:12,807 - __main__ - INFO - 📋 Debug log file: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/logs/debug/run_custom_poundwholesale_20250716_075312.log
+2025-07-16 07:53:12,808 - __main__ - DEBUG - Debug logging initialized - full system execution details will be captured
+2025-07-16 07:53:12,811 - utils.browser_manager - INFO - 🔧 BrowserManager singleton initialized
+2025-07-16 07:53:13,376 - utils.browser_manager - INFO - 🔌 Connecting to Chrome on debug port 9222
+2025-07-16 07:53:13,518 - utils.browser_manager - INFO - 📄 Using existing context with 1 pages
+2025-07-16 07:53:13,519 - utils.browser_manager - INFO - ✅ Connected to Chrome successfully
+2025-07-16 07:53:13,519 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-16 07:53:13,520 - __main__ - INFO - 🔐 Initializing authentication service for logout detection...
+2025-07-16 07:53:13,524 - __main__ - INFO - ✅ Using hardcoded credentials for poundwholesale.co.uk
+2025-07-16 07:53:13,524 - __main__ - INFO - 🌐 Connecting to existing Chrome debug port 9222 for authentication...
+2025-07-16 07:53:19,180 - tools.supplier_authentication_service - INFO - ✅ Authentication indicator found: 'logout'
+2025-07-16 07:53:19,257 - tools.supplier_authentication_service - INFO - ✅ Logout link found - user is authenticated
+2025-07-16 07:53:19,257 - tools.supplier_authentication_service - INFO - ✅ Session already authenticated - skipping login
+2025-07-16 07:53:19,264 - amazon_playwright_extractor - INFO - AI features disabled in amazon_playwright_extractor - using only traditional selectors.
+2025-07-16 07:53:19,265 - amazon_playwright_extractor - INFO - Output directory set to: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/CACHE/amazon_data
+2025-07-16 07:53:19,266 - amazon_playwright_extractor - WARNING - ⚠️ BrowserManager not available, using legacy browser connection
+2025-07-16 07:53:19,269 - configurable_supplier_scraper - INFO - ✅ Loaded system configuration from /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/config/system_config.json
+2025-07-16 07:53:19,269 - configurable_supplier_scraper - INFO - 🔧 ConfigurableSupplierScraper will use centralized BrowserManager
+2025-07-16 07:53:19,270 - configurable_supplier_scraper - DEBUG - AI model from config: gpt-4.1-mini-2025-04-14
+2025-07-16 07:53:19,270 - configurable_supplier_scraper - DEBUG - Extraction targets from config: {}
+2025-07-16 07:53:19,270 - configurable_supplier_scraper - DEBUG - Discovery assistance from config: {}
+2025-07-16 07:53:19,271 - configurable_supplier_scraper - INFO - [CONFIG] Initialized with AI model: gpt-4.1-mini-2025-04-14
+2025-07-16 07:53:19,271 - configurable_supplier_scraper - INFO - [TARGET] Extraction targets loaded: []
+2025-07-16 07:53:19,271 - configurable_supplier_scraper - INFO - [ASSIST] Discovery assistance enabled: False
+2025-07-16 07:53:19,272 - PassiveExtractionWorkflow - INFO - ✅ Output directory set to: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS
+2025-07-16 07:53:19,272 - PassiveExtractionWorkflow - INFO - ✅ Initialization validation passed - all critical attributes verified
+2025-07-16 07:53:19,273 - PassiveExtractionWorkflow - INFO - --- Starting Passive Extraction Workflow for: poundwholesale.co.uk ---
+2025-07-16 07:53:19,273 - PassiveExtractionWorkflow - INFO - Session ID: poundwholesale.co.uk_20250716_075319
+2025-07-16 07:53:19,273 - PassiveExtractionWorkflow - INFO - 📊 CONFIGURATION VALUES:
+2025-07-16 07:53:19,274 - PassiveExtractionWorkflow - INFO -    max_products_to_process: 13
+2025-07-16 07:53:19,274 - PassiveExtractionWorkflow - INFO -    max_products_per_category: 5
+2025-07-16 07:53:19,275 - PassiveExtractionWorkflow - INFO -    max_analyzed_products: 6
+2025-07-16 07:53:19,275 - PassiveExtractionWorkflow - INFO -    max_products_per_cycle: 100
+2025-07-16 07:53:19,276 - PassiveExtractionWorkflow - INFO -    supplier_extraction_batch_size: 4
+2025-07-16 07:53:19,276 - PassiveExtractionWorkflow - INFO -    max_categories_per_request: 5
+2025-07-16 07:53:19,277 - utils.enhanced_state_manager - INFO - No existing state file found for poundwholesale.co.uk, starting fresh
+2025-07-16 07:53:19,277 - PassiveExtractionWorkflow - INFO - 📋 Loaded existing processing state for poundwholesale.co.uk
+2025-07-16 07:53:19,278 - PassiveExtractionWorkflow - INFO - 🔄 Resuming from index 0
+2025-07-16 07:53:19,278 - PassiveExtractionWorkflow - INFO - ✅ No previous progress found, starting fresh.
+2025-07-16 07:53:19,284 - PassiveExtractionWorkflow - INFO - ✅ Loaded linking map from /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/FBA_ANALYSIS/linking_maps/poundwholesale.co.uk/linking_map.json with 17 entries
+2025-07-16 07:53:19,292 - PassiveExtractionWorkflow - INFO - ✅ Loaded linking map from /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/FBA_ANALYSIS/linking_maps/poundwholesale.co.uk/linking_map.json with 17 entries
+2025-07-16 07:53:19,293 - PassiveExtractionWorkflow - INFO - CUSTOM MODE: Using predefined category list.
+2025-07-16 07:53:19,293 - tools.passive_extraction_workflow_latest - INFO - Attempting to load predefined categories for poundwholesale.co.uk
+2025-07-16 07:53:19,297 - tools.passive_extraction_workflow_latest - INFO - ✅ Successfully loaded 276 predefined category URLs from /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/config/poundwholesale_categories.json
+2025-07-16 07:53:19,298 - PassiveExtractionWorkflow - INFO - 🕷️ PERFORMING SUPPLIER SCRAPING from 276 categories
+2025-07-16 07:53:19,299 - PassiveExtractionWorkflow - INFO - 📦 Using supplier extraction batch size: 4
+2025-07-16 07:53:19,299 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS TRACKING: Extracting from 276 categories in 69 batches
+2025-07-16 07:53:19,300 - PassiveExtractionWorkflow - INFO - 📦 Processing category batch 1/69 (4 categories)
+2025-07-16 07:53:19,309 - PassiveExtractionWorkflow - INFO - 🔄 EXTRACTION PROGRESS: Processing subcategory 1/4 in batch 1 (Category 1/276)
+2025-07-16 07:53:19,310 - PassiveExtractionWorkflow - INFO - Scraping category: https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners
+2025-07-16 07:53:19,310 - configurable_supplier_scraper - INFO - Starting enhanced scraping from https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners
+2025-07-16 07:53:19,311 - configurable_supplier_scraper - INFO - Setting page limiter for https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners
+2025-07-16 07:53:19,311 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-16 07:53:19,328 - configurable_supplier_scraper - INFO - ✅ Loaded VALIDATED supplier package selectors for poundwholesale.co.uk from /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/suppliers/poundwholesale-co-uk/config/product_selectors.json
+2025-07-16 07:53:19,328 - configurable_supplier_scraper - INFO - No page limiter configuration found for www.poundwholesale.co.uk
+2025-07-16 07:53:19,329 - configurable_supplier_scraper - INFO - Collecting product URLs from paginated pages starting at: https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners
+2025-07-16 07:53:19,329 - configurable_supplier_scraper - INFO - Processing page 1: https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners
+2025-07-16 07:53:19,330 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners (attempt 1/3)
+2025-07-16 07:53:19,330 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-16 07:53:19,330 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners
+2025-07-16 07:53:20,870 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners in 2.33s...
+2025-07-16 07:53:23,198 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners (attempt 2/3)
+2025-07-16 07:53:23,199 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-16 07:53:23,199 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners
+2025-07-16 07:53:24,943 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners
+2025-07-16 07:53:24,944 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners
+2025-07-16 07:53:25,036 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners (Size: 656168 bytes)
+2025-07-16 07:53:25,256 - configurable_supplier_scraper - INFO - Found 5 new product URLs on page 1
+2025-07-16 07:53:25,257 - configurable_supplier_scraper - INFO - Collected 5 total product URLs across 1 pages
+2025-07-16 07:53:25,257 - configurable_supplier_scraper - INFO - Found 5 total product URLs across all pages
+2025-07-16 07:53:25,258 - configurable_supplier_scraper - INFO - Visiting product page 1/5: https://www.poundwholesale.co.uk/rapide-sealant-remover-spray-250ml
+2025-07-16 07:53:25,259 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/rapide-sealant-remover-spray-250ml (attempt 1/3)
+2025-07-16 07:53:25,259 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-16 07:53:25,260 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/rapide-sealant-remover-spray-250ml
+2025-07-16 07:53:26,824 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/rapide-sealant-remover-spray-250ml in 2.07s...
+2025-07-16 07:53:28,893 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/rapide-sealant-remover-spray-250ml (attempt 2/3)
+2025-07-16 07:53:28,894 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-16 07:53:28,895 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/rapide-sealant-remover-spray-250ml
+2025-07-16 07:53:30,062 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/rapide-sealant-remover-spray-250ml
+2025-07-16 07:53:30,063 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/rapide-sealant-remover-spray-250ml
+2025-07-16 07:53:30,176 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/rapide-sealant-remover-spray-250ml (Size: 675066 bytes)
+2025-07-16 07:53:30,492 - configurable_supplier_scraper - INFO - 🔄 REAL-TIME: Added product 1 to shared accumulator (total: 1)
+2025-07-16 07:53:30,493 - configurable_supplier_scraper - INFO - ✅ Extracted product 1: Rapide Sealant Remover Spray 250ml - £1.32 (EAN: 5055319531696)
+2025-07-16 07:53:30,494 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS: Product 1 processed (total in cache: 1)
+2025-07-16 07:53:30,494 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Processing product 1
+2025-07-16 07:53:30,495 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: Product 1, frequency=2, enabled=True
+2025-07-16 07:53:30,495 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: List length=1, modulo=1
+2025-07-16 07:53:30,509 - configurable_supplier_scraper - INFO - Visiting product page 2/5: https://www.poundwholesale.co.uk/rapide-sticker-gum-goo-remover-spray-250ml
+2025-07-16 07:53:30,509 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/rapide-sticker-gum-goo-remover-spray-250ml (attempt 1/3)
+2025-07-16 07:53:30,510 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-16 07:53:30,511 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/rapide-sticker-gum-goo-remover-spray-250ml
+2025-07-16 07:53:32,059 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/rapide-sticker-gum-goo-remover-spray-250ml in 2.11s...
+2025-07-16 07:53:34,175 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/rapide-sticker-gum-goo-remover-spray-250ml (attempt 2/3)
+2025-07-16 07:53:34,176 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-16 07:53:34,177 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/rapide-sticker-gum-goo-remover-spray-250ml
+2025-07-16 07:53:37,136 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/rapide-sticker-gum-goo-remover-spray-250ml
+2025-07-16 07:53:37,137 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/rapide-sticker-gum-goo-remover-spray-250ml
+2025-07-16 07:53:37,226 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/rapide-sticker-gum-goo-remover-spray-250ml (Size: 674204 bytes)
+2025-07-16 07:53:37,522 - configurable_supplier_scraper - INFO - 🔄 REAL-TIME: Added product 2 to shared accumulator (total: 2)
+2025-07-16 07:53:37,523 - configurable_supplier_scraper - INFO - ✅ Extracted product 2: Rapide Sticker Gum & Goo Remover Spray 250ml - £1.32 (EAN: 5055319531689)
+2025-07-16 07:53:37,523 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS: Product 2 processed (total in cache: 2)
+2025-07-16 07:53:37,524 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Processing product 2
+2025-07-16 07:53:37,524 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: Product 2, frequency=2, enabled=True
+2025-07-16 07:53:37,525 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: List length=2, modulo=0
+2025-07-16 07:53:37,526 - PassiveExtractionWorkflow - INFO - 💾 CACHE SAVE: Starting save of 2 products to cache...
+2025-07-16 07:53:37,530 - PassiveExtractionWorkflow - INFO - ✅ CACHE SAVE: Successfully saved 2 products (2 new) to poundwholesale-co-uk_products_cache.json
+2025-07-16 07:53:37,531 - PassiveExtractionWorkflow - INFO - 💾 PERIODIC CACHE SAVE: Saved 2 products to cache (every 2 products)
+2025-07-16 07:53:37,539 - configurable_supplier_scraper - INFO - Visiting product page 3/5: https://www.poundwholesale.co.uk/home-garden-stove-polish-fireplace-restorer-200ml
+2025-07-16 07:53:37,539 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/home-garden-stove-polish-fireplace-restorer-200ml (attempt 1/3)
+2025-07-16 07:53:37,539 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-16 07:53:37,540 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/home-garden-stove-polish-fireplace-restorer-200ml
+2025-07-16 07:53:39,196 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/home-garden-stove-polish-fireplace-restorer-200ml in 1.74s...
+2025-07-16 07:53:40,938 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/home-garden-stove-polish-fireplace-restorer-200ml (attempt 2/3)
+2025-07-16 07:53:40,939 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-16 07:53:40,940 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/home-garden-stove-polish-fireplace-restorer-200ml
+2025-07-16 07:53:42,108 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/home-garden-stove-polish-fireplace-restorer-200ml
+2025-07-16 07:53:42,109 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/home-garden-stove-polish-fireplace-restorer-200ml
+2025-07-16 07:53:42,270 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/home-garden-stove-polish-fireplace-restorer-200ml (Size: 673148 bytes)
+2025-07-16 07:53:42,568 - configurable_supplier_scraper - INFO - 🔄 REAL-TIME: Added product 3 to shared accumulator (total: 3)
+2025-07-16 07:53:42,568 - configurable_supplier_scraper - INFO - ✅ Extracted product 3: Home & Garden Stove Polish Fireplace Restorer 200ml - £0.79 (EAN: 5055319510417)
+2025-07-16 07:53:42,569 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS: Product 3 processed (total in cache: 3)
+2025-07-16 07:53:42,569 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Processing product 3
+2025-07-16 07:53:42,570 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: Product 3, frequency=2, enabled=True
+2025-07-16 07:53:42,570 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: List length=3, modulo=1
+2025-07-16 07:53:42,577 - configurable_supplier_scraper - INFO - Visiting product page 4/5: https://www.poundwholesale.co.uk/rapide-lime-scented-tough-stuff-hand-cleaner-450ml
+2025-07-16 07:53:42,577 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/rapide-lime-scented-tough-stuff-hand-cleaner-450ml (attempt 1/3)
+2025-07-16 07:53:42,577 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-16 07:53:42,578 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/rapide-lime-scented-tough-stuff-hand-cleaner-450ml
+2025-07-16 07:53:44,046 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/rapide-lime-scented-tough-stuff-hand-cleaner-450ml in 2.35s...
+2025-07-16 07:53:46,400 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/rapide-lime-scented-tough-stuff-hand-cleaner-450ml (attempt 2/3)
+2025-07-16 07:53:46,400 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-16 07:53:46,401 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/rapide-lime-scented-tough-stuff-hand-cleaner-450ml
+2025-07-16 07:53:47,878 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/rapide-lime-scented-tough-stuff-hand-cleaner-450ml
+2025-07-16 07:53:47,879 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/rapide-lime-scented-tough-stuff-hand-cleaner-450ml
+2025-07-16 07:53:47,989 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/rapide-lime-scented-tough-stuff-hand-cleaner-450ml (Size: 673771 bytes)
+2025-07-16 07:53:48,319 - configurable_supplier_scraper - INFO - 🔄 REAL-TIME: Added product 4 to shared accumulator (total: 4)
+2025-07-16 07:53:48,320 - configurable_supplier_scraper - INFO - ✅ Extracted product 4: Rapide Lime Scented Tough Stuff Hand Cleaner 450ml - £0.88 (EAN: 5055319520935)
+2025-07-16 07:53:48,321 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS: Product 4 processed (total in cache: 4)
+2025-07-16 07:53:48,321 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Processing product 4
+2025-07-16 07:53:48,322 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: Product 4, frequency=2, enabled=True
+2025-07-16 07:53:48,322 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: List length=4, modulo=0
+2025-07-16 07:53:48,323 - PassiveExtractionWorkflow - INFO - 💾 CACHE SAVE: Starting save of 4 products to cache...
+2025-07-16 07:53:48,332 - PassiveExtractionWorkflow - INFO - ✅ CACHE SAVE: Successfully saved 4 products (2 new) to poundwholesale-co-uk_products_cache.json
+2025-07-16 07:53:48,333 - PassiveExtractionWorkflow - INFO - 🔄 DEDUPLICATION: Skipped 0 EAN duplicates and 2 URL duplicates
+2025-07-16 07:53:48,333 - PassiveExtractionWorkflow - INFO - 💾 PERIODIC CACHE SAVE: Saved 4 products to cache (every 2 products)
+2025-07-16 07:53:48,343 - configurable_supplier_scraper - INFO - Visiting product page 5/5: https://www.poundwholesale.co.uk/home-garden-multi-purpose-white-vinegar-cleaning-spray-500ml
+2025-07-16 07:53:48,344 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/home-garden-multi-purpose-white-vinegar-cleaning-spray-500ml (attempt 1/3)
+2025-07-16 07:53:48,345 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-16 07:53:48,345 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/home-garden-multi-purpose-white-vinegar-cleaning-spray-500ml
+2025-07-16 07:53:49,949 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/home-garden-multi-purpose-white-vinegar-cleaning-spray-500ml in 2.25s...
+2025-07-16 07:53:52,197 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/home-garden-multi-purpose-white-vinegar-cleaning-spray-500ml (attempt 2/3)
+2025-07-16 07:53:52,198 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-16 07:53:52,198 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/home-garden-multi-purpose-white-vinegar-cleaning-spray-500ml
+2025-07-16 07:53:53,638 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/home-garden-multi-purpose-white-vinegar-cleaning-spray-500ml
+2025-07-16 07:53:53,638 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/home-garden-multi-purpose-white-vinegar-cleaning-spray-500ml
+2025-07-16 07:53:53,748 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/home-garden-multi-purpose-white-vinegar-cleaning-spray-500ml (Size: 676531 bytes)
+2025-07-16 07:53:54,015 - configurable_supplier_scraper - INFO - 🔄 REAL-TIME: Added product 5 to shared accumulator (total: 5)
+2025-07-16 07:53:54,016 - configurable_supplier_scraper - INFO - ✅ Extracted product 5: Home & Garden Multi-Purpose White Vinegar Cleaning Spray 500ml - £0.84 (EAN: 5055319510769)
+2025-07-16 07:53:54,016 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS: Product 5 processed (total in cache: 5)
+2025-07-16 07:53:54,017 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Processing product 5
+2025-07-16 07:53:54,018 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: Product 5, frequency=2, enabled=True
+2025-07-16 07:53:54,019 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: List length=5, modulo=1
+2025-07-16 07:53:54,031 - configurable_supplier_scraper - INFO - Successfully extracted 5 products from https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners
+2025-07-16 07:53:54,032 - PassiveExtractionWorkflow - INFO - 📊 Category completed: 5 raw products extracted, 5 total products accumulated
+2025-07-16 07:53:54,042 - PassiveExtractionWorkflow - INFO - 🔄 EXTRACTION PROGRESS: Processing subcategory 2/4 in batch 1 (Category 2/276)
+2025-07-16 07:53:54,042 - PassiveExtractionWorkflow - INFO - Scraping category: https://www.poundwholesale.co.uk/wholesale-cleaning/sponges-scourers-cloths
+2025-07-16 07:53:54,043 - configurable_supplier_scraper - INFO - Starting enhanced scraping from https://www.poundwholesale.co.uk/wholesale-cleaning/sponges-scourers-cloths
+2025-07-16 07:53:54,043 - configurable_supplier_scraper - INFO - Setting page limiter for https://www.poundwholesale.co.uk/wholesale-cleaning/sponges-scourers-cloths
+2025-07-16 07:53:54,044 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-16 07:53:54,044 - configurable_supplier_scraper - INFO - No page limiter configuration found for www.poundwholesale.co.uk
+2025-07-16 07:53:54,044 - configurable_supplier_scraper - INFO - Collecting product URLs from paginated pages starting at: https://www.poundwholesale.co.uk/wholesale-cleaning/sponges-scourers-cloths
+2025-07-16 07:53:54,045 - configurable_supplier_scraper - INFO - Processing page 1: https://www.poundwholesale.co.uk/wholesale-cleaning/sponges-scourers-cloths
+2025-07-16 07:53:54,045 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/wholesale-cleaning/sponges-scourers-cloths (attempt 1/3)
+2025-07-16 07:53:54,045 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-16 07:53:54,046 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/wholesale-cleaning/sponges-scourers-cloths
+2025-07-16 07:53:55,532 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/wholesale-cleaning/sponges-scourers-cloths in 1.53s...
+2025-07-16 07:53:57,063 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/wholesale-cleaning/sponges-scourers-cloths (attempt 2/3)
+2025-07-16 07:53:57,064 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-16 07:53:57,065 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/wholesale-cleaning/sponges-scourers-cloths
+2025-07-16 07:53:59,011 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/wholesale-cleaning/sponges-scourers-cloths
+2025-07-16 07:53:59,012 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/wholesale-cleaning/sponges-scourers-cloths
+2025-07-16 07:53:59,126 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/wholesale-cleaning/sponges-scourers-cloths (Size: 634853 bytes)
+2025-07-16 07:53:59,335 - configurable_supplier_scraper - INFO - Found 5 new product URLs on page 1
+2025-07-16 07:53:59,335 - configurable_supplier_scraper - INFO - Collected 5 total product URLs across 1 pages
+2025-07-16 07:53:59,336 - configurable_supplier_scraper - INFO - Found 5 total product URLs across all pages
+2025-07-16 07:53:59,336 - configurable_supplier_scraper - INFO - Visiting product page 1/5: https://www.poundwholesale.co.uk/globe-mill-textiles-strong-absorbent-dishcloths-8-pack-25cm-x-30cm
+2025-07-16 07:53:59,337 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/globe-mill-textiles-strong-absorbent-dishcloths-8-pack-25cm-x-30cm (attempt 1/3)
+2025-07-16 07:53:59,337 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-16 07:53:59,338 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/globe-mill-textiles-strong-absorbent-dishcloths-8-pack-25cm-x-30cm
+2025-07-16 07:54:00,919 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/globe-mill-textiles-strong-absorbent-dishcloths-8-pack-25cm-x-30cm in 2.07s...
+2025-07-16 07:54:02,992 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/globe-mill-textiles-strong-absorbent-dishcloths-8-pack-25cm-x-30cm (attempt 2/3)
+2025-07-16 07:54:02,993 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-16 07:54:02,994 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/globe-mill-textiles-strong-absorbent-dishcloths-8-pack-25cm-x-30cm
+2025-07-16 07:54:05,412 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/globe-mill-textiles-strong-absorbent-dishcloths-8-pack-25cm-x-30cm
+2025-07-16 07:54:05,413 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/globe-mill-textiles-strong-absorbent-dishcloths-8-pack-25cm-x-30cm
+2025-07-16 07:54:05,514 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/globe-mill-textiles-strong-absorbent-dishcloths-8-pack-25cm-x-30cm (Size: 673270 bytes)
+2025-07-16 07:54:05,851 - configurable_supplier_scraper - INFO - 🔄 REAL-TIME: Added product 1 to shared accumulator (total: 6)
+2025-07-16 07:54:05,857 - configurable_supplier_scraper - INFO - ✅ Extracted product 1: Globe Mill Textiles Strong Absorbent Dishcloths 8 Pack 25cm X 30cm - £0.77 (EAN: 5053249255743)
+2025-07-16 07:54:05,858 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS: Product 6 processed (total in cache: 6)
+2025-07-16 07:54:05,859 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Processing product 6
+2025-07-16 07:54:05,859 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: Product 6, frequency=2, enabled=True
+2025-07-16 07:54:05,860 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: List length=6, modulo=0
+2025-07-16 07:54:05,861 - PassiveExtractionWorkflow - INFO - 💾 CACHE SAVE: Starting save of 6 products to cache...
+2025-07-16 07:54:05,871 - PassiveExtractionWorkflow - INFO - ✅ CACHE SAVE: Successfully saved 6 products (2 new) to poundwholesale-co-uk_products_cache.json
+2025-07-16 07:54:05,872 - PassiveExtractionWorkflow - INFO - 🔄 DEDUPLICATION: Skipped 0 EAN duplicates and 4 URL duplicates
+2025-07-16 07:54:05,872 - PassiveExtractionWorkflow - INFO - 💾 PERIODIC CACHE SAVE: Saved 6 products to cache (every 2 products)
+2025-07-16 07:54:05,881 - configurable_supplier_scraper - INFO - Visiting product page 2/5: https://www.poundwholesale.co.uk/elbow-grease-planogram
+2025-07-16 07:54:05,882 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/elbow-grease-planogram (attempt 1/3)
+2025-07-16 07:54:05,883 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-16 07:54:05,883 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/elbow-grease-planogram
+2025-07-16 07:54:07,571 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/elbow-grease-planogram in 1.57s...
+2025-07-16 07:54:09,140 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/elbow-grease-planogram (attempt 2/3)
+2025-07-16 07:54:09,141 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-16 07:54:09,142 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/elbow-grease-planogram
+2025-07-16 07:54:10,511 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/elbow-grease-planogram
+2025-07-16 07:54:10,511 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/elbow-grease-planogram
+2025-07-16 07:54:10,628 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/elbow-grease-planogram (Size: 857102 bytes)
+2025-07-16 07:54:10,979 - configurable_supplier_scraper - INFO - 🔄 REAL-TIME: Added product 2 to shared accumulator (total: 7)
+2025-07-16 07:54:10,980 - configurable_supplier_scraper - INFO - ✅ Extracted product 2: Elbow Grease Essentials Bundle (78 Products) - £1.38 (EAN: N/A)
+2025-07-16 07:54:10,981 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS: Product 7 processed (total in cache: 7)
+2025-07-16 07:54:10,981 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Processing product 7
+2025-07-16 07:54:10,982 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: Product 7, frequency=2, enabled=True
+2025-07-16 07:54:10,982 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: List length=7, modulo=1
+2025-07-16 07:54:10,991 - configurable_supplier_scraper - INFO - Visiting product page 3/5: https://www.poundwholesale.co.uk/tidyz-extra-large-all-purpose-cloths-20-pack
+2025-07-16 07:54:10,991 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/tidyz-extra-large-all-purpose-cloths-20-pack (attempt 1/3)
+2025-07-16 07:54:10,992 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-16 07:54:10,992 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/tidyz-extra-large-all-purpose-cloths-20-pack
+2025-07-16 07:54:12,734 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/tidyz-extra-large-all-purpose-cloths-20-pack in 2.18s...
+2025-07-16 07:54:14,920 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/tidyz-extra-large-all-purpose-cloths-20-pack (attempt 2/3)
+2025-07-16 07:54:14,920 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-16 07:54:14,921 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/tidyz-extra-large-all-purpose-cloths-20-pack
+2025-07-16 07:54:17,032 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/tidyz-extra-large-all-purpose-cloths-20-pack
+2025-07-16 07:54:17,032 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/tidyz-extra-large-all-purpose-cloths-20-pack
+2025-07-16 07:54:17,127 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/tidyz-extra-large-all-purpose-cloths-20-pack (Size: 668155 bytes)
+2025-07-16 07:54:17,403 - configurable_supplier_scraper - INFO - 🔄 REAL-TIME: Added product 3 to shared accumulator (total: 8)
+2025-07-16 07:54:17,404 - configurable_supplier_scraper - INFO - ✅ Extracted product 3: TidyZ Extra Large All Purpose Cloths 20 Pack - £0.46 (EAN: N/A)
+2025-07-16 07:54:17,405 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS: Product 8 processed (total in cache: 8)
+2025-07-16 07:54:17,405 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Processing product 8
+2025-07-16 07:54:17,406 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: Product 8, frequency=2, enabled=True
+2025-07-16 07:54:17,407 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: List length=8, modulo=0
+2025-07-16 07:54:17,408 - PassiveExtractionWorkflow - INFO - 💾 CACHE SAVE: Starting save of 8 products to cache...
+2025-07-16 07:54:17,421 - PassiveExtractionWorkflow - INFO - ✅ CACHE SAVE: Successfully saved 8 products (2 new) to poundwholesale-co-uk_products_cache.json
+2025-07-16 07:54:17,422 - PassiveExtractionWorkflow - INFO - 🔄 DEDUPLICATION: Skipped 0 EAN duplicates and 6 URL duplicates
+2025-07-16 07:54:17,422 - PassiveExtractionWorkflow - INFO - 💾 PERIODIC CACHE SAVE: Saved 8 products to cache (every 2 products)
+2025-07-16 07:54:17,433 - configurable_supplier_scraper - INFO - Visiting product page 4/5: https://www.poundwholesale.co.uk/globe-mill-textiles-extra-strong-dusters-8-pack-33cm-x-38cm
+2025-07-16 07:54:17,433 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/globe-mill-textiles-extra-strong-dusters-8-pack-33cm-x-38cm (attempt 1/3)
+2025-07-16 07:54:17,434 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-16 07:54:17,435 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/globe-mill-textiles-extra-strong-dusters-8-pack-33cm-x-38cm
+2025-07-16 07:54:18,990 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/globe-mill-textiles-extra-strong-dusters-8-pack-33cm-x-38cm in 2.42s...
+2025-07-16 07:54:21,416 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/globe-mill-textiles-extra-strong-dusters-8-pack-33cm-x-38cm (attempt 2/3)
+2025-07-16 07:54:21,417 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-16 07:54:21,418 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/globe-mill-textiles-extra-strong-dusters-8-pack-33cm-x-38cm
+2025-07-16 07:54:23,700 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/globe-mill-textiles-extra-strong-dusters-8-pack-33cm-x-38cm
+2025-07-16 07:54:23,700 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/globe-mill-textiles-extra-strong-dusters-8-pack-33cm-x-38cm
+2025-07-16 07:54:23,805 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/globe-mill-textiles-extra-strong-dusters-8-pack-33cm-x-38cm (Size: 668569 bytes)
+2025-07-16 07:54:24,168 - configurable_supplier_scraper - INFO - 🔄 REAL-TIME: Added product 4 to shared accumulator (total: 9)
+2025-07-16 07:54:24,169 - configurable_supplier_scraper - INFO - ✅ Extracted product 4: Globe Mill Textiles Extra Strong Dusters 8 Pack 33cm X 38cm - £0.77 (EAN: 5053249255712)
+2025-07-16 07:54:24,170 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS: Product 9 processed (total in cache: 9)
+2025-07-16 07:54:24,170 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Processing product 9
+2025-07-16 07:54:24,171 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: Product 9, frequency=2, enabled=True
+2025-07-16 07:54:24,171 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: List length=9, modulo=1
+2025-07-16 07:54:24,181 - configurable_supplier_scraper - INFO - Visiting product page 5/5: https://www.poundwholesale.co.uk/duzzit-planogram-bundle
+2025-07-16 07:54:24,181 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/duzzit-planogram-bundle (attempt 1/3)
+2025-07-16 07:54:24,182 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-16 07:54:24,182 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/duzzit-planogram-bundle
+2025-07-16 07:54:25,749 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/duzzit-planogram-bundle in 1.52s...
+2025-07-16 07:54:27,272 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/duzzit-planogram-bundle (attempt 2/3)
+2025-07-16 07:54:27,273 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-16 07:54:27,274 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/duzzit-planogram-bundle
+2025-07-16 07:54:28,917 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/duzzit-planogram-bundle
+2025-07-16 07:54:28,918 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/duzzit-planogram-bundle
+2025-07-16 07:54:29,058 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/duzzit-planogram-bundle (Size: 820553 bytes)
+2025-07-16 07:54:29,402 - configurable_supplier_scraper - INFO - 🔄 REAL-TIME: Added product 5 to shared accumulator (total: 10)
+2025-07-16 07:54:29,404 - configurable_supplier_scraper - INFO - ✅ Extracted product 5: Duzzit Essentials Bundle (63 Products) - £0.42 (EAN: N/A)
+2025-07-16 07:54:29,404 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS: Product 10 processed (total in cache: 10)
+2025-07-16 07:54:29,405 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Processing product 10
+2025-07-16 07:54:29,406 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: Product 10, frequency=2, enabled=True
+2025-07-16 07:54:29,406 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: List length=10, modulo=0
+2025-07-16 07:54:29,407 - PassiveExtractionWorkflow - INFO - 💾 CACHE SAVE: Starting save of 10 products to cache...
+2025-07-16 07:54:29,418 - PassiveExtractionWorkflow - INFO - ✅ CACHE SAVE: Successfully saved 10 products (2 new) to poundwholesale-co-uk_products_cache.json
+2025-07-16 07:54:29,419 - PassiveExtractionWorkflow - INFO - 🔄 DEDUPLICATION: Skipped 0 EAN duplicates and 8 URL duplicates
+2025-07-16 07:54:29,419 - PassiveExtractionWorkflow - INFO - 💾 PERIODIC CACHE SAVE: Saved 10 products to cache (every 2 products)
+2025-07-16 07:54:29,427 - configurable_supplier_scraper - INFO - Successfully extracted 5 products from https://www.poundwholesale.co.uk/wholesale-cleaning/sponges-scourers-cloths
+2025-07-16 07:54:29,427 - PassiveExtractionWorkflow - INFO - 📊 Category completed: 5 raw products extracted, 10 total products accumulated
+2025-07-16 07:54:29,435 - PassiveExtractionWorkflow - INFO - 🔄 EXTRACTION PROGRESS: Processing subcategory 3/4 in batch 1 (Category 3/276)
+2025-07-16 07:54:29,435 - PassiveExtractionWorkflow - INFO - Scraping category: https://www.poundwholesale.co.uk/health-beauty/wholesale-dental
+2025-07-16 07:54:29,436 - configurable_supplier_scraper - INFO - Starting enhanced scraping from https://www.poundwholesale.co.uk/health-beauty/wholesale-dental
+2025-07-16 07:54:29,436 - configurable_supplier_scraper - INFO - Setting page limiter for https://www.poundwholesale.co.uk/health-beauty/wholesale-dental
+2025-07-16 07:54:29,437 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-16 07:54:29,437 - configurable_supplier_scraper - INFO - No page limiter configuration found for www.poundwholesale.co.uk
+2025-07-16 07:54:29,438 - configurable_supplier_scraper - INFO - Collecting product URLs from paginated pages starting at: https://www.poundwholesale.co.uk/health-beauty/wholesale-dental
+2025-07-16 07:54:29,438 - configurable_supplier_scraper - INFO - Processing page 1: https://www.poundwholesale.co.uk/health-beauty/wholesale-dental
+2025-07-16 07:54:29,439 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/health-beauty/wholesale-dental (attempt 1/3)
+2025-07-16 07:54:29,439 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-16 07:54:29,439 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/health-beauty/wholesale-dental
+2025-07-16 07:54:30,909 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/health-beauty/wholesale-dental in 2.13s...
+2025-07-16 07:54:33,037 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/health-beauty/wholesale-dental (attempt 2/3)
+2025-07-16 07:54:33,037 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-16 07:54:33,038 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/health-beauty/wholesale-dental
+2025-07-16 07:54:35,919 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/health-beauty/wholesale-dental
+2025-07-16 07:54:35,920 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/health-beauty/wholesale-dental
+2025-07-16 07:54:36,015 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/health-beauty/wholesale-dental (Size: 644974 bytes)
+2025-07-16 07:54:36,308 - configurable_supplier_scraper - INFO - Found 5 new product URLs on page 1
+2025-07-16 07:54:36,308 - configurable_supplier_scraper - INFO - Collected 5 total product URLs across 1 pages
+2025-07-16 07:54:36,309 - configurable_supplier_scraper - INFO - Found 5 total product URLs across all pages
+2025-07-16 07:54:36,309 - configurable_supplier_scraper - INFO - Visiting product page 1/5: https://www.poundwholesale.co.uk/dentiplus-universal-toothbrush-heads-4-pack
+2025-07-16 07:54:36,310 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/dentiplus-universal-toothbrush-heads-4-pack (attempt 1/3)
+2025-07-16 07:54:36,311 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-16 07:54:36,312 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/dentiplus-universal-toothbrush-heads-4-pack
+2025-07-16 07:54:37,945 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/dentiplus-universal-toothbrush-heads-4-pack in 2.35s...
+2025-07-16 07:54:40,301 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/dentiplus-universal-toothbrush-heads-4-pack (attempt 2/3)
+2025-07-16 07:54:40,302 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-16 07:54:40,303 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/dentiplus-universal-toothbrush-heads-4-pack
+2025-07-16 07:54:42,135 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/dentiplus-universal-toothbrush-heads-4-pack
+2025-07-16 07:54:42,136 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/dentiplus-universal-toothbrush-heads-4-pack
+2025-07-16 07:54:42,233 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/dentiplus-universal-toothbrush-heads-4-pack (Size: 674224 bytes)
+2025-07-16 07:54:42,496 - configurable_supplier_scraper - INFO - 🔄 REAL-TIME: Added product 1 to shared accumulator (total: 11)
+2025-07-16 07:54:42,497 - configurable_supplier_scraper - INFO - ✅ Extracted product 1: Dentiplus Universal Toothbrush Heads 4 Pack - £1.35 (EAN: 5020535022211)
+2025-07-16 07:54:42,498 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS: Product 11 processed (total in cache: 11)
+2025-07-16 07:54:42,499 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Processing product 11
+2025-07-16 07:54:42,499 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: Product 11, frequency=2, enabled=True
+2025-07-16 07:54:42,500 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: List length=11, modulo=1
+2025-07-16 07:54:42,510 - configurable_supplier_scraper - INFO - Visiting product page 2/5: https://www.poundwholesale.co.uk/claradent-assorted-colour-soft-bristle-children-s-toothbrushes-3-pack
+2025-07-16 07:54:42,511 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/claradent-assorted-colour-soft-bristle-children-s-toothbrushes-3-pack (attempt 1/3)
+2025-07-16 07:54:42,511 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-16 07:54:42,512 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/claradent-assorted-colour-soft-bristle-children-s-toothbrushes-3-pack
+2025-07-16 07:54:44,163 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/claradent-assorted-colour-soft-bristle-children-s-toothbrushes-3-pack in 1.74s...
+2025-07-16 07:54:45,903 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/claradent-assorted-colour-soft-bristle-children-s-toothbrushes-3-pack (attempt 2/3)
+2025-07-16 07:54:45,903 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-16 07:54:45,904 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/claradent-assorted-colour-soft-bristle-children-s-toothbrushes-3-pack
+2025-07-16 07:54:47,915 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/claradent-assorted-colour-soft-bristle-children-s-toothbrushes-3-pack
+2025-07-16 07:54:47,916 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/claradent-assorted-colour-soft-bristle-children-s-toothbrushes-3-pack
+2025-07-16 07:54:48,019 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/claradent-assorted-colour-soft-bristle-children-s-toothbrushes-3-pack (Size: 676843 bytes)
+2025-07-16 07:54:48,292 - configurable_supplier_scraper - INFO - 🔄 REAL-TIME: Added product 2 to shared accumulator (total: 12)
+2025-07-16 07:54:48,293 - configurable_supplier_scraper - INFO - ✅ Extracted product 2: Claradent Assorted Colour Soft Bristle Children's Toothbrushes 3 Pack - £0.74 (EAN: 5053249218878)
+2025-07-16 07:54:48,294 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS: Product 12 processed (total in cache: 12)
+2025-07-16 07:54:48,294 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Processing product 12
+2025-07-16 07:54:48,295 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: Product 12, frequency=2, enabled=True
+2025-07-16 07:54:48,296 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: List length=12, modulo=0
+2025-07-16 07:54:48,297 - PassiveExtractionWorkflow - INFO - 💾 CACHE SAVE: Starting save of 12 products to cache...
+2025-07-16 07:54:48,305 - PassiveExtractionWorkflow - INFO - ✅ CACHE SAVE: Successfully saved 12 products (2 new) to poundwholesale-co-uk_products_cache.json
+2025-07-16 07:54:48,305 - PassiveExtractionWorkflow - INFO - 🔄 DEDUPLICATION: Skipped 0 EAN duplicates and 10 URL duplicates
+2025-07-16 07:54:48,306 - PassiveExtractionWorkflow - INFO - 💾 PERIODIC CACHE SAVE: Saved 12 products to cache (every 2 products)
+2025-07-16 07:54:48,312 - configurable_supplier_scraper - INFO - Visiting product page 3/5: https://www.poundwholesale.co.uk/dentyl-dual-action-smooth-mint-mouthwash-500ml
+2025-07-16 07:54:48,313 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/dentyl-dual-action-smooth-mint-mouthwash-500ml (attempt 1/3)
+2025-07-16 07:54:48,313 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-16 07:54:48,314 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/dentyl-dual-action-smooth-mint-mouthwash-500ml
+2025-07-16 07:54:49,863 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/dentyl-dual-action-smooth-mint-mouthwash-500ml in 1.99s...
+2025-07-16 07:54:51,860 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/dentyl-dual-action-smooth-mint-mouthwash-500ml (attempt 2/3)
+2025-07-16 07:54:51,861 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-16 07:54:51,862 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/dentyl-dual-action-smooth-mint-mouthwash-500ml
+2025-07-16 07:54:54,652 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/dentyl-dual-action-smooth-mint-mouthwash-500ml
+2025-07-16 07:54:54,654 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/dentyl-dual-action-smooth-mint-mouthwash-500ml
+2025-07-16 07:54:54,765 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/dentyl-dual-action-smooth-mint-mouthwash-500ml (Size: 675342 bytes)
+2025-07-16 07:54:55,090 - configurable_supplier_scraper - INFO - 🔄 REAL-TIME: Added product 3 to shared accumulator (total: 13)
+2025-07-16 07:54:55,091 - configurable_supplier_scraper - INFO - ✅ Extracted product 3: Dentyl Dual Action Smooth Mint Mouthwash 100ml - £0.39 (EAN: 5060050352509)
+2025-07-16 07:54:55,092 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS: Product 13 processed (total in cache: 13)
+2025-07-16 07:54:55,092 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Processing product 13
+2025-07-16 07:54:55,093 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: Product 13, frequency=2, enabled=True
+2025-07-16 07:54:55,094 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: List length=13, modulo=1
+2025-07-16 07:54:55,107 - configurable_supplier_scraper - INFO - Visiting product page 4/5: https://www.poundwholesale.co.uk/claradent-assorted-colour-medium-toothbrushes-3-pack
+2025-07-16 07:54:55,108 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/claradent-assorted-colour-medium-toothbrushes-3-pack (attempt 1/3)
+2025-07-16 07:54:55,108 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-16 07:54:55,109 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/claradent-assorted-colour-medium-toothbrushes-3-pack
+2025-07-16 07:54:56,734 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/claradent-assorted-colour-medium-toothbrushes-3-pack in 1.94s...
+2025-07-16 07:54:58,680 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/claradent-assorted-colour-medium-toothbrushes-3-pack (attempt 2/3)
+2025-07-16 07:54:58,681 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-16 07:54:58,682 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/claradent-assorted-colour-medium-toothbrushes-3-pack
+2025-07-16 07:54:59,685 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/claradent-assorted-colour-medium-toothbrushes-3-pack
+2025-07-16 07:54:59,686 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/claradent-assorted-colour-medium-toothbrushes-3-pack
+2025-07-16 07:54:59,797 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/claradent-assorted-colour-medium-toothbrushes-3-pack (Size: 675337 bytes)
+2025-07-16 07:55:00,059 - configurable_supplier_scraper - INFO - 🔄 REAL-TIME: Added product 4 to shared accumulator (total: 14)
+2025-07-16 07:55:00,060 - configurable_supplier_scraper - INFO - ✅ Extracted product 4: Claradent Assorted Colour Medium Toothbrushes 3 Pack - £0.74 (EAN: 5053249218847)
+2025-07-16 07:55:00,060 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS: Product 14 processed (total in cache: 14)
+2025-07-16 07:55:00,061 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Processing product 14
+2025-07-16 07:55:00,061 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: Product 14, frequency=2, enabled=True
+2025-07-16 07:55:00,061 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: List length=14, modulo=0
+2025-07-16 07:55:00,062 - PassiveExtractionWorkflow - INFO - 💾 CACHE SAVE: Starting save of 14 products to cache...
+2025-07-16 07:55:00,074 - PassiveExtractionWorkflow - INFO - ✅ CACHE SAVE: Successfully saved 14 products (2 new) to poundwholesale-co-uk_products_cache.json
+2025-07-16 07:55:00,075 - PassiveExtractionWorkflow - INFO - 🔄 DEDUPLICATION: Skipped 0 EAN duplicates and 12 URL duplicates
+2025-07-16 07:55:00,075 - PassiveExtractionWorkflow - INFO - 💾 PERIODIC CACHE SAVE: Saved 14 products to cache (every 2 products)
+2025-07-16 07:55:00,083 - configurable_supplier_scraper - INFO - Visiting product page 5/5: https://www.poundwholesale.co.uk/colgate-fluoride-calcium-maximum-cavity-protection-toothpaste-100ml
+2025-07-16 07:55:00,083 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/colgate-fluoride-calcium-maximum-cavity-protection-toothpaste-100ml (attempt 1/3)
+2025-07-16 07:55:00,084 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-16 07:55:00,084 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/colgate-fluoride-calcium-maximum-cavity-protection-toothpaste-100ml
+2025-07-16 07:55:01,830 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/colgate-fluoride-calcium-maximum-cavity-protection-toothpaste-100ml in 1.65s...
+2025-07-16 07:55:03,478 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/colgate-fluoride-calcium-maximum-cavity-protection-toothpaste-100ml (attempt 2/3)
+2025-07-16 07:55:03,479 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-16 07:55:03,479 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/colgate-fluoride-calcium-maximum-cavity-protection-toothpaste-100ml
+2025-07-16 07:55:05,776 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/colgate-fluoride-calcium-maximum-cavity-protection-toothpaste-100ml
+2025-07-16 07:55:05,777 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/colgate-fluoride-calcium-maximum-cavity-protection-toothpaste-100ml
+2025-07-16 07:55:05,885 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/colgate-fluoride-calcium-maximum-cavity-protection-toothpaste-100ml (Size: 675616 bytes)
+2025-07-16 07:55:06,144 - configurable_supplier_scraper - INFO - 🔄 REAL-TIME: Added product 5 to shared accumulator (total: 15)
+2025-07-16 07:55:06,145 - configurable_supplier_scraper - INFO - ✅ Extracted product 5: Colgate Fluoride & Calcium Maximum Cavity Protection Toothpaste 100ml - £0.83 (EAN: 6920354826191)
+2025-07-16 07:55:06,145 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS: Product 15 processed (total in cache: 15)
+2025-07-16 07:55:06,146 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Processing product 15
+2025-07-16 07:55:06,147 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: Product 15, frequency=2, enabled=True
+2025-07-16 07:55:06,147 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: List length=15, modulo=1
+2025-07-16 07:55:06,158 - configurable_supplier_scraper - INFO - Successfully extracted 5 products from https://www.poundwholesale.co.uk/health-beauty/wholesale-dental
+2025-07-16 07:55:06,159 - PassiveExtractionWorkflow - INFO - 📊 Category completed: 5 raw products extracted, 15 total products accumulated
+2025-07-16 07:55:06,159 - PassiveExtractionWorkflow - INFO - 🛑 TRIMMED: Limited to exactly 13 products
+2025-07-16 07:55:06,160 - PassiveExtractionWorkflow - INFO - ✅ Completed batch 1: 13 total products extracted so far
+2025-07-16 07:55:06,160 - PassiveExtractionWorkflow - INFO - 🛑 STOPPING: Reached max_products_to_process limit of 13 products before batch 2
+2025-07-16 07:55:06,161 - PassiveExtractionWorkflow - INFO - Successfully got 13 products from poundwholesale.co.uk
+2025-07-16 07:55:06,161 - PassiveExtractionWorkflow - INFO - 💾 CACHE SAVE: Starting save of 13 products to cache...
+2025-07-16 07:55:06,171 - PassiveExtractionWorkflow - INFO - ✅ CACHE SAVE: Successfully saved 14 products (0 new) to poundwholesale-co-uk_products_cache.json
+2025-07-16 07:55:06,171 - PassiveExtractionWorkflow - INFO - 🔄 DEDUPLICATION: Skipped 0 EAN duplicates and 13 URL duplicates
+2025-07-16 07:55:06,172 - PassiveExtractionWorkflow - INFO - Found 13 valid supplier products, 13 within price range [£0.1-£20.0]
+2025-07-16 07:55:06,172 - PassiveExtractionWorkflow - INFO - 🔄 LIMITED MODE: Processing 13 products (from index 0 to 12)
+2025-07-16 07:55:06,180 - PassiveExtractionWorkflow - INFO - 🚀 BATCH PROCESSING: 13 products in 1 batches of 100
+2025-07-16 07:55:06,181 - PassiveExtractionWorkflow - INFO - 🔄 Processing batch 1/1 (13 products)
+2025-07-16 07:55:06,181 - PassiveExtractionWorkflow - INFO - --- Processing supplier product 1/13: 'Rapide Sealant Remover Spray 250ml' ---
+2025-07-16 07:55:06,181 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Updating processing index to 1/13
+2025-07-16 07:55:06,190 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: State after update - last_processed_index: 1/13
+2025-07-16 07:55:06,191 - PassiveExtractionWorkflow - INFO - Attempting Amazon search using EAN: 5055319531696
+2025-07-16 07:55:06,226 - PassiveExtractionWorkflow - INFO - 📋 Using cached Amazon data for EAN 5055319531696
+2025-07-16 07:55:06,226 - PassiveExtractionWorkflow - INFO - ✅ EAN search successful for 5055319531696. Using EAN result without title fallback.
+2025-07-16 07:55:06,234 - PassiveExtractionWorkflow - INFO - Saved Amazon data to /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/FBA_ANALYSIS/amazon_cache/amazon_0007258372_5055319531696.json
+2025-07-16 07:55:06,234 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: supplier_ean='5055319531696', asin='0007258372', product_ean='5055319531696'
+2025-07-16 07:55:06,235 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Checking linking conditions - supplier_ean valid: True, asin valid: True
+2025-07-16 07:55:06,236 - PassiveExtractionWorkflow - INFO - ✅ Added linking map entry: EAN_CACHED search 5055319531696 → ASIN 0007258372
+2025-07-16 07:55:06,236 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Current linking_map size: 18 entries
+2025-07-16 07:55:06,236 - PassiveExtractionWorkflow - WARNING - Financial calculation returned empty for 'Rapide Sealant Remover Spray 250ml'
+2025-07-16 07:55:06,237 - PassiveExtractionWorkflow - INFO - Product not profitable: 'Rapide Sealant Remover Spray 250ml' (ROI: 0.00%, Profit: £0.00)
+2025-07-16 07:55:06,245 - PassiveExtractionWorkflow - INFO - --- Processing supplier product 2/13: 'Rapide Sticker Gum & Goo Remover Spray 250ml' ---
+2025-07-16 07:55:06,245 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Updating processing index to 2/13
+2025-07-16 07:55:06,253 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: State after update - last_processed_index: 2/13
+2025-07-16 07:55:06,254 - PassiveExtractionWorkflow - INFO - Attempting Amazon search using EAN: 5055319531689
+2025-07-16 07:55:06,281 - PassiveExtractionWorkflow - INFO - 📋 Using cached Amazon data for EAN 5055319531689
+2025-07-16 07:55:06,282 - PassiveExtractionWorkflow - INFO - ✅ EAN search successful for 5055319531689. Using EAN result without title fallback.
+2025-07-16 07:55:06,288 - PassiveExtractionWorkflow - INFO - Saved Amazon data to /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/FBA_ANALYSIS/amazon_cache/amazon_0007258372_5055319531689.json
+2025-07-16 07:55:06,288 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: supplier_ean='5055319531689', asin='0007258372', product_ean='5055319531689'
+2025-07-16 07:55:06,289 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Checking linking conditions - supplier_ean valid: True, asin valid: True
+2025-07-16 07:55:06,289 - PassiveExtractionWorkflow - INFO - ✅ Added linking map entry: EAN_CACHED search 5055319531689 → ASIN 0007258372
+2025-07-16 07:55:06,290 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Current linking_map size: 19 entries
+2025-07-16 07:55:06,291 - PassiveExtractionWorkflow - WARNING - Financial calculation returned empty for 'Rapide Sticker Gum & Goo Remover Spray 250ml'
+2025-07-16 07:55:06,291 - PassiveExtractionWorkflow - INFO - Product not profitable: 'Rapide Sticker Gum & Goo Remover Spray 250ml' (ROI: 0.00%, Profit: £0.00)
+2025-07-16 07:55:06,301 - PassiveExtractionWorkflow - INFO - --- Processing supplier product 3/13: 'Home & Garden Stove Polish Fireplace Restorer 200ml' ---
+2025-07-16 07:55:06,301 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Updating processing index to 3/13
+2025-07-16 07:55:06,313 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: State after update - last_processed_index: 3/13
+2025-07-16 07:55:06,314 - PassiveExtractionWorkflow - INFO - Attempting Amazon search using EAN: 5055319510417
+2025-07-16 07:55:06,351 - PassiveExtractionWorkflow - INFO - 📋 Using cached Amazon data for EAN 5055319510417
+2025-07-16 07:55:06,352 - PassiveExtractionWorkflow - INFO - ✅ EAN search successful for 5055319510417. Using EAN result without title fallback.
+2025-07-16 07:55:06,358 - PassiveExtractionWorkflow - INFO - Saved Amazon data to /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/FBA_ANALYSIS/amazon_cache/amazon_0007258372_5055319510417.json
+2025-07-16 07:55:06,358 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: supplier_ean='5055319510417', asin='0007258372', product_ean='5055319510417'
+2025-07-16 07:55:06,359 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Checking linking conditions - supplier_ean valid: True, asin valid: True
+2025-07-16 07:55:06,359 - PassiveExtractionWorkflow - INFO - ✅ Added linking map entry: EAN_CACHED search 5055319510417 → ASIN 0007258372
+2025-07-16 07:55:06,360 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Current linking_map size: 20 entries
+2025-07-16 07:55:06,361 - PassiveExtractionWorkflow - WARNING - Financial calculation returned empty for 'Home & Garden Stove Polish Fireplace Restorer 200ml'
+2025-07-16 07:55:06,361 - PassiveExtractionWorkflow - INFO - Product not profitable: 'Home & Garden Stove Polish Fireplace Restorer 200ml' (ROI: 0.00%, Profit: £0.00)
+2025-07-16 07:55:06,377 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: _save_linking_map called with 20 entries for supplier poundwholesale.co.uk
+2025-07-16 07:55:06,427 - PassiveExtractionWorkflow - INFO - ✅ Successfully saved linking map with 20 entries to /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/FBA_ANALYSIS/linking_maps/poundwholesale.co.uk/linking_map.json
+2025-07-16 07:55:06,428 - PassiveExtractionWorkflow - INFO - 📊 Periodic save at product 3 (linking_map_batch_size: 3)
+2025-07-16 07:55:06,428 - PassiveExtractionWorkflow - INFO - --- Processing supplier product 4/13: 'Rapide Lime Scented Tough Stuff Hand Cleaner 450ml' ---
+2025-07-16 07:55:06,429 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Updating processing index to 4/13
+2025-07-16 07:55:06,438 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: State after update - last_processed_index: 4/13
+2025-07-16 07:55:06,438 - PassiveExtractionWorkflow - INFO - Attempting Amazon search using EAN: 5055319520935
+2025-07-16 07:55:06,472 - PassiveExtractionWorkflow - INFO - 📋 Using cached Amazon data for EAN 5055319520935
+2025-07-16 07:55:06,472 - PassiveExtractionWorkflow - INFO - ✅ EAN search successful for 5055319520935. Using EAN result without title fallback.
+2025-07-16 07:55:06,478 - PassiveExtractionWorkflow - INFO - Saved Amazon data to /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/FBA_ANALYSIS/amazon_cache/amazon_0007258372_5055319520935.json
+2025-07-16 07:55:06,479 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: supplier_ean='5055319520935', asin='0007258372', product_ean='5055319520935'
+2025-07-16 07:55:06,479 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Checking linking conditions - supplier_ean valid: True, asin valid: True
+2025-07-16 07:55:06,480 - PassiveExtractionWorkflow - INFO - ✅ Added linking map entry: EAN_CACHED search 5055319520935 → ASIN 0007258372
+2025-07-16 07:55:06,480 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Current linking_map size: 21 entries
+2025-07-16 07:55:06,480 - PassiveExtractionWorkflow - WARNING - Financial calculation returned empty for 'Rapide Lime Scented Tough Stuff Hand Cleaner 450ml'
+2025-07-16 07:55:06,481 - PassiveExtractionWorkflow - INFO - Product not profitable: 'Rapide Lime Scented Tough Stuff Hand Cleaner 450ml' (ROI: 0.00%, Profit: £0.00)
+2025-07-16 07:55:06,489 - PassiveExtractionWorkflow - INFO - --- Processing supplier product 5/13: 'Home & Garden Multi-Purpose White Vinegar Cleaning Spray 500ml' ---
+2025-07-16 07:55:06,489 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Updating processing index to 5/13
+2025-07-16 07:55:06,498 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: State after update - last_processed_index: 5/13
+2025-07-16 07:55:06,498 - PassiveExtractionWorkflow - INFO - Attempting Amazon search using EAN: 5055319510769
+2025-07-16 07:55:06,524 - PassiveExtractionWorkflow - INFO - 📋 Using cached Amazon data for EAN 5055319510769
+2025-07-16 07:55:06,524 - PassiveExtractionWorkflow - INFO - ✅ EAN search successful for 5055319510769. Using EAN result without title fallback.
+2025-07-16 07:55:06,529 - PassiveExtractionWorkflow - INFO - Saved Amazon data to /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/FBA_ANALYSIS/amazon_cache/amazon_0007258372_5055319510769.json
+2025-07-16 07:55:06,530 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: supplier_ean='5055319510769', asin='0007258372', product_ean='5055319510769'
+2025-07-16 07:55:06,530 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Checking linking conditions - supplier_ean valid: True, asin valid: True
+2025-07-16 07:55:06,531 - PassiveExtractionWorkflow - INFO - ✅ Added linking map entry: EAN_CACHED search 5055319510769 → ASIN 0007258372
+2025-07-16 07:55:06,531 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Current linking_map size: 22 entries
+2025-07-16 07:55:06,532 - PassiveExtractionWorkflow - WARNING - Financial calculation returned empty for 'Home & Garden Multi-Purpose White Vinegar Cleaning Spray 500ml'
+2025-07-16 07:55:06,532 - PassiveExtractionWorkflow - INFO - Product not profitable: 'Home & Garden Multi-Purpose White Vinegar Cleaning Spray 500ml' (ROI: 0.00%, Profit: £0.00)
+2025-07-16 07:55:06,539 - PassiveExtractionWorkflow - INFO - --- Processing supplier product 6/13: 'Globe Mill Textiles Strong Absorbent Dishcloths 8 Pack 25cm X 30cm' ---
+2025-07-16 07:55:06,539 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Updating processing index to 6/13
+2025-07-16 07:55:06,547 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: State after update - last_processed_index: 6/13
+2025-07-16 07:55:06,547 - PassiveExtractionWorkflow - INFO - Attempting Amazon search using EAN: 5053249255743
+2025-07-16 07:55:06,569 - PassiveExtractionWorkflow - INFO - 📋 Copied ASIN 0007258372 cache to EAN-specific file: amazon_0007258372_Globe_Mill_Textiles_Strong_Absorbent_Dishcloths_8_.json
+2025-07-16 07:55:06,571 - PassiveExtractionWorkflow - INFO - 📋 Using cached Amazon data for EAN 5053249255743
+2025-07-16 07:55:06,571 - PassiveExtractionWorkflow - INFO - ✅ EAN search successful for 5053249255743. Using EAN result without title fallback.
+2025-07-16 07:55:06,577 - PassiveExtractionWorkflow - INFO - Saved Amazon data to /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/FBA_ANALYSIS/amazon_cache/amazon_0007258372_5053249255743.json
+2025-07-16 07:55:06,577 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: supplier_ean='5053249255743', asin='0007258372', product_ean='5053249255743'
+2025-07-16 07:55:06,578 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Checking linking conditions - supplier_ean valid: True, asin valid: True
+2025-07-16 07:55:06,578 - PassiveExtractionWorkflow - INFO - ✅ Added linking map entry: EAN_CACHED search 5053249255743 → ASIN 0007258372
+2025-07-16 07:55:06,579 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Current linking_map size: 23 entries
+2025-07-16 07:55:06,579 - PassiveExtractionWorkflow - WARNING - Financial calculation returned empty for 'Globe Mill Textiles Strong Absorbent Dishcloths 8 Pack 25cm X 30cm'
+2025-07-16 07:55:06,579 - PassiveExtractionWorkflow - INFO - Product not profitable: 'Globe Mill Textiles Strong Absorbent Dishcloths 8 Pack 25cm X 30cm' (ROI: 0.00%, Profit: £0.00)
+2025-07-16 07:55:06,595 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: _save_linking_map called with 23 entries for supplier poundwholesale.co.uk
+2025-07-16 07:55:06,611 - PassiveExtractionWorkflow - INFO - ✅ Successfully saved linking map with 23 entries to /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/FBA_ANALYSIS/linking_maps/poundwholesale.co.uk/linking_map.json
+2025-07-16 07:55:06,611 - PassiveExtractionWorkflow - INFO - 📊 Periodic save at product 6 (linking_map_batch_size: 3)
+2025-07-16 07:55:06,612 - PassiveExtractionWorkflow - INFO - --- Processing supplier product 7/13: 'Elbow Grease Essentials Bundle (78 Products)' ---
+2025-07-16 07:55:06,612 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Updating processing index to 7/13
+2025-07-16 07:55:06,619 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: State after update - last_processed_index: 7/13
+2025-07-16 07:55:06,620 - PassiveExtractionWorkflow - INFO - No EAN. Using title search.
+2025-07-16 07:55:06,620 - tools.passive_extraction_workflow_latest - INFO - Connecting to Chrome browser on debug port 9222 (FixedAmazonExtractor)
+2025-07-16 07:55:07,141 - tools.passive_extraction_workflow_latest - INFO - Successfully connected to Chrome on port 9222 (FixedAmazonExtractor)
+2025-07-16 07:55:07,142 - tools.passive_extraction_workflow_latest - INFO - Found 1 existing pages (FixedAmazonExtractor)
+2025-07-16 07:55:07,142 - tools.passive_extraction_workflow_latest - INFO - Using existing page: https://www.poundwholesale.co.uk/colgate-fluoride-calcium-maximum-cavity-protection-toothpaste-100ml (FixedAmazonExtractor)
+2025-07-16 07:55:07,153 - tools.passive_extraction_workflow_latest - INFO - Searching Amazon by title using search bar: 'Elbow Grease Essentials Bundle (78 Products)'
+2025-07-16 07:55:07,154 - tools.passive_extraction_workflow_latest - INFO - No page provided to search_by_title, getting one from BrowserManager.
+2025-07-16 07:55:07,155 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-16 07:55:07,155 - utils.browser_manager - INFO - 📄 Navigating to https://www.amazon.co.uk
+2025-07-16 07:55:08,971 - utils.browser_manager - INFO - ✅ Page ready for https://www.amazon.co.uk
+2025-07-16 07:55:08,972 - tools.passive_extraction_workflow_latest - INFO - Navigating to Amazon UK to search for title: Elbow Grease Essentials Bundle (78 Products)
+2025-07-16 07:55:12,492 - tools.passive_extraction_workflow_latest - INFO - Title search found 1 elements using selector: div.s-search-results > div[data-asin]
+2025-07-16 07:55:12,515 - tools.passive_extraction_workflow_latest - WARNING - No valid ASINs found for title 'Elbow Grease Essentials Bundle (78 Products)'
+2025-07-16 07:55:12,516 - PassiveExtractionWorkflow - WARNING - No Amazon results for title 'Elbow Grease Essentials Bundle (78 Products)'. Skipping.
+2025-07-16 07:55:12,516 - PassiveExtractionWorkflow - WARNING - Could not retrieve valid Amazon data for 'Elbow Grease Essentials Bundle (78 Products)'. Skipping.
+2025-07-16 07:55:12,528 - PassiveExtractionWorkflow - INFO - --- Processing supplier product 8/13: 'TidyZ Extra Large All Purpose Cloths 20 Pack' ---
+2025-07-16 07:55:12,529 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Updating processing index to 8/13
+2025-07-16 07:55:12,540 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: State after update - last_processed_index: 8/13
+2025-07-16 07:55:12,541 - PassiveExtractionWorkflow - INFO - No EAN. Using title search.
+2025-07-16 07:55:12,541 - tools.passive_extraction_workflow_latest - INFO - Searching Amazon by title using search bar: 'TidyZ Extra Large All Purpose Cloths 20 Pack'
+2025-07-16 07:55:12,542 - tools.passive_extraction_workflow_latest - INFO - No page provided to search_by_title, getting one from BrowserManager.
+2025-07-16 07:55:12,542 - utils.browser_manager - INFO - ♻️ Reusing cached page for https://www.amazon.co.uk
+2025-07-16 07:55:12,543 - tools.passive_extraction_workflow_latest - INFO - Navigating to Amazon UK to search for title: TidyZ Extra Large All Purpose Cloths 20 Pack
+2025-07-16 07:55:15,990 - tools.passive_extraction_workflow_latest - INFO - Title search found 16 elements using selector: div.s-search-results > div[data-asin]
+2025-07-16 07:55:17,762 - tools.passive_extraction_workflow_latest - DEBUG - ASIN B0F1PLDP7P title extracted using selector 'h2': Microfibre Cleaning Cloth, Pack of 10, Large Size:...
+2025-07-16 07:55:17,866 - tools.passive_extraction_workflow_latest - DEBUG - ASIN B0DYF3PX93 title extracted using selector 'h2 span.a-size-base-plus': Towelogy...
+2025-07-16 07:55:17,984 - tools.passive_extraction_workflow_latest - DEBUG - ASIN B0D2DPFR9W title extracted using selector 'h2 span.a-size-base-plus': andarta...
+2025-07-16 07:55:18,060 - tools.passive_extraction_workflow_latest - DEBUG - ASIN B0BVFTG8NK title extracted using selector 'h2 span.a-size-base-plus': AIDEA...
+2025-07-16 07:55:18,164 - tools.passive_extraction_workflow_latest - DEBUG - ASIN B07XT288Y5 title extracted using selector 'h2 span.a-size-base-plus': MR.SIGA...
+2025-07-16 07:55:18,320 - tools.passive_extraction_workflow_latest - DEBUG - ASIN B0DLJ38B3D title extracted using selector 'h2 span.a-size-base-plus': Tek Automotive...
+2025-07-16 07:55:18,490 - tools.passive_extraction_workflow_latest - DEBUG - ASIN B00M09VYAY title extracted using selector 'h2': DCS Microfibre Cleaning Cloth, Blue, Pack of 10, L...
+2025-07-16 07:55:18,595 - tools.passive_extraction_workflow_latest - DEBUG - ASIN B0DQ9RZ1QP title extracted using selector 'h2 span.a-size-base-plus': SavvyPick...
+2025-07-16 07:55:18,596 - tools.passive_extraction_workflow_latest - INFO - Title search found 8 results for 'TidyZ Extra Large All Purpose Cloths 20 Pack'
+2025-07-16 07:55:18,596 - PassiveExtractionWorkflow - INFO - 🔍 PRODUCT VALIDATION: Evaluating 8 Amazon results for 'TidyZ Extra Large All Purpose Cloths 20 Pack'
+2025-07-16 07:55:18,597 - PassiveExtractionWorkflow - DEBUG - 🔍 MATCH VALIDATION: 'TidyZ Extra Large All Purpose Cloths 20 Pack' vs 'Microfibre Cleaning Cloth, Pack of 10, Large Size: 40x40cm | Soft Premium Heavy Weight Washable Cloth Duster for Kitchen, Home, Bathrooms, Surfaces, Mirrors, Car, Motorbike - Care by Mail (Orange)' = 0.25 (low, 30.0%)
+2025-07-16 07:55:18,597 - PassiveExtractionWorkflow - INFO - 📊 Result 1: ASIN B0F1PLDP7P - Confidence: 0.300 (low) - Overlap: 0.250 - 'Microfibre Cleaning Cloth, Pack of 10, Large Size: 40x40cm |...'
+2025-07-16 07:55:18,598 - PassiveExtractionWorkflow - DEBUG - 🔍 MATCH VALIDATION: 'TidyZ Extra Large All Purpose Cloths 20 Pack' vs 'Towelogy' = 0.00 (very_low, 10.0%)
+2025-07-16 07:55:18,598 - PassiveExtractionWorkflow - INFO - 📊 Result 2: ASIN B0DYF3PX93 - Confidence: 0.100 (very_low) - Overlap: 0.000 - 'Towelogy...'
+2025-07-16 07:55:18,598 - PassiveExtractionWorkflow - DEBUG - 🔍 MATCH VALIDATION: 'TidyZ Extra Large All Purpose Cloths 20 Pack' vs 'andarta' = 0.00 (very_low, 10.0%)
+2025-07-16 07:55:18,599 - PassiveExtractionWorkflow - INFO - 📊 Result 3: ASIN B0D2DPFR9W - Confidence: 0.100 (very_low) - Overlap: 0.000 - 'andarta...'
+2025-07-16 07:55:18,599 - PassiveExtractionWorkflow - DEBUG - 🔍 MATCH VALIDATION: 'TidyZ Extra Large All Purpose Cloths 20 Pack' vs 'AIDEA' = 0.00 (very_low, 10.0%)
+2025-07-16 07:55:18,599 - PassiveExtractionWorkflow - INFO - 📊 Result 4: ASIN B0BVFTG8NK - Confidence: 0.100 (very_low) - Overlap: 0.000 - 'AIDEA...'
+2025-07-16 07:55:18,600 - PassiveExtractionWorkflow - DEBUG - 🔍 MATCH VALIDATION: 'TidyZ Extra Large All Purpose Cloths 20 Pack' vs 'MR.SIGA' = 0.00 (very_low, 10.0%)
+2025-07-16 07:55:18,600 - PassiveExtractionWorkflow - INFO - 📊 Result 5: ASIN B07XT288Y5 - Confidence: 0.100 (very_low) - Overlap: 0.000 - 'MR.SIGA...'
+2025-07-16 07:55:18,601 - PassiveExtractionWorkflow - WARNING - 🚨 NO CONFIDENT MATCH: All Amazon results below 50.0% confidence threshold for 'TidyZ Extra Large All Purpose Cloths 20 Pack'. Skipping to prevent irrational matches.
+2025-07-16 07:55:18,601 - PassiveExtractionWorkflow - WARNING - Could not retrieve valid Amazon data for 'TidyZ Extra Large All Purpose Cloths 20 Pack'. Skipping.
+2025-07-16 07:55:18,608 - PassiveExtractionWorkflow - INFO - --- Processing supplier product 9/13: 'Globe Mill Textiles Extra Strong Dusters 8 Pack 33cm X 38cm' ---
+2025-07-16 07:55:18,608 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Updating processing index to 9/13
+2025-07-16 07:55:18,616 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: State after update - last_processed_index: 9/13
+2025-07-16 07:55:18,616 - PassiveExtractionWorkflow - INFO - Attempting Amazon search using EAN: 5053249255712
+2025-07-16 07:55:18,638 - PassiveExtractionWorkflow - INFO - 📋 Using cached Amazon data for EAN 5053249255712
+2025-07-16 07:55:18,639 - PassiveExtractionWorkflow - INFO - ✅ EAN search successful for 5053249255712. Using EAN result without title fallback.
+2025-07-16 07:55:18,644 - PassiveExtractionWorkflow - INFO - Saved Amazon data to /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/FBA_ANALYSIS/amazon_cache/amazon_0007258372_5053249255712.json
+2025-07-16 07:55:18,644 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: supplier_ean='5053249255712', asin='0007258372', product_ean='5053249255712'
+2025-07-16 07:55:18,644 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Checking linking conditions - supplier_ean valid: True, asin valid: True
+2025-07-16 07:55:18,645 - PassiveExtractionWorkflow - INFO - ✅ Added linking map entry: EAN_CACHED search 5053249255712 → ASIN 0007258372
+2025-07-16 07:55:18,645 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Current linking_map size: 24 entries
+2025-07-16 07:55:18,645 - PassiveExtractionWorkflow - WARNING - Financial calculation returned empty for 'Globe Mill Textiles Extra Strong Dusters 8 Pack 33cm X 38cm'
+2025-07-16 07:55:18,646 - PassiveExtractionWorkflow - INFO - Product not profitable: 'Globe Mill Textiles Extra Strong Dusters 8 Pack 33cm X 38cm' (ROI: 0.00%, Profit: £0.00)
+2025-07-16 07:55:18,660 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: _save_linking_map called with 24 entries for supplier poundwholesale.co.uk
+2025-07-16 07:55:18,676 - PassiveExtractionWorkflow - INFO - ✅ Successfully saved linking map with 24 entries to /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/FBA_ANALYSIS/linking_maps/poundwholesale.co.uk/linking_map.json
+2025-07-16 07:55:18,677 - PassiveExtractionWorkflow - INFO - 📊 Periodic save at product 9 (linking_map_batch_size: 3)
+2025-07-16 07:55:18,677 - PassiveExtractionWorkflow - INFO - --- Processing supplier product 10/13: 'Duzzit Essentials Bundle (63 Products)' ---
+2025-07-16 07:55:18,677 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Updating processing index to 10/13
+2025-07-16 07:55:18,684 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: State after update - last_processed_index: 10/13
+2025-07-16 07:55:18,684 - PassiveExtractionWorkflow - INFO - No EAN. Using title search.
+2025-07-16 07:55:18,685 - tools.passive_extraction_workflow_latest - INFO - Searching Amazon by title using search bar: 'Duzzit Essentials Bundle (63 Products)'
+2025-07-16 07:55:18,685 - tools.passive_extraction_workflow_latest - INFO - No page provided to search_by_title, getting one from BrowserManager.
+2025-07-16 07:55:18,686 - utils.browser_manager - INFO - ♻️ Reusing cached page for https://www.amazon.co.uk
+2025-07-16 07:55:18,686 - tools.passive_extraction_workflow_latest - INFO - Navigating to Amazon UK to search for title: Duzzit Essentials Bundle (63 Products)
+2025-07-16 07:55:21,905 - tools.passive_extraction_workflow_latest - INFO - Title search found 1 elements using selector: div.s-search-results > div[data-asin]
+2025-07-16 07:55:21,919 - tools.passive_extraction_workflow_latest - WARNING - No valid ASINs found for title 'Duzzit Essentials Bundle (63 Products)'
+2025-07-16 07:55:21,919 - PassiveExtractionWorkflow - WARNING - No Amazon results for title 'Duzzit Essentials Bundle (63 Products)'. Skipping.
+2025-07-16 07:55:21,920 - PassiveExtractionWorkflow - WARNING - Could not retrieve valid Amazon data for 'Duzzit Essentials Bundle (63 Products)'. Skipping.
+2025-07-16 07:55:21,929 - PassiveExtractionWorkflow - INFO - --- Processing supplier product 11/13: 'Dentiplus Universal Toothbrush Heads 4 Pack' ---
+2025-07-16 07:55:21,930 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Updating processing index to 11/13
+2025-07-16 07:55:21,939 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: State after update - last_processed_index: 11/13
+2025-07-16 07:55:21,939 - PassiveExtractionWorkflow - INFO - Attempting Amazon search using EAN: 5020535022211
+2025-07-16 07:55:21,968 - PassiveExtractionWorkflow - INFO - 📋 Found cached Amazon data for EAN 5020535022211 in file: amazon_0007258372_5020535022211.json
+2025-07-16 07:55:21,970 - PassiveExtractionWorkflow - INFO - 📋 Using cached Amazon data for EAN 5020535022211
+2025-07-16 07:55:21,971 - PassiveExtractionWorkflow - INFO - ✅ EAN search successful for 5020535022211. Using EAN result without title fallback.
+2025-07-16 07:55:21,977 - PassiveExtractionWorkflow - INFO - Saved Amazon data to /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/FBA_ANALYSIS/amazon_cache/amazon_0007258372_5020535022211.json
+2025-07-16 07:55:21,977 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: supplier_ean='5020535022211', asin='0007258372', product_ean='5020535022211'
+2025-07-16 07:55:21,977 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Checking linking conditions - supplier_ean valid: True, asin valid: True
+2025-07-16 07:55:21,978 - PassiveExtractionWorkflow - INFO - ✅ Added linking map entry: EAN_CACHED search 5020535022211 → ASIN 0007258372
+2025-07-16 07:55:21,978 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Current linking_map size: 25 entries
+2025-07-16 07:55:21,978 - PassiveExtractionWorkflow - WARNING - Financial calculation returned empty for 'Dentiplus Universal Toothbrush Heads 4 Pack'
+2025-07-16 07:55:21,979 - PassiveExtractionWorkflow - INFO - Product not profitable: 'Dentiplus Universal Toothbrush Heads 4 Pack' (ROI: 0.00%, Profit: £0.00)
+2025-07-16 07:55:21,989 - PassiveExtractionWorkflow - INFO - --- Processing supplier product 12/13: 'Claradent Assorted Colour Soft Bristle Children's Toothbrushes 3 Pack' ---
+2025-07-16 07:55:21,989 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Updating processing index to 12/13
+2025-07-16 07:55:21,999 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: State after update - last_processed_index: 12/13
+2025-07-16 07:55:21,999 - PassiveExtractionWorkflow - INFO - Attempting Amazon search using EAN: 5053249218878
+2025-07-16 07:55:22,031 - PassiveExtractionWorkflow - INFO - 📋 Using cached Amazon data for EAN 5053249218878
+2025-07-16 07:55:22,031 - PassiveExtractionWorkflow - INFO - ✅ EAN search successful for 5053249218878. Using EAN result without title fallback.
+2025-07-16 07:55:22,038 - PassiveExtractionWorkflow - INFO - Saved Amazon data to /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/FBA_ANALYSIS/amazon_cache/amazon_0007258372_5053249218878.json
+2025-07-16 07:55:22,039 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: supplier_ean='5053249218878', asin='0007258372', product_ean='5053249218878'
+2025-07-16 07:55:22,040 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Checking linking conditions - supplier_ean valid: True, asin valid: True
+2025-07-16 07:55:22,040 - PassiveExtractionWorkflow - INFO - ✅ Added linking map entry: EAN_CACHED search 5053249218878 → ASIN 0007258372
+2025-07-16 07:55:22,041 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Current linking_map size: 26 entries
+2025-07-16 07:55:22,041 - PassiveExtractionWorkflow - WARNING - Financial calculation returned empty for 'Claradent Assorted Colour Soft Bristle Children's Toothbrushes 3 Pack'
+2025-07-16 07:55:22,042 - PassiveExtractionWorkflow - INFO - Product not profitable: 'Claradent Assorted Colour Soft Bristle Children's Toothbrushes 3 Pack' (ROI: 0.00%, Profit: £0.00)
+2025-07-16 07:55:22,056 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: _save_linking_map called with 26 entries for supplier poundwholesale.co.uk
+2025-07-16 07:55:22,075 - PassiveExtractionWorkflow - INFO - ✅ Successfully saved linking map with 26 entries to /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/FBA_ANALYSIS/linking_maps/poundwholesale.co.uk/linking_map.json
+2025-07-16 07:55:22,075 - PassiveExtractionWorkflow - INFO - 📊 Periodic save at product 12 (linking_map_batch_size: 3)
+2025-07-16 07:55:22,076 - PassiveExtractionWorkflow - INFO - --- Processing supplier product 13/13: 'Dentyl Dual Action Smooth Mint Mouthwash 100ml' ---
+2025-07-16 07:55:22,076 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Updating processing index to 13/13
+2025-07-16 07:55:22,084 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: State after update - last_processed_index: 13/13
+2025-07-16 07:55:22,085 - PassiveExtractionWorkflow - INFO - Attempting Amazon search using EAN: 5060050352509
+2025-07-16 07:55:22,114 - PassiveExtractionWorkflow - INFO - 📋 Copied ASIN 0007258372 cache to EAN-specific file: amazon_0007258372_Dentyl_Dual_Action_Smooth_Mint_Mouthwash_100ml.json
+2025-07-16 07:55:22,115 - PassiveExtractionWorkflow - INFO - 📋 Using cached Amazon data for EAN 5060050352509
+2025-07-16 07:55:22,115 - PassiveExtractionWorkflow - INFO - ✅ EAN search successful for 5060050352509. Using EAN result without title fallback.
+2025-07-16 07:55:22,120 - PassiveExtractionWorkflow - INFO - Saved Amazon data to /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/FBA_ANALYSIS/amazon_cache/amazon_0007258372_5060050352509.json
+2025-07-16 07:55:22,120 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: supplier_ean='5060050352509', asin='0007258372', product_ean='5060050352509'
+2025-07-16 07:55:22,121 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Checking linking conditions - supplier_ean valid: True, asin valid: True
+2025-07-16 07:55:22,121 - PassiveExtractionWorkflow - INFO - ✅ Added linking map entry: EAN_CACHED search 5060050352509 → ASIN 0007258372
+2025-07-16 07:55:22,122 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Current linking_map size: 27 entries
+2025-07-16 07:55:22,122 - PassiveExtractionWorkflow - WARNING - Financial calculation returned empty for 'Dentyl Dual Action Smooth Mint Mouthwash 100ml'
+2025-07-16 07:55:22,122 - PassiveExtractionWorkflow - INFO - Product not profitable: 'Dentyl Dual Action Smooth Mint Mouthwash 100ml' (ROI: 0.00%, Profit: £0.00)
+2025-07-16 07:55:22,139 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: _save_linking_map called with 27 entries for supplier poundwholesale.co.uk
+2025-07-16 07:55:22,161 - PassiveExtractionWorkflow - INFO - ✅ Successfully saved linking map with 27 entries to /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/FBA_ANALYSIS/linking_maps/poundwholesale.co.uk/linking_map.json
+2025-07-16 07:55:22,162 - PassiveExtractionWorkflow - INFO - No profitable products found in this run.
+2025-07-16 07:55:22,182 - PassiveExtractionWorkflow - INFO - 🧮 Generating comprehensive financial report...
+2025-07-16 07:55:22,204 - tools.FBA_Financial_calculator - INFO - FBA_Financial_calculator: amazon_dir confirmed to exist and is a directory: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/FBA_ANALYSIS/amazon_cache
+2025-07-16 07:55:22,577 - PassiveExtractionWorkflow - ERROR - ❌ Error generating financial report: No matching records found. Check file paths and data consistency.
+2025-07-16 07:55:22,578 - PassiveExtractionWorkflow - INFO - 📊 Processing state file saved: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/CACHE/processing_states/poundwholesale_co_uk_processing_state.json
+2025-07-16 07:55:22,579 - PassiveExtractionWorkflow - INFO - 📊 Final state summary: {'supplier': 'poundwholesale.co.uk', 'status': 'completed', 'progress': '13/13', 'successful': 0, 'profitable': 0, 'total_profit': 0.0, 'categories_processed': 0, 'errors': 0}
+2025-07-16 07:55:22,579 - PassiveExtractionWorkflow - INFO - --- Passive Extraction Workflow Finished ---
+2025-07-16 07:55:22,580 - PassiveExtractionWorkflow - INFO - Summary: {'total_supplier_products': 13, 'profitable_products': 0, 'products_analyzed_ean': 10, 'products_analyzed_title': 3, 'errors': 0}
+2025-07-16 07:55:22,580 - __main__ - INFO - 🌐 Keeping browser persistent for next run - not closing browser
+2025-07-16 07:55:22,581 - utils.browser_manager - WARNING - Error during global cleanup: no running event loop

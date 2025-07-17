@@ -15,8 +15,8 @@ from pathlib import Path
 
 from playwright.async_api import Page, Browser, BrowserContext
 
-# Import vision login handler
-from tools.archive.vision_login_handler import VisionLoginHandler
+# Import working standalone login script (deprecating Vision AI as requested)
+from tools.standalone_playwright_login import login_to_poundwholesale
 
 class SupplierAuthenticationService:
     """
@@ -24,23 +24,28 @@ class SupplierAuthenticationService:
     and bridges between the main workflow and vision-assisted login tools.
     """
     
-    def __init__(self, supplier_name: str, supplier_url: str, config_path: str):
-        self.supplier_name = supplier_name
-        self.supplier_url = supplier_url
-        self.config_path = config_path
+    def __init__(self, browser_manager=None, supplier_name: str = None, supplier_url: str = None, config_path: str = None):
+        # Support both constructor patterns for backward compatibility
+        if browser_manager is not None:
+            # Legacy single-parameter constructor (working backup pattern)
+            self.browser_manager = browser_manager
+            self.supplier_name = "poundwholesale.co.uk"  # Default for backward compatibility
+            self.supplier_url = "https://www.poundwholesale.co.uk"
+            base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+            self.config_path = os.path.join(base_dir, "config", "supplier_configs", "poundwholesale-co-uk.json")
+        else:
+            # New three-parameter constructor
+            self.supplier_name = supplier_name
+            self.supplier_url = supplier_url
+            self.config_path = config_path
+            self.browser_manager = None
+            
         self.log = logging.getLogger(__name__)
         
         # Load supplier-specific configuration
         self.supplier_config = self._load_supplier_config()
         
-        # Initialize vision login handler with OpenAI client
-        try:
-            from openai import OpenAI
-            openai_client = OpenAI()  # Will use environment variables for API key
-            self.vision_handler = VisionLoginHandler(openai_client)
-        except Exception as e:
-            logging.warning(f"Could not initialize VisionLoginHandler: {e}")
-            self.vision_handler = None
+        # Vision AI deprecated as requested by user - using direct standalone script
         
         # Authentication state tracking
         self._auth_state = {
@@ -79,17 +84,8 @@ class SupplierAuthenticationService:
             
             self.log.info(f"🔐 Starting authentication for {self.supplier_name}")
             
-            # Strategy 1: Vision-assisted login (primary)
-            if self._should_use_vision_login():
-                success = await self._vision_assisted_authentication(page, credentials)
-                if success:
-                    self._auth_state["is_authenticated"] = True
-                    self._auth_state["auth_method"] = "vision_assisted"
-                    self._auth_state["last_auth_time"] = datetime.now(timezone.utc)
-                    return True, "vision_assisted"
-            
-            # Strategy 2: Fallback to selector-based login
-            success = await self._fallback_selector_authentication(page, credentials)
+            # Use standalone_playwright_login.py (Vision AI deprecated as requested)
+            success = await self._standalone_script_authentication(credentials)
             if success:
                 self._auth_state["is_authenticated"] = True
                 self._auth_state["auth_method"] = "selector_fallback"
@@ -166,56 +162,39 @@ class SupplierAuthenticationService:
             self.log.warning(f"Could not verify authentication status: {e}")
             return False
     
-    def _should_use_vision_login(self) -> bool:
-        """Determine if vision-assisted login should be used"""
-        # Check if vision handler is available
-        if self.vision_handler is None:
-            self.log.warning("Vision handler not initialized - falling back to selectors")
-            return False
+    async def _standalone_script_authentication(self, credentials: Dict[str, str]) -> bool:
+        """Use standalone_playwright_login.py for authentication"""
+        try:
+            self.log.info("🔧 Using standalone playwright authentication")
             
-        if not hasattr(self.vision_handler, 'perform_login'):
-            self.log.warning("Vision handler not available - falling back to selectors")
+            # Call the standalone login function with CDP port 9222
+            result = await login_to_poundwholesale(cdp_port=9222)
+            
+            if result.success:
+                self.log.info(f"✅ Standalone authentication successful: {result.method_used}")
+                return True
+            else:
+                self.log.warning(f"❌ Standalone authentication failed: {result.error_message}")
+                return False
+                
+        except Exception as e:
+            self.log.error(f"Standalone authentication error: {e}")
             return False
-        
-        # Check supplier config preference
-        use_vision = self.supplier_config.get("use_vision_login", True)
-        return use_vision
+    
+    def _should_use_vision_login(self) -> bool:
+        """Determine if vision-assisted login should be used (DEPRECATED)"""
+        # Vision AI deprecated as requested by user - always return False
+        self.log.info("Vision login deprecated - using standalone authentication only")
+        return False
     
     async def _vision_assisted_authentication(
         self, 
         page: Page, 
         credentials: Dict[str, str]
     ) -> bool:
-        """Perform vision-assisted authentication using VisionLoginHandler"""
-        try:
-            self.log.info("🔍 Attempting vision-assisted authentication")
-            
-            # Set up the vision handler with the current page and credentials
-            self.vision_handler.page = page
-            self.vision_handler.email = credentials.get('email', '')
-            self.vision_handler.password = credentials.get('password', '')
-            self.vision_handler.supplier_url = self.supplier_url
-            self.vision_handler.login_url = f"{self.supplier_url}/customer/account/login/"
-            
-            # Use the vision login handler
-            result = await self.vision_handler.vision_assisted_login()
-            
-            if result.success:
-                self.log.info("✅ Vision-assisted authentication successful")
-                
-                # Verify authentication was successful
-                if await self._verify_authentication_success(page):
-                    return True
-                else:
-                    self.log.warning("⚠️ Authentication appeared successful but verification failed")
-                    return False
-            else:
-                self.log.warning("❌ Vision-assisted authentication failed")
-                return False
-                
-        except Exception as e:
-            self.log.error(f"Vision-assisted authentication error: {e}")
-            return False
+        """Perform vision-assisted authentication (DEPRECATED)"""
+        self.log.info("🚫 Vision-assisted authentication deprecated - falling back to standalone")
+        return False
     
     async def _fallback_selector_authentication(
         self, 
@@ -226,20 +205,7 @@ class SupplierAuthenticationService:
         try:
             self.log.info("🔧 Attempting fallback selector authentication")
             
-            # Use vision handler's fallback method if available
-            if hasattr(self.vision_handler, 'fallback_selector_login'):
-                # Set up the vision handler with the current page and credentials
-                self.vision_handler.page = page
-                self.vision_handler.email = credentials.get('email', '')
-                self.vision_handler.password = credentials.get('password', '')
-                self.vision_handler.supplier_url = self.supplier_url
-                self.vision_handler.login_url = f"{self.supplier_url}/customer/account/login/"
-                
-                result = await self.vision_handler.fallback_selector_login()
-                
-                if result.success and await self._verify_authentication_success(page):
-                    self.log.info("✅ Fallback selector authentication successful")
-                    return True
+            # Vision handler deprecated - skip to basic fallback implementation
             
             # Basic fallback implementation
             await page.goto(f"{self.supplier_url}/customer/account/login/")

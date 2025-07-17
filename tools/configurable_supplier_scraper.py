@@ -85,7 +85,7 @@ class ConfigurableSupplierScraper:
 
     def __init__(self, ai_client: Optional[Any] = None, openai_model_name: str = None, 
                  headless: bool = False, use_shared_chrome: bool = True, 
-                 auth_callback: Optional[callable] = None):
+                 auth_callback: Optional[callable] = None, browser_manager=None):
         """
         Initialize the configurable supplier scraper with Playwright.
 
@@ -99,8 +99,9 @@ class ConfigurableSupplierScraper:
         # Load system configuration first
         self.system_config = self._load_system_config()
         
-        # Browser management - prefer BrowserManager if available
-        self.use_browser_manager = BROWSER_MANAGER_AVAILABLE and use_shared_chrome
+        # Browser management - prefer passed BrowserManager first, then check availability
+        self.browser_manager = browser_manager
+        self.use_browser_manager = (browser_manager is not None) or (BROWSER_MANAGER_AVAILABLE and use_shared_chrome)
         self.playwright = None
         self.browser: Optional[Browser] = None
         self.context: Optional[BrowserContext] = None
@@ -144,40 +145,44 @@ class ConfigurableSupplierScraper:
 
     def _setup_debug_logging(self):
         """Setup debug logging to logs/debug/supplier_scraping_debug_YYYYMMDD.log"""
-        try:
-            # Import path manager for standardized logging
-            import sys
-            import os
-            parent_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-            if parent_dir not in sys.path:
-                sys.path.insert(0, parent_dir)
-            try:
-                from utils.path_manager import get_log_path
-            except ImportError:
-                # Fallback path setup
-                log.warning("Could not import path_manager, using fallback logging")
-                return
+        # DISABLED: This was overriding the main script's logging configuration
+        # The main script (run_custom_poundwholesale.py) already sets up proper logging
+        return
+        
+        # try:
+        #     # Import path manager for standardized logging
+        #     import sys
+        #     import os
+        #     parent_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        #     if parent_dir not in sys.path:
+        #         sys.path.insert(0, parent_dir)
+        #     try:
+        #         from utils.path_manager import get_log_path
+        #     except ImportError:
+        #         # Fallback path setup
+        #         log.warning("Could not import path_manager, using fallback logging")
+        #         return
             
-            # Create debug log file with current date and time for separate runs
-            from datetime import datetime
-            date_time_str = datetime.now().strftime('%Y%m%d_%H%M%S')
-            debug_log_path = get_log_path("debug", f"supplier_scraping_debug_{date_time_str}.log")
+        #     # Create debug log file with current date and time for separate runs
+        #     from datetime import datetime
+        #     date_time_str = datetime.now().strftime('%Y%m%d_%H%M%S')
+        #     debug_log_path = get_log_path("debug", f"supplier_scraping_debug_{date_time_str}.log")
             
-            # Add file handler to logger
-            debug_handler = logging.FileHandler(debug_log_path)
-            debug_handler.setLevel(logging.DEBUG)
-            formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-            debug_handler.setFormatter(formatter)
+        #     # Add file handler to logger
+        #     debug_handler = logging.FileHandler(debug_log_path)
+        #     debug_handler.setLevel(logging.DEBUG)
+        #     formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+        #     debug_handler.setFormatter(formatter)
             
-            # Add handler to both module logger and class logger
-            log.addHandler(debug_handler)
-            log.setLevel(logging.DEBUG)
+        #     # Add handler to both module logger and class logger
+        #     log.addHandler(debug_handler)
+        #     log.setLevel(logging.DEBUG)
             
-            log.debug(f"Debug logging initialized - writing to {debug_log_path}")
-            log.debug(f"Headless mode: {self.headless}")
+        #     log.debug(f"Debug logging initialized - writing to {debug_log_path}")
+        #     log.debug(f"Headless mode: {self.headless}")
             
-        except Exception as e:
-            log.warning(f"Failed to setup debug logging: {e}")
+        # except Exception as e:
+        #     log.warning(f"Failed to setup debug logging: {e}")
     
     def _load_system_config(self) -> Dict[str, Any]:
         """Load system configuration from system_config.json"""
@@ -226,9 +231,14 @@ class ConfigurableSupplierScraper:
             # Try BrowserManager first if available
             if self.use_browser_manager:
                 try:
-                    browser_manager = await get_browser_manager()
-                    self.browser = await browser_manager.connect()
-                    log.info("✅ Connected to Chrome via BrowserManager")
+                    # Use passed browser_manager first, then fallback to get_browser_manager()
+                    if self.browser_manager:
+                        self.browser = await self.browser_manager.get_browser()
+                        log.info("✅ Connected to Chrome via passed BrowserManager")
+                    else:
+                        browser_manager = await get_browser_manager()
+                        self.browser = await browser_manager.connect()
+                        log.info("✅ Connected to Chrome via BrowserManager")
                     return self.browser
                 except Exception as e:
                     log.warning(f"BrowserManager connection failed, falling back to legacy: {e}")
@@ -328,10 +338,16 @@ class ConfigurableSupplierScraper:
                 log.info(f"Fetching page content from: {url} (attempt {attempt + 1}/{retry_count})")
                 
                 # Use BrowserManager for page creation if available
-                if self.use_browser_manager and get_page_for_url:
+                if self.use_browser_manager:
                     try:
-                        page = await get_page_for_url(url, reuse_existing=True)
-                        log.info(f"🔧 Using BrowserManager page for {url}")
+                        if self.browser_manager:
+                            page = await self.browser_manager.get_page()
+                            log.info(f"🔧 Using passed BrowserManager page for {url}")
+                        elif get_page_for_url:
+                            page = await get_page_for_url(url, reuse_existing=True)
+                            log.info(f"🔧 Using BrowserManager page for {url}")
+                        else:
+                            page = None
                     except Exception as e:
                         log.warning(f"BrowserManager page creation failed, using legacy: {e}")
                         self.use_browser_manager = False
@@ -439,8 +455,14 @@ class ConfigurableSupplierScraper:
         """Set progress tracking callback for workflow integration"""
         self.progress_callback = callback_func
 
-    async def scrape_products_from_url(self, url: str, max_products: int = 50) -> List[Dict[str, Any]]:
-        """Enhanced method to scrape products with pagination and individual product page visits."""
+    async def scrape_products_from_url(self, url: str, max_products: int = 50, product_accumulator: List[Dict[str, Any]] = None) -> List[Dict[str, Any]]:
+        """Enhanced method to scrape products with pagination and individual product page visits.
+        
+        Args:
+            url: Category URL to scrape
+            max_products: Maximum products to extract
+            product_accumulator: Optional list to append products to in real-time for progress tracking
+        """
         log.info(f"Starting enhanced scraping from {url}")
         
         # Step 1: Set page limiter to 60 products per page
@@ -456,15 +478,12 @@ class ConfigurableSupplierScraper:
         log.info(f"Found {len(all_product_urls)} total product URLs across all pages")
         
         # Step 3: Visit individual product pages to extract detailed data
-        products = []
+        products = []  # Local list for return value
+        # Use product_accumulator for real-time updates if provided
         base_url = f"{urlparse(url).scheme}://{urlparse(url).netloc}"
         
         for i, product_url in enumerate(all_product_urls[:max_products]):
             try:
-                # Call progress callback if available
-                if self.progress_callback:
-                    self.progress_callback('supplier_extraction', i+1, len(all_product_urls[:max_products]), product_url)
-                
                 log.info(f"Visiting product page {i+1}/{len(all_product_urls[:max_products])}: {product_url}")
                 
                 # Get individual product page content
@@ -508,10 +527,37 @@ class ConfigurableSupplierScraper:
                     except Exception as auth_error:
                         log.warning(f"🔐 Authentication callback error for product {i+1}: {auth_error}")
                 
-                # Only include products with valid data
+                # Only include products with valid data and apply price filtering
                 if title and price:
-                    products.append(product)
-                    log.info(f"✅ Extracted product {i+1}: {title} - £{price} (EAN: {ean or 'N/A'})")
+                    # Apply price filtering if max_price is configured
+                    try:
+                        price_float = float(price)
+                        max_price = getattr(self, 'max_price', 20.0)  # Default from system config
+                        if hasattr(self, 'system_config') and self.system_config:
+                            max_price = self.system_config.get('processing_limits', {}).get('max_price_gbp', 20.0)
+                        
+                        if price_float <= max_price:
+                            products.append(product)  # Always add to local return list
+                            
+                            # 🚨 DEFINITIVE FIX: Add to shared accumulator for real-time progress tracking
+                            if product_accumulator is not None:
+                                product_accumulator.append(product)
+                                log.info(f"🔄 REAL-TIME: Added product {i+1} to shared accumulator (total: {len(product_accumulator)})")
+                            
+                            log.info(f"✅ Extracted product {i+1}: {title} - £{price} (EAN: {ean or 'N/A'})")
+                        else:
+                            log.info(f"🛑 PRICE FILTER: Excluding '{title}' - £{price} > £{max_price} limit")
+                    except (ValueError, TypeError):
+                        # Keep products with invalid/missing prices for now
+                        products.append(product)
+                        if product_accumulator is not None:
+                            product_accumulator.append(product)
+                        log.warning(f"⚠️ Invalid price for '{title}': {price}")
+                    
+                    # Call progress callback AFTER successful product extraction
+                    if self.progress_callback:
+                        self.progress_callback('supplier_extraction', i+1, len(all_product_urls[:max_products]), product_url, product)
+                        
                 else:
                     log.warning(f"⚠️ Skipping product {i+1} - missing title or price")
                     # Additional warning for authentication system
@@ -534,8 +580,14 @@ class ConfigurableSupplierScraper:
         
         try:
             # Get current page from BrowserManager
-            if self.use_browser_manager and get_page_for_url:
-                page = await get_page_for_url(url, reuse_existing=True)
+            if self.use_browser_manager:
+                if self.browser_manager:
+                    page = await self.browser_manager.get_page()
+                elif get_page_for_url:
+                    page = await get_page_for_url(url, reuse_existing=True)
+                else:
+                    log.warning("BrowserManager not available for page limiter setup")
+                    return False
             else:
                 log.warning("BrowserManager not available for page limiter setup")
                 return False

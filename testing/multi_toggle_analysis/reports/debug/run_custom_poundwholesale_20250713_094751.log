@@ -1,0 +1,71 @@
+2025-07-13 09:47:51,256 - utils.logger - INFO - 🔧 Logging initialised – log file: C:\Users\chris\Desktop\Amazon-FBA-Agent-System-v32\logs\debug\run_custom_poundwholesale_20250713_094751.log
+2025-07-13 09:47:51,257 - __main__ - INFO - 📋 Debug log file: C:\Users\chris\Desktop\Amazon-FBA-Agent-System-v32\logs\debug\run_custom_poundwholesale_20250713_094751.log
+2025-07-13 09:47:51,257 - __main__ - DEBUG - Debug logging initialized - full system execution details will be captured
+2025-07-13 09:47:51,259 - utils.browser_manager - INFO - 🔧 BrowserManager singleton initialized
+2025-07-13 09:47:51,261 - asyncio - ERROR - Task exception was never retrieved
+future: <Task finished name='Task-2' coro=<Connection.run() done, defined at C:\Users\chris\AppData\Roaming\Python\Python313\site-packages\playwright\_impl\_connection.py:272> exception=NotImplementedError()>
+Traceback (most recent call last):
+  File "C:\Users\chris\AppData\Roaming\Python\Python313\site-packages\playwright\_impl\_connection.py", line 279, in run
+    await self._transport.connect()
+  File "C:\Users\chris\AppData\Roaming\Python\Python313\site-packages\playwright\_impl\_transport.py", line 133, in connect
+    raise exc
+  File "C:\Users\chris\AppData\Roaming\Python\Python313\site-packages\playwright\_impl\_transport.py", line 120, in connect
+    self._proc = await asyncio.create_subprocess_exec(
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<9 lines>...
+    )
+    ^
+  File "C:\Python313\Lib\asyncio\subprocess.py", line 224, in create_subprocess_exec
+    transport, protocol = await loop.subprocess_exec(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+        stderr=stderr, **kwds)
+        ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\asyncio\base_events.py", line 1788, in subprocess_exec
+    transport = await self._make_subprocess_transport(
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        protocol, popen_args, False, stdin, stdout, stderr,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        bufsize, **kwargs)
+        ^^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\asyncio\base_events.py", line 533, in _make_subprocess_transport
+    raise NotImplementedError
+NotImplementedError
+2025-07-13 09:47:51,271 - __main__ - CRITICAL - 💥 A critical error occurred in the main workflow: 
+Traceback (most recent call last):
+  File "C:\Users\chris\Desktop\Amazon-FBA-Agent-System-v32\run_custom_poundwholesale.py", line 35, in main
+    await browser_manager.launch_browser(cdp_port=chrome_debug_port)
+  File "C:\Users\chris\Desktop\Amazon-FBA-Agent-System-v32\utils\browser_manager.py", line 62, in launch_browser
+    self.playwright = await async_playwright().start()
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chris\AppData\Roaming\Python\Python313\site-packages\playwright\async_api\_context_manager.py", line 51, in start
+    return await self.__aenter__()
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chris\AppData\Roaming\Python\Python313\site-packages\playwright\async_api\_context_manager.py", line 46, in __aenter__
+    playwright = AsyncPlaywright(next(iter(done)).result())
+                                 ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\chris\AppData\Roaming\Python\Python313\site-packages\playwright\_impl\_transport.py", line 120, in connect
+    self._proc = await asyncio.create_subprocess_exec(
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<9 lines>...
+    )
+    ^
+  File "C:\Python313\Lib\asyncio\subprocess.py", line 224, in create_subprocess_exec
+    transport, protocol = await loop.subprocess_exec(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+        stderr=stderr, **kwds)
+        ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\asyncio\base_events.py", line 1788, in subprocess_exec
+    transport = await self._make_subprocess_transport(
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        protocol, popen_args, False, stdin, stdout, stderr,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        bufsize, **kwargs)
+        ^^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\asyncio\base_events.py", line 533, in _make_subprocess_transport
+    raise NotImplementedError
+NotImplementedError
+2025-07-13 09:47:51,274 - utils.browser_manager - INFO - 🧹 Starting browser cleanup...
+2025-07-13 09:47:51,275 - utils.browser_manager - INFO - ✅ Browser cleanup completed
+2025-07-13 09:47:51,278 - utils.browser_manager - WARNING - Error during global cleanup: no running event loop

@@ -276,30 +276,34 @@ class StandalonePlaywrightLogin:
             
             duration = (datetime.now() - start_time).total_seconds()
             
-            if login_verified and price_access:
-                log.info(f"🎉 Playwright login successful! (took {duration:.1f}s)")
+            # If price access is confirmed, we are definitely logged in. This is the most reliable check.
+            if price_access:
+                log.info(f"🎉 Playwright login successful! Price access confirmed. (took {duration:.1f}s)")
                 return LoginResult(
                     success=True,
-                    login_detected=True,
+                    login_detected=login_verified,  # Report the primary indicator status
                     price_access_verified=True,
                     login_duration_seconds=duration
                 )
-            elif login_verified:
-                log.warning("⚠️ Login detected but price access verification failed")
+            
+            # If we see a login indicator but can't see prices, it's a partial success/account issue.
+            if login_verified:
+                log.warning("⚠️ Login detected via success indicator, but price access verification FAILED.")
                 return LoginResult(
-                    success=True,
+                    success=True,  # The login action itself worked
                     login_detected=True,
                     price_access_verified=False,
-                    error_message="Login successful but price access unverified",
+                    error_message="Login successful, but price access could not be verified. (Possible account issue)",
                     login_duration_seconds=duration
                 )
-            else:
-                log.error("❌ Login verification failed")
-                return LoginResult(
-                    success=False,
-                    error_message="Login form submitted but verification failed",
-                    login_duration_seconds=duration
-                )
+
+            # If both checks fail, the login has definitely failed.
+            log.error("❌ Login verification failed. No success indicators found and no price access.")
+            return LoginResult(
+                success=False,
+                error_message="Login form submitted but verification failed on all checks.",
+                login_duration_seconds=duration
+            )
             
         except Exception as e:
             duration = (datetime.now() - start_time).total_seconds()
@@ -422,6 +426,9 @@ class StandalonePlaywrightLogin:
                     success=False,
                     error_message="Failed to connect to browser"
                 )
+            
+            # FORCE THE BROWSER TAB TO BE VISIBLE
+            await self.page.bring_to_front()
             
             # Check if already logged in
             if await self.check_if_already_logged_in():

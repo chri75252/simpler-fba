@@ -1,0 +1,194 @@
+2025-07-16 06:21:37,653 - utils.logger - INFO - 🔧 Logging initialised – log file: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/logs/debug/run_custom_poundwholesale_20250716_062137.log
+2025-07-16 06:21:37,654 - __main__ - INFO - 📋 Debug log file: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/logs/debug/run_custom_poundwholesale_20250716_062137.log
+2025-07-16 06:21:37,654 - __main__ - DEBUG - Debug logging initialized - full system execution details will be captured
+2025-07-16 06:21:37,658 - utils.browser_manager - INFO - 🔧 BrowserManager singleton initialized
+2025-07-16 06:21:38,255 - utils.browser_manager - INFO - 🔌 Connecting to Chrome on debug port 9222
+2025-07-16 06:21:38,409 - utils.browser_manager - INFO - 📄 Using existing context with 1 pages
+2025-07-16 06:21:38,409 - utils.browser_manager - INFO - ✅ Connected to Chrome successfully
+2025-07-16 06:21:38,410 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-16 06:21:38,410 - __main__ - INFO - 🔐 Initializing authentication service for logout detection...
+2025-07-16 06:21:38,413 - __main__ - INFO - ✅ Using hardcoded credentials for poundwholesale.co.uk
+2025-07-16 06:21:38,414 - __main__ - INFO - 🌐 Connecting to existing Chrome debug port 9222 for authentication...
+2025-07-16 06:21:40,897 - tools.supplier_authentication_service - INFO - ❌ Login form detected - not authenticated
+2025-07-16 06:21:40,898 - tools.supplier_authentication_service - INFO - 🔐 Starting authentication for poundwholesale.co.uk
+2025-07-16 06:21:40,899 - tools.supplier_authentication_service - INFO - 🔧 Using standalone playwright authentication
+2025-07-16 06:21:40,900 - tools.standalone_playwright_login - INFO - 🔗 Connecting to shared Chrome instance...
+2025-07-16 06:21:41,434 - tools.standalone_playwright_login - INFO - ✅ Connected to shared Chrome instance at http://localhost:9222
+2025-07-16 06:21:41,435 - tools.standalone_playwright_login - DEBUG - Using existing browser context
+2025-07-16 06:21:41,436 - tools.standalone_playwright_login - DEBUG - Using existing page
+2025-07-16 06:21:41,451 - tools.standalone_playwright_login - INFO - 🔍 Checking if already logged in...
+2025-07-16 06:21:46,619 - tools.standalone_playwright_login - INFO - ✅ Found price element: £1.02 - already logged in
+2025-07-16 06:21:46,619 - tools.standalone_playwright_login - INFO - ✅ Already logged in!
+2025-07-16 06:21:46,620 - tools.standalone_playwright_login - INFO - 💰 Verifying price access...
+2025-07-16 06:21:51,353 - tools.standalone_playwright_login - INFO - ✅ Price access confirmed: £1.02
+2025-07-16 06:21:51,377 - tools.standalone_playwright_login - DEBUG - Disconnected from shared Chrome browser
+2025-07-16 06:21:51,387 - tools.standalone_playwright_login - DEBUG - Playwright stopped
+2025-07-16 06:21:51,387 - tools.supplier_authentication_service - INFO - ✅ Standalone authentication successful: already_logged_in
+2025-07-16 06:21:51,394 - amazon_playwright_extractor - INFO - AI features disabled in amazon_playwright_extractor - using only traditional selectors.
+2025-07-16 06:21:51,396 - amazon_playwright_extractor - INFO - Output directory set to: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/CACHE/amazon_data
+2025-07-16 06:21:51,396 - amazon_playwright_extractor - WARNING - ⚠️ BrowserManager not available, using legacy browser connection
+2025-07-16 06:21:51,398 - configurable_supplier_scraper - INFO - ✅ Loaded system configuration from /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/config/system_config.json
+2025-07-16 06:21:51,399 - configurable_supplier_scraper - INFO - 🔧 ConfigurableSupplierScraper will use centralized BrowserManager
+2025-07-16 06:21:51,399 - configurable_supplier_scraper - DEBUG - AI model from config: gpt-4.1-mini-2025-04-14
+2025-07-16 06:21:51,399 - configurable_supplier_scraper - DEBUG - Extraction targets from config: {}
+2025-07-16 06:21:51,400 - configurable_supplier_scraper - DEBUG - Discovery assistance from config: {}
+2025-07-16 06:21:51,400 - configurable_supplier_scraper - INFO - [CONFIG] Initialized with AI model: gpt-4.1-mini-2025-04-14
+2025-07-16 06:21:51,401 - configurable_supplier_scraper - INFO - [TARGET] Extraction targets loaded: []
+2025-07-16 06:21:51,401 - configurable_supplier_scraper - INFO - [ASSIST] Discovery assistance enabled: False
+2025-07-16 06:21:51,401 - PassiveExtractionWorkflow - INFO - ✅ Output directory set to: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS
+2025-07-16 06:21:51,402 - PassiveExtractionWorkflow - INFO - ✅ Initialization validation passed - all critical attributes verified
+2025-07-16 06:21:51,402 - PassiveExtractionWorkflow - INFO - --- Starting Passive Extraction Workflow for: poundwholesale.co.uk ---
+2025-07-16 06:21:51,403 - PassiveExtractionWorkflow - INFO - Session ID: poundwholesale.co.uk_20250716_062151
+2025-07-16 06:21:51,403 - PassiveExtractionWorkflow - INFO - 📊 CONFIGURATION VALUES:
+2025-07-16 06:21:51,403 - PassiveExtractionWorkflow - INFO -    max_products_to_process: 13
+2025-07-16 06:21:51,403 - PassiveExtractionWorkflow - INFO -    max_products_per_category: 2
+2025-07-16 06:21:51,404 - PassiveExtractionWorkflow - INFO -    max_analyzed_products: 5
+2025-07-16 06:21:51,404 - PassiveExtractionWorkflow - INFO -    max_products_per_cycle: 100
+2025-07-16 06:21:51,405 - PassiveExtractionWorkflow - INFO -    supplier_extraction_batch_size: 999
+2025-07-16 06:21:51,405 - PassiveExtractionWorkflow - INFO -    max_categories_per_request: 3
+2025-07-16 06:21:51,405 - utils.enhanced_state_manager - INFO - No existing state file found for poundwholesale.co.uk, starting fresh
+2025-07-16 06:21:51,406 - PassiveExtractionWorkflow - INFO - 📋 Loaded existing processing state for poundwholesale.co.uk
+2025-07-16 06:21:51,406 - PassiveExtractionWorkflow - INFO - 🔄 Resuming from index 0
+2025-07-16 06:21:51,414 - PassiveExtractionWorkflow - INFO - ✅ Loaded linking map from /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/FBA_ANALYSIS/linking_maps/poundwholesale.co.uk/linking_map.json with 11 entries
+2025-07-16 06:21:51,424 - PassiveExtractionWorkflow - INFO - ✅ Loaded linking map from /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/FBA_ANALYSIS/linking_maps/poundwholesale.co.uk/linking_map.json with 11 entries
+2025-07-16 06:21:51,424 - PassiveExtractionWorkflow - INFO - CUSTOM MODE: Using predefined category list.
+2025-07-16 06:21:51,425 - tools.passive_extraction_workflow_latest - INFO - Attempting to load predefined categories for poundwholesale.co.uk
+2025-07-16 06:21:51,428 - tools.passive_extraction_workflow_latest - INFO - ✅ Successfully loaded 276 predefined category URLs from /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/config/poundwholesale_categories.json
+2025-07-16 06:21:51,431 - PassiveExtractionWorkflow - INFO - 🔄 NO PROCESSING PROGRESS: index=0, proceeding with scraping
+2025-07-16 06:21:51,431 - PassiveExtractionWorkflow - INFO - 🕷️ PERFORMING SUPPLIER SCRAPING from 276 categories
+2025-07-16 06:21:51,432 - PassiveExtractionWorkflow - INFO - 📦 Using supplier extraction batch size: 3
+2025-07-16 06:21:51,432 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS TRACKING: Extracting from 276 categories in 92 batches
+2025-07-16 06:21:51,432 - PassiveExtractionWorkflow - INFO - 📦 Processing category batch 1/92 (3 categories)
+2025-07-16 06:21:51,438 - PassiveExtractionWorkflow - INFO - 🔄 EXTRACTION PROGRESS: Processing subcategory 1/3 in batch 1 (Category 1/276)
+2025-07-16 06:21:51,438 - PassiveExtractionWorkflow - INFO - Scraping category: https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners
+2025-07-16 06:21:51,439 - configurable_supplier_scraper - INFO - Starting enhanced scraping from https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners
+2025-07-16 06:21:51,439 - configurable_supplier_scraper - INFO - Setting page limiter for https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners
+2025-07-16 06:21:51,439 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-16 06:21:51,454 - configurable_supplier_scraper - INFO - ✅ Loaded VALIDATED supplier package selectors for poundwholesale.co.uk from /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/suppliers/poundwholesale-co-uk/config/product_selectors.json
+2025-07-16 06:21:51,455 - configurable_supplier_scraper - INFO - No page limiter configuration found for www.poundwholesale.co.uk
+2025-07-16 06:21:51,455 - configurable_supplier_scraper - INFO - Collecting product URLs from paginated pages starting at: https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners
+2025-07-16 06:21:51,456 - configurable_supplier_scraper - INFO - Processing page 1: https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners
+2025-07-16 06:21:51,456 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners (attempt 1/3)
+2025-07-16 06:21:51,456 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-16 06:21:51,457 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners
+2025-07-16 06:21:52,942 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners in 1.55s...
+2025-07-16 06:21:54,511 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners (attempt 2/3)
+2025-07-16 06:21:54,513 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-16 06:21:54,514 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners
+2025-07-16 06:21:56,213 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners
+2025-07-16 06:21:56,214 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners
+2025-07-16 06:21:56,331 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners (Size: 655308 bytes)
+2025-07-16 06:21:56,562 - configurable_supplier_scraper - INFO - Found 2 new product URLs on page 1
+2025-07-16 06:21:56,564 - configurable_supplier_scraper - INFO - Collected 2 total product URLs across 1 pages
+2025-07-16 06:21:56,564 - configurable_supplier_scraper - INFO - Found 2 total product URLs across all pages
+2025-07-16 06:21:56,565 - configurable_supplier_scraper - INFO - Visiting product page 1/2: https://www.poundwholesale.co.uk/home-garden-multi-purpose-white-vinegar-cleaning-spray-500ml
+2025-07-16 06:21:56,566 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/home-garden-multi-purpose-white-vinegar-cleaning-spray-500ml (attempt 1/3)
+2025-07-16 06:21:56,566 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-16 06:21:56,567 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/home-garden-multi-purpose-white-vinegar-cleaning-spray-500ml
+2025-07-16 06:21:58,146 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/home-garden-multi-purpose-white-vinegar-cleaning-spray-500ml in 1.79s...
+2025-07-16 06:21:59,954 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/home-garden-multi-purpose-white-vinegar-cleaning-spray-500ml (attempt 2/3)
+2025-07-16 06:21:59,955 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-16 06:21:59,956 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/home-garden-multi-purpose-white-vinegar-cleaning-spray-500ml
+2025-07-16 06:22:01,856 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/home-garden-multi-purpose-white-vinegar-cleaning-spray-500ml
+2025-07-16 06:22:01,857 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/home-garden-multi-purpose-white-vinegar-cleaning-spray-500ml
+2025-07-16 06:22:01,967 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/home-garden-multi-purpose-white-vinegar-cleaning-spray-500ml (Size: 676537 bytes)
+2025-07-16 06:22:02,302 - configurable_supplier_scraper - INFO - 🔄 REAL-TIME: Added product 1 to shared accumulator (total: 1)
+2025-07-16 06:22:02,303 - configurable_supplier_scraper - INFO - ✅ Extracted product 1: Home & Garden Multi-Purpose White Vinegar Cleaning Spray 500ml - £0.84 (EAN: 5055319510769)
+2025-07-16 06:22:02,304 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS: Product 1 processed (total in cache: 1)
+2025-07-16 06:22:02,305 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Processing product 1
+2025-07-16 06:22:02,305 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: Product 1, frequency=3, enabled=True
+2025-07-16 06:22:02,306 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: List length=1, modulo=1
+2025-07-16 06:22:02,318 - configurable_supplier_scraper - INFO - Visiting product page 2/2: https://www.poundwholesale.co.uk/home-garden-stove-polish-fireplace-restorer-200ml
+2025-07-16 06:22:02,319 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/home-garden-stove-polish-fireplace-restorer-200ml (attempt 1/3)
+2025-07-16 06:22:02,320 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-16 06:22:02,321 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/home-garden-stove-polish-fireplace-restorer-200ml
+2025-07-16 06:22:03,809 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/home-garden-stove-polish-fireplace-restorer-200ml in 1.66s...
+2025-07-16 06:22:05,473 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/home-garden-stove-polish-fireplace-restorer-200ml (attempt 2/3)
+2025-07-16 06:22:05,474 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-16 06:22:05,475 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/home-garden-stove-polish-fireplace-restorer-200ml
+2025-07-16 06:22:06,965 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/home-garden-stove-polish-fireplace-restorer-200ml
+2025-07-16 06:22:06,969 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/home-garden-stove-polish-fireplace-restorer-200ml
+2025-07-16 06:22:07,073 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/home-garden-stove-polish-fireplace-restorer-200ml (Size: 673138 bytes)
+2025-07-16 06:22:07,387 - configurable_supplier_scraper - INFO - 🔄 REAL-TIME: Added product 2 to shared accumulator (total: 2)
+2025-07-16 06:22:07,388 - configurable_supplier_scraper - INFO - ✅ Extracted product 2: Home & Garden Stove Polish Fireplace Restorer 200ml - £0.79 (EAN: 5055319510417)
+2025-07-16 06:22:07,388 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS: Product 2 processed (total in cache: 2)
+2025-07-16 06:22:07,389 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Processing product 2
+2025-07-16 06:22:07,390 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: Product 2, frequency=3, enabled=True
+2025-07-16 06:22:07,391 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: List length=2, modulo=2
+2025-07-16 06:22:07,398 - configurable_supplier_scraper - INFO - Successfully extracted 2 products from https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners
+2025-07-16 06:22:07,399 - PassiveExtractionWorkflow - INFO - 📊 Category completed: 2 raw products extracted, 2 total products accumulated
+2025-07-16 06:22:07,407 - PassiveExtractionWorkflow - INFO - 🔄 EXTRACTION PROGRESS: Processing subcategory 2/3 in batch 1 (Category 2/276)
+2025-07-16 06:22:07,407 - PassiveExtractionWorkflow - INFO - Scraping category: https://www.poundwholesale.co.uk/wholesale-cleaning/sponges-scourers-cloths
+2025-07-16 06:22:07,408 - configurable_supplier_scraper - INFO - Starting enhanced scraping from https://www.poundwholesale.co.uk/wholesale-cleaning/sponges-scourers-cloths
+2025-07-16 06:22:07,408 - configurable_supplier_scraper - INFO - Setting page limiter for https://www.poundwholesale.co.uk/wholesale-cleaning/sponges-scourers-cloths
+2025-07-16 06:22:07,408 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-16 06:22:07,409 - configurable_supplier_scraper - INFO - No page limiter configuration found for www.poundwholesale.co.uk
+2025-07-16 06:22:07,409 - configurable_supplier_scraper - INFO - Collecting product URLs from paginated pages starting at: https://www.poundwholesale.co.uk/wholesale-cleaning/sponges-scourers-cloths
+2025-07-16 06:22:07,409 - configurable_supplier_scraper - INFO - Processing page 1: https://www.poundwholesale.co.uk/wholesale-cleaning/sponges-scourers-cloths
+2025-07-16 06:22:07,410 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/wholesale-cleaning/sponges-scourers-cloths (attempt 1/3)
+2025-07-16 06:22:07,410 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-16 06:22:07,410 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/wholesale-cleaning/sponges-scourers-cloths
+2025-07-16 06:22:08,838 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/wholesale-cleaning/sponges-scourers-cloths in 1.52s...
+2025-07-16 06:22:10,358 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/wholesale-cleaning/sponges-scourers-cloths (attempt 2/3)
+2025-07-16 06:22:10,359 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-16 06:22:10,360 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/wholesale-cleaning/sponges-scourers-cloths
+2025-07-16 06:22:11,559 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/wholesale-cleaning/sponges-scourers-cloths
+2025-07-16 06:22:11,560 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/wholesale-cleaning/sponges-scourers-cloths
+2025-07-16 06:22:11,872 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/wholesale-cleaning/sponges-scourers-cloths (Size: 634853 bytes)
+2025-07-16 06:22:12,095 - configurable_supplier_scraper - INFO - Found 2 new product URLs on page 1
+2025-07-16 06:22:12,096 - configurable_supplier_scraper - INFO - Collected 2 total product URLs across 1 pages
+2025-07-16 06:22:12,096 - configurable_supplier_scraper - INFO - Found 2 total product URLs across all pages
+2025-07-16 06:22:12,097 - configurable_supplier_scraper - INFO - Visiting product page 1/2: https://www.poundwholesale.co.uk/duzzit-planogram-bundle
+2025-07-16 06:22:12,098 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/duzzit-planogram-bundle (attempt 1/3)
+2025-07-16 06:22:12,099 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-16 06:22:12,099 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/duzzit-planogram-bundle
+2025-07-16 06:22:11,818 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/duzzit-planogram-bundle in 1.51s...
+2025-07-16 06:22:13,339 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/duzzit-planogram-bundle (attempt 2/3)
+2025-07-16 06:22:13,340 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-16 06:22:13,341 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/duzzit-planogram-bundle
+2025-07-16 06:22:15,822 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/duzzit-planogram-bundle
+2025-07-16 06:22:15,831 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/duzzit-planogram-bundle
+2025-07-16 06:22:15,946 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/duzzit-planogram-bundle (Size: 820556 bytes)
+2025-07-16 06:22:16,380 - configurable_supplier_scraper - INFO - 🔄 REAL-TIME: Added product 1 to shared accumulator (total: 3)
+2025-07-16 06:22:16,380 - configurable_supplier_scraper - INFO - ✅ Extracted product 1: Duzzit Essentials Bundle (63 Products) - £0.42 (EAN: N/A)
+2025-07-16 06:22:16,381 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS: Product 3 processed (total in cache: 3)
+2025-07-16 06:22:16,382 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Processing product 3
+2025-07-16 06:22:16,383 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: Product 3, frequency=3, enabled=True
+2025-07-16 06:22:16,383 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: List length=3, modulo=0
+2025-07-16 06:22:16,384 - PassiveExtractionWorkflow - INFO - 💾 CACHE SAVE: Starting save of 3 products to cache...
+2025-07-16 06:22:16,400 - PassiveExtractionWorkflow - INFO - ✅ CACHE SAVE: Successfully saved 13 products (0 new) to poundwholesale-co-uk_products_cache.json
+2025-07-16 06:22:16,401 - PassiveExtractionWorkflow - INFO - 🔄 DEDUPLICATION: Skipped 0 EAN duplicates and 3 URL duplicates
+2025-07-16 06:22:16,401 - PassiveExtractionWorkflow - INFO - 💾 PERIODIC CACHE SAVE: Saved 3 products to cache (every 3 products)
+2025-07-16 06:22:16,441 - configurable_supplier_scraper - INFO - Visiting product page 2/2: https://www.poundwholesale.co.uk/elbow-grease-planogram
+2025-07-16 06:22:16,442 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/elbow-grease-planogram (attempt 1/3)
+2025-07-16 06:22:16,443 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-16 06:22:16,444 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/elbow-grease-planogram
+2025-07-16 06:22:18,217 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/elbow-grease-planogram in 2.49s...
+2025-07-16 06:22:20,712 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/elbow-grease-planogram (attempt 2/3)
+2025-07-16 06:22:20,713 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-16 06:22:20,715 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/elbow-grease-planogram
+2025-07-16 06:22:22,398 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/elbow-grease-planogram
+2025-07-16 06:22:22,399 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/elbow-grease-planogram
+2025-07-16 06:22:22,552 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/elbow-grease-planogram (Size: 857105 bytes)
+2025-07-16 06:22:22,932 - configurable_supplier_scraper - INFO - 🔄 REAL-TIME: Added product 2 to shared accumulator (total: 4)
+2025-07-16 06:22:22,933 - configurable_supplier_scraper - INFO - ✅ Extracted product 2: Elbow Grease Essentials Bundle (78 Products) - £1.38 (EAN: N/A)
+2025-07-16 06:22:22,934 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS: Product 4 processed (total in cache: 4)
+2025-07-16 06:22:22,935 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Processing product 4
+2025-07-16 06:22:22,935 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: Product 4, frequency=3, enabled=True
+2025-07-16 06:22:22,937 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: List length=4, modulo=1
+2025-07-16 06:22:22,961 - configurable_supplier_scraper - INFO - Successfully extracted 2 products from https://www.poundwholesale.co.uk/wholesale-cleaning/sponges-scourers-cloths
+2025-07-16 06:22:22,962 - PassiveExtractionWorkflow - INFO - 📊 Category completed: 2 raw products extracted, 4 total products accumulated
+2025-07-16 06:22:22,980 - PassiveExtractionWorkflow - INFO - 🔄 EXTRACTION PROGRESS: Processing subcategory 3/3 in batch 1 (Category 3/276)
+2025-07-16 06:22:22,981 - PassiveExtractionWorkflow - INFO - Scraping category: https://www.poundwholesale.co.uk/health-beauty/wholesale-dental
+2025-07-16 06:22:22,982 - configurable_supplier_scraper - INFO - Starting enhanced scraping from https://www.poundwholesale.co.uk/health-beauty/wholesale-dental
+2025-07-16 06:22:22,982 - configurable_supplier_scraper - INFO - Setting page limiter for https://www.poundwholesale.co.uk/health-beauty/wholesale-dental
+2025-07-16 06:22:22,983 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-16 06:22:22,983 - configurable_supplier_scraper - INFO - No page limiter configuration found for www.poundwholesale.co.uk
+2025-07-16 06:22:22,984 - configurable_supplier_scraper - INFO - Collecting product URLs from paginated pages starting at: https://www.poundwholesale.co.uk/health-beauty/wholesale-dental
+2025-07-16 06:22:22,985 - configurable_supplier_scraper - INFO - Processing page 1: https://www.poundwholesale.co.uk/health-beauty/wholesale-dental
+2025-07-16 06:22:22,985 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/health-beauty/wholesale-dental (attempt 1/3)
+2025-07-16 06:22:22,986 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-16 06:22:22,986 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/health-beauty/wholesale-dental
+2025-07-16 06:22:24,512 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/health-beauty/wholesale-dental in 1.65s...
+2025-07-16 06:22:25,931 - __main__ - INFO - 🌐 Keeping browser persistent for next run - not closing browser
+2025-07-16 06:22:25,933 - utils.browser_manager - WARNING - Error during global cleanup: no running event loop

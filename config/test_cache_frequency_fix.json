@@ -1,0 +1,33 @@
+{
+  "system": {
+    "max_products": 12,
+    "max_products_per_category": 6,
+    "max_products_per_cycle": 25,
+    "supplier_extraction_batch_size": 2
+  },
+  "supplier_cache_control": {
+    "enabled": true,
+    "update_frequency_products": 3,
+    "force_update_on_interruption": true
+  },
+  "supplier_extraction_progress": {
+    "enabled": true,
+    "recovery_mode": "product_resume",
+    "progress_display": {
+      "show_product_progress": true,
+      "update_frequency_products": 3
+    },
+    "state_persistence": {
+      "batch_save_frequency": 3
+    }
+  },
+  "hybrid_processing": {
+    "enabled": true,
+    "processing_modes": {
+      "chunked": {
+        "enabled": true,
+        "chunk_size_categories": 2
+      }
+    }
+  }
+}

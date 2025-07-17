@@ -1,0 +1,54 @@
+2025-07-13 14:06:34,251 - utils.logger - INFO - 🔧 Logging initialised – log file: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/logs/debug/run_custom_poundwholesale_20250713_140634.log
+2025-07-13 14:06:34,252 - __main__ - INFO - 📋 Debug log file: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/logs/debug/run_custom_poundwholesale_20250713_140634.log
+2025-07-13 14:06:34,252 - __main__ - DEBUG - Debug logging initialized - full system execution details will be captured
+2025-07-13 14:06:34,254 - utils.browser_manager - INFO - 🔧 BrowserManager singleton initialized
+2025-07-13 14:06:34,451 - utils.browser_manager - INFO - 🔌 Connecting to Chrome on debug port 9222
+2025-07-13 14:06:34,472 - utils.browser_manager - WARNING - ⚠️ Could not connect to CDP on port 9222. Launching new browser. Error: BrowserType.connect_over_cdp: connect ECONNREFUSED 127.0.0.1:9222
+Call log:
+  - <ws preparing> retrieving websocket url from http://localhost:9222
+
+2025-07-13 14:06:34,775 - utils.browser_manager - INFO - 📄 Created new page in context.
+2025-07-13 14:06:34,775 - __main__ - INFO - 🔐 Initializing authentication service for logout detection...
+2025-07-13 14:06:34,841 - tools.archive.vision_login_handler - DEBUG - Vision login debug logging initialized - writing to /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/logs/debug/vision_login_20250713.log
+2025-07-13 14:06:34,842 - __main__ - INFO - ✅ Using hardcoded credentials for poundwholesale.co.uk
+2025-07-13 14:06:34,842 - __main__ - INFO - 🌐 Connecting to existing Chrome debug port 9222 for authentication...
+2025-07-13 14:06:37,654 - tools.supplier_authentication_service - WARNING - Could not verify authentication status: Page.goto: Target page, context or browser has been closed
+Call log:
+  - navigating to "https://poundwholesale.co.uk/", waiting until "load"
+
+2025-07-13 14:06:37,654 - tools.supplier_authentication_service - INFO - 🔐 Starting authentication for poundwholesale.co.uk
+2025-07-13 14:06:37,655 - tools.supplier_authentication_service - INFO - 🔍 Attempting vision-assisted authentication
+2025-07-13 14:06:37,655 - tools.archive.vision_login_handler - INFO - 🚀 Starting Vision-assisted login process...
+2025-07-13 14:06:37,656 - tools.archive.vision_login_handler - INFO - 📍 Navigating to login page: https://poundwholesale.co.uk/customer/account/login/
+2025-07-13 14:06:37,675 - tools.archive.vision_login_handler - ERROR - ❌ Vision-assisted login failed: Page.goto: Target page, context or browser has been closed
+2025-07-13 14:06:37,675 - tools.supplier_authentication_service - WARNING - ❌ Vision-assisted authentication failed
+2025-07-13 14:06:37,676 - tools.supplier_authentication_service - INFO - 🔧 Attempting fallback selector authentication
+2025-07-13 14:06:37,676 - tools.archive.vision_login_handler - INFO - 🔄 Attempting fallback selector-based login...
+2025-07-13 14:06:37,685 - tools.archive.vision_login_handler - ERROR - ❌ Fallback selector login failed: Page.goto: Target page, context or browser has been closed
+2025-07-13 14:06:37,691 - tools.supplier_authentication_service - ERROR - Fallback authentication error: Page.goto: Target page, context or browser has been closed
+2025-07-13 14:06:37,692 - tools.supplier_authentication_service - ERROR - ❌ All authentication methods failed
+2025-07-13 14:06:37,697 - amazon_playwright_extractor - INFO - AI features disabled in amazon_playwright_extractor - using only traditional selectors.
+2025-07-13 14:06:37,702 - amazon_playwright_extractor - INFO - Output directory set to: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/CACHE/amazon_data
+2025-07-13 14:06:37,703 - amazon_playwright_extractor - WARNING - ⚠️ BrowserManager not available, using legacy browser connection
+2025-07-13 14:06:37,704 - configurable_supplier_scraper - ERROR - ❌ Failed to load system configuration: [Errno 2] No such file or directory: '/mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/tools/archive/config/system_config.json'
+2025-07-13 14:06:37,704 - configurable_supplier_scraper - INFO - ⚠️ Using legacy browser management (BrowserManager not available or disabled)
+2025-07-13 14:06:37,705 - configurable_supplier_scraper - DEBUG - AI model from config: gpt-4.1-mini-2025-04-14
+2025-07-13 14:06:37,705 - configurable_supplier_scraper - DEBUG - Extraction targets from config: {}
+2025-07-13 14:06:37,705 - configurable_supplier_scraper - DEBUG - Discovery assistance from config: {}
+2025-07-13 14:06:37,706 - configurable_supplier_scraper - INFO - [CONFIG] Initialized with AI model: gpt-4.1-mini-2025-04-14
+2025-07-13 14:06:37,706 - configurable_supplier_scraper - INFO - [TARGET] Extraction targets loaded: []
+2025-07-13 14:06:37,706 - configurable_supplier_scraper - INFO - [ASSIST] Discovery assistance enabled: False
+2025-07-13 14:06:37,707 - __main__ - CRITICAL - 💥 A critical error occurred in the main workflow: name 'LinkingMapManager' is not defined
+Traceback (most recent call last):
+  File "/mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/run_custom_poundwholesale.py", line 62, in main
+    workflow = PassiveExtractionWorkflow(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/tools/passive_extraction_workflow_latest.py", line 900, in __init__
+    self.linking_map = LinkingMapManager(self.supplier_name, self.output_dir)
+                       ^^^^^^^^^^^^^^^^^
+NameError: name 'LinkingMapManager' is not defined
+2025-07-13 14:06:37,728 - utils.browser_manager - INFO - 🧹 Starting browser cleanup...
+2025-07-13 14:06:37,729 - utils.browser_manager - INFO - 🗑️ Closed pages, but leaving context open.
+2025-07-13 14:06:37,941 - utils.browser_manager - INFO - 🎭 Stopped Playwright instance.
+2025-07-13 14:06:37,941 - utils.browser_manager - INFO - ✅ Browser cleanup completed
+2025-07-13 14:06:37,942 - utils.browser_manager - WARNING - Error during global cleanup: no running event loop

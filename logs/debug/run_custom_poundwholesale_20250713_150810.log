@@ -1,0 +1,52 @@
+2025-07-13 15:08:10,786 - utils.logger - INFO - 🔧 Logging initialised – log file: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/logs/debug/run_custom_poundwholesale_20250713_150810.log
+2025-07-13 15:08:10,788 - __main__ - INFO - 📋 Debug log file: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/logs/debug/run_custom_poundwholesale_20250713_150810.log
+2025-07-13 15:08:10,788 - __main__ - DEBUG - Debug logging initialized - full system execution details will be captured
+2025-07-13 15:08:10,790 - utils.browser_manager - INFO - 🔧 BrowserManager singleton initialized
+2025-07-13 15:08:10,992 - utils.browser_manager - INFO - 🔌 Connecting to Chrome on debug port 9222
+2025-07-13 15:08:11,101 - utils.browser_manager - INFO - 📄 Using existing context with 1 pages
+2025-07-13 15:08:11,102 - utils.browser_manager - INFO - ✅ Connected to Chrome successfully
+2025-07-13 15:08:11,102 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-13 15:08:11,102 - __main__ - INFO - 🔐 Initializing authentication service for logout detection...
+2025-07-13 15:08:11,105 - __main__ - INFO - ✅ Using hardcoded credentials for poundwholesale.co.uk
+2025-07-13 15:08:11,114 - __main__ - INFO - 🌐 Connecting to existing Chrome debug port 9222 for authentication...
+2025-07-13 15:08:15,733 - tools.supplier_authentication_service - INFO - ✅ Authentication indicator found: 'logout'
+2025-07-13 15:08:15,767 - tools.supplier_authentication_service - INFO - ✅ Logout link found - user is authenticated
+2025-07-13 15:08:15,768 - tools.supplier_authentication_service - INFO - ✅ Session already authenticated - skipping login
+2025-07-13 15:08:15,774 - amazon_playwright_extractor - INFO - AI features disabled in amazon_playwright_extractor - using only traditional selectors.
+2025-07-13 15:08:15,777 - amazon_playwright_extractor - INFO - Output directory set to: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/CACHE/amazon_data
+2025-07-13 15:08:15,777 - amazon_playwright_extractor - WARNING - ⚠️ BrowserManager not available, using legacy browser connection
+2025-07-13 15:08:15,778 - configurable_supplier_scraper - INFO - ✅ Loaded system configuration from /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/config/system_config.json
+2025-07-13 15:08:15,779 - configurable_supplier_scraper - INFO - ⚠️ Using legacy browser management (BrowserManager not available or disabled)
+2025-07-13 15:08:15,779 - configurable_supplier_scraper - DEBUG - AI model from config: gpt-4.1-mini-2025-04-14
+2025-07-13 15:08:15,779 - configurable_supplier_scraper - DEBUG - Extraction targets from config: {'product_data': ['price', 'title', 'ean', 'barcode', 'image', 'description', 'out_of_stock'], 'navigation': ['next_page', 'category_links', 'breadcrumbs'], 'pagination': ['next_page', 'previous_page', 'page_numbers'], 'filtering': ['price_filter', 'category_filter', 'search_box', 'products_per_page', 'product limiter'], 'interaction': ['add_to_cart', 'buy_now', 'product_link']}
+2025-07-13 15:08:15,779 - configurable_supplier_scraper - DEBUG - Discovery assistance from config: {'enabled': False, 'prompt_injection': {'login_discovery_hints': '', 'product_navigation_discovery_hints': "OUT OF STOCK products show a red/orange badge or overlay with text like 'Out of Stock', 'Sold Out', or 'Unavailable'"}, '_comment': 'Two API calls are made: 1) login_discovery_hints for login elements, 2) product_navigation_discovery_hints for product/navigation selectors. You can paste full console elements, XPath, or any hints here.'}
+2025-07-13 15:08:15,779 - configurable_supplier_scraper - INFO - [CONFIG] Initialized with AI model: gpt-4.1-mini-2025-04-14
+2025-07-13 15:08:15,780 - configurable_supplier_scraper - INFO - [TARGET] Extraction targets loaded: ['product_data', 'navigation', 'pagination', 'filtering', 'interaction']
+2025-07-13 15:08:15,780 - configurable_supplier_scraper - INFO - [ASSIST] Discovery assistance enabled: False
+2025-07-13 15:08:15,780 - PassiveExtractionWorkflow - INFO - ✅ Output directory set to: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS
+2025-07-13 15:08:15,780 - PassiveExtractionWorkflow - INFO - --- Starting Passive Extraction Workflow for: poundwholesale.co.uk ---
+2025-07-13 15:08:15,780 - PassiveExtractionWorkflow - INFO - Session ID: poundwholesale.co.uk_20250713_150815
+2025-07-13 15:08:15,780 - PassiveExtractionWorkflow - INFO - 📊 CONFIGURATION VALUES:
+2025-07-13 15:08:15,781 - PassiveExtractionWorkflow - INFO -    max_products_to_process: 10
+2025-07-13 15:08:15,781 - PassiveExtractionWorkflow - INFO -    max_products_per_category: 5
+2025-07-13 15:08:15,781 - PassiveExtractionWorkflow - INFO -    max_analyzed_products: 5
+2025-07-13 15:08:15,781 - PassiveExtractionWorkflow - INFO -    max_products_per_cycle: 5
+2025-07-13 15:08:15,781 - PassiveExtractionWorkflow - INFO -    supplier_extraction_batch_size: 3
+2025-07-13 15:08:15,781 - PassiveExtractionWorkflow - INFO -    max_categories_per_request: 3
+2025-07-13 15:08:15,782 - utils.enhanced_state_manager - INFO - No existing state file found for poundwholesale.co.uk, starting fresh
+2025-07-13 15:08:15,782 - PassiveExtractionWorkflow - INFO - 📋 Loaded existing processing state for poundwholesale.co.uk
+2025-07-13 15:08:15,783 - PassiveExtractionWorkflow - INFO - 🔄 Resuming from index 0
+2025-07-13 15:08:15,783 - PassiveExtractionWorkflow - INFO - ✅ No previous progress found, starting fresh.
+2025-07-13 15:08:15,785 - PassiveExtractionWorkflow - INFO - ✅ No existing linking map found at /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/FBA_ANALYSIS/linking_maps/poundwholesale.co.uk/linking_map.json - Creating new map
+2025-07-13 15:08:15,786 - PassiveExtractionWorkflow - INFO - ✅ No existing linking map found at /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/FBA_ANALYSIS/linking_maps/poundwholesale.co.uk/linking_map.json - Creating new map
+2025-07-13 15:08:15,786 - PassiveExtractionWorkflow - INFO - CUSTOM MODE: Using predefined category list.
+2025-07-13 15:08:15,786 - tools.passive_extraction_workflow_latest - INFO - Attempting to load predefined categories for poundwholesale.co.uk
+2025-07-13 15:08:15,789 - tools.passive_extraction_workflow_latest - INFO - ✅ Successfully loaded 276 predefined category URLs from /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/config/poundwholesale_categories.json
+2025-07-13 15:08:15,789 - PassiveExtractionWorkflow - ERROR - Unexpected error occurred during workflow execution: PassiveExtractionWorkflow._extract_supplier_products() takes from 2 to 3 positional arguments but 6 were given
+Traceback (most recent call last):
+  File "/mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/tools/passive_extraction_workflow_latest.py", line 1031, in run
+    supplier_products = await self._extract_supplier_products(
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: PassiveExtractionWorkflow._extract_supplier_products() takes from 2 to 3 positional arguments but 6 were given
+2025-07-13 15:08:15,796 - __main__ - INFO - 🌐 Keeping browser persistent for next run - not closing browser
+2025-07-13 15:08:15,796 - utils.browser_manager - WARNING - Error during global cleanup: no running event loop

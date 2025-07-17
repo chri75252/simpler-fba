@@ -1,0 +1,28 @@
+2025-07-13 22:25:25,056 - utils.logger - INFO - 🔧 Logging initialised – log file: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/logs/debug/run_custom_poundwholesale_20250713_222525.log
+2025-07-13 22:25:25,057 - __main__ - INFO - 📋 Debug log file: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/logs/debug/run_custom_poundwholesale_20250713_222525.log
+2025-07-13 22:25:25,058 - __main__ - DEBUG - Debug logging initialized - full system execution details will be captured
+2025-07-13 22:25:25,068 - utils.browser_manager - INFO - 🔧 BrowserManager singleton initialized
+2025-07-13 22:25:25,381 - utils.browser_manager - INFO - 🔌 Connecting to Chrome on debug port 9222
+2025-07-13 22:25:25,576 - utils.browser_manager - INFO - 📄 Using existing context with 1 pages
+2025-07-13 22:25:25,577 - utils.browser_manager - INFO - ✅ Connected to Chrome successfully
+2025-07-13 22:25:25,577 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-13 22:25:25,578 - __main__ - INFO - 🔐 Initializing authentication service for logout detection...
+2025-07-13 22:25:25,583 - __main__ - INFO - ✅ Using hardcoded credentials for poundwholesale.co.uk
+2025-07-13 22:25:25,583 - __main__ - INFO - 🌐 Connecting to existing Chrome debug port 9222 for authentication...
+2025-07-13 22:25:30,931 - tools.supplier_authentication_service - INFO - ✅ Authentication indicator found: 'logout'
+2025-07-13 22:25:30,990 - tools.supplier_authentication_service - INFO - ✅ Logout link found - user is authenticated
+2025-07-13 22:25:30,991 - tools.supplier_authentication_service - INFO - ✅ Session already authenticated - skipping login
+2025-07-13 22:25:31,005 - __main__ - CRITICAL - 💥 A critical error occurred in the main workflow: FixedAmazonExtractor.__init__() got an unexpected keyword argument 'browser_manager'
+Traceback (most recent call last):
+  File "/mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/run_custom_poundwholesale.py", line 59, in main
+    workflow = PassiveExtractionWorkflow(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/tools/passive_extraction_workflow_latest.py", line 899, in __init__
+    self.amazon_extractor = self._initialize_amazon_extractor()
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/tools/passive_extraction_workflow_latest.py", line 935, in _initialize_amazon_extractor
+    return FixedAmazonExtractor(
+           ^^^^^^^^^^^^^^^^^^^^^
+TypeError: FixedAmazonExtractor.__init__() got an unexpected keyword argument 'browser_manager'
+2025-07-13 22:25:31,034 - __main__ - INFO - 🌐 Keeping browser persistent for next run - not closing browser
+2025-07-13 22:25:31,035 - utils.browser_manager - WARNING - Error during global cleanup: no running event loop

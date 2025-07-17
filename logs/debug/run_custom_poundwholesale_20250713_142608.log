@@ -1,0 +1,48 @@
+2025-07-13 14:26:08,783 - utils.logger - INFO - 🔧 Logging initialised – log file: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/logs/debug/run_custom_poundwholesale_20250713_142608.log
+2025-07-13 14:26:08,783 - __main__ - INFO - 📋 Debug log file: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/logs/debug/run_custom_poundwholesale_20250713_142608.log
+2025-07-13 14:26:08,783 - __main__ - DEBUG - Debug logging initialized - full system execution details will be captured
+2025-07-13 14:26:08,784 - utils.browser_manager - INFO - 🔧 BrowserManager singleton initialized
+2025-07-13 14:26:08,966 - utils.browser_manager - INFO - 🔌 Connecting to Chrome on debug port 9222
+2025-07-13 14:26:08,986 - utils.browser_manager - WARNING - ⚠️ Could not connect to CDP on port 9222. Launching new browser. Error: BrowserType.connect_over_cdp: connect ECONNREFUSED 127.0.0.1:9222
+Call log:
+  - <ws preparing> retrieving websocket url from http://localhost:9222
+
+2025-07-13 14:26:09,287 - utils.browser_manager - INFO - 📄 Created new page in context.
+2025-07-13 14:26:09,287 - __main__ - INFO - 🔐 Initializing authentication service for logout detection...
+2025-07-13 14:26:09,290 - __main__ - INFO - ✅ Using hardcoded credentials for poundwholesale.co.uk
+2025-07-13 14:26:09,290 - __main__ - INFO - 🌐 Connecting to existing Chrome debug port 9222 for authentication...
+2025-07-13 14:26:16,338 - tools.supplier_authentication_service - INFO - ❌ Login form detected - not authenticated
+2025-07-13 14:26:16,338 - tools.supplier_authentication_service - INFO - 🔐 Starting authentication for poundwholesale.co.uk
+2025-07-13 14:26:16,339 - tools.supplier_authentication_service - ERROR - Authentication service error: 'SupplierAuthenticationService' object has no attribute '_standalone_script_authentication'
+2025-07-13 14:26:16,343 - amazon_playwright_extractor - INFO - AI features disabled in amazon_playwright_extractor - using only traditional selectors.
+2025-07-13 14:26:16,347 - amazon_playwright_extractor - INFO - Output directory set to: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/CACHE/amazon_data
+2025-07-13 14:26:16,347 - amazon_playwright_extractor - WARNING - ⚠️ BrowserManager not available, using legacy browser connection
+2025-07-13 14:26:16,349 - configurable_supplier_scraper - INFO - ✅ Loaded system configuration from /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/config/system_config.json
+2025-07-13 14:26:16,350 - configurable_supplier_scraper - INFO - ⚠️ Using legacy browser management (BrowserManager not available or disabled)
+2025-07-13 14:26:16,350 - configurable_supplier_scraper - DEBUG - AI model from config: gpt-4.1-mini-2025-04-14
+2025-07-13 14:26:16,350 - configurable_supplier_scraper - DEBUG - Extraction targets from config: {'product_data': ['price', 'title', 'ean', 'barcode', 'image', 'description', 'out_of_stock'], 'navigation': ['next_page', 'category_links', 'breadcrumbs'], 'pagination': ['next_page', 'previous_page', 'page_numbers'], 'filtering': ['price_filter', 'category_filter', 'search_box', 'products_per_page', 'product limiter'], 'interaction': ['add_to_cart', 'buy_now', 'product_link']}
+2025-07-13 14:26:16,350 - configurable_supplier_scraper - DEBUG - Discovery assistance from config: {'enabled': False, 'prompt_injection': {'login_discovery_hints': '', 'product_navigation_discovery_hints': "OUT OF STOCK products show a red/orange badge or overlay with text like 'Out of Stock', 'Sold Out', or 'Unavailable'"}, '_comment': 'Two API calls are made: 1) login_discovery_hints for login elements, 2) product_navigation_discovery_hints for product/navigation selectors. You can paste full console elements, XPath, or any hints here.'}
+2025-07-13 14:26:16,351 - configurable_supplier_scraper - INFO - [CONFIG] Initialized with AI model: gpt-4.1-mini-2025-04-14
+2025-07-13 14:26:16,351 - configurable_supplier_scraper - INFO - [TARGET] Extraction targets loaded: ['product_data', 'navigation', 'pagination', 'filtering', 'interaction']
+2025-07-13 14:26:16,351 - configurable_supplier_scraper - INFO - [ASSIST] Discovery assistance enabled: False
+2025-07-13 14:26:16,351 - PassiveExtractionWorkflow - INFO - ✅ Output directory set to: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS
+2025-07-13 14:26:16,352 - PassiveExtractionWorkflow - INFO - --- Starting Passive Extraction Workflow for: poundwholesale.co.uk ---
+2025-07-13 14:26:16,352 - PassiveExtractionWorkflow - INFO - Session ID: poundwholesale.co.uk_20250713_142616
+2025-07-13 14:26:16,352 - PassiveExtractionWorkflow - INFO - 📊 CONFIGURATION VALUES:
+2025-07-13 14:26:16,352 - PassiveExtractionWorkflow - INFO -    max_products_to_process: 10
+2025-07-13 14:26:16,352 - PassiveExtractionWorkflow - INFO -    max_products_per_category: 5
+2025-07-13 14:26:16,353 - PassiveExtractionWorkflow - INFO -    max_analyzed_products: 5
+2025-07-13 14:26:16,353 - PassiveExtractionWorkflow - INFO -    max_products_per_cycle: 5
+2025-07-13 14:26:16,353 - PassiveExtractionWorkflow - INFO -    supplier_extraction_batch_size: 3
+2025-07-13 14:26:16,353 - PassiveExtractionWorkflow - INFO -    max_categories_per_request: 3
+2025-07-13 14:26:16,355 - utils.enhanced_state_manager - INFO - No existing state file found for poundwholesale.co.uk, starting fresh
+2025-07-13 14:26:16,356 - __main__ - CRITICAL - 💥 A critical error occurred in the main workflow: 'EnhancedStateManager' object has no attribute 'get'
+Traceback (most recent call last):
+  File "/mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/run_custom_poundwholesale.py", line 63, in main
+    await workflow.run()
+  File "/mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/tools/passive_extraction_workflow_latest.py", line 978, in run
+    self.consecutive_amazon_price_misses = self.state_manager.get('consecutive_amazon_price_misses', 0)
+                                           ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'EnhancedStateManager' object has no attribute 'get'
+2025-07-13 14:26:16,367 - __main__ - INFO - 🌐 Keeping browser persistent for next run - not closing browser
+2025-07-13 14:26:16,367 - utils.browser_manager - WARNING - Error during global cleanup: no running event loop

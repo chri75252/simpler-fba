@@ -1,0 +1,196 @@
+2025-07-13 15:12:46,983 - utils.logger - INFO - 🔧 Logging initialised – log file: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/logs/debug/run_custom_poundwholesale_20250713_151246.log
+2025-07-13 15:12:46,984 - __main__ - INFO - 📋 Debug log file: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/logs/debug/run_custom_poundwholesale_20250713_151246.log
+2025-07-13 15:12:46,984 - __main__ - DEBUG - Debug logging initialized - full system execution details will be captured
+2025-07-13 15:12:46,985 - utils.browser_manager - INFO - 🔧 BrowserManager singleton initialized
+2025-07-13 15:12:47,179 - utils.browser_manager - INFO - 🔌 Connecting to Chrome on debug port 9222
+2025-07-13 15:12:47,291 - utils.browser_manager - INFO - 📄 Using existing context with 1 pages
+2025-07-13 15:12:47,292 - utils.browser_manager - INFO - ✅ Connected to Chrome successfully
+2025-07-13 15:12:47,292 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-13 15:12:47,293 - __main__ - INFO - 🔐 Initializing authentication service for logout detection...
+2025-07-13 15:12:47,300 - __main__ - INFO - ✅ Using hardcoded credentials for poundwholesale.co.uk
+2025-07-13 15:12:47,301 - __main__ - INFO - 🌐 Connecting to existing Chrome debug port 9222 for authentication...
+2025-07-13 15:12:52,078 - tools.supplier_authentication_service - INFO - ✅ Authentication indicator found: 'logout'
+2025-07-13 15:12:52,110 - tools.supplier_authentication_service - INFO - ✅ Logout link found - user is authenticated
+2025-07-13 15:12:52,111 - tools.supplier_authentication_service - INFO - ✅ Session already authenticated - skipping login
+2025-07-13 15:12:52,119 - amazon_playwright_extractor - INFO - AI features disabled in amazon_playwright_extractor - using only traditional selectors.
+2025-07-13 15:12:52,123 - amazon_playwright_extractor - INFO - Output directory set to: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/CACHE/amazon_data
+2025-07-13 15:12:52,123 - amazon_playwright_extractor - WARNING - ⚠️ BrowserManager not available, using legacy browser connection
+2025-07-13 15:12:52,125 - configurable_supplier_scraper - INFO - ✅ Loaded system configuration from /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/config/system_config.json
+2025-07-13 15:12:52,126 - configurable_supplier_scraper - INFO - ⚠️ Using legacy browser management (BrowserManager not available or disabled)
+2025-07-13 15:12:52,126 - configurable_supplier_scraper - DEBUG - AI model from config: gpt-4.1-mini-2025-04-14
+2025-07-13 15:12:52,126 - configurable_supplier_scraper - DEBUG - Extraction targets from config: {'product_data': ['price', 'title', 'ean', 'barcode', 'image', 'description', 'out_of_stock'], 'navigation': ['next_page', 'category_links', 'breadcrumbs'], 'pagination': ['next_page', 'previous_page', 'page_numbers'], 'filtering': ['price_filter', 'category_filter', 'search_box', 'products_per_page', 'product limiter'], 'interaction': ['add_to_cart', 'buy_now', 'product_link']}
+2025-07-13 15:12:52,127 - configurable_supplier_scraper - DEBUG - Discovery assistance from config: {'enabled': False, 'prompt_injection': {'login_discovery_hints': '', 'product_navigation_discovery_hints': "OUT OF STOCK products show a red/orange badge or overlay with text like 'Out of Stock', 'Sold Out', or 'Unavailable'"}, '_comment': 'Two API calls are made: 1) login_discovery_hints for login elements, 2) product_navigation_discovery_hints for product/navigation selectors. You can paste full console elements, XPath, or any hints here.'}
+2025-07-13 15:12:52,127 - configurable_supplier_scraper - INFO - [CONFIG] Initialized with AI model: gpt-4.1-mini-2025-04-14
+2025-07-13 15:12:52,127 - configurable_supplier_scraper - INFO - [TARGET] Extraction targets loaded: ['product_data', 'navigation', 'pagination', 'filtering', 'interaction']
+2025-07-13 15:12:52,127 - configurable_supplier_scraper - INFO - [ASSIST] Discovery assistance enabled: False
+2025-07-13 15:12:52,127 - PassiveExtractionWorkflow - INFO - ✅ Output directory set to: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS
+2025-07-13 15:12:52,128 - PassiveExtractionWorkflow - INFO - --- Starting Passive Extraction Workflow for: poundwholesale.co.uk ---
+2025-07-13 15:12:52,128 - PassiveExtractionWorkflow - INFO - Session ID: poundwholesale.co.uk_20250713_151252
+2025-07-13 15:12:52,128 - PassiveExtractionWorkflow - INFO - 📊 CONFIGURATION VALUES:
+2025-07-13 15:12:52,128 - PassiveExtractionWorkflow - INFO -    max_products_to_process: 10
+2025-07-13 15:12:52,128 - PassiveExtractionWorkflow - INFO -    max_products_per_category: 5
+2025-07-13 15:12:52,128 - PassiveExtractionWorkflow - INFO -    max_analyzed_products: 5
+2025-07-13 15:12:52,128 - PassiveExtractionWorkflow - INFO -    max_products_per_cycle: 5
+2025-07-13 15:12:52,129 - PassiveExtractionWorkflow - INFO -    supplier_extraction_batch_size: 3
+2025-07-13 15:12:52,129 - PassiveExtractionWorkflow - INFO -    max_categories_per_request: 3
+2025-07-13 15:12:52,132 - utils.enhanced_state_manager - INFO - Loaded state for poundwholesale.co.uk - resuming from index 0
+2025-07-13 15:12:52,132 - PassiveExtractionWorkflow - INFO - 📋 Loaded existing processing state for poundwholesale.co.uk
+2025-07-13 15:12:52,133 - PassiveExtractionWorkflow - INFO - 🔄 Resuming from index 0
+2025-07-13 15:12:52,133 - PassiveExtractionWorkflow - INFO - ✅ No previous progress found, starting fresh.
+2025-07-13 15:12:52,135 - PassiveExtractionWorkflow - INFO - ✅ No existing linking map found at /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/FBA_ANALYSIS/linking_maps/poundwholesale.co.uk/linking_map.json - Creating new map
+2025-07-13 15:12:52,136 - PassiveExtractionWorkflow - INFO - ✅ No existing linking map found at /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/FBA_ANALYSIS/linking_maps/poundwholesale.co.uk/linking_map.json - Creating new map
+2025-07-13 15:12:52,137 - PassiveExtractionWorkflow - INFO - CUSTOM MODE: Using predefined category list.
+2025-07-13 15:12:52,137 - tools.passive_extraction_workflow_latest - INFO - Attempting to load predefined categories for poundwholesale.co.uk
+2025-07-13 15:12:52,138 - tools.passive_extraction_workflow_latest - INFO - ✅ Successfully loaded 276 predefined category URLs from /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/config/poundwholesale_categories.json
+2025-07-13 15:12:52,140 - PassiveExtractionWorkflow - INFO - 🕷️ PERFORMING SUPPLIER SCRAPING from 276 categories
+2025-07-13 15:12:52,157 - PassiveExtractionWorkflow - INFO - 📦 Using supplier extraction batch size: 3
+2025-07-13 15:12:52,158 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS TRACKING: Extracting from 276 categories in 92 batches
+2025-07-13 15:12:52,158 - PassiveExtractionWorkflow - INFO - 📦 Processing category batch 1/92 (3 categories)
+2025-07-13 15:12:52,166 - PassiveExtractionWorkflow - INFO - 🔄 EXTRACTION PROGRESS: Processing subcategory 1/3 in batch 1 (Category 1/276)
+2025-07-13 15:12:52,166 - PassiveExtractionWorkflow - INFO - Scraping category: https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners
+2025-07-13 15:12:52,167 - configurable_supplier_scraper - INFO - Starting enhanced scraping from https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners
+2025-07-13 15:12:52,167 - configurable_supplier_scraper - INFO - Setting page limiter for https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners
+2025-07-13 15:12:52,167 - configurable_supplier_scraper - WARNING - BrowserManager not available for page limiter setup
+2025-07-13 15:12:52,167 - configurable_supplier_scraper - INFO - Collecting product URLs from paginated pages starting at: https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners
+2025-07-13 15:12:52,167 - configurable_supplier_scraper - INFO - Processing page 1: https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners
+2025-07-13 15:12:52,168 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners (attempt 1/3)
+2025-07-13 15:12:52,482 - configurable_supplier_scraper - INFO - Connected to shared Chrome instance at http://localhost:9222
+2025-07-13 15:12:52,498 - configurable_supplier_scraper - DEBUG - Created new browser context with realistic settings
+2025-07-13 15:12:57,396 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners in 1.66s...
+2025-07-13 15:12:59,057 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners (attempt 2/3)
+2025-07-13 15:13:02,407 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners in 3.29s...
+2025-07-13 15:13:05,705 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners (attempt 3/3)
+2025-07-13 15:13:09,550 - configurable_supplier_scraper - ERROR - Failed to fetch https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners after 3 attempts.
+2025-07-13 15:13:09,551 - configurable_supplier_scraper - WARNING - Failed to fetch page 1
+2025-07-13 15:13:09,551 - configurable_supplier_scraper - INFO - Collected 0 total product URLs across 1 pages
+2025-07-13 15:13:09,551 - configurable_supplier_scraper - WARNING - No product URLs found across all pages for https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners
+2025-07-13 15:13:09,551 - PassiveExtractionWorkflow - INFO - 💾 CACHE SAVE: Starting save of 0 products to cache...
+2025-07-13 15:13:09,559 - PassiveExtractionWorkflow - INFO - ✅ CACHE SAVE: Successfully saved 0 products (0 new) to poundwholesale-co-uk_products_cache.json
+2025-07-13 15:13:09,559 - PassiveExtractionWorkflow - INFO - 💾 CACHE UPDATE: Saved 0 products to cache (every 10 products)
+2025-07-13 15:13:09,572 - PassiveExtractionWorkflow - INFO - 🔄 EXTRACTION PROGRESS: Processing subcategory 2/3 in batch 1 (Category 2/276)
+2025-07-13 15:13:09,573 - PassiveExtractionWorkflow - INFO - Scraping category: https://www.poundwholesale.co.uk/wholesale-cleaning/sponges-scourers-cloths
+2025-07-13 15:13:09,573 - configurable_supplier_scraper - INFO - Starting enhanced scraping from https://www.poundwholesale.co.uk/wholesale-cleaning/sponges-scourers-cloths
+2025-07-13 15:13:09,573 - configurable_supplier_scraper - INFO - Setting page limiter for https://www.poundwholesale.co.uk/wholesale-cleaning/sponges-scourers-cloths
+2025-07-13 15:13:09,574 - configurable_supplier_scraper - WARNING - BrowserManager not available for page limiter setup
+2025-07-13 15:13:09,574 - configurable_supplier_scraper - INFO - Collecting product URLs from paginated pages starting at: https://www.poundwholesale.co.uk/wholesale-cleaning/sponges-scourers-cloths
+2025-07-13 15:13:09,574 - configurable_supplier_scraper - INFO - Processing page 1: https://www.poundwholesale.co.uk/wholesale-cleaning/sponges-scourers-cloths
+2025-07-13 15:13:09,575 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/wholesale-cleaning/sponges-scourers-cloths (attempt 1/3)
+2025-07-13 15:13:12,080 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/wholesale-cleaning/sponges-scourers-cloths in 1.80s...
+2025-07-13 15:13:13,886 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/wholesale-cleaning/sponges-scourers-cloths (attempt 2/3)
+2025-07-13 15:13:18,442 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/wholesale-cleaning/sponges-scourers-cloths in 3.31s...
+2025-07-13 15:13:21,768 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/wholesale-cleaning/sponges-scourers-cloths (attempt 3/3)
+2025-07-13 15:13:25,066 - configurable_supplier_scraper - ERROR - Failed to fetch https://www.poundwholesale.co.uk/wholesale-cleaning/sponges-scourers-cloths after 3 attempts.
+2025-07-13 15:13:25,067 - configurable_supplier_scraper - WARNING - Failed to fetch page 1
+2025-07-13 15:13:25,067 - configurable_supplier_scraper - INFO - Collected 0 total product URLs across 1 pages
+2025-07-13 15:13:25,067 - configurable_supplier_scraper - WARNING - No product URLs found across all pages for https://www.poundwholesale.co.uk/wholesale-cleaning/sponges-scourers-cloths
+2025-07-13 15:13:25,068 - PassiveExtractionWorkflow - INFO - 💾 CACHE SAVE: Starting save of 0 products to cache...
+2025-07-13 15:13:25,080 - PassiveExtractionWorkflow - INFO - ✅ CACHE SAVE: Successfully saved 0 products (0 new) to poundwholesale-co-uk_products_cache.json
+2025-07-13 15:13:25,080 - PassiveExtractionWorkflow - INFO - 💾 CACHE UPDATE: Saved 0 products to cache (every 10 products)
+2025-07-13 15:13:25,092 - PassiveExtractionWorkflow - INFO - 🔄 EXTRACTION PROGRESS: Processing subcategory 3/3 in batch 1 (Category 3/276)
+2025-07-13 15:13:25,092 - PassiveExtractionWorkflow - INFO - Scraping category: https://www.poundwholesale.co.uk/health-beauty/wholesale-dental
+2025-07-13 15:13:25,092 - configurable_supplier_scraper - INFO - Starting enhanced scraping from https://www.poundwholesale.co.uk/health-beauty/wholesale-dental
+2025-07-13 15:13:25,093 - configurable_supplier_scraper - INFO - Setting page limiter for https://www.poundwholesale.co.uk/health-beauty/wholesale-dental
+2025-07-13 15:13:25,093 - configurable_supplier_scraper - WARNING - BrowserManager not available for page limiter setup
+2025-07-13 15:13:25,093 - configurable_supplier_scraper - INFO - Collecting product URLs from paginated pages starting at: https://www.poundwholesale.co.uk/health-beauty/wholesale-dental
+2025-07-13 15:13:25,093 - configurable_supplier_scraper - INFO - Processing page 1: https://www.poundwholesale.co.uk/health-beauty/wholesale-dental
+2025-07-13 15:13:25,094 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/health-beauty/wholesale-dental (attempt 1/3)
+2025-07-13 15:13:27,455 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/health-beauty/wholesale-dental in 2.42s...
+2025-07-13 15:13:29,889 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/health-beauty/wholesale-dental (attempt 2/3)
+2025-07-13 15:13:32,845 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/health-beauty/wholesale-dental in 2.80s...
+2025-07-13 15:13:33,366 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/health-beauty/wholesale-dental (attempt 3/3)
+2025-07-13 15:13:38,001 - configurable_supplier_scraper - ERROR - Failed to fetch https://www.poundwholesale.co.uk/health-beauty/wholesale-dental after 3 attempts.
+2025-07-13 15:13:38,001 - configurable_supplier_scraper - WARNING - Failed to fetch page 1
+2025-07-13 15:13:38,002 - configurable_supplier_scraper - INFO - Collected 0 total product URLs across 1 pages
+2025-07-13 15:13:38,002 - configurable_supplier_scraper - WARNING - No product URLs found across all pages for https://www.poundwholesale.co.uk/health-beauty/wholesale-dental
+2025-07-13 15:13:38,002 - PassiveExtractionWorkflow - INFO - 💾 CACHE SAVE: Starting save of 0 products to cache...
+2025-07-13 15:13:38,014 - PassiveExtractionWorkflow - INFO - ✅ CACHE SAVE: Successfully saved 0 products (0 new) to poundwholesale-co-uk_products_cache.json
+2025-07-13 15:13:38,014 - PassiveExtractionWorkflow - INFO - 💾 CACHE UPDATE: Saved 0 products to cache (every 10 products)
+2025-07-13 15:13:38,015 - PassiveExtractionWorkflow - INFO - ✅ Completed batch 1: 0 total products extracted so far
+2025-07-13 15:13:38,015 - PassiveExtractionWorkflow - INFO - 📦 Processing category batch 2/92 (3 categories)
+2025-07-13 15:13:38,028 - PassiveExtractionWorkflow - INFO - 🔄 EXTRACTION PROGRESS: Processing subcategory 1/3 in batch 2 (Category 4/276)
+2025-07-13 15:13:38,028 - PassiveExtractionWorkflow - INFO - Scraping category: https://www.poundwholesale.co.uk/toys/wholesale-slime-squish-toys
+2025-07-13 15:13:38,029 - configurable_supplier_scraper - INFO - Starting enhanced scraping from https://www.poundwholesale.co.uk/toys/wholesale-slime-squish-toys
+2025-07-13 15:13:38,029 - configurable_supplier_scraper - INFO - Setting page limiter for https://www.poundwholesale.co.uk/toys/wholesale-slime-squish-toys
+2025-07-13 15:13:38,029 - configurable_supplier_scraper - WARNING - BrowserManager not available for page limiter setup
+2025-07-13 15:13:38,030 - configurable_supplier_scraper - INFO - Collecting product URLs from paginated pages starting at: https://www.poundwholesale.co.uk/toys/wholesale-slime-squish-toys
+2025-07-13 15:13:38,030 - configurable_supplier_scraper - INFO - Processing page 1: https://www.poundwholesale.co.uk/toys/wholesale-slime-squish-toys
+2025-07-13 15:13:38,030 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/toys/wholesale-slime-squish-toys (attempt 1/3)
+2025-07-13 15:13:40,481 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/toys/wholesale-slime-squish-toys in 2.05s...
+2025-07-13 15:13:42,548 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/toys/wholesale-slime-squish-toys (attempt 2/3)
+2025-07-13 15:13:46,789 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/toys/wholesale-slime-squish-toys in 3.04s...
+2025-07-13 15:13:49,835 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/toys/wholesale-slime-squish-toys (attempt 3/3)
+2025-07-13 15:13:54,419 - configurable_supplier_scraper - ERROR - Failed to fetch https://www.poundwholesale.co.uk/toys/wholesale-slime-squish-toys after 3 attempts.
+2025-07-13 15:13:54,419 - configurable_supplier_scraper - WARNING - Failed to fetch page 1
+2025-07-13 15:13:54,419 - configurable_supplier_scraper - INFO - Collected 0 total product URLs across 1 pages
+2025-07-13 15:13:54,420 - configurable_supplier_scraper - WARNING - No product URLs found across all pages for https://www.poundwholesale.co.uk/toys/wholesale-slime-squish-toys
+2025-07-13 15:13:54,420 - PassiveExtractionWorkflow - INFO - 💾 CACHE SAVE: Starting save of 0 products to cache...
+2025-07-13 15:13:54,432 - PassiveExtractionWorkflow - INFO - ✅ CACHE SAVE: Successfully saved 0 products (0 new) to poundwholesale-co-uk_products_cache.json
+2025-07-13 15:13:54,432 - PassiveExtractionWorkflow - INFO - 💾 CACHE UPDATE: Saved 0 products to cache (every 10 products)
+2025-07-13 15:13:54,447 - PassiveExtractionWorkflow - INFO - 🔄 EXTRACTION PROGRESS: Processing subcategory 2/3 in batch 2 (Category 5/276)
+2025-07-13 15:13:54,448 - PassiveExtractionWorkflow - INFO - Scraping category: https://www.poundwholesale.co.uk/toys/wholesale-kids-art-craft-music-toys
+2025-07-13 15:13:54,448 - configurable_supplier_scraper - INFO - Starting enhanced scraping from https://www.poundwholesale.co.uk/toys/wholesale-kids-art-craft-music-toys
+2025-07-13 15:13:54,448 - configurable_supplier_scraper - INFO - Setting page limiter for https://www.poundwholesale.co.uk/toys/wholesale-kids-art-craft-music-toys
+2025-07-13 15:13:54,449 - configurable_supplier_scraper - WARNING - BrowserManager not available for page limiter setup
+2025-07-13 15:13:54,449 - configurable_supplier_scraper - INFO - Collecting product URLs from paginated pages starting at: https://www.poundwholesale.co.uk/toys/wholesale-kids-art-craft-music-toys
+2025-07-13 15:13:54,449 - configurable_supplier_scraper - INFO - Processing page 1: https://www.poundwholesale.co.uk/toys/wholesale-kids-art-craft-music-toys
+2025-07-13 15:13:54,450 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/toys/wholesale-kids-art-craft-music-toys (attempt 1/3)
+2025-07-13 15:13:56,863 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/toys/wholesale-kids-art-craft-music-toys in 2.15s...
+2025-07-13 15:13:59,017 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/toys/wholesale-kids-art-craft-music-toys (attempt 2/3)
+2025-07-13 15:14:02,342 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/toys/wholesale-kids-art-craft-music-toys in 2.82s...
+2025-07-13 15:14:02,933 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/toys/wholesale-kids-art-craft-music-toys (attempt 3/3)
+2025-07-13 15:14:07,527 - configurable_supplier_scraper - ERROR - Failed to fetch https://www.poundwholesale.co.uk/toys/wholesale-kids-art-craft-music-toys after 3 attempts.
+2025-07-13 15:14:07,527 - configurable_supplier_scraper - WARNING - Failed to fetch page 1
+2025-07-13 15:14:07,528 - configurable_supplier_scraper - INFO - Collected 0 total product URLs across 1 pages
+2025-07-13 15:14:07,528 - configurable_supplier_scraper - WARNING - No product URLs found across all pages for https://www.poundwholesale.co.uk/toys/wholesale-kids-art-craft-music-toys
+2025-07-13 15:14:07,528 - PassiveExtractionWorkflow - INFO - 💾 CACHE SAVE: Starting save of 0 products to cache...
+2025-07-13 15:14:07,539 - PassiveExtractionWorkflow - INFO - ✅ CACHE SAVE: Successfully saved 0 products (0 new) to poundwholesale-co-uk_products_cache.json
+2025-07-13 15:14:07,539 - PassiveExtractionWorkflow - INFO - 💾 CACHE UPDATE: Saved 0 products to cache (every 10 products)
+2025-07-13 15:14:07,553 - PassiveExtractionWorkflow - INFO - 🔄 EXTRACTION PROGRESS: Processing subcategory 3/3 in batch 2 (Category 6/276)
+2025-07-13 15:14:07,553 - PassiveExtractionWorkflow - INFO - Scraping category: https://www.poundwholesale.co.uk/health-beauty/wholesale-first-aid-medical
+2025-07-13 15:14:07,554 - configurable_supplier_scraper - INFO - Starting enhanced scraping from https://www.poundwholesale.co.uk/health-beauty/wholesale-first-aid-medical
+2025-07-13 15:14:07,554 - configurable_supplier_scraper - INFO - Setting page limiter for https://www.poundwholesale.co.uk/health-beauty/wholesale-first-aid-medical
+2025-07-13 15:14:07,555 - configurable_supplier_scraper - WARNING - BrowserManager not available for page limiter setup
+2025-07-13 15:14:07,555 - configurable_supplier_scraper - INFO - Collecting product URLs from paginated pages starting at: https://www.poundwholesale.co.uk/health-beauty/wholesale-first-aid-medical
+2025-07-13 15:14:07,555 - configurable_supplier_scraper - INFO - Processing page 1: https://www.poundwholesale.co.uk/health-beauty/wholesale-first-aid-medical
+2025-07-13 15:14:07,556 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/health-beauty/wholesale-first-aid-medical (attempt 1/3)
+2025-07-13 15:14:10,071 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/health-beauty/wholesale-first-aid-medical in 2.26s...
+2025-07-13 15:14:12,333 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/health-beauty/wholesale-first-aid-medical (attempt 2/3)
+2025-07-13 15:14:15,266 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/health-beauty/wholesale-first-aid-medical in 3.11s...
+2025-07-13 15:14:18,379 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/health-beauty/wholesale-first-aid-medical (attempt 3/3)
+2025-07-13 15:14:21,626 - configurable_supplier_scraper - ERROR - Failed to fetch https://www.poundwholesale.co.uk/health-beauty/wholesale-first-aid-medical after 3 attempts.
+2025-07-13 15:14:21,626 - configurable_supplier_scraper - WARNING - Failed to fetch page 1
+2025-07-13 15:14:21,626 - configurable_supplier_scraper - INFO - Collected 0 total product URLs across 1 pages
+2025-07-13 15:14:21,627 - configurable_supplier_scraper - WARNING - No product URLs found across all pages for https://www.poundwholesale.co.uk/health-beauty/wholesale-first-aid-medical
+2025-07-13 15:14:21,627 - PassiveExtractionWorkflow - INFO - 💾 CACHE SAVE: Starting save of 0 products to cache...
+2025-07-13 15:14:21,639 - PassiveExtractionWorkflow - INFO - ✅ CACHE SAVE: Successfully saved 0 products (0 new) to poundwholesale-co-uk_products_cache.json
+2025-07-13 15:14:21,640 - PassiveExtractionWorkflow - INFO - 💾 CACHE UPDATE: Saved 0 products to cache (every 10 products)
+2025-07-13 15:14:21,640 - PassiveExtractionWorkflow - INFO - ✅ Completed batch 2: 0 total products extracted so far
+2025-07-13 15:14:21,641 - PassiveExtractionWorkflow - INFO - 📦 Processing category batch 3/92 (3 categories)
+2025-07-13 15:14:21,655 - PassiveExtractionWorkflow - INFO - 🔄 EXTRACTION PROGRESS: Processing subcategory 1/3 in batch 3 (Category 7/276)
+2025-07-13 15:14:21,655 - PassiveExtractionWorkflow - INFO - Scraping category: https://www.poundwholesale.co.uk/health-beauty/plasters-bandages
+2025-07-13 15:14:21,656 - configurable_supplier_scraper - INFO - Starting enhanced scraping from https://www.poundwholesale.co.uk/health-beauty/plasters-bandages
+2025-07-13 15:14:21,656 - configurable_supplier_scraper - INFO - Setting page limiter for https://www.poundwholesale.co.uk/health-beauty/plasters-bandages
+2025-07-13 15:14:21,656 - configurable_supplier_scraper - WARNING - BrowserManager not available for page limiter setup
+2025-07-13 15:14:21,657 - configurable_supplier_scraper - INFO - Collecting product URLs from paginated pages starting at: https://www.poundwholesale.co.uk/health-beauty/plasters-bandages
+2025-07-13 15:14:21,657 - configurable_supplier_scraper - INFO - Processing page 1: https://www.poundwholesale.co.uk/health-beauty/plasters-bandages
+2025-07-13 15:14:21,657 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/health-beauty/plasters-bandages (attempt 1/3)
+2025-07-13 15:14:24,016 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/health-beauty/plasters-bandages in 1.98s...
+2025-07-13 15:14:26,003 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/health-beauty/plasters-bandages (attempt 2/3)
+2025-07-13 15:14:29,531 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/health-beauty/plasters-bandages in 2.73s...
+2025-07-13 15:14:32,276 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/health-beauty/plasters-bandages (attempt 3/3)
+2025-07-13 15:14:34,765 - configurable_supplier_scraper - ERROR - Failed to fetch https://www.poundwholesale.co.uk/health-beauty/plasters-bandages after 3 attempts.
+2025-07-13 15:14:34,765 - configurable_supplier_scraper - WARNING - Failed to fetch page 1
+2025-07-13 15:14:34,765 - configurable_supplier_scraper - INFO - Collected 0 total product URLs across 1 pages
+2025-07-13 15:14:34,766 - configurable_supplier_scraper - WARNING - No product URLs found across all pages for https://www.poundwholesale.co.uk/health-beauty/plasters-bandages
+2025-07-13 15:14:34,766 - PassiveExtractionWorkflow - INFO - 💾 CACHE SAVE: Starting save of 0 products to cache...
+2025-07-13 15:14:34,778 - PassiveExtractionWorkflow - INFO - ✅ CACHE SAVE: Successfully saved 0 products (0 new) to poundwholesale-co-uk_products_cache.json
+2025-07-13 15:14:34,779 - PassiveExtractionWorkflow - INFO - 💾 CACHE UPDATE: Saved 0 products to cache (every 10 products)
+2025-07-13 15:14:34,791 - PassiveExtractionWorkflow - INFO - 🔄 EXTRACTION PROGRESS: Processing subcategory 2/3 in batch 3 (Category 8/276)
+2025-07-13 15:14:34,792 - PassiveExtractionWorkflow - INFO - Scraping category: https://www.poundwholesale.co.uk/toys/wholesale-action-play-sets-vehicle-toys/diy-building-construction
+2025-07-13 15:14:34,792 - configurable_supplier_scraper - INFO - Starting enhanced scraping from https://www.poundwholesale.co.uk/toys/wholesale-action-play-sets-vehicle-toys/diy-building-construction
+2025-07-13 15:14:34,792 - configurable_supplier_scraper - INFO - Setting page limiter for https://www.poundwholesale.co.uk/toys/wholesale-action-play-sets-vehicle-toys/diy-building-construction
+2025-07-13 15:14:34,793 - configurable_supplier_scraper - WARNING - BrowserManager not available for page limiter setup
+2025-07-13 15:14:34,793 - configurable_supplier_scraper - INFO - Collecting product URLs from paginated pages starting at: https://www.poundwholesale.co.uk/toys/wholesale-action-play-sets-vehicle-toys/diy-building-construction
+2025-07-13 15:14:34,793 - configurable_supplier_scraper - INFO - Processing page 1: https://www.poundwholesale.co.uk/toys/wholesale-action-play-sets-vehicle-toys/diy-building-construction
+2025-07-13 15:14:34,793 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/toys/wholesale-action-play-sets-vehicle-toys/diy-building-construction (attempt 1/3)
+2025-07-13 15:14:37,106 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/toys/wholesale-action-play-sets-vehicle-toys/diy-building-construction in 2.15s...

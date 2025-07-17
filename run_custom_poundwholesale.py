@@ -1,137 +1,83 @@
 import asyncio
 import logging
-import json
+import sys
 import os
-from datetime import datetime
+
+# Add project root to Python path to resolve module imports
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+
+from playwright.async_api import async_playwright
+from config.system_config_loader import SystemConfigLoader
+from tools.standalone_playwright_login import StandalonePlaywrightLogin
 from tools.passive_extraction_workflow_latest import PassiveExtractionWorkflow
 from tools.supplier_authentication_service import SupplierAuthenticationService
-
-def setup_logging():
-    """Setup comprehensive logging with debug file output"""
-    try:
-        # Create logs directory structure if it doesn't exist
-        os.makedirs("logs/debug", exist_ok=True)
-        
-        # Generate timestamp for log filename
-        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        debug_log_file = f"logs/debug/run_custom_poundwholesale_{timestamp}.log"
-        
-        # Clear any existing handlers to prevent conflicts
-        root_logger = logging.getLogger()
-        root_logger.handlers.clear()
-        
-        # Configure root logger
-        logging.basicConfig(
-            level=logging.DEBUG,
-            format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-            handlers=[
-                # Console handler (INFO level)
-                logging.StreamHandler(),
-                # Debug file handler (DEBUG level)
-                logging.FileHandler(debug_log_file, mode='w', encoding='utf-8')
-            ],
-            force=True  # Force reconfiguration
-        )
-        
-        # Verify file was created
-        with open(debug_log_file, 'a') as f:
-            f.write(f"=== DEBUG LOG INITIALIZED: {timestamp} ===\n")
-        
-        print(f"✅ Debug logging initialized: {debug_log_file}")
-        return debug_log_file
-        
-    except Exception as e:
-        print(f"❌ Failed to setup logging: {e}")
-        # Fallback to basic console logging
-        logging.basicConfig(level=logging.INFO)
-        return None
-
-# Setup logging and get the debug log file path
-debug_log_path = setup_logging()
-log = logging.getLogger(__name__)
-
-def load_config():
-    """Load system configuration from config/system_config.json"""
-    try:
-        with open("config/system_config.json", 'r') as f:
-            return json.load(f)
-    except FileNotFoundError:
-        log.error("config/system_config.json not found. Please ensure the file exists.")
-        return {}
-    except json.JSONDecodeError:
-        log.error("Error decoding config/system_config.json. Please ensure it is valid JSON.")
-        return {}
+from utils.logger import setup_logger
+from utils.browser_manager import BrowserManager
 
 async def main():
-    """
-    Simplified launcher for Pound Wholesale extraction workflow.
-    Configuration and parameter logic handled entirely by the workflow.
-    """
-    log.info("--- Starting Custom Pound Wholesale Extraction Workflow ---")
-    log.info(f"📋 Debug log file: {debug_log_path}")
+    """Main function to run the custom extraction workflow."""
+    print("--- Starting Custom Pound Wholesale Extraction Workflow ---")
+    
+    # Setup logging
+    debug_log_file = setup_logger()
+    log = logging.getLogger(__name__)
+    log.info(f"📋 Debug log file: {debug_log_file}")
     log.debug("Debug logging initialized - full system execution details will be captured")
 
-    # Initialize authentication service for logout detection and login retry
-    supplier_name = "poundwholesale.co.uk"
-    supplier_url = "https://www.poundwholesale.co.uk/"
-    
-    log.info("🔐 Initializing authentication service for logout detection...")
-    auth_service = SupplierAuthenticationService(
-        supplier_name=supplier_name,
-        supplier_url=supplier_url,
-        config_path="config/supplier_configs/poundwholesale.co.uk.json"
-    )
-    
-    # Check initial authentication state
-    try:
-        is_authenticated = await auth_service.check_authentication_status()
-        if is_authenticated:
-            log.info("✅ Authentication verified - ready to proceed")
-        else:
-            log.warning("⚠️ Not authenticated - will attempt login if needed during extraction")
-    except Exception as e:
-        log.warning(f"Authentication check failed: {e} - proceeding anyway")
+    config_loader = SystemConfigLoader()
+    workflow_config = config_loader.get_workflow_config('poundwholesale_workflow')
+    supplier_name = workflow_config.get('supplier_name', 'poundwholesale.co.uk')
+    credentials = config_loader.get_credentials(supplier_name)
+    chrome_debug_port = config_loader.get_system_config().get('chrome_debug_port', 9222)
 
-    # Initialize workflow - configuration handled entirely within workflow
-    workflow = PassiveExtractionWorkflow(ai_client=None)
-    
-    # Pass authentication service to workflow for logout detection
-    workflow.auth_service = auth_service
-
-    # Execute the main run method - workflow handles all parameter loading
+    browser_manager = None
     try:
-        await workflow.run(
-            supplier_name=supplier_name,
-            supplier_url=supplier_url,
-            use_predefined_categories=True
-        )
-    except Exception as e:
-        log.error(f"Workflow execution failed: {e}")
+        browser_manager = BrowserManager.get_instance()
+        await browser_manager.launch_browser(cdp_port=chrome_debug_port)
+        page = await browser_manager.get_page()
+
+        supplier_url = workflow_config.get('supplier_url', f"https://{supplier_name}")
+        supplier_config_path = os.path.join("config", "supplier_configs", f"{supplier_name}.json")
+
+        log.info(f"🔐 Initializing authentication service for logout detection...")
+        auth_service = SupplierAuthenticationService(browser_manager)
+
+        if not credentials:
+            log.error(f"🚨 Credentials for {supplier_name} not found in config. Exiting.")
+            return
+
+        log.info(f"✅ Using hardcoded credentials for {supplier_name}")
         
-        # Check if failure was due to authentication issues
-        if "login" in str(e).lower() or "auth" in str(e).lower() or "session" in str(e).lower():
-            log.warning("🔄 Possible authentication issue detected - attempting re-authentication...")
-            try:
-                login_success = await auth_service.authenticate()
-                if login_success:
-                    log.info("✅ Re-authentication successful - retrying workflow...")
-                    await workflow.run(
-                        supplier_name=supplier_name,
-                        supplier_url=supplier_url,
-                        use_predefined_categories=True
-                    )
-                else:
-                    log.error("❌ Re-authentication failed - workflow cannot continue")
-                    raise e
-            except Exception as retry_error:
-                log.error(f"Retry attempt failed: {retry_error}")
-                raise e
-        else:
-            raise e
+        log.info(f"🌐 Connecting to existing Chrome debug port {chrome_debug_port} for authentication...")
 
-    log.info("--- Custom Pound Wholesale Extraction Workflow Finished ---")
-    log.info(f"📋 Complete debug log available at: {debug_log_path}")
-    log.debug("System execution completed - check debug log for detailed analysis")
+        authenticated = await auth_service.ensure_authenticated_session(page, credentials)
+        if not authenticated:
+            log.error("Authentication failed. Exiting workflow.")
+            return
+
+        # Pass the single browser manager instance to the workflow
+        workflow = PassiveExtractionWorkflow(
+            config_loader=config_loader,
+            workflow_config=workflow_config,
+            browser_manager=browser_manager
+        )
+        await workflow.run()
+
+    except Exception as e:
+        log.critical(f"💥 A critical error occurred in the main workflow: {e}", exc_info=True)
+    finally:
+        if browser_manager:
+            # Keep browser persistent - only close pages, not the browser itself
+            log.info("🌐 Keeping browser persistent for next run - not closing browser")
+            # No browser cleanup to maintain persistence
+        print("--- Custom Pound Wholesale Extraction Workflow Finished ---")
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    # Ensure the event loop is created and set for the main thread
+    if sys.platform == "win32":
+        asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
+    
+    try:
+        asyncio.run(main())
+    except KeyboardInterrupt:
+        print("\n🛑 Process interrupted by user. Shutting down gracefully.")

@@ -1,0 +1,1260 @@
+INFO:__main__:🔍 Enhanced detailed logging enabled - output: /mnt/c/Users/chris/Cloud-Drive_christianhaddad8@gmail.com/Cloud-Drive/Full/claude code/Amazon-FBA-Agent-System-v3/logs/debug/run_complete_fba_system_20250705_193527.log
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:__main__:🚀 Complete FBA System v3 initialized
+INFO:__main__:🏭 Processing supplier: poundwholesale-co-uk
+INFO:__main__:🔗 URL: https://www.poundwholesale.co.uk/
+INFO:__main__:📧 Email: info@theblacksmithmarket.com
+INFO:__main__:🖥️ Headed mode: False
+INFO:__main__:📦 Max products: 0
+INFO:__main__:🔄 Force regenerate: False
+INFO:__main__:📦 Archive system disabled - skipping file archiving
+INFO:tools.supplier_guard:🛡️ Supplier Guard initialized
+INFO:__main__:⚠️ Supplier poundwholesale-co-uk not ready: No .supplier_ready file found in suppliers/poundwholesale-co-uk
+INFO:utils.path_manager:Creating run output directory for supplier 'poundwholesale-co-uk' -> 'poundwholesale-co-uk/20250705_153528_run'
+DEBUG:utils.path_manager:Successfully created run output directory: /mnt/c/Users/chris/Cloud-Drive_christianhaddad8@gmail.com/Cloud-Drive/Full/claude code/Amazon-FBA-Agent-System-v3/OUTPUTS/poundwholesale-co-uk/20250705_153528_run
+INFO:__main__:📁 Run output directory: /mnt/c/Users/chris/Cloud-Drive_christianhaddad8@gmail.com/Cloud-Drive/Full/claude code/Amazon-FBA-Agent-System-v3/OUTPUTS/poundwholesale-co-uk/20250705_153528_run
+INFO:__main__:✅ Existing supplier package found for poundwholesale-co-uk. Bypassing script generation.
+INFO:__main__:🚀 Initializing centralized browser session...
+INFO:utils.browser_manager:🔧 BrowserManager singleton initialized
+INFO:utils.browser_manager:🔌 Connecting to Chrome on debug port 9222
+INFO:utils.browser_manager:📄 Using existing context with 2 pages
+INFO:utils.browser_manager:✅ Connected to Chrome successfully
+INFO:utils.browser_manager:📄 Created new page #1 for https://www.poundwholesale.co.uk
+INFO:utils.browser_manager:✅ Page ready for https://www.poundwholesale.co.uk/
+INFO:__main__:🔐 Performing supplier authentication...
+DEBUG:vision_login_handler:Vision login debug logging initialized - writing to /mnt/c/Users/chris/Cloud-Drive_christianhaddad8@gmail.com/Cloud-Drive/Full/claude code/Amazon-FBA-Agent-System-v3/logs/debug/vision_login_20250705.log
+INFO:tools.supplier_authentication_service:✅ Authentication indicator found: 'logout'
+INFO:tools.supplier_authentication_service:✅ Logout link found - user is authenticated
+INFO:tools.supplier_authentication_service:✅ Session already authenticated - skipping login
+INFO:__main__:✅ Authentication successful using existing_session. Proceeding with authenticated workflow.
+INFO:__main__:🔄 Using standard workflow (LangGraph integration disabled)
+INFO:__main__:🔄 Starting passive extraction workflow...
+INFO:__main__:✅ Loaded system configuration from /mnt/c/Users/chris/Cloud-Drive_christianhaddad8@gmail.com/Cloud-Drive/Full/claude code/Amazon-FBA-Agent-System-v3/config/system_config.json
+INFO:__main__:✅ OpenAI client initialized for AI features
+WARNING:tools.passive_extraction_workflow_latest:Limiting scrape to 5 products per category. This is a low value suitable for testing only.
+INFO:tools.passive_extraction_workflow_latest:PassiveExtractionWorkflow initialized WITH an AI client.
+INFO:amazon_playwright_extractor:AI features disabled in amazon_playwright_extractor - using only traditional selectors.
+INFO:amazon_playwright_extractor:Output directory set to: /mnt/c/Users/chris/Cloud-Drive_christianhaddad8@gmail.com/Cloud-Drive/Full/claude code/Amazon-FBA-Agent-System-v3/OUTPUTS/CACHE/amazon_data
+INFO:amazon_playwright_extractor:🔧 AmazonExtractor will use centralized BrowserManager
+INFO:configurable_supplier_scraper:🔧 ConfigurableSupplierScraper will use centralized BrowserManager
+DEBUG:configurable_supplier_scraper:Debug logging initialized - writing to /mnt/c/Users/chris/Cloud-Drive_christianhaddad8@gmail.com/Cloud-Drive/Full/claude code/Amazon-FBA-Agent-System-v3/logs/debug/supplier_scraping_debug_20250705_193541.log
+DEBUG:configurable_supplier_scraper:Headless mode: False
+INFO:tools.passive_extraction_workflow_latest:✅ Linking map initialized - using previous version self-contained approach
+INFO:__main__:🔧 Workflow configured: force_ai_scraping=True, linking_batch=2, financial_batch=2, ai_client=enabled
+INFO:utils.enhanced_state_manager:No existing state file found for poundwholesale-co-uk, starting fresh
+INFO:tools.passive_extraction_workflow_latest:✅ Loaded linking map from /mnt/c/Users/chris/Cloud-Drive_christianhaddad8@gmail.com/Cloud-Drive/Full/claude code/Amazon-FBA-Agent-System-v3/OUTPUTS/FBA_ANALYSIS/linking_maps/poundwholesale-co-uk/linking_map.json with 6 entries
+INFO:tools.passive_extraction_workflow_latest:Starting passive extraction workflow for supplier: poundwholesale-co-uk (https://www.poundwholesale.co.uk/)
+INFO:tools.passive_extraction_workflow_latest:Session ID: poundwholesale-co-uk_20250705_193541
+INFO:tools.passive_extraction_workflow_latest:PRICE CRITERIA: Min Supplier Cost £0.1, Max Supplier Cost £20.0
+INFO:utils.enhanced_state_manager:No existing state file found for poundwholesale-co-uk, starting fresh
+INFO:tools.passive_extraction_workflow_latest:Starting fresh analysis - no previous state found
+INFO:tools.passive_extraction_workflow_latest:Extracting products from poundwholesale-co-uk...
+INFO:config.supplier_config_loader:Loaded supplier selector config for domain: poundwholesale.co.uk
+INFO:configurable_supplier_scraper:Loaded selectors for domain poundwholesale.co.uk using load_supplier_selectors.
+DEBUG:vision_login_handler:Vision login debug logging initialized - writing to /mnt/c/Users/chris/Cloud-Drive_christianhaddad8@gmail.com/Cloud-Drive/Full/claude code/Amazon-FBA-Agent-System-v3/logs/debug/vision_login_20250705.log
+INFO:tools.passive_extraction_workflow_latest:Using fallback credentials for poundwholesale authentication
+INFO:tools.passive_extraction_workflow_latest:✅ Using authenticated page from entry point
+INFO:tools.passive_extraction_workflow_latest:🧠 AI category discovery will work with authenticated session
+INFO:tools.passive_extraction_workflow_latest:🧠 AI category progression ENABLED for start-of-workflow category selection
+INFO:tools.passive_extraction_workflow_latest:Extracting products from poundwholesale-co-uk using two-step process.
+INFO:tools.passive_extraction_workflow_latest:🧠 AI CATEGORY PROGRESSION: Running AI category selection at START of workflow
+INFO:tools.passive_extraction_workflow_latest:🧠 AI Memory loaded: 35 previously suggested URLs, 0 products processed
+DEBUG:tools.passive_extraction_workflow_latest:🧠 Previously suggested URLs: ['https://www.poundwholesale.co.uk/health-beauty/wholesale-first-aid-medical?product_list_limit=64&product_list_order=price&product_list_dir=asc', 'https://www.poundwholesale.co.uk/diy/wholesale-hand-tools/pliers', 'https://www.poundwholesale.co.uk/health-beauty/wholesale-shoe-care', 'https://www.poundwholesale.co.uk/wholesale-garden/pegs-clotheslines?product_list_limit=64&product_list_order=price&product_list_dir=asc', 'https://www.poundwholesale.co.uk/homeware/wholesale-home-fragrance-candles-accessories', 'https://www.poundwholesale.co.uk/wholesale-garden/garden-tools/rakes-brushes?product_list_limit=64&product_list_order=price&product_list_dir=asc', 'https://www.poundwholesale.co.uk/pet-supplies/wholesale-pet-toys-treats', 'https://www.poundwholesale.co.uk/wholesale-cleaning/bowls-storage', 'https://www.poundwholesale.co.uk/pet-supplies/wholesale-dog?product_list_limit=64&product_list_order=price&product_list_dir=asc', 'https://www.poundwholesale.co.uk/baby-supplies?product_list_limit=64&product_list_order=price&product_list_dir=asc', 'https://www.poundwholesale.co.uk/wholesale-branded-toys/disney', 'https://www.poundwholesale.co.uk/party-gift/wholesale-partyware', 'https://www.poundwholesale.co.uk/health-beauty/wholesale-skin-care?product_list_limit=64&product_list_order=price&product_list_dir=asc', 'https://www.poundwholesale.co.uk/stationery/wholesale-office-supplies', 'https://www.poundwholesale.co.uk/wholesale-cleaning/sponges-scourers-cloths?product_list_limit=64&product_list_order=price&product_list_dir=asc', 'https://www.poundwholesale.co.uk/diy/wholesale-home-security', 'https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays?product_list_limit=64&product_list_order=price&product_list_dir=asc', 'https://www.poundwholesale.co.uk/toys/wholesale-games-activity-toys?product_list_limit=64&product_list_order=price&product_list_dir=asc', 'https://www.poundwholesale.co.uk/wholesale-garden/garden-tools/secateurs-shears-loppers?product_list_limit=64&product_list_order=price&product_list_dir=asc', 'https://www.poundwholesale.co.uk/baby-supplies/wholesale-baby-blankets-bibs-babywear', 'https://www.poundwholesale.co.uk/wholesale-dekton-tools/dekton-measuring-levels', 'https://www.poundwholesale.co.uk/kitchenware/wholesale-baking?product_list_limit=64&product_list_order=price&product_list_dir=asc', 'https://www.poundwholesale.co.uk/diy/wholesale-hand-tools/files-and-chisels', 'https://www.poundwholesale.co.uk/wholesale-branded-toys/peppa-pig', 'https://www.poundwholesale.co.uk/toys/wholesale-dolls-soft-toys?product_list_limit=64&product_list_order=price&product_list_dir=asc', 'https://www.poundwholesale.co.uk/stationery/wholesale-art-crafts/craft-supplies', 'https://www.poundwholesale.co.uk/kitchenware/wholesale-foil', 'https://www.poundwholesale.co.uk/homeware/wholesale-bathroom-accessories?product_list_limit=64&product_list_order=price&product_list_dir=asc', 'https://www.poundwholesale.co.uk/pet-supplies/wholesale-pet-beds', 'https://www.poundwholesale.co.uk/wholesale-diy-tools/wholesale-hand-tools/hammers', 'https://www.poundwholesale.co.uk/wholesale-art-crafts/colouring-pens-pencils', 'https://www.poundwholesale.co.uk/toys/wholesale-pocket-money-toys?product_list_limit=64&product_list_order=price&product_list_dir=asc', 'https://www.poundwholesale.co.uk/diy/wholesale-car-care', 'https://www.poundwholesale.co.uk/homeware/wholesale-home-accessories', 'https://www.poundwholesale.co.uk/wholesale-kitchenware/wholesale-food-preparation']
+INFO:configurable_supplier_scraper:Extracting homepage categories from https://www.poundwholesale.co.uk/
+INFO:configurable_supplier_scraper:Fetching page content from: https://www.poundwholesale.co.uk/ (attempt 1/3)
+INFO:utils.browser_manager:♻️ Reusing existing Chrome connection (port 9222)
+INFO:utils.browser_manager:♻️ Reusing cached page for https://www.poundwholesale.co.uk
+INFO:configurable_supplier_scraper:🔧 Using BrowserManager page for https://www.poundwholesale.co.uk/
+INFO:configurable_supplier_scraper:🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/
+INFO:configurable_supplier_scraper:🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/
+INFO:configurable_supplier_scraper:Successfully fetched content from https://www.poundwholesale.co.uk/ (Size: 626650 bytes)
+INFO:configurable_supplier_scraper:Found 341 unique potential category URLs from homepage of https://www.poundwholesale.co.uk/
+INFO:configurable_supplier_scraper:Discovered 75 categories for https://www.poundwholesale.co.uk/
+INFO:tools.passive_extraction_workflow_latest:PHASE 3: Applying subcategory deduplication to 75 discovered categories
+INFO:tools.passive_extraction_workflow_latest:Parent-child URL analysis: 48 parent categories, 27 child categories
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/kitchenware
+DEBUG:configurable_supplier_scraper:Created new aiohttp session.
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/kitchenware: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/kitchenware -> 90 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/kitchenware (90 products) - SKIPPING 4 subcategories: ['https://www.poundwholesale.co.uk/kitchenware/wholesale-kitchen-utensils-cutlery', 'https://www.poundwholesale.co.uk/kitchenware/wholesale-crockery-dinnerware', 'https://www.poundwholesale.co.uk/kitchenware/wholesale-plastic-disposable/wholesale-plates-bowls', 'https://www.poundwholesale.co.uk/kitchenware/wholesale-plastic-disposable/wholesale-straws']
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/pet-supplies
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/pet-supplies: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/pet-supplies -> 90 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/pet-supplies (90 products) - SKIPPING 2 subcategories: ['https://www.poundwholesale.co.uk/pet-supplies/wholesale-pet-walking-grooming', 'https://www.poundwholesale.co.uk/pet-supplies/wholesale-dog']
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/seasonal
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/seasonal: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/seasonal -> 90 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/seasonal (90 products) - SKIPPING 0 subcategories: []
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/foil-platters-42-6cm-x-28-6cm-x-2-9cm-3-pack
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/foil-platters-42-6cm-x-28-6cm-x-2-9cm-3-pack: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/foil-platters-42-6cm-x-28-6cm-x-2-9cm-3-pack -> 31 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/foil-platters-42-6cm-x-28-6cm-x-2-9cm-3-pack (31 products) - SKIPPING 0 subcategories: []
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/diy
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/diy: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/diy -> 90 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/diy (90 products) - SKIPPING 14 subcategories: ['https://www.poundwholesale.co.uk/diy/wholesale-dekton-tools', 'https://www.poundwholesale.co.uk/diy/wholesale-home-security', 'https://www.poundwholesale.co.uk/diy/wholesale-marksman-tools', 'https://www.poundwholesale.co.uk/diy/wholesale-painting-decorating/paint-rollers-trays', 'https://www.poundwholesale.co.uk/diy/wholesale-car-care/pumps-compressors', 'https://www.poundwholesale.co.uk/diy/wholesale-painting-decorating/surface-preparation', 'https://www.poundwholesale.co.uk/diy/wholesale-dekton-tools/dekton-automotive', 'https://www.poundwholesale.co.uk/diy/wholesale-painting-decorating/filling-scraping', 'https://www.poundwholesale.co.uk/diy/wholesale-car-care/car-bulbs-fuses', 'https://www.poundwholesale.co.uk/diy/wholesale-dekton-tools/dekton-torches-lighting', 'https://www.poundwholesale.co.uk/diy/wholesale-hand-tools/saw-cutting', 'https://www.poundwholesale.co.uk/diy/wholesale-hand-tools/pliers', 'https://www.poundwholesale.co.uk/diy/wholesale-car-care/car-driving-accessories', 'https://www.poundwholesale.co.uk/diy/wholesale-car-care/cleaning-air-fresheners']
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/wholesale-garden
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/wholesale-garden: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/wholesale-garden -> 90 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/wholesale-garden (90 products) - SKIPPING 3 subcategories: ['https://www.poundwholesale.co.uk/wholesale-garden/outdoor-lighting', 'https://www.poundwholesale.co.uk/wholesale-garden/planting-growing', 'https://www.poundwholesale.co.uk/wholesale-garden/decorative-novelty-items']
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/new-suppliers
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/new-suppliers: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/new-suppliers -> 1 products (productive: False)
+INFO:tools.passive_extraction_workflow_latest:⚠️  PARENT CATEGORY INSUFFICIENT: https://www.poundwholesale.co.uk/new-suppliers (1 products) - INCLUDING 0 subcategories: []
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/ebay-amazon-sellers
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/ebay-amazon-sellers: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/ebay-amazon-sellers -> 60 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/ebay-amazon-sellers (60 products) - SKIPPING 0 subcategories: []
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/baby-supplies/wholesale-baby-weaning-feeding
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/baby-supplies/wholesale-baby-weaning-feeding: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/baby-supplies/wholesale-baby-weaning-feeding -> 60 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/baby-supplies/wholesale-baby-weaning-feeding (60 products) - SKIPPING 0 subcategories: []
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/baby-supplies/wholesale-baby-changing-wipes
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/baby-supplies/wholesale-baby-changing-wipes: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/baby-supplies/wholesale-baby-changing-wipes -> 36 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/baby-supplies/wholesale-baby-changing-wipes (36 products) - SKIPPING 0 subcategories: []
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/information-support/buying-guides
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/information-support/buying-guides: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/information-support/buying-guides -> 2 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/information-support/buying-guides (2 products) - SKIPPING 1 subcategories: ['https://www.poundwholesale.co.uk/information-support/buying-guides/stationery']
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/leisure-hobbies/wholesale-camping
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/leisure-hobbies/wholesale-camping: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/leisure-hobbies/wholesale-camping -> 60 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/leisure-hobbies/wholesale-camping (60 products) - SKIPPING 0 subcategories: []
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/health-beauty/wholesale-hand-nail
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/health-beauty/wholesale-hand-nail: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/health-beauty/wholesale-hand-nail -> 60 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/health-beauty/wholesale-hand-nail (60 products) - SKIPPING 0 subcategories: []
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/electrical/wholesale-torches
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/electrical/wholesale-torches: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/electrical/wholesale-torches -> 60 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/electrical/wholesale-torches (60 products) - SKIPPING 0 subcategories: []
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/leisure-hobbies/wholesale-cycling
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/leisure-hobbies/wholesale-cycling: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/leisure-hobbies/wholesale-cycling -> 60 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/leisure-hobbies/wholesale-cycling (60 products) - SKIPPING 0 subcategories: []
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/health-beauty/wholesale-dental
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/health-beauty/wholesale-dental: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/health-beauty/wholesale-dental -> 60 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/health-beauty/wholesale-dental (60 products) - SKIPPING 0 subcategories: []
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/toys/wholesale-action-play-sets-vehicle-toys
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/toys/wholesale-action-play-sets-vehicle-toys: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/toys/wholesale-action-play-sets-vehicle-toys -> 60 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/toys/wholesale-action-play-sets-vehicle-toys (60 products) - SKIPPING 2 subcategories: ['https://www.poundwholesale.co.uk/toys/wholesale-action-play-sets-vehicle-toys/kitchen-cooking', 'https://www.poundwholesale.co.uk/toys/wholesale-action-play-sets-vehicle-toys/firefighters']
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/pound-lines/baby-pound-lines
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/pound-lines/baby-pound-lines: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/pound-lines/baby-pound-lines -> 60 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/pound-lines/baby-pound-lines (60 products) - SKIPPING 0 subcategories: []
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/pound-lines/pet-pound-lines
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/pound-lines/pet-pound-lines: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/pound-lines/pet-pound-lines -> 60 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/pound-lines/pet-pound-lines (60 products) - SKIPPING 0 subcategories: []
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/stationery/wholesale-pens-pencils-markers
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/stationery/wholesale-pens-pencils-markers: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/stationery/wholesale-pens-pencils-markers -> 60 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/stationery/wholesale-pens-pencils-markers (60 products) - SKIPPING 0 subcategories: []
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/toys/wholesale-slime-squish-toys
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/toys/wholesale-slime-squish-toys: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/toys/wholesale-slime-squish-toys -> 60 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/toys/wholesale-slime-squish-toys (60 products) - SKIPPING 0 subcategories: []
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/homeware/wholesale-home-accessories
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/homeware/wholesale-home-accessories: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/homeware/wholesale-home-accessories -> 60 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/homeware/wholesale-home-accessories (60 products) - SKIPPING 0 subcategories: []
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/toys/wholesale-baby-pre-school-toys
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/toys/wholesale-baby-pre-school-toys: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/toys/wholesale-baby-pre-school-toys -> 60 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/toys/wholesale-baby-pre-school-toys (60 products) - SKIPPING 0 subcategories: []
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays -> 60 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays (60 products) - SKIPPING 1 subcategories: ['https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/window-glass-cleaners']
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/homeware/wholesale-pest-control
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/homeware/wholesale-pest-control: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/homeware/wholesale-pest-control -> 60 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/homeware/wholesale-pest-control (60 products) - SKIPPING 0 subcategories: []
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/wholesale-cleaning/bowls-storage
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/wholesale-cleaning/bowls-storage: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/wholesale-cleaning/bowls-storage -> 60 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/wholesale-cleaning/bowls-storage (60 products) - SKIPPING 0 subcategories: []
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/homeware/wholesale-artificial-flowers
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/homeware/wholesale-artificial-flowers: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/homeware/wholesale-artificial-flowers -> 60 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/homeware/wholesale-artificial-flowers (60 products) - SKIPPING 0 subcategories: []
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/health-beauty/wholesale-hair-care
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/health-beauty/wholesale-hair-care: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/health-beauty/wholesale-hair-care -> 60 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/health-beauty/wholesale-hair-care (60 products) - SKIPPING 0 subcategories: []
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/wholesale-cleaning/brooms-mops-brushes
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/wholesale-cleaning/brooms-mops-brushes: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/wholesale-cleaning/brooms-mops-brushes -> 60 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/wholesale-cleaning/brooms-mops-brushes (60 products) - SKIPPING 0 subcategories: []
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/pound-lines/toy-pound-lines
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/pound-lines/toy-pound-lines: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/pound-lines/toy-pound-lines -> 60 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/pound-lines/toy-pound-lines (60 products) - SKIPPING 0 subcategories: []
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/electrical/wholesale-electric-fans
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/electrical/wholesale-electric-fans: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/electrical/wholesale-electric-fans -> 60 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/electrical/wholesale-electric-fans (60 products) - SKIPPING 0 subcategories: []
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/information-support/retail/electrical
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/information-support/retail/electrical: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/information-support/retail/electrical -> 2 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/information-support/retail/electrical (2 products) - SKIPPING 0 subcategories: []
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/information-support/retail/homeware
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/information-support/retail/homeware: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/information-support/retail/homeware -> 2 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/information-support/retail/homeware (2 products) - SKIPPING 0 subcategories: []
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/toys/wholesale-branded-toys/spider-man
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/toys/wholesale-branded-toys/spider-man: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/toys/wholesale-branded-toys/spider-man -> 30 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/toys/wholesale-branded-toys/spider-man (30 products) - SKIPPING 0 subcategories: []
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/information-support/for-your-business/electrical
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/information-support/for-your-business/electrical: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/information-support/for-your-business/electrical -> 2 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/information-support/for-your-business/electrical (2 products) - SKIPPING 0 subcategories: []
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/information-support/for-your-business/party-gift
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/information-support/for-your-business/party-gift: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/information-support/for-your-business/party-gift -> 2 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/information-support/for-your-business/party-gift (2 products) - SKIPPING 0 subcategories: []
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/homeware/wholesale-wheelie-bin-stickers-numbers/high-vis-orange-wheelie-bin-stickers
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/homeware/wholesale-wheelie-bin-stickers-numbers/high-vis-orange-wheelie-bin-stickers: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/homeware/wholesale-wheelie-bin-stickers-numbers/high-vis-orange-wheelie-bin-stickers -> 6 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/homeware/wholesale-wheelie-bin-stickers-numbers/high-vis-orange-wheelie-bin-stickers (6 products) - SKIPPING 0 subcategories: []
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/information-support/retail/increasing-your-profits-cleaning
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/information-support/retail/increasing-your-profits-cleaning: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/information-support/retail/increasing-your-profits-cleaning -> 2 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/information-support/retail/increasing-your-profits-cleaning (2 products) - SKIPPING 0 subcategories: []
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/stationery/wholesale-art-crafts/dough-clay
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/stationery/wholesale-art-crafts/dough-clay: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/stationery/wholesale-art-crafts/dough-clay -> 51 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/stationery/wholesale-art-crafts/dough-clay (51 products) - SKIPPING 0 subcategories: []
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/information-support/retail/increasing-your-profits-diy
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/information-support/retail/increasing-your-profits-diy: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/information-support/retail/increasing-your-profits-diy -> 2 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/information-support/retail/increasing-your-profits-diy (2 products) - SKIPPING 0 subcategories: []
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/catalogsearch/advanced/
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/catalogsearch/advanced/: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/catalogsearch/advanced/ -> 1 products (productive: False)
+INFO:tools.passive_extraction_workflow_latest:⚠️  PARENT CATEGORY INSUFFICIENT: https://www.poundwholesale.co.uk/catalogsearch/advanced/ (1 products) - INCLUDING 0 subcategories: []
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/stationery/wholesale-art-crafts/glues
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/stationery/wholesale-art-crafts/glues: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/stationery/wholesale-art-crafts/glues -> 60 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/stationery/wholesale-art-crafts/glues (60 products) - SKIPPING 0 subcategories: []
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/stationery/wholesale-art-crafts/paints-paint-brushes
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/stationery/wholesale-art-crafts/paints-paint-brushes: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/stationery/wholesale-art-crafts/paints-paint-brushes -> 60 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/stationery/wholesale-art-crafts/paints-paint-brushes (60 products) - SKIPPING 0 subcategories: []
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/information-support/an-introduction-to-wholesale/orders-to-northern-ireland-roi
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/information-support/an-introduction-to-wholesale/orders-to-northern-ireland-roi: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/information-support/an-introduction-to-wholesale/orders-to-northern-ireland-roi -> 2 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/information-support/an-introduction-to-wholesale/orders-to-northern-ireland-roi (2 products) - SKIPPING 0 subcategories: []
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/information-support/for-your-business/pet-supplies
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/information-support/for-your-business/pet-supplies: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/information-support/for-your-business/pet-supplies -> 2 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/information-support/for-your-business/pet-supplies (2 products) - SKIPPING 0 subcategories: []
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/information-support/for-your-business/toys
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/information-support/for-your-business/toys: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/information-support/for-your-business/toys -> 2 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/information-support/for-your-business/toys (2 products) - SKIPPING 0 subcategories: []
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/information-support/an-introduction-to-wholesale/what-wholesale-items-sell-best
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/information-support/an-introduction-to-wholesale/what-wholesale-items-sell-best: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/information-support/an-introduction-to-wholesale/what-wholesale-items-sell-best -> 2 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ PARENT CATEGORY SUFFICIENT: https://www.poundwholesale.co.uk/information-support/an-introduction-to-wholesale/what-wholesale-items-sell-best (2 products) - SKIPPING 0 subcategories: []
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/rma/returns/history/
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/rma/returns/history/: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/rma/returns/history/ -> 1 products (productive: False)
+INFO:tools.passive_extraction_workflow_latest:⚠️  PARENT CATEGORY INSUFFICIENT: https://www.poundwholesale.co.uk/rma/returns/history/ (1 products) - INCLUDING 0 subcategories: []
+INFO:tools.passive_extraction_workflow_latest:SUBCATEGORY DEDUPLICATION: Reduced 75 URLs to 48 (eliminated 27 redundant subcategories)
+INFO:tools.passive_extraction_workflow_latest:PHASE 3 RESULT: Eliminated 27 redundant subcategories, proceeding with 48 optimized categories
+INFO:tools.passive_extraction_workflow_latest:Category exhaustion status: {'friendly_total': 48, 'friendly_processed': 2, 'friendly_remaining': 46, 'neutral_total': 0, 'neutral_processed': 0, 'neutral_remaining': 0, 'should_continue': True, 'phase': 'friendly'}
+INFO:tools.passive_extraction_workflow_latest:Current price phase: low
+INFO:tools.passive_extraction_workflow_latest:🧠 AI Memory loaded: 35 previously suggested URLs, 0 products processed
+DEBUG:tools.passive_extraction_workflow_latest:🧠 Previously suggested URLs: ['https://www.poundwholesale.co.uk/health-beauty/wholesale-first-aid-medical?product_list_limit=64&product_list_order=price&product_list_dir=asc', 'https://www.poundwholesale.co.uk/diy/wholesale-hand-tools/pliers', 'https://www.poundwholesale.co.uk/health-beauty/wholesale-shoe-care', 'https://www.poundwholesale.co.uk/wholesale-garden/pegs-clotheslines?product_list_limit=64&product_list_order=price&product_list_dir=asc', 'https://www.poundwholesale.co.uk/homeware/wholesale-home-fragrance-candles-accessories', 'https://www.poundwholesale.co.uk/wholesale-garden/garden-tools/rakes-brushes?product_list_limit=64&product_list_order=price&product_list_dir=asc', 'https://www.poundwholesale.co.uk/pet-supplies/wholesale-pet-toys-treats', 'https://www.poundwholesale.co.uk/wholesale-cleaning/bowls-storage', 'https://www.poundwholesale.co.uk/pet-supplies/wholesale-dog?product_list_limit=64&product_list_order=price&product_list_dir=asc', 'https://www.poundwholesale.co.uk/baby-supplies?product_list_limit=64&product_list_order=price&product_list_dir=asc', 'https://www.poundwholesale.co.uk/wholesale-branded-toys/disney', 'https://www.poundwholesale.co.uk/party-gift/wholesale-partyware', 'https://www.poundwholesale.co.uk/health-beauty/wholesale-skin-care?product_list_limit=64&product_list_order=price&product_list_dir=asc', 'https://www.poundwholesale.co.uk/stationery/wholesale-office-supplies', 'https://www.poundwholesale.co.uk/wholesale-cleaning/sponges-scourers-cloths?product_list_limit=64&product_list_order=price&product_list_dir=asc', 'https://www.poundwholesale.co.uk/diy/wholesale-home-security', 'https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays?product_list_limit=64&product_list_order=price&product_list_dir=asc', 'https://www.poundwholesale.co.uk/toys/wholesale-games-activity-toys?product_list_limit=64&product_list_order=price&product_list_dir=asc', 'https://www.poundwholesale.co.uk/wholesale-garden/garden-tools/secateurs-shears-loppers?product_list_limit=64&product_list_order=price&product_list_dir=asc', 'https://www.poundwholesale.co.uk/baby-supplies/wholesale-baby-blankets-bibs-babywear', 'https://www.poundwholesale.co.uk/wholesale-dekton-tools/dekton-measuring-levels', 'https://www.poundwholesale.co.uk/kitchenware/wholesale-baking?product_list_limit=64&product_list_order=price&product_list_dir=asc', 'https://www.poundwholesale.co.uk/diy/wholesale-hand-tools/files-and-chisels', 'https://www.poundwholesale.co.uk/wholesale-branded-toys/peppa-pig', 'https://www.poundwholesale.co.uk/toys/wholesale-dolls-soft-toys?product_list_limit=64&product_list_order=price&product_list_dir=asc', 'https://www.poundwholesale.co.uk/stationery/wholesale-art-crafts/craft-supplies', 'https://www.poundwholesale.co.uk/kitchenware/wholesale-foil', 'https://www.poundwholesale.co.uk/homeware/wholesale-bathroom-accessories?product_list_limit=64&product_list_order=price&product_list_dir=asc', 'https://www.poundwholesale.co.uk/pet-supplies/wholesale-pet-beds', 'https://www.poundwholesale.co.uk/wholesale-diy-tools/wholesale-hand-tools/hammers', 'https://www.poundwholesale.co.uk/wholesale-art-crafts/colouring-pens-pencils', 'https://www.poundwholesale.co.uk/toys/wholesale-pocket-money-toys?product_list_limit=64&product_list_order=price&product_list_dir=asc', 'https://www.poundwholesale.co.uk/diy/wholesale-car-care', 'https://www.poundwholesale.co.uk/homeware/wholesale-home-accessories', 'https://www.poundwholesale.co.uk/wholesale-kitchenware/wholesale-food-preparation']
+INFO:tools.passive_extraction_workflow_latest:🤖 OpenAI API Call - Model: gpt-4o-mini, Max Tokens: 1200
+INFO:tools.passive_extraction_workflow_latest:🤖 Prompt Length: 13766 characters
+DEBUG:tools.passive_extraction_workflow_latest:🤖 Full Prompt: 
+AMAZON FBA UK CATEGORY ANALYSIS FOR: poundwholesale-co-uk
+
+You are an expert Amazon FBA consultant specializing in UK marketplace product sourcing and category analysis.
+
+DISCOVERED CATEGORIES FROM WEBSITE HOMEPAGE:
+- Baby Supplies Wholesale Baby Weaning Feeding: https://www.poundwholesale.co.uk/baby-supplies/wholesale-baby-weaning-feeding
+- Baby Supplies Wholesale Baby Changing Wipes: https://www.poundwholesale.co.uk/baby-supplies/wholesale-baby-changing-wipes
+- Information Support Buying Guid...
+DEBUG:openai._base_client:Request options: {'method': 'post', 'url': '/chat/completions', 'files': None, 'idempotency_key': 'stainless-python-retry-748eb146-d028-40ed-8b8e-de64085ee7a8', 'json_data': {'messages': [{'role': 'user', 'content': '\nAMAZON FBA UK CATEGORY ANALYSIS FOR: poundwholesale-co-uk\n\nYou are an expert Amazon FBA consultant specializing in UK marketplace product sourcing and category analysis.\n\nDISCOVERED CATEGORIES FROM WEBSITE HOMEPAGE:\n- Baby Supplies Wholesale Baby Weaning Feeding: https://www.poundwholesale.co.uk/baby-supplies/wholesale-baby-weaning-feeding\n- Baby Supplies Wholesale Baby Changing Wipes: https://www.poundwholesale.co.uk/baby-supplies/wholesale-baby-changing-wipes\n- Information Support Buying Guides: https://www.poundwholesale.co.uk/information-support/buying-guides\n- Retail Electrical: https://www.poundwholesale.co.uk/information-support/retail/electrical\n- Leisure Hobbies Wholesale Camping: https://www.poundwholesale.co.uk/leisure-hobbies/wholesale-camping\n- Retail Homeware: https://www.poundwholesale.co.uk/information-support/retail/homeware\n- Wholesale Branded Toys Spider Man: https://www.poundwholesale.co.uk/toys/wholesale-branded-toys/spider-man\n- For Your Business Electrical: https://www.poundwholesale.co.uk/information-support/for-your-business/electrical\n- For Your Business Party Gift: https://www.poundwholesale.co.uk/information-support/for-your-business/party-gift\n- Seasonal: https://www.poundwholesale.co.uk/seasonal\n- Wholesale Wheelie Bin Stickers Numbers High Vis Orange Wh...: https://www.poundwholesale.co.uk/homeware/wholesale-wheelie-bin-stickers-numbers/high-vis-orange-wheelie-bin-stickers\n- Retail Increasing Your Profits Cleaning: https://www.poundwholesale.co.uk/information-support/retail/increasing-your-profits-cleaning\n- Health Beauty Wholesale Hand Nail: https://www.poundwholesale.co.uk/health-beauty/wholesale-hand-nail\n- Electrical Wholesale Torches: https://www.poundwholesale.co.uk/electrical/wholesale-torches\n- Leisure Hobbies Wholesale Cycling: https://www.poundwholesale.co.uk/leisure-hobbies/wholesale-cycling\n- Health Beauty Wholesale Dental: https://www.poundwholesale.co.uk/health-beauty/wholesale-dental\n- Toys Wholesale Action Play Sets Vehicle Toys: https://www.poundwholesale.co.uk/toys/wholesale-action-play-sets-vehicle-toys\n- Pound Lines Baby Pound Lines: https://www.poundwholesale.co.uk/pound-lines/baby-pound-lines\n- Returns History: https://www.poundwholesale.co.uk/rma/returns/history/\n- Pound Lines Pet Pound Lines: https://www.poundwholesale.co.uk/pound-lines/pet-pound-lines\n- Wholesale Art Crafts Dough Clay: https://www.poundwholesale.co.uk/stationery/wholesale-art-crafts/dough-clay\n- Retail Increasing Your Profits Diy: https://www.poundwholesale.co.uk/information-support/retail/increasing-your-profits-diy\n- Foil Platters 42 6Cm X 28 6Cm X 2 9Cm 3 Pack: https://www.poundwholesale.co.uk/foil-platters-42-6cm-x-28-6cm-x-2-9cm-3-pack\n- Stationery Wholesale Pens Pencils Markers: https://www.poundwholesale.co.uk/stationery/wholesale-pens-pencils-markers\n- Catalogsearch Advanced: https://www.poundwholesale.co.uk/catalogsearch/advanced/\n- New Suppliers: https://www.poundwholesale.co.uk/new-suppliers\n- Toys Wholesale Slime Squish Toys: https://www.poundwholesale.co.uk/toys/wholesale-slime-squish-toys\n- Wholesale Art Crafts Glues: https://www.poundwholesale.co.uk/stationery/wholesale-art-crafts/glues\n- Toys Wholesale Baby Pre School Toys: https://www.poundwholesale.co.uk/toys/wholesale-baby-pre-school-toys\n- Wholesale Art Crafts Paints Paint Brushes: https://www.poundwholesale.co.uk/stationery/wholesale-art-crafts/paints-paint-brushes\n- Homeware Wholesale Pest Control: https://www.poundwholesale.co.uk/homeware/wholesale-pest-control\n- Ebay Amazon Sellers: https://www.poundwholesale.co.uk/ebay-amazon-sellers\n- An Introduction To Wholesale Orders To Northern Ireland Roi: https://www.poundwholesale.co.uk/information-support/an-introduction-to-wholesale/orders-to-northern-ireland-roi\n- Homeware Wholesale Artificial Flowers: https://www.poundwholesale.co.uk/homeware/wholesale-artificial-flowers\n- Health Beauty Wholesale Hair Care: https://www.poundwholesale.co.uk/health-beauty/wholesale-hair-care\n- Wholesale Cleaning Brooms Mops Brushes: https://www.poundwholesale.co.uk/wholesale-cleaning/brooms-mops-brushes\n- Pound Lines Toy Pound Lines: https://www.poundwholesale.co.uk/pound-lines/toy-pound-lines\n- For Your Business Pet Supplies: https://www.poundwholesale.co.uk/information-support/for-your-business/pet-supplies\n- Electrical Wholesale Electric Fans: https://www.poundwholesale.co.uk/electrical/wholesale-electric-fans\n- For Your Business Toys: https://www.poundwholesale.co.uk/information-support/for-your-business/toys\n- An Introduction To Wholesale What Wholesale Items Sell Best: https://www.poundwholesale.co.uk/information-support/an-introduction-to-wholesale/what-wholesale-items-sell-best\n\n\n\n🧠 IMPORTANT - PREVIOUSLY SUGGESTED CATEGORIES (DO NOT REPEAT):\n1. https://www.poundwholesale.co.uk/stationery/wholesale-art-crafts/craft-supplies\n2. https://www.poundwholesale.co.uk/kitchenware/wholesale-foil\n3. https://www.poundwholesale.co.uk/homeware/wholesale-bathroom-accessories?product_list_limit=64&product_list_order=price&product_list_dir=asc\n4. https://www.poundwholesale.co.uk/pet-supplies/wholesale-pet-beds\n5. https://www.poundwholesale.co.uk/wholesale-diy-tools/wholesale-hand-tools/hammers\n6. https://www.poundwholesale.co.uk/wholesale-art-crafts/colouring-pens-pencils\n7. https://www.poundwholesale.co.uk/toys/wholesale-pocket-money-toys?product_list_limit=64&product_list_order=price&product_list_dir=asc\n8. https://www.poundwholesale.co.uk/diy/wholesale-car-care\n9. https://www.poundwholesale.co.uk/homeware/wholesale-home-accessories\n10. https://www.poundwholesale.co.uk/wholesale-kitchenware/wholesale-food-preparation\n\n⚠️ You MUST suggest DIFFERENT categories that have NOT been suggested before!\n\n❌ FAILED CATEGORIES (DO NOT SUGGEST THESE):\n1. https://www.poundwholesale.co.uk/cleaning-wipes-sprays/bathroom-cleaners (Error: HTTP 404)\n2. https://www.poundwholesale.co.uk/wholesale-art-crafts/colouring-activity-books (Error: HTTP 404)\n3. https://www.poundwholesale.co.uk/wholesale-baby-supplies/wholesale-baby-weaning-feeding (Error: HTTP 404)\n4. https://www.poundwholesale.co.uk/cleaning/wholesale-cleaning-brooms-mops-brushes (Error: HTTP 404)\n5. https://www.poundwholesale.co.uk/wholesale-branded-toys/spider-man (Error: HTTP 404)\n6. https://www.poundwholesale.co.uk/wholesale-pet-supplies/wholesale-pet-toys-treats (Error: HTTP 404)\n7. https://www.poundwholesale.co.uk/wholesale-art-crafts/glues (Error: HTTP 404)\n\n⚠️ These URLs failed validation - DO NOT suggest them again!\n\nPREVIOUSLY PROCESSED CATEGORIES: [\'https://www.poundwholesale.co.uk/health-beauty/wholesale-first-aid-medical?product_list_limit=64&product_list_order=price&product_list_dir=asc\', \'https://www.poundwholesale.co.uk/diy/wholesale-hand-tools/pliers\', \'https://www.poundwholesale.co.uk/health-beauty/wholesale-shoe-care\', \'https://www.poundwholesale.co.uk/wholesale-garden/pegs-clotheslines?product_list_limit=64&product_list_order=price&product_list_dir=asc\', \'https://www.poundwholesale.co.uk/homeware/wholesale-home-fragrance-candles-accessories\', \'https://www.poundwholesale.co.uk/wholesale-garden/garden-tools/rakes-brushes?product_list_limit=64&product_list_order=price&product_list_dir=asc\', \'https://www.poundwholesale.co.uk/pet-supplies/wholesale-pet-toys-treats\', \'https://www.poundwholesale.co.uk/wholesale-cleaning/bowls-storage\', \'https://www.poundwholesale.co.uk/pet-supplies/wholesale-dog?product_list_limit=64&product_list_order=price&product_list_dir=asc\', \'https://www.poundwholesale.co.uk/baby-supplies?product_list_limit=64&product_list_order=price&product_list_dir=asc\', \'https://www.poundwholesale.co.uk/wholesale-branded-toys/disney\', \'https://www.poundwholesale.co.uk/party-gift/wholesale-partyware\', \'https://www.poundwholesale.co.uk/health-beauty/wholesale-skin-care?product_list_limit=64&product_list_order=price&product_list_dir=asc\', \'https://www.poundwholesale.co.uk/stationery/wholesale-office-supplies\', \'https://www.poundwholesale.co.uk/wholesale-cleaning/sponges-scourers-cloths?product_list_limit=64&product_list_order=price&product_list_dir=asc\', \'https://www.poundwholesale.co.uk/diy/wholesale-home-security\', \'https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays?product_list_limit=64&product_list_order=price&product_list_dir=asc\', \'https://www.poundwholesale.co.uk/toys/wholesale-games-activity-toys?product_list_limit=64&product_list_order=price&product_list_dir=asc\', \'https://www.poundwholesale.co.uk/wholesale-garden/garden-tools/secateurs-shears-loppers?product_list_limit=64&product_list_order=price&product_list_dir=asc\', \'https://www.poundwholesale.co.uk/baby-supplies/wholesale-baby-blankets-bibs-babywear\', \'https://www.poundwholesale.co.uk/wholesale-dekton-tools/dekton-measuring-levels\', \'https://www.poundwholesale.co.uk/kitchenware/wholesale-baking?product_list_limit=64&product_list_order=price&product_list_dir=asc\', \'https://www.poundwholesale.co.uk/diy/wholesale-hand-tools/files-and-chisels\', \'https://www.poundwholesale.co.uk/wholesale-branded-toys/peppa-pig\', \'https://www.poundwholesale.co.uk/toys/wholesale-dolls-soft-toys?product_list_limit=64&product_list_order=price&product_list_dir=asc\', \'https://www.poundwholesale.co.uk/stationery/wholesale-art-crafts/craft-supplies\', \'https://www.poundwholesale.co.uk/kitchenware/wholesale-foil\', \'https://www.poundwholesale.co.uk/homeware/wholesale-bathroom-accessories?product_list_limit=64&product_list_order=price&product_list_dir=asc\', \'https://www.poundwholesale.co.uk/pet-supplies/wholesale-pet-beds\', \'https://www.poundwholesale.co.uk/wholesale-diy-tools/wholesale-hand-tools/hammers\', \'https://www.poundwholesale.co.uk/wholesale-art-crafts/colouring-pens-pencils\', \'https://www.poundwholesale.co.uk/toys/wholesale-pocket-money-toys?product_list_limit=64&product_list_order=price&product_list_dir=asc\', \'https://www.poundwholesale.co.uk/diy/wholesale-car-care\', \'https://www.poundwholesale.co.uk/homeware/wholesale-home-accessories\', \'https://www.poundwholesale.co.uk/wholesale-kitchenware/wholesale-food-preparation\']\nPREVIOUSLY PROCESSED PRODUCTS: None\n\n🚨 CRITICAL INSTRUCTIONS - READ CAREFULLY:\n1. **YOU MUST ONLY SELECT URLs FROM THE "DISCOVERED CATEGORIES" LIST ABOVE**\n2. **DO NOT INVENT OR CREATE NEW URLs - ONLY USE THE PROVIDED ONES**\n3. **DO NOT SUGGEST URLs THAT ARE NOT IN THE DISCOVERED CATEGORIES LIST**\n4. ONLY select URLs that appear to be PRODUCT LISTING PAGES, not search forms or filters\n5. Avoid URLs containing: "search", "advanced", "filter", "sort", "login", "account"\n6. Prioritize URLs with clear category names that suggest product listings\n7. Avoid URLs that look like individual product pages (containing specific product names)\n\nURL SELECTION RULES:\n- **ONLY SELECT FROM THE DISCOVERED CATEGORIES LIST ABOVE**\n- **DO NOT CREATE NEW URLs OR MODIFY EXISTING ONES**\n- GOOD patterns from the list: URLs ending in category names like "/household.html", "/baby-kids.html"\n- BAD patterns from the list: URLs containing "search", "advanced", "filter", "catalogsearch"\n\nBased on your FBA expertise, select categories from the DISCOVERED CATEGORIES list that are most likely to contain profitable, scrapeable products for Amazon FBA UK.\n\n⚠️ **IMPORTANT: ALL URLs in your response MUST come from the DISCOVERED CATEGORIES list above. Do not invent new URLs.**\n\nReturn a JSON object with EXACTLY these keys:\n{\n    "top_3_urls": [list of 3 best PRODUCT LISTING category URLs],\n    "secondary_urls": [list of 3-5 backup category URLs],\n    "skip_urls": [list of category URLs to avoid - include search/filter pages],\n    "detailed_reasoning": {"category_name": "detailed reason for selection/skipping including URL pattern analysis"},\n    "progression_strategy": "description of your category selection strategy focusing on product listing identification",\n    "url_pattern_confidence": {"high_confidence": ["urls you\'re very confident contain products"], "medium_confidence": ["urls that might contain products"], "low_confidence": ["urls unlikely to contain products"]}\n}\n\nPRIORITIZE CATEGORIES LIKELY TO CONTAIN:\nHIGH PRIORITY:\n- Home & Kitchen products (high profit margins, consistent demand)\n- Pet Supplies (growing market, good margins)\n- Beauty & Personal Care (repeat purchases, brand loyalty)\n- Sports & Outdoors (seasonal opportunities)\n- Office & Stationery (business demand)\n- DIY & Tools (practical demand)\n- Baby & Nursery products (premium pricing potential)\n- Toys & Games (consistent demand)\n- Kids Books (coloring books, sticker books, activity books, picture books)\n\nMEDIUM PRIORITY:\n- Clearance/Value categories (pound lines, 50p & under, clearance, sale, discount)\n- Crafts & Hobbies (creative supplies, art materials)\n- Seasonal items (Christmas, Halloween, party supplies)\n- Automotive accessories (small car accessories)\n\nAVOID CATEGORIES WITH:\n- Electronics (high competition, warranty issues)\n- Clothing/Fashion (size/fit issues, returns)\n- Medical/Pharmaceutical (regulatory restrictions)\n- Food/Beverages (expiry dates, regulations)\n- Large/bulky items (shipping costs, storage issues)\n- High-value jewelry (authentication, insurance)\n- Dangerous goods (batteries, flammables, restricted)\n- Adult Books (novels, fiction, textbooks, academic books - AVOID these)\n- Search/filter pages (no actual products)\n\nIMPORTANT BOOK DISTINCTION:\n- INCLUDE: Kids books, coloring books, sticker books, activity books, picture books\n- EXCLUDE: Adult novels, fiction, textbooks, academic books, biographies\n\nREASONING REQUIREMENTS:\nFor each selected URL, explain:\n1. Why the URL pattern suggests it contains product listings\n2. What type of products you expect to find\n3. Why those products are suitable for FBA\n4. Estimated profit potential (High/Medium/Low)\n\nReturn ONLY valid JSON, no additional text.'}], 'model': 'gpt-4o-mini', 'max_tokens': 1200, 'response_format': {'type': 'json_object'}}}
+DEBUG:openai._base_client:Sending HTTP Request: POST https://api.openai.com/v1/chat/completions
+DEBUG:httpcore.connection:connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=5.0 socket_options=None
+DEBUG:httpcore.connection:connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x7feef4188d40>
+DEBUG:httpcore.connection:start_tls.started ssl_context=<ssl.SSLContext object at 0x7feef457c1d0> server_hostname='api.openai.com' timeout=5.0
+DEBUG:httpcore.connection:start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x7feef4382bd0>
+DEBUG:httpcore.http11:send_request_headers.started request=<Request [b'POST']>
+DEBUG:httpcore.http11:send_request_headers.complete
+DEBUG:httpcore.http11:send_request_body.started request=<Request [b'POST']>
+DEBUG:httpcore.http11:send_request_body.complete
+DEBUG:httpcore.http11:receive_response_headers.started request=<Request [b'POST']>
+DEBUG:httpcore.http11:receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Sat, 05 Jul 2025 15:37:11 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'access-control-expose-headers', b'X-Request-ID'), (b'openai-organization', b'user-eywvpvgw4dvq99ktk9fwsqol'), (b'openai-processing-ms', b'9457'), (b'openai-version', b'2020-10-01'), (b'x-envoy-upstream-service-time', b'9460'), (b'x-ratelimit-limit-requests', b'10000'), (b'x-ratelimit-limit-tokens', b'200000'), (b'x-ratelimit-remaining-requests', b'9999'), (b'x-ratelimit-remaining-tokens', b'196551'), (b'x-ratelimit-reset-requests', b'8.64s'), (b'x-ratelimit-reset-tokens', b'1.034s'), (b'x-request-id', b'req_c85ee82a67237175b7882da4fa3de88e'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'cf-cache-status', b'DYNAMIC'), (b'Set-Cookie', b'__cf_bm=mkroEoLujpO2afsbDC8RAZq09QX60.mqB5ER2zwakXE-1751729831-1.0.1.1-FOQU6dBRtg9aK..V7fvOKRfXSKa_ynCWtLsSb2zR5.Ppwut_0PnHiQ9FFBsxNq3R4W3W8TjY3gezkU3sn2gzaRZfR8ELBfeLSda13AHefAw; path=/; expires=Sat, 05-Jul-25 16:07:11 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'X-Content-Type-Options', b'nosniff'), (b'Set-Cookie', b'_cfuvid=PtV71LDLMOeGJW4hbBtvPDeMOW5HZy_0gWs.QQcpN7A-1751729831276-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'Server', b'cloudflare'), (b'CF-RAY', b'95a7f0f44bb0b47f-DXB'), (b'Content-Encoding', b'br'), (b'alt-svc', b'h3=":443"; ma=86400')])
+INFO:httpx:HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+DEBUG:httpcore.http11:receive_response_body.started request=<Request [b'POST']>
+DEBUG:httpcore.http11:receive_response_body.complete
+DEBUG:httpcore.http11:response_closed.started
+DEBUG:httpcore.http11:response_closed.complete
+DEBUG:openai._base_client:HTTP Response: POST https://api.openai.com/v1/chat/completions "200 OK" Headers([('date', 'Sat, 05 Jul 2025 15:37:11 GMT'), ('content-type', 'application/json'), ('transfer-encoding', 'chunked'), ('connection', 'keep-alive'), ('access-control-expose-headers', 'X-Request-ID'), ('openai-organization', 'user-eywvpvgw4dvq99ktk9fwsqol'), ('openai-processing-ms', '9457'), ('openai-version', '2020-10-01'), ('x-envoy-upstream-service-time', '9460'), ('x-ratelimit-limit-requests', '10000'), ('x-ratelimit-limit-tokens', '200000'), ('x-ratelimit-remaining-requests', '9999'), ('x-ratelimit-remaining-tokens', '196551'), ('x-ratelimit-reset-requests', '8.64s'), ('x-ratelimit-reset-tokens', '1.034s'), ('x-request-id', 'req_c85ee82a67237175b7882da4fa3de88e'), ('strict-transport-security', 'max-age=31536000; includeSubDomains; preload'), ('cf-cache-status', 'DYNAMIC'), ('set-cookie', '__cf_bm=mkroEoLujpO2afsbDC8RAZq09QX60.mqB5ER2zwakXE-1751729831-1.0.1.1-FOQU6dBRtg9aK..V7fvOKRfXSKa_ynCWtLsSb2zR5.Ppwut_0PnHiQ9FFBsxNq3R4W3W8TjY3gezkU3sn2gzaRZfR8ELBfeLSda13AHefAw; path=/; expires=Sat, 05-Jul-25 16:07:11 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('x-content-type-options', 'nosniff'), ('set-cookie', '_cfuvid=PtV71LDLMOeGJW4hbBtvPDeMOW5HZy_0gWs.QQcpN7A-1751729831276-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('server', 'cloudflare'), ('cf-ray', '95a7f0f44bb0b47f-DXB'), ('content-encoding', 'br'), ('alt-svc', 'h3=":443"; ma=86400')])
+DEBUG:openai._base_client:request_id: req_c85ee82a67237175b7882da4fa3de88e
+INFO:tools.passive_extraction_workflow_latest:🤖 Token Usage - Input: 3643, Output: 615, Total: 4258
+INFO:tools.passive_extraction_workflow_latest:💾 API call logged to /mnt/c/Users/chris/Cloud-Drive_christianhaddad8@gmail.com/Cloud-Drive/Full/claude code/Amazon-FBA-Agent-System-v3/logs/api_calls/openai_api_calls_20250705.jsonl
+INFO:tools.passive_extraction_workflow_latest:Validating AI-suggested categories for product content...
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/homeware/wholesale-pest-control
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/homeware/wholesale-pest-control: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/homeware/wholesale-pest-control -> 60 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ Category validated: https://www.poundwholesale.co.uk/homeware/wholesale-pest-control (60 products)
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/leisure-hobbies/wholesale-camping
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/leisure-hobbies/wholesale-camping: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/leisure-hobbies/wholesale-camping -> 60 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ Category validated: https://www.poundwholesale.co.uk/leisure-hobbies/wholesale-camping (60 products)
+INFO:tools.passive_extraction_workflow_latest:Validating category productivity for: https://www.poundwholesale.co.uk/toys/wholesale-baby-pre-school-toys
+DEBUG:tools.passive_extraction_workflow_latest:Failed to use configured selectors for https://www.poundwholesale.co.uk/toys/wholesale-baby-pre-school-toys: 'ConfigurableSupplierScraper' object has no attribute 'get_supplier_config'
+INFO:tools.passive_extraction_workflow_latest:Category validation: https://www.poundwholesale.co.uk/toys/wholesale-baby-pre-school-toys -> 60 products (productive: True)
+INFO:tools.passive_extraction_workflow_latest:✅ Category validated: https://www.poundwholesale.co.uk/toys/wholesale-baby-pre-school-toys (60 products)
+DEBUG:tools.passive_extraction_workflow_latest:History saved with 0 categories, 0 pages
+DEBUG:tools.passive_extraction_workflow_latest:History saved with 3 categories, 0 pages
+INFO:tools.passive_extraction_workflow_latest:Applying URL optimization parameters...
+INFO:tools.passive_extraction_workflow_latest:Optimized URL (no price filtering): https://www.poundwholesale.co.uk/homeware/wholesale-pest-control -> https://www.poundwholesale.co.uk/homeware/wholesale-pest-control?product_list_limit=64&product_list_order=price&product_list_dir=asc
+INFO:tools.passive_extraction_workflow_latest:Optimized URL (no price filtering): https://www.poundwholesale.co.uk/leisure-hobbies/wholesale-camping -> https://www.poundwholesale.co.uk/leisure-hobbies/wholesale-camping?product_list_limit=64&product_list_order=price&product_list_dir=asc
+INFO:tools.passive_extraction_workflow_latest:Optimized URL (no price filtering): https://www.poundwholesale.co.uk/toys/wholesale-baby-pre-school-toys -> https://www.poundwholesale.co.uk/toys/wholesale-baby-pre-school-toys?product_list_limit=64&product_list_order=price&product_list_dir=asc
+INFO:tools.passive_extraction_workflow_latest:Optimized 3 URLs with product display parameters for low price phase
+INFO:tools.passive_extraction_workflow_latest:🧠 Appended AI suggestion #8 to cache with optimized URLs: /mnt/c/Users/chris/Cloud-Drive_christianhaddad8@gmail.com/Cloud-Drive/Full/claude code/Amazon-FBA-Agent-System-v3/OUTPUTS/FBA_ANALYSIS/ai_category_cache/poundwholesale-co-uk_ai_category_cache.json
+INFO:tools.passive_extraction_workflow_latest:🧠 Total AI history entries: 8
+INFO:tools.passive_extraction_workflow_latest:Hierarchical selection returned 3 optimized pages to scrape
+INFO:tools.passive_extraction_workflow_latest:URLs to scrape: ['https://www.poundwholesale.co.uk/homeware/wholesale-pest-control?product_list_limit=64&product_list_order=price&product_list_dir=asc', 'https://www.poundwholesale.co.uk/leisure-hobbies/wholesale-camping?product_list_limit=64&product_list_order=price&product_list_dir=asc', 'https://www.poundwholesale.co.uk/toys/wholesale-baby-pre-school-toys?product_list_limit=64&product_list_order=price&product_list_dir=asc']
+INFO:tools.passive_extraction_workflow_latest:✅ AI CATEGORIES: Using 3 AI-generated categories for supplier scraping
+INFO:tools.passive_extraction_workflow_latest:Scraping supplier category: https://www.poundwholesale.co.uk/homeware/wholesale-pest-control?product_list_limit=64&product_list_order=price&product_list_dir=asc
+INFO:tools.passive_extraction_workflow_latest:Fetching supplier category page 1: https://www.poundwholesale.co.uk/homeware/wholesale-pest-control?product_list_limit=64&product_list_order=price&product_list_dir=asc
+INFO:configurable_supplier_scraper:Fetching page content from: https://www.poundwholesale.co.uk/homeware/wholesale-pest-control?product_list_limit=64&product_list_order=price&product_list_dir=asc (attempt 1/3)
+INFO:utils.browser_manager:♻️ Reusing existing Chrome connection (port 9222)
+INFO:utils.browser_manager:♻️ Reusing cached page for https://www.poundwholesale.co.uk
+INFO:configurable_supplier_scraper:🔧 Using BrowserManager page for https://www.poundwholesale.co.uk/homeware/wholesale-pest-control?product_list_limit=64&product_list_order=price&product_list_dir=asc
+INFO:configurable_supplier_scraper:🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/homeware/wholesale-pest-control?product_list_limit=64&product_list_order=price&product_list_dir=asc
+INFO:configurable_supplier_scraper:🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/homeware/wholesale-pest-control?product_list_limit=64&product_list_order=price&product_list_dir=asc
+INFO:configurable_supplier_scraper:Successfully fetched content from https://www.poundwholesale.co.uk/homeware/wholesale-pest-control?product_list_limit=64&product_list_order=price&product_list_dir=asc (Size: 643926 bytes)
+INFO:tools.passive_extraction_workflow_latest:Found 21 product elements in category https://www.poundwholesale.co.uk/homeware/wholesale-pest-control?product_list_limit=64&product_list_order=price&product_list_dir=asc, page 1
+INFO:tools.passive_extraction_workflow_latest:Getting detailed info for product: Pestshield Flying Insect Mosquito Killer Coils 6 Pack from https://www.poundwholesale.co.uk/pestshield-flying-insect-mosquito-killer-coils-6-pack
+INFO:configurable_supplier_scraper:Fetching page content from: https://www.poundwholesale.co.uk/pestshield-flying-insect-mosquito-killer-coils-6-pack (attempt 1/3)
+INFO:utils.browser_manager:♻️ Reusing existing Chrome connection (port 9222)
+INFO:utils.browser_manager:♻️ Reusing cached page for https://www.poundwholesale.co.uk
+INFO:tools.passive_extraction_workflow_latest:Getting detailed info for product: Extra Strength Rat Glue Traps 2 Pack CDU from https://www.poundwholesale.co.uk/extra-strength-rat-glue-traps-2-pack-cdu
+INFO:tools.passive_extraction_workflow_latest:Getting detailed info for product: Pest Police Quick Action Mouse Traps 3 Pack from https://www.poundwholesale.co.uk/pest-police-quick-action-mouse-traps-3-pack
+INFO:tools.passive_extraction_workflow_latest:Getting detailed info for product: Beat It Ant Glue Traps 3 Pack CDU from https://www.poundwholesale.co.uk/beat-it-ant-glue-traps-3-pack-cdu
+INFO:tools.passive_extraction_workflow_latest:Getting detailed info for product: Ant Glue Traps 3 Pack from https://www.poundwholesale.co.uk/ant-glue-traps-3-pack
+INFO:configurable_supplier_scraper:Fetching page content from: https://www.poundwholesale.co.uk/ant-glue-traps-3-pack (attempt 1/3)
+INFO:utils.browser_manager:♻️ Reusing existing Chrome connection (port 9222)
+INFO:configurable_supplier_scraper:Fetching page content from: https://www.poundwholesale.co.uk/beat-it-ant-glue-traps-3-pack-cdu (attempt 1/3)
+INFO:utils.browser_manager:♻️ Reusing existing Chrome connection (port 9222)
+INFO:configurable_supplier_scraper:Fetching page content from: https://www.poundwholesale.co.uk/pest-police-quick-action-mouse-traps-3-pack (attempt 1/3)
+INFO:utils.browser_manager:♻️ Reusing existing Chrome connection (port 9222)
+INFO:configurable_supplier_scraper:Fetching page content from: https://www.poundwholesale.co.uk/extra-strength-rat-glue-traps-2-pack-cdu (attempt 1/3)
+INFO:utils.browser_manager:♻️ Reusing existing Chrome connection (port 9222)
+INFO:configurable_supplier_scraper:🔧 Using BrowserManager page for https://www.poundwholesale.co.uk/pestshield-flying-insect-mosquito-killer-coils-6-pack
+INFO:configurable_supplier_scraper:🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/pestshield-flying-insect-mosquito-killer-coils-6-pack
+INFO:configurable_supplier_scraper:🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/pestshield-flying-insect-mosquito-killer-coils-6-pack
+INFO:utils.browser_manager:♻️ Reusing cached page for https://www.poundwholesale.co.uk
+INFO:configurable_supplier_scraper:Successfully fetched content from https://www.poundwholesale.co.uk/pestshield-flying-insect-mosquito-killer-coils-6-pack (Size: 670872 bytes)
+INFO:configurable_supplier_scraper:🎯 EAN found via pattern search: 5053249250922
+INFO:tools.passive_extraction_workflow_latest:✅ EAN extracted successfully: 5053249250922
+INFO:tools.passive_extraction_workflow_latest:Final extraction for https://www.poundwholesale.co.uk/pestshield-flying-insect-mosquito-killer-coils-6-pack: EAN=5053249250922, UPC=None, SKU=None
+INFO:configurable_supplier_scraper:🔧 Using BrowserManager page for https://www.poundwholesale.co.uk/ant-glue-traps-3-pack
+INFO:configurable_supplier_scraper:🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/ant-glue-traps-3-pack
+INFO:configurable_supplier_scraper:🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/ant-glue-traps-3-pack
+INFO:utils.browser_manager:♻️ Reusing cached page for https://www.poundwholesale.co.uk
+INFO:configurable_supplier_scraper:Successfully fetched content from https://www.poundwholesale.co.uk/ant-glue-traps-3-pack (Size: 661645 bytes)
+INFO:configurable_supplier_scraper:🎯 EAN found via pattern search: 5038673210100
+INFO:tools.passive_extraction_workflow_latest:✅ EAN extracted successfully: 5038673210100
+INFO:tools.passive_extraction_workflow_latest:Final extraction for https://www.poundwholesale.co.uk/ant-glue-traps-3-pack: EAN=5038673210100, UPC=None, SKU=None
+INFO:configurable_supplier_scraper:🔧 Using BrowserManager page for https://www.poundwholesale.co.uk/beat-it-ant-glue-traps-3-pack-cdu
+INFO:configurable_supplier_scraper:🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/beat-it-ant-glue-traps-3-pack-cdu
+INFO:configurable_supplier_scraper:🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/beat-it-ant-glue-traps-3-pack-cdu
+INFO:utils.browser_manager:♻️ Reusing cached page for https://www.poundwholesale.co.uk
+INFO:configurable_supplier_scraper:Successfully fetched content from https://www.poundwholesale.co.uk/beat-it-ant-glue-traps-3-pack-cdu (Size: 665771 bytes)
+INFO:configurable_supplier_scraper:🎯 EAN found via pattern search: 5056170308335
+INFO:tools.passive_extraction_workflow_latest:✅ EAN extracted successfully: 5056170308335
+INFO:tools.passive_extraction_workflow_latest:Final extraction for https://www.poundwholesale.co.uk/beat-it-ant-glue-traps-3-pack-cdu: EAN=5056170308335, UPC=None, SKU=None
+INFO:configurable_supplier_scraper:🔧 Using BrowserManager page for https://www.poundwholesale.co.uk/pest-police-quick-action-mouse-traps-3-pack
+INFO:configurable_supplier_scraper:🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/pest-police-quick-action-mouse-traps-3-pack
+INFO:configurable_supplier_scraper:🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/pest-police-quick-action-mouse-traps-3-pack
+INFO:utils.browser_manager:♻️ Reusing cached page for https://www.poundwholesale.co.uk
+INFO:configurable_supplier_scraper:Successfully fetched content from https://www.poundwholesale.co.uk/pest-police-quick-action-mouse-traps-3-pack (Size: 668697 bytes)
+INFO:configurable_supplier_scraper:🎯 EAN found via pattern search: 5056175974740
+INFO:tools.passive_extraction_workflow_latest:✅ EAN extracted successfully: 5056175974740
+INFO:tools.passive_extraction_workflow_latest:Final extraction for https://www.poundwholesale.co.uk/pest-police-quick-action-mouse-traps-3-pack: EAN=5056175974740, UPC=None, SKU=None
+INFO:configurable_supplier_scraper:🔧 Using BrowserManager page for https://www.poundwholesale.co.uk/extra-strength-rat-glue-traps-2-pack-cdu
+INFO:configurable_supplier_scraper:🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/extra-strength-rat-glue-traps-2-pack-cdu
+INFO:configurable_supplier_scraper:🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/extra-strength-rat-glue-traps-2-pack-cdu
+INFO:configurable_supplier_scraper:Successfully fetched content from https://www.poundwholesale.co.uk/extra-strength-rat-glue-traps-2-pack-cdu (Size: 663925 bytes)
+INFO:configurable_supplier_scraper:🎯 EAN found via pattern search: 5038673210124
+INFO:tools.passive_extraction_workflow_latest:✅ EAN extracted successfully: 5038673210124
+INFO:tools.passive_extraction_workflow_latest:Final extraction for https://www.poundwholesale.co.uk/extra-strength-rat-glue-traps-2-pack-cdu: EAN=5038673210124, UPC=None, SKU=None
+INFO:tools.passive_extraction_workflow_latest:Reached max_products_per_category=5 for https://www.poundwholesale.co.uk/homeware/wholesale-pest-control?product_list_limit=64&product_list_order=price&product_list_dir=asc. Stopping category scrape.
+INFO:tools.passive_extraction_workflow_latest:Processed batch of 5 detailed products from page 1, total extracted so far: 5
+INFO:tools.passive_extraction_workflow_latest:Stopping pagination for https://www.poundwholesale.co.uk/homeware/wholesale-pest-control?product_list_limit=64&product_list_order=price&product_list_dir=asc due to price threshold.
+INFO:tools.passive_extraction_workflow_latest:Scraping supplier category: https://www.poundwholesale.co.uk/leisure-hobbies/wholesale-camping?product_list_limit=64&product_list_order=price&product_list_dir=asc
+INFO:tools.passive_extraction_workflow_latest:Fetching supplier category page 1: https://www.poundwholesale.co.uk/leisure-hobbies/wholesale-camping?product_list_limit=64&product_list_order=price&product_list_dir=asc
+INFO:configurable_supplier_scraper:Fetching page content from: https://www.poundwholesale.co.uk/leisure-hobbies/wholesale-camping?product_list_limit=64&product_list_order=price&product_list_dir=asc (attempt 1/3)
+INFO:utils.browser_manager:♻️ Reusing existing Chrome connection (port 9222)
+INFO:utils.browser_manager:♻️ Reusing cached page for https://www.poundwholesale.co.uk
+INFO:configurable_supplier_scraper:🔧 Using BrowserManager page for https://www.poundwholesale.co.uk/leisure-hobbies/wholesale-camping?product_list_limit=64&product_list_order=price&product_list_dir=asc
+INFO:configurable_supplier_scraper:🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/leisure-hobbies/wholesale-camping?product_list_limit=64&product_list_order=price&product_list_dir=asc
+INFO:configurable_supplier_scraper:🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/leisure-hobbies/wholesale-camping?product_list_limit=64&product_list_order=price&product_list_dir=asc
+INFO:configurable_supplier_scraper:Successfully fetched content from https://www.poundwholesale.co.uk/leisure-hobbies/wholesale-camping?product_list_limit=64&product_list_order=price&product_list_dir=asc (Size: 656977 bytes)
+INFO:tools.passive_extraction_workflow_latest:Found 21 product elements in category https://www.poundwholesale.co.uk/leisure-hobbies/wholesale-camping?product_list_limit=64&product_list_order=price&product_list_dir=asc, page 1
+INFO:tools.passive_extraction_workflow_latest:Getting detailed info for product: Prima Kid's Waterproof Emergency Poncho from https://www.poundwholesale.co.uk/prima-kid-s-waterproof-emergency-poncho
+INFO:configurable_supplier_scraper:Fetching page content from: https://www.poundwholesale.co.uk/prima-kid-s-waterproof-emergency-poncho (attempt 1/3)
+INFO:utils.browser_manager:♻️ Reusing existing Chrome connection (port 9222)
+INFO:utils.browser_manager:♻️ Reusing cached page for https://www.poundwholesale.co.uk
+INFO:tools.passive_extraction_workflow_latest:Getting detailed info for product: Procamp Pink Woman's Reusable Waterproof Raincoat Assorted Sizes from https://www.poundwholesale.co.uk/procamp-pink-woman-s-reusable-waterproof-raincoat-assorted-sizes
+INFO:tools.passive_extraction_workflow_latest:Getting detailed info for product: Procamp Men's Reusable Waterproof Raincoat Assorted Sizes from https://www.poundwholesale.co.uk/procamp-men-s-reusable-waterproof-raincoat-assorted-sizes
+INFO:tools.passive_extraction_workflow_latest:Getting detailed info for product: Procamp Black Metal Carabiner Clips 4 Pack from https://www.poundwholesale.co.uk/procamp-black-metal-carabiner-clips-4-pack
+INFO:tools.passive_extraction_workflow_latest:Getting detailed info for product: Procamp Large 'S' Camping Hooks 6 Pack from https://www.poundwholesale.co.uk/procamp-large-s-camping-hooks-6-pack
+INFO:configurable_supplier_scraper:Fetching page content from: https://www.poundwholesale.co.uk/procamp-large-s-camping-hooks-6-pack (attempt 1/3)
+INFO:utils.browser_manager:♻️ Reusing existing Chrome connection (port 9222)
+INFO:configurable_supplier_scraper:Fetching page content from: https://www.poundwholesale.co.uk/procamp-black-metal-carabiner-clips-4-pack (attempt 1/3)
+INFO:utils.browser_manager:♻️ Reusing existing Chrome connection (port 9222)
+INFO:configurable_supplier_scraper:Fetching page content from: https://www.poundwholesale.co.uk/procamp-men-s-reusable-waterproof-raincoat-assorted-sizes (attempt 1/3)
+INFO:utils.browser_manager:♻️ Reusing existing Chrome connection (port 9222)
+INFO:configurable_supplier_scraper:Fetching page content from: https://www.poundwholesale.co.uk/procamp-pink-woman-s-reusable-waterproof-raincoat-assorted-sizes (attempt 1/3)
+INFO:utils.browser_manager:♻️ Reusing existing Chrome connection (port 9222)
+INFO:configurable_supplier_scraper:🔧 Using BrowserManager page for https://www.poundwholesale.co.uk/prima-kid-s-waterproof-emergency-poncho
+INFO:configurable_supplier_scraper:🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/prima-kid-s-waterproof-emergency-poncho
+INFO:configurable_supplier_scraper:🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/prima-kid-s-waterproof-emergency-poncho
+INFO:utils.browser_manager:♻️ Reusing cached page for https://www.poundwholesale.co.uk
+INFO:configurable_supplier_scraper:Successfully fetched content from https://www.poundwholesale.co.uk/prima-kid-s-waterproof-emergency-poncho (Size: 603992 bytes)
+INFO:configurable_supplier_scraper:🎯 EAN found via pattern search: 5038673211084
+INFO:tools.passive_extraction_workflow_latest:✅ EAN extracted successfully: 5038673211084
+INFO:tools.passive_extraction_workflow_latest:Final extraction for https://www.poundwholesale.co.uk/prima-kid-s-waterproof-emergency-poncho: EAN=5038673211084, UPC=None, SKU=None
+INFO:configurable_supplier_scraper:🔧 Using BrowserManager page for https://www.poundwholesale.co.uk/procamp-large-s-camping-hooks-6-pack
+INFO:configurable_supplier_scraper:🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/procamp-large-s-camping-hooks-6-pack
+INFO:configurable_supplier_scraper:🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/procamp-large-s-camping-hooks-6-pack
+INFO:utils.browser_manager:♻️ Reusing cached page for https://www.poundwholesale.co.uk
+INFO:configurable_supplier_scraper:Successfully fetched content from https://www.poundwholesale.co.uk/procamp-large-s-camping-hooks-6-pack (Size: 669277 bytes)
+INFO:configurable_supplier_scraper:🎯 EAN found via pattern search: 5056170379953
+INFO:tools.passive_extraction_workflow_latest:✅ EAN extracted successfully: 5056170379953
+INFO:tools.passive_extraction_workflow_latest:Final extraction for https://www.poundwholesale.co.uk/procamp-large-s-camping-hooks-6-pack: EAN=5056170379953, UPC=None, SKU=None
+INFO:configurable_supplier_scraper:🔧 Using BrowserManager page for https://www.poundwholesale.co.uk/procamp-black-metal-carabiner-clips-4-pack
+INFO:configurable_supplier_scraper:🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/procamp-black-metal-carabiner-clips-4-pack
+INFO:configurable_supplier_scraper:🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/procamp-black-metal-carabiner-clips-4-pack
+INFO:utils.browser_manager:♻️ Reusing cached page for https://www.poundwholesale.co.uk
+INFO:configurable_supplier_scraper:Successfully fetched content from https://www.poundwholesale.co.uk/procamp-black-metal-carabiner-clips-4-pack (Size: 669704 bytes)
+INFO:configurable_supplier_scraper:🎯 EAN found via pattern search: 5056170379960
+INFO:tools.passive_extraction_workflow_latest:✅ EAN extracted successfully: 5056170379960
+INFO:tools.passive_extraction_workflow_latest:Final extraction for https://www.poundwholesale.co.uk/procamp-black-metal-carabiner-clips-4-pack: EAN=5056170379960, UPC=None, SKU=None
+INFO:configurable_supplier_scraper:🔧 Using BrowserManager page for https://www.poundwholesale.co.uk/procamp-men-s-reusable-waterproof-raincoat-assorted-sizes
+INFO:configurable_supplier_scraper:🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/procamp-men-s-reusable-waterproof-raincoat-assorted-sizes
+INFO:configurable_supplier_scraper:🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/procamp-men-s-reusable-waterproof-raincoat-assorted-sizes
+INFO:utils.browser_manager:♻️ Reusing cached page for https://www.poundwholesale.co.uk
+INFO:configurable_supplier_scraper:Successfully fetched content from https://www.poundwholesale.co.uk/procamp-men-s-reusable-waterproof-raincoat-assorted-sizes (Size: 671775 bytes)
+INFO:configurable_supplier_scraper:🎯 EAN found via pattern search: 5056170379984
+INFO:tools.passive_extraction_workflow_latest:✅ EAN extracted successfully: 5056170379984
+INFO:tools.passive_extraction_workflow_latest:Final extraction for https://www.poundwholesale.co.uk/procamp-men-s-reusable-waterproof-raincoat-assorted-sizes: EAN=5056170379984, UPC=None, SKU=None
+INFO:configurable_supplier_scraper:🔧 Using BrowserManager page for https://www.poundwholesale.co.uk/procamp-pink-woman-s-reusable-waterproof-raincoat-assorted-sizes
+INFO:configurable_supplier_scraper:🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/procamp-pink-woman-s-reusable-waterproof-raincoat-assorted-sizes
+INFO:configurable_supplier_scraper:🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/procamp-pink-woman-s-reusable-waterproof-raincoat-assorted-sizes
+INFO:configurable_supplier_scraper:Successfully fetched content from https://www.poundwholesale.co.uk/procamp-pink-woman-s-reusable-waterproof-raincoat-assorted-sizes (Size: 672854 bytes)
+INFO:configurable_supplier_scraper:🎯 EAN found via pattern search: 5056170379991
+INFO:tools.passive_extraction_workflow_latest:✅ EAN extracted successfully: 5056170379991
+INFO:tools.passive_extraction_workflow_latest:Final extraction for https://www.poundwholesale.co.uk/procamp-pink-woman-s-reusable-waterproof-raincoat-assorted-sizes: EAN=5056170379991, UPC=None, SKU=None
+INFO:tools.passive_extraction_workflow_latest:Reached max_products_per_category=5 for https://www.poundwholesale.co.uk/leisure-hobbies/wholesale-camping?product_list_limit=64&product_list_order=price&product_list_dir=asc. Stopping category scrape.
+INFO:tools.passive_extraction_workflow_latest:Processed batch of 5 detailed products from page 1, total extracted so far: 10
+INFO:tools.passive_extraction_workflow_latest:Reached 10 products. Running FBA Financial Calculator (batch size: 2)...
+INFO:tools.passive_extraction_workflow_latest:Saved 10 products to cache (10 new)
+INFO:FBA_Financial_calculator:FBA_Financial_calculator: amazon_dir confirmed to exist and is a directory: /mnt/c/Users/chris/Cloud-Drive_christianhaddad8@gmail.com/Cloud-Drive/Full/claude code/Amazon-FBA-Agent-System-v3/OUTPUTS/FBA_ANALYSIS/amazon_cache
+ERROR:tools.passive_extraction_workflow_latest:Error running FBA Financial Calculator at 10 products: No matching records found. Check file paths and data consistency.
+INFO:tools.passive_extraction_workflow_latest:Stopping pagination for https://www.poundwholesale.co.uk/leisure-hobbies/wholesale-camping?product_list_limit=64&product_list_order=price&product_list_dir=asc due to price threshold.
+INFO:tools.passive_extraction_workflow_latest:Scraping supplier category: https://www.poundwholesale.co.uk/toys/wholesale-baby-pre-school-toys?product_list_limit=64&product_list_order=price&product_list_dir=asc
+INFO:tools.passive_extraction_workflow_latest:Fetching supplier category page 1: https://www.poundwholesale.co.uk/toys/wholesale-baby-pre-school-toys?product_list_limit=64&product_list_order=price&product_list_dir=asc
+INFO:configurable_supplier_scraper:Fetching page content from: https://www.poundwholesale.co.uk/toys/wholesale-baby-pre-school-toys?product_list_limit=64&product_list_order=price&product_list_dir=asc (attempt 1/3)
+INFO:utils.browser_manager:♻️ Reusing existing Chrome connection (port 9222)
+INFO:utils.browser_manager:♻️ Reusing cached page for https://www.poundwholesale.co.uk
+INFO:configurable_supplier_scraper:🔧 Using BrowserManager page for https://www.poundwholesale.co.uk/toys/wholesale-baby-pre-school-toys?product_list_limit=64&product_list_order=price&product_list_dir=asc
+INFO:configurable_supplier_scraper:🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/toys/wholesale-baby-pre-school-toys?product_list_limit=64&product_list_order=price&product_list_dir=asc
+INFO:configurable_supplier_scraper:🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/toys/wholesale-baby-pre-school-toys?product_list_limit=64&product_list_order=price&product_list_dir=asc
+INFO:configurable_supplier_scraper:Successfully fetched content from https://www.poundwholesale.co.uk/toys/wholesale-baby-pre-school-toys?product_list_limit=64&product_list_order=price&product_list_dir=asc (Size: 654546 bytes)
+INFO:tools.passive_extraction_workflow_latest:Found 21 product elements in category https://www.poundwholesale.co.uk/toys/wholesale-baby-pre-school-toys?product_list_limit=64&product_list_order=price&product_list_dir=asc, page 1
+INFO:tools.passive_extraction_workflow_latest:Getting detailed info for product: First Steps Rain Cloud Baby Bath Toy Assorted from https://www.poundwholesale.co.uk/first-steps-rain-cloud-baby-bath-toy-assorted
+INFO:configurable_supplier_scraper:Fetching page content from: https://www.poundwholesale.co.uk/first-steps-rain-cloud-baby-bath-toy-assorted (attempt 1/3)
+INFO:utils.browser_manager:♻️ Reusing existing Chrome connection (port 9222)
+INFO:utils.browser_manager:♻️ Reusing cached page for https://www.poundwholesale.co.uk
+INFO:tools.passive_extraction_workflow_latest:Getting detailed info for product: Glow Party Glow In The Dark Moon & Stars Assorted CDU from https://www.poundwholesale.co.uk/glow-party-glow-in-the-dark-moon-stars-assorted-cdu
+INFO:tools.passive_extraction_workflow_latest:Getting detailed info for product: Bing Assorted Colour Kids Bath Crayons 4 Pack from https://www.poundwholesale.co.uk/bing-assorted-colour-kids-bath-crayons-4-pack
+INFO:tools.passive_extraction_workflow_latest:Getting detailed info for product: Rub A Dub Mini Duck Bath Toy 3 Pack from https://www.poundwholesale.co.uk/rub-a-dub-mini-duck-bath-toy-3-pack
+INFO:tools.passive_extraction_workflow_latest:Getting detailed info for product: Rub A Dub Wind Up Sea Animal Bath Toy CDU Assorted from https://www.poundwholesale.co.uk/rub-a-dub-wind-up-sea-animal-bath-toy-cdu-assorted
+INFO:configurable_supplier_scraper:Fetching page content from: https://www.poundwholesale.co.uk/rub-a-dub-wind-up-sea-animal-bath-toy-cdu-assorted (attempt 1/3)
+INFO:utils.browser_manager:♻️ Reusing existing Chrome connection (port 9222)
+INFO:configurable_supplier_scraper:Fetching page content from: https://www.poundwholesale.co.uk/rub-a-dub-mini-duck-bath-toy-3-pack (attempt 1/3)
+INFO:utils.browser_manager:♻️ Reusing existing Chrome connection (port 9222)
+INFO:configurable_supplier_scraper:Fetching page content from: https://www.poundwholesale.co.uk/bing-assorted-colour-kids-bath-crayons-4-pack (attempt 1/3)
+INFO:utils.browser_manager:♻️ Reusing existing Chrome connection (port 9222)
+INFO:configurable_supplier_scraper:Fetching page content from: https://www.poundwholesale.co.uk/glow-party-glow-in-the-dark-moon-stars-assorted-cdu (attempt 1/3)
+INFO:utils.browser_manager:♻️ Reusing existing Chrome connection (port 9222)
+INFO:configurable_supplier_scraper:🔧 Using BrowserManager page for https://www.poundwholesale.co.uk/first-steps-rain-cloud-baby-bath-toy-assorted
+INFO:configurable_supplier_scraper:🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/first-steps-rain-cloud-baby-bath-toy-assorted
+INFO:configurable_supplier_scraper:🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/first-steps-rain-cloud-baby-bath-toy-assorted
+INFO:utils.browser_manager:♻️ Reusing cached page for https://www.poundwholesale.co.uk
+INFO:configurable_supplier_scraper:Successfully fetched content from https://www.poundwholesale.co.uk/first-steps-rain-cloud-baby-bath-toy-assorted (Size: 671120 bytes)
+INFO:configurable_supplier_scraper:🎯 EAN found via pattern search: 5015302108830
+INFO:tools.passive_extraction_workflow_latest:✅ EAN extracted successfully: 5015302108830
+INFO:tools.passive_extraction_workflow_latest:Final extraction for https://www.poundwholesale.co.uk/first-steps-rain-cloud-baby-bath-toy-assorted: EAN=5015302108830, UPC=None, SKU=None
+INFO:configurable_supplier_scraper:🔧 Using BrowserManager page for https://www.poundwholesale.co.uk/rub-a-dub-wind-up-sea-animal-bath-toy-cdu-assorted
+INFO:configurable_supplier_scraper:🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/rub-a-dub-wind-up-sea-animal-bath-toy-cdu-assorted
+INFO:configurable_supplier_scraper:🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/rub-a-dub-wind-up-sea-animal-bath-toy-cdu-assorted
+INFO:utils.browser_manager:♻️ Reusing cached page for https://www.poundwholesale.co.uk
+INFO:configurable_supplier_scraper:Successfully fetched content from https://www.poundwholesale.co.uk/rub-a-dub-wind-up-sea-animal-bath-toy-cdu-assorted (Size: 674166 bytes)
+INFO:configurable_supplier_scraper:🎯 EAN found via pattern search: 5056170361477
+INFO:tools.passive_extraction_workflow_latest:✅ EAN extracted successfully: 5056170361477
+INFO:tools.passive_extraction_workflow_latest:Final extraction for https://www.poundwholesale.co.uk/rub-a-dub-wind-up-sea-animal-bath-toy-cdu-assorted: EAN=5056170361477, UPC=None, SKU=None
+INFO:configurable_supplier_scraper:🔧 Using BrowserManager page for https://www.poundwholesale.co.uk/rub-a-dub-mini-duck-bath-toy-3-pack
+INFO:configurable_supplier_scraper:🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/rub-a-dub-mini-duck-bath-toy-3-pack
+INFO:configurable_supplier_scraper:🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/rub-a-dub-mini-duck-bath-toy-3-pack
+INFO:utils.browser_manager:♻️ Reusing cached page for https://www.poundwholesale.co.uk
+INFO:configurable_supplier_scraper:Successfully fetched content from https://www.poundwholesale.co.uk/rub-a-dub-mini-duck-bath-toy-3-pack (Size: 672546 bytes)
+INFO:configurable_supplier_scraper:🎯 EAN found via pattern search: 5056170365062
+INFO:tools.passive_extraction_workflow_latest:✅ EAN extracted successfully: 5056170365062
+INFO:tools.passive_extraction_workflow_latest:Final extraction for https://www.poundwholesale.co.uk/rub-a-dub-mini-duck-bath-toy-3-pack: EAN=5056170365062, UPC=None, SKU=None
+INFO:configurable_supplier_scraper:🔧 Using BrowserManager page for https://www.poundwholesale.co.uk/bing-assorted-colour-kids-bath-crayons-4-pack
+INFO:configurable_supplier_scraper:🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/bing-assorted-colour-kids-bath-crayons-4-pack
+INFO:configurable_supplier_scraper:🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/bing-assorted-colour-kids-bath-crayons-4-pack
+INFO:utils.browser_manager:♻️ Reusing cached page for https://www.poundwholesale.co.uk
+INFO:configurable_supplier_scraper:Successfully fetched content from https://www.poundwholesale.co.uk/bing-assorted-colour-kids-bath-crayons-4-pack (Size: 563956 bytes)
+INFO:configurable_supplier_scraper:🎯 EAN found via pattern search: 503399601980
+INFO:tools.passive_extraction_workflow_latest:✅ EAN extracted successfully: 503399601980
+INFO:tools.passive_extraction_workflow_latest:Final extraction for https://www.poundwholesale.co.uk/bing-assorted-colour-kids-bath-crayons-4-pack: EAN=503399601980, UPC=None, SKU=None
+INFO:configurable_supplier_scraper:🔧 Using BrowserManager page for https://www.poundwholesale.co.uk/glow-party-glow-in-the-dark-moon-stars-assorted-cdu
+INFO:configurable_supplier_scraper:🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/glow-party-glow-in-the-dark-moon-stars-assorted-cdu
+INFO:configurable_supplier_scraper:🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/glow-party-glow-in-the-dark-moon-stars-assorted-cdu
+INFO:configurable_supplier_scraper:Successfully fetched content from https://www.poundwholesale.co.uk/glow-party-glow-in-the-dark-moon-stars-assorted-cdu (Size: 545665 bytes)
+INFO:configurable_supplier_scraper:🎯 EAN found via pattern search: 5033849063962
+INFO:tools.passive_extraction_workflow_latest:✅ EAN extracted successfully: 5033849063962
+INFO:tools.passive_extraction_workflow_latest:Final extraction for https://www.poundwholesale.co.uk/glow-party-glow-in-the-dark-moon-stars-assorted-cdu: EAN=5033849063962, UPC=None, SKU=None
+INFO:tools.passive_extraction_workflow_latest:Reached max_products_per_category=5 for https://www.poundwholesale.co.uk/toys/wholesale-baby-pre-school-toys?product_list_limit=64&product_list_order=price&product_list_dir=asc. Stopping category scrape.
+INFO:tools.passive_extraction_workflow_latest:Processed batch of 5 detailed products from page 1, total extracted so far: 15
+INFO:tools.passive_extraction_workflow_latest:Stopping pagination for https://www.poundwholesale.co.uk/toys/wholesale-baby-pre-school-toys?product_list_limit=64&product_list_order=price&product_list_dir=asc due to price threshold.
+INFO:tools.passive_extraction_workflow_latest:Cached 15 supplier products
+INFO:tools.passive_extraction_workflow_latest:STAGE-COMPLETE: supplier_scrape - 15 records
+INFO:tools.passive_extraction_workflow_latest:Successfully got 15 products from poundwholesale-co-uk
+INFO:tools.passive_extraction_workflow_latest:Found 15 valid supplier products, 15 within price range [£0.1-£20.0]
+INFO:tools.passive_extraction_workflow_latest:STAGE-COMPLETE: price_filtering - 15 records
+INFO:tools.passive_extraction_workflow_latest:UNLIMITED MODE: Processing ALL 15 products starting from index 0 with smart rate limiting.
+INFO:tools.passive_extraction_workflow_latest:--- Processing supplier product 1/15 (6.7%): 'Pestshield Flying Insect Mosquito Killer Coils 6 Pack' (EAN: 5053249250922) ---
+INFO:tools.passive_extraction_workflow_latest:Attempting Amazon search using EAN: 5053249250922
+INFO:tools.passive_extraction_workflow_latest:Connecting to Chrome browser on debug port 9222 (FixedAmazonExtractor)
+INFO:tools.passive_extraction_workflow_latest:Successfully connected to Chrome on port 9222 (FixedAmazonExtractor)
+INFO:tools.passive_extraction_workflow_latest:Found 3 existing pages (FixedAmazonExtractor)
+INFO:tools.passive_extraction_workflow_latest:Using existing page: https://www.amazon.co.uk/s?k=Bettina+Hardwood+Pegs+32pc&ref=nb_sb_noss (FixedAmazonExtractor)
+INFO:tools.passive_extraction_workflow_latest:Searching Amazon by EAN: 5053249250922 for supplier product: 'Pestshield Flying Insect Mosquito Killer Coils 6 Pack' (FixedAmazonExtractor)
+INFO:tools.passive_extraction_workflow_latest:Navigating to Amazon UK to search for EAN: 5053249250922
+INFO:tools.passive_extraction_workflow_latest:Waiting for search results page to load for EAN 5053249250922...
+INFO:tools.passive_extraction_workflow_latest:Found search results container with selector: div.s-search-results
+INFO:tools.passive_extraction_workflow_latest:Found 1 search result elements using selector: div[data-asin]:not([data-asin='']):not(.AdHolder):not([class*='s-widget-sponsored-product'])
+INFO:tools.passive_extraction_workflow_latest:Processing 1 search result elements for EAN 5053249250922
+DEBUG:tools.passive_extraction_workflow_latest:Processing element 1: ASIN B0CGPF2FLL
+DEBUG:tools.passive_extraction_workflow_latest:ASIN B0CGPF2FLL HTML structure sample: <div role="listitem" data-asin="B0CGPF2FLL" data-index="3" data-uuid="3ddd2435-5a20-4ce0-8b73-62a5f5f8361d" id="3ddd2435-5a20-4ce0-8b73-62a5f5f8361d" data-component-type="s-search-result" class="sg-col-4-of-4 sg-col-4-of-24 sg-col-4-of-12 s-result-item s-asin sg-col-4-of-16 sg-col s-widget-spacing-small sg-col-4-of-8 sg-col-4-of-20" data-component-id="16" data-cel-widget="search_result_2"><div class="sg-col-inner"><div cel_widget_id="MAIN-SEARCH_RESULTS-3" class="s-widget-container s-spacing-small s-widget-container-height-small celwidget slot=MAIN template=SEARCH_RESULTS widgetId=search-resul...
+DEBUG:tools.passive_extraction_workflow_latest:Error checking sponsored badge for ASIN B0CGPF2FLL: 'ElementHandle' object has no attribute 'locator'
+DEBUG:tools.passive_extraction_workflow_latest:Error checking aria-label for ASIN B0CGPF2FLL: 'ElementHandle' object has no attribute 'locator'
+DEBUG:tools.passive_extraction_workflow_latest:Error checking text for ad indicators for ASIN B0CGPF2FLL: 'ElementHandle' object has no attribute 'locator'
+DEBUG:tools.passive_extraction_workflow_latest:ASIN B0CGPF2FLL title extracted using selector 'h2': 12x Repellent Coil for Mosquito Midge Flies Insect...
+INFO:tools.passive_extraction_workflow_latest:Found organic result: ASIN B0CGPF2FLL - 12x Repellent Coil for Mosquito Midge Flies Insect for Outdo...
+INFO:tools.passive_extraction_workflow_latest:Single organic result found for EAN 5053249250922: ASIN B0CGPF2FLL
+INFO:tools.passive_extraction_workflow_latest:EAN search selected ASIN B0CGPF2FLL for 5053249250922
+INFO:tools.passive_extraction_workflow_latest:Single ASIN B0CGPF2FLL found for EAN 5053249250922.
+INFO:tools.passive_extraction_workflow_latest:Proceeding with ASIN: B0CGPF2FLL for EAN: 5053249250922
+INFO:utils.browser_manager:♻️ Reusing existing Chrome connection (port 9222)
+INFO:utils.browser_manager:📄 Created new page #2 for https://www.amazon.co.uk
+INFO:utils.browser_manager:✅ Page ready for https://www.amazon.co.uk/dp/B0CGPF2FLL
+INFO:amazon_playwright_extractor:🔧 Using BrowserManager page for https://www.amazon.co.uk/dp/B0CGPF2FLL
+INFO:amazon_playwright_extractor:Checking for cookie consent pop-up...
+INFO:amazon_playwright_extractor:Finished checking for cookie consent pop-ups. If one was present and not handled, it might interfere.
+INFO:amazon_playwright_extractor:Checking for CAPTCHA...
+INFO:amazon_playwright_extractor:No CAPTCHA page detected by form selector.
+INFO:amazon_playwright_extractor:Checking for cookie consent pop-up...
+INFO:amazon_playwright_extractor:Finished checking for cookie consent pop-ups. If one was present and not handled, it might interfere.
+INFO:amazon_playwright_extractor:Page should be ready. Waiting 5s for stabilization...
+INFO:amazon_playwright_extractor:Waiting an additional 7s for extensions (Keepa, SellerAmp)...
+INFO:amazon_playwright_extractor:Extracting all product data for ASIN: B0CGPF2FLL
+INFO:amazon_playwright_extractor:Extracting basic product information (Title, Price, Images, Amazon Details)...
+INFO:amazon_playwright_extractor:Title found: '12x Repellent Coil for Mosquito Midge Flies Insect for Outdoor use Such as Gardens, BBQ, Balconies and terraces' via #productTitle
+INFO:amazon_playwright_extractor:Extracting price details...
+INFO:amazon_playwright_extractor:Current price: 6.99 via #corePrice_feature_div .a-offscreen
+INFO:amazon_playwright_extractor:Original price: 21.99 via span.a-price.a-text-price[data-a-strike='true'] span.a-offscreen
+INFO:amazon_playwright_extractor:Amazon sales badge found: 50 in container div#socialProofingAsinFaceout_feature_div
+INFO:amazon_playwright_extractor:Extracting image URLs...
+INFO:amazon_playwright_extractor:Main image: https://m.media-amazon.com/images/I/619FOiYkbQL._AC_SX355_.jpg via #landingImage
+INFO:amazon_playwright_extractor:Found 7 thumbnails.
+INFO:amazon_playwright_extractor:Extracting Amazon product details section...
+INFO:amazon_playwright_extractor:Extracting sales rank information...
+INFO:amazon_playwright_extractor:Extracting ratings and reviews...
+INFO:amazon_playwright_extractor:Rating: 1.0 via #acrPopover[title*='out of 5 stars']
+INFO:amazon_playwright_extractor:Review count: 1 via #acrCustomerReviewText
+INFO:amazon_playwright_extractor:Extracting stock information...
+INFO:amazon_playwright_extractor:Availability text: 'In stock' via #availability span.a-size-medium.a-color-success
+INFO:amazon_playwright_extractor:Extracting features/bullets...
+INFO:amazon_playwright_extractor:Extracting product description...
+INFO:amazon_playwright_extractor:Extracting product specifications table...
+INFO:amazon_playwright_extractor:Specifications table parsed using selector: #productDetails_techSpec_section_1
+INFO:amazon_playwright_extractor:Extracting SellerAmp data (if present)...
+INFO:amazon_playwright_extractor:SellerAmp data extraction is currently disabled as per requirements (Fix 2.3).
+INFO:amazon_playwright_extractor:Extracting Keepa data (if present)...
+INFO:amazon_playwright_extractor:Attempting to extract Keepa data...
+DEBUG:amazon_playwright_extractor:Keepa iframe check failed for selector iframe[id*='keepaGraph']: Page.wait_for_selector: Timeout 3000ms exceeded.
+Call log:
+  - waiting for locator("iframe[id*='keepaGraph']")
+
+DEBUG:amazon_playwright_extractor:Keepa iframe check failed for selector iframe#keepaExtension: Page.wait_for_selector: Timeout 3000ms exceeded.
+Call log:
+  - waiting for locator("iframe#keepaExtension")
+
+INFO:amazon_playwright_extractor:Keepa iframe found: iframe[id*='keepa']
+INFO:amazon_playwright_extractor:Keepa Graph AI Analysis is currently disabled as per requirements (Fix 2.4).
+INFO:amazon_playwright_extractor:Keepa Data tab found. Currently active: False
+INFO:amazon_playwright_extractor:Clicking Keepa 'Data' tab...
+INFO:amazon_playwright_extractor:Attempt 1/2: Waiting 12000ms for Product-Details wrapper...
+INFO:amazon_playwright_extractor:✅ Product-Details wrapper appeared on attempt 1
+INFO:amazon_playwright_extractor:Parsing Keepa AG Grid for Product Details from: div#MoreTab1 div#grid-product-detail
+INFO:amazon_playwright_extractor:Primary attempt: Waiting 12 seconds for AG Grid rows to load...
+INFO:amazon_playwright_extractor:✅ Primary attempt successful: 115 rows found
+INFO:amazon_playwright_extractor:Processing 115 rows in Keepa Product Details AG Grid.
+INFO:amazon_playwright_extractor:Found potential fee key 'FBA Pick&Pack Fee' with raw value: '£ 1.70' in Keepa AG Grid.
+INFO:amazon_playwright_extractor:Found potential fee key 'Referral Fee based on current Buy Box price' with raw value: '£ 0.56' in Keepa AG Grid.
+INFO:amazon_playwright_extractor:✅ Successfully parsed 34 items from Keepa Product Details AG Grid.
+INFO:amazon_playwright_extractor:ASIN B0CGPF2FLL: Attempting to extract EANs from Keepa product_details_tab_data.
+INFO:amazon_playwright_extractor:ASIN B0CGPF2FLL: EAN '5053249250922' found in Keepa details via key 'Product Codes - EAN'.
+INFO:amazon_playwright_extractor:ASIN B0CGPF2FLL: BSR not found or invalid from page. Attempting fallback from Keepa.
+WARNING:amazon_playwright_extractor:ASIN B0CGPF2FLL: Could not find BSR in any Keepa data source.
+INFO:tools.passive_extraction_workflow_latest:Successfully extracted data for ASIN B0CGPF2FLL (EAN on page: 5053249250922)
+INFO:tools.passive_extraction_workflow_latest:EAN search for '5053249250922' identified ASIN: B0CGPF2FLL
+DEBUG:tools.passive_extraction_workflow_latest:No valid cache found for ASIN B0CGPF2FLL (tried 2 files)
+INFO:tools.passive_extraction_workflow_latest:Cached Amazon data for ASIN B0CGPF2FLL as amazon_B0CGPF2FLL_5053249250922.json
+INFO:tools.passive_extraction_workflow_latest:Added to linking map: EAN_5053249250922 -> B0CGPF2FLL
+INFO:tools.passive_extraction_workflow_latest:Cached (potentially partial) Amazon data from EAN search for ASIN: B0CGPF2FLL
+INFO:tools.passive_extraction_workflow_latest:Skipping triage for ASIN B0CGPF2FLL - proceeding directly to detailed extraction
+INFO:tools.passive_extraction_workflow_latest:Successfully got Amazon data for '12x Repellent Coil for Mosquito Midge Flies Insect for Outdoor use Such as Gardens, BBQ, Balconies and terraces' (ASIN: B0CGPF2FLL, EAN on page: 5053249250922)
+INFO:tools.passive_extraction_workflow_latest:Using fees from Keepa (or fallback): Referral Fee £0.00, FBA Fee £0.00, Total £0.00
+DEBUG:tools.passive_extraction_workflow_latest:Financials for '12x Repellent Coil for Mosquito Midge Flies Insect for Outdoor use Such as Gardens, BBQ, Balconies and terraces': Cost (exVAT): 0.94, Sell (exVAT): 5.83, Fees: 0.00, Profit: 4.88, ROI: 518.58%
+INFO:tools.passive_extraction_workflow_latest:Match quality is medium (0.50) for ASIN B0CGPF2FLL. Attempting AI validation.
+DEBUG:openai._base_client:Request options: {'method': 'post', 'url': '/chat/completions', 'files': None, 'idempotency_key': 'stainless-python-retry-5c2b0999-701e-41bf-9c72-42a8f77f4c69', 'json_data': {'messages': [{'role': 'user', 'content': "Assess if the following two products are likely the same. Respond with only 'MATCH', 'MISMATCH', or 'UNCERTAIN'.\n\nSupplier Product:\nTitle: Pestshield Flying Insect Mosquito Killer Coils 6 Pack\nBrand: N/A\nEAN: 5053249250922\nPrice: 1.13\nDescription: N/A...\n\nAmazon Product:\nTitle: 12x Repellent Coil for Mosquito Midge Flies Insect for Outdoor use Such as Gardens, BBQ, Balconies and terraces\nBrand: N/A\nASIN: B0CGPF2FLL\nEAN on Page: 5053249250922\nPrice: 6.99\nDescription: N/A...\nFeatures: []..."}], 'model': 'gpt-4o-mini-2024-07-18', 'max_tokens': 10, 'temperature': 0.1}}
+DEBUG:openai._base_client:Sending HTTP Request: POST https://api.openai.com/v1/chat/completions
+DEBUG:httpcore.connection:close.started
+DEBUG:httpcore.connection:close.complete
+DEBUG:httpcore.connection:connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=5.0 socket_options=None
+DEBUG:httpcore.connection:connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x7feeb78555e0>
+DEBUG:httpcore.connection:start_tls.started ssl_context=<ssl.SSLContext object at 0x7feef457c1d0> server_hostname='api.openai.com' timeout=5.0
+DEBUG:httpcore.connection:start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x7feef208b200>
+DEBUG:httpcore.http11:send_request_headers.started request=<Request [b'POST']>
+DEBUG:httpcore.http11:send_request_headers.complete
+DEBUG:httpcore.http11:send_request_body.started request=<Request [b'POST']>
+DEBUG:httpcore.http11:send_request_body.complete
+DEBUG:httpcore.http11:receive_response_headers.started request=<Request [b'POST']>
+DEBUG:httpcore.http11:receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Sat, 05 Jul 2025 15:40:20 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'access-control-expose-headers', b'X-Request-ID'), (b'openai-organization', b'user-eywvpvgw4dvq99ktk9fwsqol'), (b'openai-processing-ms', b'259'), (b'openai-version', b'2020-10-01'), (b'x-envoy-upstream-service-time', b'263'), (b'x-ratelimit-limit-requests', b'10000'), (b'x-ratelimit-limit-tokens', b'200000'), (b'x-ratelimit-remaining-requests', b'9999'), (b'x-ratelimit-remaining-tokens', b'199873'), (b'x-ratelimit-reset-requests', b'8.64s'), (b'x-ratelimit-reset-tokens', b'37ms'), (b'x-request-id', b'req_b5bfa4ca117b103187b2421521d28cb1'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'cf-cache-status', b'DYNAMIC'), (b'X-Content-Type-Options', b'nosniff'), (b'Server', b'cloudflare'), (b'CF-RAY', b'95a7f5cb5d588a0d-DXB'), (b'Content-Encoding', b'br'), (b'alt-svc', b'h3=":443"; ma=86400')])
+INFO:httpx:HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+DEBUG:httpcore.http11:receive_response_body.started request=<Request [b'POST']>
+DEBUG:httpcore.http11:receive_response_body.complete
+DEBUG:httpcore.http11:response_closed.started
+DEBUG:httpcore.http11:response_closed.complete
+DEBUG:openai._base_client:HTTP Response: POST https://api.openai.com/v1/chat/completions "200 OK" Headers({'date': 'Sat, 05 Jul 2025 15:40:20 GMT', 'content-type': 'application/json', 'transfer-encoding': 'chunked', 'connection': 'keep-alive', 'access-control-expose-headers': 'X-Request-ID', 'openai-organization': 'user-eywvpvgw4dvq99ktk9fwsqol', 'openai-processing-ms': '259', 'openai-version': '2020-10-01', 'x-envoy-upstream-service-time': '263', 'x-ratelimit-limit-requests': '10000', 'x-ratelimit-limit-tokens': '200000', 'x-ratelimit-remaining-requests': '9999', 'x-ratelimit-remaining-tokens': '199873', 'x-ratelimit-reset-requests': '8.64s', 'x-ratelimit-reset-tokens': '37ms', 'x-request-id': 'req_b5bfa4ca117b103187b2421521d28cb1', 'strict-transport-security': 'max-age=31536000; includeSubDomains; preload', 'cf-cache-status': 'DYNAMIC', 'x-content-type-options': 'nosniff', 'server': 'cloudflare', 'cf-ray': '95a7f5cb5d588a0d-DXB', 'content-encoding': 'br', 'alt-svc': 'h3=":443"; ma=86400'})
+DEBUG:openai._base_client:request_id: req_b5bfa4ca117b103187b2421521d28cb1
+WARNING:tools.passive_extraction_workflow_latest:Low quality match (low) between supplier product 'Pestshield Flying Insect Mosquito Killer Coils 6 Pack' and Amazon product '12x Repellent Coil for Mosquito Midge Flies Insect for Outdoor use Such as Gardens, BBQ, Balconies and terraces'. Skipping.
+DEBUG:tools.passive_extraction_workflow_latest:Match reasons: ['EAN exact match: 5053249250922', 'Low title similarity (30.34%)', 'AI Validation: MISMATCH']
+DEBUG:tools.passive_extraction_workflow_latest:Rate limiting: waiting 3.0s before processing product 2
+INFO:tools.passive_extraction_workflow_latest:--- Processing supplier product 2/15 (13.3%): 'Extra Strength Rat Glue Traps 2 Pack CDU' (EAN: 5038673210124) ---
+INFO:tools.passive_extraction_workflow_latest:Attempting Amazon search using EAN: 5038673210124
+INFO:tools.passive_extraction_workflow_latest:Searching Amazon by EAN: 5038673210124 for supplier product: 'Extra Strength Rat Glue Traps 2 Pack CDU' (FixedAmazonExtractor)
+INFO:tools.passive_extraction_workflow_latest:Navigating to Amazon UK to search for EAN: 5038673210124
+INFO:tools.passive_extraction_workflow_latest:Waiting for search results page to load for EAN 5038673210124...
+INFO:tools.passive_extraction_workflow_latest:Found search results container with selector: div.s-search-results
+INFO:tools.passive_extraction_workflow_latest:Found 4 search result elements using selector: div.s-result-item[data-asin]:not([data-asin=''])
+INFO:tools.passive_extraction_workflow_latest:Processing 4 search result elements for EAN 5038673210124
+DEBUG:tools.passive_extraction_workflow_latest:Processing element 1: ASIN B0BL74HQ4P
+DEBUG:tools.passive_extraction_workflow_latest:ASIN B0BL74HQ4P HTML structure sample: <div role="listitem" data-asin="B0BL74HQ4P" data-index="3" data-uuid="b8c644bb-cf75-4a4a-b7c0-22fe1f6ca9a6" id="b8c644bb-cf75-4a4a-b7c0-22fe1f6ca9a6" data-component-type="s-search-result" class="sg-col-4-of-4 sg-col-4-of-24 sg-col-4-of-12 s-result-item s-asin sg-col-4-of-16 AdHolder sg-col s-widget-spacing-small sg-col-4-of-8 sg-col-4-of-20" data-component-id="7" data-cel-widget="search_result_0"><div class="sg-col-inner"><div cel_widget_id="MAIN-SEARCH_RESULTS-3" class="s-widget-container s-spacing-small s-widget-container-height-small celwidget slot=MAIN template=SEARCH_RESULTS widgetId=sear...
+DEBUG:tools.passive_extraction_workflow_latest:Error checking sponsored badge for ASIN B0BL74HQ4P: 'ElementHandle' object has no attribute 'locator'
+DEBUG:tools.passive_extraction_workflow_latest:Error checking aria-label for ASIN B0BL74HQ4P: 'ElementHandle' object has no attribute 'locator'
+INFO:tools.passive_extraction_workflow_latest:Skipping sponsored result: ASIN B0BL74HQ4P (detected by ad-specific class: 'AdHolder')
+DEBUG:tools.passive_extraction_workflow_latest:Processing element 2: ASIN B0CSD1K3YR
+DEBUG:tools.passive_extraction_workflow_latest:ASIN B0CSD1K3YR HTML structure sample: <div role="listitem" data-asin="B0CSD1K3YR" data-index="4" data-uuid="3a1e6d93-72ff-4153-9713-1acef9c56d20" id="3a1e6d93-72ff-4153-9713-1acef9c56d20" data-component-type="s-search-result" class="sg-col-4-of-4 sg-col-4-of-24 sg-col-4-of-12 s-result-item s-asin sg-col-4-of-16 AdHolder sg-col s-widget-spacing-small sg-col-4-of-8 sg-col-4-of-20" data-component-id="10" data-cel-widget="search_result_1"><div class="sg-col-inner"><div cel_widget_id="MAIN-SEARCH_RESULTS-4" class="s-widget-container s-spacing-small s-widget-container-height-small celwidget slot=MAIN template=SEARCH_RESULTS widgetId=sea...
+DEBUG:tools.passive_extraction_workflow_latest:Error checking sponsored badge for ASIN B0CSD1K3YR: 'ElementHandle' object has no attribute 'locator'
+DEBUG:tools.passive_extraction_workflow_latest:Error checking aria-label for ASIN B0CSD1K3YR: 'ElementHandle' object has no attribute 'locator'
+INFO:tools.passive_extraction_workflow_latest:Skipping sponsored result: ASIN B0CSD1K3YR (detected by ad-specific class: 'AdHolder')
+DEBUG:tools.passive_extraction_workflow_latest:Processing element 3: ASIN B0CMWM2474
+DEBUG:tools.passive_extraction_workflow_latest:ASIN B0CMWM2474 HTML structure sample: <div role="listitem" data-asin="B0CMWM2474" data-index="5" data-uuid="be0f7a64-ee5d-4461-aaed-dd07d13ab895" id="be0f7a64-ee5d-4461-aaed-dd07d13ab895" data-component-type="s-search-result" class="sg-col-4-of-4 sg-col-4-of-24 sg-col-4-of-12 s-result-item s-asin sg-col-4-of-16 AdHolder sg-col s-widget-spacing-small sg-col-4-of-8 sg-col-4-of-20" data-component-id="13" data-cel-widget="search_result_2"><div class="sg-col-inner"><div cel_widget_id="MAIN-SEARCH_RESULTS-5" class="s-widget-container s-spacing-small s-widget-container-height-small celwidget slot=MAIN template=SEARCH_RESULTS widgetId=sea...
+DEBUG:tools.passive_extraction_workflow_latest:Error checking sponsored badge for ASIN B0CMWM2474: 'ElementHandle' object has no attribute 'locator'
+DEBUG:tools.passive_extraction_workflow_latest:Error checking aria-label for ASIN B0CMWM2474: 'ElementHandle' object has no attribute 'locator'
+INFO:tools.passive_extraction_workflow_latest:Skipping sponsored result: ASIN B0CMWM2474 (detected by ad-specific class: 'AdHolder')
+DEBUG:tools.passive_extraction_workflow_latest:Processing element 4: ASIN B0CT8RJL86
+DEBUG:tools.passive_extraction_workflow_latest:Error checking sponsored badge for ASIN B0CT8RJL86: 'ElementHandle' object has no attribute 'locator'
+DEBUG:tools.passive_extraction_workflow_latest:Error checking aria-label for ASIN B0CT8RJL86: 'ElementHandle' object has no attribute 'locator'
+INFO:tools.passive_extraction_workflow_latest:Skipping sponsored result: ASIN B0CT8RJL86 (detected by ad-specific class: 'AdHolder')
+WARNING:tools.passive_extraction_workflow_latest:EAN 5038673210124 returned no organic results - skipping
+WARNING:tools.passive_extraction_workflow_latest:No Amazon results or error for EAN '5038673210124'. Details: no_organic_results
+WARNING:tools.passive_extraction_workflow_latest:EAN search for '5038673210124' failed to identify an ASIN. Error: No results for EAN 5038673210124 or search error
+INFO:tools.passive_extraction_workflow_latest:EAN search failed for 'Extra Strength Rat Glue Traps 2 Pack CDU'. Falling back to title search.
+INFO:tools.passive_extraction_workflow_latest:Searching Amazon by title using search bar: 'Extra Strength Rat Glue Traps 2 Pack CDU'
+INFO:tools.passive_extraction_workflow_latest:Navigating to Amazon UK to search for title: Extra Strength Rat Glue Traps 2 Pack CDU
+INFO:tools.passive_extraction_workflow_latest:Title search found 71 elements using selector: div.s-search-results > div[data-asin]
+DEBUG:tools.passive_extraction_workflow_latest:ASIN B0DYV8W1YL title extracted using selector 'h2 span.a-size-base-plus': GroZythre...
+DEBUG:tools.passive_extraction_workflow_latest:ASIN B0D139QCPM title extracted using selector 'h2 span.a-size-base-plus': DIY PEST...
+DEBUG:tools.passive_extraction_workflow_latest:ASIN B0DCFZX7WF title extracted using selector 'h2': 5 Pack Multi Insects Sticky Pads, Pest Sticky Pad ...
+DEBUG:tools.passive_extraction_workflow_latest:ASIN B071DJVBT4 title extracted using selector 'h2 span.a-size-base-plus': Roshield...
+DEBUG:tools.passive_extraction_workflow_latest:ASIN B0DBHTS3DM title extracted using selector 'h2': Rat Traps, 4 Pack Super Heavy Duty Instant Kill Tr...
+DEBUG:tools.passive_extraction_workflow_latest:ASIN B0D97TQKP1 title extracted using selector 'h2 span.a-size-base-plus': adam & eesa...
+DEBUG:tools.passive_extraction_workflow_latest:ASIN B0DPFS1WVP title extracted using selector 'h2 span.a-size-base-plus': Ulixii...
+DEBUG:tools.passive_extraction_workflow_latest:ASIN B0DX6ZYGG5 title extracted using selector 'h2': 10 Packs 12.4 Inch x 8.2 Inch Sticky Traps Glue Pa...
+INFO:tools.passive_extraction_workflow_latest:Title search found 8 results for 'Extra Strength Rat Glue Traps 2 Pack CDU'
+DEBUG:tools.passive_extraction_workflow_latest:No valid cache found for ASIN B0DYV8W1YL (tried 2 files)
+INFO:tools.passive_extraction_workflow_latest:Extracting detailed Amazon data for ASIN: B0DYV8W1YL (from title search)
+INFO:utils.browser_manager:♻️ Reusing existing Chrome connection (port 9222)
+INFO:utils.browser_manager:♻️ Reusing cached page for https://www.amazon.co.uk
+INFO:amazon_playwright_extractor:🔧 Using BrowserManager page for https://www.amazon.co.uk/dp/B0DYV8W1YL
+INFO:amazon_playwright_extractor:Checking for cookie consent pop-up...
+INFO:amazon_playwright_extractor:Finished checking for cookie consent pop-ups. If one was present and not handled, it might interfere.
+INFO:amazon_playwright_extractor:Checking for CAPTCHA...
+INFO:amazon_playwright_extractor:No CAPTCHA page detected by form selector.
+INFO:amazon_playwright_extractor:Checking for cookie consent pop-up...
+INFO:amazon_playwright_extractor:Finished checking for cookie consent pop-ups. If one was present and not handled, it might interfere.
+INFO:amazon_playwright_extractor:Page should be ready. Waiting 5s for stabilization...
+INFO:amazon_playwright_extractor:Waiting an additional 7s for extensions (Keepa, SellerAmp)...
+INFO:amazon_playwright_extractor:Extracting all product data for ASIN: B0DYV8W1YL
+INFO:amazon_playwright_extractor:Extracting basic product information (Title, Price, Images, Amazon Details)...
+INFO:amazon_playwright_extractor:Title found: 'GroZythre 8 Pack Pest Sticky Pad Traps Boards, Multi Insects Sticky Pads, Undetectable Black & Extra Strong Glue Sticky Trap Pads, Used Indoors/Outdoor, At Homes And Offices etd' via #productTitle
+INFO:amazon_playwright_extractor:Extracting price details...
+INFO:amazon_playwright_extractor:Current price: 16.99 via #corePrice_feature_div .a-offscreen
+INFO:amazon_playwright_extractor:Original price: 18.99 via .basisPrice span.a-text-price span.a-offscreen
+INFO:amazon_playwright_extractor:Amazon sales badge found: 300 in container div#socialProofingAsinFaceout_feature_div
+INFO:amazon_playwright_extractor:Extracting image URLs...
+INFO:amazon_playwright_extractor:Main image: https://m.media-amazon.com/images/I/71iBvm4KXHL._AC_SL1500_.jpg via #landingImage
+INFO:amazon_playwright_extractor:Found 7 thumbnails.
+INFO:amazon_playwright_extractor:Extracting Amazon product details section...
+INFO:amazon_playwright_extractor:Extracting sales rank information...
+INFO:amazon_playwright_extractor:Extracting ratings and reviews...
+INFO:amazon_playwright_extractor:Rating: 4.5 via #acrPopover[title*='out of 5 stars']
+INFO:amazon_playwright_extractor:Review count: 108 via #acrCustomerReviewText
+INFO:amazon_playwright_extractor:Extracting stock information...
+INFO:amazon_playwright_extractor:Availability text: 'In stock' via #availability span.a-size-medium.a-color-success
+INFO:amazon_playwright_extractor:Extracting features/bullets...
+INFO:amazon_playwright_extractor:Found 5 features.
+INFO:amazon_playwright_extractor:Extracting product description...
+INFO:amazon_playwright_extractor:Description found using selector: #aplus_feature_div
+INFO:amazon_playwright_extractor:Extracting product specifications table...
+INFO:amazon_playwright_extractor:Specifications table parsed using selector: #productDetails_techSpec_section_1
+INFO:amazon_playwright_extractor:Extracting SellerAmp data (if present)...
+INFO:amazon_playwright_extractor:SellerAmp data extraction is currently disabled as per requirements (Fix 2.3).
+INFO:amazon_playwright_extractor:Extracting Keepa data (if present)...
+INFO:amazon_playwright_extractor:Attempting to extract Keepa data...
+DEBUG:amazon_playwright_extractor:Keepa iframe check failed for selector iframe[id*='keepaGraph']: Page.wait_for_selector: Timeout 3000ms exceeded.
+Call log:
+  - waiting for locator("iframe[id*='keepaGraph']")
+
+DEBUG:amazon_playwright_extractor:Keepa iframe check failed for selector iframe#keepaExtension: Page.wait_for_selector: Timeout 3000ms exceeded.
+Call log:
+  - waiting for locator("iframe#keepaExtension")
+
+INFO:amazon_playwright_extractor:Keepa iframe found: iframe[id*='keepa']
+INFO:amazon_playwright_extractor:Keepa Sales Rank Details Table parsed.
+INFO:amazon_playwright_extractor:Keepa Graph AI Analysis is currently disabled as per requirements (Fix 2.4).
+INFO:amazon_playwright_extractor:Keepa Data tab found. Currently active: False
+INFO:amazon_playwright_extractor:Clicking Keepa 'Data' tab...
+INFO:amazon_playwright_extractor:Attempt 1/2: Waiting 12000ms for Product-Details wrapper...
+INFO:amazon_playwright_extractor:✅ Product-Details wrapper appeared on attempt 1
+INFO:amazon_playwright_extractor:Parsing Keepa AG Grid for Product Details from: div#MoreTab1 div#grid-product-detail
+INFO:amazon_playwright_extractor:Primary attempt: Waiting 12 seconds for AG Grid rows to load...
+INFO:amazon_playwright_extractor:✅ Primary attempt successful: 136 rows found
+INFO:amazon_playwright_extractor:Processing 136 rows in Keepa Product Details AG Grid.
+INFO:amazon_playwright_extractor:Found potential fee key 'FBA Pick&Pack Fee' with raw value: '£ 2.72' in Keepa AG Grid.
+INFO:amazon_playwright_extractor:Found potential fee key 'Referral Fee based on current Buy Box price' with raw value: '£ 2.55' in Keepa AG Grid.
+INFO:amazon_playwright_extractor:✅ Successfully parsed 38 items from Keepa Product Details AG Grid.
+INFO:amazon_playwright_extractor:ASIN B0DYV8W1YL: Attempting to extract EANs from Keepa product_details_tab_data.
+INFO:amazon_playwright_extractor:ASIN B0DYV8W1YL: EAN '0736963287720' found in Keepa details via key 'Product Codes - EAN'.
+INFO:amazon_playwright_extractor:ASIN B0DYV8W1YL: BSR not found or invalid from page. Attempting fallback from Keepa.
+INFO:amazon_playwright_extractor:ASIN B0DYV8W1YL: BSR 2961 in 'Garden 32' from Keepa SalesRankDetailsTable.
+INFO:tools.passive_extraction_workflow_latest:Cached Amazon data for ASIN B0DYV8W1YL as amazon_B0DYV8W1YL_5038673210124.json
+INFO:tools.passive_extraction_workflow_latest:Added to linking map: EAN_5038673210124 -> B0DYV8W1YL
+INFO:tools.passive_extraction_workflow_latest:🔄 PERIODIC SAVE triggered at product #2
+ERROR:tools.passive_extraction_workflow_latest:Error in periodic linking map save: name 'supplier_name' is not defined
+INFO:tools.passive_extraction_workflow_latest:✅ PERIODIC SAVE completed - 8 linking entries saved
+INFO:tools.passive_extraction_workflow_latest:Skipping triage for ASIN B0DYV8W1YL - proceeding directly to detailed extraction
+INFO:tools.passive_extraction_workflow_latest:Successfully got Amazon data for 'GroZythre 8 Pack Pest Sticky Pad Traps Boards, Multi Insects Sticky Pads, Undetectable Black & Extra Strong Glue Sticky Trap Pads, Used Indoors/Outdoor, At Homes And Offices etd' (ASIN: B0DYV8W1YL, EAN on page: 0736963287720)
+INFO:tools.passive_extraction_workflow_latest:Using fees from Keepa (or fallback): Referral Fee £0.00, FBA Fee £0.00, Total £0.00
+INFO:tools.passive_extraction_workflow_latest:Using BSR-based estimated monthly sales: 130
+DEBUG:tools.passive_extraction_workflow_latest:Financials for 'GroZythre 8 Pack Pest Sticky Pad Traps Boards, Multi Insects Sticky Pads, Undetectable Black & Extra Strong Glue Sticky Trap Pads, Used Indoors/Outdoor, At Homes And Offices etd': Cost (exVAT): 0.94, Sell (exVAT): 14.16, Fees: 0.00, Profit: 13.22, ROI: 1403.54%
+WARNING:tools.passive_extraction_workflow_latest:Low quality match (low) between supplier product 'Extra Strength Rat Glue Traps 2 Pack CDU' and Amazon product 'GroZythre 8 Pack Pest Sticky Pad Traps Boards, Multi Insects Sticky Pads, Undetectable Black & Extra Strong Glue Sticky Trap Pads, Used Indoors/Outdoor, At Homes And Offices etd'. Skipping.
+DEBUG:tools.passive_extraction_workflow_latest:Match reasons: ['EAN mismatch: Supplier EAN 5038673210124, Amazon EAN 0736963287720', 'Low title similarity (26.80%)']
+DEBUG:tools.passive_extraction_workflow_latest:Rate limiting: waiting 3.0s before processing product 3
+INFO:tools.passive_extraction_workflow_latest:--- Processing supplier product 3/15 (20.0%): 'Pest Police Quick Action Mouse Traps 3 Pack' (EAN: 5056175974740) ---
+INFO:tools.passive_extraction_workflow_latest:Attempting Amazon search using EAN: 5056175974740
+INFO:tools.passive_extraction_workflow_latest:Searching Amazon by EAN: 5056175974740 for supplier product: 'Pest Police Quick Action Mouse Traps 3 Pack' (FixedAmazonExtractor)
+INFO:tools.passive_extraction_workflow_latest:Navigating to Amazon UK to search for EAN: 5056175974740
+INFO:tools.passive_extraction_workflow_latest:Waiting for search results page to load for EAN 5056175974740...
+INFO:tools.passive_extraction_workflow_latest:Found search results container with selector: div.s-search-results
+INFO:tools.passive_extraction_workflow_latest:Found 4 search result elements using selector: div.s-result-item[data-asin]:not([data-asin=''])
+INFO:tools.passive_extraction_workflow_latest:Processing 4 search result elements for EAN 5056175974740
+DEBUG:tools.passive_extraction_workflow_latest:Processing element 1: ASIN B0012EBX9K
+DEBUG:tools.passive_extraction_workflow_latest:ASIN B0012EBX9K HTML structure sample: <div role="listitem" data-asin="B0012EBX9K" data-index="3" data-uuid="434bc0fe-abf4-4d86-b22c-4911a8777cf4" id="434bc0fe-abf4-4d86-b22c-4911a8777cf4" data-component-type="s-search-result" class="sg-col-4-of-4 sg-col-4-of-24 sg-col-4-of-12 s-result-item s-asin sg-col-4-of-16 AdHolder sg-col s-widget-spacing-small sg-col-4-of-8 sg-col-4-of-20" data-component-id="7"><div class="sg-col-inner"><div cel_widget_id="MAIN-SEARCH_RESULTS-3" class="s-widget-container s-spacing-small s-widget-container-height-small celwidget slot=MAIN template=SEARCH_RESULTS widgetId=search-results_1" data-csa-c-pos="1" d...
+DEBUG:tools.passive_extraction_workflow_latest:Error checking sponsored badge for ASIN B0012EBX9K: 'ElementHandle' object has no attribute 'locator'
+DEBUG:tools.passive_extraction_workflow_latest:Error checking aria-label for ASIN B0012EBX9K: 'ElementHandle' object has no attribute 'locator'
+INFO:tools.passive_extraction_workflow_latest:Skipping sponsored result: ASIN B0012EBX9K (detected by ad-specific class: 'AdHolder')
+DEBUG:tools.passive_extraction_workflow_latest:Processing element 2: ASIN B0012EFA62
+DEBUG:tools.passive_extraction_workflow_latest:ASIN B0012EFA62 HTML structure sample: <div role="listitem" data-asin="B0012EFA62" data-index="4" data-uuid="e1994586-4958-437e-b95a-e0550086fead" id="e1994586-4958-437e-b95a-e0550086fead" data-component-type="s-search-result" class="sg-col-4-of-4 sg-col-4-of-24 sg-col-4-of-12 s-result-item s-asin sg-col-4-of-16 AdHolder sg-col s-widget-spacing-small sg-col-4-of-8 sg-col-4-of-20" data-component-id="10"><div class="sg-col-inner"><div cel_widget_id="MAIN-SEARCH_RESULTS-4" class="s-widget-container s-spacing-small s-widget-container-height-small celwidget slot=MAIN template=SEARCH_RESULTS widgetId=search-results_2" data-csa-c-pos="2" ...
+DEBUG:tools.passive_extraction_workflow_latest:Error checking sponsored badge for ASIN B0012EFA62: 'ElementHandle' object has no attribute 'locator'
+DEBUG:tools.passive_extraction_workflow_latest:Error checking aria-label for ASIN B0012EFA62: 'ElementHandle' object has no attribute 'locator'
+INFO:tools.passive_extraction_workflow_latest:Skipping sponsored result: ASIN B0012EFA62 (detected by ad-specific class: 'AdHolder')
+DEBUG:tools.passive_extraction_workflow_latest:Processing element 3: ASIN B00028LYO6
+DEBUG:tools.passive_extraction_workflow_latest:ASIN B00028LYO6 HTML structure sample: <div role="listitem" data-asin="B00028LYO6" data-index="5" data-uuid="dadba2d1-3496-4db2-8b93-844d114f64a3" id="dadba2d1-3496-4db2-8b93-844d114f64a3" data-component-type="s-search-result" class="sg-col-4-of-4 sg-col-4-of-24 sg-col-4-of-12 s-result-item s-asin sg-col-4-of-16 AdHolder sg-col s-widget-spacing-small sg-col-4-of-8 sg-col-4-of-20" data-component-id="13"><div class="sg-col-inner"><div cel_widget_id="MAIN-SEARCH_RESULTS-5" class="s-widget-container s-spacing-small s-widget-container-height-small celwidget slot=MAIN template=SEARCH_RESULTS widgetId=search-results_3" data-csa-c-pos="3" ...
+DEBUG:tools.passive_extraction_workflow_latest:Error checking sponsored badge for ASIN B00028LYO6: 'ElementHandle' object has no attribute 'locator'
+DEBUG:tools.passive_extraction_workflow_latest:Error checking aria-label for ASIN B00028LYO6: 'ElementHandle' object has no attribute 'locator'
+INFO:tools.passive_extraction_workflow_latest:Skipping sponsored result: ASIN B00028LYO6 (detected by ad-specific class: 'AdHolder')
+DEBUG:tools.passive_extraction_workflow_latest:Processing element 4: ASIN B0DLLJ1X6D
+DEBUG:tools.passive_extraction_workflow_latest:Error checking sponsored badge for ASIN B0DLLJ1X6D: 'ElementHandle' object has no attribute 'locator'
+DEBUG:tools.passive_extraction_workflow_latest:Error checking aria-label for ASIN B0DLLJ1X6D: 'ElementHandle' object has no attribute 'locator'
+INFO:tools.passive_extraction_workflow_latest:Skipping sponsored result: ASIN B0DLLJ1X6D (detected by ad-specific class: 'AdHolder')
+WARNING:tools.passive_extraction_workflow_latest:EAN 5056175974740 returned no organic results - skipping
+WARNING:tools.passive_extraction_workflow_latest:No Amazon results or error for EAN '5056175974740'. Details: no_organic_results
+WARNING:tools.passive_extraction_workflow_latest:EAN search for '5056175974740' failed to identify an ASIN. Error: No results for EAN 5056175974740 or search error
+INFO:tools.passive_extraction_workflow_latest:EAN search failed for 'Pest Police Quick Action Mouse Traps 3 Pack'. Falling back to title search.
+INFO:tools.passive_extraction_workflow_latest:Searching Amazon by title using search bar: 'Pest Police Quick Action Mouse Traps 3 Pack'
+INFO:tools.passive_extraction_workflow_latest:Navigating to Amazon UK to search for title: Pest Police Quick Action Mouse Traps 3 Pack
+INFO:tools.passive_extraction_workflow_latest:Title search found 27 elements using selector: div.s-search-results > div[data-asin]
+DEBUG:tools.passive_extraction_workflow_latest:ASIN B0D12WVWSK title extracted using selector 'h2 span.a-size-base-plus': DIY PEST...
+DEBUG:tools.passive_extraction_workflow_latest:ASIN B08PPBFYB7 title extracted using selector 'h2': Mouse Trap, Humane Traps for Indoors, Rodent Contr...
+DEBUG:tools.passive_extraction_workflow_latest:ASIN B09MVNLTL7 title extracted using selector 'h2 span.a-size-base-plus': EGOFLYYA...
+DEBUG:tools.passive_extraction_workflow_latest:ASIN B0DYV8W1YL title extracted using selector 'h2 span.a-size-base-plus': GroZythre...
+DEBUG:tools.passive_extraction_workflow_latest:ASIN B0F7QKZZST title extracted using selector 'h2 span.a-size-base-plus': DOBWGXZ...
+DEBUG:tools.passive_extraction_workflow_latest:ASIN B0CP847PTB title extracted using selector 'h2 span.a-size-base-plus': Roshield...
+DEBUG:tools.passive_extraction_workflow_latest:ASIN B07CM8SD2W title extracted using selector 'h2': Deadfast 20300397 Easy Set Mouse Trap, Twin Pack...
+DEBUG:tools.passive_extraction_workflow_latest:ASIN B0C5VLKVZT title extracted using selector 'h2 span.a-size-base-plus': WHEELIO...
+INFO:tools.passive_extraction_workflow_latest:Title search found 8 results for 'Pest Police Quick Action Mouse Traps 3 Pack'
+DEBUG:tools.passive_extraction_workflow_latest:No valid cache found for ASIN B0D12WVWSK (tried 2 files)
+INFO:tools.passive_extraction_workflow_latest:Extracting detailed Amazon data for ASIN: B0D12WVWSK (from title search)
+INFO:utils.browser_manager:♻️ Reusing existing Chrome connection (port 9222)
+INFO:utils.browser_manager:♻️ Reusing cached page for https://www.amazon.co.uk
+INFO:amazon_playwright_extractor:🔧 Using BrowserManager page for https://www.amazon.co.uk/dp/B0D12WVWSK
+INFO:amazon_playwright_extractor:Checking for cookie consent pop-up...
+INFO:amazon_playwright_extractor:Finished checking for cookie consent pop-ups. If one was present and not handled, it might interfere.
+INFO:amazon_playwright_extractor:Checking for CAPTCHA...
+INFO:amazon_playwright_extractor:No CAPTCHA page detected by form selector.
+INFO:amazon_playwright_extractor:Checking for cookie consent pop-up...
+INFO:amazon_playwright_extractor:Finished checking for cookie consent pop-ups. If one was present and not handled, it might interfere.
+INFO:amazon_playwright_extractor:Page should be ready. Waiting 5s for stabilization...
+INFO:amazon_playwright_extractor:Waiting an additional 7s for extensions (Keepa, SellerAmp)...
+INFO:amazon_playwright_extractor:Extracting all product data for ASIN: B0D12WVWSK
+INFO:amazon_playwright_extractor:Extracting basic product information (Title, Price, Images, Amazon Details)...
+INFO:amazon_playwright_extractor:Title found: 'DIY PEST Humane Mouse Traps for Indoors & Outdoors - 5 Pack Mouse Trap Boxes | Mouse Trap Box in Tamper-Resistant Station | Effective Mice Control | Versatile Mouse Traps for Indoor/Outdoor Use' via #productTitle
+INFO:amazon_playwright_extractor:Extracting price details...
+INFO:amazon_playwright_extractor:Current price: 15.49 via #corePrice_feature_div .a-offscreen
+INFO:amazon_playwright_extractor:Extracting image URLs...
+INFO:amazon_playwright_extractor:Main image: https://m.media-amazon.com/images/I/61GTKPgbElL._AC_SL1000_.jpg via #landingImage
+INFO:amazon_playwright_extractor:Found 7 thumbnails.
+INFO:amazon_playwright_extractor:Extracting Amazon product details section...
+INFO:amazon_playwright_extractor:Extracting sales rank information...
+INFO:amazon_playwright_extractor:Extracting ratings and reviews...
+INFO:amazon_playwright_extractor:Rating: 3.6 via #acrPopover[title*='out of 5 stars']
+INFO:amazon_playwright_extractor:Review count: 42 via #acrCustomerReviewText
+INFO:amazon_playwright_extractor:Extracting stock information...
+INFO:amazon_playwright_extractor:Availability text: 'In stock' via #availability span.a-size-medium.a-color-success
+INFO:amazon_playwright_extractor:Extracting features/bullets...
+INFO:amazon_playwright_extractor:Found 5 features.
+INFO:amazon_playwright_extractor:Extracting product description...
+INFO:amazon_playwright_extractor:Extracting product specifications table...
+INFO:amazon_playwright_extractor:Specifications table parsed using selector: #productDetails_techSpec_section_1
+INFO:amazon_playwright_extractor:Extracting SellerAmp data (if present)...
+INFO:amazon_playwright_extractor:SellerAmp data extraction is currently disabled as per requirements (Fix 2.3).
+INFO:amazon_playwright_extractor:Extracting Keepa data (if present)...
+INFO:amazon_playwright_extractor:Attempting to extract Keepa data...
+DEBUG:amazon_playwright_extractor:Keepa iframe check failed for selector iframe[id*='keepaGraph']: Page.wait_for_selector: Timeout 3000ms exceeded.
+Call log:
+  - waiting for locator("iframe[id*='keepaGraph']")
+
+DEBUG:amazon_playwright_extractor:Keepa iframe check failed for selector iframe#keepaExtension: Page.wait_for_selector: Timeout 3000ms exceeded.
+Call log:
+  - waiting for locator("iframe#keepaExtension")
+
+INFO:amazon_playwright_extractor:Keepa iframe found: iframe[id*='keepa']
+INFO:amazon_playwright_extractor:Keepa Sales Rank Details Table parsed.
+INFO:amazon_playwright_extractor:Keepa Graph AI Analysis is currently disabled as per requirements (Fix 2.4).
+INFO:amazon_playwright_extractor:Keepa Data tab found. Currently active: False
+INFO:amazon_playwright_extractor:Clicking Keepa 'Data' tab...
+INFO:amazon_playwright_extractor:Attempt 1/2: Waiting 12000ms for Product-Details wrapper...
+WARNING:amazon_playwright_extractor:Product-Details wrapper timeout on attempt 1, retrying...
+INFO:amazon_playwright_extractor:Attempt 2/2: Waiting 12000ms for Product-Details wrapper...
+ERROR:amazon_playwright_extractor:Product-Details wrapper did not appear after 2 attempts – aborting.
+INFO:amazon_playwright_extractor:ASIN B0D12WVWSK: BSR not found or invalid from page. Attempting fallback from Keepa.
+INFO:amazon_playwright_extractor:ASIN B0D12WVWSK: BSR 23139 in 'Garden 10' from Keepa SalesRankDetailsTable.
+INFO:tools.passive_extraction_workflow_latest:Cached Amazon data for ASIN B0D12WVWSK as amazon_B0D12WVWSK_5056175974740.json
+INFO:tools.passive_extraction_workflow_latest:Added to linking map: EAN_5056175974740 -> B0D12WVWSK
+INFO:tools.passive_extraction_workflow_latest:Skipping triage for ASIN B0D12WVWSK - proceeding directly to detailed extraction
+INFO:tools.passive_extraction_workflow_latest:Successfully got Amazon data for 'DIY PEST Humane Mouse Traps for Indoors & Outdoors - 5 Pack Mouse Trap Boxes | Mouse Trap Box in Tamper-Resistant Station | Effective Mice Control | Versatile Mouse Traps for Indoor/Outdoor Use' (ASIN: B0D12WVWSK, EAN on page: N/A)
+INFO:tools.passive_extraction_workflow_latest:Using fees from Keepa (or fallback): Referral Fee £0.00, FBA Fee £0.00, Total £0.00
+INFO:tools.passive_extraction_workflow_latest:Using BSR-based estimated monthly sales: 26
+DEBUG:tools.passive_extraction_workflow_latest:Financials for 'DIY PEST Humane Mouse Traps for Indoors & Outdoors - 5 Pack Mouse Trap Boxes | Mouse Trap Box in Tamper-Resistant Station | Effective Mice Control | Versatile Mouse Traps for Indoor/Outdoor Use': Cost (exVAT): 0.94, Sell (exVAT): 12.91, Fees: 0.00, Profit: 11.97, ROI: 1270.8%
+WARNING:tools.passive_extraction_workflow_latest:Low quality match (low) between supplier product 'Pest Police Quick Action Mouse Traps 3 Pack' and Amazon product 'DIY PEST Humane Mouse Traps for Indoors & Outdoors - 5 Pack Mouse Trap Boxes | Mouse Trap Box in Tamper-Resistant Station | Effective Mice Control | Versatile Mouse Traps for Indoor/Outdoor Use'. Skipping.
+DEBUG:tools.passive_extraction_workflow_latest:Match reasons: ['Supplier EAN 5056175974740 present, but no comparable EAN/GTIN found on Amazon product page.', 'Low title similarity (18.54%)']
+DEBUG:tools.passive_extraction_workflow_latest:Rate limiting: waiting 3.0s before processing product 4
+INFO:tools.passive_extraction_workflow_latest:--- Processing supplier product 4/15 (26.7%): 'Beat It Ant Glue Traps 3 Pack CDU' (EAN: 5056170308335) ---
+INFO:tools.passive_extraction_workflow_latest:Attempting Amazon search using EAN: 5056170308335
+INFO:tools.passive_extraction_workflow_latest:Searching Amazon by EAN: 5056170308335 for supplier product: 'Beat It Ant Glue Traps 3 Pack CDU' (FixedAmazonExtractor)
+INFO:tools.passive_extraction_workflow_latest:Navigating to Amazon UK to search for EAN: 5056170308335
+INFO:tools.passive_extraction_workflow_latest:Waiting for search results page to load for EAN 5056170308335...
+INFO:tools.passive_extraction_workflow_latest:Found search results container with selector: div.s-search-results
+INFO:tools.passive_extraction_workflow_latest:Found 1 search result elements using selector: div[data-asin]:not([data-asin='']):not(.AdHolder):not([class*='s-widget-sponsored-product'])
+INFO:tools.passive_extraction_workflow_latest:Processing 1 search result elements for EAN 5056170308335
+DEBUG:tools.passive_extraction_workflow_latest:Processing element 1: ASIN B087YTXGW3
+DEBUG:tools.passive_extraction_workflow_latest:ASIN B087YTXGW3 HTML structure sample: <div role="listitem" data-asin="B087YTXGW3" data-index="2" data-uuid="167f16d9-418d-4c5f-b021-8f17e9a67880" id="167f16d9-418d-4c5f-b021-8f17e9a67880" data-component-type="s-search-result" class="sg-col-4-of-4 sg-col-4-of-24 sg-col-4-of-12 s-result-item s-asin sg-col-4-of-16 sg-col s-widget-spacing-small sg-col-4-of-8 sg-col-4-of-20" data-component-id="5" data-cel-widget="search_result_1"><div class="sg-col-inner"><div cel_widget_id="MAIN-SEARCH_RESULTS-2" class="s-widget-container s-spacing-small s-widget-container-height-small celwidget slot=MAIN template=SEARCH_RESULTS widgetId=search-result...
+DEBUG:tools.passive_extraction_workflow_latest:Error checking sponsored badge for ASIN B087YTXGW3: 'ElementHandle' object has no attribute 'locator'
+DEBUG:tools.passive_extraction_workflow_latest:Error checking aria-label for ASIN B087YTXGW3: 'ElementHandle' object has no attribute 'locator'
+DEBUG:tools.passive_extraction_workflow_latest:Error checking text for ad indicators for ASIN B087YTXGW3: 'ElementHandle' object has no attribute 'locator'
+DEBUG:tools.passive_extraction_workflow_latest:ASIN B087YTXGW3 title extracted using selector 'h2': BEAT IT Flying Catchers 3x Ant Glue Traps...
+INFO:tools.passive_extraction_workflow_latest:Found organic result: ASIN B087YTXGW3 - BEAT IT Flying Catchers 3x Ant Glue Traps...
+INFO:tools.passive_extraction_workflow_latest:Single organic result found for EAN 5056170308335: ASIN B087YTXGW3
+INFO:tools.passive_extraction_workflow_latest:EAN search selected ASIN B087YTXGW3 for 5056170308335
+INFO:tools.passive_extraction_workflow_latest:Single ASIN B087YTXGW3 found for EAN 5056170308335.
+INFO:tools.passive_extraction_workflow_latest:Proceeding with ASIN: B087YTXGW3 for EAN: 5056170308335
+INFO:utils.browser_manager:♻️ Reusing existing Chrome connection (port 9222)
+INFO:utils.browser_manager:♻️ Reusing cached page for https://www.amazon.co.uk
+INFO:amazon_playwright_extractor:🔧 Using BrowserManager page for https://www.amazon.co.uk/dp/B087YTXGW3
+INFO:amazon_playwright_extractor:Checking for cookie consent pop-up...
+INFO:amazon_playwright_extractor:Finished checking for cookie consent pop-ups. If one was present and not handled, it might interfere.
+INFO:amazon_playwright_extractor:Checking for CAPTCHA...
+INFO:amazon_playwright_extractor:No CAPTCHA page detected by form selector.
+INFO:amazon_playwright_extractor:Checking for cookie consent pop-up...
+INFO:amazon_playwright_extractor:Finished checking for cookie consent pop-ups. If one was present and not handled, it might interfere.
+INFO:amazon_playwright_extractor:Page should be ready. Waiting 5s for stabilization...
+INFO:amazon_playwright_extractor:Waiting an additional 7s for extensions (Keepa, SellerAmp)...
+INFO:amazon_playwright_extractor:Extracting all product data for ASIN: B087YTXGW3
+INFO:amazon_playwright_extractor:Extracting basic product information (Title, Price, Images, Amazon Details)...
+INFO:amazon_playwright_extractor:Title found: 'BEAT IT Flying Catchers 3x Ant Glue Traps' via #productTitle
+INFO:amazon_playwright_extractor:Extracting price details...
+INFO:amazon_playwright_extractor:Current price: 3.44 via #corePrice_feature_div .a-offscreen
+INFO:amazon_playwright_extractor:Original price: 5.99 via span.a-price.a-text-price[data-a-strike='true'] span.a-offscreen
+INFO:amazon_playwright_extractor:Extracting image URLs...
+INFO:amazon_playwright_extractor:Main image: https://m.media-amazon.com/images/I/51XUmkyOXxL._AC_SL1290_.jpg via #landingImage
+INFO:amazon_playwright_extractor:Found 1 thumbnails.
+INFO:amazon_playwright_extractor:Extracting Amazon product details section...
+INFO:amazon_playwright_extractor:Extracting sales rank information...
+INFO:amazon_playwright_extractor:Extracting ratings and reviews...
+INFO:amazon_playwright_extractor:Rating: 3.4 via #acrPopover[title*='out of 5 stars']
+INFO:amazon_playwright_extractor:Review count: 18 via #acrCustomerReviewText
+INFO:amazon_playwright_extractor:Extracting stock information...
+INFO:amazon_playwright_extractor:Availability text: 'Only 1 left in stock.' via #availability span.a-color-price
+INFO:amazon_playwright_extractor:Extracting features/bullets...
+INFO:amazon_playwright_extractor:Found 2 features.
+INFO:amazon_playwright_extractor:Extracting product description...
+INFO:amazon_playwright_extractor:Description found using selector: #productDescription
+INFO:amazon_playwright_extractor:Extracting product specifications table...
+INFO:amazon_playwright_extractor:Specifications table parsed using selector: #productDetails_techSpec_section_1
+INFO:amazon_playwright_extractor:Extracting SellerAmp data (if present)...
+INFO:amazon_playwright_extractor:SellerAmp data extraction is currently disabled as per requirements (Fix 2.3).
+INFO:amazon_playwright_extractor:Extracting Keepa data (if present)...
+INFO:amazon_playwright_extractor:Attempting to extract Keepa data...
+DEBUG:amazon_playwright_extractor:Keepa iframe check failed for selector iframe[id*='keepaGraph']: Page.wait_for_selector: Timeout 3000ms exceeded.
+Call log:
+  - waiting for locator("iframe[id*='keepaGraph']")
+
+DEBUG:amazon_playwright_extractor:Keepa iframe check failed for selector iframe#keepaExtension: Page.wait_for_selector: Timeout 3000ms exceeded.
+Call log:
+  - waiting for locator("iframe#keepaExtension")
+
+INFO:amazon_playwright_extractor:Keepa iframe found: iframe[id*='keepa']
+INFO:amazon_playwright_extractor:Keepa Sales Rank Details Table parsed.
+INFO:amazon_playwright_extractor:Keepa Graph AI Analysis is currently disabled as per requirements (Fix 2.4).
+INFO:amazon_playwright_extractor:Keepa Data tab found. Currently active: False
+INFO:amazon_playwright_extractor:Clicking Keepa 'Data' tab...
+INFO:amazon_playwright_extractor:Attempt 1/2: Waiting 12000ms for Product-Details wrapper...
+INFO:amazon_playwright_extractor:✅ Product-Details wrapper appeared on attempt 1
+WARNING:amazon_playwright_extractor:Product-Details tab visible, but inner grid still not ready – extending wait with retry logic.
+INFO:amazon_playwright_extractor:Grid attempt 1/3: Waiting 15000ms for grid container...
+INFO:amazon_playwright_extractor:✅ Grid became visible after attempt 1 – continuing.
+INFO:amazon_playwright_extractor:Parsing Keepa AG Grid for Product Details from: div#MoreTab1 div#grid-product-detail
+INFO:amazon_playwright_extractor:Primary attempt: Waiting 12 seconds for AG Grid rows to load...
+INFO:amazon_playwright_extractor:✅ Primary attempt successful: 130 rows found
+INFO:amazon_playwright_extractor:Processing 130 rows in Keepa Product Details AG Grid.
+INFO:amazon_playwright_extractor:Found potential fee key 'FBA Pick&Pack Fee' with raw value: '£ 1.50' in Keepa AG Grid.
+INFO:amazon_playwright_extractor:Found potential fee key 'Referral Fee based on current Buy Box price' with raw value: '£ 0.52' in Keepa AG Grid.
+INFO:amazon_playwright_extractor:✅ Successfully parsed 41 items from Keepa Product Details AG Grid.
+INFO:amazon_playwright_extractor:ASIN B087YTXGW3: Attempting to extract EANs from Keepa product_details_tab_data.
+INFO:amazon_playwright_extractor:ASIN B087YTXGW3: EAN '5056170308335' found in Keepa details via key 'Product Codes - EAN'.
+INFO:amazon_playwright_extractor:ASIN B087YTXGW3: BSR not found or invalid from page. Attempting fallback from Keepa.
+INFO:amazon_playwright_extractor:ASIN B087YTXGW3: BSR 54775 in 'Garden 4.7' from Keepa SalesRankDetailsTable.
+INFO:tools.passive_extraction_workflow_latest:Successfully extracted data for ASIN B087YTXGW3 (EAN on page: 5056170308335)
+INFO:tools.passive_extraction_workflow_latest:EAN search for '5056170308335' identified ASIN: B087YTXGW3
+DEBUG:tools.passive_extraction_workflow_latest:No valid cache found for ASIN B087YTXGW3 (tried 2 files)
+INFO:tools.passive_extraction_workflow_latest:Cached Amazon data for ASIN B087YTXGW3 as amazon_B087YTXGW3_5056170308335.json
+INFO:tools.passive_extraction_workflow_latest:Added to linking map: EAN_5056170308335 -> B087YTXGW3
+INFO:tools.passive_extraction_workflow_latest:🔄 PERIODIC SAVE triggered at product #4
+ERROR:tools.passive_extraction_workflow_latest:Error in periodic linking map save: name 'supplier_name' is not defined
+INFO:tools.passive_extraction_workflow_latest:✅ PERIODIC SAVE completed - 10 linking entries saved
+INFO:tools.passive_extraction_workflow_latest:Cached (potentially partial) Amazon data from EAN search for ASIN: B087YTXGW3
+INFO:tools.passive_extraction_workflow_latest:Skipping triage for ASIN B087YTXGW3 - proceeding directly to detailed extraction
+INFO:tools.passive_extraction_workflow_latest:Successfully got Amazon data for 'BEAT IT Flying Catchers 3x Ant Glue Traps' (ASIN: B087YTXGW3, EAN on page: 5056170308335)
+INFO:tools.passive_extraction_workflow_latest:Using fees from Keepa (or fallback): Referral Fee £0.00, FBA Fee £0.00, Total £0.00
+INFO:tools.passive_extraction_workflow_latest:Using BSR-based estimated monthly sales: 13
+DEBUG:tools.passive_extraction_workflow_latest:Financials for 'BEAT IT Flying Catchers 3x Ant Glue Traps': Cost (exVAT): 0.94, Sell (exVAT): 2.87, Fees: 0.00, Profit: 1.93, ROI: 204.42%
+INFO:tools.passive_extraction_workflow_latest:Match quality is medium (0.65) for ASIN B087YTXGW3. Attempting AI validation.
+DEBUG:openai._base_client:Request options: {'method': 'post', 'url': '/chat/completions', 'files': None, 'idempotency_key': 'stainless-python-retry-e08ae938-c35e-49f8-bee9-4c3276a0a4b9', 'json_data': {'messages': [{'role': 'user', 'content': "Assess if the following two products are likely the same. Respond with only 'MATCH', 'MISMATCH', or 'UNCERTAIN'.\n\nSupplier Product:\nTitle: Beat It Ant Glue Traps 3 Pack CDU\nBrand: N/A\nEAN: 5056170308335\nPrice: 1.13\nDescription: N/A...\n\nAmazon Product:\nTitle: BEAT IT Flying Catchers 3x Ant Glue Traps\nBrand: N/A\nASIN: B087YTXGW3\nEAN on Page: 5056170308335\nPrice: 3.44\nDescription: This pack of Ant Traps contains three individual traps that are simple to use and guaranteed to work on all ant infestations. Each ant trap features a quick kill formula and works on all sugar and gre...\nFeatures: ['Pack of 3 ant glue traps', 'Poison free']..."}], 'model': 'gpt-4o-mini-2024-07-18', 'max_tokens': 10, 'temperature': 0.1}}
+DEBUG:openai._base_client:Sending HTTP Request: POST https://api.openai.com/v1/chat/completions
+DEBUG:httpcore.connection:close.started
+DEBUG:httpcore.connection:close.complete
+DEBUG:httpcore.connection:connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=5.0 socket_options=None
+DEBUG:httpcore.connection:connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x7feef41d3320>
+DEBUG:httpcore.connection:start_tls.started ssl_context=<ssl.SSLContext object at 0x7feef457c1d0> server_hostname='api.openai.com' timeout=5.0
+DEBUG:httpcore.connection:start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x7feef41d3ce0>
+DEBUG:httpcore.http11:send_request_headers.started request=<Request [b'POST']>
+DEBUG:httpcore.http11:send_request_headers.complete
+DEBUG:httpcore.http11:send_request_body.started request=<Request [b'POST']>
+DEBUG:httpcore.http11:send_request_body.complete
+DEBUG:httpcore.http11:receive_response_headers.started request=<Request [b'POST']>
+DEBUG:httpcore.http11:receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Sat, 05 Jul 2025 15:43:56 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'access-control-expose-headers', b'X-Request-ID'), (b'openai-organization', b'user-eywvpvgw4dvq99ktk9fwsqol'), (b'openai-processing-ms', b'184'), (b'openai-version', b'2020-10-01'), (b'x-envoy-upstream-service-time', b'187'), (b'x-ratelimit-limit-requests', b'10000'), (b'x-ratelimit-limit-tokens', b'200000'), (b'x-ratelimit-remaining-requests', b'9999'), (b'x-ratelimit-remaining-tokens', b'199837'), (b'x-ratelimit-reset-requests', b'8.64s'), (b'x-ratelimit-reset-tokens', b'48ms'), (b'x-request-id', b'req_ec38f71e086ada062866f59c636d7efc'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'cf-cache-status', b'DYNAMIC'), (b'X-Content-Type-Options', b'nosniff'), (b'Server', b'cloudflare'), (b'CF-RAY', b'95a7fb158f5cb47c-DXB'), (b'Content-Encoding', b'br'), (b'alt-svc', b'h3=":443"; ma=86400')])
+INFO:httpx:HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+DEBUG:httpcore.http11:receive_response_body.started request=<Request [b'POST']>
+DEBUG:httpcore.http11:receive_response_body.complete
+DEBUG:httpcore.http11:response_closed.started
+DEBUG:httpcore.http11:response_closed.complete
+DEBUG:openai._base_client:HTTP Response: POST https://api.openai.com/v1/chat/completions "200 OK" Headers({'date': 'Sat, 05 Jul 2025 15:43:56 GMT', 'content-type': 'application/json', 'transfer-encoding': 'chunked', 'connection': 'keep-alive', 'access-control-expose-headers': 'X-Request-ID', 'openai-organization': 'user-eywvpvgw4dvq99ktk9fwsqol', 'openai-processing-ms': '184', 'openai-version': '2020-10-01', 'x-envoy-upstream-service-time': '187', 'x-ratelimit-limit-requests': '10000', 'x-ratelimit-limit-tokens': '200000', 'x-ratelimit-remaining-requests': '9999', 'x-ratelimit-remaining-tokens': '199837', 'x-ratelimit-reset-requests': '8.64s', 'x-ratelimit-reset-tokens': '48ms', 'x-request-id': 'req_ec38f71e086ada062866f59c636d7efc', 'strict-transport-security': 'max-age=31536000; includeSubDomains; preload', 'cf-cache-status': 'DYNAMIC', 'x-content-type-options': 'nosniff', 'server': 'cloudflare', 'cf-ray': '95a7fb158f5cb47c-DXB', 'content-encoding': 'br', 'alt-svc': 'h3=":443"; ma=86400'})
+DEBUG:openai._base_client:request_id: req_ec38f71e086ada062866f59c636d7efc
+DEBUG:tools.passive_extraction_workflow_latest:Criteria Fail (Profit): £1.93 < £3.0
+INFO:tools.passive_extraction_workflow_latest:Product does not meet criteria. ROI: 204.42%, Profit: £1.93
+DEBUG:tools.passive_extraction_workflow_latest:Rate limiting: waiting 3.0s before processing product 5
+INFO:tools.passive_extraction_workflow_latest:--- Processing supplier product 5/15 (33.3%): 'Ant Glue Traps 3 Pack' (EAN: 5038673210100) ---
+INFO:tools.passive_extraction_workflow_latest:Attempting Amazon search using EAN: 5038673210100
+INFO:tools.passive_extraction_workflow_latest:Searching Amazon by EAN: 5038673210100 for supplier product: 'Ant Glue Traps 3 Pack' (FixedAmazonExtractor)
+INFO:tools.passive_extraction_workflow_latest:Navigating to Amazon UK to search for EAN: 5038673210100
+INFO:tools.passive_extraction_workflow_latest:Waiting for search results page to load for EAN 5038673210100...
+INFO:tools.passive_extraction_workflow_latest:Found search results container with selector: div.s-search-results
+INFO:tools.passive_extraction_workflow_latest:Found 1 search result elements using selector: div[data-asin]:not([data-asin='']):not(.AdHolder):not([class*='s-widget-sponsored-product'])
+INFO:tools.passive_extraction_workflow_latest:Processing 1 search result elements for EAN 5038673210100
+DEBUG:tools.passive_extraction_workflow_latest:Processing element 1: ASIN B08ZGJT9J4
+DEBUG:tools.passive_extraction_workflow_latest:ASIN B08ZGJT9J4 HTML structure sample: <div role="listitem" data-asin="B08ZGJT9J4" data-index="3" data-uuid="944de25d-dee2-4680-bb4b-0424ed6621e1" id="944de25d-dee2-4680-bb4b-0424ed6621e1" data-component-type="s-search-result" class="sg-col-4-of-4 sg-col-4-of-24 sg-col-4-of-12 s-result-item s-asin sg-col-4-of-16 sg-col s-widget-spacing-small sg-col-4-of-8 sg-col-4-of-20" data-component-id="8" data-cel-widget="search_result_2"><div class="sg-col-inner"><div cel_widget_id="MAIN-SEARCH_RESULTS-3" class="s-widget-container s-spacing-small s-widget-container-height-small celwidget slot=MAIN template=SEARCH_RESULTS widgetId=search-result...
+DEBUG:tools.passive_extraction_workflow_latest:Error checking sponsored badge for ASIN B08ZGJT9J4: 'ElementHandle' object has no attribute 'locator'
+DEBUG:tools.passive_extraction_workflow_latest:Error checking aria-label for ASIN B08ZGJT9J4: 'ElementHandle' object has no attribute 'locator'
+DEBUG:tools.passive_extraction_workflow_latest:Error checking text for ad indicators for ASIN B08ZGJT9J4: 'ElementHandle' object has no attribute 'locator'
+DEBUG:tools.passive_extraction_workflow_latest:ASIN B08ZGJT9J4 title extracted using selector 'h2': 3pk Ant Traps | Home Bait Station | Stops and Glue...
+INFO:tools.passive_extraction_workflow_latest:Found organic result: ASIN B08ZGJT9J4 - 3pk Ant Traps | Home Bait Station | Stops and Glues Ants as ...
+INFO:tools.passive_extraction_workflow_latest:Single organic result found for EAN 5038673210100: ASIN B08ZGJT9J4
+INFO:tools.passive_extraction_workflow_latest:EAN search selected ASIN B08ZGJT9J4 for 5038673210100
+INFO:tools.passive_extraction_workflow_latest:Single ASIN B08ZGJT9J4 found for EAN 5038673210100.
+INFO:tools.passive_extraction_workflow_latest:Proceeding with ASIN: B08ZGJT9J4 for EAN: 5038673210100
+INFO:utils.browser_manager:♻️ Reusing existing Chrome connection (port 9222)
+INFO:utils.browser_manager:♻️ Reusing cached page for https://www.amazon.co.uk
+INFO:amazon_playwright_extractor:🔧 Using BrowserManager page for https://www.amazon.co.uk/dp/B08ZGJT9J4
+INFO:amazon_playwright_extractor:Checking for cookie consent pop-up...
+INFO:amazon_playwright_extractor:Finished checking for cookie consent pop-ups. If one was present and not handled, it might interfere.
+INFO:amazon_playwright_extractor:Checking for CAPTCHA...
+INFO:amazon_playwright_extractor:No CAPTCHA page detected by form selector.
+INFO:amazon_playwright_extractor:Checking for cookie consent pop-up...
+INFO:amazon_playwright_extractor:Finished checking for cookie consent pop-ups. If one was present and not handled, it might interfere.
+INFO:amazon_playwright_extractor:Page should be ready. Waiting 5s for stabilization...
+INFO:amazon_playwright_extractor:Waiting an additional 7s for extensions (Keepa, SellerAmp)...
+INFO:amazon_playwright_extractor:Extracting all product data for ASIN: B08ZGJT9J4
+INFO:amazon_playwright_extractor:Extracting basic product information (Title, Price, Images, Amazon Details)...
+INFO:amazon_playwright_extractor:Title found: '3pk Ant Traps | Home Bait Station | Stops and Glues Ants as an Insect Trapper' via #productTitle
+INFO:amazon_playwright_extractor:Extracting price details...
+INFO:amazon_playwright_extractor:Current price: 5.98 via #corePrice_feature_div .a-offscreen
+INFO:amazon_playwright_extractor:Original price: 5.99 via span.a-price.a-text-price[data-a-strike='true'] span.a-offscreen
+INFO:amazon_playwright_extractor:Amazon sales badge found: 50 in container div#socialProofingAsinFaceout_feature_div
+INFO:amazon_playwright_extractor:Extracting image URLs...
+INFO:amazon_playwright_extractor:Main image: https://m.media-amazon.com/images/I/61ikA1ZJhrS._AC_SL1000_.jpg via #landingImage
+INFO:amazon_playwright_extractor:Found 1 thumbnails.
+INFO:amazon_playwright_extractor:Extracting Amazon product details section...
+INFO:amazon_playwright_extractor:Extracting sales rank information...
+INFO:amazon_playwright_extractor:Extracting ratings and reviews...
+INFO:amazon_playwright_extractor:Rating: 4.8 via #acrPopover[title*='out of 5 stars']
+INFO:amazon_playwright_extractor:Review count: 8 via #acrCustomerReviewText
+INFO:amazon_playwright_extractor:Extracting stock information...
+INFO:amazon_playwright_extractor:Availability text: 'In stock' via #availability span.a-size-medium.a-color-success
+INFO:amazon_playwright_extractor:Extracting features/bullets...
+INFO:amazon_playwright_extractor:Found 1 features.
+INFO:amazon_playwright_extractor:Extracting product description...
+INFO:amazon_playwright_extractor:Extracting product specifications table...
+INFO:amazon_playwright_extractor:Specifications table parsed using selector: #productDetails_techSpec_section_1
+INFO:amazon_playwright_extractor:Extracting SellerAmp data (if present)...
+INFO:amazon_playwright_extractor:SellerAmp data extraction is currently disabled as per requirements (Fix 2.3).
+INFO:amazon_playwright_extractor:Extracting Keepa data (if present)...
+INFO:amazon_playwright_extractor:Attempting to extract Keepa data...
+DEBUG:amazon_playwright_extractor:Keepa iframe check failed for selector iframe[id*='keepaGraph']: Page.wait_for_selector: Timeout 3000ms exceeded.
+Call log:
+  - waiting for locator("iframe[id*='keepaGraph']")
+
+DEBUG:amazon_playwright_extractor:Keepa iframe check failed for selector iframe#keepaExtension: Page.wait_for_selector: Timeout 3000ms exceeded.
+Call log:
+  - waiting for locator("iframe#keepaExtension")
+
+INFO:amazon_playwright_extractor:Keepa iframe found: iframe[id*='keepa']
+INFO:amazon_playwright_extractor:Keepa Sales Rank Details Table parsed.
+INFO:amazon_playwright_extractor:Keepa Graph AI Analysis is currently disabled as per requirements (Fix 2.4).
+INFO:amazon_playwright_extractor:Keepa Data tab found. Currently active: False
+INFO:amazon_playwright_extractor:Clicking Keepa 'Data' tab...
+INFO:amazon_playwright_extractor:Attempt 1/2: Waiting 12000ms for Product-Details wrapper...
+WARNING:amazon_playwright_extractor:Product-Details wrapper timeout on attempt 1, retrying...
+INFO:amazon_playwright_extractor:Attempt 2/2: Waiting 12000ms for Product-Details wrapper...
+ERROR:amazon_playwright_extractor:Product-Details wrapper did not appear after 2 attempts – aborting.
+INFO:amazon_playwright_extractor:ASIN B08ZGJT9J4: BSR not found or invalid from page. Attempting fallback from Keepa.
+INFO:amazon_playwright_extractor:ASIN B08ZGJT9J4: BSR 14397 in 'Garden 10' from Keepa SalesRankDetailsTable.
+INFO:tools.passive_extraction_workflow_latest:Successfully extracted data for ASIN B08ZGJT9J4 (EAN on page: N/A)
+INFO:tools.passive_extraction_workflow_latest:EAN search for '5038673210100' identified ASIN: B08ZGJT9J4
+DEBUG:tools.passive_extraction_workflow_latest:No valid cache found for ASIN B08ZGJT9J4 (tried 2 files)
+INFO:tools.passive_extraction_workflow_latest:Cached Amazon data for ASIN B08ZGJT9J4 as amazon_B08ZGJT9J4_5038673210100.json
+INFO:tools.passive_extraction_workflow_latest:Added to linking map: EAN_5038673210100 -> B08ZGJT9J4
+INFO:tools.passive_extraction_workflow_latest:Cached (potentially partial) Amazon data from EAN search for ASIN: B08ZGJT9J4
+INFO:tools.passive_extraction_workflow_latest:Skipping triage for ASIN B08ZGJT9J4 - proceeding directly to detailed extraction
+INFO:tools.passive_extraction_workflow_latest:Successfully got Amazon data for '3pk Ant Traps | Home Bait Station | Stops and Glues Ants as an Insect Trapper' (ASIN: B08ZGJT9J4, EAN on page: N/A)
+INFO:tools.passive_extraction_workflow_latest:Using fees from Keepa (or fallback): Referral Fee £0.00, FBA Fee £0.00, Total £0.00
+INFO:tools.passive_extraction_workflow_latest:Using BSR-based estimated monthly sales: 26
+DEBUG:tools.passive_extraction_workflow_latest:Financials for '3pk Ant Traps | Home Bait Station | Stops and Glues Ants as an Insect Trapper': Cost (exVAT): 0.94, Sell (exVAT): 4.98, Fees: 0.00, Profit: 4.04, ROI: 429.2%
+WARNING:tools.passive_extraction_workflow_latest:Low quality match (low) between supplier product 'Ant Glue Traps 3 Pack' and Amazon product '3pk Ant Traps | Home Bait Station | Stops and Glues Ants as an Insect Trapper'. Skipping.
+DEBUG:tools.passive_extraction_workflow_latest:Match reasons: ['Supplier EAN 5038673210100 present, but no comparable EAN/GTIN found on Amazon product page.', 'Low title similarity (24.39%)']
+DEBUG:tools.passive_extraction_workflow_latest:Rate limiting: waiting 3.0s before processing product 6
+INFO:tools.passive_extraction_workflow_latest:--- Processing supplier product 6/15 (40.0%): 'Prima Kid's Waterproof Emergency Poncho' (EAN: 5038673211084) ---
+INFO:tools.passive_extraction_workflow_latest:Attempting Amazon search using EAN: 5038673211084
+INFO:tools.passive_extraction_workflow_latest:Searching Amazon by EAN: 5038673211084 for supplier product: 'Prima Kid's Waterproof Emergency Poncho' (FixedAmazonExtractor)
+INFO:tools.passive_extraction_workflow_latest:Navigating to Amazon UK to search for EAN: 5038673211084
+INFO:tools.passive_extraction_workflow_latest:Waiting for search results page to load for EAN 5038673211084...
+INFO:tools.passive_extraction_workflow_latest:Found search results container with selector: div.s-search-results
+INFO:tools.passive_extraction_workflow_latest:Found 4 search result elements using selector: div.s-result-item[data-asin]:not([data-asin=''])
+INFO:tools.passive_extraction_workflow_latest:Processing 4 search result elements for EAN 5038673211084
+DEBUG:tools.passive_extraction_workflow_latest:Processing element 1: ASIN B0CSFWWLV5
+DEBUG:tools.passive_extraction_workflow_latest:ASIN B0CSFWWLV5 HTML structure sample: <div role="listitem" data-asin="B0CSFWWLV5" data-index="3" data-uuid="c4c7bf0a-2a22-4074-94c8-8eebce0eef22" id="c4c7bf0a-2a22-4074-94c8-8eebce0eef22" data-component-type="s-search-result" class="sg-col-4-of-4 sg-col-4-of-24 sg-col-4-of-12 s-result-item s-asin sg-col-4-of-16 AdHolder sg-col s-widget-spacing-small sg-col-4-of-8 sg-col-4-of-20" data-component-id="7" data-cel-widget="search_result_0"><div class="sg-col-inner"><div cel_widget_id="MAIN-SEARCH_RESULTS-3" class="s-widget-container s-spacing-small s-widget-container-height-small celwidget slot=MAIN template=SEARCH_RESULTS widgetId=sear...
+DEBUG:tools.passive_extraction_workflow_latest:Error checking sponsored badge for ASIN B0CSFWWLV5: 'ElementHandle' object has no attribute 'locator'
+DEBUG:tools.passive_extraction_workflow_latest:Error checking aria-label for ASIN B0CSFWWLV5: 'ElementHandle' object has no attribute 'locator'
+INFO:tools.passive_extraction_workflow_latest:Skipping sponsored result: ASIN B0CSFWWLV5 (detected by ad-specific class: 'AdHolder')
+DEBUG:tools.passive_extraction_workflow_latest:Processing element 2: ASIN B0CQYHD6CH
+DEBUG:tools.passive_extraction_workflow_latest:ASIN B0CQYHD6CH HTML structure sample: <div role="listitem" data-asin="B0CQYHD6CH" data-index="4" data-uuid="639bec17-687c-43bf-a8ea-4873d7e82609" id="639bec17-687c-43bf-a8ea-4873d7e82609" data-component-type="s-search-result" class="sg-col-4-of-4 sg-col-4-of-24 sg-col-4-of-12 s-result-item s-asin sg-col-4-of-16 AdHolder sg-col s-widget-spacing-small sg-col-4-of-8 sg-col-4-of-20" data-component-id="10" data-cel-widget="search_result_1"><div class="sg-col-inner"><div cel_widget_id="MAIN-SEARCH_RESULTS-4" class="s-widget-container s-spacing-small s-widget-container-height-small celwidget slot=MAIN template=SEARCH_RESULTS widgetId=sea...
+DEBUG:tools.passive_extraction_workflow_latest:Error checking sponsored badge for ASIN B0CQYHD6CH: 'ElementHandle' object has no attribute 'locator'
+DEBUG:tools.passive_extraction_workflow_latest:Error checking aria-label for ASIN B0CQYHD6CH: 'ElementHandle' object has no attribute 'locator'
+INFO:tools.passive_extraction_workflow_latest:Skipping sponsored result: ASIN B0CQYHD6CH (detected by ad-specific class: 'AdHolder')
+DEBUG:tools.passive_extraction_workflow_latest:Processing element 3: ASIN B0BW3NTPWN
+DEBUG:tools.passive_extraction_workflow_latest:ASIN B0BW3NTPWN HTML structure sample: <div role="listitem" data-asin="B0BW3NTPWN" data-index="5" data-uuid="f9d3925b-54ec-456f-bd4a-ff2f4eb2c379" id="f9d3925b-54ec-456f-bd4a-ff2f4eb2c379" data-component-type="s-search-result" class="sg-col-4-of-4 sg-col-4-of-24 sg-col-4-of-12 s-result-item s-asin sg-col-4-of-16 AdHolder sg-col s-widget-spacing-small sg-col-4-of-8 sg-col-4-of-20" data-component-id="13" data-cel-widget="search_result_2"><div class="sg-col-inner"><div cel_widget_id="MAIN-SEARCH_RESULTS-5" class="s-widget-container s-spacing-small s-widget-container-height-small celwidget slot=MAIN template=SEARCH_RESULTS widgetId=sea...
+DEBUG:tools.passive_extraction_workflow_latest:Error checking sponsored badge for ASIN B0BW3NTPWN: 'ElementHandle' object has no attribute 'locator'
+DEBUG:tools.passive_extraction_workflow_latest:Error checking aria-label for ASIN B0BW3NTPWN: 'ElementHandle' object has no attribute 'locator'
+INFO:tools.passive_extraction_workflow_latest:Skipping sponsored result: ASIN B0BW3NTPWN (detected by ad-specific class: 'AdHolder')
+DEBUG:tools.passive_extraction_workflow_latest:Processing element 4: ASIN B0F4P6ND3F
+DEBUG:tools.passive_extraction_workflow_latest:Error checking sponsored badge for ASIN B0F4P6ND3F: 'ElementHandle' object has no attribute 'locator'
+DEBUG:tools.passive_extraction_workflow_latest:Error checking aria-label for ASIN B0F4P6ND3F: 'ElementHandle' object has no attribute 'locator'
+INFO:tools.passive_extraction_workflow_latest:Skipping sponsored result: ASIN B0F4P6ND3F (detected by ad-specific class: 'AdHolder')
+WARNING:tools.passive_extraction_workflow_latest:EAN 5038673211084 returned no organic results - skipping
+WARNING:tools.passive_extraction_workflow_latest:No Amazon results or error for EAN '5038673211084'. Details: no_organic_results
+WARNING:tools.passive_extraction_workflow_latest:EAN search for '5038673211084' failed to identify an ASIN. Error: No results for EAN 5038673211084 or search error
+INFO:tools.passive_extraction_workflow_latest:EAN search failed for 'Prima Kid's Waterproof Emergency Poncho'. Falling back to title search.
+INFO:tools.passive_extraction_workflow_latest:Searching Amazon by title using search bar: 'Prima Kid's Waterproof Emergency Poncho'
+INFO:tools.passive_extraction_workflow_latest:Navigating to Amazon UK to search for title: Prima Kid's Waterproof Emergency Poncho
+INFO:tools.passive_extraction_workflow_latest:Title search found 71 elements using selector: div.s-search-results > div[data-asin]
+DEBUG:tools.passive_extraction_workflow_latest:ASIN B07VP2SQPM title extracted using selector 'h2 span.a-size-base-plus': Opret...
+DEBUG:tools.passive_extraction_workflow_latest:ASIN B08V565WHL title extracted using selector 'h2 span.a-size-base-plus': GINMIC...
+DEBUG:tools.passive_extraction_workflow_latest:ASIN B0F212X1FM title extracted using selector 'h2 span.a-size-base-plus': KAKU NANU...
+DEBUG:tools.passive_extraction_workflow_latest:ASIN B0D8VS6JPJ title extracted using selector 'h2 span.a-size-base-plus': CityComfort...
+DEBUG:tools.passive_extraction_workflow_latest:ASIN B0D8Y3VHQM title extracted using selector 'h2 span.a-size-base-plus': ZOCONE...
+DEBUG:tools.passive_extraction_workflow_latest:ASIN B0C9DHJVV8 title extracted using selector 'h2 span.a-size-base-plus': Vicloon...
+DEBUG:tools.passive_extraction_workflow_latest:ASIN B08V565WHL title extracted using selector 'h2 span.a-size-base-plus': GINMIC...
+DEBUG:tools.passive_extraction_workflow_latest:ASIN B07VP2SQPM title extracted using selector 'h2 span.a-size-base-plus': Opret...
+INFO:tools.passive_extraction_workflow_latest:Title search found 8 results for 'Prima Kid's Waterproof Emergency Poncho'
+DEBUG:tools.passive_extraction_workflow_latest:No valid cache found for ASIN B07VP2SQPM (tried 2 files)
+INFO:tools.passive_extraction_workflow_latest:Extracting detailed Amazon data for ASIN: B07VP2SQPM (from title search)
+INFO:utils.browser_manager:♻️ Reusing existing Chrome connection (port 9222)
+INFO:utils.browser_manager:♻️ Reusing cached page for https://www.amazon.co.uk
+INFO:amazon_playwright_extractor:🔧 Using BrowserManager page for https://www.amazon.co.uk/dp/B07VP2SQPM
+INFO:amazon_playwright_extractor:Checking for cookie consent pop-up...
+INFO:amazon_playwright_extractor:Finished checking for cookie consent pop-ups. If one was present and not handled, it might interfere.
+INFO:amazon_playwright_extractor:Checking for CAPTCHA...
+INFO:amazon_playwright_extractor:No CAPTCHA page detected by form selector.
+INFO:amazon_playwright_extractor:Checking for cookie consent pop-up...
+INFO:amazon_playwright_extractor:Finished checking for cookie consent pop-ups. If one was present and not handled, it might interfere.
+INFO:amazon_playwright_extractor:Page should be ready. Waiting 5s for stabilization...
+INFO:amazon_playwright_extractor:Waiting an additional 7s for extensions (Keepa, SellerAmp)...
+INFO:amazon_playwright_extractor:Extracting all product data for ASIN: B07VP2SQPM
+INFO:amazon_playwright_extractor:Extracting basic product information (Title, Price, Images, Amazon Details)...
+INFO:amazon_playwright_extractor:Title found: 'Opret Disposable Rain Ponchos, 5/10 pcs Emergency Raincoats Waterproof Ponchos Lightweight for Men and Women with Hood and Sleeves' via #productTitle
+INFO:amazon_playwright_extractor:Extracting price details...
+INFO:amazon_playwright_extractor:Current price: 8.49 via #corePrice_feature_div .a-offscreen
+INFO:amazon_playwright_extractor:Original price: 9.99 via .basisPrice span.a-text-price span.a-offscreen
+INFO:amazon_playwright_extractor:Amazon sales badge found: 100 in container div#socialProofingAsinFaceout_feature_div
+INFO:amazon_playwright_extractor:Extracting image URLs...
+INFO:amazon_playwright_extractor:Main image: https://m.media-amazon.com/images/I/61bqIspY8ML._AC_SL1500_.jpg via #landingImage
+INFO:amazon_playwright_extractor:Found 7 thumbnails.
+INFO:amazon_playwright_extractor:Extracting Amazon product details section...
+INFO:amazon_playwright_extractor:Extracting sales rank information...
+INFO:amazon_playwright_extractor:Extracting ratings and reviews...
+INFO:amazon_playwright_extractor:Rating: 4.4 via #acrPopover[title*='out of 5 stars']
+INFO:amazon_playwright_extractor:Review count: 4759 via #acrCustomerReviewText
+INFO:amazon_playwright_extractor:Extracting stock information...
+INFO:amazon_playwright_extractor:Availability text: 'In stock' via #availability span.a-size-medium.a-color-success
+INFO:amazon_playwright_extractor:Extracting features/bullets...
+INFO:amazon_playwright_extractor:Extracting product description...
+INFO:amazon_playwright_extractor:Description found using selector: #productDescription
+INFO:amazon_playwright_extractor:Extracting product specifications table...
+INFO:amazon_playwright_extractor:Extracting SellerAmp data (if present)...
+INFO:amazon_playwright_extractor:SellerAmp data extraction is currently disabled as per requirements (Fix 2.3).
+INFO:amazon_playwright_extractor:Extracting Keepa data (if present)...
+INFO:amazon_playwright_extractor:Attempting to extract Keepa data...
+DEBUG:amazon_playwright_extractor:Keepa iframe check failed for selector iframe[id*='keepaGraph']: Page.wait_for_selector: Timeout 3000ms exceeded.
+Call log:
+  - waiting for locator("iframe[id*='keepaGraph']")
+
+DEBUG:amazon_playwright_extractor:Keepa iframe check failed for selector iframe#keepaExtension: Page.wait_for_selector: Timeout 3000ms exceeded.
+Call log:
+  - waiting for locator("iframe#keepaExtension")
+
+INFO:amazon_playwright_extractor:Keepa iframe found: iframe[id*='keepa']
+INFO:amazon_playwright_extractor:Keepa Sales Rank Details Table parsed.
+INFO:amazon_playwright_extractor:Keepa Graph AI Analysis is currently disabled as per requirements (Fix 2.4).
+INFO:amazon_playwright_extractor:Keepa Data tab found. Currently active: False
+INFO:amazon_playwright_extractor:Clicking Keepa 'Data' tab...
+INFO:amazon_playwright_extractor:Attempt 1/2: Waiting 12000ms for Product-Details wrapper...
+INFO:amazon_playwright_extractor:✅ Product-Details wrapper appeared on attempt 1
+INFO:amazon_playwright_extractor:Parsing Keepa AG Grid for Product Details from: div#MoreTab1 div#grid-product-detail
+INFO:amazon_playwright_extractor:Primary attempt: Waiting 12 seconds for AG Grid rows to load...
+INFO:amazon_playwright_extractor:✅ Primary attempt successful: 127 rows found
+INFO:amazon_playwright_extractor:Processing 127 rows in Keepa Product Details AG Grid.
+INFO:amazon_playwright_extractor:Found potential fee key 'FBA Pick&Pack Fee' with raw value: '£ 2.61' in Keepa AG Grid.
+INFO:amazon_playwright_extractor:Found potential fee key 'Referral Fee based on current Buy Box price' with raw value: '£ 0.68' in Keepa AG Grid.
+INFO:amazon_playwright_extractor:✅ Successfully parsed 36 items from Keepa Product Details AG Grid.
+INFO:amazon_playwright_extractor:ASIN B07VP2SQPM: Attempting to extract EANs from Keepa product_details_tab_data.
+WARNING:amazon_playwright_extractor:ASIN B07VP2SQPM: Could not find EAN in Keepa product_details_tab_data.
+INFO:amazon_playwright_extractor:ASIN B07VP2SQPM: BSR not found or invalid from page. Attempting fallback from Keepa.
+INFO:amazon_playwright_extractor:ASIN B07VP2SQPM: BSR 24 in 'Fashion 22' from Keepa SalesRankDetailsTable.
+INFO:tools.passive_extraction_workflow_latest:Cached Amazon data for ASIN B07VP2SQPM as amazon_B07VP2SQPM_5038673211084.json
+INFO:tools.passive_extraction_workflow_latest:Added to linking map: EAN_5038673211084 -> B07VP2SQPM
+INFO:tools.passive_extraction_workflow_latest:🔄 PERIODIC SAVE triggered at product #6
+ERROR:tools.passive_extraction_workflow_latest:Error in periodic linking map save: name 'supplier_name' is not defined
+INFO:tools.passive_extraction_workflow_latest:✅ PERIODIC SAVE completed - 12 linking entries saved
+INFO:tools.passive_extraction_workflow_latest:Skipping triage for ASIN B07VP2SQPM - proceeding directly to detailed extraction
+INFO:tools.passive_extraction_workflow_latest:Successfully got Amazon data for 'Opret Disposable Rain Ponchos, 5/10 pcs Emergency Raincoats Waterproof Ponchos Lightweight for Men and Women with Hood and Sleeves' (ASIN: B07VP2SQPM, EAN on page: N/A)
+INFO:tools.passive_extraction_workflow_latest:Using fees from Keepa (or fallback): Referral Fee £0.00, FBA Fee £0.00, Total £0.00
+INFO:tools.passive_extraction_workflow_latest:Using BSR-based estimated monthly sales: 3000
+DEBUG:tools.passive_extraction_workflow_latest:Financials for 'Opret Disposable Rain Ponchos, 5/10 pcs Emergency Raincoats Waterproof Ponchos Lightweight for Men and Women with Hood and Sleeves': Cost (exVAT): 0.94, Sell (exVAT): 7.08, Fees: 0.00, Profit: 6.13, ROI: 651.33%
+WARNING:tools.passive_extraction_workflow_latest:Low quality match (low) between supplier product 'Prima Kid's Waterproof Emergency Poncho' and Amazon product 'Opret Disposable Rain Ponchos, 5/10 pcs Emergency Raincoats Waterproof Ponchos Lightweight for Men and Women with Hood and Sleeves'. Skipping.
+DEBUG:tools.passive_extraction_workflow_latest:Match reasons: ['Supplier EAN 5038673211084 present, but no comparable EAN/GTIN found on Amazon product page.', 'Low title similarity (32.21%)']
+INFO:tools.passive_extraction_workflow_latest:Reached max_analyzed_products=6. Halting further analysis.
+INFO:tools.passive_extraction_workflow_latest:Product processing limit reached. Ending workflow early.
+INFO:tools.passive_extraction_workflow_latest:✅ Successfully saved linking map with 12 entries to /mnt/c/Users/chris/Cloud-Drive_christianhaddad8@gmail.com/Cloud-Drive/Full/claude code/Amazon-FBA-Agent-System-v3/OUTPUTS/FBA_ANALYSIS/linking_maps/poundwholesale-co-uk/linking_map.json
+WARNING:__main__:⚠️ Workflow completed but no results returned
+ERROR:__main__:❌ Extraction workflow failed
+INFO:__main__:🔍 Verifying files generated despite extraction failure...
+ERROR:__main__:❌ Missing expected file: suppliers/poundwholesale-co-uk/config/login_config.json
+ERROR:__main__:❌ Missing expected file: suppliers/poundwholesale-co-uk/scripts/poundwholesale-co-uk_login.py
+ERROR:__main__:❌ Missing expected file: OUTPUTS/FBA_ANALYSIS/cached_products.json
+ERROR:__main__:❌ Missing expected file: OUTPUTS/FBA_ANALYSIS/ai_category_cache.json
+ERROR:__main__:❌ Missing expected file: OUTPUTS/FBA_ANALYSIS/linking_maps/linking_map.json
+ERROR:__main__:❌ Output verification FAILED - 5 issues found
+ERROR:__main__:  • suppliers/poundwholesale-co-uk/config/login_config.json: File does not exist
+ERROR:__main__:  • suppliers/poundwholesale-co-uk/scripts/poundwholesale-co-uk_login.py: File does not exist
+ERROR:__main__:  • OUTPUTS/FBA_ANALYSIS/cached_products.json: File does not exist
+ERROR:__main__:  • OUTPUTS/FBA_ANALYSIS/ai_category_cache.json: File does not exist
+ERROR:__main__:  • OUTPUTS/FBA_ANALYSIS/linking_maps/linking_map.json: File does not exist
+INFO:utils.browser_manager:🧹 Starting browser cleanup...
+INFO:utils.browser_manager:🗑️ Closed 2 cached pages
+INFO:utils.browser_manager:🔌 Disconnected from Chrome
+INFO:utils.browser_manager:🎭 Stopped Playwright
+INFO:utils.browser_manager:✅ Browser cleanup completed
+INFO:utils.browser_manager:🧹 Global browser cleanup completed
+INFO:__main__:🧹 Browser cleanup completed
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:utils.browser_manager:🧹 Starting browser cleanup...
+INFO:utils.browser_manager:🗑️ Closed 0 cached pages
+INFO:utils.browser_manager:✅ Browser cleanup completed
+INFO:utils.browser_manager:🧹 Global browser cleanup completed
+ERROR:asyncio:Unclosed client session
+client_session: <aiohttp.client.ClientSession object at 0x7feef747b3e0>
+DEBUG:httpcore.connection:close.started
+DEBUG:httpcore.connection:close.complete

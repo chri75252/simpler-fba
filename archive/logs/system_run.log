@@ -1,0 +1,386 @@
+2025-06-06 23:34:22,671 - __main__ - INFO - Initializing Passive Extraction Workflow...
+2025-06-06 23:34:22,817 - __main__ - INFO - OpenAI client initialized with model gpt-4o-mini-search-preview-2025-03-11
+2025-06-06 23:34:22,840 - __main__ - INFO - Loaded linking map from /mnt/c/Users/chris/Cloud-Drive_christianhaddad8@gmail.com/Cloud-Drive/Full/claude code/Amazon-FBA-Agent-System-v3/OUTPUTS/FBA_ANALYSIS/Linking map/linking_map.json with 380 entries
+2025-06-06 23:34:22,843 - __main__ - INFO - PassiveExtractionWorkflow initialized WITH an AI client.
+2025-06-06 23:34:22,846 - amazon_playwright_extractor - INFO - Output directory set to: /mnt/c/Users/chris/Cloud-Drive_christianhaddad8@gmail.com/Cloud-Drive/Full/claude code/Amazon-FBA-Agent-System-v3/C:\Users\chris\Amazon-FBA-Agent-System\OUTPUTS\AMAZON_SCRAPE
+2025-06-06 23:34:22,866 - __main__ - INFO - Loaded linking map from /mnt/c/Users/chris/Cloud-Drive_christianhaddad8@gmail.com/Cloud-Drive/Full/claude code/Amazon-FBA-Agent-System-v3/OUTPUTS/FBA_ANALYSIS/Linking map/linking_map.json with 380 entries
+2025-06-06 23:34:22,866 - __main__ - INFO - Loaded linking map with 380 entries
+2025-06-06 23:34:22,867 - __main__ - INFO - Forcing AI category progression due to supplier cache clearing or explicit config setting.
+2025-06-06 23:34:22,868 - __main__ - INFO - Running workflow for clearance-king.co.uk with max 0 products. Price range £0.1-£20.0.
+2025-06-06 23:34:22,869 - __main__ - INFO - Starting passive extraction workflow for supplier: clearance-king.co.uk (https://www.clearance-king.co.uk)
+2025-06-06 23:34:22,869 - __main__ - INFO - Session ID: clearance-king_co_uk_20250606_233422
+2025-06-06 23:34:22,870 - __main__ - INFO - PRICE CRITERIA: Min Supplier Cost £0.1, Max Supplier Cost £20.0
+2025-06-06 23:34:22,879 - __main__ - INFO - Resuming from index 40 (previous run state found)
+2025-06-06 23:34:22,895 - __main__ - INFO - Loaded 287 products from supplier cache (3.0 hours old)
+2025-06-06 23:34:22,895 - __main__ - INFO - STAGE-COMPLETE: supplier_scrape - 287 records
+2025-06-06 23:34:22,896 - __main__ - INFO - Successfully got 287 products from clearance-king.co.uk
+2025-06-06 23:34:22,897 - __main__ - INFO - Found 287 valid supplier products, 285 within price range [£0.1-£20.0]
+2025-06-06 23:34:22,897 - __main__ - INFO - STAGE-COMPLETE: price_filtering - 285 records
+2025-06-06 23:34:22,898 - __main__ - INFO - UNLIMITED MODE: Processing ALL 285 products starting from index 40 with smart rate limiting.
+2025-06-06 23:34:22,905 - __main__ - INFO - --- Processing supplier product 1/245: 'Mio Viso Cosmetics Luxury Be Bold Lip Brush' (EAN: 5056175912971) ---
+2025-06-06 23:34:22,905 - __main__ - INFO - Attempting Amazon search using EAN: 5056175912971
+2025-06-06 23:34:22,906 - __main__ - INFO - Connecting to Chrome browser on debug port 9222 (FixedAmazonExtractor)
+2025-06-06 23:34:23,841 - __main__ - INFO - Successfully connected to Chrome on port 9222 (FixedAmazonExtractor)
+2025-06-06 23:34:23,844 - __main__ - INFO - Found 1 existing pages (FixedAmazonExtractor)
+2025-06-06 23:34:23,845 - __main__ - INFO - Using existing page: https://www.amazon.co.uk/dp/B01MYM3KV7?th=1 (FixedAmazonExtractor)
+2025-06-06 23:34:23,863 - __main__ - INFO - Searching Amazon by EAN: 5056175912971 for supplier product: 'Mio Viso Cosmetics Luxury Be Bold Lip Brush' (FixedAmazonExtractor)
+2025-06-06 23:34:23,897 - __main__ - INFO - Navigating to Amazon UK to search for EAN: 5056175912971
+2025-06-06 23:34:28,173 - __main__ - INFO - Waiting for search results page to load for EAN 5056175912971...
+2025-06-06 23:34:28,547 - __main__ - INFO - Found search results container with selector: div.s-search-results
+2025-06-06 23:34:30,604 - __main__ - INFO - Found 4 search result elements using selector: div.s-result-item[data-asin]:not([data-asin=''])
+2025-06-06 23:34:30,605 - __main__ - INFO - Processing 4 search result elements for EAN 5056175912971
+2025-06-06 23:34:30,669 - __main__ - INFO - Skipping sponsored result: ASIN B0CHYF8YKZ (detected by ad-specific class: 'AdHolder')
+2025-06-06 23:34:30,732 - __main__ - INFO - Skipping sponsored result: ASIN B0BJ9JRFN7 (detected by ad-specific class: 'AdHolder')
+2025-06-06 23:34:30,803 - __main__ - INFO - Skipping sponsored result: ASIN B0CV64B86Z (detected by ad-specific class: 'AdHolder')
+2025-06-06 23:34:31,032 - __main__ - INFO - Skipping sponsored result: ASIN B089WL6Z75 (detected by ad-specific class: 'AdHolder')
+2025-06-06 23:34:31,033 - __main__ - WARNING - EAN 5056175912971 returned no organic results - skipping
+2025-06-06 23:34:31,034 - __main__ - WARNING - No Amazon results or error for EAN '5056175912971'. Details: no_organic_results
+2025-06-06 23:34:31,034 - __main__ - WARNING - EAN search for '5056175912971' failed to identify an ASIN. Error: No results for EAN 5056175912971 or search error
+2025-06-06 23:34:31,035 - __main__ - INFO - EAN search failed for 'Mio Viso Cosmetics Luxury Be Bold Lip Brush'. Falling back to title search.
+2025-06-06 23:34:31,036 - __main__ - INFO - Searching Amazon by title using search bar: 'Mio Viso Cosmetics Luxury Be Bold Lip Brush'
+2025-06-06 23:34:31,053 - __main__ - INFO - Navigating to Amazon UK to search for title: Mio Viso Cosmetics Luxury Be Bold Lip Brush
+2025-06-06 23:34:35,057 - __main__ - INFO - Title search found 2 elements using selector: div.s-search-results > div[data-asin]
+2025-06-06 23:34:35,090 - __main__ - WARNING - No valid ASINs found for title 'Mio Viso Cosmetics Luxury Be Bold Lip Brush'
+2025-06-06 23:34:35,091 - __main__ - WARNING - No Amazon results for title 'Mio Viso Cosmetics Luxury Be Bold Lip Brush'. Skipping. Details: No valid ASINs found for title 'Mio Viso Cosmetics Luxury Be Bold Lip Brush'
+2025-06-06 23:34:38,119 - __main__ - INFO - --- Processing supplier product 2/245: 'Mio Viso Cosmetics Define Brow Brush' (EAN: 5056175913015) ---
+2025-06-06 23:34:38,119 - __main__ - INFO - Attempting Amazon search using EAN: 5056175913015
+2025-06-06 23:34:38,120 - __main__ - INFO - Searching Amazon by EAN: 5056175913015 for supplier product: 'Mio Viso Cosmetics Define Brow Brush' (FixedAmazonExtractor)
+2025-06-06 23:34:38,139 - __main__ - INFO - Navigating to Amazon UK to search for EAN: 5056175913015
+2025-06-06 23:34:41,054 - __main__ - INFO - Waiting for search results page to load for EAN 5056175913015...
+2025-06-06 23:34:41,365 - __main__ - INFO - Found search results container with selector: div.s-search-results
+2025-06-06 23:34:43,421 - __main__ - INFO - Found 1 search result elements using selector: div[data-asin]:not([data-asin='']):not(.AdHolder):not([class*='s-widget-sponsored-product'])
+2025-06-06 23:34:43,421 - __main__ - INFO - Processing 1 search result elements for EAN 5056175913015
+2025-06-06 23:34:43,691 - __main__ - INFO - Found organic result: ASIN B07WT5K96G - 1pk Luxury Brow Brush | Soft and Dense Quality Fibres | 17.6...
+2025-06-06 23:34:43,691 - __main__ - INFO - Single organic result found for EAN 5056175913015: ASIN B07WT5K96G
+2025-06-06 23:34:43,692 - __main__ - INFO - EAN search selected ASIN B07WT5K96G for 5056175913015
+2025-06-06 23:34:43,692 - __main__ - INFO - Single ASIN B07WT5K96G found for EAN 5056175913015.
+2025-06-06 23:34:43,693 - __main__ - INFO - Proceeding with ASIN: B07WT5K96G for EAN: 5056175913015
+2025-06-06 23:34:43,694 - amazon_playwright_extractor - INFO - Reusing existing page: https://www.amazon.co.uk/s?k=5056175913015&ref=nb_sb_noss
+2025-06-06 23:34:46,267 - amazon_playwright_extractor - INFO - Checking for cookie consent pop-up...
+2025-06-06 23:34:45,308 - amazon_playwright_extractor - INFO - Finished checking for cookie consent pop-ups. If one was present and not handled, it might interfere.
+2025-06-06 23:34:46,312 - amazon_playwright_extractor - INFO - Checking for CAPTCHA...
+2025-06-06 23:34:49,333 - amazon_playwright_extractor - INFO - No CAPTCHA page detected by form selector.
+2025-06-06 23:34:49,334 - amazon_playwright_extractor - INFO - Checking for cookie consent pop-up...
+2025-06-06 23:34:49,584 - amazon_playwright_extractor - INFO - Finished checking for cookie consent pop-ups. If one was present and not handled, it might interfere.
+2025-06-06 23:34:49,585 - amazon_playwright_extractor - INFO - Page should be ready. Waiting 5s for stabilization...
+2025-06-06 23:34:54,790 - amazon_playwright_extractor - INFO - Waiting an additional 7s for extensions (Keepa, SellerAmp)...
+2025-06-06 23:35:02,244 - amazon_playwright_extractor - INFO - Extracting all product data for ASIN: B07WT5K96G
+2025-06-06 23:35:02,245 - amazon_playwright_extractor - INFO - Extracting basic product information (Title, Price, Images, Amazon Details)...
+2025-06-06 23:35:02,303 - amazon_playwright_extractor - INFO - Title found: '1pk Luxury Brow Brush | Soft and Dense Quality Fibres | 17.6 Centimetre Brow and Eyelash Applicator with Eyebrow Brush Comb | Includes Health & Beauty E-Book' via #productTitle
+2025-06-06 23:35:02,303 - amazon_playwright_extractor - INFO - Extracting price details...
+2025-06-06 23:35:02,377 - amazon_playwright_extractor - INFO - Current price: 6.99 via #corePrice_feature_div .a-offscreen
+2025-06-06 23:35:02,774 - amazon_playwright_extractor - INFO - Extracting image URLs...
+2025-06-06 23:35:02,914 - amazon_playwright_extractor - INFO - Main image: https://m.media-amazon.com/images/I/71N1fgGfzvL._AC_SL1500_.jpg via #landingImage
+2025-06-06 23:35:03,226 - amazon_playwright_extractor - INFO - Found 7 thumbnails.
+2025-06-06 23:35:03,252 - amazon_playwright_extractor - INFO - Extracting Amazon product details section...
+2025-06-06 23:35:04,649 - amazon_playwright_extractor - INFO - Extracting sales rank information...
+2025-06-06 23:35:05,083 - amazon_playwright_extractor - WARNING - Sales rank not found by selectors. AI fallback.
+2025-06-06 23:35:05,264 - amazon_playwright_extractor - WARNING - HTML content for AI extraction truncated to 24000 chars.
+2025-06-06 23:35:06,680 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+2025-06-06 23:35:06,682 - amazon_playwright_extractor - ERROR - AI HTML extraction for 'Best Sellers Rank information (primary rank and category, plus any sub-category ranks as a list or structured text)' failed: Error code: 401 - {'error': {'message': 'Incorrect API key provided: ${OPENAI*****KEY}. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+2025-06-06 23:35:06,684 - amazon_playwright_extractor - INFO - Extracting ratings and reviews...
+2025-06-06 23:35:06,752 - amazon_playwright_extractor - INFO - Rating: 3.9 via #acrPopover[title*='out of 5 stars']
+2025-06-06 23:35:06,805 - amazon_playwright_extractor - INFO - Review count: 18 via #acrCustomerReviewText
+2025-06-06 23:35:06,806 - amazon_playwright_extractor - INFO - Extracting stock information...
+2025-06-06 23:35:06,881 - amazon_playwright_extractor - INFO - Availability text: 'Only 6 left in stock.' via #availability span.a-color-price
+2025-06-06 23:35:06,882 - amazon_playwright_extractor - INFO - Extracting features/bullets...
+2025-06-06 23:35:06,927 - amazon_playwright_extractor - WARNING - Features/bullets not found by selector. AI fallback.
+2025-06-06 23:35:06,928 - amazon_playwright_extractor - WARNING - HTML content for AI extraction truncated to 24000 chars.
+2025-06-06 23:35:07,781 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+2025-06-06 23:35:07,784 - amazon_playwright_extractor - ERROR - AI HTML extraction for 'product feature bullet points as a list of strings' failed: Error code: 401 - {'error': {'message': 'Incorrect API key provided: ${OPENAI*****KEY}. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+2025-06-06 23:35:07,785 - amazon_playwright_extractor - INFO - Extracting product description...
+2025-06-06 23:35:08,140 - amazon_playwright_extractor - WARNING - Description not found by selectors. AI fallback.
+2025-06-06 23:35:08,140 - amazon_playwright_extractor - WARNING - HTML content for AI extraction truncated to 24000 chars.
+2025-06-06 23:35:08,885 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+2025-06-06 23:35:08,887 - amazon_playwright_extractor - ERROR - AI HTML extraction for 'detailed product description text' failed: Error code: 401 - {'error': {'message': 'Incorrect API key provided: ${OPENAI*****KEY}. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+2025-06-06 23:35:08,888 - amazon_playwright_extractor - INFO - Extracting product specifications table...
+2025-06-06 23:35:10,283 - amazon_playwright_extractor - INFO - Specifications table parsed using selector: #productDetails_techSpec_section_1
+2025-06-06 23:35:10,284 - amazon_playwright_extractor - INFO - Extracting SellerAmp data (if present)...
+2025-06-06 23:35:10,285 - amazon_playwright_extractor - INFO - SellerAmp data extraction is currently disabled as per requirements (Fix 2.3).
+2025-06-06 23:35:10,285 - amazon_playwright_extractor - INFO - Extracting Keepa data (if present)...
+2025-06-06 23:35:10,286 - amazon_playwright_extractor - INFO - Attempting to extract Keepa data...
+2025-06-06 23:35:16,513 - amazon_playwright_extractor - INFO - Keepa iframe found: iframe[id*='keepa']
+2025-06-06 23:35:16,598 - amazon_playwright_extractor - INFO - Keepa Graph AI Analysis is currently disabled as per requirements (Fix 2.4).
+2025-06-06 23:35:16,691 - amazon_playwright_extractor - INFO - Clicking Keepa 'Data' tab...
+2025-06-06 23:35:19,554 - amazon_playwright_extractor - INFO - Parsing Keepa AG Grid for Product Details from: div#MoreTab1 div#grid-product-detail
+2025-06-06 23:35:20,810 - amazon_playwright_extractor - INFO - Found 106 rows in Keepa Product Details AG Grid.
+2025-06-06 23:35:23,575 - amazon_playwright_extractor - INFO - Found potential fee key 'FBA Pick&Pack Fee' with raw value: '£ 1.46' in Keepa AG Grid.
+2025-06-06 23:35:23,881 - amazon_playwright_extractor - INFO - Found potential fee key 'Referral Fee based on current Buy Box price' with raw value: '£ 0.56' in Keepa AG Grid.
+2025-06-06 23:35:28,914 - amazon_playwright_extractor - INFO - Parsed 33 items from Keepa Product Details AG Grid.
+2025-06-06 23:35:28,915 - amazon_playwright_extractor - INFO - ASIN B07WT5K96G: Attempting to extract EANs from Keepa product_details_tab_data.
+2025-06-06 23:35:28,916 - amazon_playwright_extractor - INFO - ASIN B07WT5K96G: EAN '5056175913015' found in Keepa details via key 'Product Codes - EAN'.
+2025-06-06 23:35:28,917 - amazon_playwright_extractor - INFO - ASIN B07WT5K96G: BSR not found or invalid from page. Attempting fallback from Keepa.
+2025-06-06 23:35:28,917 - amazon_playwright_extractor - WARNING - ASIN B07WT5K96G: Could not find BSR in any Keepa data source.
+2025-06-06 23:35:28,918 - __main__ - INFO - Successfully extracted data for ASIN B07WT5K96G (EAN on page: 5056175913015)
+2025-06-06 23:35:28,919 - __main__ - INFO - EAN search for '5056175913015' identified ASIN: B07WT5K96G
+2025-06-06 23:35:28,940 - __main__ - INFO - Cached Amazon data for ASIN B07WT5K96G as amazon_B07WT5K96G_5056175913015.json
+2025-06-06 23:35:28,940 - __main__ - INFO - Added to linking map: EAN_5056175913015 -> B07WT5K96G
+2025-06-06 23:35:28,940 - __main__ - INFO - Cached (potentially partial) Amazon data from EAN search for ASIN: B07WT5K96G
+2025-06-06 23:35:28,941 - __main__ - INFO - Skipping triage for ASIN B07WT5K96G - proceeding directly to detailed extraction
+2025-06-06 23:35:28,941 - __main__ - INFO - Successfully got Amazon data for '1pk Luxury Brow Brush | Soft and Dense Quality Fibres | 17.6 Centimetre Brow and Eyelash Applicator with Eyebrow Brush Comb | Includes Health & Beauty E-Book' (ASIN: B07WT5K96G, EAN on page: 5056175913015)
+2025-06-06 23:35:28,942 - __main__ - INFO - Using fees from Keepa (or fallback): Referral Fee £0.00, FBA Fee £0.00, Total £0.00
+2025-06-06 23:35:28,943 - __main__ - INFO - Match quality is medium (0.50) for ASIN B07WT5K96G. Attempting AI validation.
+2025-06-06 23:35:29,421 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+2025-06-06 23:35:29,423 - __main__ - ERROR - AI validation step failed: Error code: 401 - {'error': {'message': 'Incorrect API key provided: ${OPENAI*****KEY}. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+2025-06-06 23:35:29,424 - __main__ - INFO - Product does not meet criteria. ROI: 1148.21%, Profit: £5.36
+2025-06-06 23:35:32,462 - __main__ - INFO - --- Processing supplier product 3/245: 'AVON Mens Cosmetic Zipper Bag - Orange/Grey - 30 x 12cm' (EAN: 07353200) ---
+2025-06-06 23:35:32,463 - __main__ - INFO - Attempting Amazon search using EAN: 07353200
+2025-06-06 23:35:32,463 - __main__ - INFO - Searching Amazon by EAN: 07353200 for supplier product: 'AVON Mens Cosmetic Zipper Bag - Orange/Grey - 30 x 12cm' (FixedAmazonExtractor)
+2025-06-06 23:35:32,487 - __main__ - INFO - Navigating to Amazon UK to search for EAN: 07353200
+2025-06-06 23:35:36,168 - __main__ - INFO - Waiting for search results page to load for EAN 07353200...
+2025-06-06 23:35:36,541 - __main__ - INFO - Found search results container with selector: div.s-search-results
+2025-06-06 23:35:38,674 - __main__ - INFO - Found 6 search result elements using selector: div.s-result-item[data-asin]:not([data-asin=''])
+2025-06-06 23:35:38,675 - __main__ - INFO - Processing 6 search result elements for EAN 07353200
+2025-06-06 23:35:38,942 - __main__ - INFO - Skipping sponsored result: ASIN B0DQSK2JMP (detected by ad-specific class: 'AdHolder')
+2025-06-06 23:35:39,023 - __main__ - INFO - Skipping sponsored result: ASIN B0DHSCSY1G (detected by ad-specific class: 'AdHolder')
+2025-06-06 23:35:39,110 - __main__ - INFO - Skipping sponsored result: ASIN B0BSWSHVXS (detected by ad-specific class: 'AdHolder')
+2025-06-06 23:35:39,204 - __main__ - INFO - Skipping sponsored result: ASIN B0DQPWVVNZ (detected by ad-specific class: 'AdHolder')
+2025-06-06 23:35:39,268 - __main__ - INFO - Skipping sponsored result: ASIN B0CM2ZX4F7 (detected by ad-specific class: 'AdHolder')
+2025-06-06 23:35:39,360 - __main__ - INFO - Skipping sponsored result: ASIN B0D96D445K (detected by ad-specific class: 'AdHolder')
+2025-06-06 23:35:39,360 - __main__ - WARNING - EAN 07353200 returned no organic results - skipping
+2025-06-06 23:35:39,361 - __main__ - WARNING - No Amazon results or error for EAN '07353200'. Details: no_organic_results
+2025-06-06 23:35:39,362 - __main__ - WARNING - EAN search for '07353200' failed to identify an ASIN. Error: No results for EAN 07353200 or search error
+2025-06-06 23:35:39,362 - __main__ - INFO - EAN search failed for 'AVON Mens Cosmetic Zipper Bag - Orange/Grey - 30 x 12cm'. Falling back to title search.
+2025-06-06 23:35:39,363 - __main__ - INFO - Searching Amazon by title using search bar: 'AVON Mens Cosmetic Zipper Bag - Orange/Grey - 30 x 12cm'
+2025-06-06 23:35:39,382 - __main__ - INFO - Navigating to Amazon UK to search for title: AVON Mens Cosmetic Zipper Bag - Orange/Grey - 30 x 12cm
+2025-06-06 23:35:42,927 - __main__ - INFO - Title search found 1 elements using selector: div.s-search-results > div[data-asin]
+2025-06-06 23:35:42,949 - __main__ - WARNING - No valid ASINs found for title 'AVON Mens Cosmetic Zipper Bag - Orange/Grey - 30 x 12cm'
+2025-06-06 23:35:42,950 - __main__ - WARNING - No Amazon results for title 'AVON Mens Cosmetic Zipper Bag - Orange/Grey - 30 x 12cm'. Skipping. Details: No valid ASINs found for title 'AVON Mens Cosmetic Zipper Bag - Orange/Grey - 30 x 12cm'
+2025-06-06 23:35:45,969 - __main__ - INFO - --- Processing supplier product 4/245: 'Face Facts Printed Sheet Mask - Too Cool/Starstruck - Hydrating/Refreshing - 20ml' (EAN: 5031413926453) ---
+2025-06-06 23:35:45,970 - __main__ - INFO - Attempting Amazon search using EAN: 5031413926453
+2025-06-06 23:35:45,971 - __main__ - INFO - Searching Amazon by EAN: 5031413926453 for supplier product: 'Face Facts Printed Sheet Mask - Too Cool/Starstruck - Hydrating/Refreshing - 20ml' (FixedAmazonExtractor)
+2025-06-06 23:35:45,994 - __main__ - INFO - Navigating to Amazon UK to search for EAN: 5031413926453
+2025-06-06 23:35:47,032 - __main__ - INFO - Waiting for search results page to load for EAN 5031413926453...
+2025-06-06 23:35:47,337 - __main__ - INFO - Found search results container with selector: div.s-search-results
+2025-06-06 23:35:49,392 - __main__ - INFO - Found 4 search result elements using selector: div.s-result-item[data-asin]:not([data-asin=''])
+2025-06-06 23:35:49,393 - __main__ - INFO - Processing 4 search result elements for EAN 5031413926453
+2025-06-06 23:35:49,486 - __main__ - INFO - Skipping sponsored result: ASIN B01LB4O01I (detected by ad-specific class: 'AdHolder')
+2025-06-06 23:35:49,563 - __main__ - INFO - Skipping sponsored result: ASIN B0BQ7Q1DKP (detected by ad-specific class: 'AdHolder')
+2025-06-06 23:35:49,636 - __main__ - INFO - Skipping sponsored result: ASIN B0768Z2YKX (detected by ad-specific class: 'AdHolder')
+2025-06-06 23:35:49,698 - __main__ - INFO - Skipping sponsored result: ASIN B0D3J1Q67T (detected by ad-specific class: 'AdHolder')
+2025-06-06 23:35:49,698 - __main__ - WARNING - EAN 5031413926453 returned no organic results - skipping
+2025-06-06 23:35:49,699 - __main__ - WARNING - No Amazon results or error for EAN '5031413926453'. Details: no_organic_results
+2025-06-06 23:35:49,699 - __main__ - WARNING - EAN search for '5031413926453' failed to identify an ASIN. Error: No results for EAN 5031413926453 or search error
+2025-06-06 23:35:49,700 - __main__ - INFO - EAN search failed for 'Face Facts Printed Sheet Mask - Too Cool/Starstruck - Hydrating/Refreshing - 20ml'. Falling back to title search.
+2025-06-06 23:35:49,703 - __main__ - INFO - Searching Amazon by title using search bar: 'Face Facts Printed Sheet Mask - Too Cool/Starstruck - Hydrating/Refreshing - 20ml'
+2025-06-06 23:35:49,726 - __main__ - INFO - Navigating to Amazon UK to search for title: Face Facts Printed Sheet Mask - Too Cool/Starstruck - Hydrating/Refreshing - 20ml
+2025-06-06 23:35:52,929 - __main__ - INFO - Title search found 1 elements using selector: div.s-search-results > div[data-asin]
+2025-06-06 23:35:52,951 - __main__ - WARNING - No valid ASINs found for title 'Face Facts Printed Sheet Mask - Too Cool/Starstruck - Hydrating/Refreshing - 20ml'
+2025-06-06 23:35:52,951 - __main__ - WARNING - No Amazon results for title 'Face Facts Printed Sheet Mask - Too Cool/Starstruck - Hydrating/Refreshing - 20ml'. Skipping. Details: No valid ASINs found for title 'Face Facts Printed Sheet Mask - Too Cool/Starstruck - Hydrating/Refreshing - 20ml'
+2025-06-06 23:35:55,995 - __main__ - INFO - --- Processing supplier product 5/245: 'SHADES LONDON SEMI PERMANENT PASTEL HAIR COLOUR SILVER AMETHYST' (EAN: 5060427354844) ---
+2025-06-06 23:35:55,995 - __main__ - INFO - Attempting Amazon search using EAN: 5060427354844
+2025-06-06 23:35:55,996 - __main__ - INFO - Searching Amazon by EAN: 5060427354844 for supplier product: 'SHADES LONDON SEMI PERMANENT PASTEL HAIR COLOUR SILVER AMETHYST' (FixedAmazonExtractor)
+2025-06-06 23:35:56,015 - __main__ - INFO - Navigating to Amazon UK to search for EAN: 5060427354844
+2025-06-06 23:35:59,126 - __main__ - INFO - Waiting for search results page to load for EAN 5060427354844...
+2025-06-06 23:35:59,438 - __main__ - INFO - Found search results container with selector: div.s-search-results
+2025-06-06 23:36:01,529 - __main__ - INFO - Found 4 search result elements using selector: div.s-result-item[data-asin]:not([data-asin=''])
+2025-06-06 23:36:01,530 - __main__ - INFO - Processing 4 search result elements for EAN 5060427354844
+2025-06-06 23:36:01,608 - __main__ - INFO - Skipping sponsored result: ASIN 0008241384 (detected by ad-specific class: 'AdHolder')
+2025-06-06 23:36:01,708 - __main__ - INFO - Skipping sponsored result: ASIN 0008355274 (detected by ad-specific class: 'AdHolder')
+2025-06-06 23:36:01,785 - __main__ - INFO - Skipping sponsored result: ASIN 0198324006 (detected by ad-specific class: 'AdHolder')
+2025-06-06 23:36:01,846 - __main__ - INFO - Skipping sponsored result: ASIN 0008353026 (detected by ad-specific class: 'AdHolder')
+2025-06-06 23:36:01,847 - __main__ - WARNING - EAN 5060427354844 returned no organic results - skipping
+2025-06-06 23:36:01,847 - __main__ - WARNING - No Amazon results or error for EAN '5060427354844'. Details: no_organic_results
+2025-06-06 23:36:01,848 - __main__ - WARNING - EAN search for '5060427354844' failed to identify an ASIN. Error: No results for EAN 5060427354844 or search error
+2025-06-06 23:36:01,848 - __main__ - INFO - EAN search failed for 'SHADES LONDON SEMI PERMANENT PASTEL HAIR COLOUR SILVER AMETHYST'. Falling back to title search.
+2025-06-06 23:36:01,849 - __main__ - INFO - Searching Amazon by title using search bar: 'SHADES LONDON SEMI PERMANENT PASTEL HAIR COLOUR SILVER AMETHYST'
+2025-06-06 23:36:01,864 - __main__ - INFO - Navigating to Amazon UK to search for title: SHADES LONDON SEMI PERMANENT PASTEL HAIR COLOUR SILVER AMETHYST
+2025-06-06 23:36:05,990 - __main__ - INFO - Title search found 71 elements using selector: div.s-search-results > div[data-asin]
+2025-06-06 23:36:08,158 - __main__ - INFO - Title search found 8 results for 'SHADES LONDON SEMI PERMANENT PASTEL HAIR COLOUR SILVER AMETHYST'
+2025-06-06 23:36:08,170 - __main__ - INFO - Extracting detailed Amazon data for ASIN: B00BXGO5WE (from title search)
+2025-06-06 23:36:08,171 - amazon_playwright_extractor - INFO - Reusing existing page: https://www.amazon.co.uk/s?k=SHADES+LONDON+SEMI+PERMANENT+PASTEL+HAIR+COLOUR+SILVER+AMETHYST&ref=nb_sb_noss
+2025-06-06 23:36:12,138 - amazon_playwright_extractor - INFO - Checking for cookie consent pop-up...
+2025-06-06 23:36:13,095 - amazon_playwright_extractor - INFO - Finished checking for cookie consent pop-ups. If one was present and not handled, it might interfere.
+2025-06-06 23:36:14,105 - amazon_playwright_extractor - INFO - Checking for CAPTCHA...
+2025-06-06 23:36:17,140 - amazon_playwright_extractor - INFO - No CAPTCHA page detected by form selector.
+2025-06-06 23:36:17,145 - amazon_playwright_extractor - INFO - Checking for cookie consent pop-up...
+2025-06-06 23:36:17,399 - amazon_playwright_extractor - INFO - Finished checking for cookie consent pop-ups. If one was present and not handled, it might interfere.
+2025-06-06 23:36:17,400 - amazon_playwright_extractor - INFO - Page should be ready. Waiting 5s for stabilization...
+2025-06-06 23:36:20,500 - amazon_playwright_extractor - INFO - Waiting an additional 7s for extensions (Keepa, SellerAmp)...
+2025-06-06 23:36:27,508 - amazon_playwright_extractor - INFO - Extracting all product data for ASIN: B00BXGO5WE
+2025-06-06 23:36:27,509 - amazon_playwright_extractor - INFO - Extracting basic product information (Title, Price, Images, Amazon Details)...
+2025-06-06 23:36:27,563 - amazon_playwright_extractor - INFO - Title found: 'Schwarzkopf LIVE Ultra Brights Or Pastels, Vibrant Semi-permanent Pink Hair Dye, Lasts Up to 15 Washes- Shocking Pink 093' via #productTitle
+2025-06-06 23:36:27,564 - amazon_playwright_extractor - INFO - Extracting price details...
+2025-06-06 23:36:27,622 - amazon_playwright_extractor - INFO - Current price: 5.44 via #corePrice_feature_div .a-offscreen
+2025-06-06 23:36:27,724 - amazon_playwright_extractor - INFO - Original price: 7.0 via .basisPrice span.a-text-price span.a-offscreen
+2025-06-06 23:36:27,804 - amazon_playwright_extractor - INFO - Amazon sales badge found: 500 in container div#socialProofingAsinFaceout_feature_div
+2025-06-06 23:36:27,805 - amazon_playwright_extractor - INFO - Extracting image URLs...
+2025-06-06 23:36:27,917 - amazon_playwright_extractor - INFO - Main image: https://m.media-amazon.com/images/I/61RiekCmEHL._AC_SL1000_.jpg via #landingImage
+2025-06-06 23:36:28,204 - amazon_playwright_extractor - INFO - Found 7 thumbnails.
+2025-06-06 23:36:28,227 - amazon_playwright_extractor - INFO - Extracting Amazon product details section...
+2025-06-06 23:36:29,064 - amazon_playwright_extractor - INFO - Extracting sales rank information...
+2025-06-06 23:36:29,648 - amazon_playwright_extractor - WARNING - Sales rank not found by selectors. AI fallback.
+2025-06-06 23:36:29,923 - amazon_playwright_extractor - WARNING - HTML content for AI extraction truncated to 24000 chars.
+2025-06-06 23:36:31,103 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+2025-06-06 23:36:31,105 - amazon_playwright_extractor - ERROR - AI HTML extraction for 'Best Sellers Rank information (primary rank and category, plus any sub-category ranks as a list or structured text)' failed: Error code: 401 - {'error': {'message': 'Incorrect API key provided: ${OPENAI*****KEY}. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+2025-06-06 23:36:31,106 - amazon_playwright_extractor - INFO - Extracting ratings and reviews...
+2025-06-06 23:36:31,174 - amazon_playwright_extractor - INFO - Rating: 4.0 via #acrPopover[title*='out of 5 stars']
+2025-06-06 23:36:31,237 - amazon_playwright_extractor - INFO - Review count: 7390 via #acrCustomerReviewText
+2025-06-06 23:36:31,238 - amazon_playwright_extractor - INFO - Extracting stock information...
+2025-06-06 23:36:31,299 - amazon_playwright_extractor - INFO - Availability text: 'In stock' via #availability span.a-size-medium.a-color-success
+2025-06-06 23:36:31,299 - amazon_playwright_extractor - INFO - Extracting features/bullets...
+2025-06-06 23:36:31,935 - amazon_playwright_extractor - INFO - Found 5 features.
+2025-06-06 23:36:31,936 - amazon_playwright_extractor - INFO - Extracting product description...
+2025-06-06 23:36:31,983 - amazon_playwright_extractor - INFO - Description found using selector: #productDescription
+2025-06-06 23:36:31,984 - amazon_playwright_extractor - INFO - Extracting product specifications table...
+2025-06-06 23:36:33,775 - amazon_playwright_extractor - INFO - Specifications table parsed using selector: #productDetails_techSpec_section_1
+2025-06-06 23:36:33,775 - amazon_playwright_extractor - INFO - Extracting SellerAmp data (if present)...
+2025-06-06 23:36:33,776 - amazon_playwright_extractor - INFO - SellerAmp data extraction is currently disabled as per requirements (Fix 2.3).
+2025-06-06 23:36:33,776 - amazon_playwright_extractor - INFO - Extracting Keepa data (if present)...
+2025-06-06 23:36:33,777 - amazon_playwright_extractor - INFO - Attempting to extract Keepa data...
+2025-06-06 23:36:39,982 - amazon_playwright_extractor - INFO - Keepa iframe found: iframe[id*='keepa']
+2025-06-06 23:36:40,156 - amazon_playwright_extractor - INFO - Keepa Sales Rank Details Table parsed.
+2025-06-06 23:36:40,156 - amazon_playwright_extractor - INFO - Keepa Graph AI Analysis is currently disabled as per requirements (Fix 2.4).
+2025-06-06 23:36:40,218 - amazon_playwright_extractor - INFO - Clicking Keepa 'Data' tab...
+2025-06-06 23:36:49,528 - amazon_playwright_extractor - INFO - Parsing Keepa AG Grid for Product Details from: div#MoreTab1 div#grid-product-detail
+2025-06-06 23:36:50,770 - amazon_playwright_extractor - INFO - Found 181 rows in Keepa Product Details AG Grid.
+2025-06-06 23:36:55,482 - amazon_playwright_extractor - INFO - Found potential fee key 'FBA Pick&Pack Fee' with raw value: '£ 2.65' in Keepa AG Grid.
+2025-06-06 23:36:55,905 - amazon_playwright_extractor - INFO - Found potential fee key 'Referral Fee based on current Buy Box price' with raw value: '£ 0.44' in Keepa AG Grid.
+2025-06-06 23:37:07,314 - amazon_playwright_extractor - INFO - Parsed 53 items from Keepa Product Details AG Grid.
+2025-06-06 23:37:07,315 - amazon_playwright_extractor - INFO - ASIN B00BXGO5WE: Attempting to extract EANs from Keepa product_details_tab_data.
+2025-06-06 23:37:07,316 - amazon_playwright_extractor - WARNING - ASIN B00BXGO5WE: Could not find EAN in Keepa product_details_tab_data.
+2025-06-06 23:37:07,316 - amazon_playwright_extractor - INFO - ASIN B00BXGO5WE: BSR not found or invalid from page. Attempting fallback from Keepa.
+2025-06-06 23:37:07,317 - amazon_playwright_extractor - INFO - ASIN B00BXGO5WE: BSR 578 in 'Beauty 48' from Keepa SalesRankDetailsTable.
+2025-06-06 23:37:07,330 - __main__ - INFO - Cached Amazon data for ASIN B00BXGO5WE as amazon_B00BXGO5WE_5060427354844.json
+2025-06-06 23:37:07,330 - __main__ - INFO - Added to linking map: EAN_5060427354844 -> B00BXGO5WE
+2025-06-06 23:37:07,331 - __main__ - INFO - Skipping triage for ASIN B00BXGO5WE - proceeding directly to detailed extraction
+2025-06-06 23:37:07,331 - __main__ - INFO - Successfully got Amazon data for 'Schwarzkopf LIVE Ultra Brights Or Pastels, Vibrant Semi-permanent Pink Hair Dye, Lasts Up to 15 Washes- Shocking Pink 093' (ASIN: B00BXGO5WE, EAN on page: N/A)
+2025-06-06 23:37:07,332 - __main__ - INFO - Using fees from Keepa (or fallback): Referral Fee £0.00, FBA Fee £0.00, Total £0.00
+2025-06-06 23:37:07,333 - __main__ - INFO - Using BSR-based estimated monthly sales: 900
+2025-06-06 23:37:07,334 - __main__ - WARNING - Low quality match (low) between supplier product 'SHADES LONDON SEMI PERMANENT PASTEL HAIR COLOUR SILVER AMETHYST' and Amazon product 'Schwarzkopf LIVE Ultra Brights Or Pastels, Vibrant Semi-permanent Pink Hair Dye, Lasts Up to 15 Washes- Shocking Pink 093'. Skipping.
+2025-06-06 23:37:10,374 - __main__ - INFO - --- Processing supplier product 6/245: 'COSMETIC BAG' (EAN: 5060345216240) ---
+2025-06-06 23:37:10,375 - __main__ - INFO - Attempting Amazon search using EAN: 5060345216240
+2025-06-06 23:37:10,376 - __main__ - INFO - Searching Amazon by EAN: 5060345216240 for supplier product: 'COSMETIC BAG' (FixedAmazonExtractor)
+2025-06-06 23:37:10,406 - __main__ - INFO - Navigating to Amazon UK to search for EAN: 5060345216240
+2025-06-06 23:37:14,783 - __main__ - INFO - Waiting for search results page to load for EAN 5060345216240...
+2025-06-06 23:37:15,066 - __main__ - INFO - Found search results container with selector: div.s-search-results
+2025-06-06 23:37:17,182 - __main__ - INFO - Found 3 search result elements using selector: div.s-result-item[data-asin]:not([data-asin=''])
+2025-06-06 23:37:17,183 - __main__ - INFO - Processing 3 search result elements for EAN 5060345216240
+2025-06-06 23:37:17,293 - __main__ - INFO - Skipping sponsored result: ASIN B0BQ7KZ62P (detected by ad-specific class: 'AdHolder')
+2025-06-06 23:37:17,352 - __main__ - INFO - Skipping sponsored result: ASIN B0DFW3PP68 (detected by ad-specific class: 'AdHolder')
+2025-06-06 23:37:17,416 - __main__ - INFO - Skipping sponsored result: ASIN B08GKXL7F9 (detected by ad-specific class: 'AdHolder')
+2025-06-06 23:37:17,417 - __main__ - WARNING - EAN 5060345216240 returned no organic results - skipping
+2025-06-06 23:37:17,417 - __main__ - WARNING - No Amazon results or error for EAN '5060345216240'. Details: no_organic_results
+2025-06-06 23:37:17,417 - __main__ - WARNING - EAN search for '5060345216240' failed to identify an ASIN. Error: No results for EAN 5060345216240 or search error
+2025-06-06 23:37:17,418 - __main__ - INFO - EAN search failed for 'COSMETIC BAG'. Falling back to title search.
+2025-06-06 23:37:17,418 - __main__ - INFO - Searching Amazon by title using search bar: 'COSMETIC BAG'
+2025-06-06 23:37:17,433 - __main__ - INFO - Navigating to Amazon UK to search for title: COSMETIC BAG
+2025-06-06 23:37:19,429 - __main__ - INFO - Title search found 2 elements using selector: div.s-search-results > div[data-asin]
+2025-06-06 23:37:19,475 - __main__ - WARNING - No valid ASINs found for title 'COSMETIC BAG'
+2025-06-06 23:37:19,476 - __main__ - WARNING - No Amazon results for title 'COSMETIC BAG'. Skipping. Details: No valid ASINs found for title 'COSMETIC BAG'
+2025-06-06 23:37:22,511 - __main__ - INFO - --- Processing supplier product 7/245: 'GOODY MINI SPIN PINS BRUNETTE SIMPLE STYLES' (EAN: 041457034828) ---
+2025-06-06 23:37:22,511 - __main__ - INFO - Attempting Amazon search using EAN: 041457034828
+2025-06-06 23:37:22,512 - __main__ - INFO - Searching Amazon by EAN: 041457034828 for supplier product: 'GOODY MINI SPIN PINS BRUNETTE SIMPLE STYLES' (FixedAmazonExtractor)
+2025-06-06 23:37:22,524 - __main__ - INFO - Navigating to Amazon UK to search for EAN: 041457034828
+2025-06-06 23:37:25,826 - __main__ - INFO - Waiting for search results page to load for EAN 041457034828...
+2025-06-06 23:37:26,169 - __main__ - INFO - Found search results container with selector: div.s-search-results
+2025-06-06 23:37:28,265 - __main__ - INFO - Found 2 search result elements using selector: div[data-asin]:not([data-asin='']):not(.AdHolder):not([class*='s-widget-sponsored-product'])
+2025-06-06 23:37:28,266 - __main__ - INFO - Processing 2 search result elements for EAN 041457034828
+2025-06-06 23:37:28,617 - __main__ - INFO - Found organic result: ASIN B0055Y9AIY - Goody Simple Styles Blonde Mini Spin Pins...
+2025-06-06 23:37:28,960 - __main__ - INFO - Found organic result: ASIN B008N1R6NC - Goody Mini Spin Pins 3 Ct,Goody Products,3482...
+2025-06-06 23:37:28,960 - __main__ - INFO - Multiple organic results (2) found for EAN 041457034828. Applying word overlap scoring.
+2025-06-06 23:37:28,961 - __main__ - INFO - ASIN B0055Y9AIY: 0.86 overlap score with 'Goody Simple Styles Blonde Mini Spin Pins...'
+2025-06-06 23:37:28,961 - __main__ - INFO - ASIN B008N1R6NC: 0.57 overlap score with 'Goody Mini Spin Pins 3 Ct,Goody Products,3482...'
+2025-06-06 23:37:28,962 - __main__ - INFO - Multiple matches - chose ASIN B0055Y9AIY (0.86 word-overlap)
+2025-06-06 23:37:28,963 - __main__ - INFO - EAN search selected ASIN B0055Y9AIY for 041457034828
+2025-06-06 23:37:28,963 - __main__ - INFO - Single ASIN B0055Y9AIY found for EAN 041457034828.
+2025-06-06 23:37:28,964 - __main__ - INFO - Proceeding with ASIN: B0055Y9AIY for EAN: 041457034828
+2025-06-06 23:37:28,965 - amazon_playwright_extractor - INFO - Reusing existing page: https://www.amazon.co.uk/s?k=041457034828&ref=nb_sb_noss
+2025-06-06 23:37:32,989 - amazon_playwright_extractor - INFO - Checking for cookie consent pop-up...
+2025-06-06 23:37:34,165 - amazon_playwright_extractor - INFO - Finished checking for cookie consent pop-ups. If one was present and not handled, it might interfere.
+2025-06-06 23:37:35,166 - amazon_playwright_extractor - INFO - Checking for CAPTCHA...
+2025-06-06 23:37:38,192 - amazon_playwright_extractor - INFO - No CAPTCHA page detected by form selector.
+2025-06-06 23:37:38,194 - amazon_playwright_extractor - INFO - Checking for cookie consent pop-up...
+2025-06-06 23:37:38,473 - amazon_playwright_extractor - INFO - Finished checking for cookie consent pop-ups. If one was present and not handled, it might interfere.
+2025-06-06 23:37:38,473 - amazon_playwright_extractor - INFO - Page should be ready. Waiting 5s for stabilization...
+2025-06-06 23:37:43,654 - amazon_playwright_extractor - INFO - Waiting an additional 7s for extensions (Keepa, SellerAmp)...
+2025-06-06 23:37:48,865 - amazon_playwright_extractor - INFO - Extracting all product data for ASIN: B0055Y9AIY
+2025-06-06 23:37:48,865 - amazon_playwright_extractor - INFO - Extracting basic product information (Title, Price, Images, Amazon Details)...
+2025-06-06 23:37:48,914 - amazon_playwright_extractor - INFO - Title found: 'Goody Simple Styles Blonde Mini Spin Pins' via #productTitle
+2025-06-06 23:37:48,914 - amazon_playwright_extractor - INFO - Extracting price details...
+2025-06-06 23:37:48,979 - amazon_playwright_extractor - INFO - Current price: 18.34 via #corePrice_feature_div .a-offscreen
+2025-06-06 23:37:49,359 - amazon_playwright_extractor - INFO - Extracting image URLs...
+2025-06-06 23:37:49,485 - amazon_playwright_extractor - INFO - Main image: https://m.media-amazon.com/images/I/71scC5NJL8L._AC_SL1500_.jpg via #landingImage
+2025-06-06 23:37:49,746 - amazon_playwright_extractor - INFO - Found 7 thumbnails.
+2025-06-06 23:37:49,762 - amazon_playwright_extractor - INFO - Extracting Amazon product details section...
+2025-06-06 23:37:51,176 - amazon_playwright_extractor - INFO - Extracting sales rank information...
+2025-06-06 23:37:51,726 - amazon_playwright_extractor - WARNING - Sales rank not found by selectors. AI fallback.
+2025-06-06 23:37:51,996 - amazon_playwright_extractor - WARNING - HTML content for AI extraction truncated to 24000 chars.
+2025-06-06 23:37:52,666 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+2025-06-06 23:37:52,668 - amazon_playwright_extractor - ERROR - AI HTML extraction for 'Best Sellers Rank information (primary rank and category, plus any sub-category ranks as a list or structured text)' failed: Error code: 401 - {'error': {'message': 'Incorrect API key provided: ${OPENAI*****KEY}. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+2025-06-06 23:37:52,669 - amazon_playwright_extractor - INFO - Extracting ratings and reviews...
+2025-06-06 23:37:52,757 - amazon_playwright_extractor - INFO - Rating: 4.4 via #acrPopover[title*='out of 5 stars']
+2025-06-06 23:37:52,827 - amazon_playwright_extractor - INFO - Review count: 2805 via #acrCustomerReviewText
+2025-06-06 23:37:52,827 - amazon_playwright_extractor - INFO - Extracting stock information...
+2025-06-06 23:37:52,931 - amazon_playwright_extractor - INFO - Availability text: 'Only 3 left in stock.' via #availability span.a-color-price
+2025-06-06 23:37:52,931 - amazon_playwright_extractor - INFO - Extracting features/bullets...
+2025-06-06 23:37:52,977 - amazon_playwright_extractor - WARNING - Features/bullets not found by selector. AI fallback.
+2025-06-06 23:37:52,978 - amazon_playwright_extractor - WARNING - HTML content for AI extraction truncated to 24000 chars.
+2025-06-06 23:37:53,344 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+2025-06-06 23:37:53,346 - amazon_playwright_extractor - ERROR - AI HTML extraction for 'product feature bullet points as a list of strings' failed: Error code: 401 - {'error': {'message': 'Incorrect API key provided: ${OPENAI*****KEY}. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+2025-06-06 23:37:53,347 - amazon_playwright_extractor - INFO - Extracting product description...
+2025-06-06 23:37:53,646 - amazon_playwright_extractor - WARNING - Description not found by selectors. AI fallback.
+2025-06-06 23:37:53,647 - amazon_playwright_extractor - WARNING - HTML content for AI extraction truncated to 24000 chars.
+2025-06-06 23:37:54,408 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+2025-06-06 23:37:54,410 - amazon_playwright_extractor - ERROR - AI HTML extraction for 'detailed product description text' failed: Error code: 401 - {'error': {'message': 'Incorrect API key provided: ${OPENAI*****KEY}. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+2025-06-06 23:37:54,413 - amazon_playwright_extractor - INFO - Extracting product specifications table...
+2025-06-06 23:37:55,808 - amazon_playwright_extractor - INFO - Specifications table parsed using selector: #productDetails_techSpec_section_1
+2025-06-06 23:37:55,809 - amazon_playwright_extractor - INFO - Extracting SellerAmp data (if present)...
+2025-06-06 23:37:55,809 - amazon_playwright_extractor - INFO - SellerAmp data extraction is currently disabled as per requirements (Fix 2.3).
+2025-06-06 23:37:55,810 - amazon_playwright_extractor - INFO - Extracting Keepa data (if present)...
+2025-06-06 23:37:55,810 - amazon_playwright_extractor - INFO - Attempting to extract Keepa data...
+2025-06-06 23:38:02,019 - amazon_playwright_extractor - INFO - Keepa iframe found: iframe[id*='keepa']
+2025-06-06 23:38:02,291 - amazon_playwright_extractor - INFO - Keepa Sales Rank Details Table parsed.
+2025-06-06 23:38:02,292 - amazon_playwright_extractor - INFO - Keepa Graph AI Analysis is currently disabled as per requirements (Fix 2.4).
+2025-06-06 23:38:02,366 - amazon_playwright_extractor - INFO - Clicking Keepa 'Data' tab...
+2025-06-06 23:38:13,586 - amazon_playwright_extractor - ERROR - Product-Details wrapper did not appear after 11 s – aborting.
+2025-06-06 23:38:13,587 - amazon_playwright_extractor - INFO - ASIN B0055Y9AIY: BSR not found or invalid from page. Attempting fallback from Keepa.
+2025-06-06 23:38:13,587 - amazon_playwright_extractor - INFO - ASIN B0055Y9AIY: BSR 196149 in 'Beauty 1.0' from Keepa SalesRankDetailsTable.
+2025-06-06 23:38:13,588 - __main__ - INFO - Successfully extracted data for ASIN B0055Y9AIY (EAN on page: N/A)
+2025-06-06 23:38:13,588 - __main__ - INFO - EAN search for '041457034828' identified ASIN: B0055Y9AIY
+2025-06-06 23:38:13,610 - __main__ - INFO - Cached Amazon data for ASIN B0055Y9AIY as amazon_B0055Y9AIY_041457034828.json
+2025-06-06 23:38:13,610 - __main__ - INFO - Added to linking map: EAN_041457034828 -> B0055Y9AIY
+2025-06-06 23:38:13,610 - __main__ - INFO - Cached (potentially partial) Amazon data from EAN search for ASIN: B0055Y9AIY
+2025-06-06 23:38:13,611 - __main__ - INFO - Skipping triage for ASIN B0055Y9AIY - proceeding directly to detailed extraction
+2025-06-06 23:38:13,611 - __main__ - INFO - Successfully got Amazon data for 'Goody Simple Styles Blonde Mini Spin Pins' (ASIN: B0055Y9AIY, EAN on page: N/A)
+2025-06-06 23:38:13,611 - __main__ - INFO - Using fees from Keepa (or fallback): Referral Fee £0.00, FBA Fee £0.00, Total £0.00
+2025-06-06 23:38:13,611 - __main__ - INFO - Using BSR-based estimated monthly sales: 9
+2025-06-06 23:38:13,612 - __main__ - WARNING - Low quality match (low) between supplier product 'GOODY MINI SPIN PINS BRUNETTE SIMPLE STYLES' and Amazon product 'Goody Simple Styles Blonde Mini Spin Pins'. Skipping.
+2025-06-06 23:38:16,620 - __main__ - INFO - --- Processing supplier product 8/245: 'PRETTY PAPER STEM COTTON BUDS - PACK OF 200' (EAN: 5031413910933) ---
+2025-06-06 23:38:16,621 - __main__ - INFO - Attempting Amazon search using EAN: 5031413910933
+2025-06-06 23:38:16,621 - __main__ - INFO - Searching Amazon by EAN: 5031413910933 for supplier product: 'PRETTY PAPER STEM COTTON BUDS - PACK OF 200' (FixedAmazonExtractor)
+2025-06-06 23:38:16,636 - __main__ - INFO - Navigating to Amazon UK to search for EAN: 5031413910933
+2025-06-06 23:38:18,229 - __main__ - INFO - Waiting for search results page to load for EAN 5031413910933...
+2025-06-06 23:38:18,570 - __main__ - INFO - Found search results container with selector: div.s-search-results
+2025-06-06 23:38:20,646 - __main__ - INFO - Found 4 search result elements using selector: div.s-result-item[data-asin]:not([data-asin=''])
+2025-06-06 23:38:20,647 - __main__ - INFO - Processing 4 search result elements for EAN 5031413910933
+2025-06-06 23:38:20,748 - __main__ - INFO - Skipping sponsored result: ASIN B0BL74HQ4P (detected by ad-specific class: 'AdHolder')
+2025-06-06 23:38:20,845 - __main__ - INFO - Skipping sponsored result: ASIN B0CSDQD8D6 (detected by ad-specific class: 'AdHolder')
+2025-06-06 23:38:20,909 - __main__ - INFO - Skipping sponsored result: ASIN B0BZVFFJMR (detected by ad-specific class: 'AdHolder')
+2025-06-06 23:38:20,967 - __main__ - INFO - Skipping sponsored result: ASIN B0CKQ9P43X (detected by ad-specific class: 'AdHolder')
+2025-06-06 23:38:20,968 - __main__ - WARNING - EAN 5031413910933 returned no organic results - skipping
+2025-06-06 23:38:20,969 - __main__ - WARNING - No Amazon results or error for EAN '5031413910933'. Details: no_organic_results
+2025-06-06 23:38:20,969 - __main__ - WARNING - EAN search for '5031413910933' failed to identify an ASIN. Error: No results for EAN 5031413910933 or search error
+2025-06-06 23:38:20,970 - __main__ - INFO - EAN search failed for 'PRETTY PAPER STEM COTTON BUDS - PACK OF 200'. Falling back to title search.
+2025-06-06 23:38:20,970 - __main__ - INFO - Searching Amazon by title using search bar: 'PRETTY PAPER STEM COTTON BUDS - PACK OF 200'
+2025-06-06 23:38:20,991 - __main__ - INFO - Navigating to Amazon UK to search for title: PRETTY PAPER STEM COTTON BUDS - PACK OF 200
+2025-06-06 23:38:24,212 - __main__ - INFO - Title search found 2 elements using selector: div.s-search-results > div[data-asin]
+2025-06-06 23:38:24,260 - __main__ - WARNING - No valid ASINs found for title 'PRETTY PAPER STEM COTTON BUDS - PACK OF 200'
+2025-06-06 23:38:24,260 - __main__ - WARNING - No Amazon results for title 'PRETTY PAPER STEM COTTON BUDS - PACK OF 200'. Skipping. Details: No valid ASINs found for title 'PRETTY PAPER STEM COTTON BUDS - PACK OF 200'
+2025-06-06 23:38:27,277 - __main__ - INFO - --- Processing supplier product 9/245: 'Face Facts Hydrating Eye Cream with Soothing Aloe Vera - 25ml' (EAN: 5031413913040) ---
+2025-06-06 23:38:27,279 - __main__ - INFO - Attempting Amazon search using EAN: 5031413913040
+2025-06-06 23:38:27,279 - __main__ - INFO - Searching Amazon by EAN: 5031413913040 for supplier product: 'Face Facts Hydrating Eye Cream with Soothing Aloe Vera - 25ml' (FixedAmazonExtractor)
+2025-06-06 23:38:27,303 - __main__ - INFO - Navigating to Amazon UK to search for EAN: 5031413913040
+2025-06-06 23:38:30,349 - __main__ - INFO - Waiting for search results page to load for EAN 5031413913040...
+2025-06-06 23:38:30,716 - __main__ - INFO - Found search results container with selector: div.s-search-results
+2025-06-06 23:38:32,777 - __main__ - INFO - Found 1 search result elements using selector: div[data-asin]:not([data-asin='']):not(.AdHolder):not([class*='s-widget-sponsored-product'])
+2025-06-06 23:38:32,779 - __main__ - INFO - Processing 1 search result elements for EAN 5031413913040
+2025-06-06 23:38:33,059 - __main__ - INFO - Found organic result: ASIN B07QT6RP88 - Face Facts Hydrating Eye Cream | Aloe Vera Soothes + Calms |...
+2025-06-06 23:38:33,059 - __main__ - INFO - Single organic result found for EAN 5031413913040: ASIN B07QT6RP88
+2025-06-06 23:38:33,060 - __main__ - INFO - EAN search selected ASIN B07QT6RP88 for 5031413913040
+2025-06-06 23:38:33,060 - __main__ - INFO - Single ASIN B07QT6RP88 found for EAN 5031413913040.
+2025-06-06 23:38:33,061 - __main__ - INFO - Proceeding with ASIN: B07QT6RP88 for EAN: 5031413913040
+2025-06-06 23:38:33,061 - amazon_playwright_extractor - INFO - Reusing existing page: https://www.amazon.co.uk/s?k=5031413913040&ref=nb_sb_noss
+2025-06-06 23:38:36,580 - amazon_playwright_extractor - INFO - Checking for cookie consent pop-up...
+2025-06-06 23:38:37,921 - amazon_playwright_extractor - INFO - Finished checking for cookie consent pop-ups. If one was present and not handled, it might interfere.
+2025-06-06 23:38:38,923 - amazon_playwright_extractor - INFO - Checking for CAPTCHA...

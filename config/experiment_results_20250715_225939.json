@@ -1,0 +1,73 @@
+{
+  "1": {
+    "name": "Processing Limits Test",
+    "config_changes": {
+      "processing_limits.max_products_per_category": 5,
+      "processing_limits.max_products_per_run": 15,
+      "system.max_products_per_cycle": 4
+    },
+    "results": {
+      "supplier_cache": {
+        "exists": false
+      },
+      "processing_state": {
+        "exists": true,
+        "size": 1466,
+        "timestamp": "2025-07-15T22:56:28.541475"
+      },
+      "log_file": {
+        "exists": true,
+        "size": 33022,
+        "timestamp": "2025-07-15T22:56:31.042149"
+      }
+    },
+    "status": "completed"
+  },
+  "2": {
+    "name": "System Configuration Test",
+    "config_changes": {
+      "system.max_products": 20,
+      "system.max_analyzed_products": 15,
+      "system.supplier_extraction_batch_size": 2
+    },
+    "results": {
+      "supplier_cache": {
+        "exists": false
+      },
+      "processing_state": {
+        "exists": true,
+        "size": 1465,
+        "timestamp": "2025-07-15T22:58:00.414070"
+      },
+      "log_file": {
+        "exists": true,
+        "size": 35545,
+        "timestamp": "2025-07-15T22:58:02.785376"
+      }
+    },
+    "status": "completed"
+  },
+  "3": {
+    "name": "Supplier Cache Control Test",
+    "config_changes": {
+      "supplier_cache_control.update_frequency_products": 5,
+      "supplier_cache_control.force_update_on_interruption": false
+    },
+    "results": {
+      "supplier_cache": {
+        "exists": false
+      },
+      "processing_state": {
+        "exists": true,
+        "size": 1505,
+        "timestamp": "2025-07-15T22:59:34.408314"
+      },
+      "log_file": {
+        "exists": true,
+        "size": 34555,
+        "timestamp": "2025-07-15T22:59:34.432318"
+      }
+    },
+    "status": "completed"
+  }
+}

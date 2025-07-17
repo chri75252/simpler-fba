@@ -1330,7 +1330,7 @@ class PassiveExtractionWorkflow:
                 self.log.info("✅ Linking map save completed")
                 
                 self.log.info(f"🔍 DEBUG: Calling _save_final_report with {len(profitable_results)} profitable results...")
-                self._save_final_report(profitable_results, self.supplier_name)
+                self._save_final_report(profitable_results)
                 self.log.info("✅ Final report save completed")
                 
             except Exception as final_save_error:
@@ -3186,7 +3186,8 @@ Return ONLY valid JSON, no additional text."""
         # Finalize hybrid processing by saving results and state
         try:
             self._save_linking_map(supplier_name)
-            self._save_final_report(profitable_results, supplier_name)
+            self._save_final_report(profitable_results)
+
             self.state_manager.save_state()
             self.log.info("--- Hybrid Processing Mode Finished ---")
         except Exception as save_error:

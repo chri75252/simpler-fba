@@ -4344,6 +4344,7 @@ Return ONLY valid JSON, no additional text."""
         except Exception as save_error:
             self.log.error(f"❌ CRITICAL: Error during final save operations: {save_error}", exc_info=True)
 
+
         return profitable_results
 
     async def _analyze_products_batch(self, products: List[Dict[str, Any]], 

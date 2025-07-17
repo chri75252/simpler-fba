@@ -1350,6 +1350,26 @@ class PassiveExtractionWorkflow:
             return []
 
 
+    def _save_converted_linking_map(self, supplier_name: str, linking_map: Dict[str, str]) -> None:
+        """Write converted linking map back to disk using path_manager."""
+        from utils.path_manager import get_linking_map_path
+
+        linking_map_path = get_linking_map_path(supplier_name)
+        temp_path = f"{linking_map_path}.tmp"
+
+        try:
+            with open(temp_path, "w", encoding="utf-8") as f:
+                json.dump(linking_map, f, indent=2, ensure_ascii=False)
+            os.replace(temp_path, linking_map_path)
+            self.log.info(f"✅ Saved converted linking map to {linking_map_path}")
+        except Exception as e:
+            self.log.error(f"Error saving converted linking map: {e}")
+            if os.path.exists(temp_path):
+                try:
+                    os.remove(temp_path)
+                except Exception:
+                    pass
+
     def _classify_url(self, url: str) -> str:
         """return 'friendly' | 'avoid' | 'neutral' based on patterns (priority order)."""
         path = url.lower()

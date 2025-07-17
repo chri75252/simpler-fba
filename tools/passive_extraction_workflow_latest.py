@@ -3303,16 +3303,11 @@ Return ONLY valid JSON, no additional text."""
                 try:
                     from FBA_Financial_calculator import financials as calc_financials
                     supplier_price = float(product_data.get("price", 0))
+                    supplier_price_inc_vat = supplier_price
                     current_price = amazon_data.get("current_price", 0)
-                    
+
                     if supplier_price > 0 and current_price > 0:
-                        financials = calc_financials(
-                            supplier_price=supplier_price,
-                            amazon_price=current_price,
-                            amazon_sales_rank=amazon_data.get("sales_rank", 999999),
-                            amazon_rating=amazon_data.get("rating", 0),
-                            amazon_review_count=amazon_data.get("reviews", 0)
-                        )
+                        financials = calc_financials(product_data, amazon_data, supplier_price_inc_vat)
                         
                         # Check profitability
                         if financials.get("ROI", 0) > MIN_ROI_PERCENT and financials.get("NetProfit", 0) > MIN_PROFIT_PER_UNIT:
@@ -3647,16 +3642,11 @@ Return ONLY valid JSON, no additional text."""
                 try:
                     from FBA_Financial_calculator import financials as calc_financials
                     supplier_price = float(product_data.get("price", 0))
+                    supplier_price_inc_vat = supplier_price
                     current_price = amazon_data.get("current_price", 0)
-                    
+
                     if supplier_price > 0 and current_price > 0:
-                        financials = calc_financials(
-                            supplier_price=supplier_price,
-                            amazon_price=current_price,
-                            amazon_sales_rank=amazon_data.get("sales_rank", 999999),
-                            amazon_rating=amazon_data.get("rating", 0),
-                            amazon_review_count=amazon_data.get("reviews", 0)
-                        )
+                        financials = calc_financials(product_data, amazon_data, supplier_price_inc_vat)
                         
                         # Check profitability
                         if financials.get("ROI", 0) > MIN_ROI_PERCENT and financials.get("NetProfit", 0) > MIN_PROFIT_PER_UNIT:
@@ -3991,16 +3981,11 @@ Return ONLY valid JSON, no additional text."""
                 try:
                     from FBA_Financial_calculator import financials as calc_financials
                     supplier_price = float(product_data.get("price", 0))
+                    supplier_price_inc_vat = supplier_price
                     current_price = amazon_data.get("current_price", 0)
-                    
+
                     if supplier_price > 0 and current_price > 0:
-                        financials = calc_financials(
-                            supplier_price=supplier_price,
-                            amazon_price=current_price,
-                            amazon_sales_rank=amazon_data.get("sales_rank", 999999),
-                            amazon_rating=amazon_data.get("rating", 0),
-                            amazon_review_count=amazon_data.get("reviews", 0)
-                        )
+                        financials = calc_financials(product_data, amazon_data, supplier_price_inc_vat)
                         
                         # Check profitability
                         if financials.get("ROI", 0) > MIN_ROI_PERCENT and financials.get("NetProfit", 0) > MIN_PROFIT_PER_UNIT:
@@ -4335,16 +4320,11 @@ Return ONLY valid JSON, no additional text."""
                 try:
                     from FBA_Financial_calculator import financials as calc_financials
                     supplier_price = float(product_data.get("price", 0))
+                    supplier_price_inc_vat = supplier_price
                     current_price = amazon_data.get("current_price", 0)
-                    
+
                     if supplier_price > 0 and current_price > 0:
-                        financials = calc_financials(
-                            supplier_price=supplier_price,
-                            amazon_price=current_price,
-                            amazon_sales_rank=amazon_data.get("sales_rank", 999999),
-                            amazon_rating=amazon_data.get("rating", 0),
-                            amazon_review_count=amazon_data.get("reviews", 0)
-                        )
+                        financials = calc_financials(product_data, amazon_data, supplier_price_inc_vat)
                         
                         # Check profitability
                         if financials.get("ROI", 0) > MIN_ROI_PERCENT and financials.get("NetProfit", 0) > MIN_PROFIT_PER_UNIT:
@@ -4679,16 +4659,11 @@ Return ONLY valid JSON, no additional text."""
                 try:
                     from FBA_Financial_calculator import financials as calc_financials
                     supplier_price = float(product_data.get("price", 0))
+                    supplier_price_inc_vat = supplier_price
                     current_price = amazon_data.get("current_price", 0)
-                    
+
                     if supplier_price > 0 and current_price > 0:
-                        financials = calc_financials(
-                            supplier_price=supplier_price,
-                            amazon_price=current_price,
-                            amazon_sales_rank=amazon_data.get("sales_rank", 999999),
-                            amazon_rating=amazon_data.get("rating", 0),
-                            amazon_review_count=amazon_data.get("reviews", 0)
-                        )
+                        financials = calc_financials(product_data, amazon_data, supplier_price_inc_vat)
                         
                         # Check profitability
                         if financials.get("ROI", 0) > MIN_ROI_PERCENT and financials.get("NetProfit", 0) > MIN_PROFIT_PER_UNIT:
@@ -5023,16 +4998,11 @@ Return ONLY valid JSON, no additional text."""
                 try:
                     from FBA_Financial_calculator import financials as calc_financials
                     supplier_price = float(product_data.get("price", 0))
+                    supplier_price_inc_vat = supplier_price
                     current_price = amazon_data.get("current_price", 0)
-                    
+
                     if supplier_price > 0 and current_price > 0:
-                        financials = calc_financials(
-                            supplier_price=supplier_price,
-                            amazon_price=current_price,
-                            amazon_sales_rank=amazon_data.get("sales_rank", 999999),
-                            amazon_rating=amazon_data.get("rating", 0),
-                            amazon_review_count=amazon_data.get("reviews", 0)
-                        )
+                        financials = calc_financials(product_data, amazon_data, supplier_price_inc_vat)
                         
                         # Check profitability
                         if financials.get("ROI", 0) > MIN_ROI_PERCENT and financials.get("NetProfit", 0) > MIN_PROFIT_PER_UNIT:
@@ -5367,16 +5337,11 @@ Return ONLY valid JSON, no additional text."""
                 try:
                     from FBA_Financial_calculator import financials as calc_financials
                     supplier_price = float(product_data.get("price", 0))
+                    supplier_price_inc_vat = supplier_price
                     current_price = amazon_data.get("current_price", 0)
-                    
+
                     if supplier_price > 0 and current_price > 0:
-                        financials = calc_financials(
-                            supplier_price=supplier_price,
-                            amazon_price=current_price,
-                            amazon_sales_rank=amazon_data.get("sales_rank", 999999),
-                            amazon_rating=amazon_data.get("rating", 0),
-                            amazon_review_count=amazon_data.get("reviews", 0)
-                        )
+                        financials = calc_financials(product_data, amazon_data, supplier_price_inc_vat)
                         
                         # Check profitability
                         if financials.get("ROI", 0) > MIN_ROI_PERCENT and financials.get("NetProfit", 0) > MIN_PROFIT_PER_UNIT:
@@ -5711,16 +5676,11 @@ Return ONLY valid JSON, no additional text."""
                 try:
                     from FBA_Financial_calculator import financials as calc_financials
                     supplier_price = float(product_data.get("price", 0))
+                    supplier_price_inc_vat = supplier_price
                     current_price = amazon_data.get("current_price", 0)
-                    
+
                     if supplier_price > 0 and current_price > 0:
-                        financials = calc_financials(
-                            supplier_price=supplier_price,
-                            amazon_price=current_price,
-                            amazon_sales_rank=amazon_data.get("sales_rank", 999999),
-                            amazon_rating=amazon_data.get("rating", 0),
-                            amazon_review_count=amazon_data.get("reviews", 0)
-                        )
+                        financials = calc_financials(product_data, amazon_data, supplier_price_inc_vat)
                         
                         # Check profitability
                         if financials.get("ROI", 0) > MIN_ROI_PERCENT and financials.get("NetProfit", 0) > MIN_PROFIT_PER_UNIT:
@@ -6055,16 +6015,11 @@ Return ONLY valid JSON, no additional text."""
                 try:
                     from FBA_Financial_calculator import financials as calc_financials
                     supplier_price = float(product_data.get("price", 0))
+                    supplier_price_inc_vat = supplier_price
                     current_price = amazon_data.get("current_price", 0)
-                    
+
                     if supplier_price > 0 and current_price > 0:
-                        financials = calc_financials(
-                            supplier_price=supplier_price,
-                            amazon_price=current_price,
-                            amazon_sales_rank=amazon_data.get("sales_rank", 999999),
-                            amazon_rating=amazon_data.get("rating", 0),
-                            amazon_review_count=amazon_data.get("reviews", 0)
-                        )
+                        financials = calc_financials(product_data, amazon_data, supplier_price_inc_vat)
                         
                         # Check profitability
                         if financials.get("ROI", 0) > MIN_ROI_PERCENT and financials.get("NetProfit", 0) > MIN_PROFIT_PER_UNIT:

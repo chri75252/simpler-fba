@@ -1349,94 +1349,26 @@ class PassiveExtractionWorkflow:
             self.log.error(f"Unexpected error occurred during workflow execution: {e}", exc_info=True)
             return []
 
-    def _load_linking_map(self, supplier_name: str) -> Dict[str, str]:
-        """Load linking map from supplier-specific JSON file"""
-        linking_map_path = os.path.join(BASE_DIR, "OUTPUTS", "FBA_ANALYSIS", "linking_maps", supplier_name, "linking_map.json")
-        
-        if os.path.exists(linking_map_path):
-            try:
-                with open(linking_map_path, 'r', encoding='utf-8') as f:
-                    raw_data = json.load(f)
-                
-                # Handle both formats: new dict format and legacy list format
-                if isinstance(raw_data, dict):
-                    # New simple format: {"EAN": "ASIN", "EAN2": "ASIN2"}
-                    linking_map = raw_data
-                    self.log.info(f"✅ Loaded linking map (dict format) from {linking_map_path} with {len(linking_map)} entries")
-                elif isinstance(raw_data, list):
-                    # Legacy detailed format: [{"supplier_ean": "123", "amazon_asin": "ABC", ...}]
-                    linking_map = {}
-                    for entry in raw_data:
-                        if isinstance(entry, dict) and "supplier_ean" in entry and "amazon_asin" in entry:
-                            linking_map[entry["supplier_ean"]] = entry["amazon_asin"]
-                    self.log.info(f"✅ Converted linking map from list format to dict format from {linking_map_path} with {len(linking_map)} entries")
-                else:
-                    self.log.error(f"Unexpected linking map format: {type(raw_data)} - Creating new map")
-                    return {}
-                    
-                return linking_map
-            except (json.JSONDecodeError, UnicodeDecodeError, Exception) as e:
-                self.log.error(f"Error loading linking map: {e} - Creating new map")
-                return {}
-        else:
-            self.log.info(f"✅ No existing linking map found at {linking_map_path} - Creating new map")
-            return {}
 
-    def _save_linking_map(self, supplier_name: str):
-        """Save linking map to supplier-specific JSON file using atomic write pattern"""
-        self.log.info(f"🔍 DEBUG: _save_linking_map called with {len(self.linking_map)} entries for supplier {supplier_name}")
-        self.log.info(f"🔍 DEBUG: linking_map type: {type(self.linking_map)}, value: {self.linking_map}")
-        
-        if not self.linking_map:
-            self.log.warning("⚠️ CRITICAL: Empty linking map - nothing to save. This suggests linking map entries are not being created!")
-            self.log.warning(f"⚠️ DEBUG: self.linking_map = {self.linking_map}")
-            return
-            
-        # Create supplier-specific directory
-        linking_map_dir = os.path.join(BASE_DIR, "OUTPUTS", "FBA_ANALYSIS", "linking_maps", supplier_name)
-        self.log.info(f"🔍 DEBUG: Creating directory: {linking_map_dir}")
-        
-        try:
-            os.makedirs(linking_map_dir, exist_ok=True)
-            self.log.info(f"✅ Directory created successfully: {linking_map_dir}")
-        except Exception as dir_error:
-            self.log.error(f"❌ CRITICAL: Failed to create directory {linking_map_dir}: {dir_error}")
-            return
-        
-        linking_map_path = os.path.join(linking_map_dir, "linking_map.json")
-        self.log.info(f"🔍 DEBUG: Target file path: {linking_map_path}")
-        
-        # Use atomic write pattern to prevent corruption
+    def _save_converted_linking_map(self, supplier_name: str, linking_map: Dict[str, str]) -> None:
+        """Write converted linking map back to disk using path_manager."""
+        from utils.path_manager import get_linking_map_path
+
+        linking_map_path = get_linking_map_path(supplier_name)
         temp_path = f"{linking_map_path}.tmp"
-        self.log.info(f"🔍 DEBUG: Temporary file path: {temp_path}")
-        
+
         try:
-            self.log.info(f"🔍 DEBUG: Writing linking map data to temporary file...")
-            # First write to temporary file
-            with open(temp_path, 'w', encoding='utf-8') as f:
-                json.dump(self.linking_map, f, indent=2, ensure_ascii=False)
-            self.log.info(f"✅ Temporary file written successfully: {temp_path}")
-                
-            # Then atomically replace the original file
-            self.log.info(f"🔍 DEBUG: Moving temporary file to final location...")
+            with open(temp_path, "w", encoding="utf-8") as f:
+                json.dump(linking_map, f, indent=2, ensure_ascii=False)
             os.replace(temp_path, linking_map_path)
-            self.log.info(f"✅ Successfully saved linking map with {len(self.linking_map)} entries to {linking_map_path}")
-            
-            # Verify the file was actually created and has content
-            if os.path.exists(linking_map_path):
-                file_size = os.path.getsize(linking_map_path)
-                self.log.info(f"✅ VERIFICATION: File exists at {linking_map_path} with size {file_size} bytes")
-            else:
-                self.log.error(f"❌ CRITICAL: File was not created at {linking_map_path}")
-                
+            self.log.info(f"✅ Saved converted linking map to {linking_map_path}")
         except Exception as e:
-            self.log.error(f"❌ CRITICAL: Error saving linking map: {e}", exc_info=True)
+            self.log.error(f"Error saving converted linking map: {e}")
             if os.path.exists(temp_path):
                 try:
                     os.remove(temp_path)
-                    self.log.info(f"🧹 Cleaned up temporary file: {temp_path}")
-                except Exception as cleanup_error:
-                    self.log.error(f"❌ Failed to clean up temporary file: {cleanup_error}")
+                except Exception:
+                    pass
 
     def _classify_url(self, url: str) -> str:
         """return 'friendly' | 'avoid' | 'neutral' based on patterns (priority order)."""
@@ -2106,7 +2038,7 @@ Return ONLY valid JSON, no additional text."""
             from pathlib import Path
 
             # Create API logs directory using proper path management (claude.md standards)
-            from utils.path_manager import get_api_log_path
+            from utils.path_manager import get_api_log_path, get_linking_map_path
             log_file = get_api_log_path("openai")  # This creates the proper path
 
             # Create log entry
@@ -2997,19 +2929,7 @@ Return ONLY valid JSON, no additional text."""
         amazon_product_data["_search_method_used"] = actual_search_method
         return amazon_product_data
 
-    def _save_final_report(self, profitable_results: List[Dict[str, Any]], supplier_name: str):
-        """Save the final report of profitable products to a JSON file."""
-        if not profitable_results:
-            self.log.info("No profitable products found in this run.")
-            return
-        output_filename = f"fba_profitable_finds_{supplier_name}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
-        output_path = os.path.join(self.output_dir, output_filename)
-        try:
-            with open(output_path, "w", encoding="utf-8") as f:
-                json.dump(profitable_results, f, indent=2, ensure_ascii=False)
-            self.log.info(f"Found {len(profitable_results)} profitable products. Results saved to {output_path}")
-        except Exception as e:
-            self.log.error(f"Error saving final report: {e}")
+
 
     def _combine_data(self, supplier_data: Dict[str, Any], amazon_data: Dict[str, Any], session_id: str) -> Dict[str, Any]:
         """Combine supplier and Amazon data and calculate financial metrics."""
@@ -3147,188 +3067,8 @@ Return ONLY valid JSON, no additional text."""
         
         return new_max_products_per_cycle, new_supplier_extraction_batch_size
 
-    async def _run_hybrid_processing_mode(self, supplier_url: str, supplier_name: str, 
-                                         category_urls_to_scrape: List[str], 
-                                         max_products_per_category: int, max_products_to_process: int,
-                                         max_analyzed_products: int, max_products_per_cycle: int, 
-                                         supplier_extraction_batch_size: int) -> List[Dict[str, Any]]:
-        """
-        Hybrid processing mode that allows switching between supplier extraction and Amazon analysis.
-        Supports chunked, sequential, and balanced processing modes.
-        """
-        profitable_results: List[Dict[str, Any]] = []
-        full_config = self.config_loader._config
-        hybrid_config = full_config.get("hybrid_processing", {})
-        processing_modes = hybrid_config.get("processing_modes", {})
-        switch_after_categories = hybrid_config.get("switch_to_amazon_after_categories", 10)
-        
-        self.log.info(f"🔄 HYBRID PROCESSING: Mode configuration loaded")
-        self.log.info(f"   switch_to_amazon_after_categories: {switch_after_categories}")
-        
-        if processing_modes.get("chunked", {}).get("enabled", False):
-            # Chunked mode: Alternate between supplier extraction and Amazon analysis
-            chunk_size = processing_modes.get("chunked", {}).get("chunk_size_categories", 10)
-            self.log.info(f"🔄 HYBRID MODE: Chunked processing (chunk size: {chunk_size} categories)")
-            
-            # Process categories in chunks
-            for chunk_start in range(0, len(category_urls_to_scrape), chunk_size):
-                chunk_end = min(chunk_start + chunk_size, len(category_urls_to_scrape))
-                chunk_categories = category_urls_to_scrape[chunk_start:chunk_end]
-                
-                self.log.info(f"🔄 Processing chunk {chunk_start//chunk_size + 1}: categories {chunk_start+1}-{chunk_end}")
-                
-                # Extract from this chunk of categories
-                chunk_products = await self._extract_supplier_products(
-                    supplier_url, supplier_name, chunk_categories, 
-                    max_products_per_category, max_products_to_process, supplier_extraction_batch_size
-                )
-                
-                if chunk_products:
-                    # Immediately analyze these products
-                    # Use the same detailed processing logic as main workflow
-                    chunk_results = await self._process_chunk_with_main_workflow_logic(
-                        chunk_products, max_products_per_cycle
-                    )
-                    profitable_results.extend(chunk_results)
-                    
-                    # Check memory management
-                    memory_config = hybrid_config.get("memory_management", {})
-                    if memory_config.get("clear_cache_between_phases", False):
-                        self.log.info("🧹 Clearing cache between processing phases")
-                        # Add cache clearing logic here if needed
-                
-        elif processing_modes.get("balanced", {}).get("enabled", False):
-            # Balanced mode: Extract in batches, analyze each batch
-            self.log.info(f"🔄 HYBRID MODE: Balanced processing")
-            
-            # Extract all products first
-            all_products = await self._extract_supplier_products(
-                supplier_url, supplier_name, category_urls_to_scrape, 
-                max_products_per_category, max_products_to_process
-            )
-            
-            if all_products:
-                # Process in analysis batches if enabled
-                if processing_modes.get("balanced", {}).get("analysis_after_extraction_batch", True):
-                    batch_size = max_products_per_cycle
-                    for batch_start in range(0, len(all_products), batch_size):
-                        batch_end = min(batch_start + batch_size, len(all_products))
-                        batch_products = all_products[batch_start:batch_end]
-                        
-                        self.log.info(f"🔄 Analyzing batch {batch_start//batch_size + 1}: products {batch_start+1}-{batch_end}")
-                        # Use the same detailed processing logic as main workflow
-                        batch_results = await self._process_chunk_with_main_workflow_logic(
-                            batch_products, max_products_per_cycle
-                        )
-                        profitable_results.extend(batch_results)
-                else:
-                    # Analyze all products at once
-                    # Use the same detailed processing logic as main workflow
-                    profitable_results = await self._process_chunk_with_main_workflow_logic(
-                        all_products, max_products_per_cycle
-                    )
-        else:
-            # Sequential mode (default): Complete supplier extraction, then Amazon analysis
-            self.log.info(f"🔄 HYBRID MODE: Sequential processing (extract all, then analyze all)")
-            
-            # Standard sequential processing - extract all first
-            all_products = await self._extract_supplier_products(
-                supplier_url, supplier_name, category_urls_to_scrape, 
-                max_products_per_category, max_products_to_process
-            )
-            
-            if all_products:
-                profitable_results = await self._analyze_products_batch(
-                    all_products, supplier_name, max_products_per_cycle
-                )
-        
-        return profitable_results
 
-    async def _analyze_products_batch(self, products: List[Dict[str, Any]], 
-                                    supplier_name: str, max_products_per_cycle: int) -> List[Dict[str, Any]]:
-        """Analyze a batch of supplier products for Amazon matching and profitability."""
-        profitable_results = []
-        
-        # Filter and prepare products for analysis
-        valid_products = [
-            p for p in products
-            if p.get("title") and isinstance(p.get("price"), (float, int)) and p.get("price", 0) > 0 and p.get("url")
-        ]
-        
-        price_filtered_products = [
-            p for p in valid_products
-            if MIN_PRICE <= p.get("price", 0) <= MAX_PRICE
-        ]
-        
-        self.log.info(f"🔍 Analyzing {len(price_filtered_products)} products in batch mode")
-        
-        # Process products in cycles
-        batch_size = max_products_per_cycle
-        total_batches = (len(price_filtered_products) + batch_size - 1) // batch_size
-        
-        for batch_num in range(total_batches):
-            start_idx = batch_num * batch_size
-            end_idx = min(start_idx + batch_size, len(price_filtered_products))
-            batch_products = price_filtered_products[start_idx:end_idx]
-            
-            self.log.info(f"🔄 Processing analysis batch {batch_num + 1}/{total_batches} ({len(batch_products)} products)")
-            
-            for i, product_data in enumerate(batch_products):
-                current_index = start_idx + i + 1
-                self.log.info(f"🔍 Analyzing product {current_index}: '{product_data.get('title')}'")
-                
-                # Check if already processed
-                if self.state_manager.is_product_processed(product_data.get("url")):
-                    self.log.info(f"Product already processed: {product_data.get('url')}. Skipping.")
-                    continue
-                
-                # Amazon data extraction and analysis
-                amazon_data = await self._get_amazon_data(product_data)
-                if not amazon_data or "error" in amazon_data:
-                    self.log.warning(f"Could not retrieve Amazon data for '{product_data.get('title')}'")
-                    self.state_manager.mark_product_processed(product_data.get("url"), "failed_amazon_extraction")
-                    continue
-                
-                # Save Amazon cache and create linking map
-                supplier_ean = product_data.get("ean") or product_data.get("barcode")
-                asin = amazon_data.get("asin", "NO_ASIN")
-                
-                # Save Amazon data
-                filename_identifier = supplier_ean if supplier_ean else re.sub(r'[<>:"/\\|?*\s]+', '_', product_data.get("title", "NO_TITLE")[:50])
-                amazon_cache_path = os.path.join(self.amazon_cache_dir, f"amazon_{asin}_{filename_identifier}.json")
-                with open(amazon_cache_path, 'w', encoding='utf-8') as f:
-                    json.dump(amazon_data, f, indent=2, ensure_ascii=False)
-                
-                # Financial analysis
-                try:
-                    from FBA_Financial_calculator import financials as calc_financials
-                    supplier_price = float(product_data.get("price", 0))
-                    supplier_price_inc_vat = supplier_price
-                    current_price = amazon_data.get("current_price", 0)
 
-                    if supplier_price > 0 and current_price > 0:
-                        financials = calc_financials(product_data, amazon_data, supplier_price_inc_vat)
-                        
-                        # Check profitability
-                        if financials.get("ROI", 0) > MIN_ROI_PERCENT and financials.get("NetProfit", 0) > MIN_PROFIT_PER_UNIT:
-                            self.log.info(f"✅ PROFITABLE: ROI {financials['ROI']:.1f}%, Profit £{financials['NetProfit']:.2f}")
-                            
-                            combined_data = self._combine_supplier_amazon_data(product_data, amazon_data, "hybrid_batch")
-                            combined_data["financials"] = financials
-                            profitable_results.append(combined_data)
-                            
-                            self.state_manager.update_success_metrics(True, True, financials.get("NetProfit", 0))
-                            self.state_manager.mark_product_processed(product_data.get("url"), "completed_profitable")
-                        else:
-                            self.log.info(f"Not profitable: ROI {financials.get('ROI', 0):.1f}%, Profit £{financials.get('NetProfit', 0):.2f}")
-                            self.state_manager.update_success_metrics(True, False)
-                            self.state_manager.mark_product_processed(product_data.get("url"), "completed_not_profitable")
-                            
-                except Exception as e:
-                    self.log.error(f"Financial calculation failed: {e}")
-                    self.state_manager.mark_product_processed(product_data.get("url"), "failed_financial_calculation")
-        
-        return profitable_results
 
     def _get_cached_products_path(self, category_url: str):
         """Helper to get the path for a category's product cache file."""
@@ -3336,19 +3076,6 @@ Return ONLY valid JSON, no additional text."""
         cache_dir = os.path.join(self.output_dir, 'CACHE', 'supplier_cache')
         return os.path.join(cache_dir, category_filename)
 
-    def _save_final_report(self, profitable_products: list):
-        """Save the final report of profitable products to a JSON file."""
-        if not profitable_products:
-            self.log.info("No profitable products found in this run.")
-            return
-        output_filename = f"fba_profitable_finds_{self.supplier_name}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
-        output_path = os.path.join(self.output_dir, output_filename)
-        try:
-            with open(output_path, "w", encoding="utf-8") as f:
-                json.dump(profitable_products, f, indent=2, ensure_ascii=False)
-            self.log.info(f"Found {len(profitable_products)} profitable products. Results saved to {output_path}")
-        except Exception as e:
-            self.log.error(f"Error saving final report: {e}")
 
     def _combine_data(self, supplier_data: Dict[str, Any], amazon_data: Dict[str, Any], session_id: str) -> Dict[str, Any]:
         """Combine supplier and Amazon data and calculate financial metrics."""
@@ -3486,188 +3213,8 @@ Return ONLY valid JSON, no additional text."""
         
         return new_max_products_per_cycle, new_supplier_extraction_batch_size
 
-    async def _run_hybrid_processing_mode(self, supplier_url: str, supplier_name: str, 
-                                         category_urls_to_scrape: List[str], 
-                                         max_products_per_category: int, max_products_to_process: int,
-                                         max_analyzed_products: int, max_products_per_cycle: int, 
-                                         supplier_extraction_batch_size: int) -> List[Dict[str, Any]]:
-        """
-        Hybrid processing mode that allows switching between supplier extraction and Amazon analysis.
-        Supports chunked, sequential, and balanced processing modes.
-        """
-        profitable_results: List[Dict[str, Any]] = []
-        full_config = self.config_loader._config
-        hybrid_config = full_config.get("hybrid_processing", {})
-        processing_modes = hybrid_config.get("processing_modes", {})
-        switch_after_categories = hybrid_config.get("switch_to_amazon_after_categories", 10)
-        
-        self.log.info(f"🔄 HYBRID PROCESSING: Mode configuration loaded")
-        self.log.info(f"   switch_to_amazon_after_categories: {switch_after_categories}")
-        
-        if processing_modes.get("chunked", {}).get("enabled", False):
-            # Chunked mode: Alternate between supplier extraction and Amazon analysis
-            chunk_size = processing_modes.get("chunked", {}).get("chunk_size_categories", 10)
-            self.log.info(f"🔄 HYBRID MODE: Chunked processing (chunk size: {chunk_size} categories)")
-            
-            # Process categories in chunks
-            for chunk_start in range(0, len(category_urls_to_scrape), chunk_size):
-                chunk_end = min(chunk_start + chunk_size, len(category_urls_to_scrape))
-                chunk_categories = category_urls_to_scrape[chunk_start:chunk_end]
-                
-                self.log.info(f"🔄 Processing chunk {chunk_start//chunk_size + 1}: categories {chunk_start+1}-{chunk_end}")
-                
-                # Extract from this chunk of categories
-                chunk_products = await self._extract_supplier_products(
-                    supplier_url, supplier_name, chunk_categories, 
-                    max_products_per_category, max_products_to_process, supplier_extraction_batch_size
-                )
-                
-                if chunk_products:
-                    # Immediately analyze these products
-                    # Use the same detailed processing logic as main workflow
-                    chunk_results = await self._process_chunk_with_main_workflow_logic(
-                        chunk_products, max_products_per_cycle
-                    )
-                    profitable_results.extend(chunk_results)
-                    
-                    # Check memory management
-                    memory_config = hybrid_config.get("memory_management", {})
-                    if memory_config.get("clear_cache_between_phases", False):
-                        self.log.info("🧹 Clearing cache between processing phases")
-                        # Add cache clearing logic here if needed
-                
-        elif processing_modes.get("balanced", {}).get("enabled", False):
-            # Balanced mode: Extract in batches, analyze each batch
-            self.log.info(f"🔄 HYBRID MODE: Balanced processing")
-            
-            # Extract all products first
-            all_products = await self._extract_supplier_products(
-                supplier_url, supplier_name, category_urls_to_scrape, 
-                max_products_per_category, max_products_to_process
-            )
-            
-            if all_products:
-                # Process in analysis batches if enabled
-                if processing_modes.get("balanced", {}).get("analysis_after_extraction_batch", True):
-                    batch_size = max_products_per_cycle
-                    for batch_start in range(0, len(all_products), batch_size):
-                        batch_end = min(batch_start + batch_size, len(all_products))
-                        batch_products = all_products[batch_start:batch_end]
-                        
-                        self.log.info(f"🔄 Analyzing batch {batch_start//batch_size + 1}: products {batch_start+1}-{batch_end}")
-                        # Use the same detailed processing logic as main workflow
-                        batch_results = await self._process_chunk_with_main_workflow_logic(
-                            batch_products, max_products_per_cycle
-                        )
-                        profitable_results.extend(batch_results)
-                else:
-                    # Analyze all products at once
-                    # Use the same detailed processing logic as main workflow
-                    profitable_results = await self._process_chunk_with_main_workflow_logic(
-                        all_products, max_products_per_cycle
-                    )
-        else:
-            # Sequential mode (default): Complete supplier extraction, then Amazon analysis
-            self.log.info(f"🔄 HYBRID MODE: Sequential processing (extract all, then analyze all)")
-            
-            # Standard sequential processing - extract all first
-            all_products = await self._extract_supplier_products(
-                supplier_url, supplier_name, category_urls_to_scrape, 
-                max_products_per_category, max_products_to_process
-            )
-            
-            if all_products:
-                profitable_results = await self._analyze_products_batch(
-                    all_products, supplier_name, max_products_per_cycle
-                )
-        
-        return profitable_results
 
-    async def _analyze_products_batch(self, products: List[Dict[str, Any]], 
-                                    supplier_name: str, max_products_per_cycle: int) -> List[Dict[str, Any]]:
-        """Analyze a batch of supplier products for Amazon matching and profitability."""
-        profitable_results = []
-        
-        # Filter and prepare products for analysis
-        valid_products = [
-            p for p in products
-            if p.get("title") and isinstance(p.get("price"), (float, int)) and p.get("price", 0) > 0 and p.get("url")
-        ]
-        
-        price_filtered_products = [
-            p for p in valid_products
-            if MIN_PRICE <= p.get("price", 0) <= MAX_PRICE
-        ]
-        
-        self.log.info(f"🔍 Analyzing {len(price_filtered_products)} products in batch mode")
-        
-        # Process products in cycles
-        batch_size = max_products_per_cycle
-        total_batches = (len(price_filtered_products) + batch_size - 1) // batch_size
-        
-        for batch_num in range(total_batches):
-            start_idx = batch_num * batch_size
-            end_idx = min(start_idx + batch_size, len(price_filtered_products))
-            batch_products = price_filtered_products[start_idx:end_idx]
-            
-            self.log.info(f"🔄 Processing analysis batch {batch_num + 1}/{total_batches} ({len(batch_products)} products)")
-            
-            for i, product_data in enumerate(batch_products):
-                current_index = start_idx + i + 1
-                self.log.info(f"🔍 Analyzing product {current_index}: '{product_data.get('title')}'")
-                
-                # Check if already processed
-                if self.state_manager.is_product_processed(product_data.get("url")):
-                    self.log.info(f"Product already processed: {product_data.get('url')}. Skipping.")
-                    continue
-                
-                # Amazon data extraction and analysis
-                amazon_data = await self._get_amazon_data(product_data)
-                if not amazon_data or "error" in amazon_data:
-                    self.log.warning(f"Could not retrieve Amazon data for '{product_data.get('title')}'")
-                    self.state_manager.mark_product_processed(product_data.get("url"), "failed_amazon_extraction")
-                    continue
-                
-                # Save Amazon cache and create linking map
-                supplier_ean = product_data.get("ean") or product_data.get("barcode")
-                asin = amazon_data.get("asin", "NO_ASIN")
-                
-                # Save Amazon data
-                filename_identifier = supplier_ean if supplier_ean else re.sub(r'[<>:"/\\|?*\s]+', '_', product_data.get("title", "NO_TITLE")[:50])
-                amazon_cache_path = os.path.join(self.amazon_cache_dir, f"amazon_{asin}_{filename_identifier}.json")
-                with open(amazon_cache_path, 'w', encoding='utf-8') as f:
-                    json.dump(amazon_data, f, indent=2, ensure_ascii=False)
-                
-                # Financial analysis
-                try:
-                    from FBA_Financial_calculator import financials as calc_financials
-                    supplier_price = float(product_data.get("price", 0))
-                    supplier_price_inc_vat = supplier_price
-                    current_price = amazon_data.get("current_price", 0)
 
-                    if supplier_price > 0 and current_price > 0:
-                        financials = calc_financials(product_data, amazon_data, supplier_price_inc_vat)
-                        
-                        # Check profitability
-                        if financials.get("ROI", 0) > MIN_ROI_PERCENT and financials.get("NetProfit", 0) > MIN_PROFIT_PER_UNIT:
-                            self.log.info(f"✅ PROFITABLE: ROI {financials['ROI']:.1f}%, Profit £{financials['NetProfit']:.2f}")
-                            
-                            combined_data = self._combine_supplier_amazon_data(product_data, amazon_data, "hybrid_batch")
-                            combined_data["financials"] = financials
-                            profitable_results.append(combined_data)
-                            
-                            self.state_manager.update_success_metrics(True, True, financials.get("NetProfit", 0))
-                            self.state_manager.mark_product_processed(product_data.get("url"), "completed_profitable")
-                        else:
-                            self.log.info(f"Not profitable: ROI {financials.get('ROI', 0):.1f}%, Profit £{financials.get('NetProfit', 0):.2f}")
-                            self.state_manager.update_success_metrics(True, False)
-                            self.state_manager.mark_product_processed(product_data.get("url"), "completed_not_profitable")
-                            
-                except Exception as e:
-                    self.log.error(f"Financial calculation failed: {e}")
-                    self.state_manager.mark_product_processed(product_data.get("url"), "failed_financial_calculation")
-        
-        return profitable_results
 
     def _get_cached_products_path(self, category_url: str):
         """Helper to get the path for a category's product cache file."""
@@ -3675,19 +3222,6 @@ Return ONLY valid JSON, no additional text."""
         cache_dir = os.path.join(self.output_dir, 'CACHE', 'supplier_cache')
         return os.path.join(cache_dir, category_filename)
 
-    def _save_final_report(self, profitable_products: list):
-        """Save the final report of profitable products to a JSON file."""
-        if not profitable_products:
-            self.log.info("No profitable products found in this run.")
-            return
-        output_filename = f"fba_profitable_finds_{self.supplier_name}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
-        output_path = os.path.join(self.output_dir, output_filename)
-        try:
-            with open(output_path, "w", encoding="utf-8") as f:
-                json.dump(profitable_products, f, indent=2, ensure_ascii=False)
-            self.log.info(f"Found {len(profitable_products)} profitable products. Results saved to {output_path}")
-        except Exception as e:
-            self.log.error(f"Error saving final report: {e}")
 
     def _combine_data(self, supplier_data: Dict[str, Any], amazon_data: Dict[str, Any], session_id: str) -> Dict[str, Any]:
         """Combine supplier and Amazon data and calculate financial metrics."""
@@ -3825,188 +3359,6 @@ Return ONLY valid JSON, no additional text."""
         
         return new_max_products_per_cycle, new_supplier_extraction_batch_size
 
-    async def _run_hybrid_processing_mode(self, supplier_url: str, supplier_name: str, 
-                                         category_urls_to_scrape: List[str], 
-                                         max_products_per_category: int, max_products_to_process: int,
-                                         max_analyzed_products: int, max_products_per_cycle: int, 
-                                         supplier_extraction_batch_size: int) -> List[Dict[str, Any]]:
-        """
-        Hybrid processing mode that allows switching between supplier extraction and Amazon analysis.
-        Supports chunked, sequential, and balanced processing modes.
-        """
-        profitable_results: List[Dict[str, Any]] = []
-        full_config = self.config_loader._config
-        hybrid_config = full_config.get("hybrid_processing", {})
-        processing_modes = hybrid_config.get("processing_modes", {})
-        switch_after_categories = hybrid_config.get("switch_to_amazon_after_categories", 10)
-        
-        self.log.info(f"🔄 HYBRID PROCESSING: Mode configuration loaded")
-        self.log.info(f"   switch_to_amazon_after_categories: {switch_after_categories}")
-        
-        if processing_modes.get("chunked", {}).get("enabled", False):
-            # Chunked mode: Alternate between supplier extraction and Amazon analysis
-            chunk_size = processing_modes.get("chunked", {}).get("chunk_size_categories", 10)
-            self.log.info(f"🔄 HYBRID MODE: Chunked processing (chunk size: {chunk_size} categories)")
-            
-            # Process categories in chunks
-            for chunk_start in range(0, len(category_urls_to_scrape), chunk_size):
-                chunk_end = min(chunk_start + chunk_size, len(category_urls_to_scrape))
-                chunk_categories = category_urls_to_scrape[chunk_start:chunk_end]
-                
-                self.log.info(f"🔄 Processing chunk {chunk_start//chunk_size + 1}: categories {chunk_start+1}-{chunk_end}")
-                
-                # Extract from this chunk of categories
-                chunk_products = await self._extract_supplier_products(
-                    supplier_url, supplier_name, chunk_categories, 
-                    max_products_per_category, max_products_to_process, supplier_extraction_batch_size
-                )
-                
-                if chunk_products:
-                    # Immediately analyze these products
-                    # Use the same detailed processing logic as main workflow
-                    chunk_results = await self._process_chunk_with_main_workflow_logic(
-                        chunk_products, max_products_per_cycle
-                    )
-                    profitable_results.extend(chunk_results)
-                    
-                    # Check memory management
-                    memory_config = hybrid_config.get("memory_management", {})
-                    if memory_config.get("clear_cache_between_phases", False):
-                        self.log.info("🧹 Clearing cache between processing phases")
-                        # Add cache clearing logic here if needed
-                
-        elif processing_modes.get("balanced", {}).get("enabled", False):
-            # Balanced mode: Extract in batches, analyze each batch
-            self.log.info(f"🔄 HYBRID MODE: Balanced processing")
-            
-            # Extract all products first
-            all_products = await self._extract_supplier_products(
-                supplier_url, supplier_name, category_urls_to_scrape, 
-                max_products_per_category, max_products_to_process
-            )
-            
-            if all_products:
-                # Process in analysis batches if enabled
-                if processing_modes.get("balanced", {}).get("analysis_after_extraction_batch", True):
-                    batch_size = max_products_per_cycle
-                    for batch_start in range(0, len(all_products), batch_size):
-                        batch_end = min(batch_start + batch_size, len(all_products))
-                        batch_products = all_products[batch_start:batch_end]
-                        
-                        self.log.info(f"🔄 Analyzing batch {batch_start//batch_size + 1}: products {batch_start+1}-{batch_end}")
-                        # Use the same detailed processing logic as main workflow
-                        batch_results = await self._process_chunk_with_main_workflow_logic(
-                            batch_products, max_products_per_cycle
-                        )
-                        profitable_results.extend(batch_results)
-                else:
-                    # Analyze all products at once
-                    # Use the same detailed processing logic as main workflow
-                    profitable_results = await self._process_chunk_with_main_workflow_logic(
-                        all_products, max_products_per_cycle
-                    )
-        else:
-            # Sequential mode (default): Complete supplier extraction, then Amazon analysis
-            self.log.info(f"🔄 HYBRID MODE: Sequential processing (extract all, then analyze all)")
-            
-            # Standard sequential processing - extract all first
-            all_products = await self._extract_supplier_products(
-                supplier_url, supplier_name, category_urls_to_scrape, 
-                max_products_per_category, max_products_to_process
-            )
-            
-            if all_products:
-                profitable_results = await self._analyze_products_batch(
-                    all_products, supplier_name, max_products_per_cycle
-                )
-        
-        return profitable_results
-
-    async def _analyze_products_batch(self, products: List[Dict[str, Any]], 
-                                    supplier_name: str, max_products_per_cycle: int) -> List[Dict[str, Any]]:
-        """Analyze a batch of supplier products for Amazon matching and profitability."""
-        profitable_results = []
-        
-        # Filter and prepare products for analysis
-        valid_products = [
-            p for p in products
-            if p.get("title") and isinstance(p.get("price"), (float, int)) and p.get("price", 0) > 0 and p.get("url")
-        ]
-        
-        price_filtered_products = [
-            p for p in valid_products
-            if MIN_PRICE <= p.get("price", 0) <= MAX_PRICE
-        ]
-        
-        self.log.info(f"🔍 Analyzing {len(price_filtered_products)} products in batch mode")
-        
-        # Process products in cycles
-        batch_size = max_products_per_cycle
-        total_batches = (len(price_filtered_products) + batch_size - 1) // batch_size
-        
-        for batch_num in range(total_batches):
-            start_idx = batch_num * batch_size
-            end_idx = min(start_idx + batch_size, len(price_filtered_products))
-            batch_products = price_filtered_products[start_idx:end_idx]
-            
-            self.log.info(f"🔄 Processing analysis batch {batch_num + 1}/{total_batches} ({len(batch_products)} products)")
-            
-            for i, product_data in enumerate(batch_products):
-                current_index = start_idx + i + 1
-                self.log.info(f"🔍 Analyzing product {current_index}: '{product_data.get('title')}'")
-                
-                # Check if already processed
-                if self.state_manager.is_product_processed(product_data.get("url")):
-                    self.log.info(f"Product already processed: {product_data.get('url')}. Skipping.")
-                    continue
-                
-                # Amazon data extraction and analysis
-                amazon_data = await self._get_amazon_data(product_data)
-                if not amazon_data or "error" in amazon_data:
-                    self.log.warning(f"Could not retrieve Amazon data for '{product_data.get('title')}'")
-                    self.state_manager.mark_product_processed(product_data.get("url"), "failed_amazon_extraction")
-                    continue
-                
-                # Save Amazon cache and create linking map
-                supplier_ean = product_data.get("ean") or product_data.get("barcode")
-                asin = amazon_data.get("asin", "NO_ASIN")
-                
-                # Save Amazon data
-                filename_identifier = supplier_ean if supplier_ean else re.sub(r'[<>:"/\\|?*\s]+', '_', product_data.get("title", "NO_TITLE")[:50])
-                amazon_cache_path = os.path.join(self.amazon_cache_dir, f"amazon_{asin}_{filename_identifier}.json")
-                with open(amazon_cache_path, 'w', encoding='utf-8') as f:
-                    json.dump(amazon_data, f, indent=2, ensure_ascii=False)
-                
-                # Financial analysis
-                try:
-                    from FBA_Financial_calculator import financials as calc_financials
-                    supplier_price = float(product_data.get("price", 0))
-                    supplier_price_inc_vat = supplier_price
-                    current_price = amazon_data.get("current_price", 0)
-
-                    if supplier_price > 0 and current_price > 0:
-                        financials = calc_financials(product_data, amazon_data, supplier_price_inc_vat)
-                        
-                        # Check profitability
-                        if financials.get("ROI", 0) > MIN_ROI_PERCENT and financials.get("NetProfit", 0) > MIN_PROFIT_PER_UNIT:
-                            self.log.info(f"✅ PROFITABLE: ROI {financials['ROI']:.1f}%, Profit £{financials['NetProfit']:.2f}")
-                            
-                            combined_data = self._combine_supplier_amazon_data(product_data, amazon_data, "hybrid_batch")
-                            combined_data["financials"] = financials
-                            profitable_results.append(combined_data)
-                            
-                            self.state_manager.update_success_metrics(True, True, financials.get("NetProfit", 0))
-                            self.state_manager.mark_product_processed(product_data.get("url"), "completed_profitable")
-                        else:
-                            self.log.info(f"Not profitable: ROI {financials.get('ROI', 0):.1f}%, Profit £{financials.get('NetProfit', 0):.2f}")
-                            self.state_manager.update_success_metrics(True, False)
-                            self.state_manager.mark_product_processed(product_data.get("url"), "completed_not_profitable")
-                            
-                except Exception as e:
-                    self.log.error(f"Financial calculation failed: {e}")
-                    self.state_manager.mark_product_processed(product_data.get("url"), "failed_financial_calculation")
-        
-        return profitable_results
 
     def _get_cached_products_path(self, category_url: str):
         """Helper to get the path for a category's product cache file."""
@@ -4014,19 +3366,6 @@ Return ONLY valid JSON, no additional text."""
         cache_dir = os.path.join(self.output_dir, 'CACHE', 'supplier_cache')
         return os.path.join(cache_dir, category_filename)
 
-    def _save_final_report(self, profitable_products: list):
-        """Save the final report of profitable products to a JSON file."""
-        if not profitable_products:
-            self.log.info("No profitable products found in this run.")
-            return
-        output_filename = f"fba_profitable_finds_{self.supplier_name}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
-        output_path = os.path.join(self.output_dir, output_filename)
-        try:
-            with open(output_path, "w", encoding="utf-8") as f:
-                json.dump(profitable_products, f, indent=2, ensure_ascii=False)
-            self.log.info(f"Found {len(profitable_products)} profitable products. Results saved to {output_path}")
-        except Exception as e:
-            self.log.error(f"Error saving final report: {e}")
 
     def _combine_data(self, supplier_data: Dict[str, Any], amazon_data: Dict[str, Any], session_id: str) -> Dict[str, Any]:
         """Combine supplier and Amazon data and calculate financial metrics."""
@@ -4164,188 +3503,7 @@ Return ONLY valid JSON, no additional text."""
         
         return new_max_products_per_cycle, new_supplier_extraction_batch_size
 
-    async def _run_hybrid_processing_mode(self, supplier_url: str, supplier_name: str, 
-                                         category_urls_to_scrape: List[str], 
-                                         max_products_per_category: int, max_products_to_process: int,
-                                         max_analyzed_products: int, max_products_per_cycle: int, 
-                                         supplier_extraction_batch_size: int) -> List[Dict[str, Any]]:
-        """
-        Hybrid processing mode that allows switching between supplier extraction and Amazon analysis.
-        Supports chunked, sequential, and balanced processing modes.
-        """
-        profitable_results: List[Dict[str, Any]] = []
-        full_config = self.config_loader._config
-        hybrid_config = full_config.get("hybrid_processing", {})
-        processing_modes = hybrid_config.get("processing_modes", {})
-        switch_after_categories = hybrid_config.get("switch_to_amazon_after_categories", 10)
-        
-        self.log.info(f"🔄 HYBRID PROCESSING: Mode configuration loaded")
-        self.log.info(f"   switch_to_amazon_after_categories: {switch_after_categories}")
-        
-        if processing_modes.get("chunked", {}).get("enabled", False):
-            # Chunked mode: Alternate between supplier extraction and Amazon analysis
-            chunk_size = processing_modes.get("chunked", {}).get("chunk_size_categories", 10)
-            self.log.info(f"🔄 HYBRID MODE: Chunked processing (chunk size: {chunk_size} categories)")
-            
-            # Process categories in chunks
-            for chunk_start in range(0, len(category_urls_to_scrape), chunk_size):
-                chunk_end = min(chunk_start + chunk_size, len(category_urls_to_scrape))
-                chunk_categories = category_urls_to_scrape[chunk_start:chunk_end]
-                
-                self.log.info(f"🔄 Processing chunk {chunk_start//chunk_size + 1}: categories {chunk_start+1}-{chunk_end}")
-                
-                # Extract from this chunk of categories
-                chunk_products = await self._extract_supplier_products(
-                    supplier_url, supplier_name, chunk_categories, 
-                    max_products_per_category, max_products_to_process, supplier_extraction_batch_size
-                )
-                
-                if chunk_products:
-                    # Immediately analyze these products
-                    # Use the same detailed processing logic as main workflow
-                    chunk_results = await self._process_chunk_with_main_workflow_logic(
-                        chunk_products, max_products_per_cycle
-                    )
-                    profitable_results.extend(chunk_results)
-                    
-                    # Check memory management
-                    memory_config = hybrid_config.get("memory_management", {})
-                    if memory_config.get("clear_cache_between_phases", False):
-                        self.log.info("🧹 Clearing cache between processing phases")
-                        # Add cache clearing logic here if needed
-                
-        elif processing_modes.get("balanced", {}).get("enabled", False):
-            # Balanced mode: Extract in batches, analyze each batch
-            self.log.info(f"🔄 HYBRID MODE: Balanced processing")
-            
-            # Extract all products first
-            all_products = await self._extract_supplier_products(
-                supplier_url, supplier_name, category_urls_to_scrape, 
-                max_products_per_category, max_products_to_process
-            )
-            
-            if all_products:
-                # Process in analysis batches if enabled
-                if processing_modes.get("balanced", {}).get("analysis_after_extraction_batch", True):
-                    batch_size = max_products_per_cycle
-                    for batch_start in range(0, len(all_products), batch_size):
-                        batch_end = min(batch_start + batch_size, len(all_products))
-                        batch_products = all_products[batch_start:batch_end]
-                        
-                        self.log.info(f"🔄 Analyzing batch {batch_start//batch_size + 1}: products {batch_start+1}-{batch_end}")
-                        # Use the same detailed processing logic as main workflow
-                        batch_results = await self._process_chunk_with_main_workflow_logic(
-                            batch_products, max_products_per_cycle
-                        )
-                        profitable_results.extend(batch_results)
-                else:
-                    # Analyze all products at once
-                    # Use the same detailed processing logic as main workflow
-                    profitable_results = await self._process_chunk_with_main_workflow_logic(
-                        all_products, max_products_per_cycle
-                    )
-        else:
-            # Sequential mode (default): Complete supplier extraction, then Amazon analysis
-            self.log.info(f"🔄 HYBRID MODE: Sequential processing (extract all, then analyze all)")
-            
-            # Standard sequential processing - extract all first
-            all_products = await self._extract_supplier_products(
-                supplier_url, supplier_name, category_urls_to_scrape, 
-                max_products_per_category, max_products_to_process
-            )
-            
-            if all_products:
-                profitable_results = await self._analyze_products_batch(
-                    all_products, supplier_name, max_products_per_cycle
-                )
-        
-        return profitable_results
 
-    async def _analyze_products_batch(self, products: List[Dict[str, Any]], 
-                                    supplier_name: str, max_products_per_cycle: int) -> List[Dict[str, Any]]:
-        """Analyze a batch of supplier products for Amazon matching and profitability."""
-        profitable_results = []
-        
-        # Filter and prepare products for analysis
-        valid_products = [
-            p for p in products
-            if p.get("title") and isinstance(p.get("price"), (float, int)) and p.get("price", 0) > 0 and p.get("url")
-        ]
-        
-        price_filtered_products = [
-            p for p in valid_products
-            if MIN_PRICE <= p.get("price", 0) <= MAX_PRICE
-        ]
-        
-        self.log.info(f"🔍 Analyzing {len(price_filtered_products)} products in batch mode")
-        
-        # Process products in cycles
-        batch_size = max_products_per_cycle
-        total_batches = (len(price_filtered_products) + batch_size - 1) // batch_size
-        
-        for batch_num in range(total_batches):
-            start_idx = batch_num * batch_size
-            end_idx = min(start_idx + batch_size, len(price_filtered_products))
-            batch_products = price_filtered_products[start_idx:end_idx]
-            
-            self.log.info(f"🔄 Processing analysis batch {batch_num + 1}/{total_batches} ({len(batch_products)} products)")
-            
-            for i, product_data in enumerate(batch_products):
-                current_index = start_idx + i + 1
-                self.log.info(f"🔍 Analyzing product {current_index}: '{product_data.get('title')}'")
-                
-                # Check if already processed
-                if self.state_manager.is_product_processed(product_data.get("url")):
-                    self.log.info(f"Product already processed: {product_data.get('url')}. Skipping.")
-                    continue
-                
-                # Amazon data extraction and analysis
-                amazon_data = await self._get_amazon_data(product_data)
-                if not amazon_data or "error" in amazon_data:
-                    self.log.warning(f"Could not retrieve Amazon data for '{product_data.get('title')}'")
-                    self.state_manager.mark_product_processed(product_data.get("url"), "failed_amazon_extraction")
-                    continue
-                
-                # Save Amazon cache and create linking map
-                supplier_ean = product_data.get("ean") or product_data.get("barcode")
-                asin = amazon_data.get("asin", "NO_ASIN")
-                
-                # Save Amazon data
-                filename_identifier = supplier_ean if supplier_ean else re.sub(r'[<>:"/\\|?*\s]+', '_', product_data.get("title", "NO_TITLE")[:50])
-                amazon_cache_path = os.path.join(self.amazon_cache_dir, f"amazon_{asin}_{filename_identifier}.json")
-                with open(amazon_cache_path, 'w', encoding='utf-8') as f:
-                    json.dump(amazon_data, f, indent=2, ensure_ascii=False)
-                
-                # Financial analysis
-                try:
-                    from FBA_Financial_calculator import financials as calc_financials
-                    supplier_price = float(product_data.get("price", 0))
-                    supplier_price_inc_vat = supplier_price
-                    current_price = amazon_data.get("current_price", 0)
-
-                    if supplier_price > 0 and current_price > 0:
-                        financials = calc_financials(product_data, amazon_data, supplier_price_inc_vat)
-                        
-                        # Check profitability
-                        if financials.get("ROI", 0) > MIN_ROI_PERCENT and financials.get("NetProfit", 0) > MIN_PROFIT_PER_UNIT:
-                            self.log.info(f"✅ PROFITABLE: ROI {financials['ROI']:.1f}%, Profit £{financials['NetProfit']:.2f}")
-                            
-                            combined_data = self._combine_supplier_amazon_data(product_data, amazon_data, "hybrid_batch")
-                            combined_data["financials"] = financials
-                            profitable_results.append(combined_data)
-                            
-                            self.state_manager.update_success_metrics(True, True, financials.get("NetProfit", 0))
-                            self.state_manager.mark_product_processed(product_data.get("url"), "completed_profitable")
-                        else:
-                            self.log.info(f"Not profitable: ROI {financials.get('ROI', 0):.1f}%, Profit £{financials.get('NetProfit', 0):.2f}")
-                            self.state_manager.update_success_metrics(True, False)
-                            self.state_manager.mark_product_processed(product_data.get("url"), "completed_not_profitable")
-                            
-                except Exception as e:
-                    self.log.error(f"Financial calculation failed: {e}")
-                    self.state_manager.mark_product_processed(product_data.get("url"), "failed_financial_calculation")
-        
-        return profitable_results
 
     def _get_cached_products_path(self, category_url: str):
         """Helper to get the path for a category's product cache file."""
@@ -4353,19 +3511,143 @@ Return ONLY valid JSON, no additional text."""
         cache_dir = os.path.join(self.output_dir, 'CACHE', 'supplier_cache')
         return os.path.join(cache_dir, category_filename)
 
-    def _save_final_report(self, profitable_products: list):
-        """Save the final report of profitable products to a JSON file."""
-        if not profitable_products:
-            self.log.info("No profitable products found in this run.")
-            return
-        output_filename = f"fba_profitable_finds_{self.supplier_name}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
-        output_path = os.path.join(self.output_dir, output_filename)
-        try:
-            with open(output_path, "w", encoding="utf-8") as f:
-                json.dump(profitable_products, f, indent=2, ensure_ascii=False)
-            self.log.info(f"Found {len(profitable_products)} profitable products. Results saved to {output_path}")
-        except Exception as e:
-            self.log.error(f"Error saving final report: {e}")
+
+
+    def _combine_data(self, supplier_data: Dict[str, Any], amazon_data: Dict[str, Any], session_id: str) -> Dict[str, Any]:
+        """Combine supplier and Amazon data and calculate financial metrics."""
+        combined = {
+            "supplier_product_info": supplier_data,
+            "amazon_product_info": amazon_data,
+            "analysis_timestamp": datetime.now().isoformat(),
+            "session_id": session_id
+        }
+        # Financial calculation is now handled within the main run loop before this function is called
+        # This function is primarily for combining data and adding match validation
+        match_validation = self._validate_product_match(supplier_data, amazon_data)
+        combined["match_validation"] = match_validation
+        return combined
+
+    def _overlap_score(self, title_a: str, title_b: str) -> float:
+        """Calculate word overlap score between two titles"""
+        a = set(re.sub(r'[^\w\s]', ' ', title_a.lower()).split())
+        b = set(re.sub(r'[^\w\s]', ' ', title_b.lower()).split())
+        return len(a & b) / max(1, len(a))
+    
+    def _sanitize_filename(self, title: str) -> str:
+        """Sanitize product title for use in filename"""
+        if not title:
+            return "unknown_title"
+        # Remove or replace problematic characters
+        sanitized = re.sub(r'[^\w\s-]', '', title)
+        sanitized = re.sub(r'\s+', '_', sanitized)
+        return sanitized[:50]  # Limit length to 50 chars
+
+    def _validate_product_match(self, supplier_product: Dict[str, Any], amazon_product: Dict[str, Any]) -> Dict[str, Any]:
+        """Validate the match between supplier and Amazon products using configurable thresholds."""
+        # CRITICAL FIX: Use configurable matching thresholds instead of hardcoded values
+        matching_thresholds = self.system_config.get("performance", {}).get("matching_thresholds", {})
+        
+        # Get configurable thresholds with fallback to more conservative defaults
+        title_similarity_threshold = matching_thresholds.get("title_similarity", 0.25)
+        medium_title_similarity = matching_thresholds.get("medium_title_similarity", 0.5) 
+        high_title_similarity = matching_thresholds.get("high_title_similarity", 0.75)
+        
+        title_overlap_score = self._overlap_score(supplier_product.get("title", ""), amazon_product.get("title", ""))
+
+        match_quality = "low"
+        confidence = 0.0
+        
+        # Use configurable thresholds - much more strict than previous hardcoded values
+        if title_overlap_score >= high_title_similarity:
+            match_quality = "high"
+            confidence = 0.9
+        elif title_overlap_score >= medium_title_similarity:
+            match_quality = "medium"
+            confidence = 0.6
+        elif title_overlap_score >= title_similarity_threshold:
+            match_quality = "low"
+            confidence = 0.3
+        else:
+            match_quality = "very_low"
+            confidence = 0.1
+
+        self.log.debug(f"🔍 MATCH VALIDATION: '{supplier_product.get('title', 'Unknown')}' vs '{amazon_product.get('title', 'Unknown')}' = {title_overlap_score:.2f} ({match_quality}, {confidence:.1%})")
+        
+        return {"match_quality": match_quality, "confidence": confidence, "title_overlap_score": title_overlap_score}
+
+    def _is_product_meeting_criteria(self, combined_data: Dict[str, Any]) -> bool:
+        """Check if a product meets all defined business criteria."""
+        # This function is now largely redundant as profitability checks are done in the main loop.
+        # However, it can be used for other criteria like sales rank, reviews, etc.
+        amazon_data = combined_data.get("amazon_product_info", {})
+        financials = combined_data.get("financials", {})
+        # Check profitability (already done, but for completeness)
+        is_profitable = financials.get("ROI", 0) > MIN_ROI_PERCENT and financials.get("NetProfit", 0) > MIN_PROFIT_PER_UNIT
+        # Check Amazon listing quality
+        meets_rating = amazon_data.get("rating", 0) >= MIN_RATING
+        meets_reviews = amazon_data.get("reviews", 0) >= MIN_REVIEWS
+        meets_sales_rank = amazon_data.get("sales_rank", MAX_SALES_RANK + 1) <= MAX_SALES_RANK
+        # Check for battery products (using the helper function)
+        is_battery = is_battery_title(amazon_data.get("title", "")) or is_battery_title(combined_data["supplier_product_info"].get("title", ""))
+        # Check for other non-FBA friendly keywords
+        is_non_fba_friendly = any(k in amazon_data.get("title", "").lower() for k in NON_FBA_FRIENDLY_KEYWORDS) or \
+                              any(k in combined_data["supplier_product_info"].get("title", "").lower() for k in NON_FBA_FRIENDLY_KEYWORDS)
+        # All criteria must be met
+        return is_profitable and meets_rating and meets_reviews and meets_sales_rank and not is_battery and not is_non_fba_friendly
+
+    def _apply_batch_synchronization(self, max_products_per_cycle: int, 
+                                   supplier_extraction_batch_size: int,
+                                   batch_sync_config: Dict[str, Any]) -> Tuple[int, int]:
+        """
+        Apply batch synchronization to align all batch sizes consistently.
+        Returns updated max_products_per_cycle and supplier_extraction_batch_size.
+        """
+        target_batch_size = batch_sync_config.get("target_batch_size", 3)
+        synchronize_all = batch_sync_config.get("synchronize_all_batch_sizes", False)
+        validation_config = batch_sync_config.get("validation", {})
+        
+        self.log.info(f"🔄 BATCH SYNCHRONIZATION: Enabled")
+        self.log.info(f"   target_batch_size: {target_batch_size}")
+        self.log.info(f"   synchronize_all_batch_sizes: {synchronize_all}")
+        
+        original_values = {
+            "max_products_per_cycle": max_products_per_cycle,
+            "supplier_extraction_batch_size": supplier_extraction_batch_size,
+            "linking_map_batch_size": self.system_config.get("system", {}).get("linking_map_batch_size", 3),
+            "financial_report_batch_size": self.system_config.get("system", {}).get("financial_report_batch_size", 3)
+        }
+        
+        # Check for mismatched sizes and warn if configured
+        if validation_config.get("warn_on_mismatched_sizes", True):
+            unique_sizes = set(original_values.values())
+            if len(unique_sizes) > 1:
+                self.log.warning(f"⚠️ BATCH SYNC WARNING: Mismatched batch sizes detected: {original_values}")
+                self.log.warning(f"   Unique sizes found: {sorted(unique_sizes)}")
+        
+        if synchronize_all:
+            # Synchronize all batch sizes to target
+            new_max_products_per_cycle = target_batch_size
+            new_supplier_extraction_batch_size = target_batch_size
+            
+            # Also update system config values in memory for consistency
+            if "system" in self.system_config:
+                self.system_config["system"]["max_products_per_cycle"] = target_batch_size
+                self.system_config["system"]["supplier_extraction_batch_size"] = target_batch_size
+                self.system_config["system"]["linking_map_batch_size"] = target_batch_size
+                self.system_config["system"]["financial_report_batch_size"] = target_batch_size
+            
+
+        
+        return new_max_products_per_cycle, new_supplier_extraction_batch_size
+
+
+
+    def _get_cached_products_path(self, category_url: str):
+        """Helper to get the path for a category's product cache file."""
+        category_filename = f"{self.supplier_name}_{category_url.split('/')[-1]}_products.json"
+        cache_dir = os.path.join(self.output_dir, 'CACHE', 'supplier_cache')
+        return os.path.join(cache_dir, category_filename)
+
 
     def _combine_data(self, supplier_data: Dict[str, Any], amazon_data: Dict[str, Any], session_id: str) -> Dict[str, Any]:
         """Combine supplier and Amazon data and calculate financial metrics."""
@@ -4503,188 +3785,8 @@ Return ONLY valid JSON, no additional text."""
         
         return new_max_products_per_cycle, new_supplier_extraction_batch_size
 
-    async def _run_hybrid_processing_mode(self, supplier_url: str, supplier_name: str, 
-                                         category_urls_to_scrape: List[str], 
-                                         max_products_per_category: int, max_products_to_process: int,
-                                         max_analyzed_products: int, max_products_per_cycle: int, 
-                                         supplier_extraction_batch_size: int) -> List[Dict[str, Any]]:
-        """
-        Hybrid processing mode that allows switching between supplier extraction and Amazon analysis.
-        Supports chunked, sequential, and balanced processing modes.
-        """
-        profitable_results: List[Dict[str, Any]] = []
-        full_config = self.config_loader._config
-        hybrid_config = full_config.get("hybrid_processing", {})
-        processing_modes = hybrid_config.get("processing_modes", {})
-        switch_after_categories = hybrid_config.get("switch_to_amazon_after_categories", 10)
-        
-        self.log.info(f"🔄 HYBRID PROCESSING: Mode configuration loaded")
-        self.log.info(f"   switch_to_amazon_after_categories: {switch_after_categories}")
-        
-        if processing_modes.get("chunked", {}).get("enabled", False):
-            # Chunked mode: Alternate between supplier extraction and Amazon analysis
-            chunk_size = processing_modes.get("chunked", {}).get("chunk_size_categories", 10)
-            self.log.info(f"🔄 HYBRID MODE: Chunked processing (chunk size: {chunk_size} categories)")
-            
-            # Process categories in chunks
-            for chunk_start in range(0, len(category_urls_to_scrape), chunk_size):
-                chunk_end = min(chunk_start + chunk_size, len(category_urls_to_scrape))
-                chunk_categories = category_urls_to_scrape[chunk_start:chunk_end]
-                
-                self.log.info(f"🔄 Processing chunk {chunk_start//chunk_size + 1}: categories {chunk_start+1}-{chunk_end}")
-                
-                # Extract from this chunk of categories
-                chunk_products = await self._extract_supplier_products(
-                    supplier_url, supplier_name, chunk_categories, 
-                    max_products_per_category, max_products_to_process, supplier_extraction_batch_size
-                )
-                
-                if chunk_products:
-                    # Immediately analyze these products
-                    # Use the same detailed processing logic as main workflow
-                    chunk_results = await self._process_chunk_with_main_workflow_logic(
-                        chunk_products, max_products_per_cycle
-                    )
-                    profitable_results.extend(chunk_results)
-                    
-                    # Check memory management
-                    memory_config = hybrid_config.get("memory_management", {})
-                    if memory_config.get("clear_cache_between_phases", False):
-                        self.log.info("🧹 Clearing cache between processing phases")
-                        # Add cache clearing logic here if needed
-                
-        elif processing_modes.get("balanced", {}).get("enabled", False):
-            # Balanced mode: Extract in batches, analyze each batch
-            self.log.info(f"🔄 HYBRID MODE: Balanced processing")
-            
-            # Extract all products first
-            all_products = await self._extract_supplier_products(
-                supplier_url, supplier_name, category_urls_to_scrape, 
-                max_products_per_category, max_products_to_process
-            )
-            
-            if all_products:
-                # Process in analysis batches if enabled
-                if processing_modes.get("balanced", {}).get("analysis_after_extraction_batch", True):
-                    batch_size = max_products_per_cycle
-                    for batch_start in range(0, len(all_products), batch_size):
-                        batch_end = min(batch_start + batch_size, len(all_products))
-                        batch_products = all_products[batch_start:batch_end]
-                        
-                        self.log.info(f"🔄 Analyzing batch {batch_start//batch_size + 1}: products {batch_start+1}-{batch_end}")
-                        # Use the same detailed processing logic as main workflow
-                        batch_results = await self._process_chunk_with_main_workflow_logic(
-                            batch_products, max_products_per_cycle
-                        )
-                        profitable_results.extend(batch_results)
-                else:
-                    # Analyze all products at once
-                    # Use the same detailed processing logic as main workflow
-                    profitable_results = await self._process_chunk_with_main_workflow_logic(
-                        all_products, max_products_per_cycle
-                    )
-        else:
-            # Sequential mode (default): Complete supplier extraction, then Amazon analysis
-            self.log.info(f"🔄 HYBRID MODE: Sequential processing (extract all, then analyze all)")
-            
-            # Standard sequential processing - extract all first
-            all_products = await self._extract_supplier_products(
-                supplier_url, supplier_name, category_urls_to_scrape, 
-                max_products_per_category, max_products_to_process
-            )
-            
-            if all_products:
-                profitable_results = await self._analyze_products_batch(
-                    all_products, supplier_name, max_products_per_cycle
-                )
-        
-        return profitable_results
 
-    async def _analyze_products_batch(self, products: List[Dict[str, Any]], 
-                                    supplier_name: str, max_products_per_cycle: int) -> List[Dict[str, Any]]:
-        """Analyze a batch of supplier products for Amazon matching and profitability."""
-        profitable_results = []
-        
-        # Filter and prepare products for analysis
-        valid_products = [
-            p for p in products
-            if p.get("title") and isinstance(p.get("price"), (float, int)) and p.get("price", 0) > 0 and p.get("url")
-        ]
-        
-        price_filtered_products = [
-            p for p in valid_products
-            if MIN_PRICE <= p.get("price", 0) <= MAX_PRICE
-        ]
-        
-        self.log.info(f"🔍 Analyzing {len(price_filtered_products)} products in batch mode")
-        
-        # Process products in cycles
-        batch_size = max_products_per_cycle
-        total_batches = (len(price_filtered_products) + batch_size - 1) // batch_size
-        
-        for batch_num in range(total_batches):
-            start_idx = batch_num * batch_size
-            end_idx = min(start_idx + batch_size, len(price_filtered_products))
-            batch_products = price_filtered_products[start_idx:end_idx]
-            
-            self.log.info(f"🔄 Processing analysis batch {batch_num + 1}/{total_batches} ({len(batch_products)} products)")
-            
-            for i, product_data in enumerate(batch_products):
-                current_index = start_idx + i + 1
-                self.log.info(f"🔍 Analyzing product {current_index}: '{product_data.get('title')}'")
-                
-                # Check if already processed
-                if self.state_manager.is_product_processed(product_data.get("url")):
-                    self.log.info(f"Product already processed: {product_data.get('url')}. Skipping.")
-                    continue
-                
-                # Amazon data extraction and analysis
-                amazon_data = await self._get_amazon_data(product_data)
-                if not amazon_data or "error" in amazon_data:
-                    self.log.warning(f"Could not retrieve Amazon data for '{product_data.get('title')}'")
-                    self.state_manager.mark_product_processed(product_data.get("url"), "failed_amazon_extraction")
-                    continue
-                
-                # Save Amazon cache and create linking map
-                supplier_ean = product_data.get("ean") or product_data.get("barcode")
-                asin = amazon_data.get("asin", "NO_ASIN")
-                
-                # Save Amazon data
-                filename_identifier = supplier_ean if supplier_ean else re.sub(r'[<>:"/\\|?*\s]+', '_', product_data.get("title", "NO_TITLE")[:50])
-                amazon_cache_path = os.path.join(self.amazon_cache_dir, f"amazon_{asin}_{filename_identifier}.json")
-                with open(amazon_cache_path, 'w', encoding='utf-8') as f:
-                    json.dump(amazon_data, f, indent=2, ensure_ascii=False)
-                
-                # Financial analysis
-                try:
-                    from FBA_Financial_calculator import financials as calc_financials
-                    supplier_price = float(product_data.get("price", 0))
-                    supplier_price_inc_vat = supplier_price
-                    current_price = amazon_data.get("current_price", 0)
 
-                    if supplier_price > 0 and current_price > 0:
-                        financials = calc_financials(product_data, amazon_data, supplier_price_inc_vat)
-                        
-                        # Check profitability
-                        if financials.get("ROI", 0) > MIN_ROI_PERCENT and financials.get("NetProfit", 0) > MIN_PROFIT_PER_UNIT:
-                            self.log.info(f"✅ PROFITABLE: ROI {financials['ROI']:.1f}%, Profit £{financials['NetProfit']:.2f}")
-                            
-                            combined_data = self._combine_supplier_amazon_data(product_data, amazon_data, "hybrid_batch")
-                            combined_data["financials"] = financials
-                            profitable_results.append(combined_data)
-                            
-                            self.state_manager.update_success_metrics(True, True, financials.get("NetProfit", 0))
-                            self.state_manager.mark_product_processed(product_data.get("url"), "completed_profitable")
-                        else:
-                            self.log.info(f"Not profitable: ROI {financials.get('ROI', 0):.1f}%, Profit £{financials.get('NetProfit', 0):.2f}")
-                            self.state_manager.update_success_metrics(True, False)
-                            self.state_manager.mark_product_processed(product_data.get("url"), "completed_not_profitable")
-                            
-                except Exception as e:
-                    self.log.error(f"Financial calculation failed: {e}")
-                    self.state_manager.mark_product_processed(product_data.get("url"), "failed_financial_calculation")
-        
-        return profitable_results
 
     def _get_cached_products_path(self, category_url: str):
         """Helper to get the path for a category's product cache file."""
@@ -4692,19 +3794,153 @@ Return ONLY valid JSON, no additional text."""
         cache_dir = os.path.join(self.output_dir, 'CACHE', 'supplier_cache')
         return os.path.join(cache_dir, category_filename)
 
-    def _save_final_report(self, profitable_products: list):
-        """Save the final report of profitable products to a JSON file."""
-        if not profitable_products:
-            self.log.info("No profitable products found in this run.")
-            return
-        output_filename = f"fba_profitable_finds_{self.supplier_name}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
-        output_path = os.path.join(self.output_dir, output_filename)
-        try:
-            with open(output_path, "w", encoding="utf-8") as f:
-                json.dump(profitable_products, f, indent=2, ensure_ascii=False)
-            self.log.info(f"Found {len(profitable_products)} profitable products. Results saved to {output_path}")
-        except Exception as e:
-            self.log.error(f"Error saving final report: {e}")
+
+    def _combine_data(self, supplier_data: Dict[str, Any], amazon_data: Dict[str, Any], session_id: str) -> Dict[str, Any]:
+        """Combine supplier and Amazon data and calculate financial metrics."""
+        combined = {
+            "supplier_product_info": supplier_data,
+            "amazon_product_info": amazon_data,
+            "analysis_timestamp": datetime.now().isoformat(),
+            "session_id": session_id
+        }
+        # Financial calculation is now handled within the main run loop before this function is called
+        # This function is primarily for combining data and adding match validation
+        match_validation = self._validate_product_match(supplier_data, amazon_data)
+        combined["match_validation"] = match_validation
+        return combined
+
+    def _overlap_score(self, title_a: str, title_b: str) -> float:
+        """Calculate word overlap score between two titles"""
+        a = set(re.sub(r'[^\w\s]', ' ', title_a.lower()).split())
+        b = set(re.sub(r'[^\w\s]', ' ', title_b.lower()).split())
+        return len(a & b) / max(1, len(a))
+    
+    def _sanitize_filename(self, title: str) -> str:
+        """Sanitize product title for use in filename"""
+        if not title:
+            return "unknown_title"
+        # Remove or replace problematic characters
+        sanitized = re.sub(r'[^\w\s-]', '', title)
+        sanitized = re.sub(r'\s+', '_', sanitized)
+        return sanitized[:50]  # Limit length to 50 chars
+
+    def _validate_product_match(self, supplier_product: Dict[str, Any], amazon_product: Dict[str, Any]) -> Dict[str, Any]:
+        """Validate the match between supplier and Amazon products using configurable thresholds."""
+        # CRITICAL FIX: Use configurable matching thresholds instead of hardcoded values
+        matching_thresholds = self.system_config.get("performance", {}).get("matching_thresholds", {})
+        
+        # Get configurable thresholds with fallback to more conservative defaults
+        title_similarity_threshold = matching_thresholds.get("title_similarity", 0.25)
+        medium_title_similarity = matching_thresholds.get("medium_title_similarity", 0.5) 
+        high_title_similarity = matching_thresholds.get("high_title_similarity", 0.75)
+        
+        title_overlap_score = self._overlap_score(supplier_product.get("title", ""), amazon_product.get("title", ""))
+
+        match_quality = "low"
+        confidence = 0.0
+        
+        # Use configurable thresholds - much more strict than previous hardcoded values
+        if title_overlap_score >= high_title_similarity:
+            match_quality = "high"
+            confidence = 0.9
+        elif title_overlap_score >= medium_title_similarity:
+            match_quality = "medium"
+            confidence = 0.6
+        elif title_overlap_score >= title_similarity_threshold:
+            match_quality = "low"
+            confidence = 0.3
+        else:
+            match_quality = "very_low"
+            confidence = 0.1
+
+        self.log.debug(f"🔍 MATCH VALIDATION: '{supplier_product.get('title', 'Unknown')}' vs '{amazon_product.get('title', 'Unknown')}' = {title_overlap_score:.2f} ({match_quality}, {confidence:.1%})")
+        
+        return {"match_quality": match_quality, "confidence": confidence, "title_overlap_score": title_overlap_score}
+
+    def _is_product_meeting_criteria(self, combined_data: Dict[str, Any]) -> bool:
+        """Check if a product meets all defined business criteria."""
+        # This function is now largely redundant as profitability checks are done in the main loop.
+        # However, it can be used for other criteria like sales rank, reviews, etc.
+        amazon_data = combined_data.get("amazon_product_info", {})
+        financials = combined_data.get("financials", {})
+        # Check profitability (already done, but for completeness)
+        is_profitable = financials.get("ROI", 0) > MIN_ROI_PERCENT and financials.get("NetProfit", 0) > MIN_PROFIT_PER_UNIT
+        # Check Amazon listing quality
+        meets_rating = amazon_data.get("rating", 0) >= MIN_RATING
+        meets_reviews = amazon_data.get("reviews", 0) >= MIN_REVIEWS
+        meets_sales_rank = amazon_data.get("sales_rank", MAX_SALES_RANK + 1) <= MAX_SALES_RANK
+        # Check for battery products (using the helper function)
+        is_battery = is_battery_title(amazon_data.get("title", "")) or is_battery_title(combined_data["supplier_product_info"].get("title", ""))
+        # Check for other non-FBA friendly keywords
+        is_non_fba_friendly = any(k in amazon_data.get("title", "").lower() for k in NON_FBA_FRIENDLY_KEYWORDS) or \
+                              any(k in combined_data["supplier_product_info"].get("title", "").lower() for k in NON_FBA_FRIENDLY_KEYWORDS)
+        # All criteria must be met
+        return is_profitable and meets_rating and meets_reviews and meets_sales_rank and not is_battery and not is_non_fba_friendly
+
+    def _apply_batch_synchronization(self, max_products_per_cycle: int, 
+                                   supplier_extraction_batch_size: int,
+                                   batch_sync_config: Dict[str, Any]) -> Tuple[int, int]:
+        """
+        Apply batch synchronization to align all batch sizes consistently.
+        Returns updated max_products_per_cycle and supplier_extraction_batch_size.
+        """
+        target_batch_size = batch_sync_config.get("target_batch_size", 3)
+        synchronize_all = batch_sync_config.get("synchronize_all_batch_sizes", False)
+        validation_config = batch_sync_config.get("validation", {})
+
+        
+        self.log.info(f"🔄 BATCH SYNCHRONIZATION: Enabled")
+        self.log.info(f"   target_batch_size: {target_batch_size}")
+        self.log.info(f"   synchronize_all_batch_sizes: {synchronize_all}")
+        
+        original_values = {
+            "max_products_per_cycle": max_products_per_cycle,
+            "supplier_extraction_batch_size": supplier_extraction_batch_size,
+            "linking_map_batch_size": self.system_config.get("system", {}).get("linking_map_batch_size", 3),
+            "financial_report_batch_size": self.system_config.get("system", {}).get("financial_report_batch_size", 3)
+        }
+        
+        # Check for mismatched sizes and warn if configured
+        if validation_config.get("warn_on_mismatched_sizes", True):
+            unique_sizes = set(original_values.values())
+            if len(unique_sizes) > 1:
+                self.log.warning(f"⚠️ BATCH SYNC WARNING: Mismatched batch sizes detected: {original_values}")
+                self.log.warning(f"   Unique sizes found: {sorted(unique_sizes)}")
+        
+        if synchronize_all:
+            # Synchronize all batch sizes to target
+            new_max_products_per_cycle = target_batch_size
+            new_supplier_extraction_batch_size = target_batch_size
+            
+            # Also update system config values in memory for consistency
+            if "system" in self.system_config:
+                self.system_config["system"]["max_products_per_cycle"] = target_batch_size
+                self.system_config["system"]["supplier_extraction_batch_size"] = target_batch_size
+                self.system_config["system"]["linking_map_batch_size"] = target_batch_size
+                self.system_config["system"]["financial_report_batch_size"] = target_batch_size
+            
+            self.log.info(f"✅ BATCH SYNC: All batch sizes synchronized to {target_batch_size}")
+            self.log.info(f"   Updated values: max_products_per_cycle={new_max_products_per_cycle}, supplier_extraction_batch_size={new_supplier_extraction_batch_size}")
+            
+        else:
+            # Only synchronize the two main processing batch sizes
+            new_max_products_per_cycle = target_batch_size
+            new_supplier_extraction_batch_size = target_batch_size
+            
+            self.log.info(f"✅ BATCH SYNC: Main processing batch sizes synchronized to {target_batch_size}")
+            self.log.info(f"   Updated values: max_products_per_cycle={new_max_products_per_cycle}, supplier_extraction_batch_size={new_supplier_extraction_batch_size}")
+        
+        return new_max_products_per_cycle, new_supplier_extraction_batch_size
+
+
+
+    def _get_cached_products_path(self, category_url: str):
+        """Helper to get the path for a category's product cache file."""
+        category_filename = f"{self.supplier_name}_{category_url.split('/')[-1]}_products.json"
+        cache_dir = os.path.join(self.output_dir, 'CACHE', 'supplier_cache')
+        return os.path.join(cache_dir, category_filename)
+
+
 
     def _combine_data(self, supplier_data: Dict[str, Any], amazon_data: Dict[str, Any], session_id: str) -> Dict[str, Any]:
         """Combine supplier and Amazon data and calculate financial metrics."""
@@ -4842,188 +4078,7 @@ Return ONLY valid JSON, no additional text."""
         
         return new_max_products_per_cycle, new_supplier_extraction_batch_size
 
-    async def _run_hybrid_processing_mode(self, supplier_url: str, supplier_name: str, 
-                                         category_urls_to_scrape: List[str], 
-                                         max_products_per_category: int, max_products_to_process: int,
-                                         max_analyzed_products: int, max_products_per_cycle: int, 
-                                         supplier_extraction_batch_size: int) -> List[Dict[str, Any]]:
-        """
-        Hybrid processing mode that allows switching between supplier extraction and Amazon analysis.
-        Supports chunked, sequential, and balanced processing modes.
-        """
-        profitable_results: List[Dict[str, Any]] = []
-        full_config = self.config_loader._config
-        hybrid_config = full_config.get("hybrid_processing", {})
-        processing_modes = hybrid_config.get("processing_modes", {})
-        switch_after_categories = hybrid_config.get("switch_to_amazon_after_categories", 10)
-        
-        self.log.info(f"🔄 HYBRID PROCESSING: Mode configuration loaded")
-        self.log.info(f"   switch_to_amazon_after_categories: {switch_after_categories}")
-        
-        if processing_modes.get("chunked", {}).get("enabled", False):
-            # Chunked mode: Alternate between supplier extraction and Amazon analysis
-            chunk_size = processing_modes.get("chunked", {}).get("chunk_size_categories", 10)
-            self.log.info(f"🔄 HYBRID MODE: Chunked processing (chunk size: {chunk_size} categories)")
-            
-            # Process categories in chunks
-            for chunk_start in range(0, len(category_urls_to_scrape), chunk_size):
-                chunk_end = min(chunk_start + chunk_size, len(category_urls_to_scrape))
-                chunk_categories = category_urls_to_scrape[chunk_start:chunk_end]
-                
-                self.log.info(f"🔄 Processing chunk {chunk_start//chunk_size + 1}: categories {chunk_start+1}-{chunk_end}")
-                
-                # Extract from this chunk of categories
-                chunk_products = await self._extract_supplier_products(
-                    supplier_url, supplier_name, chunk_categories, 
-                    max_products_per_category, max_products_to_process, supplier_extraction_batch_size
-                )
-                
-                if chunk_products:
-                    # Immediately analyze these products
-                    # Use the same detailed processing logic as main workflow
-                    chunk_results = await self._process_chunk_with_main_workflow_logic(
-                        chunk_products, max_products_per_cycle
-                    )
-                    profitable_results.extend(chunk_results)
-                    
-                    # Check memory management
-                    memory_config = hybrid_config.get("memory_management", {})
-                    if memory_config.get("clear_cache_between_phases", False):
-                        self.log.info("🧹 Clearing cache between processing phases")
-                        # Add cache clearing logic here if needed
-                
-        elif processing_modes.get("balanced", {}).get("enabled", False):
-            # Balanced mode: Extract in batches, analyze each batch
-            self.log.info(f"🔄 HYBRID MODE: Balanced processing")
-            
-            # Extract all products first
-            all_products = await self._extract_supplier_products(
-                supplier_url, supplier_name, category_urls_to_scrape, 
-                max_products_per_category, max_products_to_process
-            )
-            
-            if all_products:
-                # Process in analysis batches if enabled
-                if processing_modes.get("balanced", {}).get("analysis_after_extraction_batch", True):
-                    batch_size = max_products_per_cycle
-                    for batch_start in range(0, len(all_products), batch_size):
-                        batch_end = min(batch_start + batch_size, len(all_products))
-                        batch_products = all_products[batch_start:batch_end]
-                        
-                        self.log.info(f"🔄 Analyzing batch {batch_start//batch_size + 1}: products {batch_start+1}-{batch_end}")
-                        # Use the same detailed processing logic as main workflow
-                        batch_results = await self._process_chunk_with_main_workflow_logic(
-                            batch_products, max_products_per_cycle
-                        )
-                        profitable_results.extend(batch_results)
-                else:
-                    # Analyze all products at once
-                    # Use the same detailed processing logic as main workflow
-                    profitable_results = await self._process_chunk_with_main_workflow_logic(
-                        all_products, max_products_per_cycle
-                    )
-        else:
-            # Sequential mode (default): Complete supplier extraction, then Amazon analysis
-            self.log.info(f"🔄 HYBRID MODE: Sequential processing (extract all, then analyze all)")
-            
-            # Standard sequential processing - extract all first
-            all_products = await self._extract_supplier_products(
-                supplier_url, supplier_name, category_urls_to_scrape, 
-                max_products_per_category, max_products_to_process
-            )
-            
-            if all_products:
-                profitable_results = await self._analyze_products_batch(
-                    all_products, supplier_name, max_products_per_cycle
-                )
-        
-        return profitable_results
 
-    async def _analyze_products_batch(self, products: List[Dict[str, Any]], 
-                                    supplier_name: str, max_products_per_cycle: int) -> List[Dict[str, Any]]:
-        """Analyze a batch of supplier products for Amazon matching and profitability."""
-        profitable_results = []
-        
-        # Filter and prepare products for analysis
-        valid_products = [
-            p for p in products
-            if p.get("title") and isinstance(p.get("price"), (float, int)) and p.get("price", 0) > 0 and p.get("url")
-        ]
-        
-        price_filtered_products = [
-            p for p in valid_products
-            if MIN_PRICE <= p.get("price", 0) <= MAX_PRICE
-        ]
-        
-        self.log.info(f"🔍 Analyzing {len(price_filtered_products)} products in batch mode")
-        
-        # Process products in cycles
-        batch_size = max_products_per_cycle
-        total_batches = (len(price_filtered_products) + batch_size - 1) // batch_size
-        
-        for batch_num in range(total_batches):
-            start_idx = batch_num * batch_size
-            end_idx = min(start_idx + batch_size, len(price_filtered_products))
-            batch_products = price_filtered_products[start_idx:end_idx]
-            
-            self.log.info(f"🔄 Processing analysis batch {batch_num + 1}/{total_batches} ({len(batch_products)} products)")
-            
-            for i, product_data in enumerate(batch_products):
-                current_index = start_idx + i + 1
-                self.log.info(f"🔍 Analyzing product {current_index}: '{product_data.get('title')}'")
-                
-                # Check if already processed
-                if self.state_manager.is_product_processed(product_data.get("url")):
-                    self.log.info(f"Product already processed: {product_data.get('url')}. Skipping.")
-                    continue
-                
-                # Amazon data extraction and analysis
-                amazon_data = await self._get_amazon_data(product_data)
-                if not amazon_data or "error" in amazon_data:
-                    self.log.warning(f"Could not retrieve Amazon data for '{product_data.get('title')}'")
-                    self.state_manager.mark_product_processed(product_data.get("url"), "failed_amazon_extraction")
-                    continue
-                
-                # Save Amazon cache and create linking map
-                supplier_ean = product_data.get("ean") or product_data.get("barcode")
-                asin = amazon_data.get("asin", "NO_ASIN")
-                
-                # Save Amazon data
-                filename_identifier = supplier_ean if supplier_ean else re.sub(r'[<>:"/\\|?*\s]+', '_', product_data.get("title", "NO_TITLE")[:50])
-                amazon_cache_path = os.path.join(self.amazon_cache_dir, f"amazon_{asin}_{filename_identifier}.json")
-                with open(amazon_cache_path, 'w', encoding='utf-8') as f:
-                    json.dump(amazon_data, f, indent=2, ensure_ascii=False)
-                
-                # Financial analysis
-                try:
-                    from FBA_Financial_calculator import financials as calc_financials
-                    supplier_price = float(product_data.get("price", 0))
-                    supplier_price_inc_vat = supplier_price
-                    current_price = amazon_data.get("current_price", 0)
-
-                    if supplier_price > 0 and current_price > 0:
-                        financials = calc_financials(product_data, amazon_data, supplier_price_inc_vat)
-                        
-                        # Check profitability
-                        if financials.get("ROI", 0) > MIN_ROI_PERCENT and financials.get("NetProfit", 0) > MIN_PROFIT_PER_UNIT:
-                            self.log.info(f"✅ PROFITABLE: ROI {financials['ROI']:.1f}%, Profit £{financials['NetProfit']:.2f}")
-                            
-                            combined_data = self._combine_supplier_amazon_data(product_data, amazon_data, "hybrid_batch")
-                            combined_data["financials"] = financials
-                            profitable_results.append(combined_data)
-                            
-                            self.state_manager.update_success_metrics(True, True, financials.get("NetProfit", 0))
-                            self.state_manager.mark_product_processed(product_data.get("url"), "completed_profitable")
-                        else:
-                            self.log.info(f"Not profitable: ROI {financials.get('ROI', 0):.1f}%, Profit £{financials.get('NetProfit', 0):.2f}")
-                            self.state_manager.update_success_metrics(True, False)
-                            self.state_manager.mark_product_processed(product_data.get("url"), "completed_not_profitable")
-                            
-                except Exception as e:
-                    self.log.error(f"Financial calculation failed: {e}")
-                    self.state_manager.mark_product_processed(product_data.get("url"), "failed_financial_calculation")
-        
-        return profitable_results
 
     def _get_cached_products_path(self, category_url: str):
         """Helper to get the path for a category's product cache file."""
@@ -5036,686 +4091,9 @@ Return ONLY valid JSON, no additional text."""
         if not profitable_products:
             self.log.info("No profitable products found in this run.")
             return
+        from utils.path_manager import path_manager
         output_filename = f"fba_profitable_finds_{self.supplier_name}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
-        output_path = os.path.join(self.output_dir, output_filename)
-        try:
-            with open(output_path, "w", encoding="utf-8") as f:
-                json.dump(profitable_products, f, indent=2, ensure_ascii=False)
-            self.log.info(f"Found {len(profitable_products)} profitable products. Results saved to {output_path}")
-        except Exception as e:
-            self.log.error(f"Error saving final report: {e}")
-
-    def _combine_data(self, supplier_data: Dict[str, Any], amazon_data: Dict[str, Any], session_id: str) -> Dict[str, Any]:
-        """Combine supplier and Amazon data and calculate financial metrics."""
-        combined = {
-            "supplier_product_info": supplier_data,
-            "amazon_product_info": amazon_data,
-            "analysis_timestamp": datetime.now().isoformat(),
-            "session_id": session_id
-        }
-        # Financial calculation is now handled within the main run loop before this function is called
-        # This function is primarily for combining data and adding match validation
-        match_validation = self._validate_product_match(supplier_data, amazon_data)
-        combined["match_validation"] = match_validation
-        return combined
-
-    def _overlap_score(self, title_a: str, title_b: str) -> float:
-        """Calculate word overlap score between two titles"""
-        a = set(re.sub(r'[^\w\s]', ' ', title_a.lower()).split())
-        b = set(re.sub(r'[^\w\s]', ' ', title_b.lower()).split())
-        return len(a & b) / max(1, len(a))
-    
-    def _sanitize_filename(self, title: str) -> str:
-        """Sanitize product title for use in filename"""
-        if not title:
-            return "unknown_title"
-        # Remove or replace problematic characters
-        sanitized = re.sub(r'[^\w\s-]', '', title)
-        sanitized = re.sub(r'\s+', '_', sanitized)
-        return sanitized[:50]  # Limit length to 50 chars
-
-    def _validate_product_match(self, supplier_product: Dict[str, Any], amazon_product: Dict[str, Any]) -> Dict[str, Any]:
-        """Validate the match between supplier and Amazon products using configurable thresholds."""
-        # CRITICAL FIX: Use configurable matching thresholds instead of hardcoded values
-        matching_thresholds = self.system_config.get("performance", {}).get("matching_thresholds", {})
-        
-        # Get configurable thresholds with fallback to more conservative defaults
-        title_similarity_threshold = matching_thresholds.get("title_similarity", 0.25)
-        medium_title_similarity = matching_thresholds.get("medium_title_similarity", 0.5) 
-        high_title_similarity = matching_thresholds.get("high_title_similarity", 0.75)
-        
-        title_overlap_score = self._overlap_score(supplier_product.get("title", ""), amazon_product.get("title", ""))
-
-        match_quality = "low"
-        confidence = 0.0
-        
-        # Use configurable thresholds - much more strict than previous hardcoded values
-        if title_overlap_score >= high_title_similarity:
-            match_quality = "high"
-            confidence = 0.9
-        elif title_overlap_score >= medium_title_similarity:
-            match_quality = "medium"
-            confidence = 0.6
-        elif title_overlap_score >= title_similarity_threshold:
-            match_quality = "low"
-            confidence = 0.3
-        else:
-            match_quality = "very_low"
-            confidence = 0.1
-
-        self.log.debug(f"🔍 MATCH VALIDATION: '{supplier_product.get('title', 'Unknown')}' vs '{amazon_product.get('title', 'Unknown')}' = {title_overlap_score:.2f} ({match_quality}, {confidence:.1%})")
-        
-        return {"match_quality": match_quality, "confidence": confidence, "title_overlap_score": title_overlap_score}
-
-    def _is_product_meeting_criteria(self, combined_data: Dict[str, Any]) -> bool:
-        """Check if a product meets all defined business criteria."""
-        # This function is now largely redundant as profitability checks are done in the main loop.
-        # However, it can be used for other criteria like sales rank, reviews, etc.
-        amazon_data = combined_data.get("amazon_product_info", {})
-        financials = combined_data.get("financials", {})
-        # Check profitability (already done, but for completeness)
-        is_profitable = financials.get("ROI", 0) > MIN_ROI_PERCENT and financials.get("NetProfit", 0) > MIN_PROFIT_PER_UNIT
-        # Check Amazon listing quality
-        meets_rating = amazon_data.get("rating", 0) >= MIN_RATING
-        meets_reviews = amazon_data.get("reviews", 0) >= MIN_REVIEWS
-        meets_sales_rank = amazon_data.get("sales_rank", MAX_SALES_RANK + 1) <= MAX_SALES_RANK
-        # Check for battery products (using the helper function)
-        is_battery = is_battery_title(amazon_data.get("title", "")) or is_battery_title(combined_data["supplier_product_info"].get("title", ""))
-        # Check for other non-FBA friendly keywords
-        is_non_fba_friendly = any(k in amazon_data.get("title", "").lower() for k in NON_FBA_FRIENDLY_KEYWORDS) or \
-                              any(k in combined_data["supplier_product_info"].get("title", "").lower() for k in NON_FBA_FRIENDLY_KEYWORDS)
-        # All criteria must be met
-        return is_profitable and meets_rating and meets_reviews and meets_sales_rank and not is_battery and not is_non_fba_friendly
-
-    def _apply_batch_synchronization(self, max_products_per_cycle: int, 
-                                   supplier_extraction_batch_size: int,
-                                   batch_sync_config: Dict[str, Any]) -> Tuple[int, int]:
-        """
-        Apply batch synchronization to align all batch sizes consistently.
-        Returns updated max_products_per_cycle and supplier_extraction_batch_size.
-        """
-        target_batch_size = batch_sync_config.get("target_batch_size", 3)
-        synchronize_all = batch_sync_config.get("synchronize_all_batch_sizes", False)
-        validation_config = batch_sync_config.get("validation", {})
-        
-        self.log.info(f"🔄 BATCH SYNCHRONIZATION: Enabled")
-        self.log.info(f"   target_batch_size: {target_batch_size}")
-        self.log.info(f"   synchronize_all_batch_sizes: {synchronize_all}")
-        
-        original_values = {
-            "max_products_per_cycle": max_products_per_cycle,
-            "supplier_extraction_batch_size": supplier_extraction_batch_size,
-            "linking_map_batch_size": self.system_config.get("system", {}).get("linking_map_batch_size", 3),
-            "financial_report_batch_size": self.system_config.get("system", {}).get("financial_report_batch_size", 3)
-        }
-        
-        # Check for mismatched sizes and warn if configured
-        if validation_config.get("warn_on_mismatched_sizes", True):
-            unique_sizes = set(original_values.values())
-            if len(unique_sizes) > 1:
-                self.log.warning(f"⚠️ BATCH SYNC WARNING: Mismatched batch sizes detected: {original_values}")
-                self.log.warning(f"   Unique sizes found: {sorted(unique_sizes)}")
-        
-        if synchronize_all:
-            # Synchronize all batch sizes to target
-            new_max_products_per_cycle = target_batch_size
-            new_supplier_extraction_batch_size = target_batch_size
-            
-            # Also update system config values in memory for consistency
-            if "system" in self.system_config:
-                self.system_config["system"]["max_products_per_cycle"] = target_batch_size
-                self.system_config["system"]["supplier_extraction_batch_size"] = target_batch_size
-                self.system_config["system"]["linking_map_batch_size"] = target_batch_size
-                self.system_config["system"]["financial_report_batch_size"] = target_batch_size
-            
-            self.log.info(f"✅ BATCH SYNC: All batch sizes synchronized to {target_batch_size}")
-            self.log.info(f"   Updated values: max_products_per_cycle={new_max_products_per_cycle}, supplier_extraction_batch_size={new_supplier_extraction_batch_size}")
-            
-        else:
-            # Only synchronize the two main processing batch sizes
-            new_max_products_per_cycle = target_batch_size
-            new_supplier_extraction_batch_size = target_batch_size
-            
-            self.log.info(f"✅ BATCH SYNC: Main processing batch sizes synchronized to {target_batch_size}")
-            self.log.info(f"   Updated values: max_products_per_cycle={new_max_products_per_cycle}, supplier_extraction_batch_size={new_supplier_extraction_batch_size}")
-        
-        return new_max_products_per_cycle, new_supplier_extraction_batch_size
-
-    async def _run_hybrid_processing_mode(self, supplier_url: str, supplier_name: str, 
-                                         category_urls_to_scrape: List[str], 
-                                         max_products_per_category: int, max_products_to_process: int,
-                                         max_analyzed_products: int, max_products_per_cycle: int, 
-                                         supplier_extraction_batch_size: int) -> List[Dict[str, Any]]:
-        """
-        Hybrid processing mode that allows switching between supplier extraction and Amazon analysis.
-        Supports chunked, sequential, and balanced processing modes.
-        """
-        profitable_results: List[Dict[str, Any]] = []
-        full_config = self.config_loader._config
-        hybrid_config = full_config.get("hybrid_processing", {})
-        processing_modes = hybrid_config.get("processing_modes", {})
-        switch_after_categories = hybrid_config.get("switch_to_amazon_after_categories", 10)
-        
-        self.log.info(f"🔄 HYBRID PROCESSING: Mode configuration loaded")
-        self.log.info(f"   switch_to_amazon_after_categories: {switch_after_categories}")
-        
-        if processing_modes.get("chunked", {}).get("enabled", False):
-            # Chunked mode: Alternate between supplier extraction and Amazon analysis
-            chunk_size = processing_modes.get("chunked", {}).get("chunk_size_categories", 10)
-            self.log.info(f"🔄 HYBRID MODE: Chunked processing (chunk size: {chunk_size} categories)")
-            
-            # Process categories in chunks
-            for chunk_start in range(0, len(category_urls_to_scrape), chunk_size):
-                chunk_end = min(chunk_start + chunk_size, len(category_urls_to_scrape))
-                chunk_categories = category_urls_to_scrape[chunk_start:chunk_end]
-                
-                self.log.info(f"🔄 Processing chunk {chunk_start//chunk_size + 1}: categories {chunk_start+1}-{chunk_end}")
-                
-                # Extract from this chunk of categories
-                chunk_products = await self._extract_supplier_products(
-                    supplier_url, supplier_name, chunk_categories, 
-                    max_products_per_category, max_products_to_process, supplier_extraction_batch_size
-                )
-                
-                if chunk_products:
-                    # Immediately analyze these products
-                    # Use the same detailed processing logic as main workflow
-                    chunk_results = await self._process_chunk_with_main_workflow_logic(
-                        chunk_products, max_products_per_cycle
-                    )
-                    profitable_results.extend(chunk_results)
-                    
-                    # Check memory management
-                    memory_config = hybrid_config.get("memory_management", {})
-                    if memory_config.get("clear_cache_between_phases", False):
-                        self.log.info("🧹 Clearing cache between processing phases")
-                        # Add cache clearing logic here if needed
-                
-        elif processing_modes.get("balanced", {}).get("enabled", False):
-            # Balanced mode: Extract in batches, analyze each batch
-            self.log.info(f"🔄 HYBRID MODE: Balanced processing")
-            
-            # Extract all products first
-            all_products = await self._extract_supplier_products(
-                supplier_url, supplier_name, category_urls_to_scrape, 
-                max_products_per_category, max_products_to_process
-            )
-            
-            if all_products:
-                # Process in analysis batches if enabled
-                if processing_modes.get("balanced", {}).get("analysis_after_extraction_batch", True):
-                    batch_size = max_products_per_cycle
-                    for batch_start in range(0, len(all_products), batch_size):
-                        batch_end = min(batch_start + batch_size, len(all_products))
-                        batch_products = all_products[batch_start:batch_end]
-                        
-                        self.log.info(f"🔄 Analyzing batch {batch_start//batch_size + 1}: products {batch_start+1}-{batch_end}")
-                        # Use the same detailed processing logic as main workflow
-                        batch_results = await self._process_chunk_with_main_workflow_logic(
-                            batch_products, max_products_per_cycle
-                        )
-                        profitable_results.extend(batch_results)
-                else:
-                    # Analyze all products at once
-                    # Use the same detailed processing logic as main workflow
-                    profitable_results = await self._process_chunk_with_main_workflow_logic(
-                        all_products, max_products_per_cycle
-                    )
-        else:
-            # Sequential mode (default): Complete supplier extraction, then Amazon analysis
-            self.log.info(f"🔄 HYBRID MODE: Sequential processing (extract all, then analyze all)")
-            
-            # Standard sequential processing - extract all first
-            all_products = await self._extract_supplier_products(
-                supplier_url, supplier_name, category_urls_to_scrape, 
-                max_products_per_category, max_products_to_process
-            )
-            
-            if all_products:
-                profitable_results = await self._analyze_products_batch(
-                    all_products, supplier_name, max_products_per_cycle
-                )
-        
-        return profitable_results
-
-    async def _analyze_products_batch(self, products: List[Dict[str, Any]], 
-                                    supplier_name: str, max_products_per_cycle: int) -> List[Dict[str, Any]]:
-        """Analyze a batch of supplier products for Amazon matching and profitability."""
-        profitable_results = []
-        
-        # Filter and prepare products for analysis
-        valid_products = [
-            p for p in products
-            if p.get("title") and isinstance(p.get("price"), (float, int)) and p.get("price", 0) > 0 and p.get("url")
-        ]
-        
-        price_filtered_products = [
-            p for p in valid_products
-            if MIN_PRICE <= p.get("price", 0) <= MAX_PRICE
-        ]
-        
-        self.log.info(f"🔍 Analyzing {len(price_filtered_products)} products in batch mode")
-        
-        # Process products in cycles
-        batch_size = max_products_per_cycle
-        total_batches = (len(price_filtered_products) + batch_size - 1) // batch_size
-        
-        for batch_num in range(total_batches):
-            start_idx = batch_num * batch_size
-            end_idx = min(start_idx + batch_size, len(price_filtered_products))
-            batch_products = price_filtered_products[start_idx:end_idx]
-            
-            self.log.info(f"🔄 Processing analysis batch {batch_num + 1}/{total_batches} ({len(batch_products)} products)")
-            
-            for i, product_data in enumerate(batch_products):
-                current_index = start_idx + i + 1
-                self.log.info(f"🔍 Analyzing product {current_index}: '{product_data.get('title')}'")
-                
-                # Check if already processed
-                if self.state_manager.is_product_processed(product_data.get("url")):
-                    self.log.info(f"Product already processed: {product_data.get('url')}. Skipping.")
-                    continue
-                
-                # Amazon data extraction and analysis
-                amazon_data = await self._get_amazon_data(product_data)
-                if not amazon_data or "error" in amazon_data:
-                    self.log.warning(f"Could not retrieve Amazon data for '{product_data.get('title')}'")
-                    self.state_manager.mark_product_processed(product_data.get("url"), "failed_amazon_extraction")
-                    continue
-                
-                # Save Amazon cache and create linking map
-                supplier_ean = product_data.get("ean") or product_data.get("barcode")
-                asin = amazon_data.get("asin", "NO_ASIN")
-                
-                # Save Amazon data
-                filename_identifier = supplier_ean if supplier_ean else re.sub(r'[<>:"/\\|?*\s]+', '_', product_data.get("title", "NO_TITLE")[:50])
-                amazon_cache_path = os.path.join(self.amazon_cache_dir, f"amazon_{asin}_{filename_identifier}.json")
-                with open(amazon_cache_path, 'w', encoding='utf-8') as f:
-                    json.dump(amazon_data, f, indent=2, ensure_ascii=False)
-                
-                # Financial analysis
-                try:
-                    from FBA_Financial_calculator import financials as calc_financials
-                    supplier_price = float(product_data.get("price", 0))
-                    supplier_price_inc_vat = supplier_price
-                    current_price = amazon_data.get("current_price", 0)
-
-                    if supplier_price > 0 and current_price > 0:
-                        financials = calc_financials(product_data, amazon_data, supplier_price_inc_vat)
-                        
-                        # Check profitability
-                        if financials.get("ROI", 0) > MIN_ROI_PERCENT and financials.get("NetProfit", 0) > MIN_PROFIT_PER_UNIT:
-                            self.log.info(f"✅ PROFITABLE: ROI {financials['ROI']:.1f}%, Profit £{financials['NetProfit']:.2f}")
-                            
-                            combined_data = self._combine_supplier_amazon_data(product_data, amazon_data, "hybrid_batch")
-                            combined_data["financials"] = financials
-                            profitable_results.append(combined_data)
-                            
-                            self.state_manager.update_success_metrics(True, True, financials.get("NetProfit", 0))
-                            self.state_manager.mark_product_processed(product_data.get("url"), "completed_profitable")
-                        else:
-                            self.log.info(f"Not profitable: ROI {financials.get('ROI', 0):.1f}%, Profit £{financials.get('NetProfit', 0):.2f}")
-                            self.state_manager.update_success_metrics(True, False)
-                            self.state_manager.mark_product_processed(product_data.get("url"), "completed_not_profitable")
-                            
-                except Exception as e:
-                    self.log.error(f"Financial calculation failed: {e}")
-                    self.state_manager.mark_product_processed(product_data.get("url"), "failed_financial_calculation")
-        
-        return profitable_results
-
-    def _get_cached_products_path(self, category_url: str):
-        """Helper to get the path for a category's product cache file."""
-        category_filename = f"{self.supplier_name}_{category_url.split('/')[-1]}_products.json"
-        cache_dir = os.path.join(self.output_dir, 'CACHE', 'supplier_cache')
-        return os.path.join(cache_dir, category_filename)
-
-    def _save_final_report(self, profitable_products: list):
-        """Save the final report of profitable products to a JSON file."""
-        if not profitable_products:
-            self.log.info("No profitable products found in this run.")
-            return
-        output_filename = f"fba_profitable_finds_{self.supplier_name}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
-        output_path = os.path.join(self.output_dir, output_filename)
-        try:
-            with open(output_path, "w", encoding="utf-8") as f:
-                json.dump(profitable_products, f, indent=2, ensure_ascii=False)
-            self.log.info(f"Found {len(profitable_products)} profitable products. Results saved to {output_path}")
-        except Exception as e:
-            self.log.error(f"Error saving final report: {e}")
-
-    def _combine_data(self, supplier_data: Dict[str, Any], amazon_data: Dict[str, Any], session_id: str) -> Dict[str, Any]:
-        """Combine supplier and Amazon data and calculate financial metrics."""
-        combined = {
-            "supplier_product_info": supplier_data,
-            "amazon_product_info": amazon_data,
-            "analysis_timestamp": datetime.now().isoformat(),
-            "session_id": session_id
-        }
-        # Financial calculation is now handled within the main run loop before this function is called
-        # This function is primarily for combining data and adding match validation
-        match_validation = self._validate_product_match(supplier_data, amazon_data)
-        combined["match_validation"] = match_validation
-        return combined
-
-    def _overlap_score(self, title_a: str, title_b: str) -> float:
-        """Calculate word overlap score between two titles"""
-        a = set(re.sub(r'[^\w\s]', ' ', title_a.lower()).split())
-        b = set(re.sub(r'[^\w\s]', ' ', title_b.lower()).split())
-        return len(a & b) / max(1, len(a))
-    
-    def _sanitize_filename(self, title: str) -> str:
-        """Sanitize product title for use in filename"""
-        if not title:
-            return "unknown_title"
-        # Remove or replace problematic characters
-        sanitized = re.sub(r'[^\w\s-]', '', title)
-        sanitized = re.sub(r'\s+', '_', sanitized)
-        return sanitized[:50]  # Limit length to 50 chars
-
-    def _validate_product_match(self, supplier_product: Dict[str, Any], amazon_product: Dict[str, Any]) -> Dict[str, Any]:
-        """Validate the match between supplier and Amazon products using configurable thresholds."""
-        # CRITICAL FIX: Use configurable matching thresholds instead of hardcoded values
-        matching_thresholds = self.system_config.get("performance", {}).get("matching_thresholds", {})
-        
-        # Get configurable thresholds with fallback to more conservative defaults
-        title_similarity_threshold = matching_thresholds.get("title_similarity", 0.25)
-        medium_title_similarity = matching_thresholds.get("medium_title_similarity", 0.5) 
-        high_title_similarity = matching_thresholds.get("high_title_similarity", 0.75)
-        
-        title_overlap_score = self._overlap_score(supplier_product.get("title", ""), amazon_product.get("title", ""))
-
-        match_quality = "low"
-        confidence = 0.0
-        
-        # Use configurable thresholds - much more strict than previous hardcoded values
-        if title_overlap_score >= high_title_similarity:
-            match_quality = "high"
-            confidence = 0.9
-        elif title_overlap_score >= medium_title_similarity:
-            match_quality = "medium"
-            confidence = 0.6
-        elif title_overlap_score >= title_similarity_threshold:
-            match_quality = "low"
-            confidence = 0.3
-        else:
-            match_quality = "very_low"
-            confidence = 0.1
-
-        self.log.debug(f"🔍 MATCH VALIDATION: '{supplier_product.get('title', 'Unknown')}' vs '{amazon_product.get('title', 'Unknown')}' = {title_overlap_score:.2f} ({match_quality}, {confidence:.1%})")
-        
-        return {"match_quality": match_quality, "confidence": confidence, "title_overlap_score": title_overlap_score}
-
-    def _is_product_meeting_criteria(self, combined_data: Dict[str, Any]) -> bool:
-        """Check if a product meets all defined business criteria."""
-        # This function is now largely redundant as profitability checks are done in the main loop.
-        # However, it can be used for other criteria like sales rank, reviews, etc.
-        amazon_data = combined_data.get("amazon_product_info", {})
-        financials = combined_data.get("financials", {})
-        # Check profitability (already done, but for completeness)
-        is_profitable = financials.get("ROI", 0) > MIN_ROI_PERCENT and financials.get("NetProfit", 0) > MIN_PROFIT_PER_UNIT
-        # Check Amazon listing quality
-        meets_rating = amazon_data.get("rating", 0) >= MIN_RATING
-        meets_reviews = amazon_data.get("reviews", 0) >= MIN_REVIEWS
-        meets_sales_rank = amazon_data.get("sales_rank", MAX_SALES_RANK + 1) <= MAX_SALES_RANK
-        # Check for battery products (using the helper function)
-        is_battery = is_battery_title(amazon_data.get("title", "")) or is_battery_title(combined_data["supplier_product_info"].get("title", ""))
-        # Check for other non-FBA friendly keywords
-        is_non_fba_friendly = any(k in amazon_data.get("title", "").lower() for k in NON_FBA_FRIENDLY_KEYWORDS) or \
-                              any(k in combined_data["supplier_product_info"].get("title", "").lower() for k in NON_FBA_FRIENDLY_KEYWORDS)
-        # All criteria must be met
-        return is_profitable and meets_rating and meets_reviews and meets_sales_rank and not is_battery and not is_non_fba_friendly
-
-    def _apply_batch_synchronization(self, max_products_per_cycle: int, 
-                                   supplier_extraction_batch_size: int,
-                                   batch_sync_config: Dict[str, Any]) -> Tuple[int, int]:
-        """
-        Apply batch synchronization to align all batch sizes consistently.
-        Returns updated max_products_per_cycle and supplier_extraction_batch_size.
-        """
-        target_batch_size = batch_sync_config.get("target_batch_size", 3)
-        synchronize_all = batch_sync_config.get("synchronize_all_batch_sizes", False)
-        validation_config = batch_sync_config.get("validation", {})
-        
-        self.log.info(f"🔄 BATCH SYNCHRONIZATION: Enabled")
-        self.log.info(f"   target_batch_size: {target_batch_size}")
-        self.log.info(f"   synchronize_all_batch_sizes: {synchronize_all}")
-        
-        original_values = {
-            "max_products_per_cycle": max_products_per_cycle,
-            "supplier_extraction_batch_size": supplier_extraction_batch_size,
-            "linking_map_batch_size": self.system_config.get("system", {}).get("linking_map_batch_size", 3),
-            "financial_report_batch_size": self.system_config.get("system", {}).get("financial_report_batch_size", 3)
-        }
-        
-        # Check for mismatched sizes and warn if configured
-        if validation_config.get("warn_on_mismatched_sizes", True):
-            unique_sizes = set(original_values.values())
-            if len(unique_sizes) > 1:
-                self.log.warning(f"⚠️ BATCH SYNC WARNING: Mismatched batch sizes detected: {original_values}")
-                self.log.warning(f"   Unique sizes found: {sorted(unique_sizes)}")
-        
-        if synchronize_all:
-            # Synchronize all batch sizes to target
-            new_max_products_per_cycle = target_batch_size
-            new_supplier_extraction_batch_size = target_batch_size
-            
-            # Also update system config values in memory for consistency
-            if "system" in self.system_config:
-                self.system_config["system"]["max_products_per_cycle"] = target_batch_size
-                self.system_config["system"]["supplier_extraction_batch_size"] = target_batch_size
-                self.system_config["system"]["linking_map_batch_size"] = target_batch_size
-                self.system_config["system"]["financial_report_batch_size"] = target_batch_size
-            
-            self.log.info(f"✅ BATCH SYNC: All batch sizes synchronized to {target_batch_size}")
-            self.log.info(f"   Updated values: max_products_per_cycle={new_max_products_per_cycle}, supplier_extraction_batch_size={new_supplier_extraction_batch_size}")
-            
-        else:
-            # Only synchronize the two main processing batch sizes
-            new_max_products_per_cycle = target_batch_size
-            new_supplier_extraction_batch_size = target_batch_size
-            
-            self.log.info(f"✅ BATCH SYNC: Main processing batch sizes synchronized to {target_batch_size}")
-            self.log.info(f"   Updated values: max_products_per_cycle={new_max_products_per_cycle}, supplier_extraction_batch_size={new_supplier_extraction_batch_size}")
-        
-        return new_max_products_per_cycle, new_supplier_extraction_batch_size
-
-    async def _run_hybrid_processing_mode(self, supplier_url: str, supplier_name: str, 
-                                         category_urls_to_scrape: List[str], 
-                                         max_products_per_category: int, max_products_to_process: int,
-                                         max_analyzed_products: int, max_products_per_cycle: int, 
-                                         supplier_extraction_batch_size: int) -> List[Dict[str, Any]]:
-        """
-        Hybrid processing mode that allows switching between supplier extraction and Amazon analysis.
-        Supports chunked, sequential, and balanced processing modes.
-        """
-        profitable_results: List[Dict[str, Any]] = []
-        full_config = self.config_loader._config
-        hybrid_config = full_config.get("hybrid_processing", {})
-        processing_modes = hybrid_config.get("processing_modes", {})
-        switch_after_categories = hybrid_config.get("switch_to_amazon_after_categories", 10)
-        
-        self.log.info(f"🔄 HYBRID PROCESSING: Mode configuration loaded")
-        self.log.info(f"   switch_to_amazon_after_categories: {switch_after_categories}")
-        
-        if processing_modes.get("chunked", {}).get("enabled", False):
-            # Chunked mode: Alternate between supplier extraction and Amazon analysis
-            chunk_size = processing_modes.get("chunked", {}).get("chunk_size_categories", 10)
-            self.log.info(f"🔄 HYBRID MODE: Chunked processing (chunk size: {chunk_size} categories)")
-            
-            # Process categories in chunks
-            for chunk_start in range(0, len(category_urls_to_scrape), chunk_size):
-                chunk_end = min(chunk_start + chunk_size, len(category_urls_to_scrape))
-                chunk_categories = category_urls_to_scrape[chunk_start:chunk_end]
-                
-                self.log.info(f"🔄 Processing chunk {chunk_start//chunk_size + 1}: categories {chunk_start+1}-{chunk_end}")
-                
-                # Extract from this chunk of categories
-                chunk_products = await self._extract_supplier_products(
-                    supplier_url, supplier_name, chunk_categories, 
-                    max_products_per_category, max_products_to_process, supplier_extraction_batch_size
-                )
-                
-                if chunk_products:
-                    # Immediately analyze these products
-                    # Use the same detailed processing logic as main workflow
-                    chunk_results = await self._process_chunk_with_main_workflow_logic(
-                        chunk_products, max_products_per_cycle
-                    )
-                    profitable_results.extend(chunk_results)
-                    
-                    # Check memory management
-                    memory_config = hybrid_config.get("memory_management", {})
-                    if memory_config.get("clear_cache_between_phases", False):
-                        self.log.info("🧹 Clearing cache between processing phases")
-                        # Add cache clearing logic here if needed
-                
-        elif processing_modes.get("balanced", {}).get("enabled", False):
-            # Balanced mode: Extract in batches, analyze each batch
-            self.log.info(f"🔄 HYBRID MODE: Balanced processing")
-            
-            # Extract all products first
-            all_products = await self._extract_supplier_products(
-                supplier_url, supplier_name, category_urls_to_scrape, 
-                max_products_per_category, max_products_to_process
-            )
-            
-            if all_products:
-                # Process in analysis batches if enabled
-                if processing_modes.get("balanced", {}).get("analysis_after_extraction_batch", True):
-                    batch_size = max_products_per_cycle
-                    for batch_start in range(0, len(all_products), batch_size):
-                        batch_end = min(batch_start + batch_size, len(all_products))
-                        batch_products = all_products[batch_start:batch_end]
-                        
-                        self.log.info(f"🔄 Analyzing batch {batch_start//batch_size + 1}: products {batch_start+1}-{batch_end}")
-                        # Use the same detailed processing logic as main workflow
-                        batch_results = await self._process_chunk_with_main_workflow_logic(
-                            batch_products, max_products_per_cycle
-                        )
-                        profitable_results.extend(batch_results)
-                else:
-                    # Analyze all products at once
-                    # Use the same detailed processing logic as main workflow
-                    profitable_results = await self._process_chunk_with_main_workflow_logic(
-                        all_products, max_products_per_cycle
-                    )
-        else:
-            # Sequential mode (default): Complete supplier extraction, then Amazon analysis
-            self.log.info(f"🔄 HYBRID MODE: Sequential processing (extract all, then analyze all)")
-            
-            # Standard sequential processing - extract all first
-            all_products = await self._extract_supplier_products(
-                supplier_url, supplier_name, category_urls_to_scrape, 
-                max_products_per_category, max_products_to_process
-            )
-            
-            if all_products:
-                profitable_results = await self._analyze_products_batch(
-                    all_products, supplier_name, max_products_per_cycle
-                )
-        
-        return profitable_results
-
-    async def _analyze_products_batch(self, products: List[Dict[str, Any]], 
-                                    supplier_name: str, max_products_per_cycle: int) -> List[Dict[str, Any]]:
-        """Analyze a batch of supplier products for Amazon matching and profitability."""
-        profitable_results = []
-        
-        # Filter and prepare products for analysis
-        valid_products = [
-            p for p in products
-            if p.get("title") and isinstance(p.get("price"), (float, int)) and p.get("price", 0) > 0 and p.get("url")
-        ]
-        
-        price_filtered_products = [
-            p for p in valid_products
-            if MIN_PRICE <= p.get("price", 0) <= MAX_PRICE
-        ]
-        
-        self.log.info(f"🔍 Analyzing {len(price_filtered_products)} products in batch mode")
-        
-        # Process products in cycles
-        batch_size = max_products_per_cycle
-        total_batches = (len(price_filtered_products) + batch_size - 1) // batch_size
-        
-        for batch_num in range(total_batches):
-            start_idx = batch_num * batch_size
-            end_idx = min(start_idx + batch_size, len(price_filtered_products))
-            batch_products = price_filtered_products[start_idx:end_idx]
-            
-            self.log.info(f"🔄 Processing analysis batch {batch_num + 1}/{total_batches} ({len(batch_products)} products)")
-            
-            for i, product_data in enumerate(batch_products):
-                current_index = start_idx + i + 1
-                self.log.info(f"🔍 Analyzing product {current_index}: '{product_data.get('title')}'")
-                
-                # Check if already processed
-                if self.state_manager.is_product_processed(product_data.get("url")):
-                    self.log.info(f"Product already processed: {product_data.get('url')}. Skipping.")
-                    continue
-                
-                # Amazon data extraction and analysis
-                amazon_data = await self._get_amazon_data(product_data)
-                if not amazon_data or "error" in amazon_data:
-                    self.log.warning(f"Could not retrieve Amazon data for '{product_data.get('title')}'")
-                    self.state_manager.mark_product_processed(product_data.get("url"), "failed_amazon_extraction")
-                    continue
-                
-                # Save Amazon cache and create linking map
-                supplier_ean = product_data.get("ean") or product_data.get("barcode")
-                asin = amazon_data.get("asin", "NO_ASIN")
-                
-                # Save Amazon data
-                filename_identifier = supplier_ean if supplier_ean else re.sub(r'[<>:"/\\|?*\s]+', '_', product_data.get("title", "NO_TITLE")[:50])
-                amazon_cache_path = os.path.join(self.amazon_cache_dir, f"amazon_{asin}_{filename_identifier}.json")
-                with open(amazon_cache_path, 'w', encoding='utf-8') as f:
-                    json.dump(amazon_data, f, indent=2, ensure_ascii=False)
-                
-                # Financial analysis
-                try:
-                    from FBA_Financial_calculator import financials as calc_financials
-                    supplier_price = float(product_data.get("price", 0))
-                    supplier_price_inc_vat = supplier_price
-                    current_price = amazon_data.get("current_price", 0)
-
-                    if supplier_price > 0 and current_price > 0:
-                        financials = calc_financials(product_data, amazon_data, supplier_price_inc_vat)
-                        
-                        # Check profitability
-                        if financials.get("ROI", 0) > MIN_ROI_PERCENT and financials.get("NetProfit", 0) > MIN_PROFIT_PER_UNIT:
-                            self.log.info(f"✅ PROFITABLE: ROI {financials['ROI']:.1f}%, Profit £{financials['NetProfit']:.2f}")
-                            
-                            combined_data = self._combine_supplier_amazon_data(product_data, amazon_data, "hybrid_batch")
-                            combined_data["financials"] = financials
-                            profitable_results.append(combined_data)
-                            
-                            self.state_manager.update_success_metrics(True, True, financials.get("NetProfit", 0))
-                            self.state_manager.mark_product_processed(product_data.get("url"), "completed_profitable")
-                        else:
-                            self.log.info(f"Not profitable: ROI {financials.get('ROI', 0):.1f}%, Profit £{financials.get('NetProfit', 0):.2f}")
-                            self.state_manager.update_success_metrics(True, False)
-                            self.state_manager.mark_product_processed(product_data.get("url"), "completed_not_profitable")
-                            
-                except Exception as e:
-                    self.log.error(f"Financial calculation failed: {e}")
-                    self.state_manager.mark_product_processed(product_data.get("url"), "failed_financial_calculation")
-        
-        return profitable_results
-
-    def _get_cached_products_path(self, category_url: str):
-        """Helper to get the path for a category's product cache file."""
-        category_filename = f"{self.supplier_name}_{category_url.split('/')[-1]}_products.json"
-        cache_dir = os.path.join(self.output_dir, 'CACHE', 'supplier_cache')
-        return os.path.join(cache_dir, category_filename)
-
-    def _save_final_report(self, profitable_products: list):
-        """Save the final report of profitable products to a JSON file."""
-        if not profitable_products:
-            self.log.info("No profitable products found in this run.")
-            return
-        output_filename = f"fba_profitable_finds_{self.supplier_name}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
-        output_path = os.path.join(self.output_dir, output_filename)
+        output_path = path_manager.get_output_path("FBA_ANALYSIS", "profitable_reports", output_filename)
         try:
             with open(output_path, "w", encoding="utf-8") as f:
                 json.dump(profitable_products, f, indent=2, ensure_ascii=False)
@@ -6050,8 +4428,7 @@ Return ONLY valid JSON, no additional text."""
 
     def _load_linking_map(self, supplier_name: str) -> Dict[str, str]:
         """Load linking map from supplier-specific JSON file"""
-        BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-        linking_map_path = os.path.join(BASE_DIR, "OUTPUTS", "FBA_ANALYSIS", "linking_maps", supplier_name, "linking_map.json")
+        linking_map_path = get_linking_map_path(supplier_name)
         
         if os.path.exists(linking_map_path):
             try:
@@ -6092,12 +4469,7 @@ Return ONLY valid JSON, no additional text."""
             self.log.info("Empty linking map - nothing to save.")
             return
             
-        # Create supplier-specific directory
-        BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-        linking_map_dir = os.path.join(BASE_DIR, "OUTPUTS", "FBA_ANALYSIS", "linking_maps", supplier_name)
-        os.makedirs(linking_map_dir, exist_ok=True)
-        
-        linking_map_path = os.path.join(linking_map_dir, "linking_map.json")
+        linking_map_path = get_linking_map_path(supplier_name)
         
         # Use atomic write pattern to prevent corruption
         temp_path = f"{linking_map_path}.tmp"

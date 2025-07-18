@@ -1,4 +1,4 @@
-[Testing Plan](testing_plan.md)  <!-- keep on one line so Claude loads it after /compact -->
+REFER TO TO[Testing Plan]/tEMPLATE WHENEVER i EXPLICETELY ASK YOU TO USE MULTI-AGENTS/WORKTRESS (testing_plan.md)  <!-- keep on one line so Claude loads it after /compact -->
 
 # CLAUDE.MD - Amazon FBA Agent System v3.5 File Organization & Development Standards
 

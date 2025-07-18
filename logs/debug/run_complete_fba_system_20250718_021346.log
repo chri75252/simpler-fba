@@ -1,0 +1,101 @@
+INFO:__main__:🔍 Enhanced detailed logging enabled - output: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/logs/debug/run_complete_fba_system_20250718_021346.log
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:__main__:🚀 Complete FBA System v3 initialized
+INFO:__main__:🏭 Processing supplier: poundwholesale-co-uk
+INFO:__main__:🔗 URL: https://poundwholesale.co.uk
+INFO:__main__:📧 Email: info@theblacksmithmarket.com
+INFO:__main__:🖥️ Headed mode: True
+INFO:__main__:📦 Max products: 5
+INFO:__main__:🔄 Force regenerate: False
+INFO:__main__:📦 Archiving expected output files for verification...
+INFO:__main__:Archive mode set to: ''
+WARNING:__main__:Unknown archive mode: ''. Skipping archive.
+INFO:tools.supplier_guard:🛡️ Supplier Guard initialized
+INFO:__main__:⚠️ Supplier poundwholesale-co-uk not ready: .supplier_ready file is 9 days old (max 7 days)
+INFO:__main__:✅ Existing supplier package found for poundwholesale-co-uk. Bypassing script generation.
+INFO:__main__:🚀 Initializing centralized browser session...
+INFO:utils.browser_manager:🔧 BrowserManager singleton initialized
+INFO:utils.browser_manager:🔌 Connecting to persistent Chrome on debug port 9222
+INFO:utils.browser_manager:📄 Using existing context with 1 pages
+INFO:utils.browser_manager:✅ Connected to persistent Chrome successfully
+INFO:utils.browser_manager:♻️ Reusing existing page in context.
+INFO:utils.browser_manager:📄 Navigating to https://poundwholesale.co.uk
+INFO:utils.browser_manager:✅ Page ready for https://poundwholesale.co.uk
+INFO:__main__:🔐 Performing dynamic supplier authentication...
+INFO:__main__:📦 Loading dynamic supplier login script: suppliers/poundwholesale-co-uk/scripts/poundwholesale-co-uk_login.py
+INFO:poundwholesale-co-uk_login:🔐 Starting login to https://www.poundwholesale.co.uk/
+INFO:poundwholesale-co-uk_login:✅ Already logged in
+INFO:__main__:✅ Dynamic supplier authentication successful. Proceeding with authenticated workflow.
+INFO:utils.path_manager:Creating run output directory for supplier 'poundwholesale-co-uk' -> 'poundwholesale-co-uk/20250717_221353_run'
+DEBUG:utils.path_manager:Successfully created run output directory: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/poundwholesale-co-uk/20250717_221353_run
+INFO:__main__:📁 Run output directory: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/poundwholesale-co-uk/20250717_221353_run
+INFO:__main__:🔄 Using standard workflow (LangGraph integration disabled)
+INFO:__main__:🔄 Starting passive extraction workflow...
+INFO:__main__:✅ Loaded system configuration from /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/config/system_config.json
+INFO:__main__:✅ OpenAI client initialized for AI features
+INFO:amazon_playwright_extractor:AI features disabled in amazon_playwright_extractor - using only traditional selectors.
+INFO:amazon_playwright_extractor:Output directory set to: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/CACHE/amazon_data
+WARNING:amazon_playwright_extractor:⚠️ BrowserManager not available, using legacy browser connection
+INFO:configurable_supplier_scraper:✅ Loaded system configuration from /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/config/system_config.json
+INFO:configurable_supplier_scraper:🔧 ConfigurableSupplierScraper will use centralized BrowserManager
+DEBUG:configurable_supplier_scraper:AI model from config: gpt-4.1-mini-2025-04-14
+DEBUG:configurable_supplier_scraper:Extraction targets from config: {}
+DEBUG:configurable_supplier_scraper:Discovery assistance from config: {}
+INFO:configurable_supplier_scraper:[CONFIG] Initialized with AI model: gpt-4.1-mini-2025-04-14
+INFO:configurable_supplier_scraper:[TARGET] Extraction targets loaded: []
+INFO:configurable_supplier_scraper:[ASSIST] Discovery assistance enabled: False
+DEBUG:PassiveExtractionWorkflow:🔍 DEBUG: linking_map initialized as type: <class 'list'>
+INFO:PassiveExtractionWorkflow:✅ Output directory set to: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS
+INFO:PassiveExtractionWorkflow:✅ Initialization validation passed - all critical attributes verified
+INFO:__main__:🔧 Workflow configured: force_ai_scraping=True, linking_batch=1, financial_batch=1, ai_client=enabled
+INFO:PassiveExtractionWorkflow:--- Starting Passive Extraction Workflow for: poundwholesale-co-uk ---
+INFO:PassiveExtractionWorkflow:Session ID: poundwholesale-co-uk_20250718_021353
+INFO:PassiveExtractionWorkflow:📊 CONFIGURATION VALUES:
+INFO:PassiveExtractionWorkflow:   max_products_to_process: 5
+INFO:PassiveExtractionWorkflow:   max_products_per_category: 1
+INFO:PassiveExtractionWorkflow:   max_analyzed_products: 4
+INFO:PassiveExtractionWorkflow:   max_products_per_cycle: 100
+INFO:PassiveExtractionWorkflow:   supplier_extraction_batch_size: 1
+INFO:PassiveExtractionWorkflow:   max_categories_per_request: 5
+INFO:utils.enhanced_state_manager:No existing state file found for poundwholesale-co-uk, starting fresh
+INFO:PassiveExtractionWorkflow:📋 Loaded existing processing state for poundwholesale-co-uk
+INFO:PassiveExtractionWorkflow:🔄 Resuming from index 0
+INFO:PassiveExtractionWorkflow:✅ No previous progress found, starting fresh.
+INFO:PassiveExtractionWorkflow:✅ No existing linking map found at /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/FBA_ANALYSIS/linking_maps/poundwholesale-co-uk/linking_map.json - Creating new map
+DEBUG:PassiveExtractionWorkflow:🔍 DEBUG: linking_map loaded as type: <class 'list'>, length: 0
+INFO:PassiveExtractionWorkflow:✅ No existing linking map found at /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/FBA_ANALYSIS/linking_maps/poundwholesale-co-uk/linking_map.json - Creating new map
+INFO:PassiveExtractionWorkflow:STANDARD MODE: Using AI-based hierarchical category selection.
+INFO:tools.passive_extraction_workflow_latest:🧠 No AI cache file found for poundwholesale-co-uk - starting fresh
+ERROR:PassiveExtractionWorkflow:Unexpected error occurred during workflow execution: 'PassiveExtractionWorkflow' object has no attribute 'web_scraper'
+Traceback (most recent call last):
+  File "/mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/tools/passive_extraction_workflow_latest.py", line 1091, in run
+    category_urls_to_scrape = await self._hierarchical_category_selection(self.workflow_config.get('supplier_url'), self.supplier_name)
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/tools/passive_extraction_workflow_latest.py", line 2406, in _hierarchical_category_selection
+    discovered_categories = await self.web_scraper.discover_categories(supplier_url)
+                                  ^^^^^^^^^^^^^^^^
+AttributeError: 'PassiveExtractionWorkflow' object has no attribute 'web_scraper'
+WARNING:__main__:⚠️ Workflow completed but no results returned
+ERROR:__main__:❌ Extraction workflow failed
+INFO:__main__:🔍 Verifying files generated despite extraction failure...
+INFO:__main__:✅ Verified suppliers/poundwholesale-co-uk/config/login_config.json: 39 bytes, 2025-07-09T01:21:55.800343
+INFO:__main__:✅ Verified suppliers/poundwholesale-co-uk/scripts/poundwholesale-co-uk_login.py: 20178 bytes, 2025-07-09T01:21:55.814416
+ERROR:__main__:❌ Missing expected file: OUTPUTS/FBA_ANALYSIS/cached_products.json
+ERROR:__main__:❌ Missing expected file: OUTPUTS/FBA_ANALYSIS/ai_category_cache.json
+ERROR:__main__:❌ Missing expected file: OUTPUTS/FBA_ANALYSIS/linking_maps/linking_map.json
+ERROR:__main__:❌ Output verification FAILED - 7 issues found
+ERROR:__main__:  • suppliers/poundwholesale-co-uk/config/login_config.json: File is old (9 days, 0:51:58.166096) - may not be from recent test
+ERROR:__main__:  • suppliers/poundwholesale-co-uk/config/login_config.json: Missing vision_discovered field
+ERROR:__main__:  • suppliers/poundwholesale-co-uk/config/login_config.json: Missing auto_discovered field
+ERROR:__main__:  • suppliers/poundwholesale-co-uk/scripts/poundwholesale-co-uk_login.py: File is old (9 days, 0:51:58.170652) - may not be from recent test
+ERROR:__main__:  • OUTPUTS/FBA_ANALYSIS/cached_products.json: File does not exist
+ERROR:__main__:  • OUTPUTS/FBA_ANALYSIS/ai_category_cache.json: File does not exist
+ERROR:__main__:  • OUTPUTS/FBA_ANALYSIS/linking_maps/linking_map.json: File does not exist
+INFO:utils.browser_manager:🧹 Performing global cleanup...
+INFO:utils.browser_manager:🧹 Starting browser cleanup...
+INFO:utils.browser_manager:🔌 Disconnecting from persistent Chrome instance (keeping browser running)
+INFO:utils.browser_manager:🎭 Stopped Playwright instance (browser remains running)
+INFO:utils.browser_manager:✅ Disconnected from persistent browser (Chrome debug port remains active)
+INFO:utils.browser_manager:🔌 Persistent Chrome browser should remain running on debug port 9222
+INFO:__main__:🧹 Browser cleanup completed
+WARNING:utils.browser_manager:Error during global cleanup: no running event loop

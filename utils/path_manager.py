@@ -345,8 +345,8 @@ def get_linking_map_path(supplier_name: str = None, run_output_dir: Path = None)
         linking_maps_dir.mkdir(exist_ok=True)
         return linking_maps_dir / "linking_map.json"
     elif supplier_name:
-        safe_name = supplier_name.replace(".", "_").replace("/", "_")
-        filename = f"{safe_name}_linking_map.json"
+        # Use subdirectory structure for linking maps (matching working pre-minor-fix format)
+        return path_manager.get_output_path("FBA_ANALYSIS", "linking_maps", supplier_name, "linking_map.json")
     else:
         filename = "linking_map.json"
     return path_manager.get_output_path("FBA_ANALYSIS", "linking_maps", filename)

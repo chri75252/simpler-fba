@@ -1,0 +1,63 @@
+INFO:__main__:🔍 Enhanced detailed logging enabled - output: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/logs/debug/run_complete_fba_system_20250717_181827.log
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:__main__:🚀 Complete FBA System v3 initialized
+INFO:__main__:🏭 Processing supplier: poundwholesale-co-uk
+INFO:__main__:🔗 URL: https://www.poundwholesale.co.uk/
+INFO:__main__:📧 Email: info@theblacksmithmarket.com
+INFO:__main__:🖥️ Headed mode: False
+INFO:__main__:📦 Max products: 2
+INFO:__main__:🔄 Force regenerate: False
+INFO:__main__:📦 Archiving expected output files for verification...
+INFO:__main__:Archive mode set to: ''
+WARNING:__main__:Unknown archive mode: ''. Skipping archive.
+INFO:tools.supplier_guard:🛡️ Supplier Guard initialized
+INFO:__main__:⚠️ Supplier poundwholesale-co-uk not ready: .supplier_ready file is 8 days old (max 7 days)
+INFO:__main__:✅ Existing supplier package found for poundwholesale-co-uk. Bypassing script generation.
+INFO:__main__:🚀 Initializing centralized browser session...
+INFO:utils.browser_manager:🔧 BrowserManager singleton initialized
+INFO:utils.browser_manager:🔌 Connecting to Chrome on debug port 9222
+INFO:utils.browser_manager:📄 Using existing context with 2 pages
+INFO:utils.browser_manager:✅ Connected to Chrome successfully
+INFO:utils.browser_manager:♻️ Reusing existing page in context.
+INFO:utils.browser_manager:📄 Navigating to https://www.poundwholesale.co.uk/
+INFO:utils.browser_manager:✅ Page ready for https://www.poundwholesale.co.uk/
+INFO:__main__:🔐 Performing dynamic supplier authentication...
+INFO:__main__:📦 Loading dynamic supplier login script: suppliers/poundwholesale-co-uk/scripts/poundwholesale-co-uk_login.py
+INFO:poundwholesale-co-uk_login:🔐 Starting login to https://www.poundwholesale.co.uk/
+INFO:poundwholesale-co-uk_login:✅ Already logged in
+INFO:__main__:✅ Dynamic supplier authentication successful. Proceeding with authenticated workflow.
+INFO:utils.path_manager:Creating run output directory for supplier 'poundwholesale-co-uk' -> 'poundwholesale-co-uk/20250717_141834_run'
+DEBUG:utils.path_manager:Successfully created run output directory: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/poundwholesale-co-uk/20250717_141834_run
+INFO:__main__:📁 Run output directory: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/poundwholesale-co-uk/20250717_141834_run
+INFO:__main__:🔄 Using standard workflow (LangGraph integration disabled)
+INFO:__main__:🔄 Starting passive extraction workflow...
+INFO:__main__:✅ Loaded system configuration from /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/config/system_config.json
+INFO:__main__:✅ OpenAI client initialized for AI features
+ERROR:__main__:❌ Workflow execution failed: PassiveExtractionWorkflow.__init__() got an unexpected keyword argument 'ai_client'
+Traceback (most recent call last):
+  File "/mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/run_complete_fba_system.py", line 679, in _run_extraction_workflow
+    workflow = PassiveExtractionWorkflow(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: PassiveExtractionWorkflow.__init__() got an unexpected keyword argument 'ai_client'
+ERROR:__main__:❌ Extraction workflow failed
+INFO:__main__:🔍 Verifying files generated despite extraction failure...
+INFO:__main__:✅ Verified suppliers/poundwholesale-co-uk/config/login_config.json: 39 bytes, 2025-07-09T01:21:55.800343
+INFO:__main__:✅ Verified suppliers/poundwholesale-co-uk/scripts/poundwholesale-co-uk_login.py: 20178 bytes, 2025-07-09T01:21:55.814416
+ERROR:__main__:❌ Missing expected file: OUTPUTS/FBA_ANALYSIS/cached_products.json
+ERROR:__main__:❌ Missing expected file: OUTPUTS/FBA_ANALYSIS/ai_category_cache.json
+ERROR:__main__:❌ Missing expected file: OUTPUTS/FBA_ANALYSIS/linking_maps/linking_map.json
+ERROR:__main__:❌ Output verification FAILED - 7 issues found
+ERROR:__main__:  • suppliers/poundwholesale-co-uk/config/login_config.json: File is old (8 days, 16:56:38.908386) - may not be from recent test
+ERROR:__main__:  • suppliers/poundwholesale-co-uk/config/login_config.json: Missing vision_discovered field
+ERROR:__main__:  • suppliers/poundwholesale-co-uk/config/login_config.json: Missing auto_discovered field
+ERROR:__main__:  • suppliers/poundwholesale-co-uk/scripts/poundwholesale-co-uk_login.py: File is old (8 days, 16:56:38.916348) - may not be from recent test
+ERROR:__main__:  • OUTPUTS/FBA_ANALYSIS/cached_products.json: File does not exist
+ERROR:__main__:  • OUTPUTS/FBA_ANALYSIS/ai_category_cache.json: File does not exist
+ERROR:__main__:  • OUTPUTS/FBA_ANALYSIS/linking_maps/linking_map.json: File does not exist
+INFO:utils.browser_manager:🧹 Performing global cleanup...
+INFO:utils.browser_manager:🧹 Starting browser cleanup...
+INFO:utils.browser_manager:🗑️ Closed pages, but leaving context open.
+INFO:utils.browser_manager:🎭 Stopped Playwright instance.
+INFO:utils.browser_manager:✅ Browser cleanup completed
+INFO:__main__:🧹 Browser cleanup completed
+WARNING:utils.browser_manager:Error during global cleanup: no running event loop

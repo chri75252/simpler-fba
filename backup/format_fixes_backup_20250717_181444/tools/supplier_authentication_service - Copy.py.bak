@@ -1,0 +1,404 @@
+"""
+Enhanced Supplier Authentication Service
+Bridges the main workflow with vision-assisted login capabilities
+Created: 2025-07-04
+Purpose: Fix authentication state issue preventing AI category discovery
+"""
+
+import asyncio
+import logging
+import json
+import os
+from datetime import datetime, timezone
+from typing import Dict, Optional, Tuple, Any
+from pathlib import Path
+
+from playwright.async_api import Page, Browser, BrowserContext
+
+# Import working standalone login script (deprecating Vision AI as requested)
+from tools.standalone_playwright_login import login_to_poundwholesale
+
+class SupplierAuthenticationService:
+    """
+    Centralized authentication service that intelligently manages login states
+    and bridges between the main workflow and vision-assisted login tools.
+    """
+    
+    def __init__(self, browser_manager=None, supplier_name: str = None, supplier_url: str = None, config_path: str = None):
+        # Support both constructor patterns for backward compatibility
+        if browser_manager is not None:
+            # Legacy single-parameter constructor (working backup pattern)
+            self.browser_manager = browser_manager
+            self.supplier_name = "poundwholesale.co.uk"  # Default for backward compatibility
+            self.supplier_url = "https://www.poundwholesale.co.uk"
+            self.config_path = "config/supplier_configs/poundwholesale-co-uk.json"
+        else:
+            # New three-parameter constructor
+            self.supplier_name = supplier_name
+            self.supplier_url = supplier_url
+            self.config_path = config_path
+            self.browser_manager = None
+            
+        self.log = logging.getLogger(__name__)
+        
+        # Load supplier-specific configuration
+        self.supplier_config = self._load_supplier_config()
+        
+        # Vision AI deprecated as requested by user - using direct standalone script
+        
+        # Authentication state tracking
+        self._auth_state = {
+            "is_authenticated": False,
+            "last_auth_time": None,
+            "session_id": None,
+            "auth_method": None,
+            "supplier_ready_file": None
+        }
+    
+    def _load_supplier_config(self) -> Dict[str, Any]:
+        """Load supplier-specific configuration"""
+        try:
+            with open(self.config_path, 'r') as f:
+                return json.load(f)
+        except Exception as e:
+            self.log.warning(f"Could not load supplier config: {e}")
+            return {}
+    
+    async def ensure_authenticated_session(
+        self, 
+        page: Page, 
+        credentials: Dict[str, str],
+        force_reauth: bool = False
+    ) -> Tuple[bool, str]:
+        """
+        Ensures the current page/session is authenticated.
+        Returns (success: bool, method_used: str)
+        """
+        try:
+            # Check if already authenticated (unless force reauth)
+            if not force_reauth and await self._is_session_authenticated(page):
+                self.log.info("✅ Session already authenticated - skipping login")
+                self._auth_state["is_authenticated"] = True
+                return True, "existing_session"
+            
+            self.log.info(f"🔐 Starting authentication for {self.supplier_name}")
+            
+            # Use standalone_playwright_login.py (Vision AI deprecated as requested)
+            success = await self._standalone_script_authentication(credentials)
+            if success:
+                self._auth_state["is_authenticated"] = True
+                self._auth_state["auth_method"] = "selector_fallback"
+                self._auth_state["last_auth_time"] = datetime.now(timezone.utc)
+                return True, "selector_fallback"
+            
+            # All authentication methods failed
+            self.log.error("❌ All authentication methods failed")
+            self._auth_state["is_authenticated"] = False
+            return False, "failed"
+            
+        except Exception as e:
+            self.log.error(f"Authentication service error: {e}")
+            return False, f"error: {e}"
+    
+    async def _is_session_authenticated(self, page: Page) -> bool:
+        """
+        Check if the current session is already authenticated
+        by looking for authenticated-user indicators
+        """
+        try:
+            # Navigate to a page that requires authentication
+            await page.goto(self.supplier_url)
+            await page.wait_for_load_state('networkidle', timeout=10000)
+            
+            # Look for SPECIFIC authentication indicators that indicate logged-in state
+            # Use more precise indicators to avoid false positives
+            auth_indicators = [
+                "logout", "sign out", "log out",  # Clear logout indicators
+                "my account", "my profile", "account dashboard",  # Specific account pages
+                "welcome back", "hello ", "hi ",  # Personal greetings
+                "my orders", "order history", "account settings",  # Account-specific features
+                "wholesale dashboard", "customer dashboard"  # Supplier-specific areas
+            ]
+            
+            page_content = await page.content()
+            page_text = page_content.lower()
+            
+            # Check for precise authentication indicators
+            authenticated = False
+            for indicator in auth_indicators:
+                if indicator in page_text:
+                    self.log.info(f"✅ Authentication indicator found: '{indicator}'")
+                    authenticated = True
+                    break
+            
+            # Additional verification: check for logout links in navigation
+            try:
+                # Look for logout/sign out links which are clear indicators of being logged in
+                logout_elements = await page.query_selector_all('a[href*="logout"], a[href*="signout"], a[href*="sign-out"]')
+                if logout_elements:
+                    self.log.info("✅ Logout link found - user is authenticated")
+                    authenticated = True
+            except Exception as e:
+                self.log.debug(f"Could not check logout links: {e}")
+            
+            if authenticated:
+                return True
+            
+            # Check for login form (indicates not authenticated)
+            login_indicators = ["login", "sign in", "email", "password"]
+            login_found = any(indicator in page_text for indicator in login_indicators)
+            
+            if login_found:
+                self.log.info("❌ Login form detected - not authenticated")
+                return False
+            
+            # Default to not authenticated if unclear
+            self.log.info("⚠️ No clear authentication indicators found - assuming not authenticated")
+            self.log.debug(f"Page content length: {len(page_content)} characters")
+            return False
+            
+        except Exception as e:
+            self.log.warning(f"Could not verify authentication status: {e}")
+            return False
+    
+    async def _standalone_script_authentication(self, credentials: Dict[str, str]) -> bool:
+        """Use standalone_playwright_login.py for authentication"""
+        try:
+            self.log.info("🔧 Using standalone playwright authentication")
+            
+            # Call the standalone login function with CDP port 9222
+            result = await login_to_poundwholesale(cdp_port=9222)
+            
+            if result.success:
+                self.log.info(f"✅ Standalone authentication successful: {result.method_used}")
+                return True
+            else:
+                self.log.warning(f"❌ Standalone authentication failed: {result.error_message}")
+                return False
+                
+        except Exception as e:
+            self.log.error(f"Standalone authentication error: {e}")
+            return False
+    
+    def _should_use_vision_login(self) -> bool:
+        """Determine if vision-assisted login should be used (DEPRECATED)"""
+        # Vision AI deprecated as requested by user - always return False
+        self.log.info("Vision login deprecated - using standalone authentication only")
+        return False
+    
+    async def _vision_assisted_authentication(
+        self, 
+        page: Page, 
+        credentials: Dict[str, str]
+    ) -> bool:
+        """Perform vision-assisted authentication (DEPRECATED)"""
+        self.log.info("🚫 Vision-assisted authentication deprecated - falling back to standalone")
+        return False
+    
+    async def _fallback_selector_authentication(
+        self, 
+        page: Page, 
+        credentials: Dict[str, str]
+    ) -> bool:
+        """Fallback authentication using traditional selectors"""
+        try:
+            self.log.info("🔧 Attempting fallback selector authentication")
+            
+            # Vision handler deprecated - skip to basic fallback implementation
+            
+            # Basic fallback implementation
+            await page.goto(f"{self.supplier_url}/customer/account/login/")
+            await page.wait_for_load_state('networkidle')
+            
+            # Try common login selectors
+            email_selectors = [
+                'input[name="login[username]"]',
+                'input[type="email"]',
+                'input[name="email"]',
+                '#email'
+            ]
+            
+            password_selectors = [
+                'input[name="login[password]"]',
+                'input[type="password"]',
+                'input[name="password"]',
+                '#password'
+            ]
+            
+            # Fill email
+            email_filled = False
+            for selector in email_selectors:
+                try:
+                    await page.fill(selector, credentials.get('email', ''))
+                    email_filled = True
+                    break
+                except:
+                    continue
+            
+            # Fill password
+            password_filled = False
+            for selector in password_selectors:
+                try:
+                    await page.fill(selector, credentials.get('password', ''))
+                    password_filled = True
+                    break
+                except:
+                    continue
+            
+            if email_filled and password_filled:
+                # Submit form
+                await page.click('button[type="submit"], input[type="submit"]')
+                await page.wait_for_load_state('networkidle')
+                
+                if await self._verify_authentication_success(page):
+                    self.log.info("✅ Basic fallback authentication successful")
+                    return True
+            
+            self.log.warning("❌ Fallback selector authentication failed")
+            return False
+            
+        except Exception as e:
+            self.log.error(f"Fallback authentication error: {e}")
+            return False
+    
+    async def _verify_authentication_success(self, page: Page) -> bool:
+        """Verify that authentication was successful"""
+        try:
+            # Wait a moment for page to stabilize
+            await asyncio.sleep(2)
+            
+            # Check current URL for success indicators - be more specific to avoid false positives
+            current_url = page.url
+            success_url_indicators = [
+                "/account/", "/dashboard/", "/profile/", "/customer/", "/wholesale/",
+                "account/login", "customer/account"
+            ]
+            
+            # Only accept URL indicators that are clear navigation paths, not just content mentions
+            if any(indicator in current_url.lower() for indicator in success_url_indicators):
+                return True
+            
+            # Check page content for authentication indicators
+            return await self._is_session_authenticated(page)
+            
+        except Exception as e:
+            self.log.error(f"Authentication verification error: {e}")
+            return False
+    
+    def get_authentication_state(self) -> Dict[str, Any]:
+        """Get current authentication state"""
+        return self._auth_state.copy()
+    
+    def mark_session_ready(self, ready_file_path: str):
+        """Mark session as ready by creating supplier ready file"""
+        try:
+            ready_data = {
+                "supplier": self.supplier_name,
+                "authenticated": self._auth_state["is_authenticated"],
+                "auth_method": self._auth_state["auth_method"],
+                "timestamp": datetime.now(timezone.utc).isoformat(),
+                "session_details": {
+                    "login_verified": True,
+                    "price_access_verified": True,
+                    "session_stable": True
+                }
+            }
+            
+            Path(ready_file_path).parent.mkdir(parents=True, exist_ok=True)
+            with open(ready_file_path, 'w') as f:
+                json.dump(ready_data, f, indent=2)
+            
+            self._auth_state["supplier_ready_file"] = ready_file_path
+            self.log.info(f"✅ Session marked as ready: {ready_file_path}")
+            
+        except Exception as e:
+            self.log.error(f"Could not create supplier ready file: {e}")
+    
+    async def detect_logout_and_reauth(self, page: Page, credentials: Dict[str, str]) -> bool:
+        """
+        Detect if session has been logged out and re-authenticate if needed.
+        Returns True if session is authenticated after this call.
+        """
+        try:
+            if await self._is_session_authenticated(page):
+                return True
+            
+            self.log.warning("🔄 Session logout detected - attempting re-authentication")
+            success, method = await self.ensure_authenticated_session(
+                page, credentials, force_reauth=True
+            )
+            
+            if success:
+                self.log.info(f"✅ Re-authentication successful using {method}")
+                return True
+            else:
+                self.log.error("❌ Re-authentication failed")
+                return False
+                
+        except Exception as e:
+            self.log.error(f"Logout detection/re-auth error: {e}")
+            return False
+
+
+class AuthenticationBridge:
+    """
+    Bridge class to integrate authentication service with PassiveExtractionWorkflow
+    """
+    
+    @staticmethod
+    def create_auth_service(supplier_name: str, supplier_url: str, config_path: str) -> SupplierAuthenticationService:
+        """Factory method to create authentication service"""
+        return SupplierAuthenticationService(supplier_name, supplier_url, config_path)
+    
+    @staticmethod
+    async def authenticate_workflow_session(
+        auth_service: SupplierAuthenticationService,
+        page: Page,
+        credentials: Dict[str, str]
+    ) -> Tuple[bool, str]:
+        """
+        Authenticate a workflow session.
+        Returns (success, method_used)
+        """
+        return await auth_service.ensure_authenticated_session(page, credentials)
+    
+    @staticmethod
+    def get_credentials_from_config(supplier_config: Dict[str, Any]) -> Dict[str, str]:
+        """Extract credentials from supplier configuration"""
+        return {
+            "email": supplier_config.get("login_credentials", {}).get("email", ""),
+            "password": supplier_config.get("login_credentials", {}).get("password", "")
+        }
+
+
+# Example usage for integration testing
+if __name__ == "__main__":
+    import asyncio
+    from playwright.async_api import async_playwright
+    
+    async def test_authentication():
+        """Test authentication service"""
+        async with async_playwright() as p:
+            browser = await p.chromium.launch(headless=False)
+            page = await browser.new_page()
+            
+            # Test with poundwholesale
+            auth_service = SupplierAuthenticationService(
+                supplier_name="poundwholesale-co-uk",
+                supplier_url="https://www.poundwholesale.co.uk",
+                config_path="../config/supplier_configs/poundwholesale.co.uk.json"
+            )
+            
+            credentials = {
+                "email": "info@theblacksmithmarket.com",
+                "password": "0Dqixm9c&"
+            }
+            
+            success, method = await auth_service.ensure_authenticated_session(page, credentials)
+            print(f"Authentication: {success}, Method: {method}")
+            
+            # Keep browser open for verification
+            await asyncio.sleep(10)
+            await browser.close()
+    
+    asyncio.run(test_authentication())

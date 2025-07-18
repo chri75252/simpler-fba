@@ -1,0 +1,57 @@
+{
+  "supplier_id": "wholesale-cosmetics-co-uk",
+  "supplier_name": "Wholesale-Cosmetics.Co.Uk",
+  "base_url": "https://www.wholesale-cosmetics.co.uk/",
+  "field_mappings": {
+    "product_item": [
+      ".product-item",
+      ".product"
+    ],
+    "title": [
+      ".product-title",
+      ".product-name"
+    ],
+    "price": [
+      "meta[property='product:price:amount']",
+      "a.btn.customer-login-link.login-btn"
+    ],
+    "price_login_required": [
+      "a.btn.customer-login-link.login-btn"
+    ],
+    "url": [
+      ".product-link",
+      ".product a"
+    ],
+    "image": [
+      ".product-image img",
+      ".product img"
+    ],
+    "ean": [
+      "script:contains('ean')",
+      "meta[property='product:ean']"
+    ],
+    "barcode": [
+      "script:contains('barcode')",
+      "meta[property='product:barcode']"
+    ],
+    "product_code": [
+      ".product-code",
+      ".product-sku"
+    ],
+    "sku": [
+      ".product-sku",
+      ".sku"
+    ]
+  },
+  "pagination": {
+    "pattern": "?page={page_num}",
+    "next_button_selector": [
+      "a.next",
+      ".pagination .next a",
+      "a[rel='next']"
+    ]
+  },
+  "auto_discovered": true,
+  "discovery_timestamp": "2025-06-14T20:45:50.436183",
+  "success": true
+}

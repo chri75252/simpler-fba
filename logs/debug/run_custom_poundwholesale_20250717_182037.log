@@ -1,0 +1,130 @@
+2025-07-17 18:20:37,455 - utils.logger - INFO - 🔧 Logging initialised – log file: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/logs/debug/run_custom_poundwholesale_20250717_182037.log
+2025-07-17 18:20:37,456 - __main__ - INFO - 📋 Debug log file: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/logs/debug/run_custom_poundwholesale_20250717_182037.log
+2025-07-17 18:20:37,457 - __main__ - DEBUG - Debug logging initialized - full system execution details will be captured
+2025-07-17 18:20:37,466 - utils.browser_manager - INFO - 🔧 BrowserManager singleton initialized
+2025-07-17 18:20:37,781 - utils.browser_manager - INFO - 🔌 Connecting to Chrome on debug port 9222
+2025-07-17 18:20:37,817 - utils.browser_manager - WARNING - ⚠️ Could not connect to CDP on port 9222. Launching new browser. Error: BrowserType.connect_over_cdp: connect ECONNREFUSED 127.0.0.1:9222
+Call log:
+  - <ws preparing> retrieving websocket url from http://localhost:9222
+
+2025-07-17 18:20:38,269 - utils.browser_manager - INFO - 📄 Created new page in context.
+2025-07-17 18:20:38,269 - __main__ - INFO - 🔐 Initializing authentication service for logout detection...
+2025-07-17 18:20:38,275 - __main__ - INFO - ✅ Using hardcoded credentials for poundwholesale.co.uk
+2025-07-17 18:20:38,276 - __main__ - INFO - 🌐 Connecting to existing Chrome debug port 9222 for authentication...
+2025-07-17 18:20:41,065 - tools.supplier_authentication_service - WARNING - Could not verify authentication status: Page.goto: Target page, context or browser has been closed
+Call log:
+  - navigating to "https://www.poundwholesale.co.uk/", waiting until "load"
+
+2025-07-17 18:20:41,065 - tools.supplier_authentication_service - INFO - 🔐 Starting authentication for poundwholesale.co.uk
+2025-07-17 18:20:41,066 - tools.supplier_authentication_service - INFO - 🔧 Using standalone playwright authentication
+2025-07-17 18:20:41,066 - tools.standalone_playwright_login - INFO - 🔗 Connecting to shared Chrome instance...
+2025-07-17 18:20:41,433 - tools.standalone_playwright_login - ERROR - ❌ Failed to connect to shared Chrome: BrowserType.connect_over_cdp: connect ECONNREFUSED 127.0.0.1:9222
+Call log:
+  - <ws preparing> retrieving websocket url from http://localhost:9222
+
+2025-07-17 18:20:41,439 - tools.standalone_playwright_login - DEBUG - Playwright stopped
+2025-07-17 18:20:41,440 - tools.supplier_authentication_service - WARNING - ❌ Standalone authentication failed: Failed to connect to browser
+2025-07-17 18:20:41,440 - tools.supplier_authentication_service - ERROR - ❌ All authentication methods failed
+2025-07-17 18:20:41,466 - amazon_playwright_extractor - INFO - AI features disabled in amazon_playwright_extractor - using only traditional selectors.
+2025-07-17 18:20:41,478 - amazon_playwright_extractor - INFO - Output directory set to: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/CACHE/amazon_data
+2025-07-17 18:20:41,479 - amazon_playwright_extractor - WARNING - ⚠️ BrowserManager not available, using legacy browser connection
+2025-07-17 18:20:41,484 - configurable_supplier_scraper - INFO - ✅ Loaded system configuration from /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/config/system_config.json
+2025-07-17 18:20:41,486 - configurable_supplier_scraper - INFO - 🔧 ConfigurableSupplierScraper will use centralized BrowserManager
+2025-07-17 18:20:41,487 - configurable_supplier_scraper - DEBUG - AI model from config: gpt-4.1-mini-2025-04-14
+2025-07-17 18:20:41,488 - configurable_supplier_scraper - DEBUG - Extraction targets from config: {}
+2025-07-17 18:20:41,488 - configurable_supplier_scraper - DEBUG - Discovery assistance from config: {}
+2025-07-17 18:20:41,489 - configurable_supplier_scraper - INFO - [CONFIG] Initialized with AI model: gpt-4.1-mini-2025-04-14
+2025-07-17 18:20:41,489 - configurable_supplier_scraper - INFO - [TARGET] Extraction targets loaded: []
+2025-07-17 18:20:41,490 - configurable_supplier_scraper - INFO - [ASSIST] Discovery assistance enabled: False
+2025-07-17 18:20:41,491 - PassiveExtractionWorkflow - DEBUG - 🔍 DEBUG: linking_map initialized as type: <class 'dict'>
+2025-07-17 18:20:41,492 - PassiveExtractionWorkflow - INFO - ✅ Output directory set to: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS
+2025-07-17 18:20:41,492 - PassiveExtractionWorkflow - INFO - ✅ Initialization validation passed - all critical attributes verified
+2025-07-17 18:20:41,493 - PassiveExtractionWorkflow - INFO - --- Starting Passive Extraction Workflow for: poundwholesale.co.uk ---
+2025-07-17 18:20:41,494 - PassiveExtractionWorkflow - INFO - Session ID: poundwholesale.co.uk_20250717_182041
+2025-07-17 18:20:41,494 - PassiveExtractionWorkflow - INFO - 📊 CONFIGURATION VALUES:
+2025-07-17 18:20:41,495 - PassiveExtractionWorkflow - INFO -    max_products_to_process: 5
+2025-07-17 18:20:41,496 - PassiveExtractionWorkflow - INFO -    max_products_per_category: 2
+2025-07-17 18:20:41,497 - PassiveExtractionWorkflow - INFO -    max_analyzed_products: 3
+2025-07-17 18:20:41,497 - PassiveExtractionWorkflow - INFO -    max_products_per_cycle: 100
+2025-07-17 18:20:41,498 - PassiveExtractionWorkflow - INFO -    supplier_extraction_batch_size: 1
+2025-07-17 18:20:41,499 - PassiveExtractionWorkflow - INFO -    max_categories_per_request: 5
+2025-07-17 18:20:41,504 - utils.enhanced_state_manager - INFO - No existing state file found for poundwholesale.co.uk, starting fresh
+2025-07-17 18:20:41,504 - PassiveExtractionWorkflow - INFO - 📋 Loaded existing processing state for poundwholesale.co.uk
+2025-07-17 18:20:41,505 - PassiveExtractionWorkflow - INFO - 🔄 Resuming from index 0
+2025-07-17 18:20:41,509 - PassiveExtractionWorkflow - INFO - ✅ No previous progress found, starting fresh.
+2025-07-17 18:20:41,527 - PassiveExtractionWorkflow - INFO - ✅ No existing linking map found at /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/FBA_ANALYSIS/linking_maps/poundwholesale_co_uk/linking_map.json - Creating new map
+2025-07-17 18:20:41,527 - PassiveExtractionWorkflow - DEBUG - 🔍 DEBUG: linking_map loaded as type: <class 'dict'>, length: 0
+2025-07-17 18:20:41,540 - PassiveExtractionWorkflow - INFO - ✅ No existing linking map found at /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/FBA_ANALYSIS/linking_maps/poundwholesale_co_uk/linking_map.json - Creating new map
+2025-07-17 18:20:41,541 - PassiveExtractionWorkflow - INFO - CUSTOM MODE: Using predefined category list.
+2025-07-17 18:20:41,542 - tools.passive_extraction_workflow_latest - INFO - Attempting to load predefined categories for poundwholesale.co.uk
+2025-07-17 18:20:41,550 - tools.passive_extraction_workflow_latest - INFO - ✅ Successfully loaded 276 predefined category URLs from /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/config/poundwholesale_categories.json
+2025-07-17 18:20:41,551 - PassiveExtractionWorkflow - INFO - 🔄 HYBRID PROCESSING MODE: Enabled
+2025-07-17 18:20:41,552 - PassiveExtractionWorkflow - INFO - 🔄 HYBRID PROCESSING: Mode configuration loaded
+2025-07-17 18:20:41,552 - PassiveExtractionWorkflow - INFO -    switch_to_amazon_after_categories: 1
+2025-07-17 18:20:41,553 - PassiveExtractionWorkflow - INFO - 🔄 HYBRID MODE: Chunked processing (chunk size: 1 categories)
+2025-07-17 18:20:41,554 - PassiveExtractionWorkflow - INFO - 🔄 Processing chunk 1: categories 1-1
+2025-07-17 18:20:41,558 - PassiveExtractionWorkflow - INFO - 🕷️ PERFORMING SUPPLIER SCRAPING from 1 categories
+2025-07-17 18:20:41,559 - PassiveExtractionWorkflow - INFO - 📦 Using supplier extraction batch size: 1
+2025-07-17 18:20:41,559 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS TRACKING: Extracting from 1 categories in 1 batches
+2025-07-17 18:20:41,560 - PassiveExtractionWorkflow - INFO - 📦 Processing category batch 1/1 (1 categories)
+2025-07-17 18:20:41,587 - PassiveExtractionWorkflow - INFO - 🔄 EXTRACTION PROGRESS: Processing subcategory 1/1 in batch 1 (Category 1/1)
+2025-07-17 18:20:41,588 - PassiveExtractionWorkflow - INFO - Scraping category: https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners
+2025-07-17 18:20:41,589 - configurable_supplier_scraper - INFO - Starting enhanced scraping from https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners
+2025-07-17 18:20:41,590 - configurable_supplier_scraper - INFO - Setting page limiter for https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners
+2025-07-17 18:20:41,729 - utils.browser_manager - INFO - 📄 Created new page in context.
+2025-07-17 18:20:41,753 - configurable_supplier_scraper - INFO - ✅ Loaded VALIDATED supplier package selectors for poundwholesale.co.uk from /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/suppliers/poundwholesale-co-uk/config/product_selectors.json
+2025-07-17 18:20:41,753 - configurable_supplier_scraper - INFO - No page limiter configuration found for www.poundwholesale.co.uk
+2025-07-17 18:20:41,754 - configurable_supplier_scraper - INFO - Collecting product URLs from paginated pages starting at: https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners
+2025-07-17 18:20:41,754 - configurable_supplier_scraper - INFO - Processing page 1: https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners
+2025-07-17 18:20:41,755 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners (attempt 1/3)
+2025-07-17 18:20:41,755 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-17 18:20:41,756 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners
+2025-07-17 18:20:44,299 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners in 1.57s...
+2025-07-17 18:20:45,873 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners (attempt 2/3)
+2025-07-17 18:20:45,941 - utils.browser_manager - INFO - 📄 Created new page in context.
+2025-07-17 18:20:45,941 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners
+2025-07-17 18:20:48,622 - configurable_supplier_scraper - WARNING - Navigation failed for https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners: Page.goto: net::ERR_ABORTED; maybe frame was detached?
+Call log:
+  - navigating to "https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners", waiting until "domcontentloaded"
+
+2025-07-17 18:20:48,623 - configurable_supplier_scraper - WARNING - No response received for https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners (attempt 2)
+2025-07-17 18:20:48,624 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners (attempt 3/3)
+2025-07-17 18:20:48,624 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-17 18:20:48,624 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners
+2025-07-17 18:20:51,589 - configurable_supplier_scraper - WARNING - Navigation failed for https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners: Page.goto: Target page, context or browser has been closed
+2025-07-17 18:20:51,590 - configurable_supplier_scraper - WARNING - No response received for https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners (attempt 3)
+2025-07-17 18:20:51,591 - configurable_supplier_scraper - ERROR - Failed to fetch https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners after 3 attempts.
+2025-07-17 18:20:51,591 - configurable_supplier_scraper - WARNING - Failed to fetch page 1
+2025-07-17 18:20:51,592 - configurable_supplier_scraper - INFO - Collected 0 total product URLs across 1 pages
+2025-07-17 18:20:51,592 - configurable_supplier_scraper - WARNING - No product URLs found across all pages for https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners
+2025-07-17 18:20:51,593 - PassiveExtractionWorkflow - INFO - 📊 Category completed: 0 raw products extracted, 0 total products accumulated
+2025-07-17 18:20:51,593 - PassiveExtractionWorkflow - INFO - ✅ Completed batch 1: 0 total products extracted so far
+2025-07-17 18:20:51,594 - PassiveExtractionWorkflow - INFO - 🔄 Processing chunk 2: categories 2-2
+2025-07-17 18:20:51,597 - PassiveExtractionWorkflow - INFO - 🕷️ PERFORMING SUPPLIER SCRAPING from 1 categories
+2025-07-17 18:20:51,598 - PassiveExtractionWorkflow - INFO - 📦 Using supplier extraction batch size: 1
+2025-07-17 18:20:51,599 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS TRACKING: Extracting from 1 categories in 1 batches
+2025-07-17 18:20:51,599 - PassiveExtractionWorkflow - INFO - 📦 Processing category batch 1/1 (1 categories)
+2025-07-17 18:20:51,621 - PassiveExtractionWorkflow - INFO - 🔄 EXTRACTION PROGRESS: Processing subcategory 1/1 in batch 1 (Category 1/1)
+2025-07-17 18:20:51,622 - PassiveExtractionWorkflow - INFO - Scraping category: https://www.poundwholesale.co.uk/wholesale-cleaning/sponges-scourers-cloths
+2025-07-17 18:20:51,623 - configurable_supplier_scraper - INFO - Starting enhanced scraping from https://www.poundwholesale.co.uk/wholesale-cleaning/sponges-scourers-cloths
+2025-07-17 18:20:51,623 - configurable_supplier_scraper - INFO - Setting page limiter for https://www.poundwholesale.co.uk/wholesale-cleaning/sponges-scourers-cloths
+2025-07-17 18:20:51,685 - utils.browser_manager - INFO - 📄 Created new page in context.
+2025-07-17 18:20:51,686 - configurable_supplier_scraper - INFO - No page limiter configuration found for www.poundwholesale.co.uk
+2025-07-17 18:20:51,686 - configurable_supplier_scraper - INFO - Collecting product URLs from paginated pages starting at: https://www.poundwholesale.co.uk/wholesale-cleaning/sponges-scourers-cloths
+2025-07-17 18:20:51,687 - configurable_supplier_scraper - INFO - Processing page 1: https://www.poundwholesale.co.uk/wholesale-cleaning/sponges-scourers-cloths
+2025-07-17 18:20:51,687 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/wholesale-cleaning/sponges-scourers-cloths (attempt 1/3)
+2025-07-17 18:20:51,688 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-17 18:20:51,688 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/wholesale-cleaning/sponges-scourers-cloths
+2025-07-17 18:20:53,963 - configurable_supplier_scraper - WARNING - Navigation failed for https://www.poundwholesale.co.uk/wholesale-cleaning/sponges-scourers-cloths: Page.goto: Target page, context or browser has been closed
+Call log:
+  - navigating to "https://www.poundwholesale.co.uk/wholesale-cleaning/sponges-scourers-cloths", waiting until "domcontentloaded"
+
+2025-07-17 18:20:53,965 - configurable_supplier_scraper - WARNING - No response received for https://www.poundwholesale.co.uk/wholesale-cleaning/sponges-scourers-cloths (attempt 1)
+2025-07-17 18:20:53,966 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/wholesale-cleaning/sponges-scourers-cloths (attempt 2/3)
+2025-07-17 18:20:54,029 - utils.browser_manager - INFO - 📄 Created new page in context.
+2025-07-17 18:20:54,029 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/wholesale-cleaning/sponges-scourers-cloths
+2025-07-17 18:20:56,263 - configurable_supplier_scraper - WARNING - Navigation failed for https://www.poundwholesale.co.uk/wholesale-cleaning/sponges-scourers-cloths: Page.goto: Target page, context or browser has been closed
+2025-07-17 18:20:56,264 - configurable_supplier_scraper - WARNING - No response received for https://www.poundwholesale.co.uk/wholesale-cleaning/sponges-scourers-cloths (attempt 2)
+2025-07-17 18:20:56,264 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/wholesale-cleaning/sponges-scourers-cloths (attempt 3/3)
+2025-07-17 18:20:56,323 - utils.browser_manager - INFO - 📄 Created new page in context.
+2025-07-17 18:20:56,324 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/wholesale-cleaning/sponges-scourers-cloths

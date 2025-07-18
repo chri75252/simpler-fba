@@ -1,0 +1,33 @@
+INFO:__main__:🔍 Enhanced detailed logging enabled - output: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/logs/debug/run_complete_fba_system_20250717_095715.log
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:__main__:🚀 Complete FBA System v3 initialized
+INFO:__main__:🏭 Processing supplier: poundwholesale-co-uk
+INFO:__main__:🔗 URL: https://poundwholesale.co.uk
+INFO:__main__:📧 Email: test@test.com
+INFO:__main__:🖥️ Headed mode: True
+INFO:__main__:📦 Max products: 1
+INFO:__main__:🔄 Force regenerate: False
+INFO:__main__:📦 Archiving expected output files for verification...
+INFO:__main__:Archive mode set to: ''
+WARNING:__main__:Unknown archive mode: ''. Skipping archive.
+INFO:tools.supplier_guard:🛡️ Supplier Guard initialized
+INFO:__main__:⚠️ Supplier poundwholesale-co-uk not ready: .supplier_ready file is 8 days old (max 7 days)
+INFO:__main__:✅ Existing supplier package found for poundwholesale-co-uk. Bypassing script generation.
+INFO:__main__:🚀 Initializing centralized browser session...
+INFO:utils.browser_manager:🔧 BrowserManager singleton initialized
+ERROR:__main__:❌ Browser setup or dynamic authentication failed: Browser context not initialized. Call launch_browser() first.
+Traceback (most recent call last):
+  File "/mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/run_complete_fba_system.py", line 417, in run_complete_system
+    authenticated_page = await get_page_for_url(supplier_url, reuse_existing=True)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/utils/browser_manager.py", line 161, in get_page_for_url
+    return await manager.get_page(url, reuse_existing)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/utils/browser_manager.py", line 81, in get_page
+    raise Exception("Browser context not initialized. Call launch_browser() first.")
+Exception: Browser context not initialized. Call launch_browser() first.
+INFO:utils.browser_manager:🧹 Performing global cleanup...
+INFO:utils.browser_manager:🧹 Starting browser cleanup...
+INFO:utils.browser_manager:✅ Browser cleanup completed
+INFO:__main__:🧹 Browser cleanup completed
+WARNING:utils.browser_manager:Error during global cleanup: no running event loop

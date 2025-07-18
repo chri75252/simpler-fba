@@ -61,7 +61,7 @@ class BrowserManager:
 
         self.playwright = await async_playwright().start()
         try:
-            log.info(f"🔌 Connecting to Chrome on debug port {cdp_port}")
+            log.info(f"🔌 Connecting to persistent Chrome on debug port {cdp_port}")
             self.browser = await self.playwright.chromium.connect_over_cdp(f"http://localhost:{cdp_port}")
             
             if self.browser.contexts:
@@ -70,11 +70,16 @@ class BrowserManager:
             else:
                 self.context = await self.browser.new_context()
                 log.info("📄 Created new browser context")
-            log.info("✅ Connected to Chrome successfully")
+            log.info("✅ Connected to persistent Chrome successfully")
         except Exception as e:
-            log.warning(f"⚠️ Could not connect to CDP on port {cdp_port}. Launching new browser. Error: {e}")
-            self.browser = await self.playwright.chromium.launch(headless=headless)
-            self.context = self.browser.contexts[0] if self.browser.contexts else await self.browser.new_context()
+            log.error(f"❌ Could not connect to persistent Chrome on port {cdp_port}. Error: {e}")
+            log.error(f"❌ Please ensure Chrome is running with --remote-debugging-port={cdp_port}")
+            log.error(f"❌ Command: chrome --remote-debugging-port={cdp_port} --user-data-dir=/tmp/chrome-debug")
+            # Clean up playwright if connection failed
+            if self.playwright:
+                await self.playwright.stop()
+                self.playwright = None
+            raise Exception(f"Failed to connect to persistent Chrome on port {cdp_port}. Please start Chrome with debug port.")
 
     async def get_page(self, url: str = None, reuse_existing: bool = True) -> Page:
         if not self.context:
@@ -112,19 +117,46 @@ class BrowserManager:
 
     async def close_browser(self):
         log.info("🧹 Starting browser cleanup...")
+        
+        # For persistent Chrome instances (debug port), we should NOT close the browser
+        # Only disconnect from it to keep it running
+        if self.browser and self.browser.is_connected():
+            # Check if this is a CDP connection (persistent browser)
+            try:
+                # For CDP connections, we just disconnect without closing
+                log.info("🔌 Disconnecting from persistent Chrome instance (keeping browser running)")
+                # Don't close pages for persistent browser - just clear our references
+                self.page_cache.clear()
+                self.page_usage_order.clear()
+                
+                # Disconnect playwright but don't close the browser
+                if self.playwright:
+                    await self.playwright.stop()
+                    log.info("🎭 Stopped Playwright instance (browser remains running)")
+                
+                # Clear references but don't close the actual browser
+                self.browser = None
+                self.context = None
+                self.playwright = None
+                
+                log.info("✅ Disconnected from persistent browser (Chrome debug port remains active)")
+                return
+                
+            except Exception as e:
+                log.warning(f"Error during persistent browser disconnect: {e}")
+        
+        # Fallback for non-persistent browsers (if any)
         if self.context:
-             # We are connecting to a persistent context, so we don't close the context itself.
-             # We will close any pages we opened.
             for page in list(self.context.pages):
                 try:
                     await page.close()
                 except Exception:
-                    pass # Page might already be closed
-            log.info(f"🗑️ Closed pages, but leaving context open.")
+                    pass
+            log.info(f"🗑️ Closed pages from non-persistent context")
             
         if self.playwright:
             await self.playwright.stop()
-            log.info("🎭 Stopped Playwright instance.")
+            log.info("🎭 Stopped Playwright instance")
         
         self.browser = None
         self.context = None
@@ -137,6 +169,7 @@ async def global_cleanup():
     log.info("🧹 Performing global cleanup...")
     manager = BrowserManager.get_instance()
     await manager.close_browser()
+    log.info("🔌 Persistent Chrome browser should remain running on debug port 9222")
 
 # This allows the cleanup to be registered with atexit
 def run_global_cleanup():
@@ -158,6 +191,17 @@ atexit.register(run_global_cleanup)
 async def get_page_for_url(url: str, reuse_existing: bool = True) -> Page:
     """Convenience function to get page for URL."""
     manager = BrowserManager.get_instance()
+    
+    # Auto-launch browser if not already launched
+    if not manager.context:
+        chrome_debug_port = int(os.getenv('CHROME_DEBUG_PORT', DEFAULT_CHROME_DEBUG_PORT))
+        # For persistent browser, headless is not relevant since we're connecting to existing Chrome
+        try:
+            await manager.launch_browser(chrome_debug_port, headless=False)
+        except Exception as e:
+            log.error(f"❌ Failed to connect to persistent Chrome: {e}")
+            raise Exception(f"Cannot connect to persistent Chrome on port {chrome_debug_port}. Please start Chrome with debug port.")
+    
     return await manager.get_page(url, reuse_existing)
 
 

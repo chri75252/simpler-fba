@@ -1,0 +1,83 @@
+{
+  "batch_vs_chunk_analysis": {
+    "batch_integrations": 327,
+    "chunk_integrations": 73
+  },
+  "duplicate_toggles": {
+    "processing_limits": {
+      "log_file": "logs/debug/toggle_test_processing_limits_max_products_per_category_20250715_232207.log",
+      "expected": "Products per category limited to test value",
+      "observed": [
+        "Products extracted: 5",
+        "Current batch: 1",
+        "Products in cache: 10",
+        "Products per category: {'multi-purpose-cleaners': 5, 'sponges-scourers-cloths': 5}"
+      ],
+      "evidence": [
+        "Configuration section found: 0 chars",
+        "OUTPUTS/CACHE/processing_states/poundwholesale_co_uk_processing_state.json: 1459 bytes, 2025-07-15T23:23:01.852728",
+        "OUTPUTS/cached_products/poundwholesale-co-uk_products_cache.json: 6100 bytes, 2025-07-15T23:02:26.514664"
+      ]
+    },
+    "system": {
+      "log_file": "logs/debug/toggle_test_system_max_products_per_category_20250715_232304.log",
+      "expected": "Products per category limited to test value",
+      "observed": [
+        "Products extracted: 6",
+        "Current batch: 1",
+        "Products in cache: 10",
+        "Products per category: {'multi-purpose-cleaners': 5, 'sponges-scourers-cloths': 5}"
+      ],
+      "evidence": [
+        "Configuration section found: 0 chars",
+        "OUTPUTS/CACHE/processing_states/poundwholesale_co_uk_processing_state.json: 1505 bytes, 2025-07-15T23:23:56.463026",
+        "OUTPUTS/cached_products/poundwholesale-co-uk_products_cache.json: 6100 bytes, 2025-07-15T23:02:26.514664"
+      ]
+    }
+  },
+  "supplier_extraction_progress": {
+    "log_file": "logs/debug/toggle_test_supplier_extraction_progress_20250715_232401.log",
+    "expected": "Detailed progress tracking with subcategory index",
+    "observed": [
+      "Products extracted: 7",
+      "Current batch: 1",
+      "Products in cache: 10",
+      "Products per category: {'multi-purpose-cleaners': 5, 'sponges-scourers-cloths': 5}"
+    ],
+    "evidence": [
+      "Configuration section found: 0 chars",
+      "OUTPUTS/CACHE/processing_states/poundwholesale_co_uk_processing_state.json: 1466 bytes, 2025-07-15T23:24:59.253222",
+      "OUTPUTS/cached_products/poundwholesale-co-uk_products_cache.json: 6100 bytes, 2025-07-15T23:02:26.514664"
+    ]
+  },
+  "hybrid_processing": {
+    "log_file": "logs/debug/toggle_test_hybrid_processing_chunked_20250715_232459.log",
+    "expected": "Categories processed in chunks",
+    "observed": [
+      "Products extracted: 7",
+      "Current batch: 1",
+      "Products in cache: 10",
+      "Products per category: {'multi-purpose-cleaners': 5, 'sponges-scourers-cloths': 5}"
+    ],
+    "evidence": [
+      "Configuration section found: 0 chars",
+      "OUTPUTS/CACHE/processing_states/poundwholesale_co_uk_processing_state.json: 1466 bytes, 2025-07-15T23:25:55.590432",
+      "OUTPUTS/cached_products/poundwholesale-co-uk_products_cache.json: 6100 bytes, 2025-07-15T23:02:26.514664"
+    ]
+  },
+  "batch_synchronization": {
+    "log_file": "logs/debug/toggle_test_batch_synchronization_20250715_232557.log",
+    "expected": "All batch sizes synchronized",
+    "observed": [
+      "Products extracted: 6",
+      "Current batch: 1",
+      "Products in cache: 10",
+      "Products per category: {'multi-purpose-cleaners': 5, 'sponges-scourers-cloths': 5}"
+    ],
+    "evidence": [
+      "Configuration section found: 0 chars",
+      "OUTPUTS/CACHE/processing_states/poundwholesale_co_uk_processing_state.json: 1451 bytes, 2025-07-15T23:26:50.013079",
+      "OUTPUTS/cached_products/poundwholesale-co-uk_products_cache.json: 6100 bytes, 2025-07-15T23:02:26.514664"
+    ]
+  }
+}

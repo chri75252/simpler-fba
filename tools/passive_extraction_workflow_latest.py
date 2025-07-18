@@ -108,7 +108,7 @@ from configurable_supplier_scraper import ConfigurableSupplierScraper
 # Zero-token triage module available but not activated by default
 # from zero_token_triage_module import perform_zero_token_triage
 # Import FBA Calculator for accurate fee calculations
-from FBA_Financial_calculator import run_calculations
+from FBA_Financial_calculator import run_calculations, financials as calc_financials
 from cache_manager import CacheManager
 # Removed LinkingMapWriter - using internal linking map methods
 # Import enhanced state manager
@@ -124,6 +124,7 @@ except ImportError:
 
 from playwright.async_api import async_playwright, Browser, Page, TimeoutError as PlaywrightTimeoutError
 from utils.browser_manager import BrowserManager
+from utils.path_manager import path_manager, get_linking_map_path
 from config.system_config_loader import SystemConfigLoader
 
 # Configure logging
@@ -932,8 +933,8 @@ class PassiveExtractionWorkflow:
         # CRITICAL FIX: Set extractor alias to amazon_extractor to prevent AttributeError
         self.extractor = self.amazon_extractor
         
-        # Initialize linking map as a dictionary (EAN -> ASIN mapping)
-        self.linking_map = {}
+        # Initialize linking map as an array of detailed objects (matching archived format)
+        self.linking_map = []
         self.log.debug(f"🔍 DEBUG: linking_map initialized as type: {type(self.linking_map)}")
         # self.performance_tracker = PerformanceTracker()  # Removed - not defined
 
@@ -1271,7 +1272,7 @@ class PassiveExtractionWorkflow:
                     # Perform financial analysis for individual product
                     try:
                         # Import financial calculation functions directly to avoid full cache dependency
-                        from FBA_Financial_calculator import financials as calc_financials
+                        # Already imported at top of file - from FBA_Financial_calculator import financials as calc_financials
                         
                         # Extract supplier price with validation from the linking map entry
                         supplier_price_inc_vat = linking_entry.get("supplier_price", 0)
@@ -1343,13 +1344,14 @@ class PassiveExtractionWorkflow:
             self.log.info(f"📊 Final state summary: {self.state_manager.get_state_summary()}")
             self.log.info("--- Passive Extraction Workflow Finished ---")
             self.log.info(f"Summary: {self.results_summary}")
+        
             return profitable_results
 
         except Exception as e:
             self.log.error(f"Unexpected error occurred during workflow execution: {e}", exc_info=True)
             return []
 
-    def _load_linking_map(self, supplier_name: str) -> Dict[str, str]:
+    def _load_linking_map(self, supplier_name: str) -> List[Dict[str, str]]:
         """Load linking map from supplier-specific JSON file"""
         linking_map_path = os.path.join(BASE_DIR, "OUTPUTS", "FBA_ANALYSIS", "linking_maps", supplier_name, "linking_map.json")
         
@@ -1358,56 +1360,61 @@ class PassiveExtractionWorkflow:
                 with open(linking_map_path, 'r', encoding='utf-8') as f:
                     raw_data = json.load(f)
                 
-                # Handle both formats: new dict format and legacy list format
+                # Handle both formats: convert old dict format to new array format
                 if isinstance(raw_data, dict):
-                    # New simple format: {"EAN": "ASIN", "EAN2": "ASIN2"}
-                    linking_map = raw_data
-                    self.log.info(f"✅ Loaded linking map (dict format) from {linking_map_path} with {len(linking_map)} entries")
+                    # Old simple format: {"EAN": "ASIN", "EAN2": "ASIN2"} -> convert to array
+                    linking_map = []
+                    for ean, asin in raw_data.items():
+                        linking_map.append({
+                            "supplier_product_identifier": f"EAN_{ean}",
+                            "supplier_title_snippet": "",
+                            "chosen_amazon_asin": asin,
+                            "amazon_title_snippet": "",
+                            "amazon_ean_on_page": ean,
+                            "match_method": "EAN_cached"
+                        })
+                    self.log.info(f"✅ Converted linking map from dict format to array format from {linking_map_path} with {len(linking_map)} entries")
                 elif isinstance(raw_data, list):
-                    # Legacy detailed format: [{"supplier_ean": "123", "amazon_asin": "ABC", ...}]
-                    linking_map = {}
-                    for entry in raw_data:
-                        if isinstance(entry, dict) and "supplier_ean" in entry and "amazon_asin" in entry:
-                            linking_map[entry["supplier_ean"]] = entry["amazon_asin"]
-                    self.log.info(f"✅ Converted linking map from list format to dict format from {linking_map_path} with {len(linking_map)} entries")
+                    # New detailed format: [{"supplier_product_identifier": "EAN_123", "chosen_amazon_asin": "ABC", ...}]
+                    linking_map = raw_data
+                    self.log.info(f"✅ Loaded linking map (array format) from {linking_map_path} with {len(linking_map)} entries")
                 else:
                     self.log.error(f"Unexpected linking map format: {type(raw_data)} - Creating new map")
-                    return {}
+                    return []
                     
                 return linking_map
             except (json.JSONDecodeError, UnicodeDecodeError, Exception) as e:
                 self.log.error(f"Error loading linking map: {e} - Creating new map")
-                return {}
+                return []
         else:
             self.log.info(f"✅ No existing linking map found at {linking_map_path} - Creating new map")
-            return {}
+            return []
 
     def _save_linking_map(self, supplier_name: str):
         """Save linking map to supplier-specific JSON file using atomic write pattern"""
         self.log.info(f"🔍 DEBUG: _save_linking_map called with {len(self.linking_map)} entries for supplier {supplier_name}")
-        self.log.info(f"🔍 DEBUG: linking_map type: {type(self.linking_map)}, value: {self.linking_map}")
+        self.log.info(f"🔍 DEBUG: linking_map type: {type(self.linking_map)}, content: {self.linking_map}")
         
         if not self.linking_map:
             self.log.warning("⚠️ CRITICAL: Empty linking map - nothing to save. This suggests linking map entries are not being created!")
-            self.log.warning(f"⚠️ DEBUG: self.linking_map = {self.linking_map}")
             return
             
-        # Create supplier-specific directory
-        linking_map_dir = os.path.join(BASE_DIR, "OUTPUTS", "FBA_ANALYSIS", "linking_maps", supplier_name)
-        self.log.info(f"🔍 DEBUG: Creating directory: {linking_map_dir}")
-        
+        # Use consistent path naming with get_linking_map_path
         try:
-            os.makedirs(linking_map_dir, exist_ok=True)
-            self.log.info(f"✅ Directory created successfully: {linking_map_dir}")
-        except Exception as dir_error:
-            self.log.error(f"❌ CRITICAL: Failed to create directory {linking_map_dir}: {dir_error}")
+            linking_map_path = get_linking_map_path(supplier_name)
+            self.log.info(f"🔍 DEBUG: Target file path: {linking_map_path}")
+            
+            # Ensure directory exists
+            linking_map_dir = linking_map_path.parent
+            linking_map_dir.mkdir(parents=True, exist_ok=True)
+            self.log.info(f"✅ Directory created: {linking_map_dir}")
+            
+        except Exception as path_error:
+            self.log.error(f"❌ CRITICAL: Failed to create linking map path: {path_error}")
             return
         
-        linking_map_path = os.path.join(linking_map_dir, "linking_map.json")
-        self.log.info(f"🔍 DEBUG: Target file path: {linking_map_path}")
-        
         # Use atomic write pattern to prevent corruption
-        temp_path = f"{linking_map_path}.tmp"
+        temp_path = linking_map_path.with_suffix(linking_map_path.suffix + '.tmp')
         self.log.info(f"🔍 DEBUG: Temporary file path: {temp_path}")
         
         try:
@@ -1419,21 +1426,21 @@ class PassiveExtractionWorkflow:
                 
             # Then atomically replace the original file
             self.log.info(f"🔍 DEBUG: Moving temporary file to final location...")
-            os.replace(temp_path, linking_map_path)
+            temp_path.replace(linking_map_path)
             self.log.info(f"✅ Successfully saved linking map with {len(self.linking_map)} entries to {linking_map_path}")
             
             # Verify the file was actually created and has content
-            if os.path.exists(linking_map_path):
-                file_size = os.path.getsize(linking_map_path)
+            if linking_map_path.exists():
+                file_size = linking_map_path.stat().st_size
                 self.log.info(f"✅ VERIFICATION: File exists at {linking_map_path} with size {file_size} bytes")
             else:
                 self.log.error(f"❌ CRITICAL: File was not created at {linking_map_path}")
                 
         except Exception as e:
             self.log.error(f"❌ CRITICAL: Error saving linking map: {e}", exc_info=True)
-            if os.path.exists(temp_path):
+            if temp_path.exists():
                 try:
-                    os.remove(temp_path)
+                    temp_path.unlink()
                     self.log.info(f"🧹 Cleaned up temporary file: {temp_path}")
                 except Exception as cleanup_error:
                     self.log.error(f"❌ Failed to clean up temporary file: {cleanup_error}")
@@ -2998,18 +3005,21 @@ Return ONLY valid JSON, no additional text."""
         return amazon_product_data
 
     def _save_final_report(self, profitable_results: List[Dict[str, Any]], supplier_name: str):
-        """Save the final report of profitable products to a JSON file."""
-        if not profitable_results:
-            self.log.info("No profitable products found in this run.")
-            return
-        output_filename = f"fba_profitable_finds_{supplier_name}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
-        output_path = os.path.join(self.output_dir, output_filename)
+        """Generate CSV financial report using FBA_Financial_calculator."""
+        self.log.info(f"🔍 DEBUG: _save_final_report called with {len(profitable_results) if profitable_results else 0} profitable results")
+        
+        # Always call FBA_Financial_calculator to generate CSV report regardless of profitable_results
+        # The calculator will process linking_map and generate comprehensive financial analysis
         try:
-            with open(output_path, "w", encoding="utf-8") as f:
-                json.dump(profitable_results, f, indent=2, ensure_ascii=False)
-            self.log.info(f"Found {len(profitable_results)} profitable products. Results saved to {output_path}")
+            self.log.info("📊 Calling FBA_Financial_calculator.run_calculations to generate CSV financial report...")
+            
+            # Call run_calculations with supplier_name to generate CSV report
+            run_calculations(supplier_name)
+            
+            self.log.info("✅ Financial report CSV generation completed successfully")
+            
         except Exception as e:
-            self.log.error(f"Error saving final report: {e}")
+            self.log.error(f"❌ CRITICAL: Error generating financial report CSV: {e}", exc_info=True)
 
     def _combine_data(self, supplier_data: Dict[str, Any], amazon_data: Dict[str, Any], session_id: str) -> Dict[str, Any]:
         """Combine supplier and Amazon data and calculate financial metrics."""
@@ -3242,6 +3252,23 @@ Return ONLY valid JSON, no additional text."""
                     all_products, supplier_name, max_products_per_cycle
                 )
         
+        # CRITICAL FIX: Add final save operations that were missing from hybrid mode
+        try:
+            # Save linking map with all collected entries
+            self._save_linking_map(supplier_name)
+            self.log.info("✅ Hybrid mode: Linking map save completed")
+            
+            # Save final report of profitable products  
+            self._save_final_report(profitable_results, supplier_name)
+            self.log.info("✅ Hybrid mode: Final report save completed")
+            
+            # Save processing state
+            self.state_manager.save_state()
+            self.log.info("--- Hybrid Processing Mode Finished ---")
+            
+        except Exception as save_error:
+            self.log.error(f"❌ CRITICAL: Error during final save operations in hybrid mode: {save_error}", exc_info=True)
+        
         return profitable_results
 
     async def _analyze_products_batch(self, products: List[Dict[str, Any]], 
@@ -3301,7 +3328,7 @@ Return ONLY valid JSON, no additional text."""
                 
                 # Financial analysis
                 try:
-                    from FBA_Financial_calculator import financials as calc_financials
+                    # Already imported at top of file: from FBA_Financial_calculator import financials as calc_financials
                     supplier_price = float(product_data.get("price", 0))
                     current_price = amazon_data.get("current_price", 0)
                     
@@ -3340,20 +3367,6 @@ Return ONLY valid JSON, no additional text."""
         category_filename = f"{self.supplier_name}_{category_url.split('/')[-1]}_products.json"
         cache_dir = os.path.join(self.output_dir, 'CACHE', 'supplier_cache')
         return os.path.join(cache_dir, category_filename)
-
-    def _save_final_report(self, profitable_products: list):
-        """Save the final report of profitable products to a JSON file."""
-        if not profitable_products:
-            self.log.info("No profitable products found in this run.")
-            return
-        output_filename = f"fba_profitable_finds_{self.supplier_name}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
-        output_path = os.path.join(self.output_dir, output_filename)
-        try:
-            with open(output_path, "w", encoding="utf-8") as f:
-                json.dump(profitable_products, f, indent=2, ensure_ascii=False)
-            self.log.info(f"Found {len(profitable_products)} profitable products. Results saved to {output_path}")
-        except Exception as e:
-            self.log.error(f"Error saving final report: {e}")
 
     def _combine_data(self, supplier_data: Dict[str, Any], amazon_data: Dict[str, Any], session_id: str) -> Dict[str, Any]:
         """Combine supplier and Amazon data and calculate financial metrics."""
@@ -3586,6 +3599,23 @@ Return ONLY valid JSON, no additional text."""
                     all_products, supplier_name, max_products_per_cycle
                 )
         
+        # CRITICAL FIX: Add final save operations that were missing from hybrid mode
+        try:
+            # Save linking map with all collected entries
+            self._save_linking_map(supplier_name)
+            self.log.info("✅ Hybrid mode: Linking map save completed")
+            
+            # Save final report of profitable products  
+            self._save_final_report(profitable_results, supplier_name)
+            self.log.info("✅ Hybrid mode: Final report save completed")
+            
+            # Save processing state
+            self.state_manager.save_state()
+            self.log.info("--- Hybrid Processing Mode Finished ---")
+            
+        except Exception as save_error:
+            self.log.error(f"❌ CRITICAL: Error during final save operations in hybrid mode: {save_error}", exc_info=True)
+        
         return profitable_results
 
     async def _analyze_products_batch(self, products: List[Dict[str, Any]], 
@@ -3645,7 +3675,7 @@ Return ONLY valid JSON, no additional text."""
                 
                 # Financial analysis
                 try:
-                    from FBA_Financial_calculator import financials as calc_financials
+                    # Already imported at top of file: from FBA_Financial_calculator import financials as calc_financials
                     supplier_price = float(product_data.get("price", 0))
                     current_price = amazon_data.get("current_price", 0)
                     
@@ -3684,20 +3714,6 @@ Return ONLY valid JSON, no additional text."""
         category_filename = f"{self.supplier_name}_{category_url.split('/')[-1]}_products.json"
         cache_dir = os.path.join(self.output_dir, 'CACHE', 'supplier_cache')
         return os.path.join(cache_dir, category_filename)
-
-    def _save_final_report(self, profitable_products: list):
-        """Save the final report of profitable products to a JSON file."""
-        if not profitable_products:
-            self.log.info("No profitable products found in this run.")
-            return
-        output_filename = f"fba_profitable_finds_{self.supplier_name}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
-        output_path = os.path.join(self.output_dir, output_filename)
-        try:
-            with open(output_path, "w", encoding="utf-8") as f:
-                json.dump(profitable_products, f, indent=2, ensure_ascii=False)
-            self.log.info(f"Found {len(profitable_products)} profitable products. Results saved to {output_path}")
-        except Exception as e:
-            self.log.error(f"Error saving final report: {e}")
 
     def _combine_data(self, supplier_data: Dict[str, Any], amazon_data: Dict[str, Any], session_id: str) -> Dict[str, Any]:
         """Combine supplier and Amazon data and calculate financial metrics."""
@@ -3930,6 +3946,23 @@ Return ONLY valid JSON, no additional text."""
                     all_products, supplier_name, max_products_per_cycle
                 )
         
+        # CRITICAL FIX: Add final save operations that were missing from hybrid mode
+        try:
+            # Save linking map with all collected entries
+            self._save_linking_map(supplier_name)
+            self.log.info("✅ Hybrid mode: Linking map save completed")
+            
+            # Save final report of profitable products  
+            self._save_final_report(profitable_results, supplier_name)
+            self.log.info("✅ Hybrid mode: Final report save completed")
+            
+            # Save processing state
+            self.state_manager.save_state()
+            self.log.info("--- Hybrid Processing Mode Finished ---")
+            
+        except Exception as save_error:
+            self.log.error(f"❌ CRITICAL: Error during final save operations in hybrid mode: {save_error}", exc_info=True)
+        
         return profitable_results
 
     async def _analyze_products_batch(self, products: List[Dict[str, Any]], 
@@ -3989,7 +4022,7 @@ Return ONLY valid JSON, no additional text."""
                 
                 # Financial analysis
                 try:
-                    from FBA_Financial_calculator import financials as calc_financials
+                    # Already imported at top of file: from FBA_Financial_calculator import financials as calc_financials
                     supplier_price = float(product_data.get("price", 0))
                     current_price = amazon_data.get("current_price", 0)
                     
@@ -4028,20 +4061,6 @@ Return ONLY valid JSON, no additional text."""
         category_filename = f"{self.supplier_name}_{category_url.split('/')[-1]}_products.json"
         cache_dir = os.path.join(self.output_dir, 'CACHE', 'supplier_cache')
         return os.path.join(cache_dir, category_filename)
-
-    def _save_final_report(self, profitable_products: list):
-        """Save the final report of profitable products to a JSON file."""
-        if not profitable_products:
-            self.log.info("No profitable products found in this run.")
-            return
-        output_filename = f"fba_profitable_finds_{self.supplier_name}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
-        output_path = os.path.join(self.output_dir, output_filename)
-        try:
-            with open(output_path, "w", encoding="utf-8") as f:
-                json.dump(profitable_products, f, indent=2, ensure_ascii=False)
-            self.log.info(f"Found {len(profitable_products)} profitable products. Results saved to {output_path}")
-        except Exception as e:
-            self.log.error(f"Error saving final report: {e}")
 
     def _combine_data(self, supplier_data: Dict[str, Any], amazon_data: Dict[str, Any], session_id: str) -> Dict[str, Any]:
         """Combine supplier and Amazon data and calculate financial metrics."""
@@ -4274,6 +4293,23 @@ Return ONLY valid JSON, no additional text."""
                     all_products, supplier_name, max_products_per_cycle
                 )
         
+        # CRITICAL FIX: Add final save operations that were missing from hybrid mode
+        try:
+            # Save linking map with all collected entries
+            self._save_linking_map(supplier_name)
+            self.log.info("✅ Hybrid mode: Linking map save completed")
+            
+            # Save final report of profitable products  
+            self._save_final_report(profitable_results, supplier_name)
+            self.log.info("✅ Hybrid mode: Final report save completed")
+            
+            # Save processing state
+            self.state_manager.save_state()
+            self.log.info("--- Hybrid Processing Mode Finished ---")
+            
+        except Exception as save_error:
+            self.log.error(f"❌ CRITICAL: Error during final save operations in hybrid mode: {save_error}", exc_info=True)
+        
         return profitable_results
 
     async def _analyze_products_batch(self, products: List[Dict[str, Any]], 
@@ -4333,7 +4369,7 @@ Return ONLY valid JSON, no additional text."""
                 
                 # Financial analysis
                 try:
-                    from FBA_Financial_calculator import financials as calc_financials
+                    # Already imported at top of file: from FBA_Financial_calculator import financials as calc_financials
                     supplier_price = float(product_data.get("price", 0))
                     current_price = amazon_data.get("current_price", 0)
                     
@@ -4372,20 +4408,6 @@ Return ONLY valid JSON, no additional text."""
         category_filename = f"{self.supplier_name}_{category_url.split('/')[-1]}_products.json"
         cache_dir = os.path.join(self.output_dir, 'CACHE', 'supplier_cache')
         return os.path.join(cache_dir, category_filename)
-
-    def _save_final_report(self, profitable_products: list):
-        """Save the final report of profitable products to a JSON file."""
-        if not profitable_products:
-            self.log.info("No profitable products found in this run.")
-            return
-        output_filename = f"fba_profitable_finds_{self.supplier_name}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
-        output_path = os.path.join(self.output_dir, output_filename)
-        try:
-            with open(output_path, "w", encoding="utf-8") as f:
-                json.dump(profitable_products, f, indent=2, ensure_ascii=False)
-            self.log.info(f"Found {len(profitable_products)} profitable products. Results saved to {output_path}")
-        except Exception as e:
-            self.log.error(f"Error saving final report: {e}")
 
     def _combine_data(self, supplier_data: Dict[str, Any], amazon_data: Dict[str, Any], session_id: str) -> Dict[str, Any]:
         """Combine supplier and Amazon data and calculate financial metrics."""
@@ -4618,6 +4640,23 @@ Return ONLY valid JSON, no additional text."""
                     all_products, supplier_name, max_products_per_cycle
                 )
         
+        # CRITICAL FIX: Add final save operations that were missing from hybrid mode
+        try:
+            # Save linking map with all collected entries
+            self._save_linking_map(supplier_name)
+            self.log.info("✅ Hybrid mode: Linking map save completed")
+            
+            # Save final report of profitable products  
+            self._save_final_report(profitable_results, supplier_name)
+            self.log.info("✅ Hybrid mode: Final report save completed")
+            
+            # Save processing state
+            self.state_manager.save_state()
+            self.log.info("--- Hybrid Processing Mode Finished ---")
+            
+        except Exception as save_error:
+            self.log.error(f"❌ CRITICAL: Error during final save operations in hybrid mode: {save_error}", exc_info=True)
+        
         return profitable_results
 
     async def _analyze_products_batch(self, products: List[Dict[str, Any]], 
@@ -4677,7 +4716,7 @@ Return ONLY valid JSON, no additional text."""
                 
                 # Financial analysis
                 try:
-                    from FBA_Financial_calculator import financials as calc_financials
+                    # Already imported at top of file: from FBA_Financial_calculator import financials as calc_financials
                     supplier_price = float(product_data.get("price", 0))
                     current_price = amazon_data.get("current_price", 0)
                     
@@ -4716,20 +4755,6 @@ Return ONLY valid JSON, no additional text."""
         category_filename = f"{self.supplier_name}_{category_url.split('/')[-1]}_products.json"
         cache_dir = os.path.join(self.output_dir, 'CACHE', 'supplier_cache')
         return os.path.join(cache_dir, category_filename)
-
-    def _save_final_report(self, profitable_products: list):
-        """Save the final report of profitable products to a JSON file."""
-        if not profitable_products:
-            self.log.info("No profitable products found in this run.")
-            return
-        output_filename = f"fba_profitable_finds_{self.supplier_name}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
-        output_path = os.path.join(self.output_dir, output_filename)
-        try:
-            with open(output_path, "w", encoding="utf-8") as f:
-                json.dump(profitable_products, f, indent=2, ensure_ascii=False)
-            self.log.info(f"Found {len(profitable_products)} profitable products. Results saved to {output_path}")
-        except Exception as e:
-            self.log.error(f"Error saving final report: {e}")
 
     def _combine_data(self, supplier_data: Dict[str, Any], amazon_data: Dict[str, Any], session_id: str) -> Dict[str, Any]:
         """Combine supplier and Amazon data and calculate financial metrics."""
@@ -4962,6 +4987,23 @@ Return ONLY valid JSON, no additional text."""
                     all_products, supplier_name, max_products_per_cycle
                 )
         
+        # CRITICAL FIX: Add final save operations that were missing from hybrid mode
+        try:
+            # Save linking map with all collected entries
+            self._save_linking_map(supplier_name)
+            self.log.info("✅ Hybrid mode: Linking map save completed")
+            
+            # Save final report of profitable products  
+            self._save_final_report(profitable_results, supplier_name)
+            self.log.info("✅ Hybrid mode: Final report save completed")
+            
+            # Save processing state
+            self.state_manager.save_state()
+            self.log.info("--- Hybrid Processing Mode Finished ---")
+            
+        except Exception as save_error:
+            self.log.error(f"❌ CRITICAL: Error during final save operations in hybrid mode: {save_error}", exc_info=True)
+        
         return profitable_results
 
     async def _analyze_products_batch(self, products: List[Dict[str, Any]], 
@@ -5021,7 +5063,7 @@ Return ONLY valid JSON, no additional text."""
                 
                 # Financial analysis
                 try:
-                    from FBA_Financial_calculator import financials as calc_financials
+                    # Already imported at top of file: from FBA_Financial_calculator import financials as calc_financials
                     supplier_price = float(product_data.get("price", 0))
                     current_price = amazon_data.get("current_price", 0)
                     
@@ -5060,20 +5102,6 @@ Return ONLY valid JSON, no additional text."""
         category_filename = f"{self.supplier_name}_{category_url.split('/')[-1]}_products.json"
         cache_dir = os.path.join(self.output_dir, 'CACHE', 'supplier_cache')
         return os.path.join(cache_dir, category_filename)
-
-    def _save_final_report(self, profitable_products: list):
-        """Save the final report of profitable products to a JSON file."""
-        if not profitable_products:
-            self.log.info("No profitable products found in this run.")
-            return
-        output_filename = f"fba_profitable_finds_{self.supplier_name}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
-        output_path = os.path.join(self.output_dir, output_filename)
-        try:
-            with open(output_path, "w", encoding="utf-8") as f:
-                json.dump(profitable_products, f, indent=2, ensure_ascii=False)
-            self.log.info(f"Found {len(profitable_products)} profitable products. Results saved to {output_path}")
-        except Exception as e:
-            self.log.error(f"Error saving final report: {e}")
 
     def _combine_data(self, supplier_data: Dict[str, Any], amazon_data: Dict[str, Any], session_id: str) -> Dict[str, Any]:
         """Combine supplier and Amazon data and calculate financial metrics."""
@@ -5306,6 +5334,23 @@ Return ONLY valid JSON, no additional text."""
                     all_products, supplier_name, max_products_per_cycle
                 )
         
+        # CRITICAL FIX: Add final save operations that were missing from hybrid mode
+        try:
+            # Save linking map with all collected entries
+            self._save_linking_map(supplier_name)
+            self.log.info("✅ Hybrid mode: Linking map save completed")
+            
+            # Save final report of profitable products  
+            self._save_final_report(profitable_results, supplier_name)
+            self.log.info("✅ Hybrid mode: Final report save completed")
+            
+            # Save processing state
+            self.state_manager.save_state()
+            self.log.info("--- Hybrid Processing Mode Finished ---")
+            
+        except Exception as save_error:
+            self.log.error(f"❌ CRITICAL: Error during final save operations in hybrid mode: {save_error}", exc_info=True)
+        
         return profitable_results
 
     async def _analyze_products_batch(self, products: List[Dict[str, Any]], 
@@ -5365,7 +5410,7 @@ Return ONLY valid JSON, no additional text."""
                 
                 # Financial analysis
                 try:
-                    from FBA_Financial_calculator import financials as calc_financials
+                    # Already imported at top of file: from FBA_Financial_calculator import financials as calc_financials
                     supplier_price = float(product_data.get("price", 0))
                     current_price = amazon_data.get("current_price", 0)
                     
@@ -5404,20 +5449,6 @@ Return ONLY valid JSON, no additional text."""
         category_filename = f"{self.supplier_name}_{category_url.split('/')[-1]}_products.json"
         cache_dir = os.path.join(self.output_dir, 'CACHE', 'supplier_cache')
         return os.path.join(cache_dir, category_filename)
-
-    def _save_final_report(self, profitable_products: list):
-        """Save the final report of profitable products to a JSON file."""
-        if not profitable_products:
-            self.log.info("No profitable products found in this run.")
-            return
-        output_filename = f"fba_profitable_finds_{self.supplier_name}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
-        output_path = os.path.join(self.output_dir, output_filename)
-        try:
-            with open(output_path, "w", encoding="utf-8") as f:
-                json.dump(profitable_products, f, indent=2, ensure_ascii=False)
-            self.log.info(f"Found {len(profitable_products)} profitable products. Results saved to {output_path}")
-        except Exception as e:
-            self.log.error(f"Error saving final report: {e}")
 
     def _combine_data(self, supplier_data: Dict[str, Any], amazon_data: Dict[str, Any], session_id: str) -> Dict[str, Any]:
         """Combine supplier and Amazon data and calculate financial metrics."""
@@ -5650,6 +5681,23 @@ Return ONLY valid JSON, no additional text."""
                     all_products, supplier_name, max_products_per_cycle
                 )
         
+        # CRITICAL FIX: Add final save operations that were missing from hybrid mode
+        try:
+            # Save linking map with all collected entries
+            self._save_linking_map(supplier_name)
+            self.log.info("✅ Hybrid mode: Linking map save completed")
+            
+            # Save final report of profitable products  
+            self._save_final_report(profitable_results, supplier_name)
+            self.log.info("✅ Hybrid mode: Final report save completed")
+            
+            # Save processing state
+            self.state_manager.save_state()
+            self.log.info("--- Hybrid Processing Mode Finished ---")
+            
+        except Exception as save_error:
+            self.log.error(f"❌ CRITICAL: Error during final save operations in hybrid mode: {save_error}", exc_info=True)
+        
         return profitable_results
 
     async def _analyze_products_batch(self, products: List[Dict[str, Any]], 
@@ -5709,7 +5757,7 @@ Return ONLY valid JSON, no additional text."""
                 
                 # Financial analysis
                 try:
-                    from FBA_Financial_calculator import financials as calc_financials
+                    # Already imported at top of file: from FBA_Financial_calculator import financials as calc_financials
                     supplier_price = float(product_data.get("price", 0))
                     current_price = amazon_data.get("current_price", 0)
                     
@@ -5748,20 +5796,6 @@ Return ONLY valid JSON, no additional text."""
         category_filename = f"{self.supplier_name}_{category_url.split('/')[-1]}_products.json"
         cache_dir = os.path.join(self.output_dir, 'CACHE', 'supplier_cache')
         return os.path.join(cache_dir, category_filename)
-
-    def _save_final_report(self, profitable_products: list):
-        """Save the final report of profitable products to a JSON file."""
-        if not profitable_products:
-            self.log.info("No profitable products found in this run.")
-            return
-        output_filename = f"fba_profitable_finds_{self.supplier_name}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
-        output_path = os.path.join(self.output_dir, output_filename)
-        try:
-            with open(output_path, "w", encoding="utf-8") as f:
-                json.dump(profitable_products, f, indent=2, ensure_ascii=False)
-            self.log.info(f"Found {len(profitable_products)} profitable products. Results saved to {output_path}")
-        except Exception as e:
-            self.log.error(f"Error saving final report: {e}")
 
     def _combine_data(self, supplier_data: Dict[str, Any], amazon_data: Dict[str, Any], session_id: str) -> Dict[str, Any]:
         """Combine supplier and Amazon data and calculate financial metrics."""
@@ -5994,6 +6028,23 @@ Return ONLY valid JSON, no additional text."""
                     all_products, supplier_name, max_products_per_cycle
                 )
         
+        # CRITICAL FIX: Add final save operations that were missing from hybrid mode
+        try:
+            # Save linking map with all collected entries
+            self._save_linking_map(supplier_name)
+            self.log.info("✅ Hybrid mode: Linking map save completed")
+            
+            # Save final report of profitable products  
+            self._save_final_report(profitable_results, supplier_name)
+            self.log.info("✅ Hybrid mode: Final report save completed")
+            
+            # Save processing state
+            self.state_manager.save_state()
+            self.log.info("--- Hybrid Processing Mode Finished ---")
+            
+        except Exception as save_error:
+            self.log.error(f"❌ CRITICAL: Error during final save operations in hybrid mode: {save_error}", exc_info=True)
+        
         return profitable_results
 
     async def _analyze_products_batch(self, products: List[Dict[str, Any]], 
@@ -6053,7 +6104,7 @@ Return ONLY valid JSON, no additional text."""
                 
                 # Financial analysis
                 try:
-                    from FBA_Financial_calculator import financials as calc_financials
+                    # Already imported at top of file: from FBA_Financial_calculator import financials as calc_financials
                     supplier_price = float(product_data.get("price", 0))
                     current_price = amazon_data.get("current_price", 0)
                     
@@ -6093,122 +6144,9 @@ Return ONLY valid JSON, no additional text."""
         cache_dir = os.path.join(self.output_dir, 'CACHE', 'supplier_cache')
         return os.path.join(cache_dir, category_filename)
 
-    def _load_linking_map(self, supplier_name: str) -> Dict[str, str]:
-        """Load linking map from supplier-specific JSON file"""
-        BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-        linking_map_path = os.path.join(BASE_DIR, "OUTPUTS", "FBA_ANALYSIS", "linking_maps", supplier_name, "linking_map.json")
-        
-        if os.path.exists(linking_map_path):
-            try:
-                with open(linking_map_path, "r", encoding="utf-8") as f:
-                    raw_data = json.load(f)
-                
-                # Handle both formats: new dict format and legacy list format
-                if isinstance(raw_data, dict):
-                    # New simple format: {"EAN": "ASIN", "EAN2": "ASIN2"}
-                    linking_map = raw_data
-                    self.log.info(f"✅ Loaded linking map (dict format) from {linking_map_path} with {len(linking_map)} entries")
-                elif isinstance(raw_data, list):
-                    # Legacy detailed format: [{"supplier_ean": "123", "amazon_asin": "ABC", ...}]
-                    linking_map = {}
-                    for entry in raw_data:
-                        if isinstance(entry, dict) and "supplier_ean" in entry and "amazon_asin" in entry:
-                            linking_map[entry["supplier_ean"]] = entry["amazon_asin"]
-                    self.log.info(f"✅ Converted linking map from list format to dict format from {linking_map_path} with {len(linking_map)} entries")
-                    
-                    # Save the converted format back to file for future use
-                    self._save_converted_linking_map(supplier_name, linking_map)
-                else:
-                    self.log.error(f"Unexpected linking map format: {type(raw_data)} - Creating new map")
-                    return {}
-                    
-                return linking_map
-            except (json.JSONDecodeError, UnicodeDecodeError, Exception) as e:
-                self.log.error(f"Error loading linking map: {e} - Creating new map")
-                return {}
-        else:
-            self.log.info(f"✅ No existing linking map found at {linking_map_path} - Creating new map")
-            return {}
+    # Removed duplicate _load_linking_map method - using the one at line 1354
 
-    def _save_linking_map(self, supplier_name: str):
-        """Save linking map to supplier-specific JSON file using atomic write pattern"""
-        self.log.info(f"🔍 DEBUG: _save_linking_map called with {len(self.linking_map)} entries for supplier {supplier_name}")
-        if not self.linking_map:
-            self.log.info("Empty linking map - nothing to save.")
-            return
-            
-        # Create supplier-specific directory
-        BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-        linking_map_dir = os.path.join(BASE_DIR, "OUTPUTS", "FBA_ANALYSIS", "linking_maps", supplier_name)
-        os.makedirs(linking_map_dir, exist_ok=True)
-        
-        linking_map_path = os.path.join(linking_map_dir, "linking_map.json")
-        
-        # Use atomic write pattern to prevent corruption
-        temp_path = f"{linking_map_path}.tmp"
-        try:
-            # First write to temporary file
-            with open(temp_path, "w", encoding="utf-8") as f:
-                json.dump(self.linking_map, f, indent=2, ensure_ascii=False)
-                
-            # Then atomically replace the original file
-            os.replace(temp_path, linking_map_path)
-            self.log.info(f"✅ Successfully saved linking map with {len(self.linking_map)} entries to {linking_map_path}")
-        except Exception as e:
-            self.log.error(f"Error saving linking map: {e}")
-            if os.path.exists(temp_path):
-                try:
-                    os.remove(temp_path)
-                except:
-                    pass
 
-    async def _run_financial_analysis(self, combined_data: dict) -> dict:
-        """Run financial analysis on combined supplier and Amazon data"""
-        try:
-            # Import financial calculation functions directly to avoid full cache dependency (matches line 1253)
-            from FBA_Financial_calculator import financials as calc_financials
-            
-            # Extract supplier price with validation (matches your Fix 1.4 pattern)
-            supplier_price_inc_vat = combined_data.get("price", 0)
-            amazon_price = combined_data.get("current_price", 0)
-            
-            # Ensure we have valid prices
-            if supplier_price_inc_vat <= 0 or amazon_price <= 0:
-                self.log.warning(f"Invalid prices: supplier={supplier_price_inc_vat}, amazon={amazon_price}")
-                return {"is_profitable": False, "error": "Invalid prices"}
-            
-            # Calculate financial metrics (matches your Fix 1.1 pattern)
-            financials = calc_financials(combined_data, combined_data, supplier_price_inc_vat)
-            
-            # Check minimum profitability thresholds
-            MIN_ROI_PERCENT = 15  # Minimum 15% ROI
-            MIN_PROFIT_PER_UNIT = 2  # Minimum £2 profit per unit
-            
-            roi = financials.get("ROI", 0)
-            net_profit = financials.get("NetProfit", 0)
-            
-            is_profitable = roi > MIN_ROI_PERCENT and net_profit > MIN_PROFIT_PER_UNIT
-            
-            # Prepare result
-            result = {
-                "is_profitable": is_profitable,
-                "financials": financials,
-                "roi": roi,
-                "net_profit": net_profit,
-                "supplier_price": supplier_price,
-                "amazon_price": amazon_price
-            }
-            
-            if is_profitable:
-                self.log.info(f"✅ PROFITABLE: ROI {roi:.1f}%, Profit £{net_profit:.2f}")
-            else:
-                self.log.info(f"Not profitable: ROI {roi:.1f}%, Profit £{net_profit:.2f}")
-                
-            return result
-            
-        except Exception as e:
-            self.log.error(f"Financial analysis failed: {e}")
-            return {"is_profitable": False, "error": str(e)}
 
     async def _process_chunk_with_main_workflow_logic(self, products: List[Dict[str, Any]], max_products_per_cycle: int) -> List[Dict[str, Any]]:
         """Process products using the same detailed logic as main workflow (not simplified batch processing)"""
@@ -6257,13 +6195,57 @@ Return ONLY valid JSON, no additional text."""
                     if supplier_ean and amazon_asin:
                         # DEBUG: Check linking_map type before assignment
                         self.log.debug(f"🔍 DEBUG: linking_map type: {type(self.linking_map)}, value: {self.linking_map}")
-                        self.linking_map[supplier_ean] = amazon_asin
+                        
+                        # Create detailed linking map entry (matching working pre-minor-fix format)
+                        # Get the actual search method used from Amazon data
+                        actual_search_method = amazon_data.get("_search_method_used", "unknown")
+                        
+                        linking_entry = {
+                            "supplier_ean": supplier_ean,
+                            "amazon_asin": amazon_asin,
+                            "supplier_title": product_data.get("title", ""),
+                            "amazon_title": amazon_data.get("title", ""),
+                            "supplier_price": product_data.get("price"),
+                            "amazon_price": amazon_data.get("current_price"),
+                            "match_method": actual_search_method,
+                            "confidence": "high" if actual_search_method == "EAN" else "medium" if actual_search_method == "title" else "low",
+                            "created_at": datetime.now().isoformat(),
+                            "supplier_url": product_data.get("url")
+                        }
+                        self.linking_map.append(linking_entry)
                     
                     # Combine supplier and Amazon data
                     combined_data = {**product_data, **amazon_data}
                     
-                    # Run financial analysis
-                    financial_result = await self._run_financial_analysis(combined_data)
+                    # Run financial analysis using same logic as main workflow
+                    try:
+                        # Extract supplier price with validation
+                        supplier_price_inc_vat = combined_data.get("price", 0)
+                        if isinstance(supplier_price_inc_vat, str):
+                            # Clean price string and convert to float
+                            import re
+                            price_clean = re.sub(r'[^0-9.]', '', supplier_price_inc_vat)
+                            supplier_price_inc_vat = float(price_clean) if price_clean else 0
+                        elif supplier_price_inc_vat is None:
+                            supplier_price_inc_vat = 0
+                            
+                        # Calculate financial metrics for this specific product
+                        financials = calc_financials(combined_data, combined_data, supplier_price_inc_vat)
+                        
+                        if not financials:
+                            self.log.warning(f"Financial calculation returned empty for '{combined_data.get('title')}'")
+                            financial_result = {"error": "Financial calculation returned empty", "is_profitable": False}
+                        else:
+                            # Extract profitability from financials result
+                            is_profitable = financials.get("is_profitable", False)
+                            financial_result = {
+                                **financials,
+                                "is_profitable": is_profitable
+                            }
+                            
+                    except Exception as calc_error:
+                        self.log.error(f"Financial calculation error: {calc_error}")
+                        financial_result = {"error": str(calc_error), "is_profitable": False}
                     
                     if financial_result and financial_result.get("is_profitable"):
                         profitable_results.append(financial_result)
@@ -6280,5 +6262,22 @@ Return ONLY valid JSON, no additional text."""
                 if current_index % 5 == 0:
                     self.state_manager.save_state()
                     self._save_linking_map(self.supplier_name)
+        
+        # CRITICAL FIX: Add final save operations for chunk processing
+        try:
+            # Final save of linking map with all entries
+            self._save_linking_map(self.supplier_name)
+            self.log.info("✅ Chunk processing: Final linking map save completed")
+            
+            # Final save of financial results
+            if profitable_results:
+                # Note: _save_final_report expects supplier_name as second parameter
+                self._save_final_report(profitable_results, self.supplier_name)
+                self.log.info("✅ Chunk processing: Final report save completed")
+            
+            self.log.info("--- Chunk Processing with Main Workflow Logic Finished ---")
+            
+        except Exception as save_error:
+            self.log.error(f"❌ CRITICAL: Error during final save operations in chunk processing: {save_error}", exc_info=True)
         
         return profitable_results

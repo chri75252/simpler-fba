@@ -1,0 +1,186 @@
+{
+  "supplier_id": "clearance-king",
+  "supplier_name": "Clearance King UK",
+  "base_url": "https://www.clearance-king.co.uk",
+  "api_config": {
+    "enabled": false,
+    "base_url": "https://api.clearance-king.co.uk",
+    "auth_type": "bearer",
+    "rate_limit": {
+      "requests_per_minute": 60,
+      "requests_per_hour": 1000,
+      "burst": 10
+    }
+  },
+  "scraping_config": {
+    "enabled": true,
+    "rate_limit": {
+      "requests_per_minute": 30,
+      "delay_between_requests": 2.0
+    },
+    "user_agents": [
+      "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+      "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36"
+    ]
+  },
+  "field_mappings": {
+    "title": {
+      "type": "text",
+      "selectors": [
+        {"selector": "h1.product-title", "attribute": null},
+        {"selector": "h1[itemprop='name']", "attribute": null},
+        {"selector": ".product-name h1", "attribute": null}
+      ],
+      "required": true
+    },
+    "price": {
+      "type": "price",
+      "selectors": [
+        {
+          "selector": "span.price-now",
+          "attribute": null,
+          "processing_regex": "[£$]\\s*([0-9,]+\\.?[0-9]*)",
+          "regex_group": 1
+        },
+        {
+          "selector": "meta[itemprop='price']",
+          "attribute": "content"
+        },
+        {
+          "selector": ".product-price span",
+          "attribute": null,
+          "processing_regex": "([0-9,]+\\.?[0-9]*)",
+          "regex_group": 1
+        }
+      ],
+      "required": true,
+      "currency": "GBP",
+      "decimal_separator": ".",
+      "thousands_separator": ","
+    },
+    "ean": {
+      "type": "text",
+      "selectors": [
+        {
+          "selector": "span:contains('Barcode')",
+          "attribute": null,
+          "processing_regex": "Barcode[:\\s]*([0-9]{8,13})",
+          "regex_group": 1
+        },
+        {
+          "selector": "meta[itemprop='gtin13']",
+          "attribute": "content"
+        },
+        {
+          "selector": ".product-ean",
+          "attribute": null,
+          "processing_regex": "([0-9]{8,13})",
+          "regex_group": 1
+        }
+      ],
+      "validation": {
+        "type": "ean",
+        "min_length": 8,
+        "max_length": 13,
+        "numeric_only": true
+      }
+    },
+    "description": {
+      "type": "text",
+      "selectors": [
+        {"selector": "div.product-description", "attribute": null},
+        {"selector": "[itemprop='description']", "attribute": null},
+        {"selector": ".product-details-content", "attribute": null}
+      ],
+      "max_length": 2000,
+      "clean_html": true
+    },
+    "images": {
+      "type": "list",
+      "selectors": [
+        {
+          "selector": ".product-images img",
+          "attribute": "src"
+        },
+        {
+          "selector": ".gallery img",
+          "attribute": "data-zoom-image"
+        },
+        {
+          "selector": "meta[property='og:image']",
+          "attribute": "content"
+        }
+      ],
+      "max_items": 10,
+      "ensure_absolute_urls": true
+    },
+    "stock_status": {
+      "type": "text",
+      "selectors": [
+        {"selector": ".stock-status", "attribute": null},
+        {"selector": ".availability span", "attribute": null},
+        {"selector": "[itemprop='availability']", "attribute": null}
+      ],
+      "mappings": {
+        "in stock": "available",
+        "out of stock": "unavailable",
+        "limited stock": "low_stock"
+      }
+    },
+    "brand": {
+      "type": "text",
+      "selectors": [
+        {"selector": "[itemprop='brand']", "attribute": null},
+        {"selector": ".product-brand", "attribute": null},
+        {"selector": "a[href*='/brand/']", "attribute": null}
+      ],
+      "transform": "title"
+    },
+    "category": {
+      "type": "structured",
+      "selectors": [
+        {"selector": ".breadcrumb a", "attribute": null}
+      ],
+      "extract_as": "breadcrumb",
+      "separator": " > ",
+      "skip_first": 1,
+      "skip_last": 1
+    }
+  },
+  "post_processing": {
+    "price_adjustments": {
+      "vat_included": true,
+      "vat_rate": 0.20
+    },
+    "title_cleanup": {
+      "remove_patterns": [
+        "\\s*-\\s*Clearance King.*$",
+        "\\s*\\|.*$",
+        "\\s*SALE\\s*",
+        "\\s*CLEARANCE\\s*"
+      ],
+      "max_length": 200
+    }
+  },
+  "category_urls": {
+    "main_categories": [
+      "/pound-lines.html",
+      "/household.html",
+      "/health-beauty.html",
+      "/toys-games.html",
+      "/stationery.html"
+    ],
+    "pagination_pattern": "?p={page_num}",
+    "max_pages_per_category": 10
+  },
+  "authentication": {
+    "required": false,
+    "method": "none"
+  },
+  "validation_rules": {
+    "min_price": 0.50,
+    "max_price": 100.00,
+    "required_fields": ["title", "price", "url"],
+    "skip_if_missing": ["ean", "brand"]
+  }
+}

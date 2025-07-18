@@ -33,7 +33,7 @@ def get_supplier_specific_paths(supplier_name):
     return {
         'supplier_cache': os.path.join(BASE_DIR, "OUTPUTS", "cached_products", f"{normalized_supplier_name}_products_cache.json"),
         'financial_reports_dir': os.path.join(OUTPUT_DIR, "financial_reports", normalized_supplier_name),
-        'linking_map': os.path.join(OUTPUT_DIR, "linking_maps", supplier_name, "linking_map.json"),  # Keep original for directory structure
+        'linking_map': os.path.join(OUTPUT_DIR, "linking_maps", supplier_name, "linking_map.json"),  # Keep original subdirectory structure
         'ai_categories': os.path.join(OUTPUT_DIR, "ai_category_cache", f"{normalized_supplier_name}_ai_categories.json")
     }
 

@@ -1,0 +1,198 @@
+{
+  "supplier_id": "clearance-king",
+  "supplier_name": "Clearance King UK",
+  "base_url": "https://www.clearance-king.co.uk",
+  "api_config": {
+    "enabled": false,
+    "base_url": "https://clearance-king.co.uk",
+    "auth_type": "bearer",
+    "rate_limit": {
+      "requests_per_minute": 60,
+      "requests_per_hour": 1000,
+      "burst": 10
+    }
+  },
+  "scraping_config": {
+    "enabled": true,
+    "rate_limit": {
+      "requests_per_minute": 30,
+      "delay_between_requests": 2.0
+    },
+    "user_agents": [
+      "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+      "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36"
+    ]
+  },
+  "product_item": ["li.item.product.product-item", "div.product-item-info", "div.product-item", "div.product"],
+  "title": ["a.product-item-link", "strong.product-item-name", "div.product-item-name a", "h2.product-name a"],
+  "price": ["span.price", "span.special-price", "span.regular-price", "div.price-box span.price"],
+  "url": ["a.product-item-link", "strong.product-item-name a", "div.product-item-name a", "h2.product-name a"],
+  "image": ["img.product-image-photo", "div.product-image-photo img", "div.product-image img"],
+  "ean_selector_product_page": [],
+  "barcode_selector_product_page": [],
+  "pagination": {
+    "pattern": "?p={page_num}",
+    "next_button_selector": "a.action.next"
+  },
+  "field_mappings": {
+    "product_item": {
+      "type": "element",
+      "selectors": ["li.item.product.product-item", "div.product-item-info", "div.product-item", "div.product"],
+      "required": true
+    },
+    "title": {
+      "type": "text",
+      "selectors": [
+        {"selector": "a.product-item-link", "attribute": null},
+        {"selector": "strong.product-item-name", "attribute": null},
+        {"selector": "div.product-item-name a", "attribute": null},
+        {"selector": "h2.product-name a", "attribute": null}
+      ],
+      "required": true
+    },
+    "price": {
+      "type": "price",
+      "selectors": [
+        {"selector": "span.price", "attribute": null},
+        {"selector": "span.special-price", "attribute": null},
+        {"selector": "span.regular-price", "attribute": null},
+        {"selector": "div.price-box span.price", "attribute": null}
+      ],
+      "required": true,
+      "currency": "GBP",
+      "decimal_separator": ".",
+      "thousands_separator": ","
+    },
+    "url": {
+      "type": "url",
+      "selectors": [
+        {"selector": "a.product-item-link", "attribute": "href"},
+        {"selector": "strong.product-item-name a", "attribute": "href"},
+        {"selector": "div.product-item-name a", "attribute": "href"},
+        {"selector": "h2.product-name a", "attribute": "href"}
+      ],
+      "required": true,
+      "ensure_absolute_urls": true
+    },
+    "image": {
+      "type": "url",
+      "selectors": [
+        {"selector": "img.product-image-photo", "attribute": "src"},
+        {"selector": "div.product-image-photo img", "attribute": "src"},
+        {"selector": "div.product-image img", "attribute": "src"}
+      ],
+      "ensure_absolute_urls": true
+    },
+    "ean": {
+      "type": "text",
+      "selectors": [],
+      "required": false
+    },
+    "barcode": {
+      "type": "text",
+      "selectors": [],
+      "required": false
+    },
+    "description": {
+      "type": "text",
+      "selectors": [
+        {"selector": "div.product-description", "attribute": null},
+        {"selector": "[itemprop='description']", "attribute": null},
+        {"selector": ".product-details-content", "attribute": null}
+      ],
+      "max_length": 2000,
+      "clean_html": true
+    },
+    "images": {
+      "type": "list",
+      "selectors": [
+        {
+          "selector": ".product-images img",
+          "attribute": "src"
+        },
+        {
+          "selector": ".gallery img",
+          "attribute": "data-zoom-image"
+        },
+        {
+          "selector": "meta[property='og:image']",
+          "attribute": "content"
+        }
+      ],
+      "max_items": 10,
+      "ensure_absolute_urls": true
+    },
+    "stock_status": {
+      "type": "text",
+      "selectors": [
+        {"selector": ".stock-status", "attribute": null},
+        {"selector": ".availability span", "attribute": null},
+        {"selector": "[itemprop='availability']", "attribute": null}
+      ],
+      "mappings": {
+        "in stock": "available",
+        "out of stock": "unavailable",
+        "limited stock": "low_stock"
+      }
+    },
+    "brand": {
+      "type": "text",
+      "selectors": [
+        {"selector": "[itemprop='brand']", "attribute": null},
+        {"selector": ".product-brand", "attribute": null},
+        {"selector": "a[href*='/brand/']", "attribute": null}
+      ],
+      "transform": "title"
+    },
+    "category": {
+      "type": "structured",
+      "selectors": [
+        {"selector": ".breadcrumb a", "attribute": null}
+      ],
+      "extract_as": "breadcrumb",
+      "separator": " > ",
+      "skip_first": 1,
+      "skip_last": 1
+    }
+  },
+  "post_processing": {
+    "price_adjustments": {
+      "vat_included": true,
+      "vat_rate": 0.20
+    },
+    "title_cleanup": {
+      "remove_patterns": [
+        "\\s*-\\s*Clearance King.*$",
+        "\\s*\\|.*$",
+        "\\s*SALE\\s*",
+        "\\s*CLEARANCE\\s*"
+      ],
+      "max_length": 200
+    }
+  },
+  "category_urls": {
+    "main_categories": [
+      "/pound-lines.html",
+      "/household.html",
+      "/health-beauty.html",
+      "/toys-games.html",
+      "/stationery.html"
+    ],
+    "pagination_pattern": "?p={page_num}",
+    "max_pages_per_category": 10
+  },
+  "authentication": {
+    "required": false,
+    "method": "none"
+  },
+  "validation_rules": {
+    "min_price": 0.50,
+    "max_price": 100.00,
+    "required_fields": ["title", "price", "url"],
+    "skip_if_missing": ["ean", "brand"]
+  },
+  "use_ai_category_progression": true,
+  "category_paths": ["/pound-lines.html", "/clearance.html", "/special-offers.html"],
+  "max_category_pages_to_scrape": 3,
+  "two_step_extraction": true
+}

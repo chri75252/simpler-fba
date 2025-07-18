@@ -1,0 +1,45 @@
+INFO:__main__:🔍 Enhanced detailed logging enabled - output: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/logs/debug/run_complete_fba_system_20250717_182021.log
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:__main__:🚀 Complete FBA System v3 initialized
+INFO:__main__:🏭 Processing supplier: poundwholesale-co-uk
+INFO:__main__:🔗 URL: https://www.poundwholesale.co.uk/
+INFO:__main__:📧 Email: info@theblacksmithmarket.com
+INFO:__main__:🖥️ Headed mode: False
+INFO:__main__:📦 Max products: 2
+INFO:__main__:🔄 Force regenerate: False
+INFO:__main__:📦 Archiving expected output files for verification...
+INFO:__main__:Archive mode set to: ''
+WARNING:__main__:Unknown archive mode: ''. Skipping archive.
+INFO:tools.supplier_guard:🛡️ Supplier Guard initialized
+INFO:__main__:⚠️ Supplier poundwholesale-co-uk not ready: .supplier_ready file is 8 days old (max 7 days)
+INFO:__main__:✅ Existing supplier package found for poundwholesale-co-uk. Bypassing script generation.
+INFO:__main__:🚀 Initializing centralized browser session...
+INFO:utils.browser_manager:🔧 BrowserManager singleton initialized
+INFO:utils.browser_manager:🔌 Connecting to Chrome on debug port 9222
+WARNING:utils.browser_manager:⚠️ Could not connect to CDP on port 9222. Launching new browser. Error: BrowserType.connect_over_cdp: connect ECONNREFUSED 127.0.0.1:9222
+Call log:
+  - <ws preparing> retrieving websocket url from http://localhost:9222
+
+INFO:utils.browser_manager:📄 Created new page in context.
+INFO:utils.browser_manager:📄 Navigating to https://www.poundwholesale.co.uk/
+INFO:utils.browser_manager:✅ Page ready for https://www.poundwholesale.co.uk/
+INFO:__main__:🔐 Performing dynamic supplier authentication...
+INFO:__main__:📦 Loading dynamic supplier login script: suppliers/poundwholesale-co-uk/scripts/poundwholesale-co-uk_login.py
+INFO:poundwholesale-co-uk_login:🔐 Starting login to https://www.poundwholesale.co.uk/
+ERROR:poundwholesale-co-uk_login:Failed to check login status: Page.goto: net::ERR_ABORTED at https://www.poundwholesale.co.uk/
+Call log:
+  - navigating to "https://www.poundwholesale.co.uk/", waiting until "load"
+
+ERROR:poundwholesale-co-uk_login:Failed to fill email: Page.fill: Target page, context or browser has been closed
+ERROR:poundwholesale-co-uk_login:Login failed: Page.fill: Target page, context or browser has been closed
+ERROR:__main__:❌ Dynamic supplier authentication failed. Aborting workflow.
+INFO:utils.browser_manager:🧹 Performing global cleanup...
+INFO:utils.browser_manager:🧹 Starting browser cleanup...
+INFO:utils.browser_manager:🗑️ Closed pages, but leaving context open.
+INFO:utils.browser_manager:🎭 Stopped Playwright instance.
+INFO:utils.browser_manager:✅ Browser cleanup completed
+INFO:utils.browser_manager:🧹 Performing global cleanup...
+INFO:utils.browser_manager:🧹 Starting browser cleanup...
+INFO:utils.browser_manager:✅ Browser cleanup completed
+INFO:__main__:🧹 Browser cleanup completed
+WARNING:utils.browser_manager:Error during global cleanup: no running event loop

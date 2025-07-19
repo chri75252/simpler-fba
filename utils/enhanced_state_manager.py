@@ -355,12 +355,22 @@ class EnhancedStateManager:
         
         # Check if all products have failed status
         failed_statuses = ["failed_financial_calculation", "failed_amazon_extraction", "failed_supplier_extraction"]
+        
+        # CRITICAL FIX: Consider success statuses - these are NOT failures!
+        success_statuses = ["completed_profitable", "completed_not_profitable", "completed"]
+        
         all_failed = all(
             product_data.get("status", "") in failed_statuses 
             for product_data in processed_products.values()
         )
         
-        return all_failed and len(processed_products) > 0
+        # ADDITIONAL CHECK: If any products have success status, then NOT all failed
+        any_successful = any(
+            product_data.get("status", "") in success_statuses
+            for product_data in processed_products.values()
+        )
+        
+        return all_failed and len(processed_products) > 0 and not any_successful
     
     def auto_reset_failed_state(self) -> bool:
         """Automatically reset state if all products failed and no successful processing occurred"""

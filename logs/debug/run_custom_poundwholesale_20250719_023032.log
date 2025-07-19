@@ -1,0 +1,777 @@
+2025-07-19 02:30:32,187 - utils.logger - INFO - 🔧 Logging initialised – log file: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/logs/debug/run_custom_poundwholesale_20250719_023032.log
+2025-07-19 02:30:32,188 - __main__ - INFO - 📋 Debug log file: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/logs/debug/run_custom_poundwholesale_20250719_023032.log
+2025-07-19 02:30:32,188 - __main__ - DEBUG - Debug logging initialized - full system execution details will be captured
+2025-07-19 02:30:32,198 - utils.browser_manager - INFO - 🔧 BrowserManager singleton initialized
+2025-07-19 02:30:32,678 - utils.browser_manager - INFO - 🔌 Connecting to persistent Chrome on debug port 9222
+2025-07-19 02:30:32,920 - utils.browser_manager - INFO - 📄 Using existing context with 1 pages
+2025-07-19 02:30:32,920 - utils.browser_manager - INFO - ✅ Connected to persistent Chrome successfully
+2025-07-19 02:30:32,921 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-19 02:30:32,922 - __main__ - INFO - 🔐 Initializing authentication service for logout detection...
+2025-07-19 02:30:32,932 - __main__ - INFO - ✅ Using hardcoded credentials for poundwholesale.co.uk
+2025-07-19 02:30:32,933 - __main__ - INFO - 🌐 Connecting to existing Chrome debug port 9222 for authentication...
+2025-07-19 02:30:37,624 - tools.supplier_authentication_service - INFO - ❌ Login form detected - not authenticated
+2025-07-19 02:30:37,624 - tools.supplier_authentication_service - INFO - 🔐 Starting authentication for poundwholesale.co.uk
+2025-07-19 02:30:37,625 - tools.supplier_authentication_service - INFO - 🔧 Using standalone playwright authentication
+2025-07-19 02:30:37,626 - tools.standalone_playwright_login - INFO - 🔗 Connecting to shared Chrome instance...
+2025-07-19 02:30:38,147 - tools.standalone_playwright_login - INFO - ✅ Connected to shared Chrome instance at http://localhost:9222
+2025-07-19 02:30:38,148 - tools.standalone_playwright_login - DEBUG - Using existing browser context
+2025-07-19 02:30:38,149 - tools.standalone_playwright_login - DEBUG - Using existing page
+2025-07-19 02:30:38,167 - tools.standalone_playwright_login - INFO - 🔍 Checking if already logged in...
+2025-07-19 02:30:43,013 - tools.standalone_playwright_login - INFO - ❌ No login indicators found - need to log in
+2025-07-19 02:30:43,013 - tools.standalone_playwright_login - INFO - 🔐 Starting Playwright login...
+2025-07-19 02:30:43,014 - tools.standalone_playwright_login - INFO - 📍 Navigating to login page: https://www.poundwholesale.co.uk/customer/account/login/
+2025-07-19 02:30:46,278 - tools.standalone_playwright_login - INFO - ✅ Filled email using selector: input[name="email"]
+2025-07-19 02:30:46,758 - tools.standalone_playwright_login - INFO - ✅ Filled password using selector: input[type="password"]
+2025-07-19 02:30:49,512 - tools.standalone_playwright_login - INFO - ✅ Clicked submit using selector: button[type="submit"]
+2025-07-19 02:30:49,512 - tools.standalone_playwright_login - INFO - ⏳ Waiting for login to complete...
+2025-07-19 02:30:52,811 - tools.standalone_playwright_login - INFO - ✅ Login success confirmed by indicator: text=Log out
+2025-07-19 02:30:52,811 - tools.standalone_playwright_login - INFO - 💰 Verifying price access...
+2025-07-19 02:30:58,653 - tools.standalone_playwright_login - INFO - ✅ Price access confirmed: £1.02
+2025-07-19 02:30:58,654 - tools.standalone_playwright_login - INFO - 🎉 Playwright login successful! Price access confirmed. (took 15.6s)
+2025-07-19 02:30:58,682 - tools.standalone_playwright_login - DEBUG - Disconnected from shared Chrome browser
+2025-07-19 02:30:58,690 - tools.standalone_playwright_login - DEBUG - Playwright stopped
+2025-07-19 02:30:58,690 - tools.supplier_authentication_service - INFO - ✅ Standalone authentication successful: playwright_selectors
+2025-07-19 02:30:58,696 - amazon_playwright_extractor - INFO - AI features disabled in amazon_playwright_extractor - using only traditional selectors.
+2025-07-19 02:30:58,700 - amazon_playwright_extractor - INFO - Output directory set to: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/CACHE/amazon_data
+2025-07-19 02:30:58,701 - amazon_playwright_extractor - WARNING - ⚠️ BrowserManager not available, using legacy browser connection
+2025-07-19 02:30:58,707 - configurable_supplier_scraper - INFO - ✅ Loaded system configuration from /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/config/system_config.json
+2025-07-19 02:30:58,709 - configurable_supplier_scraper - INFO - 🔧 ConfigurableSupplierScraper will use centralized BrowserManager
+2025-07-19 02:30:58,710 - configurable_supplier_scraper - DEBUG - AI model from config: gpt-4.1-mini-2025-04-14
+2025-07-19 02:30:58,711 - configurable_supplier_scraper - DEBUG - Extraction targets from config: {}
+2025-07-19 02:30:58,712 - configurable_supplier_scraper - DEBUG - Discovery assistance from config: {}
+2025-07-19 02:30:58,712 - configurable_supplier_scraper - INFO - [CONFIG] Initialized with AI model: gpt-4.1-mini-2025-04-14
+2025-07-19 02:30:58,713 - configurable_supplier_scraper - INFO - [TARGET] Extraction targets loaded: []
+2025-07-19 02:30:58,713 - configurable_supplier_scraper - INFO - [ASSIST] Discovery assistance enabled: False
+2025-07-19 02:30:58,714 - PassiveExtractionWorkflow - DEBUG - 🔍 DEBUG: linking_map initialized as type: <class 'list'>
+2025-07-19 02:30:58,715 - PassiveExtractionWorkflow - INFO - ✅ Output directory set to: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS
+2025-07-19 02:30:58,716 - PassiveExtractionWorkflow - INFO - ✅ Initialization validation passed - all critical attributes verified
+2025-07-19 02:30:58,717 - PassiveExtractionWorkflow - INFO - --- Starting Passive Extraction Workflow for: poundwholesale.co.uk ---
+2025-07-19 02:30:58,717 - PassiveExtractionWorkflow - INFO - Session ID: poundwholesale.co.uk_20250719_023058
+2025-07-19 02:30:58,718 - PassiveExtractionWorkflow - INFO - 📊 CONFIGURATION VALUES:
+2025-07-19 02:30:58,718 - PassiveExtractionWorkflow - INFO -    max_products_to_process: 99999
+2025-07-19 02:30:58,719 - PassiveExtractionWorkflow - INFO -    max_products_per_category: 99999
+2025-07-19 02:30:58,719 - PassiveExtractionWorkflow - INFO -    max_analyzed_products: 99999
+2025-07-19 02:30:58,720 - PassiveExtractionWorkflow - INFO -    max_products_per_cycle: 100
+2025-07-19 02:30:58,720 - PassiveExtractionWorkflow - INFO -    supplier_extraction_batch_size: 99999
+2025-07-19 02:30:58,721 - PassiveExtractionWorkflow - INFO -    max_categories_per_request: 99999
+2025-07-19 02:30:58,728 - utils.enhanced_state_manager - INFO - Loaded state for poundwholesale.co.uk - resuming from index 0
+2025-07-19 02:30:58,728 - PassiveExtractionWorkflow - INFO - 📋 Loaded existing processing state for poundwholesale.co.uk
+2025-07-19 02:30:58,729 - PassiveExtractionWorkflow - INFO - 🔄 Resuming from index 0
+2025-07-19 02:30:58,741 - PassiveExtractionWorkflow - INFO - ✅ Loaded linking map (array format) from /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/FBA_ANALYSIS/linking_maps/poundwholesale.co.uk/linking_map.json with 141 entries
+2025-07-19 02:30:58,742 - PassiveExtractionWorkflow - DEBUG - 🔍 DEBUG: linking_map loaded as type: <class 'list'>, length: 141
+2025-07-19 02:30:58,757 - PassiveExtractionWorkflow - INFO - ✅ Processing state initialized and started
+2025-07-19 02:30:58,765 - PassiveExtractionWorkflow - INFO - ✅ Loaded linking map (array format) from /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/FBA_ANALYSIS/linking_maps/poundwholesale.co.uk/linking_map.json with 141 entries
+2025-07-19 02:30:58,766 - PassiveExtractionWorkflow - INFO - CUSTOM MODE: Using predefined category list.
+2025-07-19 02:30:58,767 - tools.passive_extraction_workflow_latest - INFO - Attempting to load predefined categories for poundwholesale.co.uk
+2025-07-19 02:30:58,774 - tools.passive_extraction_workflow_latest - INFO - ✅ Successfully loaded 276 predefined category URLs from /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/config/poundwholesale_categories.json
+2025-07-19 02:30:58,776 - PassiveExtractionWorkflow - INFO - 🔄 HYBRID PROCESSING MODE: Enabled
+2025-07-19 02:30:58,777 - PassiveExtractionWorkflow - INFO - 🔄 HYBRID PROCESSING: Mode configuration loaded
+2025-07-19 02:30:58,778 - PassiveExtractionWorkflow - INFO -    switch_to_amazon_after_categories: 1
+2025-07-19 02:30:58,778 - PassiveExtractionWorkflow - INFO - 🔄 HYBRID MODE: Chunked processing (chunk size: 1 categories)
+2025-07-19 02:30:58,779 - PassiveExtractionWorkflow - INFO - 🔄 Processing chunk 1: categories 1-1
+2025-07-19 02:30:58,783 - PassiveExtractionWorkflow - INFO - 🔄 NO PROCESSING PROGRESS: index=0, proceeding with scraping
+2025-07-19 02:30:58,784 - PassiveExtractionWorkflow - INFO - 🕷️ PERFORMING SUPPLIER SCRAPING from 1 categories
+2025-07-19 02:30:58,784 - PassiveExtractionWorkflow - INFO - 📦 Using supplier extraction batch size: 99999
+2025-07-19 02:30:58,784 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS TRACKING: Extracting from 1 categories in 1 batches
+2025-07-19 02:30:58,785 - PassiveExtractionWorkflow - INFO - 📦 Processing category batch 1/1 (1 categories)
+2025-07-19 02:30:58,799 - PassiveExtractionWorkflow - INFO - 🔄 EXTRACTION PROGRESS: Processing subcategory 1/1 in batch 1 (Category 1/1)
+2025-07-19 02:30:58,800 - PassiveExtractionWorkflow - INFO - Scraping category: https://www.poundwholesale.co.uk/diy/wholesale-car-care/cleaning-air-fresheners
+2025-07-19 02:30:58,801 - configurable_supplier_scraper - INFO - Starting enhanced scraping from https://www.poundwholesale.co.uk/diy/wholesale-car-care/cleaning-air-fresheners
+2025-07-19 02:30:58,802 - configurable_supplier_scraper - INFO - Setting page limiter for https://www.poundwholesale.co.uk/diy/wholesale-car-care/cleaning-air-fresheners
+2025-07-19 02:30:58,802 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-19 02:30:58,829 - configurable_supplier_scraper - INFO - ✅ Loaded VALIDATED supplier package selectors for poundwholesale.co.uk from /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/suppliers/poundwholesale-co-uk/config/product_selectors.json
+2025-07-19 02:30:58,830 - configurable_supplier_scraper - INFO - No page limiter configuration found for www.poundwholesale.co.uk
+2025-07-19 02:30:58,830 - configurable_supplier_scraper - INFO - Collecting product URLs from paginated pages starting at: https://www.poundwholesale.co.uk/diy/wholesale-car-care/cleaning-air-fresheners
+2025-07-19 02:30:58,831 - configurable_supplier_scraper - INFO - Processing page 1: https://www.poundwholesale.co.uk/diy/wholesale-car-care/cleaning-air-fresheners
+2025-07-19 02:30:58,832 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/diy/wholesale-car-care/cleaning-air-fresheners (attempt 1/3)
+2025-07-19 02:30:58,833 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-19 02:30:58,833 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/diy/wholesale-car-care/cleaning-air-fresheners
+2025-07-19 02:31:01,149 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/diy/wholesale-car-care/cleaning-air-fresheners in 2.29s...
+2025-07-19 02:31:03,446 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/diy/wholesale-car-care/cleaning-air-fresheners (attempt 2/3)
+2025-07-19 02:31:03,447 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-19 02:31:03,448 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/diy/wholesale-car-care/cleaning-air-fresheners
+2025-07-19 02:31:05,356 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/diy/wholesale-car-care/cleaning-air-fresheners
+2025-07-19 02:31:05,357 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/diy/wholesale-car-care/cleaning-air-fresheners
+2025-07-19 02:31:05,527 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/diy/wholesale-car-care/cleaning-air-fresheners (Size: 646271 bytes)
+2025-07-19 02:31:05,782 - configurable_supplier_scraper - INFO - Found 20 new product URLs on page 1
+2025-07-19 02:31:05,782 - configurable_supplier_scraper - INFO - Processing page 2: https://www.poundwholesale.co.uk/diy/wholesale-car-care/cleaning-air-fresheners?p=2
+2025-07-19 02:31:05,782 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/diy/wholesale-car-care/cleaning-air-fresheners?p=2 (attempt 1/3)
+2025-07-19 02:31:05,783 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-19 02:31:05,783 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/diy/wholesale-car-care/cleaning-air-fresheners?p=2
+2025-07-19 02:31:07,912 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/diy/wholesale-car-care/cleaning-air-fresheners?p=2 in 1.96s...
+2025-07-19 02:31:09,871 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/diy/wholesale-car-care/cleaning-air-fresheners?p=2 (attempt 2/3)
+2025-07-19 02:31:09,872 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-19 02:31:09,873 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/diy/wholesale-car-care/cleaning-air-fresheners?p=2
+2025-07-19 02:31:11,082 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/diy/wholesale-car-care/cleaning-air-fresheners?p=2
+2025-07-19 02:31:11,083 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/diy/wholesale-car-care/cleaning-air-fresheners?p=2
+2025-07-19 02:31:11,248 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/diy/wholesale-car-care/cleaning-air-fresheners?p=2 (Size: 658106 bytes)
+2025-07-19 02:31:11,546 - configurable_supplier_scraper - INFO - Found 20 new product URLs on page 2
+2025-07-19 02:31:11,547 - configurable_supplier_scraper - INFO - Processing page 3: https://www.poundwholesale.co.uk/diy/wholesale-car-care/cleaning-air-fresheners?p=3
+2025-07-19 02:31:11,548 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/diy/wholesale-car-care/cleaning-air-fresheners?p=3 (attempt 1/3)
+2025-07-19 02:31:11,549 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-19 02:31:11,550 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/diy/wholesale-car-care/cleaning-air-fresheners?p=3
+2025-07-19 02:31:13,555 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/diy/wholesale-car-care/cleaning-air-fresheners?p=3 in 2.07s...
+2025-07-19 02:31:15,623 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/diy/wholesale-car-care/cleaning-air-fresheners?p=3 (attempt 2/3)
+2025-07-19 02:31:15,624 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-19 02:31:15,625 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/diy/wholesale-car-care/cleaning-air-fresheners?p=3
+2025-07-19 02:31:18,600 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/diy/wholesale-car-care/cleaning-air-fresheners?p=3
+2025-07-19 02:31:18,601 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/diy/wholesale-car-care/cleaning-air-fresheners?p=3
+2025-07-19 02:31:18,792 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/diy/wholesale-car-care/cleaning-air-fresheners?p=3 (Size: 657417 bytes)
+2025-07-19 02:31:19,036 - configurable_supplier_scraper - INFO - Found 20 new product URLs on page 3
+2025-07-19 02:31:19,037 - configurable_supplier_scraper - INFO - Processing page 4: https://www.poundwholesale.co.uk/diy/wholesale-car-care/cleaning-air-fresheners?p=4
+2025-07-19 02:31:19,038 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/diy/wholesale-car-care/cleaning-air-fresheners?p=4 (attempt 1/3)
+2025-07-19 02:31:19,038 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-19 02:31:19,039 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/diy/wholesale-car-care/cleaning-air-fresheners?p=4
+2025-07-19 02:31:21,319 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/diy/wholesale-car-care/cleaning-air-fresheners?p=4 in 1.52s...
+2025-07-19 02:31:22,837 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/diy/wholesale-car-care/cleaning-air-fresheners?p=4 (attempt 2/3)
+2025-07-19 02:31:22,838 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-19 02:31:22,839 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/diy/wholesale-car-care/cleaning-air-fresheners?p=4
+2025-07-19 02:31:24,773 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/diy/wholesale-car-care/cleaning-air-fresheners?p=4
+2025-07-19 02:31:24,774 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/diy/wholesale-car-care/cleaning-air-fresheners?p=4
+2025-07-19 02:31:24,930 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/diy/wholesale-car-care/cleaning-air-fresheners?p=4 (Size: 670668 bytes)
+2025-07-19 02:31:25,177 - configurable_supplier_scraper - INFO - Found 20 new product URLs on page 4
+2025-07-19 02:31:25,178 - configurable_supplier_scraper - INFO - Processing page 5: https://www.poundwholesale.co.uk/diy/wholesale-car-care/cleaning-air-fresheners?p=5
+2025-07-19 02:31:25,179 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/diy/wholesale-car-care/cleaning-air-fresheners?p=5 (attempt 1/3)
+2025-07-19 02:31:25,180 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-19 02:31:25,181 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/diy/wholesale-car-care/cleaning-air-fresheners?p=5
+2025-07-19 02:31:27,417 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/diy/wholesale-car-care/cleaning-air-fresheners?p=5 in 1.61s...
+2025-07-19 02:31:29,027 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/diy/wholesale-car-care/cleaning-air-fresheners?p=5 (attempt 2/3)
+2025-07-19 02:31:29,028 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-19 02:31:29,029 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/diy/wholesale-car-care/cleaning-air-fresheners?p=5
+2025-07-19 02:31:30,994 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/diy/wholesale-car-care/cleaning-air-fresheners?p=5
+2025-07-19 02:31:30,995 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/diy/wholesale-car-care/cleaning-air-fresheners?p=5
+2025-07-19 02:31:31,129 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/diy/wholesale-car-care/cleaning-air-fresheners?p=5 (Size: 658045 bytes)
+2025-07-19 02:31:31,451 - configurable_supplier_scraper - INFO - Found 20 new product URLs on page 5
+2025-07-19 02:31:31,452 - configurable_supplier_scraper - INFO - Processing page 6: https://www.poundwholesale.co.uk/diy/wholesale-car-care/cleaning-air-fresheners?p=6
+2025-07-19 02:31:31,453 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/diy/wholesale-car-care/cleaning-air-fresheners?p=6 (attempt 1/3)
+2025-07-19 02:31:31,453 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-19 02:31:31,454 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/diy/wholesale-car-care/cleaning-air-fresheners?p=6
+2025-07-19 02:31:33,559 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/diy/wholesale-car-care/cleaning-air-fresheners?p=6 in 1.54s...
+2025-07-19 02:31:35,098 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/diy/wholesale-car-care/cleaning-air-fresheners?p=6 (attempt 2/3)
+2025-07-19 02:31:35,098 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-19 02:31:35,099 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/diy/wholesale-car-care/cleaning-air-fresheners?p=6
+2025-07-19 02:31:37,352 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/diy/wholesale-car-care/cleaning-air-fresheners?p=6
+2025-07-19 02:31:37,352 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/diy/wholesale-car-care/cleaning-air-fresheners?p=6
+2025-07-19 02:31:37,501 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/diy/wholesale-car-care/cleaning-air-fresheners?p=6 (Size: 653670 bytes)
+2025-07-19 02:31:37,732 - configurable_supplier_scraper - INFO - Found 20 new product URLs on page 6
+2025-07-19 02:31:37,732 - configurable_supplier_scraper - INFO - Processing page 7: https://www.poundwholesale.co.uk/diy/wholesale-car-care/cleaning-air-fresheners?p=7
+2025-07-19 02:31:37,733 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/diy/wholesale-car-care/cleaning-air-fresheners?p=7 (attempt 1/3)
+2025-07-19 02:31:37,733 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-19 02:31:37,734 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/diy/wholesale-car-care/cleaning-air-fresheners?p=7
+2025-07-19 02:31:39,772 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/diy/wholesale-car-care/cleaning-air-fresheners?p=7 in 1.82s...
+2025-07-19 02:31:41,590 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/diy/wholesale-car-care/cleaning-air-fresheners?p=7 (attempt 2/3)
+2025-07-19 02:31:41,591 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-19 02:31:41,592 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/diy/wholesale-car-care/cleaning-air-fresheners?p=7
+2025-07-19 02:31:43,735 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/diy/wholesale-car-care/cleaning-air-fresheners?p=7
+2025-07-19 02:31:43,736 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/diy/wholesale-car-care/cleaning-air-fresheners?p=7
+2025-07-19 02:31:43,880 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/diy/wholesale-car-care/cleaning-air-fresheners?p=7 (Size: 645107 bytes)
+2025-07-19 02:31:44,109 - configurable_supplier_scraper - INFO - Found 20 new product URLs on page 7
+2025-07-19 02:31:44,110 - configurable_supplier_scraper - INFO - Processing page 8: https://www.poundwholesale.co.uk/diy/wholesale-car-care/cleaning-air-fresheners?p=8
+2025-07-19 02:31:44,111 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/diy/wholesale-car-care/cleaning-air-fresheners?p=8 (attempt 1/3)
+2025-07-19 02:31:44,112 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-19 02:31:44,112 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/diy/wholesale-car-care/cleaning-air-fresheners?p=8
+2025-07-19 02:31:46,024 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/diy/wholesale-car-care/cleaning-air-fresheners?p=8 in 1.76s...
+2025-07-19 02:31:47,785 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/diy/wholesale-car-care/cleaning-air-fresheners?p=8 (attempt 2/3)
+2025-07-19 02:31:47,786 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-19 02:31:47,787 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/diy/wholesale-car-care/cleaning-air-fresheners?p=8
+2025-07-19 02:31:50,112 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/diy/wholesale-car-care/cleaning-air-fresheners?p=8
+2025-07-19 02:31:50,113 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/diy/wholesale-car-care/cleaning-air-fresheners?p=8
+2025-07-19 02:31:50,264 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/diy/wholesale-car-care/cleaning-air-fresheners?p=8 (Size: 478294 bytes)
+2025-07-19 02:31:50,509 - configurable_supplier_scraper - INFO - Found 9 new product URLs on page 8
+2025-07-19 02:31:50,510 - configurable_supplier_scraper - INFO - Processing page 9: https://www.poundwholesale.co.uk/diy/wholesale-car-care/cleaning-air-fresheners?p=9
+2025-07-19 02:31:50,510 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/diy/wholesale-car-care/cleaning-air-fresheners?p=9 (attempt 1/3)
+2025-07-19 02:31:50,511 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-19 02:31:50,512 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/diy/wholesale-car-care/cleaning-air-fresheners?p=9
+2025-07-19 02:31:52,243 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/diy/wholesale-car-care/cleaning-air-fresheners?p=9 in 2.05s...
+2025-07-19 02:31:54,290 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/diy/wholesale-car-care/cleaning-air-fresheners?p=9 (attempt 2/3)
+2025-07-19 02:31:54,290 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-19 02:31:54,291 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/diy/wholesale-car-care/cleaning-air-fresheners?p=9
+2025-07-19 02:31:57,134 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/diy/wholesale-car-care/cleaning-air-fresheners?p=9
+2025-07-19 02:31:57,135 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/diy/wholesale-car-care/cleaning-air-fresheners?p=9
+2025-07-19 02:31:57,254 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/diy/wholesale-car-care/cleaning-air-fresheners?p=9 (Size: 347942 bytes)
+2025-07-19 02:31:57,383 - configurable_supplier_scraper - INFO - Found 0 new product URLs on page 9
+2025-07-19 02:31:57,384 - configurable_supplier_scraper - INFO - Collected 149 total product URLs across 9 pages
+2025-07-19 02:31:57,385 - configurable_supplier_scraper - INFO - Found 149 total product URLs across all pages
+2025-07-19 02:31:57,386 - configurable_supplier_scraper - INFO - Visiting product page 1/149: https://www.poundwholesale.co.uk/goodyear-microfibre-dusting-cloth-large-60cm-x-40cm
+2025-07-19 02:31:57,387 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/goodyear-microfibre-dusting-cloth-large-60cm-x-40cm (attempt 1/3)
+2025-07-19 02:31:57,387 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-19 02:31:57,388 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/goodyear-microfibre-dusting-cloth-large-60cm-x-40cm
+2025-07-19 02:32:00,022 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/goodyear-microfibre-dusting-cloth-large-60cm-x-40cm in 2.46s...
+2025-07-19 02:32:02,487 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/goodyear-microfibre-dusting-cloth-large-60cm-x-40cm (attempt 2/3)
+2025-07-19 02:32:02,488 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-19 02:32:02,488 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/goodyear-microfibre-dusting-cloth-large-60cm-x-40cm
+2025-07-19 02:32:04,205 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/goodyear-microfibre-dusting-cloth-large-60cm-x-40cm
+2025-07-19 02:32:04,205 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/goodyear-microfibre-dusting-cloth-large-60cm-x-40cm
+2025-07-19 02:32:04,358 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/goodyear-microfibre-dusting-cloth-large-60cm-x-40cm (Size: 675731 bytes)
+2025-07-19 02:32:04,640 - configurable_supplier_scraper - INFO - 🔄 REAL-TIME: Added product 1 to shared accumulator (total: 1)
+2025-07-19 02:32:04,640 - configurable_supplier_scraper - INFO - ✅ Extracted product 1: Goodyear Microfibre Dusting Cloth Large 60cm X 40cm - £0.85 (EAN: 5055441449142)
+2025-07-19 02:32:04,654 - PassiveExtractionWorkflow - INFO - 🔍 SUPPLIER STATE UPDATE: Index updated to 1/149
+2025-07-19 02:32:04,654 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS: Product 1 processed (total in cache: 1)
+2025-07-19 02:32:04,655 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Processing product 1
+2025-07-19 02:32:04,655 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: Product 1, frequency=2, enabled=True
+2025-07-19 02:32:04,656 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: List length=1, modulo=1
+2025-07-19 02:32:04,674 - configurable_supplier_scraper - INFO - Visiting product page 2/149: https://www.poundwholesale.co.uk/auto-extras-jelly-baby-air-freshener-assorted
+2025-07-19 02:32:04,675 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/auto-extras-jelly-baby-air-freshener-assorted (attempt 1/3)
+2025-07-19 02:32:04,676 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-19 02:32:04,676 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/auto-extras-jelly-baby-air-freshener-assorted
+2025-07-19 02:32:08,182 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/auto-extras-jelly-baby-air-freshener-assorted in 1.88s...
+2025-07-19 02:32:10,069 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/auto-extras-jelly-baby-air-freshener-assorted (attempt 2/3)
+2025-07-19 02:32:10,069 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-19 02:32:10,070 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/auto-extras-jelly-baby-air-freshener-assorted
+2025-07-19 02:32:12,290 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/auto-extras-jelly-baby-air-freshener-assorted
+2025-07-19 02:32:12,290 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/auto-extras-jelly-baby-air-freshener-assorted
+2025-07-19 02:32:12,440 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/auto-extras-jelly-baby-air-freshener-assorted (Size: 670122 bytes)
+2025-07-19 02:32:12,807 - configurable_supplier_scraper - INFO - 🔄 REAL-TIME: Added product 2 to shared accumulator (total: 2)
+2025-07-19 02:32:12,808 - configurable_supplier_scraper - INFO - ✅ Extracted product 2: Auto Extras Jelly Baby Air Freshener Assorted - £0.65 (EAN: 5056175980963)
+2025-07-19 02:32:12,824 - PassiveExtractionWorkflow - INFO - 🔍 SUPPLIER STATE UPDATE: Index updated to 2/149
+2025-07-19 02:32:12,824 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS: Product 2 processed (total in cache: 2)
+2025-07-19 02:32:12,825 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Processing product 2
+2025-07-19 02:32:12,825 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: Product 2, frequency=2, enabled=True
+2025-07-19 02:32:12,826 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: List length=2, modulo=0
+2025-07-19 02:32:12,830 - PassiveExtractionWorkflow - INFO - 💾 CACHE SAVE: Starting save of 2 products to cache...
+2025-07-19 02:32:12,860 - PassiveExtractionWorkflow - INFO - ✅ CACHE SAVE: Successfully saved 148 products (0 new) to poundwholesale-co-uk_products_cache.json
+2025-07-19 02:32:12,861 - PassiveExtractionWorkflow - INFO - 🔄 DEDUPLICATION: Skipped 0 EAN duplicates and 2 URL duplicates
+2025-07-19 02:32:12,862 - PassiveExtractionWorkflow - INFO - 💾 PERIODIC CACHE SAVE: Saved 2 products to cache (every 2 products)
+2025-07-19 02:32:12,881 - configurable_supplier_scraper - INFO - Visiting product page 3/149: https://www.poundwholesale.co.uk/car-pride-biodegradable-alloy-wheel-cleaning-wipes-30-pack
+2025-07-19 02:32:12,882 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/car-pride-biodegradable-alloy-wheel-cleaning-wipes-30-pack (attempt 1/3)
+2025-07-19 02:32:12,882 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-19 02:32:12,883 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/car-pride-biodegradable-alloy-wheel-cleaning-wipes-30-pack
+2025-07-19 02:32:15,321 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/car-pride-biodegradable-alloy-wheel-cleaning-wipes-30-pack in 1.55s...
+2025-07-19 02:32:16,873 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/car-pride-biodegradable-alloy-wheel-cleaning-wipes-30-pack (attempt 2/3)
+2025-07-19 02:32:16,874 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-19 02:32:16,875 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/car-pride-biodegradable-alloy-wheel-cleaning-wipes-30-pack
+2025-07-19 02:32:19,159 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/car-pride-biodegradable-alloy-wheel-cleaning-wipes-30-pack
+2025-07-19 02:32:19,160 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/car-pride-biodegradable-alloy-wheel-cleaning-wipes-30-pack
+2025-07-19 02:32:19,331 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/car-pride-biodegradable-alloy-wheel-cleaning-wipes-30-pack (Size: 672314 bytes)
+2025-07-19 02:32:19,597 - configurable_supplier_scraper - INFO - 🔄 REAL-TIME: Added product 3 to shared accumulator (total: 3)
+2025-07-19 02:32:19,598 - configurable_supplier_scraper - INFO - ✅ Extracted product 3: Car-Pride Biodegradable Alloy Wheel Cleaning Wipes 30 Pack - £0.65 (EAN: 5053249271422)
+2025-07-19 02:32:19,611 - PassiveExtractionWorkflow - INFO - 🔍 SUPPLIER STATE UPDATE: Index updated to 3/149
+2025-07-19 02:32:19,612 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS: Product 3 processed (total in cache: 3)
+2025-07-19 02:32:19,612 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Processing product 3
+2025-07-19 02:32:19,613 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: Product 3, frequency=2, enabled=True
+2025-07-19 02:32:19,613 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: List length=3, modulo=1
+2025-07-19 02:32:19,629 - configurable_supplier_scraper - INFO - Visiting product page 4/149: https://www.poundwholesale.co.uk/car-pride-clean-polish-microfibre-cloth
+2025-07-19 02:32:19,630 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/car-pride-clean-polish-microfibre-cloth (attempt 1/3)
+2025-07-19 02:32:19,630 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-19 02:32:19,631 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/car-pride-clean-polish-microfibre-cloth
+2025-07-19 02:32:22,260 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/car-pride-clean-polish-microfibre-cloth in 1.82s...
+2025-07-19 02:32:24,076 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/car-pride-clean-polish-microfibre-cloth (attempt 2/3)
+2025-07-19 02:32:24,077 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-19 02:32:24,078 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/car-pride-clean-polish-microfibre-cloth
+2025-07-19 02:32:25,560 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/car-pride-clean-polish-microfibre-cloth
+2025-07-19 02:32:25,563 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/car-pride-clean-polish-microfibre-cloth
+2025-07-19 02:32:25,700 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/car-pride-clean-polish-microfibre-cloth (Size: 667800 bytes)
+2025-07-19 02:32:25,976 - configurable_supplier_scraper - INFO - 🔄 REAL-TIME: Added product 4 to shared accumulator (total: 4)
+2025-07-19 02:32:25,977 - configurable_supplier_scraper - INFO - ✅ Extracted product 4: Car Pride Clean & Polish Microfibre Cloth - £0.76 (EAN: 5053249245799)
+2025-07-19 02:32:25,989 - PassiveExtractionWorkflow - INFO - 🔍 SUPPLIER STATE UPDATE: Index updated to 4/149
+2025-07-19 02:32:25,989 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS: Product 4 processed (total in cache: 4)
+2025-07-19 02:32:25,990 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Processing product 4
+2025-07-19 02:32:25,990 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: Product 4, frequency=2, enabled=True
+2025-07-19 02:32:25,991 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: List length=4, modulo=0
+2025-07-19 02:32:25,993 - PassiveExtractionWorkflow - INFO - 💾 CACHE SAVE: Starting save of 4 products to cache...
+2025-07-19 02:32:26,018 - PassiveExtractionWorkflow - INFO - ✅ CACHE SAVE: Successfully saved 148 products (0 new) to poundwholesale-co-uk_products_cache.json
+2025-07-19 02:32:26,019 - PassiveExtractionWorkflow - INFO - 🔄 DEDUPLICATION: Skipped 0 EAN duplicates and 4 URL duplicates
+2025-07-19 02:32:26,019 - PassiveExtractionWorkflow - INFO - 💾 PERIODIC CACHE SAVE: Saved 4 products to cache (every 2 products)
+2025-07-19 02:32:26,030 - configurable_supplier_scraper - INFO - Visiting product page 5/149: https://www.poundwholesale.co.uk/car-pride-all-seasons-screen-wash-tablets-2pc
+2025-07-19 02:32:26,031 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/car-pride-all-seasons-screen-wash-tablets-2pc (attempt 1/3)
+2025-07-19 02:32:26,031 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-19 02:32:26,031 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/car-pride-all-seasons-screen-wash-tablets-2pc
+2025-07-19 02:32:31,004 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/car-pride-all-seasons-screen-wash-tablets-2pc in 2.12s...
+2025-07-19 02:32:33,126 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/car-pride-all-seasons-screen-wash-tablets-2pc (attempt 2/3)
+2025-07-19 02:32:33,127 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-19 02:32:33,127 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/car-pride-all-seasons-screen-wash-tablets-2pc
+2025-07-19 02:32:35,724 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/car-pride-all-seasons-screen-wash-tablets-2pc
+2025-07-19 02:32:35,725 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/car-pride-all-seasons-screen-wash-tablets-2pc
+2025-07-19 02:32:35,862 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/car-pride-all-seasons-screen-wash-tablets-2pc (Size: 668890 bytes)
+2025-07-19 02:32:36,238 - configurable_supplier_scraper - INFO - 🔄 REAL-TIME: Added product 5 to shared accumulator (total: 5)
+2025-07-19 02:32:36,239 - configurable_supplier_scraper - INFO - ✅ Extracted product 5: Car Pride All Seasons Screen Wash Tablets 2pc - £0.74 (EAN: 5053249256832)
+2025-07-19 02:32:36,252 - PassiveExtractionWorkflow - INFO - 🔍 SUPPLIER STATE UPDATE: Index updated to 5/149
+2025-07-19 02:32:36,253 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS: Product 5 processed (total in cache: 5)
+2025-07-19 02:32:36,253 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Processing product 5
+2025-07-19 02:32:36,254 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: Product 5, frequency=2, enabled=True
+2025-07-19 02:32:36,254 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: List length=5, modulo=1
+2025-07-19 02:32:36,268 - configurable_supplier_scraper - INFO - Visiting product page 6/149: https://www.poundwholesale.co.uk/goodyear-microfibre-window-cloth-large-40cm-x-40cm
+2025-07-19 02:32:36,269 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/goodyear-microfibre-window-cloth-large-40cm-x-40cm (attempt 1/3)
+2025-07-19 02:32:36,270 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-19 02:32:36,270 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/goodyear-microfibre-window-cloth-large-40cm-x-40cm
+2025-07-19 02:32:38,787 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/goodyear-microfibre-window-cloth-large-40cm-x-40cm in 1.60s...
+2025-07-19 02:32:40,390 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/goodyear-microfibre-window-cloth-large-40cm-x-40cm (attempt 2/3)
+2025-07-19 02:32:40,390 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-19 02:32:40,391 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/goodyear-microfibre-window-cloth-large-40cm-x-40cm
+2025-07-19 02:32:41,906 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/goodyear-microfibre-window-cloth-large-40cm-x-40cm
+2025-07-19 02:32:41,906 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/goodyear-microfibre-window-cloth-large-40cm-x-40cm
+2025-07-19 02:32:42,054 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/goodyear-microfibre-window-cloth-large-40cm-x-40cm (Size: 675485 bytes)
+2025-07-19 02:32:42,334 - configurable_supplier_scraper - INFO - 🔄 REAL-TIME: Added product 6 to shared accumulator (total: 6)
+2025-07-19 02:32:42,335 - configurable_supplier_scraper - INFO - ✅ Extracted product 6: Goodyear Microfibre Window Cloth Large 40cm X 40cm - £1.06 (EAN: 5055441452173)
+2025-07-19 02:32:42,352 - PassiveExtractionWorkflow - INFO - 🔍 SUPPLIER STATE UPDATE: Index updated to 6/149
+2025-07-19 02:32:42,353 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS: Product 6 processed (total in cache: 6)
+2025-07-19 02:32:42,353 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Processing product 6
+2025-07-19 02:32:42,354 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: Product 6, frequency=2, enabled=True
+2025-07-19 02:32:42,355 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: List length=6, modulo=0
+2025-07-19 02:32:42,359 - PassiveExtractionWorkflow - INFO - 💾 CACHE SAVE: Starting save of 6 products to cache...
+2025-07-19 02:32:42,382 - PassiveExtractionWorkflow - INFO - ✅ CACHE SAVE: Successfully saved 148 products (0 new) to poundwholesale-co-uk_products_cache.json
+2025-07-19 02:32:42,383 - PassiveExtractionWorkflow - INFO - 🔄 DEDUPLICATION: Skipped 0 EAN duplicates and 6 URL duplicates
+2025-07-19 02:32:42,383 - PassiveExtractionWorkflow - INFO - 💾 PERIODIC CACHE SAVE: Saved 6 products to cache (every 2 products)
+2025-07-19 02:32:42,395 - configurable_supplier_scraper - INFO - Visiting product page 7/149: https://www.poundwholesale.co.uk/car-pride-black-gloss-spray-paint-400ml
+2025-07-19 02:32:42,396 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/car-pride-black-gloss-spray-paint-400ml (attempt 1/3)
+2025-07-19 02:32:42,396 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-19 02:32:42,396 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/car-pride-black-gloss-spray-paint-400ml
+2025-07-19 02:32:45,167 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/car-pride-black-gloss-spray-paint-400ml in 1.87s...
+2025-07-19 02:32:47,036 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/car-pride-black-gloss-spray-paint-400ml (attempt 2/3)
+2025-07-19 02:32:47,036 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-19 02:32:47,037 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/car-pride-black-gloss-spray-paint-400ml
+2025-07-19 02:32:48,910 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/car-pride-black-gloss-spray-paint-400ml
+2025-07-19 02:32:48,911 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/car-pride-black-gloss-spray-paint-400ml
+2025-07-19 02:32:49,057 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/car-pride-black-gloss-spray-paint-400ml (Size: 668697 bytes)
+2025-07-19 02:32:49,337 - configurable_supplier_scraper - INFO - 🔄 REAL-TIME: Added product 7 to shared accumulator (total: 7)
+2025-07-19 02:32:49,338 - configurable_supplier_scraper - INFO - ✅ Extracted product 7: Car Pride Black Gloss Spray Paint 400ml - £1.73 (EAN: 5053249248677)
+2025-07-19 02:32:49,354 - PassiveExtractionWorkflow - INFO - 🔍 SUPPLIER STATE UPDATE: Index updated to 7/149
+2025-07-19 02:32:49,355 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS: Product 7 processed (total in cache: 7)
+2025-07-19 02:32:49,355 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Processing product 7
+2025-07-19 02:32:49,356 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: Product 7, frequency=2, enabled=True
+2025-07-19 02:32:49,356 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: List length=7, modulo=1
+2025-07-19 02:32:49,372 - configurable_supplier_scraper - INFO - Visiting product page 8/149: https://www.poundwholesale.co.uk/goodyear-2-in-1-microfibre-drying-towel-xl-80cm-x-60cm
+2025-07-19 02:32:49,373 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/goodyear-2-in-1-microfibre-drying-towel-xl-80cm-x-60cm (attempt 1/3)
+2025-07-19 02:32:49,374 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-19 02:32:49,375 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/goodyear-2-in-1-microfibre-drying-towel-xl-80cm-x-60cm
+2025-07-19 02:32:52,149 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/goodyear-2-in-1-microfibre-drying-towel-xl-80cm-x-60cm in 2.12s...
+2025-07-19 02:32:54,269 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/goodyear-2-in-1-microfibre-drying-towel-xl-80cm-x-60cm (attempt 2/3)
+2025-07-19 02:32:54,269 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-19 02:32:54,271 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/goodyear-2-in-1-microfibre-drying-towel-xl-80cm-x-60cm
+2025-07-19 02:32:57,258 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/goodyear-2-in-1-microfibre-drying-towel-xl-80cm-x-60cm
+2025-07-19 02:32:57,259 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/goodyear-2-in-1-microfibre-drying-towel-xl-80cm-x-60cm
+2025-07-19 02:32:57,423 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/goodyear-2-in-1-microfibre-drying-towel-xl-80cm-x-60cm (Size: 675191 bytes)
+2025-07-19 02:32:57,829 - configurable_supplier_scraper - INFO - 🔄 REAL-TIME: Added product 8 to shared accumulator (total: 8)
+2025-07-19 02:32:57,829 - configurable_supplier_scraper - INFO - ✅ Extracted product 8: Goodyear 2-In-1 Microfibre Drying Towel Xl 80cm X 60cm - £2.21 (EAN: 5055441449227)
+2025-07-19 02:32:57,847 - PassiveExtractionWorkflow - INFO - 🔍 SUPPLIER STATE UPDATE: Index updated to 8/149
+2025-07-19 02:32:57,848 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS: Product 8 processed (total in cache: 8)
+2025-07-19 02:32:57,849 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Processing product 8
+2025-07-19 02:32:57,849 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: Product 8, frequency=2, enabled=True
+2025-07-19 02:32:57,850 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: List length=8, modulo=0
+2025-07-19 02:32:57,854 - PassiveExtractionWorkflow - INFO - 💾 CACHE SAVE: Starting save of 8 products to cache...
+2025-07-19 02:32:57,884 - PassiveExtractionWorkflow - INFO - ✅ CACHE SAVE: Successfully saved 148 products (0 new) to poundwholesale-co-uk_products_cache.json
+2025-07-19 02:32:57,885 - PassiveExtractionWorkflow - INFO - 🔄 DEDUPLICATION: Skipped 0 EAN duplicates and 8 URL duplicates
+2025-07-19 02:32:57,886 - PassiveExtractionWorkflow - INFO - 💾 PERIODIC CACHE SAVE: Saved 8 products to cache (every 2 products)
+2025-07-19 02:32:57,902 - configurable_supplier_scraper - INFO - Visiting product page 9/149: https://www.poundwholesale.co.uk/tyre-shine-300ml
+2025-07-19 02:32:57,903 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/tyre-shine-300ml (attempt 1/3)
+2025-07-19 02:32:57,904 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-19 02:32:57,904 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/tyre-shine-300ml
+2025-07-19 02:33:00,459 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/tyre-shine-300ml in 1.57s...
+2025-07-19 02:33:02,029 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/tyre-shine-300ml (attempt 2/3)
+2025-07-19 02:33:02,030 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-19 02:33:02,030 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/tyre-shine-300ml
+2025-07-19 02:33:03,197 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/tyre-shine-300ml
+2025-07-19 02:33:03,197 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/tyre-shine-300ml
+2025-07-19 02:33:03,297 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/tyre-shine-300ml (Size: 671607 bytes)
+2025-07-19 02:33:03,581 - configurable_supplier_scraper - INFO - 🔄 REAL-TIME: Added product 9 to shared accumulator (total: 9)
+2025-07-19 02:33:03,581 - configurable_supplier_scraper - INFO - ✅ Extracted product 9: Car Pride Tyre Shine 300ml - £0.93 (EAN: 5050375084087)
+2025-07-19 02:33:03,596 - PassiveExtractionWorkflow - INFO - 🔍 SUPPLIER STATE UPDATE: Index updated to 9/149
+2025-07-19 02:33:03,596 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS: Product 9 processed (total in cache: 9)
+2025-07-19 02:33:03,597 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Processing product 9
+2025-07-19 02:33:03,598 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: Product 9, frequency=2, enabled=True
+2025-07-19 02:33:03,598 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: List length=9, modulo=1
+2025-07-19 02:33:03,612 - configurable_supplier_scraper - INFO - Visiting product page 10/149: https://www.poundwholesale.co.uk/carpride-scratch-remover-pen
+2025-07-19 02:33:03,613 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/carpride-scratch-remover-pen (attempt 1/3)
+2025-07-19 02:33:03,613 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-19 02:33:03,614 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/carpride-scratch-remover-pen
+2025-07-19 02:33:06,781 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/carpride-scratch-remover-pen in 2.06s...
+2025-07-19 02:33:08,847 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/carpride-scratch-remover-pen (attempt 2/3)
+2025-07-19 02:33:08,847 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-19 02:33:08,848 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/carpride-scratch-remover-pen
+2025-07-19 02:33:10,500 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/carpride-scratch-remover-pen
+2025-07-19 02:33:10,501 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/carpride-scratch-remover-pen
+2025-07-19 02:33:10,631 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/carpride-scratch-remover-pen (Size: 669481 bytes)
+2025-07-19 02:33:10,909 - configurable_supplier_scraper - INFO - 🔄 REAL-TIME: Added product 10 to shared accumulator (total: 10)
+2025-07-19 02:33:10,910 - configurable_supplier_scraper - INFO - ✅ Extracted product 10: Carpride Scratch Remover Pen - £0.92 (EAN: 5053249003108)
+2025-07-19 02:33:10,925 - PassiveExtractionWorkflow - INFO - 🔍 SUPPLIER STATE UPDATE: Index updated to 10/149
+2025-07-19 02:33:10,925 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS: Product 10 processed (total in cache: 10)
+2025-07-19 02:33:10,926 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Processing product 10
+2025-07-19 02:33:10,927 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: Product 10, frequency=2, enabled=True
+2025-07-19 02:33:10,928 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: List length=10, modulo=0
+2025-07-19 02:33:10,930 - PassiveExtractionWorkflow - INFO - 💾 CACHE SAVE: Starting save of 10 products to cache...
+2025-07-19 02:33:10,957 - PassiveExtractionWorkflow - INFO - ✅ CACHE SAVE: Successfully saved 148 products (0 new) to poundwholesale-co-uk_products_cache.json
+2025-07-19 02:33:10,958 - PassiveExtractionWorkflow - INFO - 🔄 DEDUPLICATION: Skipped 0 EAN duplicates and 10 URL duplicates
+2025-07-19 02:33:10,959 - PassiveExtractionWorkflow - INFO - 💾 PERIODIC CACHE SAVE: Saved 10 products to cache (every 2 products)
+2025-07-19 02:33:10,976 - configurable_supplier_scraper - INFO - Visiting product page 11/149: https://www.poundwholesale.co.uk/bettina-microfibre-ultra-buff-car-cloths-3pc
+2025-07-19 02:33:10,977 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/bettina-microfibre-ultra-buff-car-cloths-3pc (attempt 1/3)
+2025-07-19 02:33:10,978 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-19 02:33:10,979 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/bettina-microfibre-ultra-buff-car-cloths-3pc
+2025-07-19 02:33:13,691 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/bettina-microfibre-ultra-buff-car-cloths-3pc in 2.50s...
+2025-07-19 02:33:16,191 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/bettina-microfibre-ultra-buff-car-cloths-3pc (attempt 2/3)
+2025-07-19 02:33:16,192 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-19 02:33:16,193 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/bettina-microfibre-ultra-buff-car-cloths-3pc
+2025-07-19 02:33:17,648 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/bettina-microfibre-ultra-buff-car-cloths-3pc
+2025-07-19 02:33:17,649 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/bettina-microfibre-ultra-buff-car-cloths-3pc
+2025-07-19 02:33:17,779 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/bettina-microfibre-ultra-buff-car-cloths-3pc (Size: 670732 bytes)
+2025-07-19 02:33:18,152 - configurable_supplier_scraper - INFO - 🔄 REAL-TIME: Added product 11 to shared accumulator (total: 11)
+2025-07-19 02:33:18,152 - configurable_supplier_scraper - INFO - ✅ Extracted product 11: Bettina Microfibre Ultra Buff Car Cloths 3pc - £1.79 (EAN: 5052578047807)
+2025-07-19 02:33:18,165 - PassiveExtractionWorkflow - INFO - 🔍 SUPPLIER STATE UPDATE: Index updated to 11/149
+2025-07-19 02:33:18,165 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS: Product 11 processed (total in cache: 11)
+2025-07-19 02:33:18,166 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Processing product 11
+2025-07-19 02:33:18,166 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: Product 11, frequency=2, enabled=True
+2025-07-19 02:33:18,167 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: List length=11, modulo=1
+2025-07-19 02:33:18,178 - configurable_supplier_scraper - INFO - Visiting product page 12/149: https://www.poundwholesale.co.uk/auto-extreme-car-detailing-brush-set-5-pack
+2025-07-19 02:33:18,178 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/auto-extreme-car-detailing-brush-set-5-pack (attempt 1/3)
+2025-07-19 02:33:18,179 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-19 02:33:18,180 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/auto-extreme-car-detailing-brush-set-5-pack
+2025-07-19 02:33:20,461 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/auto-extreme-car-detailing-brush-set-5-pack in 1.79s...
+2025-07-19 02:33:22,251 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/auto-extreme-car-detailing-brush-set-5-pack (attempt 2/3)
+2025-07-19 02:33:22,252 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-19 02:33:22,252 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/auto-extreme-car-detailing-brush-set-5-pack
+2025-07-19 02:33:24,970 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/auto-extreme-car-detailing-brush-set-5-pack
+2025-07-19 02:33:24,970 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/auto-extreme-car-detailing-brush-set-5-pack
+2025-07-19 02:33:25,108 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/auto-extreme-car-detailing-brush-set-5-pack (Size: 671554 bytes)
+2025-07-19 02:33:25,380 - configurable_supplier_scraper - INFO - 🔄 REAL-TIME: Added product 12 to shared accumulator (total: 12)
+2025-07-19 02:33:25,381 - configurable_supplier_scraper - INFO - ✅ Extracted product 12: Auto Extreme Car Detailing Brush Set 5 Pack - £2.1 (EAN: 5055319527750)
+2025-07-19 02:33:25,398 - PassiveExtractionWorkflow - INFO - 🔍 SUPPLIER STATE UPDATE: Index updated to 12/149
+2025-07-19 02:33:25,399 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS: Product 12 processed (total in cache: 12)
+2025-07-19 02:33:25,400 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Processing product 12
+2025-07-19 02:33:25,400 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: Product 12, frequency=2, enabled=True
+2025-07-19 02:33:25,401 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: List length=12, modulo=0
+2025-07-19 02:33:25,405 - PassiveExtractionWorkflow - INFO - 💾 CACHE SAVE: Starting save of 12 products to cache...
+2025-07-19 02:33:25,438 - PassiveExtractionWorkflow - INFO - ✅ CACHE SAVE: Successfully saved 148 products (0 new) to poundwholesale-co-uk_products_cache.json
+2025-07-19 02:33:25,439 - PassiveExtractionWorkflow - INFO - 🔄 DEDUPLICATION: Skipped 0 EAN duplicates and 12 URL duplicates
+2025-07-19 02:33:25,440 - PassiveExtractionWorkflow - INFO - 💾 PERIODIC CACHE SAVE: Saved 12 products to cache (every 2 products)
+2025-07-19 02:33:25,458 - configurable_supplier_scraper - INFO - Visiting product page 13/149: https://www.poundwholesale.co.uk/bloc-multipurpose-penetrating-maintenance-spray-250ml
+2025-07-19 02:33:25,459 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/bloc-multipurpose-penetrating-maintenance-spray-250ml (attempt 1/3)
+2025-07-19 02:33:25,460 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-19 02:33:25,461 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/bloc-multipurpose-penetrating-maintenance-spray-250ml
+2025-07-19 02:33:27,766 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/bloc-multipurpose-penetrating-maintenance-spray-250ml in 1.66s...
+2025-07-19 02:33:29,432 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/bloc-multipurpose-penetrating-maintenance-spray-250ml (attempt 2/3)
+2025-07-19 02:33:29,433 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-19 02:33:29,434 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/bloc-multipurpose-penetrating-maintenance-spray-250ml
+2025-07-19 02:33:31,196 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/bloc-multipurpose-penetrating-maintenance-spray-250ml
+2025-07-19 02:33:31,197 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/bloc-multipurpose-penetrating-maintenance-spray-250ml
+2025-07-19 02:33:31,333 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/bloc-multipurpose-penetrating-maintenance-spray-250ml (Size: 671540 bytes)
+2025-07-19 02:33:31,612 - configurable_supplier_scraper - INFO - 🔄 REAL-TIME: Added product 13 to shared accumulator (total: 13)
+2025-07-19 02:33:31,613 - configurable_supplier_scraper - INFO - ✅ Extracted product 13: Bloc Multipurpose Penetrating Maintenance Spray 250ml - £1.03 (EAN: 5056170362405)
+2025-07-19 02:33:31,629 - PassiveExtractionWorkflow - INFO - 🔍 SUPPLIER STATE UPDATE: Index updated to 13/149
+2025-07-19 02:33:31,630 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS: Product 13 processed (total in cache: 13)
+2025-07-19 02:33:31,630 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Processing product 13
+2025-07-19 02:33:31,631 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: Product 13, frequency=2, enabled=True
+2025-07-19 02:33:31,631 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: List length=13, modulo=1
+2025-07-19 02:33:31,646 - configurable_supplier_scraper - INFO - Visiting product page 14/149: https://www.poundwholesale.co.uk/car-air-fresheners-fruit-assorted-cdu
+2025-07-19 02:33:31,647 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/car-air-fresheners-fruit-assorted-cdu (attempt 1/3)
+2025-07-19 02:33:31,647 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-19 02:33:31,648 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/car-air-fresheners-fruit-assorted-cdu
+2025-07-19 02:33:34,224 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/car-air-fresheners-fruit-assorted-cdu in 1.81s...
+2025-07-19 02:33:36,040 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/car-air-fresheners-fruit-assorted-cdu (attempt 2/3)
+2025-07-19 02:33:36,041 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-19 02:33:36,041 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/car-air-fresheners-fruit-assorted-cdu
+2025-07-19 02:33:38,206 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/car-air-fresheners-fruit-assorted-cdu
+2025-07-19 02:33:38,208 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/car-air-fresheners-fruit-assorted-cdu
+2025-07-19 02:33:38,341 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/car-air-fresheners-fruit-assorted-cdu (Size: 665710 bytes)
+2025-07-19 02:33:38,719 - configurable_supplier_scraper - INFO - 🔄 REAL-TIME: Added product 14 to shared accumulator (total: 14)
+2025-07-19 02:33:38,720 - configurable_supplier_scraper - INFO - ✅ Extracted product 14: Car Air Fresheners Fruit Assorted CDU - £0.34 (EAN: 5038673410692)
+2025-07-19 02:33:38,739 - PassiveExtractionWorkflow - INFO - 🔍 SUPPLIER STATE UPDATE: Index updated to 14/149
+2025-07-19 02:33:38,740 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS: Product 14 processed (total in cache: 14)
+2025-07-19 02:33:38,741 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Processing product 14
+2025-07-19 02:33:38,742 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: Product 14, frequency=2, enabled=True
+2025-07-19 02:33:38,742 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: List length=14, modulo=0
+2025-07-19 02:33:38,746 - PassiveExtractionWorkflow - INFO - 💾 CACHE SAVE: Starting save of 14 products to cache...
+2025-07-19 02:33:38,778 - PassiveExtractionWorkflow - INFO - ✅ CACHE SAVE: Successfully saved 148 products (0 new) to poundwholesale-co-uk_products_cache.json
+2025-07-19 02:33:38,779 - PassiveExtractionWorkflow - INFO - 🔄 DEDUPLICATION: Skipped 0 EAN duplicates and 14 URL duplicates
+2025-07-19 02:33:38,779 - PassiveExtractionWorkflow - INFO - 💾 PERIODIC CACHE SAVE: Saved 14 products to cache (every 2 products)
+2025-07-19 02:33:38,796 - configurable_supplier_scraper - INFO - Visiting product page 15/149: https://www.poundwholesale.co.uk/rapide-copper-grease-spray-250ml
+2025-07-19 02:33:38,796 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/rapide-copper-grease-spray-250ml (attempt 1/3)
+2025-07-19 02:33:38,797 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-19 02:33:38,798 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/rapide-copper-grease-spray-250ml
+2025-07-19 02:33:41,060 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/rapide-copper-grease-spray-250ml in 1.88s...
+2025-07-19 02:33:42,943 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/rapide-copper-grease-spray-250ml (attempt 2/3)
+2025-07-19 02:33:42,944 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-19 02:33:42,944 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/rapide-copper-grease-spray-250ml
+2025-07-19 02:33:45,943 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/rapide-copper-grease-spray-250ml
+2025-07-19 02:33:45,944 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/rapide-copper-grease-spray-250ml
+2025-07-19 02:33:46,095 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/rapide-copper-grease-spray-250ml (Size: 670712 bytes)
+2025-07-19 02:33:46,372 - configurable_supplier_scraper - INFO - 🔄 REAL-TIME: Added product 15 to shared accumulator (total: 15)
+2025-07-19 02:33:46,372 - configurable_supplier_scraper - INFO - ✅ Extracted product 15: Rapide Copper Grease Spray 250ml - £1.07 (EAN: 5055319529877)
+2025-07-19 02:33:46,387 - PassiveExtractionWorkflow - INFO - 🔍 SUPPLIER STATE UPDATE: Index updated to 15/149
+2025-07-19 02:33:46,388 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS: Product 15 processed (total in cache: 15)
+2025-07-19 02:33:46,388 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Processing product 15
+2025-07-19 02:33:46,389 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: Product 15, frequency=2, enabled=True
+2025-07-19 02:33:46,389 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: List length=15, modulo=1
+2025-07-19 02:33:46,403 - configurable_supplier_scraper - INFO - Visiting product page 16/149: https://www.poundwholesale.co.uk/classic-professional-car-sponge-15cm-x-11cm-x-5-5cm
+2025-07-19 02:33:46,404 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/classic-professional-car-sponge-15cm-x-11cm-x-5-5cm (attempt 1/3)
+2025-07-19 02:33:46,405 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-19 02:33:46,405 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/classic-professional-car-sponge-15cm-x-11cm-x-5-5cm
+2025-07-19 02:33:49,142 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/classic-professional-car-sponge-15cm-x-11cm-x-5-5cm in 2.18s...
+2025-07-19 02:33:51,321 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/classic-professional-car-sponge-15cm-x-11cm-x-5-5cm (attempt 2/3)
+2025-07-19 02:33:51,322 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-19 02:33:51,323 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/classic-professional-car-sponge-15cm-x-11cm-x-5-5cm
+2025-07-19 02:33:53,348 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/classic-professional-car-sponge-15cm-x-11cm-x-5-5cm
+2025-07-19 02:33:53,349 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/classic-professional-car-sponge-15cm-x-11cm-x-5-5cm
+2025-07-19 02:33:53,506 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/classic-professional-car-sponge-15cm-x-11cm-x-5-5cm (Size: 629780 bytes)
+2025-07-19 02:33:53,758 - configurable_supplier_scraper - INFO - 🔄 REAL-TIME: Added product 16 to shared accumulator (total: 16)
+2025-07-19 02:33:53,759 - configurable_supplier_scraper - INFO - ✅ Extracted product 16: Classic Professional Car Sponge 15cm X 11cm X 5.5cm - £0.62 (EAN: 8008990001061)
+2025-07-19 02:33:53,778 - PassiveExtractionWorkflow - INFO - 🔍 SUPPLIER STATE UPDATE: Index updated to 16/149
+2025-07-19 02:33:53,779 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS: Product 16 processed (total in cache: 16)
+2025-07-19 02:33:53,780 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Processing product 16
+2025-07-19 02:33:53,781 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: Product 16, frequency=2, enabled=True
+2025-07-19 02:33:53,781 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: List length=16, modulo=0
+2025-07-19 02:33:53,784 - PassiveExtractionWorkflow - INFO - 💾 CACHE SAVE: Starting save of 16 products to cache...
+2025-07-19 02:33:53,809 - PassiveExtractionWorkflow - INFO - ✅ CACHE SAVE: Successfully saved 148 products (0 new) to poundwholesale-co-uk_products_cache.json
+2025-07-19 02:33:53,809 - PassiveExtractionWorkflow - INFO - 🔄 DEDUPLICATION: Skipped 0 EAN duplicates and 16 URL duplicates
+2025-07-19 02:33:53,810 - PassiveExtractionWorkflow - INFO - 💾 PERIODIC CACHE SAVE: Saved 16 products to cache (every 2 products)
+2025-07-19 02:33:53,823 - configurable_supplier_scraper - INFO - Visiting product page 17/149: https://www.poundwholesale.co.uk/auto-extreme-professional-silver-alloy-wheel-spray-paint-400ml
+2025-07-19 02:33:53,824 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/auto-extreme-professional-silver-alloy-wheel-spray-paint-400ml (attempt 1/3)
+2025-07-19 02:33:53,824 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-19 02:33:53,825 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/auto-extreme-professional-silver-alloy-wheel-spray-paint-400ml
+2025-07-19 02:33:56,311 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/auto-extreme-professional-silver-alloy-wheel-spray-paint-400ml in 2.11s...
+2025-07-19 02:33:58,420 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/auto-extreme-professional-silver-alloy-wheel-spray-paint-400ml (attempt 2/3)
+2025-07-19 02:33:58,421 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-19 02:33:58,421 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/auto-extreme-professional-silver-alloy-wheel-spray-paint-400ml
+2025-07-19 02:33:59,944 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/auto-extreme-professional-silver-alloy-wheel-spray-paint-400ml
+2025-07-19 02:33:59,945 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/auto-extreme-professional-silver-alloy-wheel-spray-paint-400ml
+2025-07-19 02:34:00,108 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/auto-extreme-professional-silver-alloy-wheel-spray-paint-400ml (Size: 674008 bytes)
+2025-07-19 02:34:00,469 - configurable_supplier_scraper - INFO - 🔄 REAL-TIME: Added product 17 to shared accumulator (total: 17)
+2025-07-19 02:34:00,470 - configurable_supplier_scraper - INFO - ✅ Extracted product 17: Auto Extreme Professional Silver Alloy Wheel Spray Paint 400ml - £1.81 (EAN: 5055319531740)
+2025-07-19 02:34:00,483 - PassiveExtractionWorkflow - INFO - 🔍 SUPPLIER STATE UPDATE: Index updated to 17/149
+2025-07-19 02:34:00,483 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS: Product 17 processed (total in cache: 17)
+2025-07-19 02:34:00,484 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Processing product 17
+2025-07-19 02:34:00,485 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: Product 17, frequency=2, enabled=True
+2025-07-19 02:34:00,485 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: List length=17, modulo=1
+2025-07-19 02:34:00,501 - configurable_supplier_scraper - INFO - Visiting product page 18/149: https://www.poundwholesale.co.uk/auto-extreme-cedar-wood-in-car-fragrance-air-freshener-spray-100ml
+2025-07-19 02:34:00,502 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/auto-extreme-cedar-wood-in-car-fragrance-air-freshener-spray-100ml (attempt 1/3)
+2025-07-19 02:34:00,503 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-19 02:34:00,503 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/auto-extreme-cedar-wood-in-car-fragrance-air-freshener-spray-100ml
+2025-07-19 02:34:02,912 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/auto-extreme-cedar-wood-in-car-fragrance-air-freshener-spray-100ml in 2.02s...
+2025-07-19 02:34:04,936 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/auto-extreme-cedar-wood-in-car-fragrance-air-freshener-spray-100ml (attempt 2/3)
+2025-07-19 02:34:04,937 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-19 02:34:04,937 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/auto-extreme-cedar-wood-in-car-fragrance-air-freshener-spray-100ml
+2025-07-19 02:34:07,708 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/auto-extreme-cedar-wood-in-car-fragrance-air-freshener-spray-100ml
+2025-07-19 02:34:07,708 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/auto-extreme-cedar-wood-in-car-fragrance-air-freshener-spray-100ml
+2025-07-19 02:34:07,845 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/auto-extreme-cedar-wood-in-car-fragrance-air-freshener-spray-100ml (Size: 674188 bytes)
+2025-07-19 02:34:08,113 - configurable_supplier_scraper - INFO - 🔄 REAL-TIME: Added product 18 to shared accumulator (total: 18)
+2025-07-19 02:34:08,114 - configurable_supplier_scraper - INFO - ✅ Extracted product 18: Auto Extreme Cedar Wood In-Car Fragrance Air Freshener Spray 100ml - £0.65 (EAN: 5055319530743)
+2025-07-19 02:34:08,130 - PassiveExtractionWorkflow - INFO - 🔍 SUPPLIER STATE UPDATE: Index updated to 18/149
+2025-07-19 02:34:08,131 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS: Product 18 processed (total in cache: 18)
+2025-07-19 02:34:08,132 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Processing product 18
+2025-07-19 02:34:08,132 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: Product 18, frequency=2, enabled=True
+2025-07-19 02:34:08,133 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: List length=18, modulo=0
+2025-07-19 02:34:08,137 - PassiveExtractionWorkflow - INFO - 💾 CACHE SAVE: Starting save of 18 products to cache...
+2025-07-19 02:34:08,175 - PassiveExtractionWorkflow - INFO - ✅ CACHE SAVE: Successfully saved 148 products (0 new) to poundwholesale-co-uk_products_cache.json
+2025-07-19 02:34:08,175 - PassiveExtractionWorkflow - INFO - 🔄 DEDUPLICATION: Skipped 0 EAN duplicates and 18 URL duplicates
+2025-07-19 02:34:08,176 - PassiveExtractionWorkflow - INFO - 💾 PERIODIC CACHE SAVE: Saved 18 products to cache (every 2 products)
+2025-07-19 02:34:08,189 - configurable_supplier_scraper - INFO - Visiting product page 19/149: https://www.poundwholesale.co.uk/goodyear-extendable-car-windscreen-washer-squeegee-sponge-cleaner
+2025-07-19 02:34:08,190 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/goodyear-extendable-car-windscreen-washer-squeegee-sponge-cleaner (attempt 1/3)
+2025-07-19 02:34:08,190 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-19 02:34:08,191 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/goodyear-extendable-car-windscreen-washer-squeegee-sponge-cleaner
+2025-07-19 02:34:10,669 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/goodyear-extendable-car-windscreen-washer-squeegee-sponge-cleaner in 1.86s...
+2025-07-19 02:34:12,532 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/goodyear-extendable-car-windscreen-washer-squeegee-sponge-cleaner (attempt 2/3)
+2025-07-19 02:34:12,532 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-19 02:34:12,533 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/goodyear-extendable-car-windscreen-washer-squeegee-sponge-cleaner
+2025-07-19 02:34:14,481 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/goodyear-extendable-car-windscreen-washer-squeegee-sponge-cleaner
+2025-07-19 02:34:14,481 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/goodyear-extendable-car-windscreen-washer-squeegee-sponge-cleaner
+2025-07-19 02:34:14,636 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/goodyear-extendable-car-windscreen-washer-squeegee-sponge-cleaner (Size: 675347 bytes)
+2025-07-19 02:34:14,917 - configurable_supplier_scraper - INFO - 🔄 REAL-TIME: Added product 19 to shared accumulator (total: 19)
+2025-07-19 02:34:14,917 - configurable_supplier_scraper - INFO - ✅ Extracted product 19: Goodyear Extendable Car Windscreen Washer Squeegee Sponge Cleaner - £1.76 (EAN: 5055441452357)
+2025-07-19 02:34:14,928 - PassiveExtractionWorkflow - INFO - 🔍 SUPPLIER STATE UPDATE: Index updated to 19/149
+2025-07-19 02:34:14,929 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS: Product 19 processed (total in cache: 19)
+2025-07-19 02:34:14,930 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Processing product 19
+2025-07-19 02:34:14,931 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: Product 19, frequency=2, enabled=True
+2025-07-19 02:34:14,932 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: List length=19, modulo=1
+2025-07-19 02:34:14,946 - configurable_supplier_scraper - INFO - Visiting product page 20/149: https://www.poundwholesale.co.uk/auto-extreme-professional-yellow-gloss-spray-paint-400ml
+2025-07-19 02:34:14,947 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/auto-extreme-professional-yellow-gloss-spray-paint-400ml (attempt 1/3)
+2025-07-19 02:34:14,947 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-19 02:34:14,948 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/auto-extreme-professional-yellow-gloss-spray-paint-400ml
+2025-07-19 02:34:17,796 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/auto-extreme-professional-yellow-gloss-spray-paint-400ml in 2.20s...
+2025-07-19 02:34:20,000 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/auto-extreme-professional-yellow-gloss-spray-paint-400ml (attempt 2/3)
+2025-07-19 02:34:20,000 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-19 02:34:20,001 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/auto-extreme-professional-yellow-gloss-spray-paint-400ml
+2025-07-19 02:34:21,450 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/auto-extreme-professional-yellow-gloss-spray-paint-400ml
+2025-07-19 02:34:21,450 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/auto-extreme-professional-yellow-gloss-spray-paint-400ml
+2025-07-19 02:34:21,588 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/auto-extreme-professional-yellow-gloss-spray-paint-400ml (Size: 673717 bytes)
+2025-07-19 02:34:21,976 - configurable_supplier_scraper - INFO - 🔄 REAL-TIME: Added product 20 to shared accumulator (total: 20)
+2025-07-19 02:34:21,977 - configurable_supplier_scraper - INFO - ✅ Extracted product 20: Auto Extreme Professional Yellow Gloss Spray Paint 400ml - £1.96 (EAN: 5055319519281)
+2025-07-19 02:34:21,991 - PassiveExtractionWorkflow - INFO - 🔍 SUPPLIER STATE UPDATE: Index updated to 20/149
+2025-07-19 02:34:21,991 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS: Product 20 processed (total in cache: 20)
+2025-07-19 02:34:21,992 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Processing product 20
+2025-07-19 02:34:21,993 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: Product 20, frequency=2, enabled=True
+2025-07-19 02:34:21,994 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: List length=20, modulo=0
+2025-07-19 02:34:21,998 - PassiveExtractionWorkflow - INFO - 💾 CACHE SAVE: Starting save of 20 products to cache...
+2025-07-19 02:34:22,026 - PassiveExtractionWorkflow - INFO - ✅ CACHE SAVE: Successfully saved 148 products (0 new) to poundwholesale-co-uk_products_cache.json
+2025-07-19 02:34:22,026 - PassiveExtractionWorkflow - INFO - 🔄 DEDUPLICATION: Skipped 0 EAN duplicates and 20 URL duplicates
+2025-07-19 02:34:22,026 - PassiveExtractionWorkflow - INFO - 💾 PERIODIC CACHE SAVE: Saved 20 products to cache (every 2 products)
+2025-07-19 02:34:22,040 - configurable_supplier_scraper - INFO - Visiting product page 21/149: https://www.poundwholesale.co.uk/auto-extreme-automotive-white-gloss-spray-paint-250ml
+2025-07-19 02:34:22,040 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/auto-extreme-automotive-white-gloss-spray-paint-250ml (attempt 1/3)
+2025-07-19 02:34:22,040 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-19 02:34:22,041 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/auto-extreme-automotive-white-gloss-spray-paint-250ml
+2025-07-19 02:34:24,651 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/auto-extreme-automotive-white-gloss-spray-paint-250ml in 1.65s...
+2025-07-19 02:34:26,305 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/auto-extreme-automotive-white-gloss-spray-paint-250ml (attempt 2/3)
+2025-07-19 02:34:26,305 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-19 02:34:26,306 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/auto-extreme-automotive-white-gloss-spray-paint-250ml
+2025-07-19 02:34:28,367 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/auto-extreme-automotive-white-gloss-spray-paint-250ml
+2025-07-19 02:34:28,367 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/auto-extreme-automotive-white-gloss-spray-paint-250ml
+2025-07-19 02:34:28,516 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/auto-extreme-automotive-white-gloss-spray-paint-250ml (Size: 674275 bytes)
+2025-07-19 02:34:28,783 - configurable_supplier_scraper - INFO - 🔄 REAL-TIME: Added product 21 to shared accumulator (total: 21)
+2025-07-19 02:34:28,784 - configurable_supplier_scraper - INFO - ✅ Extracted product 21: Auto Extreme Automotive White Gloss Spray Paint 250ml - £0.92 (EAN: 5055319519021)
+2025-07-19 02:34:28,798 - PassiveExtractionWorkflow - INFO - 🔍 SUPPLIER STATE UPDATE: Index updated to 21/149
+2025-07-19 02:34:28,798 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS: Product 21 processed (total in cache: 21)
+2025-07-19 02:34:28,799 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Processing product 21
+2025-07-19 02:34:28,800 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: Product 21, frequency=2, enabled=True
+2025-07-19 02:34:28,800 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: List length=21, modulo=1
+2025-07-19 02:34:28,814 - configurable_supplier_scraper - INFO - Visiting product page 22/149: https://www.poundwholesale.co.uk/car-pride-white-gloss-spray-paint-400ml
+2025-07-19 02:34:28,814 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/car-pride-white-gloss-spray-paint-400ml (attempt 1/3)
+2025-07-19 02:34:28,815 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-19 02:34:28,816 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/car-pride-white-gloss-spray-paint-400ml
+2025-07-19 02:34:31,582 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/car-pride-white-gloss-spray-paint-400ml in 2.37s...
+2025-07-19 02:34:33,949 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/car-pride-white-gloss-spray-paint-400ml (attempt 2/3)
+2025-07-19 02:34:33,950 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-19 02:34:33,950 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/car-pride-white-gloss-spray-paint-400ml
+2025-07-19 02:34:36,326 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/car-pride-white-gloss-spray-paint-400ml
+2025-07-19 02:34:36,327 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/car-pride-white-gloss-spray-paint-400ml
+2025-07-19 02:34:36,493 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/car-pride-white-gloss-spray-paint-400ml (Size: 669223 bytes)
+2025-07-19 02:34:36,779 - configurable_supplier_scraper - INFO - 🔄 REAL-TIME: Added product 22 to shared accumulator (total: 22)
+2025-07-19 02:34:36,780 - configurable_supplier_scraper - INFO - ✅ Extracted product 22: Car-Pride White Gloss Spray Paint 400ml - £1.73 (EAN: 5053249248714)
+2025-07-19 02:34:36,794 - PassiveExtractionWorkflow - INFO - 🔍 SUPPLIER STATE UPDATE: Index updated to 22/149
+2025-07-19 02:34:36,795 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS: Product 22 processed (total in cache: 22)
+2025-07-19 02:34:36,796 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Processing product 22
+2025-07-19 02:34:36,796 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: Product 22, frequency=2, enabled=True
+2025-07-19 02:34:36,797 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: List length=22, modulo=0
+2025-07-19 02:34:36,799 - PassiveExtractionWorkflow - INFO - 💾 CACHE SAVE: Starting save of 22 products to cache...
+2025-07-19 02:34:36,819 - PassiveExtractionWorkflow - INFO - ✅ CACHE SAVE: Successfully saved 148 products (0 new) to poundwholesale-co-uk_products_cache.json
+2025-07-19 02:34:36,820 - PassiveExtractionWorkflow - INFO - 🔄 DEDUPLICATION: Skipped 0 EAN duplicates and 22 URL duplicates
+2025-07-19 02:34:36,822 - PassiveExtractionWorkflow - INFO - 💾 PERIODIC CACHE SAVE: Saved 22 products to cache (every 2 products)
+2025-07-19 02:34:36,834 - configurable_supplier_scraper - INFO - Visiting product page 23/149: https://www.poundwholesale.co.uk/goodyear-gloss-tyre-shine-750ml
+2025-07-19 02:34:36,834 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/goodyear-gloss-tyre-shine-750ml (attempt 1/3)
+2025-07-19 02:34:36,835 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-19 02:34:36,835 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/goodyear-gloss-tyre-shine-750ml
+2025-07-19 02:34:39,844 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/goodyear-gloss-tyre-shine-750ml in 2.32s...
+2025-07-19 02:34:42,162 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/goodyear-gloss-tyre-shine-750ml (attempt 2/3)
+2025-07-19 02:34:42,162 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-19 02:34:42,163 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/goodyear-gloss-tyre-shine-750ml
+2025-07-19 02:34:44,907 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/goodyear-gloss-tyre-shine-750ml
+2025-07-19 02:34:44,908 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/goodyear-gloss-tyre-shine-750ml
+2025-07-19 02:34:45,041 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/goodyear-gloss-tyre-shine-750ml (Size: 666426 bytes)
+2025-07-19 02:34:45,430 - configurable_supplier_scraper - INFO - 🔄 REAL-TIME: Added product 23 to shared accumulator (total: 23)
+2025-07-19 02:34:45,431 - configurable_supplier_scraper - INFO - ✅ Extracted product 23: Goodyear Gloss Tyre Shine 750ml - £1.39 (EAN: 5055441446516)
+2025-07-19 02:34:45,446 - PassiveExtractionWorkflow - INFO - 🔍 SUPPLIER STATE UPDATE: Index updated to 23/149
+2025-07-19 02:34:45,446 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS: Product 23 processed (total in cache: 23)
+2025-07-19 02:34:45,447 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Processing product 23
+2025-07-19 02:34:45,447 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: Product 23, frequency=2, enabled=True
+2025-07-19 02:34:45,447 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: List length=23, modulo=1
+2025-07-19 02:34:45,461 - configurable_supplier_scraper - INFO - Visiting product page 24/149: https://www.poundwholesale.co.uk/goodyear-wax-applicator-pad-set-3pc
+2025-07-19 02:34:45,462 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/goodyear-wax-applicator-pad-set-3pc (attempt 1/3)
+2025-07-19 02:34:45,463 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-19 02:34:45,463 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/goodyear-wax-applicator-pad-set-3pc
+2025-07-19 02:34:48,072 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/goodyear-wax-applicator-pad-set-3pc in 2.05s...
+2025-07-19 02:34:50,129 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/goodyear-wax-applicator-pad-set-3pc (attempt 2/3)
+2025-07-19 02:34:50,130 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-19 02:34:50,131 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/goodyear-wax-applicator-pad-set-3pc
+2025-07-19 02:34:52,206 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/goodyear-wax-applicator-pad-set-3pc
+2025-07-19 02:34:52,207 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/goodyear-wax-applicator-pad-set-3pc
+2025-07-19 02:34:52,369 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/goodyear-wax-applicator-pad-set-3pc (Size: 671795 bytes)
+2025-07-19 02:34:52,655 - configurable_supplier_scraper - INFO - 🔄 REAL-TIME: Added product 24 to shared accumulator (total: 24)
+2025-07-19 02:34:52,656 - configurable_supplier_scraper - INFO - ✅ Extracted product 24: Goodyear Wax Applicator Pad Set 3pc - £1.99 (EAN: 5055441452319)
+2025-07-19 02:34:52,670 - PassiveExtractionWorkflow - INFO - 🔍 SUPPLIER STATE UPDATE: Index updated to 24/149
+2025-07-19 02:34:52,671 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS: Product 24 processed (total in cache: 24)
+2025-07-19 02:34:52,671 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Processing product 24
+2025-07-19 02:34:52,672 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: Product 24, frequency=2, enabled=True
+2025-07-19 02:34:52,672 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: List length=24, modulo=0
+2025-07-19 02:34:52,676 - PassiveExtractionWorkflow - INFO - 💾 CACHE SAVE: Starting save of 24 products to cache...
+2025-07-19 02:34:52,703 - PassiveExtractionWorkflow - INFO - ✅ CACHE SAVE: Successfully saved 148 products (0 new) to poundwholesale-co-uk_products_cache.json
+2025-07-19 02:34:52,704 - PassiveExtractionWorkflow - INFO - 🔄 DEDUPLICATION: Skipped 0 EAN duplicates and 24 URL duplicates
+2025-07-19 02:34:52,705 - PassiveExtractionWorkflow - INFO - 💾 PERIODIC CACHE SAVE: Saved 24 products to cache (every 2 products)
+2025-07-19 02:34:52,722 - configurable_supplier_scraper - INFO - Visiting product page 25/149: https://www.poundwholesale.co.uk/goodyear-hydrophobic-polymer-formulation-wash-wax-2-5l
+2025-07-19 02:34:52,723 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/goodyear-hydrophobic-polymer-formulation-wash-wax-2-5l (attempt 1/3)
+2025-07-19 02:34:52,725 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-19 02:34:52,725 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/goodyear-hydrophobic-polymer-formulation-wash-wax-2-5l
+2025-07-19 02:34:55,575 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/goodyear-hydrophobic-polymer-formulation-wash-wax-2-5l in 1.80s...
+2025-07-19 02:34:57,380 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/goodyear-hydrophobic-polymer-formulation-wash-wax-2-5l (attempt 2/3)
+2025-07-19 02:34:57,381 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-19 02:34:57,381 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/goodyear-hydrophobic-polymer-formulation-wash-wax-2-5l
+2025-07-19 02:34:58,903 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/goodyear-hydrophobic-polymer-formulation-wash-wax-2-5l
+2025-07-19 02:34:58,904 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/goodyear-hydrophobic-polymer-formulation-wash-wax-2-5l
+2025-07-19 02:34:59,038 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/goodyear-hydrophobic-polymer-formulation-wash-wax-2-5l (Size: 668785 bytes)
+2025-07-19 02:34:59,309 - configurable_supplier_scraper - INFO - 🔄 REAL-TIME: Added product 25 to shared accumulator (total: 25)
+2025-07-19 02:34:59,310 - configurable_supplier_scraper - INFO - ✅ Extracted product 25: Goodyear Hydrophobic Polymer Formulation Wash & Wax 2.5l - £3.05 (EAN: 5055441446752)
+2025-07-19 02:34:59,325 - PassiveExtractionWorkflow - INFO - 🔍 SUPPLIER STATE UPDATE: Index updated to 25/149
+2025-07-19 02:34:59,326 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS: Product 25 processed (total in cache: 25)
+2025-07-19 02:34:59,326 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Processing product 25
+2025-07-19 02:34:59,327 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: Product 25, frequency=2, enabled=True
+2025-07-19 02:34:59,328 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: List length=25, modulo=1
+2025-07-19 02:34:59,343 - configurable_supplier_scraper - INFO - Visiting product page 26/149: https://www.poundwholesale.co.uk/auto-extreme-professional-silver-body-spray-paint-400ml
+2025-07-19 02:34:59,344 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/auto-extreme-professional-silver-body-spray-paint-400ml (attempt 1/3)
+2025-07-19 02:34:59,345 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-19 02:34:59,346 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/auto-extreme-professional-silver-body-spray-paint-400ml
+2025-07-19 02:35:01,783 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/auto-extreme-professional-silver-body-spray-paint-400ml in 1.79s...
+2025-07-19 02:35:03,570 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/auto-extreme-professional-silver-body-spray-paint-400ml (attempt 2/3)
+2025-07-19 02:35:03,571 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-19 02:35:03,571 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/auto-extreme-professional-silver-body-spray-paint-400ml
+2025-07-19 02:35:05,127 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/auto-extreme-professional-silver-body-spray-paint-400ml
+2025-07-19 02:35:05,128 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/auto-extreme-professional-silver-body-spray-paint-400ml
+2025-07-19 02:35:05,362 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/auto-extreme-professional-silver-body-spray-paint-400ml (Size: 671744 bytes)
+2025-07-19 02:35:05,742 - configurable_supplier_scraper - INFO - 🔄 REAL-TIME: Added product 26 to shared accumulator (total: 26)
+2025-07-19 02:35:05,743 - configurable_supplier_scraper - INFO - ✅ Extracted product 26: Auto Extreme Professional Silver Body Spray Paint 400ml - £1.82 (EAN: 5055319519304)
+2025-07-19 02:35:05,758 - PassiveExtractionWorkflow - INFO - 🔍 SUPPLIER STATE UPDATE: Index updated to 26/149
+2025-07-19 02:35:05,759 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS: Product 26 processed (total in cache: 26)
+2025-07-19 02:35:05,760 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Processing product 26
+2025-07-19 02:35:05,760 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: Product 26, frequency=2, enabled=True
+2025-07-19 02:35:05,761 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: List length=26, modulo=0
+2025-07-19 02:35:05,763 - PassiveExtractionWorkflow - INFO - 💾 CACHE SAVE: Starting save of 26 products to cache...
+2025-07-19 02:35:05,795 - PassiveExtractionWorkflow - INFO - ✅ CACHE SAVE: Successfully saved 148 products (0 new) to poundwholesale-co-uk_products_cache.json
+2025-07-19 02:35:05,796 - PassiveExtractionWorkflow - INFO - 🔄 DEDUPLICATION: Skipped 0 EAN duplicates and 26 URL duplicates
+2025-07-19 02:35:05,796 - PassiveExtractionWorkflow - INFO - 💾 PERIODIC CACHE SAVE: Saved 26 products to cache (every 2 products)
+2025-07-19 02:35:05,810 - configurable_supplier_scraper - INFO - Visiting product page 27/149: https://www.poundwholesale.co.uk/bettina-giant-car-sponge
+2025-07-19 02:35:05,810 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/bettina-giant-car-sponge (attempt 1/3)
+2025-07-19 02:35:05,811 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-19 02:35:05,812 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/bettina-giant-car-sponge
+2025-07-19 02:35:08,509 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/bettina-giant-car-sponge in 2.09s...
+2025-07-19 02:35:10,606 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/bettina-giant-car-sponge (attempt 2/3)
+2025-07-19 02:35:10,606 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-19 02:35:10,607 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/bettina-giant-car-sponge
+2025-07-19 02:35:12,185 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/bettina-giant-car-sponge
+2025-07-19 02:35:12,185 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/bettina-giant-car-sponge
+2025-07-19 02:35:12,322 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/bettina-giant-car-sponge (Size: 665371 bytes)
+2025-07-19 02:35:12,594 - configurable_supplier_scraper - INFO - 🔄 REAL-TIME: Added product 27 to shared accumulator (total: 27)
+2025-07-19 02:35:12,595 - configurable_supplier_scraper - INFO - ✅ Extracted product 27: Bettina Giant Car Sponge - £0.87 (EAN: 5052578414708)
+2025-07-19 02:35:12,613 - PassiveExtractionWorkflow - INFO - 🔍 SUPPLIER STATE UPDATE: Index updated to 27/149
+2025-07-19 02:35:12,614 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS: Product 27 processed (total in cache: 27)
+2025-07-19 02:35:12,614 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Processing product 27
+2025-07-19 02:35:12,615 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: Product 27, frequency=2, enabled=True
+2025-07-19 02:35:12,616 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: List length=27, modulo=1
+2025-07-19 02:35:12,631 - configurable_supplier_scraper - INFO - Visiting product page 28/149: https://www.poundwholesale.co.uk/car-pride-luxury-natural-chamois-leather
+2025-07-19 02:35:12,632 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/car-pride-luxury-natural-chamois-leather (attempt 1/3)
+2025-07-19 02:35:12,633 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-19 02:35:12,633 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/car-pride-luxury-natural-chamois-leather
+2025-07-19 02:35:15,415 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/car-pride-luxury-natural-chamois-leather in 1.67s...
+2025-07-19 02:35:17,091 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/car-pride-luxury-natural-chamois-leather (attempt 2/3)
+2025-07-19 02:35:17,092 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-19 02:35:17,092 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/car-pride-luxury-natural-chamois-leather
+2025-07-19 02:35:19,153 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/car-pride-luxury-natural-chamois-leather
+2025-07-19 02:35:19,154 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/car-pride-luxury-natural-chamois-leather
+2025-07-19 02:35:19,300 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/car-pride-luxury-natural-chamois-leather (Size: 670256 bytes)
+2025-07-19 02:35:19,632 - configurable_supplier_scraper - INFO - 🔄 REAL-TIME: Added product 28 to shared accumulator (total: 28)
+2025-07-19 02:35:19,633 - configurable_supplier_scraper - INFO - ✅ Extracted product 28: Car Pride Luxury Natural Chamois Leather - £1.41 (EAN: 5050375003620)
+2025-07-19 02:35:19,644 - PassiveExtractionWorkflow - INFO - 🔍 SUPPLIER STATE UPDATE: Index updated to 28/149
+2025-07-19 02:35:19,645 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS: Product 28 processed (total in cache: 28)
+2025-07-19 02:35:19,645 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Processing product 28
+2025-07-19 02:35:19,646 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: Product 28, frequency=2, enabled=True
+2025-07-19 02:35:19,647 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: List length=28, modulo=0
+2025-07-19 02:35:19,650 - PassiveExtractionWorkflow - INFO - 💾 CACHE SAVE: Starting save of 28 products to cache...
+2025-07-19 02:35:19,672 - PassiveExtractionWorkflow - INFO - ✅ CACHE SAVE: Successfully saved 148 products (0 new) to poundwholesale-co-uk_products_cache.json
+2025-07-19 02:35:19,673 - PassiveExtractionWorkflow - INFO - 🔄 DEDUPLICATION: Skipped 0 EAN duplicates and 28 URL duplicates
+2025-07-19 02:35:19,673 - PassiveExtractionWorkflow - INFO - 💾 PERIODIC CACHE SAVE: Saved 28 products to cache (every 2 products)
+2025-07-19 02:35:19,683 - configurable_supplier_scraper - INFO - Visiting product page 29/149: https://www.poundwholesale.co.uk/goodyear-microfibre-luxury-valet-drying-towel-set-2-pack
+2025-07-19 02:35:19,684 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/goodyear-microfibre-luxury-valet-drying-towel-set-2-pack (attempt 1/3)
+2025-07-19 02:35:19,685 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-19 02:35:19,686 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/goodyear-microfibre-luxury-valet-drying-towel-set-2-pack
+2025-07-19 02:35:22,315 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/goodyear-microfibre-luxury-valet-drying-towel-set-2-pack in 1.69s...
+2025-07-19 02:35:24,006 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/goodyear-microfibre-luxury-valet-drying-towel-set-2-pack (attempt 2/3)
+2025-07-19 02:35:24,007 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-19 02:35:24,007 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/goodyear-microfibre-luxury-valet-drying-towel-set-2-pack
+2025-07-19 02:35:26,215 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/goodyear-microfibre-luxury-valet-drying-towel-set-2-pack
+2025-07-19 02:35:26,217 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/goodyear-microfibre-luxury-valet-drying-towel-set-2-pack
+2025-07-19 02:35:26,406 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/goodyear-microfibre-luxury-valet-drying-towel-set-2-pack (Size: 674850 bytes)
+2025-07-19 02:35:26,780 - configurable_supplier_scraper - INFO - 🔄 REAL-TIME: Added product 29 to shared accumulator (total: 29)
+2025-07-19 02:35:26,780 - configurable_supplier_scraper - INFO - ✅ Extracted product 29: Goodyear Microfibre Luxury Valet Drying Towel Set 2 Pack - £2.14 (EAN: 5055441452272)
+2025-07-19 02:35:26,794 - PassiveExtractionWorkflow - INFO - 🔍 SUPPLIER STATE UPDATE: Index updated to 29/149
+2025-07-19 02:35:26,794 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS: Product 29 processed (total in cache: 29)
+2025-07-19 02:35:26,795 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Processing product 29
+2025-07-19 02:35:26,796 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: Product 29, frequency=2, enabled=True
+2025-07-19 02:35:26,796 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: List length=29, modulo=1
+2025-07-19 02:35:26,807 - configurable_supplier_scraper - INFO - Visiting product page 30/149: https://www.poundwholesale.co.uk/auto-extreme-automotive-black-satin-spray-paint-250ml
+2025-07-19 02:35:26,808 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/auto-extreme-automotive-black-satin-spray-paint-250ml (attempt 1/3)
+2025-07-19 02:35:26,809 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-19 02:35:26,809 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/auto-extreme-automotive-black-satin-spray-paint-250ml
+2025-07-19 02:35:29,216 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/auto-extreme-automotive-black-satin-spray-paint-250ml in 1.50s...

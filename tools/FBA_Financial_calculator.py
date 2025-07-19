@@ -124,25 +124,29 @@ def find_amazon_json_by_linking_map(ean, title, url, supplier_name=None):
     """Use linking map to find Amazon data for supplier product."""
     linking_map = load_linking_map(supplier_name)
     
-    # Create possible identifiers for this supplier product
-    possible_identifiers = []
-    if ean:
-        possible_identifiers.append(f"EAN_{ean}")
-    if url:
-        possible_identifiers.append(f"URL_{url}")
-    
-    # Search linking map for matching supplier product
+    # Search linking map for matching supplier product using current structure
     for link_record in linking_map:
-        supplier_id = link_record.get("supplier_product_identifier", "")
+        # CRITICAL FIX: Use actual linking map field names instead of expected legacy format
+        supplier_ean = link_record.get("supplier_ean", "")
+        supplier_url = link_record.get("supplier_url", "")
         
-        # Check if this record matches our supplier product
-        if any(identifier == supplier_id for identifier in possible_identifiers):
-            asin = link_record.get("chosen_amazon_asin")
+        # Check if this record matches our supplier product by EAN or URL
+        match_found = False
+        if ean and supplier_ean and ean == supplier_ean:
+            match_found = True
+            match_method = "EAN"
+        elif url and supplier_url and url == supplier_url:
+            match_found = True
+            match_method = "URL"
+        
+        if match_found:
+            # CRITICAL FIX: Use actual linking map field name for ASIN
+            asin = link_record.get("amazon_asin")
             if asin:
                 # Try to find the Amazon data file for this ASIN
-                amazon_data = find_amazon_json_by_asin(asin, link_record.get("amazon_ean_on_page"))
+                amazon_data = find_amazon_json_by_asin(asin, supplier_ean)
                 if amazon_data:
-                    print(f"Found Amazon data via linking map: {supplier_id} -> {asin}")
+                    print(f"Found Amazon data via linking map ({match_method}): {ean or url} -> {asin}")
                     return amazon_data
     
     return None

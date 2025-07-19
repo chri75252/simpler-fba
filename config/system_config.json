@@ -15,11 +15,11 @@
       "description": "Archive system with supplier-specific targeting. Modes: 'full' (all files) or 'specific_supplier' (target_supplier only)"
     },
     "force_ai_scraping": true,
-    "max_products": 5,
-    "max_analyzed_products": 4,
-    "max_products_per_category": 1,
+    "max_products": 14,
+    "max_analyzed_products": 10,
+    "max_products_per_category": 7,
     "max_products_per_cycle": 100,
-    "linking_map_batch_size": 2,
+    "linking_map_batch_size": 1,
     "financial_report_batch_size": 2,
     "headless_probe_seconds": 0,
     "reuse_browser": true,
@@ -29,7 +29,8 @@
     "output_root": "OUTPUTS",
     "enable_supplier_parser": false,
     "force_ai_category_suggestion": false,
-    "supplier_extraction_batch_size": 1
+    "supplier_extraction_batch_size": 1,
+    "max_categories_to_process": 3
   },
      "max_categories_per_request": 5,
       "dynamic_reordering": {
@@ -39,8 +40,8 @@
       },
 
   "processing_limits": {
-    "max_products_per_category": 1,
-    "max_products_per_run": 5,
+    "max_products_per_category": 8,
+    "max_products_per_run": 15,
     "min_price_gbp": 0.01,
     "max_price_gbp": 20.0,
     "price_midpoint_gbp": 20.0,
@@ -53,11 +54,11 @@
   },
   "supplier_cache_control": {
     "enabled": true,
-    "update_frequency_products": 2,
+    "update_frequency_products": 1,
     "force_update_on_interruption": true,
     "cache_modes": {
       "exhaustive": {
-        "update_frequency_products": 2,
+        "update_frequency_products": 1,
         "force_validation": true,
         "backup_frequency": 100
       }

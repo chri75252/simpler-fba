@@ -1,0 +1,276 @@
+{
+  "__comment_exhaustive_mode": "\ud83d\ude80 EXHAUSTIVE MODE - Process EVERY product under \u00a320 from ALL categories",
+  "__comment_no_limits": "ALL artificial limits removed except \u00a320 price filter",
+  "system": {
+    "name": "Amazon FBA Agent System",
+    "version": "3.5.0",
+    "environment": "production",
+    "test_mode": false,
+    "clear_cache": false,
+    "selective_cache_clear": false,
+   "archive_system": {
+      "enabled": false,
+      "mode": "",
+      "target_supplier": "",
+      "description": "Archive system with supplier-specific targeting. Modes: 'full' (all files) or 'specific_supplier' (target_supplier only)"
+    },
+    "force_ai_scraping": true,
+    "max_products": 15,
+    "max_analyzed_products": 10,
+    "max_products_per_category": 3,
+    "max_products_per_cycle": 100,
+    "linking_map_batch_size": 2,
+    "financial_report_batch_size": 3,
+    "headless_probe_seconds": 0,
+    "reuse_browser": true,
+    "max_tabs": 2,
+    "supplier_login_max_retries": 3,
+    "supplier_login_backoff_sec": 5,
+    "output_root": "OUTPUTS",
+    "enable_supplier_parser": false,
+    "force_ai_category_suggestion": false,
+    "supplier_extraction_batch_size": 1
+  },
+     "max_categories_per_request": 5,
+      "dynamic_reordering": {
+        "enabled": false,
+        "trigger_interval_categories": 5,
+        "trigger_interval_products": 100
+      },
+
+  "processing_limits": {
+    "max_products_per_category": 3,
+    "max_products_per_run": 15,
+    "min_price_gbp": 0.01,
+    "max_price_gbp": 20.0,
+    "price_midpoint_gbp": 20.0,
+    "min_products_per_category": 1,
+    "category_validation": {
+      "enabled": true,
+      "min_products_per_category": 1,
+      "timeout_seconds": 15
+    }
+  },
+  "supplier_cache_control": {
+    "enabled": true,
+    "update_frequency_products": 1,
+    "force_update_on_interruption": true,
+    "cache_modes": {
+      "exhaustive": {
+        "update_frequency_products": 1,
+        "force_validation": true,
+        "backup_frequency": 100
+      }
+    },
+    "validation": {
+      "verify_cache_integrity": true,
+      "backup_before_update": true
+    }
+  },
+  "supplier_extraction_progress": {
+    "enabled": true,
+    "track_subcategory_index": true,
+    "track_product_index_within_category": true,
+    "recovery_mode": "product_resume",
+    "progress_display": {
+      "show_subcategory_progress": true,
+      "show_product_progress": true,
+      "update_frequency_products": 1
+    },
+    "state_persistence": {
+      "save_on_category_completion": true,
+      "save_on_product_batch": true,
+      "batch_save_frequency": 1
+    }
+  },
+  "hybrid_processing": {
+    "enabled": true,
+    "switch_to_amazon_after_categories": 1,
+    "processing_modes": {
+      "sequential": {
+        "description": "Complete all supplier extraction, then Amazon analysis",
+        "enabled": false
+      },
+      "chunked": {
+        "description": "Alternate between supplier extraction and Amazon analysis",
+        "enabled": true,
+        "chunk_size_categories": 1
+      },
+      "balanced": {
+        "description": "Process suppliers in batches, analyze each batch",
+        "enabled": false,
+        "analysis_after_extraction_batch": false
+      }
+    },
+    "memory_management": {
+      "clear_cache_between_phases": true,
+      "max_memory_threshold_mb": 16384
+    }
+  },
+  "batch_synchronization": {
+    "enabled": false,
+    "synchronize_all_batch_sizes": false,
+    "target_batch_size": 50,
+    "affected_settings": [
+      "system.supplier_extraction_batch_size",
+      "system.linking_map_batch_size",
+      "system.financial_report_batch_size",
+      "system.max_products_per_cycle"
+    ]
+  },
+  "performance": {
+    "max_concurrent_requests": 8,
+    "request_timeout_seconds": 45,
+    "retry_attempts": 5,
+    "retry_delay_seconds": 3,
+    "batch_size": 100,
+    "rate_limiting": {
+      "rate_limit_delay": 1.5,
+      "batch_delay": 8.0,
+      "ai_batch_size": 10
+    },
+    "timeouts": {
+      "navigation_timeout_ms": 90000,
+      "search_input_timeout_ms": 10000,
+      "results_wait_timeout_ms": 30000,
+      "selector_wait_timeout_ms": 45000,
+      "page_load_timeout_ms": 20000,
+      "http_request_timeout_seconds": 30
+    }
+  },
+  "cache": {
+    "enabled": true,
+    "ttl_hours": 10000,
+    "max_size_mb": 2048,
+    "selective_clear_config": {
+      "preserve_analyzed_products": true,
+      "preserve_ai_categories": true,
+      "preserve_linking_map": true,
+      "clear_unanalyzed_only": false,
+      "clear_failed_extractions": false
+    }
+  },
+  "monitoring": {
+    "enabled": true,
+    "metrics_interval": 300,
+    "health_check_interval": 600,
+    "log_level": "INFO",
+    "alert_thresholds": {
+      "cpu_percent": 90,
+      "memory_percent": 90,
+      "error_rate_per_hour": 50
+    }
+  },
+  "output": {
+    "base_dir": "OUTPUTS/FBA_ANALYSIS",
+    "report_format": "json",
+    "save_intermediate_results": true,
+    "file_naming": {
+      "pattern": "{supplier}_{timestamp}",
+      "timestamp_format": "%Y%m%d_%H%M%S"
+    },
+    "retention": {
+      "keep_days": 365,
+      "archive_after_days": 90
+    }
+  },
+  "chrome": {
+    "debug_port": 9222,
+    "headless": false,
+    "extensions": [
+      "Keepa",
+      "SellerAmp"
+    ]
+  },
+  "analysis": {
+    "min_roi_percent": 15.0,
+    "min_profit_per_unit": 0.25,
+    "min_rating": 3.0,
+    "min_reviews": 5,
+    "max_sales_rank": 500000,
+    "min_monthly_sales": 1,
+    "max_competition_level": 20,
+    "excluded_categories": [],
+    "target_categories": [
+      "Home & Kitchen",
+      "Pet Supplies",
+      "Toys",
+      "Health & Personal Care",
+      "Office Products",
+      "Sports & Outdoors",
+      "Baby Products",
+      "Beauty & Personal Care",
+      "Automotive",
+      "Garden & Outdoor",
+      "Tools & Home Improvement",
+      "Electronics",
+      "Clothing & Accessories"
+    ]
+  },
+  "amazon": {
+    "marketplace": "amazon.co.uk",
+    "currency": "GBP",
+    "vat_rate": 0.2,
+    "fba_fees": {
+      "referral_fee_rate": 0.15,
+      "fulfillment_fee_minimum": 2.41,
+      "storage_fee_per_cubic_foot": 0.75,
+      "prep_house_fixed_fee": 0.55
+    }
+  },
+  "supplier": {
+    "prices_include_vat": true
+  },
+  "credentials": {
+    "poundwholesale.co.uk": {
+      "username": "info@theblacksmithmarket.com",
+      "password": "0Dqixm9c&"
+    }
+  },
+  "workflows": {
+    "poundwholesale_workflow": {
+      "supplier_name": "poundwholesale.co.uk",
+      "use_predefined_categories": true,
+      "ai_client": null
+    }
+  },
+  "ai_features": {
+    "category_selection": {
+      "enabled": false
+    },
+    "product_matching": {
+      "quality_threshold": "low",
+      "skip_low_quality": false,
+      "ean_search_enabled": true,
+      "title_search_fallback": true
+    }
+  },
+  "integrations": {
+    "keepa": {
+      "enabled": true,
+      "api_key": "",
+      "rate_limit": {
+        "requests_per_minute": 100
+      }
+    },
+    "openai": {
+      "enabled": false
+    }
+  },
+  "authentication": {
+    "enabled": true,
+    "startup_verification": true,
+    "consecutive_failure_threshold": 5,
+    "primary_periodic_interval": 300,
+    "secondary_periodic_interval": 450,
+    "max_consecutive_auth_failures": 10,
+    "auth_failure_delay_seconds": 60,
+    "min_products_between_logins": 50,
+    "adaptive_threshold_enabled": true,
+    "circuit_breaker": {
+      "enabled": true,
+      "failure_threshold": 5,
+      "recovery_timeout_seconds": 120
+    }
+  }
+}

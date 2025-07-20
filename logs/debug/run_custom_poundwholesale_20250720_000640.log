@@ -1,0 +1,184 @@
+2025-07-20 00:06:40,980 - utils.logger - INFO - 🔧 Logging initialised – log file: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/logs/debug/run_custom_poundwholesale_20250720_000640.log
+2025-07-20 00:06:40,981 - __main__ - INFO - 📋 Debug log file: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/logs/debug/run_custom_poundwholesale_20250720_000640.log
+2025-07-20 00:06:40,981 - __main__ - DEBUG - Debug logging initialized - full system execution details will be captured
+2025-07-20 00:06:40,986 - utils.browser_manager - INFO - 🔧 BrowserManager singleton initialized
+2025-07-20 00:06:41,532 - utils.browser_manager - INFO - 🔌 Connecting to persistent Chrome on debug port 9222
+2025-07-20 00:06:42,130 - utils.browser_manager - INFO - 📄 Using existing context with 3 pages
+2025-07-20 00:06:42,131 - utils.browser_manager - INFO - ✅ Connected to persistent Chrome successfully
+2025-07-20 00:06:42,132 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 00:06:42,133 - __main__ - INFO - 🔐 Initializing authentication service for logout detection...
+2025-07-20 00:06:42,143 - __main__ - INFO - ✅ Using hardcoded credentials for poundwholesale.co.uk
+2025-07-20 00:06:42,144 - __main__ - INFO - 🌐 Connecting to existing Chrome debug port 9222 for authentication...
+2025-07-20 00:06:47,893 - tools.supplier_authentication_service - INFO - ❌ Login form detected - not authenticated
+2025-07-20 00:06:47,894 - tools.supplier_authentication_service - INFO - 🔐 Starting authentication for poundwholesale.co.uk
+2025-07-20 00:06:47,894 - tools.supplier_authentication_service - INFO - 🔧 Using standalone playwright authentication
+2025-07-20 00:06:47,895 - tools.standalone_playwright_login - INFO - 🔗 Connecting to shared Chrome instance...
+2025-07-20 00:06:48,870 - tools.standalone_playwright_login - INFO - ✅ Connected to shared Chrome instance at http://localhost:9222
+2025-07-20 00:06:48,871 - tools.standalone_playwright_login - DEBUG - Using existing browser context
+2025-07-20 00:06:48,872 - tools.standalone_playwright_login - DEBUG - Using existing page
+2025-07-20 00:06:48,890 - tools.standalone_playwright_login - INFO - 🔍 Checking if already logged in...
+2025-07-20 00:06:51,138 - tools.standalone_playwright_login - INFO - ❌ No login indicators found - need to log in
+2025-07-20 00:06:51,139 - tools.standalone_playwright_login - INFO - 🔐 Starting Playwright login...
+2025-07-20 00:06:51,139 - tools.standalone_playwright_login - INFO - 📍 Navigating to login page: https://www.poundwholesale.co.uk/customer/account/login/
+2025-07-20 00:06:54,352 - tools.standalone_playwright_login - INFO - ✅ Filled email using selector: input[name="email"]
+2025-07-20 00:06:54,877 - tools.standalone_playwright_login - INFO - ✅ Filled password using selector: input[type="password"]
+2025-07-20 00:06:57,963 - tools.standalone_playwright_login - INFO - ✅ Clicked submit using selector: button[type="submit"]
+2025-07-20 00:06:57,964 - tools.standalone_playwright_login - INFO - ⏳ Waiting for login to complete...
+2025-07-20 00:07:01,480 - tools.standalone_playwright_login - INFO - ✅ Login success confirmed by indicator: text=Log out
+2025-07-20 00:07:01,481 - tools.standalone_playwright_login - INFO - 💰 Verifying price access...
+2025-07-20 00:07:08,068 - tools.standalone_playwright_login - INFO - ✅ Price access confirmed: £1.02
+2025-07-20 00:07:08,069 - tools.standalone_playwright_login - INFO - 🎉 Playwright login successful! Price access confirmed. (took 16.9s)
+2025-07-20 00:07:08,092 - tools.standalone_playwright_login - DEBUG - Disconnected from shared Chrome browser
+2025-07-20 00:07:08,103 - tools.standalone_playwright_login - DEBUG - Playwright stopped
+2025-07-20 00:07:08,103 - tools.supplier_authentication_service - INFO - ✅ Standalone authentication successful: playwright_selectors
+2025-07-20 00:07:08,113 - amazon_playwright_extractor - INFO - AI features disabled in amazon_playwright_extractor - using only traditional selectors.
+2025-07-20 00:07:08,114 - amazon_playwright_extractor - INFO - Output directory set to: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/CACHE/amazon_data
+2025-07-20 00:07:08,114 - amazon_playwright_extractor - WARNING - ⚠️ BrowserManager not available, using legacy browser connection
+2025-07-20 00:07:08,118 - configurable_supplier_scraper - INFO - ✅ Loaded system configuration from /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/config/system_config.json
+2025-07-20 00:07:08,119 - configurable_supplier_scraper - INFO - 🔧 ConfigurableSupplierScraper will use centralized BrowserManager
+2025-07-20 00:07:08,120 - configurable_supplier_scraper - DEBUG - AI model from config: gpt-4.1-mini-2025-04-14
+2025-07-20 00:07:08,120 - configurable_supplier_scraper - DEBUG - Extraction targets from config: {}
+2025-07-20 00:07:08,120 - configurable_supplier_scraper - DEBUG - Discovery assistance from config: {}
+2025-07-20 00:07:08,120 - configurable_supplier_scraper - INFO - [CONFIG] Initialized with AI model: gpt-4.1-mini-2025-04-14
+2025-07-20 00:07:08,121 - configurable_supplier_scraper - INFO - [TARGET] Extraction targets loaded: []
+2025-07-20 00:07:08,122 - configurable_supplier_scraper - INFO - [ASSIST] Discovery assistance enabled: False
+2025-07-20 00:07:08,122 - PassiveExtractionWorkflow - DEBUG - 🔍 DEBUG: linking_map initialized as type: <class 'list'>
+2025-07-20 00:07:08,123 - PassiveExtractionWorkflow - INFO - ✅ Output directory set to: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS
+2025-07-20 00:07:08,123 - PassiveExtractionWorkflow - INFO - ✅ Initialization validation passed - all critical attributes verified
+2025-07-20 00:07:08,123 - PassiveExtractionWorkflow - INFO - --- Starting Passive Extraction Workflow for: poundwholesale.co.uk ---
+2025-07-20 00:07:08,124 - PassiveExtractionWorkflow - INFO - Session ID: poundwholesale.co.uk_20250720_000708
+2025-07-20 00:07:08,124 - PassiveExtractionWorkflow - INFO - 📊 CONFIGURATION VALUES:
+2025-07-20 00:07:08,124 - PassiveExtractionWorkflow - INFO -    max_products_to_process: 14
+2025-07-20 00:07:08,125 - PassiveExtractionWorkflow - INFO -    max_products_per_category: 7
+2025-07-20 00:07:08,125 - PassiveExtractionWorkflow - INFO -    max_analyzed_products: 10
+2025-07-20 00:07:08,126 - PassiveExtractionWorkflow - INFO -    max_products_per_cycle: 100
+2025-07-20 00:07:08,126 - PassiveExtractionWorkflow - INFO -    supplier_extraction_batch_size: 1
+2025-07-20 00:07:08,126 - PassiveExtractionWorkflow - INFO -    max_categories_per_request: 5
+2025-07-20 00:07:08,127 - utils.enhanced_state_manager - INFO - No existing state file found for poundwholesale.co.uk, starting fresh
+2025-07-20 00:07:08,128 - PassiveExtractionWorkflow - INFO - 📋 Loaded existing processing state for poundwholesale.co.uk
+2025-07-20 00:07:08,128 - PassiveExtractionWorkflow - INFO - 🔄 Resuming from index 0
+2025-07-20 00:07:08,130 - PassiveExtractionWorkflow - INFO - ✅ No previous progress found, starting fresh.
+2025-07-20 00:07:08,132 - PassiveExtractionWorkflow - INFO - ✅ No existing linking map found at /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/FBA_ANALYSIS/linking_maps/poundwholesale.co.uk/linking_map.json - Creating new map
+2025-07-20 00:07:08,132 - PassiveExtractionWorkflow - DEBUG - 🔍 DEBUG: linking_map loaded as type: <class 'list'>, length: 0
+2025-07-20 00:07:08,139 - PassiveExtractionWorkflow - INFO - ✅ Processing state initialized and started
+2025-07-20 00:07:08,141 - PassiveExtractionWorkflow - INFO - ✅ No existing linking map found at /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/FBA_ANALYSIS/linking_maps/poundwholesale.co.uk/linking_map.json - Creating new map
+2025-07-20 00:07:08,141 - PassiveExtractionWorkflow - INFO - CUSTOM MODE: Using predefined category list.
+2025-07-20 00:07:08,142 - tools.passive_extraction_workflow_latest - INFO - Attempting to load predefined categories for poundwholesale.co.uk
+2025-07-20 00:07:08,148 - tools.passive_extraction_workflow_latest - INFO - ✅ Successfully loaded 276 predefined category URLs from /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/config/poundwholesale_categories.json
+2025-07-20 00:07:08,149 - PassiveExtractionWorkflow - INFO - 📊 DYNAMIC CALCULATION: 14 max_products ÷ 7 max_products_per_category = 2 categories needed
+2025-07-20 00:07:08,149 - PassiveExtractionWorkflow - INFO - 📋 Processing 2 predefined categories (dynamically calculated)
+2025-07-20 00:07:08,149 - PassiveExtractionWorkflow - INFO - 🔄 HYBRID PROCESSING MODE: Enabled
+2025-07-20 00:07:08,150 - PassiveExtractionWorkflow - INFO - 🔄 HYBRID PROCESSING: Mode configuration loaded
+2025-07-20 00:07:08,150 - PassiveExtractionWorkflow - INFO -    switch_to_amazon_after_categories: 1
+2025-07-20 00:07:08,150 - PassiveExtractionWorkflow - INFO - 🔄 HYBRID MODE: Chunked processing (chunk size: 1 categories)
+2025-07-20 00:07:08,151 - PassiveExtractionWorkflow - INFO - 🔄 Processing chunk 1: categories 1-1
+2025-07-20 00:07:08,152 - PassiveExtractionWorkflow - INFO - 🕷️ PERFORMING SUPPLIER SCRAPING from 1 categories
+2025-07-20 00:07:08,152 - PassiveExtractionWorkflow - INFO - 📦 Using supplier extraction batch size: 1
+2025-07-20 00:07:08,153 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS TRACKING: Extracting from 1 categories in 1 batches
+2025-07-20 00:07:08,153 - PassiveExtractionWorkflow - INFO - 📦 Processing category batch 1/1 (1 categories)
+2025-07-20 00:07:08,161 - PassiveExtractionWorkflow - INFO - 🔄 EXTRACTION PROGRESS: Processing subcategory 1/1 in batch 1 (Category 1/1)
+2025-07-20 00:07:08,162 - PassiveExtractionWorkflow - INFO - Scraping category: https://www.poundwholesale.co.uk/homeware/wholesale-home-fragrance-candles-accessories
+2025-07-20 00:07:08,162 - configurable_supplier_scraper - INFO - Starting enhanced scraping from https://www.poundwholesale.co.uk/homeware/wholesale-home-fragrance-candles-accessories
+2025-07-20 00:07:08,162 - configurable_supplier_scraper - INFO - Setting page limiter for https://www.poundwholesale.co.uk/homeware/wholesale-home-fragrance-candles-accessories
+2025-07-20 00:07:08,163 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 00:07:08,178 - configurable_supplier_scraper - INFO - ✅ Loaded VALIDATED supplier package selectors for poundwholesale.co.uk from /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/suppliers/poundwholesale-co-uk/config/product_selectors.json
+2025-07-20 00:07:08,178 - configurable_supplier_scraper - INFO - No page limiter configuration found for www.poundwholesale.co.uk
+2025-07-20 00:07:08,179 - configurable_supplier_scraper - INFO - Collecting product URLs from paginated pages starting at: https://www.poundwholesale.co.uk/homeware/wholesale-home-fragrance-candles-accessories
+2025-07-20 00:07:08,179 - configurable_supplier_scraper - INFO - Processing page 1: https://www.poundwholesale.co.uk/homeware/wholesale-home-fragrance-candles-accessories
+2025-07-20 00:07:08,180 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/homeware/wholesale-home-fragrance-candles-accessories (attempt 1/3)
+2025-07-20 00:07:08,180 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 00:07:08,180 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/homeware/wholesale-home-fragrance-candles-accessories
+2025-07-20 00:07:10,501 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/homeware/wholesale-home-fragrance-candles-accessories in 2.17s...
+2025-07-20 00:07:12,675 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/homeware/wholesale-home-fragrance-candles-accessories (attempt 2/3)
+2025-07-20 00:07:12,676 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 00:07:12,678 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/homeware/wholesale-home-fragrance-candles-accessories
+2025-07-20 00:07:13,752 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/homeware/wholesale-home-fragrance-candles-accessories
+2025-07-20 00:07:13,753 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/homeware/wholesale-home-fragrance-candles-accessories
+2025-07-20 00:07:13,899 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/homeware/wholesale-home-fragrance-candles-accessories (Size: 637642 bytes)
+2025-07-20 00:07:14,136 - configurable_supplier_scraper - INFO - Found 7 new product URLs on page 1
+2025-07-20 00:07:14,137 - configurable_supplier_scraper - INFO - Collected 7 total product URLs across 1 pages
+2025-07-20 00:07:14,138 - configurable_supplier_scraper - INFO - Found 7 total product URLs across all pages
+2025-07-20 00:07:14,139 - configurable_supplier_scraper - INFO - Visiting product page 1/7: https://www.poundwholesale.co.uk/alya-coffee-latte-reed-diffuser-100ml
+2025-07-20 00:07:14,140 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/alya-coffee-latte-reed-diffuser-100ml (attempt 1/3)
+2025-07-20 00:07:14,141 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 00:07:14,142 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/alya-coffee-latte-reed-diffuser-100ml
+2025-07-20 00:07:16,743 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/alya-coffee-latte-reed-diffuser-100ml in 2.25s...
+2025-07-20 00:07:18,997 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/alya-coffee-latte-reed-diffuser-100ml (attempt 2/3)
+2025-07-20 00:07:18,998 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 00:07:18,999 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/alya-coffee-latte-reed-diffuser-100ml
+2025-07-20 00:07:18,713 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/alya-coffee-latte-reed-diffuser-100ml
+2025-07-20 00:07:18,714 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/alya-coffee-latte-reed-diffuser-100ml
+2025-07-20 00:07:18,837 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/alya-coffee-latte-reed-diffuser-100ml (Size: 676621 bytes)
+2025-07-20 00:07:19,189 - configurable_supplier_scraper - INFO - 🔄 REAL-TIME: Added product 1 to shared accumulator (total: 1)
+2025-07-20 00:07:19,190 - configurable_supplier_scraper - INFO - ✅ Extracted product 1: Alya Coffee Latte Reed Diffuser 100ml - £1.62 (EAN: 8696601070188)
+2025-07-20 00:07:19,205 - PassiveExtractionWorkflow - INFO - 🔍 SUPPLIER STATE UPDATE: Index updated to 1/7
+2025-07-20 00:07:19,206 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS: Product 1 processed (total in cache: 1)
+2025-07-20 00:07:19,207 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Processing product 1
+2025-07-20 00:07:19,207 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: Product 1, frequency=2, enabled=True
+2025-07-20 00:07:19,208 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: List length=1, modulo=1
+2025-07-20 00:07:19,221 - configurable_supplier_scraper - INFO - Visiting product page 2/7: https://www.poundwholesale.co.uk/pan-aroma-sun-dried-linen-bathroom-gel-air-freshener-150g
+2025-07-20 00:07:19,222 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/pan-aroma-sun-dried-linen-bathroom-gel-air-freshener-150g (attempt 1/3)
+2025-07-20 00:07:19,223 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 00:07:19,223 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/pan-aroma-sun-dried-linen-bathroom-gel-air-freshener-150g
+2025-07-20 00:07:22,011 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/pan-aroma-sun-dried-linen-bathroom-gel-air-freshener-150g in 2.29s...
+2025-07-20 00:07:24,319 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/pan-aroma-sun-dried-linen-bathroom-gel-air-freshener-150g (attempt 2/3)
+2025-07-20 00:07:24,320 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 00:07:24,321 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/pan-aroma-sun-dried-linen-bathroom-gel-air-freshener-150g
+2025-07-20 00:07:26,703 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/pan-aroma-sun-dried-linen-bathroom-gel-air-freshener-150g
+2025-07-20 00:07:26,705 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/pan-aroma-sun-dried-linen-bathroom-gel-air-freshener-150g
+2025-07-20 00:07:26,870 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/pan-aroma-sun-dried-linen-bathroom-gel-air-freshener-150g (Size: 671338 bytes)
+2025-07-20 00:07:27,155 - configurable_supplier_scraper - INFO - 🔄 REAL-TIME: Added product 2 to shared accumulator (total: 2)
+2025-07-20 00:07:27,156 - configurable_supplier_scraper - INFO - ✅ Extracted product 2: Pan Aroma Sun-Dried Linen Bathroom Gel Air Freshener 150g - £0.74 (EAN: 5053249278674)
+2025-07-20 00:07:27,168 - PassiveExtractionWorkflow - INFO - 🔍 SUPPLIER STATE UPDATE: Index updated to 2/7
+2025-07-20 00:07:27,169 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS: Product 2 processed (total in cache: 2)
+2025-07-20 00:07:27,169 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Processing product 2
+2025-07-20 00:07:27,170 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: Product 2, frequency=2, enabled=True
+2025-07-20 00:07:27,171 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: List length=2, modulo=0
+2025-07-20 00:07:27,174 - PassiveExtractionWorkflow - INFO - 💾 CACHE SAVE: Starting save of 2 products to cache...
+2025-07-20 00:07:27,185 - PassiveExtractionWorkflow - INFO - ✅ CACHE SAVE: Successfully saved 2 products (2 new) to poundwholesale-co-uk_products_cache.json
+2025-07-20 00:07:27,186 - PassiveExtractionWorkflow - INFO - 💾 PERIODIC CACHE SAVE: Saved 2 products to cache (every 2 products)
+2025-07-20 00:07:27,201 - configurable_supplier_scraper - INFO - Visiting product page 3/7: https://www.poundwholesale.co.uk/nuage-menthol-eucalyptol-vapour-candle
+2025-07-20 00:07:27,202 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/nuage-menthol-eucalyptol-vapour-candle (attempt 1/3)
+2025-07-20 00:07:27,203 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 00:07:27,203 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/nuage-menthol-eucalyptol-vapour-candle
+2025-07-20 00:07:29,776 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/nuage-menthol-eucalyptol-vapour-candle in 2.35s...
+2025-07-20 00:07:32,129 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/nuage-menthol-eucalyptol-vapour-candle (attempt 2/3)
+2025-07-20 00:07:32,130 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 00:07:32,131 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/nuage-menthol-eucalyptol-vapour-candle
+2025-07-20 00:07:35,094 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/nuage-menthol-eucalyptol-vapour-candle
+2025-07-20 00:07:35,095 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/nuage-menthol-eucalyptol-vapour-candle
+2025-07-20 00:07:35,222 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/nuage-menthol-eucalyptol-vapour-candle (Size: 673829 bytes)
+2025-07-20 00:07:35,509 - configurable_supplier_scraper - INFO - 🔄 REAL-TIME: Added product 3 to shared accumulator (total: 3)
+2025-07-20 00:07:35,510 - configurable_supplier_scraper - INFO - ✅ Extracted product 3: Nuage Menthol & Eucalyptol Vapour Candle - £0.71 (EAN: 5053249277004)
+2025-07-20 00:07:35,524 - PassiveExtractionWorkflow - INFO - 🔍 SUPPLIER STATE UPDATE: Index updated to 3/7
+2025-07-20 00:07:35,525 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS: Product 3 processed (total in cache: 3)
+2025-07-20 00:07:35,525 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Processing product 3
+2025-07-20 00:07:35,526 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: Product 3, frequency=2, enabled=True
+2025-07-20 00:07:35,527 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: List length=3, modulo=1
+2025-07-20 00:07:35,539 - configurable_supplier_scraper - INFO - Visiting product page 4/7: https://www.poundwholesale.co.uk/nuage-mini-jar-menthol-eucalyptol-vapour-candle
+2025-07-20 00:07:35,540 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/nuage-mini-jar-menthol-eucalyptol-vapour-candle (attempt 1/3)
+2025-07-20 00:07:35,541 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 00:07:35,542 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/nuage-mini-jar-menthol-eucalyptol-vapour-candle
+2025-07-20 00:07:38,190 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/nuage-mini-jar-menthol-eucalyptol-vapour-candle in 2.00s...
+2025-07-20 00:07:40,210 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/nuage-mini-jar-menthol-eucalyptol-vapour-candle (attempt 2/3)
+2025-07-20 00:07:40,212 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 00:07:40,213 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/nuage-mini-jar-menthol-eucalyptol-vapour-candle
+2025-07-20 00:07:42,054 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/nuage-mini-jar-menthol-eucalyptol-vapour-candle
+2025-07-20 00:07:42,054 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/nuage-mini-jar-menthol-eucalyptol-vapour-candle
+2025-07-20 00:07:42,202 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/nuage-mini-jar-menthol-eucalyptol-vapour-candle (Size: 673852 bytes)
+2025-07-20 00:07:42,561 - configurable_supplier_scraper - INFO - 🔄 REAL-TIME: Added product 4 to shared accumulator (total: 4)
+2025-07-20 00:07:42,562 - configurable_supplier_scraper - INFO - ✅ Extracted product 4: Nuage Mini Jar Menthol & Eucalyptol Vapour Candle - £0.51 (EAN: 5053249277042)
+2025-07-20 00:07:42,577 - PassiveExtractionWorkflow - INFO - 🔍 SUPPLIER STATE UPDATE: Index updated to 4/7
+2025-07-20 00:07:42,578 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS: Product 4 processed (total in cache: 4)
+2025-07-20 00:07:42,578 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Processing product 4
+2025-07-20 00:07:42,579 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: Product 4, frequency=2, enabled=True
+2025-07-20 00:07:42,579 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: List length=4, modulo=0
+2025-07-20 00:07:42,582 - PassiveExtractionWorkflow - INFO - 💾 CACHE SAVE: Starting save of 4 products to cache...
+2025-07-20 00:07:42,608 - PassiveExtractionWorkflow - INFO - ✅ CACHE SAVE: Successfully saved 4 products (2 new) to poundwholesale-co-uk_products_cache.json
+2025-07-20 00:07:42,609 - PassiveExtractionWorkflow - INFO - 🔄 DEDUPLICATION: Skipped 0 EAN duplicates and 2 URL duplicates
+2025-07-20 00:07:42,609 - PassiveExtractionWorkflow - INFO - 💾 PERIODIC CACHE SAVE: Saved 4 products to cache (every 2 products)
+2025-07-20 00:07:42,618 - configurable_supplier_scraper - INFO - Visiting product page 5/7: https://www.poundwholesale.co.uk/charm-aroma-rose-room-fragrance-air-freshener-240ml
+2025-07-20 00:07:42,618 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/charm-aroma-rose-room-fragrance-air-freshener-240ml (attempt 1/3)
+2025-07-20 00:07:42,619 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 00:07:42,619 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/charm-aroma-rose-room-fragrance-air-freshener-240ml
+2025-07-20 00:07:45,477 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/charm-aroma-rose-room-fragrance-air-freshener-240ml in 2.25s...

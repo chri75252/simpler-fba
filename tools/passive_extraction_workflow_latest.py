@@ -1096,16 +1096,51 @@ class PassiveExtractionWorkflow:
                 if not category_urls_to_scrape:
                     self.log.error("CUSTOM MODE FAILED: No URLs found in predefined list. Aborting.")
                     return []
-                # Get category limit from system config (configurable, not hardcoded)
-                system_config = self.config_loader.get_system_config()
-                max_categories_to_process = system_config.get('max_categories_to_process', 0)
+                # 🚨 DYNAMIC CATEGORY CALCULATION: Calculate categories needed based on max_products / max_products_per_category
+                import math
                 
-                if max_categories_to_process > 0:
-                    self.log.info(f"📋 Limiting to {max_categories_to_process} categories as per system configuration")
-                    category_urls_to_scrape = category_urls_to_scrape[:max_categories_to_process]
-                    self.log.info(f"📋 Processing {len(category_urls_to_scrape)} predefined categories (limited)")
+                system_config = self.config_loader.get_system_config()
+                max_products = system_config.get('max_products')
+                max_products_per_category = system_config.get('max_products_per_category')
+                
+                def is_infinite_mode(max_products, max_products_per_category):
+                    """Detect infinite mode based on multiple indicators"""
+                    mp = max_products or 0
+                    mppc = max_products_per_category or 0
+                    
+                    return any([
+                        mp <= 0,                    # Zero or negative
+                        mppc <= 0,                  # Zero or negative  
+                        mp >= 99999,                # High value threshold
+                        mppc >= 99999,              # High value threshold
+                    ])
+                
+                # Apply infinite mode detection
+                total_available_categories = len(category_urls_to_scrape)
+                
+                if is_infinite_mode(max_products, max_products_per_category):
+                    # INFINITE MODE: Process all available categories
+                    self.log.info(f"🌟 INFINITE MODE DETECTED: max_products={max_products}, max_products_per_category={max_products_per_category}")
+                    self.log.info(f"📋 Processing ALL {total_available_categories} predefined categories (infinite mode)")
+                    # No slicing - use all categories
                 else:
-                    self.log.info(f"📋 Processing all {len(category_urls_to_scrape)} predefined categories (unlimited mode)")
+                    # FINITE MODE: Safe calculation with error handling
+                    try:
+                        if max_products > 0 and max_products_per_category > 0:
+                            categories_needed = math.ceil(max_products / max_products_per_category)
+                            categories_needed = min(categories_needed, total_available_categories)
+                            
+                            self.log.info(f"📊 FINITE MODE: {max_products} max_products ÷ {max_products_per_category} max_products_per_category = {categories_needed} categories needed")
+                            category_urls_to_scrape = category_urls_to_scrape[:categories_needed]
+                            self.log.info(f"📋 Processing {len(category_urls_to_scrape)} predefined categories (finite mode)")
+                        else:
+                            # Fallback to infinite mode
+                            self.log.warning(f"⚠️ Invalid finite mode values, falling back to infinite mode")
+                            self.log.info(f"📋 Processing ALL {total_available_categories} predefined categories (fallback infinite mode)")
+                    except Exception as e:
+                        # Any error defaults to infinite mode
+                        self.log.error(f"❌ Calculation error: {e}, falling back to infinite mode")
+                        self.log.info(f"📋 Processing ALL {total_available_categories} predefined categories (error fallback)")
             else:
                 # Original AI-based category selection
                 self.log.info("STANDARD MODE: Using AI-based hierarchical category selection.")
@@ -1357,7 +1392,7 @@ class PassiveExtractionWorkflow:
 
                     # Save state periodically using configurable batch sizes
                     overall_product_index = start_idx + i + 1
-                    linking_map_batch = self.system_config.get("system", {}).get("linking_map_batch_size", 3)
+                    linking_map_batch = self.system_config.get("linking_map_batch_size", 1)
                     
                     if overall_product_index % linking_map_batch == 0:
                         self.state_manager.save_state()
@@ -2366,7 +2401,7 @@ Return ONLY valid JSON, no additional text."""
         return "unknown"
 
     def _save_products_to_cache(self, products: list, cache_file_path: str):
-        """Save products to cache file with progress feedback"""
+        """Save products to cache file with progress feedback and bulletproof file creation"""
         try:
             # Get cache control configuration
             cache_config = self.system_config.get("supplier_cache_control", {})
@@ -2375,17 +2410,43 @@ Return ONLY valid JSON, no additional text."""
             if cache_config.get("enabled", True):
                 self.log.info(f"💾 CACHE SAVE: Starting save of {len(products)} products to cache...")
             
+            # 🚨 PROACTIVE WSL FILENAME SANITIZATION: Check for problematic characters
+            original_cache_path = cache_file_path
+            sanitized_cache_path = cache_file_path
+            
+            # WSL/Windows filesystem workaround - replace problematic patterns
+            cache_file_str = str(cache_file_path)  # Convert PosixPath to string
+            if '-co-uk_' in cache_file_str:
+                sanitized_cache_path = cache_file_str.replace('-co-uk_', '_co_uk_')
+                self.log.info(f"🔧 PROACTIVE SANITIZATION: Using sanitized filename: {os.path.basename(sanitized_cache_path)}")
+            else:
+                sanitized_cache_path = cache_file_str
+            
+            # Try to use existing file first (handles cases where hyphenated files already exist)
+            actual_cache_path = cache_file_str if os.path.exists(cache_file_str) else sanitized_cache_path
+            
             # Ensure directory exists
-            os.makedirs(os.path.dirname(cache_file_path), exist_ok=True)
+            os.makedirs(os.path.dirname(actual_cache_path), exist_ok=True)
 
-            # Load existing cache if it exists
+            # Load existing cache if it exists (check both original and sanitized paths)
             existing_products = []
-            if os.path.exists(cache_file_path):
-                try:
-                    with open(cache_file_path, 'r', encoding='utf-8') as f:
-                        existing_products = json.load(f)
-                except Exception as e:
-                    self.log.warning(f"Could not load existing cache: {e}")
+            cache_loaded_from = None
+            
+            # Try loading from original path first, then sanitized path
+            for try_path, path_type in [(original_cache_path, "original"), (sanitized_cache_path, "sanitized")]:
+                if os.path.exists(try_path):
+                    try:
+                        with open(try_path, 'r', encoding='utf-8') as f:
+                            existing_products = json.load(f)
+                        cache_loaded_from = try_path
+                        actual_cache_path = try_path  # Use the path that actually exists
+                        self.log.info(f"📂 CACHE LOADED: Found existing cache at {path_type} path: {os.path.basename(try_path)}")
+                        break
+                    except Exception as e:
+                        self.log.warning(f"Could not load existing cache from {path_type} path: {e}")
+            
+            if not cache_loaded_from:
+                self.log.info(f"📝 NEW CACHE: No existing cache found, creating new cache at: {os.path.basename(actual_cache_path)}")
 
             # FIX 3: Supplier cache deduplication - Enhanced EAN-based deduplication
             existing_urls = {p.get('url', '') for p in existing_products}
@@ -2421,20 +2482,61 @@ Return ONLY valid JSON, no additional text."""
 
             all_products = existing_products + new_products
 
-            # Save to cache
-            with open(cache_file_path, 'w', encoding='utf-8') as f:
-                json.dump(all_products, f, indent=2, ensure_ascii=False)
+            # 🚨 BULLETPROOF CACHE SAVE: Multi-tier fallback strategy
+            save_successful = False
+            final_cache_path = None
+            
+            # Tier 1: Try actual_cache_path (sanitized or original)
+            try:
+                with open(actual_cache_path, 'w', encoding='utf-8') as f:
+                    json.dump(all_products, f, indent=2, ensure_ascii=False)
+                save_successful = True
+                final_cache_path = actual_cache_path
+                self.log.info(f"✅ TIER 1 SUCCESS: Cache saved to {os.path.basename(actual_cache_path)}")
+            except Exception as tier1_error:
+                self.log.warning(f"🔄 TIER 1 FAILED: {tier1_error}")
+                
+                # Tier 2: Force sanitized path
+                try:
+                    with open(sanitized_cache_path, 'w', encoding='utf-8') as f:
+                        json.dump(all_products, f, indent=2, ensure_ascii=False)
+                    save_successful = True
+                    final_cache_path = sanitized_cache_path
+                    self.log.info(f"✅ TIER 2 SUCCESS: Cache saved to sanitized path: {os.path.basename(sanitized_cache_path)}")
+                except Exception as tier2_error:
+                    self.log.warning(f"🔄 TIER 2 FAILED: {tier2_error}")
+                    
+                    # Tier 3: Ultra-safe fallback with timestamp
+                    try:
+                        import time
+                        timestamp = int(time.time())
+                        ultra_safe_path = os.path.join(
+                            os.path.dirname(sanitized_cache_path),
+                            f"cache_fallback_{timestamp}.json"
+                        )
+                        with open(ultra_safe_path, 'w', encoding='utf-8') as f:
+                            json.dump(all_products, f, indent=2, ensure_ascii=False)
+                        save_successful = True
+                        final_cache_path = ultra_safe_path
+                        self.log.info(f"✅ TIER 3 SUCCESS: Cache saved to ultra-safe fallback: {os.path.basename(ultra_safe_path)}")
+                    except Exception as tier3_error:
+                        self.log.error(f"❌ ALL TIERS FAILED: {tier3_error}")
+                        raise tier3_error
 
             # Enhanced progress feedback with deduplication statistics
-            if cache_config.get("enabled", True):
-                self.log.info(f"✅ CACHE SAVE: Successfully saved {len(all_products)} products ({len(new_products)} new) to {os.path.basename(cache_file_path)}")
+            if save_successful and cache_config.get("enabled", True):
+                self.log.info(f"✅ CACHE SAVE: Successfully saved {len(all_products)} products ({len(new_products)} new) to {os.path.basename(final_cache_path)}")
                 if ean_duplicates_skipped > 0 or url_duplicates_skipped > 0:
                     self.log.info(f"🔄 DEDUPLICATION: Skipped {ean_duplicates_skipped} EAN duplicates and {url_duplicates_skipped} URL duplicates")
-            else:
+            elif save_successful:
                 self.log.info(f"Saved {len(all_products)} products to cache ({len(new_products)} new)")
 
         except Exception as e:
-            self.log.error(f"Error saving products to cache: {e}")
+            self.log.error(f"❌ CRITICAL CACHE FAILURE: All save attempts failed: {e}")
+            self.log.error(f"❌ Attempted paths: {original_cache_path}, {sanitized_cache_path}")
+            self.log.error(f"❌ Directory exists: {os.path.exists(os.path.dirname(sanitized_cache_path))}")
+            self.log.error(f"❌ Products lost: {len(products)} products could not be cached")
+            # Don't raise the exception to allow processing to continue, but log the critical failure
 
     def _check_category_exhaustion_status(self, discovered_categories: list, processed_categories: list) -> dict:
         """Check how many categories of each type remain to be processed"""
@@ -2698,38 +2800,51 @@ Return ONLY valid JSON, no additional text."""
                         extraction_progress = self.state_manager.state_data.get('supplier_extraction_progress', {})
                         products_extracted = extraction_progress.get('products_extracted_total', len(cached_products))
                         
-                        # Check if supplier extraction is complete
-                        if products_extracted >= max_products_per_category:
-                            self.log.info(f"✅ SUPPLIER EXTRACTION COMPLETE: {products_extracted}/{max_products_per_category} products extracted")
-                            
-                            # 🚨 CHUNKED MODE FIX: Filter cached products by specific chunk categories
-                            if len(category_urls) < len([url for url in cached_products if 'source_category_url' in url]):
-                                # We're in chunked mode - filter products by chunk categories
-                                chunk_category_urls = set(category_urls)
-                                filtered_products = [
-                                    product for product in cached_products 
-                                    if product.get('source_category_url', '') in chunk_category_urls
-                                ]
-                                self.log.info(f"🔄 CHUNKED MODE: Filtered {len(filtered_products)} products from {len(cached_products)} cached products for chunk categories")
-                                self.log.info(f"🔄 CHUNK CATEGORIES: {list(chunk_category_urls)}")
-                                return filtered_products
+                        # 🚨 HYBRID MODE FIX: Check if current chunk categories are already in cache
+                        chunk_category_urls = set(category_urls)
+                        products_for_chunk_categories = [
+                            product for product in cached_products 
+                            if product.get('source_url', '') in chunk_category_urls
+                        ]
+                        
+                        # 🚨 RESUMPTION FIX: Check if we're resuming mid-extraction before returning cached products
+                        if len(products_for_chunk_categories) > 0:
+                            # If we're resuming from a previous interruption, don't return cached products immediately
+                            # We need to continue extraction to get the remaining products from current category
+                            if hasattr(self, 'last_processed_index') and self.last_processed_index > 0:
+                                self.log.info(f"🔄 RESUMPTION DETECTED: Found {len(products_for_chunk_categories)} cached products but resuming from index {self.last_processed_index}")
+                                self.log.info(f"🔄 EXTRACTION NEEDED: Continuing supplier extraction to complete interrupted category")
+                                # Fall through to continue with supplier extraction for remaining products
                             else:
-                                # Sequential mode - return all cached products
-                                self.log.info(f"✅ RESUMPTION: Returning {len(cached_products)} cached products for Amazon processing")
-                                return cached_products
-                        else:
-                            self.log.info(f"🔄 SUPPLIER EXTRACTION INCOMPLETE: {products_extracted}/{max_products_per_category} products extracted")
-                            self.log.info(f"🔄 RESUMPTION: Continuing supplier scraping from product {products_extracted + 1}")
-                            # Set the starting counter to resume from where we left off
-                            if not hasattr(self, '_supplier_product_counter'):
-                                self._supplier_product_counter = products_extracted
-                                self.log.info(f"📊 RESUMPTION: Setting product counter to {self._supplier_product_counter}")
-                    elif not cache_is_fresh:
+                                self.log.info(f"✅ CHUNK CACHE HIT: Found {len(products_for_chunk_categories)} cached products for current chunk categories")
+                                self.log.info(f"🔄 CHUNK CATEGORIES: {list(chunk_category_urls)}")
+                                return products_for_chunk_categories
+                        
+                        # If no products for current chunk categories, we need to extract from these new categories
+                        self.log.info(f"🔄 CHUNK CACHE MISS: No cached products found for chunk categories: {list(chunk_category_urls)}")
+                        self.log.info(f"🔄 EXTRACTION NEEDED: Continuing with supplier extraction for new categories")
+                        # Fall through to continue with supplier extraction for these new categories
+                        
+                    elif last_index > 0 and not cache_is_fresh:
                         self.log.info(f"🔄 CACHE STALE: Cache age {cache_age_hours:.1f}h > 24h threshold, proceeding with fresh scraping")
                         # Reset processing index since we're re-scraping (product list may have changed)
                         if hasattr(self, 'last_processed_index'):
                             self.last_processed_index = 0
                             self.log.info(f"⚠️ Reset processing index to 0 due to stale cache")
+                    elif last_index > 0:
+                        # This handles the case where cache exists but extraction was incomplete
+                        import json
+                        with open(cached_products_path, 'r', encoding='utf-8') as f:
+                            cached_products = json.load(f)
+                        extraction_progress = self.state_manager.state_data.get('supplier_extraction_progress', {})
+                        products_extracted = extraction_progress.get('products_extracted_total', len(cached_products))
+                        
+                        self.log.info(f"🔄 SUPPLIER EXTRACTION INCOMPLETE: {products_extracted}/{max_products_per_category} products extracted")
+                        self.log.info(f"🔄 RESUMPTION: Continuing supplier scraping from product {products_extracted + 1}")
+                        # Set the starting counter to resume from where we left off
+                        if not hasattr(self, '_supplier_product_counter'):
+                            self._supplier_product_counter = products_extracted
+                            self.log.info(f"📊 RESUMPTION: Setting product counter to {self._supplier_product_counter}")
                     else:
                         self.log.info(f"🔄 NO PROCESSING PROGRESS: index={last_index}, proceeding with scraping")
                         
@@ -2743,6 +2858,19 @@ Return ONLY valid JSON, no additional text."""
         
         # Process categories in batches for better memory management
         all_products = []
+        
+        # 🚨 FIX: Load existing cached products during resumption to ensure correct progress counting
+        cached_products_path = os.path.join(self.supplier_cache_dir, f"{supplier_name.replace('.', '-')}_products_cache.json")
+        if os.path.exists(cached_products_path):
+            try:
+                with open(cached_products_path, 'r', encoding='utf-8') as f:
+                    existing_cached_products = json.load(f)
+                all_products = existing_cached_products.copy()  # Start with existing products
+                self.log.info(f"✅ RESUMPTION: Loaded {len(existing_cached_products)} existing products from cache")
+            except Exception as e:
+                self.log.warning(f"⚠️ Could not load existing cache during resumption: {e}")
+                all_products = []  # Fallback to empty list
+        
         # Store as instance variable for progress callback access
         self._current_all_products = all_products
         category_batches = [category_urls[i:i + supplier_extraction_batch_size] for i in range(0, len(category_urls), supplier_extraction_batch_size)]
@@ -2826,14 +2954,20 @@ Return ONLY valid JSON, no additional text."""
             
         def progress_callback(operation_type: str, product_index: int, total_products: int, product_url: str, product_data: dict = None):
             if operation_type == 'supplier_extraction':
-                # Increment global product counter
-                self._supplier_product_counter += 1
+                # 🚨 FIX: Update counter based on actual cache length, not callback attempts
+                if hasattr(self, '_current_all_products') and product_data:
+                    # Only increment counter when product is actually added to cache
+                    self._supplier_product_counter = len(self._current_all_products)
+                else:
+                    # Fallback increment if cache not available
+                    self._supplier_product_counter += 1
                 
                 if hasattr(self, 'state_manager') and self.state_manager:
                     try:
-                        # Update the main processing index during supplier extraction
-                        self.state_manager.update_processing_index(self._supplier_product_counter, total_products)
-                        self.log.info(f"🔍 SUPPLIER STATE UPDATE: Index updated to {self._supplier_product_counter}/{total_products}")
+                        # Update the main processing index during supplier extraction based on actual cache length
+                        actual_cache_count = len(getattr(self, '_current_all_products', []))
+                        self.state_manager.update_processing_index(actual_cache_count, total_products)
+                        self.log.info(f"🔍 SUPPLIER STATE UPDATE: Index updated to {actual_cache_count}/{total_products}")
                     except Exception as e:
                         self.log.error(f"❌ SUPPLIER STATE UPDATE FAILED: {e}")
                 
@@ -2873,7 +3007,9 @@ Return ONLY valid JSON, no additional text."""
                 # Update state for interruption recovery
                 if hasattr(self, 'state_manager'):
                     progress = self.state_manager.state_data["supplier_extraction_progress"]
-                    progress["products_extracted_total"] = self._supplier_product_counter
+                    # 🚨 FIX: Use actual cache length instead of counter
+                    actual_cache_count = len(getattr(self, '_current_all_products', []))
+                    progress["products_extracted_total"] = actual_cache_count
                     progress["current_product_url"] = product_url
                     progress["extraction_phase"] = "products"
                     self.state_manager.save_state()
@@ -3019,12 +3155,24 @@ Return ONLY valid JSON, no additional text."""
                 #                 self.log.debug(f"Error reading cache file {cache_file}: {e}")
             
             if cached_data:
-                amazon_product_data = cached_data
-                actual_search_method = "EAN_cached"
-                self.log.info(f"📋 Using cached Amazon data for EAN {supplier_ean}")
+                # 🚨 FIX: Validate cached data completeness before using it
+                required_fields = ['current_price', 'price', 'original_price']
+                has_price_data = any(field in cached_data and cached_data[field] is not None for field in required_fields)
+                
+                if has_price_data:
+                    # Cached data is complete - use it
+                    amazon_product_data = cached_data
+                    actual_search_method = "EAN_cached"
+                    self.log.info(f"✅ Using complete cached Amazon data for EAN {supplier_ean}")
+                else:
+                    # Cached data is incomplete - trigger fresh scraping
+                    self.log.warning(f"⚠️ Cached data for EAN {supplier_ean} missing price fields. Triggering fresh scraping.")
+                    amazon_product_data = await self.extractor.search_by_ean_and_extract_data(supplier_ean, product_data["title"])
+                    actual_search_method = "EAN"  # Will be EAN since we're doing fresh search
             else:
                 # No cache found - perform EAN search
                 amazon_product_data = await self.extractor.search_by_ean_and_extract_data(supplier_ean, product_data["title"])
+                actual_search_method = "EAN"  # Will be EAN since we're doing fresh search
             
             if amazon_product_data and "error" not in amazon_product_data:
                 # EAN search succeeded (or we used cached data)
@@ -3227,8 +3375,8 @@ Return ONLY valid JSON, no additional text."""
         original_values = {
             "max_products_per_cycle": max_products_per_cycle,
             "supplier_extraction_batch_size": supplier_extraction_batch_size,
-            "linking_map_batch_size": self.system_config.get("system", {}).get("linking_map_batch_size", 3),
-            "financial_report_batch_size": self.system_config.get("system", {}).get("financial_report_batch_size", 3)
+            "linking_map_batch_size": self.system_config.get("linking_map_batch_size", 1),
+            "financial_report_batch_size": self.system_config.get("financial_report_batch_size", 2)
         }
         
         # Check for mismatched sizes and warn if configured
@@ -3245,10 +3393,10 @@ Return ONLY valid JSON, no additional text."""
             
             # Also update system config values in memory for consistency
             if "system" in self.system_config:
-                self.system_config["system"]["max_products_per_cycle"] = target_batch_size
-                self.system_config["system"]["supplier_extraction_batch_size"] = target_batch_size
-                self.system_config["system"]["linking_map_batch_size"] = target_batch_size
-                self.system_config["system"]["financial_report_batch_size"] = target_batch_size
+                self.system_config["max_products_per_cycle"] = target_batch_size
+                self.system_config["supplier_extraction_batch_size"] = target_batch_size
+                self.system_config["linking_map_batch_size"] = target_batch_size
+                self.system_config["financial_report_batch_size"] = target_batch_size
             
             self.log.info(f"✅ BATCH SYNC: All batch sizes synchronized to {target_batch_size}")
             self.log.info(f"   Updated values: max_products_per_cycle={new_max_products_per_cycle}, supplier_extraction_batch_size={new_supplier_extraction_batch_size}")
@@ -3276,14 +3424,18 @@ Return ONLY valid JSON, no additional text."""
         full_config = self.config_loader._config
         hybrid_config = full_config.get("hybrid_processing", {})
         processing_modes = hybrid_config.get("processing_modes", {})
-        switch_after_categories = hybrid_config.get("switch_to_amazon_after_categories", 10)
+        switch_after_categories = hybrid_config.get("switch_to_amazon_after_categories")
         
         self.log.info(f"🔄 HYBRID PROCESSING: Mode configuration loaded")
         self.log.info(f"   switch_to_amazon_after_categories: {switch_after_categories}")
         
         if processing_modes.get("chunked", {}).get("enabled", False):
             # Chunked mode: Alternate between supplier extraction and Amazon analysis
-            chunk_size = processing_modes.get("chunked", {}).get("chunk_size_categories", 10)
+            chunk_size = processing_modes.get("chunked", {}).get("chunk_size_categories")
+            if not chunk_size:
+                self.log.error("❌ CONFIGURATION ERROR: chunk_size_categories not found in hybrid_processing.processing_modes.chunked")
+                return profitable_results
+            
             self.log.info(f"🔄 HYBRID MODE: Chunked processing (chunk size: {chunk_size} categories)")
             
 
@@ -3308,13 +3460,17 @@ Return ONLY valid JSON, no additional text."""
                     )
                     profitable_results.extend(chunk_results)
                     
-                    # 🚨 FINANCIAL REPORT FIX: Generate financial report based on financial_report_batch_size
-                    current_chunk = chunk_start//chunk_size + 1
-                    financial_batch_size = full_config.get("financial_report_batch_size", 3)
+                    # 🚨 FINANCIAL REPORT FIX: Generate financial report based on linking map entries per financial_report_batch_size
+                    financial_batch_size = self.system_config.get("financial_report_batch_size", 2)
+                    if not financial_batch_size:
+                        self.log.error("❌ CONFIGURATION ERROR: financial_report_batch_size not found in system config")
+                        continue
                     
-                    if current_chunk % financial_batch_size == 0:
+                    current_linking_map_count = len(self.linking_map)
+                    
+                    if current_linking_map_count > 0 and current_linking_map_count % financial_batch_size == 0:
                         try:
-                            self.log.info(f"🧮 Generating financial report (chunk {current_chunk}, batch size: {financial_batch_size})")
+                            self.log.info(f"🧮 Generating financial report ({current_linking_map_count} linking map entries, batch size: {financial_batch_size})")
                             from tools.FBA_Financial_calculator import run_calculations
                             financial_results = run_calculations(supplier_name)
                             if financial_results and financial_results.get('statistics', {}).get('output_file'):
@@ -3325,8 +3481,9 @@ Return ONLY valid JSON, no additional text."""
                             self.log.error(f"❌ Could not import FBA_Financial_calculator: {ie}")
                         except Exception as e:
                             self.log.error(f"❌ Error generating financial report: {e}")
-                    else:
-                        self.log.info(f"📊 Financial report scheduled for chunk {(current_chunk // financial_batch_size + 1) * financial_batch_size} (batch size: {financial_batch_size})")
+                    elif current_linking_map_count > 0:
+                        next_report_count = ((current_linking_map_count // financial_batch_size) + 1) * financial_batch_size
+                        self.log.info(f"📊 Financial report scheduled for {next_report_count} linking map entries (current: {current_linking_map_count}, batch size: {financial_batch_size})")
                     
                     # Check memory management
                     memory_config = hybrid_config.get("memory_management", {})
@@ -3593,8 +3750,8 @@ Return ONLY valid JSON, no additional text."""
         original_values = {
             "max_products_per_cycle": max_products_per_cycle,
             "supplier_extraction_batch_size": supplier_extraction_batch_size,
-            "linking_map_batch_size": self.system_config.get("system", {}).get("linking_map_batch_size", 3),
-            "financial_report_batch_size": self.system_config.get("system", {}).get("financial_report_batch_size", 3)
+            "linking_map_batch_size": self.system_config.get("linking_map_batch_size", 1),
+            "financial_report_batch_size": self.system_config.get("financial_report_batch_size", 2)
         }
         
         # Check for mismatched sizes and warn if configured
@@ -3611,10 +3768,10 @@ Return ONLY valid JSON, no additional text."""
             
             # Also update system config values in memory for consistency
             if "system" in self.system_config:
-                self.system_config["system"]["max_products_per_cycle"] = target_batch_size
-                self.system_config["system"]["supplier_extraction_batch_size"] = target_batch_size
-                self.system_config["system"]["linking_map_batch_size"] = target_batch_size
-                self.system_config["system"]["financial_report_batch_size"] = target_batch_size
+                self.system_config["max_products_per_cycle"] = target_batch_size
+                self.system_config["supplier_extraction_batch_size"] = target_batch_size
+                self.system_config["linking_map_batch_size"] = target_batch_size
+                self.system_config["financial_report_batch_size"] = target_batch_size
             
             self.log.info(f"✅ BATCH SYNC: All batch sizes synchronized to {target_batch_size}")
             self.log.info(f"   Updated values: max_products_per_cycle={new_max_products_per_cycle}, supplier_extraction_batch_size={new_supplier_extraction_batch_size}")
@@ -3825,8 +3982,8 @@ Return ONLY valid JSON, no additional text."""
         original_values = {
             "max_products_per_cycle": max_products_per_cycle,
             "supplier_extraction_batch_size": supplier_extraction_batch_size,
-            "linking_map_batch_size": self.system_config.get("system", {}).get("linking_map_batch_size", 3),
-            "financial_report_batch_size": self.system_config.get("system", {}).get("financial_report_batch_size", 3)
+            "linking_map_batch_size": self.system_config.get("linking_map_batch_size", 1),
+            "financial_report_batch_size": self.system_config.get("financial_report_batch_size", 2)
         }
         
         # Check for mismatched sizes and warn if configured
@@ -3843,10 +4000,10 @@ Return ONLY valid JSON, no additional text."""
             
             # Also update system config values in memory for consistency
             if "system" in self.system_config:
-                self.system_config["system"]["max_products_per_cycle"] = target_batch_size
-                self.system_config["system"]["supplier_extraction_batch_size"] = target_batch_size
-                self.system_config["system"]["linking_map_batch_size"] = target_batch_size
-                self.system_config["system"]["financial_report_batch_size"] = target_batch_size
+                self.system_config["max_products_per_cycle"] = target_batch_size
+                self.system_config["supplier_extraction_batch_size"] = target_batch_size
+                self.system_config["linking_map_batch_size"] = target_batch_size
+                self.system_config["financial_report_batch_size"] = target_batch_size
             
             self.log.info(f"✅ BATCH SYNC: All batch sizes synchronized to {target_batch_size}")
             self.log.info(f"   Updated values: max_products_per_cycle={new_max_products_per_cycle}, supplier_extraction_batch_size={new_supplier_extraction_batch_size}")
@@ -4057,8 +4214,8 @@ Return ONLY valid JSON, no additional text."""
         original_values = {
             "max_products_per_cycle": max_products_per_cycle,
             "supplier_extraction_batch_size": supplier_extraction_batch_size,
-            "linking_map_batch_size": self.system_config.get("system", {}).get("linking_map_batch_size", 3),
-            "financial_report_batch_size": self.system_config.get("system", {}).get("financial_report_batch_size", 3)
+            "linking_map_batch_size": self.system_config.get("linking_map_batch_size", 1),
+            "financial_report_batch_size": self.system_config.get("financial_report_batch_size", 2)
         }
         
         # Check for mismatched sizes and warn if configured
@@ -4075,10 +4232,10 @@ Return ONLY valid JSON, no additional text."""
             
             # Also update system config values in memory for consistency
             if "system" in self.system_config:
-                self.system_config["system"]["max_products_per_cycle"] = target_batch_size
-                self.system_config["system"]["supplier_extraction_batch_size"] = target_batch_size
-                self.system_config["system"]["linking_map_batch_size"] = target_batch_size
-                self.system_config["system"]["financial_report_batch_size"] = target_batch_size
+                self.system_config["max_products_per_cycle"] = target_batch_size
+                self.system_config["supplier_extraction_batch_size"] = target_batch_size
+                self.system_config["linking_map_batch_size"] = target_batch_size
+                self.system_config["financial_report_batch_size"] = target_batch_size
             
             self.log.info(f"✅ BATCH SYNC: All batch sizes synchronized to {target_batch_size}")
             self.log.info(f"   Updated values: max_products_per_cycle={new_max_products_per_cycle}, supplier_extraction_batch_size={new_supplier_extraction_batch_size}")
@@ -4289,8 +4446,8 @@ Return ONLY valid JSON, no additional text."""
         original_values = {
             "max_products_per_cycle": max_products_per_cycle,
             "supplier_extraction_batch_size": supplier_extraction_batch_size,
-            "linking_map_batch_size": self.system_config.get("system", {}).get("linking_map_batch_size", 3),
-            "financial_report_batch_size": self.system_config.get("system", {}).get("financial_report_batch_size", 3)
+            "linking_map_batch_size": self.system_config.get("linking_map_batch_size", 1),
+            "financial_report_batch_size": self.system_config.get("financial_report_batch_size", 2)
         }
         
         # Check for mismatched sizes and warn if configured
@@ -4307,10 +4464,10 @@ Return ONLY valid JSON, no additional text."""
             
             # Also update system config values in memory for consistency
             if "system" in self.system_config:
-                self.system_config["system"]["max_products_per_cycle"] = target_batch_size
-                self.system_config["system"]["supplier_extraction_batch_size"] = target_batch_size
-                self.system_config["system"]["linking_map_batch_size"] = target_batch_size
-                self.system_config["system"]["financial_report_batch_size"] = target_batch_size
+                self.system_config["max_products_per_cycle"] = target_batch_size
+                self.system_config["supplier_extraction_batch_size"] = target_batch_size
+                self.system_config["linking_map_batch_size"] = target_batch_size
+                self.system_config["financial_report_batch_size"] = target_batch_size
             
             self.log.info(f"✅ BATCH SYNC: All batch sizes synchronized to {target_batch_size}")
             self.log.info(f"   Updated values: max_products_per_cycle={new_max_products_per_cycle}, supplier_extraction_batch_size={new_supplier_extraction_batch_size}")
@@ -4521,8 +4678,8 @@ Return ONLY valid JSON, no additional text."""
         original_values = {
             "max_products_per_cycle": max_products_per_cycle,
             "supplier_extraction_batch_size": supplier_extraction_batch_size,
-            "linking_map_batch_size": self.system_config.get("system", {}).get("linking_map_batch_size", 3),
-            "financial_report_batch_size": self.system_config.get("system", {}).get("financial_report_batch_size", 3)
+            "linking_map_batch_size": self.system_config.get("linking_map_batch_size", 1),
+            "financial_report_batch_size": self.system_config.get("financial_report_batch_size", 2)
         }
         
         # Check for mismatched sizes and warn if configured
@@ -4539,10 +4696,10 @@ Return ONLY valid JSON, no additional text."""
             
             # Also update system config values in memory for consistency
             if "system" in self.system_config:
-                self.system_config["system"]["max_products_per_cycle"] = target_batch_size
-                self.system_config["system"]["supplier_extraction_batch_size"] = target_batch_size
-                self.system_config["system"]["linking_map_batch_size"] = target_batch_size
-                self.system_config["system"]["financial_report_batch_size"] = target_batch_size
+                self.system_config["max_products_per_cycle"] = target_batch_size
+                self.system_config["supplier_extraction_batch_size"] = target_batch_size
+                self.system_config["linking_map_batch_size"] = target_batch_size
+                self.system_config["financial_report_batch_size"] = target_batch_size
             
             self.log.info(f"✅ BATCH SYNC: All batch sizes synchronized to {target_batch_size}")
             self.log.info(f"   Updated values: max_products_per_cycle={new_max_products_per_cycle}, supplier_extraction_batch_size={new_supplier_extraction_batch_size}")
@@ -4753,8 +4910,8 @@ Return ONLY valid JSON, no additional text."""
         original_values = {
             "max_products_per_cycle": max_products_per_cycle,
             "supplier_extraction_batch_size": supplier_extraction_batch_size,
-            "linking_map_batch_size": self.system_config.get("system", {}).get("linking_map_batch_size", 3),
-            "financial_report_batch_size": self.system_config.get("system", {}).get("financial_report_batch_size", 3)
+            "linking_map_batch_size": self.system_config.get("linking_map_batch_size", 1),
+            "financial_report_batch_size": self.system_config.get("financial_report_batch_size", 2)
         }
         
         # Check for mismatched sizes and warn if configured
@@ -4771,10 +4928,10 @@ Return ONLY valid JSON, no additional text."""
             
             # Also update system config values in memory for consistency
             if "system" in self.system_config:
-                self.system_config["system"]["max_products_per_cycle"] = target_batch_size
-                self.system_config["system"]["supplier_extraction_batch_size"] = target_batch_size
-                self.system_config["system"]["linking_map_batch_size"] = target_batch_size
-                self.system_config["system"]["financial_report_batch_size"] = target_batch_size
+                self.system_config["max_products_per_cycle"] = target_batch_size
+                self.system_config["supplier_extraction_batch_size"] = target_batch_size
+                self.system_config["linking_map_batch_size"] = target_batch_size
+                self.system_config["financial_report_batch_size"] = target_batch_size
             
             self.log.info(f"✅ BATCH SYNC: All batch sizes synchronized to {target_batch_size}")
             self.log.info(f"   Updated values: max_products_per_cycle={new_max_products_per_cycle}, supplier_extraction_batch_size={new_supplier_extraction_batch_size}")
@@ -4985,8 +5142,8 @@ Return ONLY valid JSON, no additional text."""
         original_values = {
             "max_products_per_cycle": max_products_per_cycle,
             "supplier_extraction_batch_size": supplier_extraction_batch_size,
-            "linking_map_batch_size": self.system_config.get("system", {}).get("linking_map_batch_size", 3),
-            "financial_report_batch_size": self.system_config.get("system", {}).get("financial_report_batch_size", 3)
+            "linking_map_batch_size": self.system_config.get("linking_map_batch_size", 1),
+            "financial_report_batch_size": self.system_config.get("financial_report_batch_size", 2)
         }
         
         # Check for mismatched sizes and warn if configured
@@ -5003,10 +5160,10 @@ Return ONLY valid JSON, no additional text."""
             
             # Also update system config values in memory for consistency
             if "system" in self.system_config:
-                self.system_config["system"]["max_products_per_cycle"] = target_batch_size
-                self.system_config["system"]["supplier_extraction_batch_size"] = target_batch_size
-                self.system_config["system"]["linking_map_batch_size"] = target_batch_size
-                self.system_config["system"]["financial_report_batch_size"] = target_batch_size
+                self.system_config["max_products_per_cycle"] = target_batch_size
+                self.system_config["supplier_extraction_batch_size"] = target_batch_size
+                self.system_config["linking_map_batch_size"] = target_batch_size
+                self.system_config["financial_report_batch_size"] = target_batch_size
             
             self.log.info(f"✅ BATCH SYNC: All batch sizes synchronized to {target_batch_size}")
             self.log.info(f"   Updated values: max_products_per_cycle={new_max_products_per_cycle}, supplier_extraction_batch_size={new_supplier_extraction_batch_size}")
@@ -5217,8 +5374,8 @@ Return ONLY valid JSON, no additional text."""
         original_values = {
             "max_products_per_cycle": max_products_per_cycle,
             "supplier_extraction_batch_size": supplier_extraction_batch_size,
-            "linking_map_batch_size": self.system_config.get("system", {}).get("linking_map_batch_size", 3),
-            "financial_report_batch_size": self.system_config.get("system", {}).get("financial_report_batch_size", 3)
+            "linking_map_batch_size": self.system_config.get("linking_map_batch_size", 1),
+            "financial_report_batch_size": self.system_config.get("financial_report_batch_size", 2)
         }
         
         # Check for mismatched sizes and warn if configured
@@ -5235,10 +5392,10 @@ Return ONLY valid JSON, no additional text."""
             
             # Also update system config values in memory for consistency
             if "system" in self.system_config:
-                self.system_config["system"]["max_products_per_cycle"] = target_batch_size
-                self.system_config["system"]["supplier_extraction_batch_size"] = target_batch_size
-                self.system_config["system"]["linking_map_batch_size"] = target_batch_size
-                self.system_config["system"]["financial_report_batch_size"] = target_batch_size
+                self.system_config["max_products_per_cycle"] = target_batch_size
+                self.system_config["supplier_extraction_batch_size"] = target_batch_size
+                self.system_config["linking_map_batch_size"] = target_batch_size
+                self.system_config["financial_report_batch_size"] = target_batch_size
             
             self.log.info(f"✅ BATCH SYNC: All batch sizes synchronized to {target_batch_size}")
             self.log.info(f"   Updated values: max_products_per_cycle={new_max_products_per_cycle}, supplier_extraction_batch_size={new_supplier_extraction_batch_size}")

@@ -480,14 +480,28 @@ def run_calculations(supplier_name, supplier_cache_path=None, output_dir=None, a
             
         found_matches += 1
             
-        # Check for current_price (primary) or fallback to price
-        price = amazon.get('current_price')
-        if price is None:
-            price = amazon.get('price')
+        # 🚨 ENHANCED: Check for multiple price field variations and provide detailed logging
+        price_fields = ['current_price', 'price', 'original_price', 'amazon_price']
+        price = None
+        price_source = None
+        
+        for field in price_fields:
+            if field in amazon and amazon[field] is not None:
+                try:
+                    price = float(amazon[field])
+                    price_source = field
+                    break
+                except (ValueError, TypeError):
+                    continue
         
         if not price:
-            print(f"No price found for: EAN={ean}, ASIN={asin}, Title={title}")
+            missing_fields = [f"{field}={amazon.get(field)}" for field in price_fields]
+            print(f"❌ NO PRICE DATA: EAN={ean}, ASIN={asin}, Available fields: {missing_fields}")
+            print(f"   Title: {title}")
+            print(f"   Amazon data keys: {list(amazon.keys())}")
             continue
+        else:
+            print(f"✅ PRICE FOUND: EAN={ean}, ASIN={asin}, Price=£{price} (from {price_source})")
             
         # Get Amazon URL 
         amazon_url = amazon.get('url')

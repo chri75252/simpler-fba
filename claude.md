@@ -78,6 +78,26 @@ When user explicitly requests ZEN MCP tools, available tools include:
 - ⚠️ **DOCUMENTATION_SYNC**: Update ALL related docs when changes occur
 - 🚨 **API_KEY_PRESERVATION**: CRITICAL - NEVER remove or modify existing API keys in scripts or env files
 
+
+# Amazon FBA Agent System
+
+This repository hosts the simplified Amazon FBA Agent workflow used to scrape supplier products, match them to Amazon listings and calculate profitability.
+
+The process is orchestrated by `PassiveExtractionWorkflow` and progresses through authentication, supplier scraping, Amazon data extraction, financial analysis and state management.
+
+See [docs/readme.md](docs/readme.md) for the full documentation and historical notes.
+
+## Quick Start
+```bash
+# install dependencies
+pip install -r requirements.txt
+
+# run the workflow (Chrome must be running with debug port 9222)
+python run_custom_poundwholesale.py
+```
+The LangGraph-based features are currently **disabled**; the standard workflow runs without LangGraph integration.
+
+Configuration is controlled through [config/system_config.json](config/system_config.json). Before contributing, review [docs/PULL_REQUEST_CHECKLIST.md](docs/PULL_REQUEST_CHECKLIST.md) for development and security guidelines
 ### **PROJECT_DIRECTIVE_EXECUTION_CHECKLIST:**
 ```
 ✅ EXECUTION_VALIDATION (Update after completion):

@@ -19,11 +19,16 @@ from typing import Any, Dict, List, Optional, TypedDict
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 # LangGraph imports
-from langgraph.graph import StateGraph, END
-from langgraph.checkpoint.memory import MemorySaver
-from langchain_core.messages import HumanMessage, AIMessage
-from langchain_core.runnables import RunnableLambda
-from langchain_openai import ChatOpenAI
+try:
+    from langgraph.graph import StateGraph, END
+    from langgraph.checkpoint.memory import MemorySaver
+    from langchain_core.messages import HumanMessage, AIMessage
+    from langchain_core.runnables import RunnableLambda
+    from langchain_openai import ChatOpenAI
+    LANGGRAPH_AVAILABLE = True
+except ImportError as e:
+    LANGGRAPH_AVAILABLE = False
+    logging.warning(f"LangGraph imports unavailable: {e}")
 
 # Import our Vision-Enhanced Tools
 from langraph_integration.vision_enhanced_tools import create_vision_enhanced_tools

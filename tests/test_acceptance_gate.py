@@ -27,6 +27,13 @@ from typing import Dict, Any, List
 # Add project root to path
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
+import importlib.util
+import pytest
+
+# Skip this module if LangGraph is not installed
+if importlib.util.find_spec("langgraph") is None:
+    pytest.skip("LangGraph not installed", allow_module_level=True)
+
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 log = logging.getLogger(__name__)
@@ -69,8 +76,14 @@ class AcceptanceGateValidator:
                 self.validation_errors.append("OPENAI_API_KEY missing")
                 return
             
-            from langraph_integration.complete_fba_workflow import CompleteFBAWorkflow
-            
+            try:
+                from langraph_integration.complete_fba_workflow import CompleteFBAWorkflow
+            except ImportError as e:
+                log.warning(f"LangGraph workflow unavailable: {e}")
+                self.validation_errors.append("langgraph_not_installed")
+                self.test_results["workflow_execution"] = False
+                return
+
             workflow = CompleteFBAWorkflow()
             
             # Run workflow with supplier-first discovery mode

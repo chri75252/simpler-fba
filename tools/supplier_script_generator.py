@@ -1254,6 +1254,10 @@ Return a single JSON object with your diagnosis:
         except Exception as e:
             log.warning(f"Browser cleanup warning: {e}")
 
+class SupplierScriptGenerator(IntelligentSupplierScriptGenerator):
+    """Backward compatibility alias."""
+    pass
+
 # Standalone functions for backward compatibility
 async def generate_supplier_package(supplier_url: str, force_regenerate: bool = False) -> Dict[str, Any]:
     """

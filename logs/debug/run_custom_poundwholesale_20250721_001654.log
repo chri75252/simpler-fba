@@ -1,0 +1,170 @@
+2025-07-21 00:16:54,837 - utils.logger - INFO - 🔧 Logging initialised – log file: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/logs/debug/run_custom_poundwholesale_20250721_001654.log
+2025-07-21 00:16:54,838 - __main__ - INFO - 📋 Debug log file: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/logs/debug/run_custom_poundwholesale_20250721_001654.log
+2025-07-21 00:16:54,839 - __main__ - DEBUG - Debug logging initialized - full system execution details will be captured
+2025-07-21 00:16:54,846 - utils.browser_manager - INFO - 🔧 BrowserManager singleton initialized
+2025-07-21 00:16:55,474 - utils.browser_manager - INFO - 🔌 Connecting to persistent Chrome on debug port 9222
+2025-07-21 00:16:55,984 - utils.browser_manager - INFO - 📄 Using existing context with 2 pages
+2025-07-21 00:16:55,984 - utils.browser_manager - INFO - ✅ Connected to persistent Chrome successfully
+2025-07-21 00:16:55,985 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-21 00:16:55,986 - __main__ - INFO - 🔐 Initializing authentication service for logout detection...
+2025-07-21 00:16:55,993 - __main__ - INFO - ✅ Using hardcoded credentials for poundwholesale.co.uk
+2025-07-21 00:16:55,994 - __main__ - INFO - 🌐 Connecting to existing Chrome debug port 9222 for authentication...
+2025-07-21 00:17:01,303 - tools.supplier_authentication_service - INFO - ✅ Authentication indicator found: 'logout'
+2025-07-21 00:17:01,378 - tools.supplier_authentication_service - INFO - ✅ Logout link found - user is authenticated
+2025-07-21 00:17:01,378 - tools.supplier_authentication_service - INFO - ✅ Session already authenticated - skipping login
+2025-07-21 00:17:01,381 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: output_dir = '/mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS'
+2025-07-21 00:17:01,382 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: supplier_cache_dir = '/mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products'
+2025-07-21 00:17:01,386 - PassiveExtractionWorkflow - INFO - ✅ Created supplier cache directory: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products
+2025-07-21 00:17:01,393 - PassiveExtractionWorkflow - INFO - ✅ Created amazon cache directory: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/FBA_ANALYSIS/amazon_cache
+2025-07-21 00:17:01,398 - amazon_playwright_extractor - INFO - AI features disabled in amazon_playwright_extractor - using only traditional selectors.
+2025-07-21 00:17:01,405 - amazon_playwright_extractor - INFO - Output directory set to: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/CACHE/amazon_data
+2025-07-21 00:17:01,406 - amazon_playwright_extractor - WARNING - ⚠️ BrowserManager not available, using legacy browser connection
+2025-07-21 00:17:01,410 - configurable_supplier_scraper - INFO - ✅ Loaded system configuration from /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/config/system_config.json
+2025-07-21 00:17:01,411 - configurable_supplier_scraper - INFO - 🔧 ConfigurableSupplierScraper will use centralized BrowserManager
+2025-07-21 00:17:01,412 - configurable_supplier_scraper - DEBUG - AI model from config: gpt-4.1-mini-2025-04-14
+2025-07-21 00:17:01,412 - configurable_supplier_scraper - DEBUG - Extraction targets from config: {}
+2025-07-21 00:17:01,413 - configurable_supplier_scraper - DEBUG - Discovery assistance from config: {}
+2025-07-21 00:17:01,413 - configurable_supplier_scraper - INFO - [CONFIG] Initialized with AI model: gpt-4.1-mini-2025-04-14
+2025-07-21 00:17:01,414 - configurable_supplier_scraper - INFO - [TARGET] Extraction targets loaded: []
+2025-07-21 00:17:01,414 - configurable_supplier_scraper - INFO - [ASSIST] Discovery assistance enabled: False
+2025-07-21 00:17:01,414 - PassiveExtractionWorkflow - DEBUG - 🔍 DEBUG: linking_map initialized as type: <class 'list'>
+2025-07-21 00:17:01,415 - PassiveExtractionWorkflow - INFO - ✅ Output directory set to: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS
+2025-07-21 00:17:01,415 - PassiveExtractionWorkflow - INFO - ✅ Initialization validation passed - all critical attributes verified
+2025-07-21 00:17:01,416 - PassiveExtractionWorkflow - INFO - --- Starting Passive Extraction Workflow for: poundwholesale.co.uk ---
+2025-07-21 00:17:01,417 - PassiveExtractionWorkflow - INFO - Session ID: poundwholesale.co.uk_20250721_001701
+2025-07-21 00:17:01,417 - PassiveExtractionWorkflow - INFO - 📊 CONFIGURATION VALUES:
+2025-07-21 00:17:01,417 - PassiveExtractionWorkflow - INFO -    max_products_to_process: 0
+2025-07-21 00:17:01,418 - PassiveExtractionWorkflow - INFO -    max_products_per_category: 0
+2025-07-21 00:17:01,418 - PassiveExtractionWorkflow - INFO -    max_analyzed_products: 0
+2025-07-21 00:17:01,419 - PassiveExtractionWorkflow - INFO -    max_products_per_cycle: 20
+2025-07-21 00:17:01,419 - PassiveExtractionWorkflow - INFO -    supplier_extraction_batch_size: 50
+2025-07-21 00:17:01,419 - PassiveExtractionWorkflow - INFO -    max_categories_per_request: 0
+2025-07-21 00:17:01,423 - utils.enhanced_state_manager - INFO - No existing state file found for poundwholesale.co.uk, starting fresh
+2025-07-21 00:17:01,423 - PassiveExtractionWorkflow - INFO - 📋 Loaded existing processing state for poundwholesale.co.uk
+2025-07-21 00:17:01,423 - PassiveExtractionWorkflow - INFO - 🔄 Resuming from index 0
+2025-07-21 00:17:01,424 - PassiveExtractionWorkflow - INFO - ✅ Processing state loaded - system will resume from last position
+2025-07-21 00:17:01,437 - PassiveExtractionWorkflow - INFO - ✅ Loaded linking map (array format) from /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/FBA_ANALYSIS/linking_maps/poundwholesale.co.uk/linking_map.json with 148 entries
+2025-07-21 00:17:01,438 - PassiveExtractionWorkflow - DEBUG - 🔍 DEBUG: linking_map loaded as type: <class 'list'>, length: 148
+2025-07-21 00:17:01,448 - PassiveExtractionWorkflow - INFO - ✅ CACHE FOUND: expected pattern - 115 products in poundwholesale-co-uk_products_cache.json
+2025-07-21 00:17:01,448 - PassiveExtractionWorkflow - INFO - 🔍 PHASE DETECTION: COMPLETED (supplier: 115, linking map: 148)
+2025-07-21 00:17:01,467 - PassiveExtractionWorkflow - INFO - ✅ Processing state initialized and started
+2025-07-21 00:17:01,483 - PassiveExtractionWorkflow - INFO - ✅ Loaded linking map (array format) from /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/FBA_ANALYSIS/linking_maps/poundwholesale.co.uk/linking_map.json with 148 entries
+2025-07-21 00:17:01,484 - PassiveExtractionWorkflow - INFO - CUSTOM MODE: Using predefined category list.
+2025-07-21 00:17:01,484 - tools.passive_extraction_workflow_latest - INFO - Attempting to load predefined categories for poundwholesale.co.uk
+2025-07-21 00:17:01,490 - tools.passive_extraction_workflow_latest - INFO - ✅ Successfully loaded 276 predefined category URLs from /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/config/poundwholesale_categories.json
+2025-07-21 00:17:01,492 - PassiveExtractionWorkflow - INFO - 🌟 INFINITE MODE DETECTED: max_products=0, max_products_per_category=0
+2025-07-21 00:17:01,492 - PassiveExtractionWorkflow - INFO - 📋 Processing ALL 276 predefined categories (infinite mode)
+2025-07-21 00:17:01,493 - PassiveExtractionWorkflow - INFO - 🔄 HYBRID PROCESSING MODE: Enabled
+2025-07-21 00:17:01,494 - PassiveExtractionWorkflow - INFO - 🔄 HYBRID PROCESSING: Mode configuration loaded
+2025-07-21 00:17:01,494 - PassiveExtractionWorkflow - INFO -    switch_to_amazon_after_categories: 1
+2025-07-21 00:17:01,495 - PassiveExtractionWorkflow - INFO - 🔄 HYBRID MODE: Chunked processing (chunk size: 1 categories)
+2025-07-21 00:17:01,495 - PassiveExtractionWorkflow - INFO - 🔄 Processing chunk 1: categories 1-1
+2025-07-21 00:17:01,505 - PassiveExtractionWorkflow - INFO - ✅ CACHE FOUND: expected pattern - 115 products in poundwholesale-co-uk_products_cache.json
+2025-07-21 00:17:01,512 - PassiveExtractionWorkflow - INFO - ✅ SUPPLIER CACHE HIT: Chunk categories already extracted (0 products)
+2025-07-21 00:17:01,512 - PassiveExtractionWorkflow - INFO - 🔄 Processing chunk 2: categories 2-2
+2025-07-21 00:17:01,521 - PassiveExtractionWorkflow - INFO - ✅ CACHE FOUND: expected pattern - 115 products in poundwholesale-co-uk_products_cache.json
+2025-07-21 00:17:01,530 - PassiveExtractionWorkflow - INFO - ✅ SUPPLIER CACHE HIT: Chunk categories already extracted (0 products)
+2025-07-21 00:17:01,531 - PassiveExtractionWorkflow - INFO - 🔄 Processing chunk 3: categories 3-3
+2025-07-21 00:17:01,543 - PassiveExtractionWorkflow - INFO - ✅ CACHE FOUND: expected pattern - 115 products in poundwholesale-co-uk_products_cache.json
+2025-07-21 00:17:01,552 - PassiveExtractionWorkflow - INFO - ✅ SUPPLIER CACHE HIT: Chunk categories already extracted (0 products)
+2025-07-21 00:17:01,552 - PassiveExtractionWorkflow - INFO - 🔄 Processing chunk 4: categories 4-4
+2025-07-21 00:17:01,564 - PassiveExtractionWorkflow - INFO - ✅ CACHE FOUND: expected pattern - 115 products in poundwholesale-co-uk_products_cache.json
+2025-07-21 00:17:01,573 - PassiveExtractionWorkflow - INFO - ✅ SUPPLIER CACHE HIT: Chunk categories already extracted (0 products)
+2025-07-21 00:17:01,574 - PassiveExtractionWorkflow - INFO - 🔄 Processing chunk 5: categories 5-5
+2025-07-21 00:17:01,588 - PassiveExtractionWorkflow - INFO - ✅ CACHE FOUND: expected pattern - 115 products in poundwholesale-co-uk_products_cache.json
+2025-07-21 00:17:01,602 - PassiveExtractionWorkflow - INFO - ✅ SUPPLIER CACHE HIT: Chunk categories already extracted (0 products)
+2025-07-21 00:17:01,602 - PassiveExtractionWorkflow - INFO - 🔄 Processing chunk 6: categories 6-6
+2025-07-21 00:17:01,614 - PassiveExtractionWorkflow - INFO - ✅ CACHE FOUND: expected pattern - 115 products in poundwholesale-co-uk_products_cache.json
+2025-07-21 00:17:01,622 - PassiveExtractionWorkflow - INFO - ✅ SUPPLIER CACHE HIT: Chunk categories already extracted (0 products)
+2025-07-21 00:17:01,623 - PassiveExtractionWorkflow - INFO - 🔄 Processing chunk 7: categories 7-7
+2025-07-21 00:17:01,634 - PassiveExtractionWorkflow - INFO - ✅ CACHE FOUND: expected pattern - 115 products in poundwholesale-co-uk_products_cache.json
+2025-07-21 00:17:01,638 - PassiveExtractionWorkflow - INFO - ✅ SUPPLIER CACHE HIT: Chunk categories already extracted (0 products)
+2025-07-21 00:17:01,639 - PassiveExtractionWorkflow - INFO - 🔄 Processing chunk 8: categories 8-8
+2025-07-21 00:17:01,648 - PassiveExtractionWorkflow - INFO - ✅ CACHE FOUND: expected pattern - 115 products in poundwholesale-co-uk_products_cache.json
+2025-07-21 00:17:01,657 - PassiveExtractionWorkflow - INFO - ✅ SUPPLIER CACHE HIT: Chunk categories already extracted (115 products)
+2025-07-21 00:17:01,658 - PassiveExtractionWorkflow - INFO - 🔍 Processing 115 products with main workflow logic
+2025-07-21 00:17:01,659 - PassiveExtractionWorkflow - INFO - --- Processing supplier product 1/115: 'Duzzit Clean & Fresh Biodegradable Anti-Bacterial Wipes 50 Pack' ---
+2025-07-21 00:17:01,694 - PassiveExtractionWorkflow - INFO - Attempting Amazon search using EAN: 5053249260471
+2025-07-21 00:17:01,723 - tools.passive_extraction_workflow_latest - INFO - Connecting to Chrome browser on debug port 9222 (FixedAmazonExtractor)
+2025-07-21 00:17:02,593 - tools.passive_extraction_workflow_latest - INFO - Successfully connected to Chrome on port 9222 (FixedAmazonExtractor)
+2025-07-21 00:17:02,594 - tools.passive_extraction_workflow_latest - INFO - Found 2 existing pages (FixedAmazonExtractor)
+2025-07-21 00:17:02,594 - tools.passive_extraction_workflow_latest - INFO - Using existing page: https://www.poundwholesale.co.uk/ (FixedAmazonExtractor)
+2025-07-21 00:17:02,611 - tools.passive_extraction_workflow_latest - INFO - Searching Amazon by EAN: 5053249260471 for supplier product: 'Duzzit Clean & Fresh Biodegradable Anti-Bacterial Wipes 50 Pack' (FixedAmazonExtractor)
+2025-07-21 00:17:02,612 - tools.passive_extraction_workflow_latest - INFO - No page provided to search_by_ean, getting one from BrowserManager.
+2025-07-21 00:17:02,613 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-21 00:17:02,613 - utils.browser_manager - INFO - 📄 Navigating to https://www.amazon.co.uk
+2025-07-21 00:17:04,099 - utils.browser_manager - INFO - ✅ Page ready for https://www.amazon.co.uk
+2025-07-21 00:17:04,100 - tools.passive_extraction_workflow_latest - INFO - Navigating to Amazon UK to search for EAN: 5053249260471
+2025-07-21 00:17:06,594 - tools.passive_extraction_workflow_latest - INFO - Waiting for search results page to load for EAN 5053249260471...
+2025-07-21 00:17:06,996 - tools.passive_extraction_workflow_latest - INFO - Found search results container with selector: div.s-search-results
+2025-07-21 00:17:09,043 - tools.passive_extraction_workflow_latest - INFO - Found 1 search result elements using selector: div[data-asin]:not([data-asin='']):not(.AdHolder):not([class*='s-widget-sponsored-product'])
+2025-07-21 00:17:09,044 - tools.passive_extraction_workflow_latest - INFO - Processing 1 search result elements for EAN 5053249260471
+2025-07-21 00:17:09,070 - tools.passive_extraction_workflow_latest - DEBUG - Processing element 1: ASIN B0C377FDT9
+2025-07-21 00:17:09,089 - tools.passive_extraction_workflow_latest - DEBUG - ASIN B0C377FDT9 HTML structure sample: <div role="listitem" data-asin="B0C377FDT9" data-index="2" data-uuid="033458bb-c126-4777-9153-1629fb419dd7" id="033458bb-c126-4777-9153-1629fb419dd7" data-component-type="s-search-result" class="sg-col-4-of-4 sg-col-4-of-24 sg-col-4-of-12 s-result-item s-asin sg-col-4-of-16 sg-col s-widget-spacing-small sg-col-4-of-8 sg-col-4-of-20" data-component-id="15" data-cel-widget="search_result_1"><div class="sg-col-inner"><div cel_widget_id="MAIN-SEARCH_RESULTS-2" class="s-widget-container s-spacing-small s-widget-container-height-small celwidget slot=MAIN template=SEARCH_RESULTS widgetId=search-resul...
+2025-07-21 00:17:09,090 - tools.passive_extraction_workflow_latest - DEBUG - Error checking sponsored badge for ASIN B0C377FDT9: 'ElementHandle' object has no attribute 'locator'
+2025-07-21 00:17:09,091 - tools.passive_extraction_workflow_latest - DEBUG - Error checking aria-label for ASIN B0C377FDT9: 'ElementHandle' object has no attribute 'locator'
+2025-07-21 00:17:09,128 - tools.passive_extraction_workflow_latest - DEBUG - Error checking text for ad indicators for ASIN B0C377FDT9: 'ElementHandle' object has no attribute 'locator'
+2025-07-21 00:17:09,399 - tools.passive_extraction_workflow_latest - DEBUG - ASIN B0C377FDT9 title extracted using selector 'h2': Duzzit Antibacterial 100 Percent Biodegradable Wip...
+2025-07-21 00:17:09,399 - tools.passive_extraction_workflow_latest - INFO - Found organic result: ASIN B0C377FDT9 - Duzzit Antibacterial 100 Percent Biodegradable Wipes, Pack 5...
+2025-07-21 00:17:09,400 - tools.passive_extraction_workflow_latest - INFO - Single organic result found for EAN 5053249260471: ASIN B0C377FDT9
+2025-07-21 00:17:09,401 - tools.passive_extraction_workflow_latest - INFO - EAN search selected ASIN B0C377FDT9 for 5053249260471
+2025-07-21 00:17:09,401 - tools.passive_extraction_workflow_latest - INFO - Single ASIN B0C377FDT9 found for EAN 5053249260471.
+2025-07-21 00:17:09,402 - tools.passive_extraction_workflow_latest - INFO - Proceeding with ASIN: B0C377FDT9 for EAN: 5053249260471
+2025-07-21 00:17:09,403 - amazon_playwright_extractor - WARNING - No page object provided to extract_data for ASIN B0C377FDT9. Getting a new one from BrowserManager.
+2025-07-21 00:17:09,404 - amazon_playwright_extractor - INFO - Reusing existing page: https://www.amazon.co.uk/s?k=5053249260471&ref=nb_sb_noss
+2025-07-21 00:17:12,565 - amazon_playwright_extractor - INFO - Checking for cookie consent pop-up...
+2025-07-21 00:17:12,918 - amazon_playwright_extractor - INFO - Finished checking for cookie consent pop-ups. If one was present and not handled, it might interfere.
+2025-07-21 00:17:13,920 - amazon_playwright_extractor - INFO - Checking for CAPTCHA...
+2025-07-21 00:17:16,936 - amazon_playwright_extractor - INFO - No CAPTCHA page detected by form selector.
+2025-07-21 00:17:16,937 - amazon_playwright_extractor - INFO - Checking for cookie consent pop-up...
+2025-07-21 00:17:17,095 - amazon_playwright_extractor - INFO - Finished checking for cookie consent pop-ups. If one was present and not handled, it might interfere.
+2025-07-21 00:17:17,096 - amazon_playwright_extractor - INFO - Page should be ready. Waiting 5s for stabilization...
+2025-07-21 00:17:22,118 - amazon_playwright_extractor - INFO - Waiting an additional 7s for extensions (Keepa, SellerAmp)...
+2025-07-21 00:17:27,364 - amazon_playwright_extractor - INFO - Extracting all product data for ASIN: B0C377FDT9
+2025-07-21 00:17:27,365 - amazon_playwright_extractor - INFO - Extracting basic product information (Title, Price, Images, Amazon Details)...
+2025-07-21 00:17:27,414 - amazon_playwright_extractor - INFO - Title found: 'Duzzit Antibacterial 100 Percent Biodegradable Wipes, Pack 50 Wipes' via #productTitle
+2025-07-21 00:17:27,415 - amazon_playwright_extractor - INFO - Extracting price details...
+2025-07-21 00:17:27,460 - amazon_playwright_extractor - INFO - Current price: 5.74 via #corePrice_feature_div .a-offscreen
+2025-07-21 00:17:27,587 - amazon_playwright_extractor - INFO - Original price: 28.8 via span.a-price.a-text-price[data-a-strike='true'] span.a-offscreen
+2025-07-21 00:17:27,687 - amazon_playwright_extractor - INFO - Extracting image URLs...
+2025-07-21 00:17:27,764 - amazon_playwright_extractor - INFO - Main image: https://m.media-amazon.com/images/I/71Yp7DOrbhL._AC_SL1500_.jpg via #landingImage
+2025-07-21 00:17:27,898 - amazon_playwright_extractor - INFO - Found 5 thumbnails.
+2025-07-21 00:17:27,919 - amazon_playwright_extractor - INFO - Extracting Amazon product details section...
+2025-07-21 00:17:28,287 - amazon_playwright_extractor - INFO - Extracting sales rank information...
+2025-07-21 00:17:28,667 - amazon_playwright_extractor - INFO - Extracting ratings and reviews...
+2025-07-21 00:17:28,771 - amazon_playwright_extractor - INFO - Rating: 4.6 via i[class*='a-icon-star'] span.a-icon-alt
+2025-07-21 00:17:28,848 - amazon_playwright_extractor - INFO - Extracting stock information...
+2025-07-21 00:17:28,900 - amazon_playwright_extractor - INFO - Availability text: 'In stock' via #availability span.a-size-medium.a-color-success
+2025-07-21 00:17:28,901 - amazon_playwright_extractor - INFO - Extracting features/bullets...
+2025-07-21 00:17:29,357 - amazon_playwright_extractor - INFO - Found 5 features.
+2025-07-21 00:17:29,358 - amazon_playwright_extractor - INFO - Extracting product description...
+2025-07-21 00:17:29,397 - amazon_playwright_extractor - INFO - Description found using selector: #productDescription
+2025-07-21 00:17:29,397 - amazon_playwright_extractor - INFO - Extracting product specifications table...
+2025-07-21 00:17:30,023 - amazon_playwright_extractor - INFO - Specifications table parsed using selector: #productDetails_techSpec_section_1
+2025-07-21 00:17:30,023 - amazon_playwright_extractor - INFO - Extracting SellerAmp data (if present)...
+2025-07-21 00:17:30,024 - amazon_playwright_extractor - INFO - SellerAmp data extraction is currently disabled as per requirements (Fix 2.3).
+2025-07-21 00:17:30,024 - amazon_playwright_extractor - INFO - Extracting Keepa data (if present)...
+2025-07-21 00:17:30,025 - amazon_playwright_extractor - INFO - Attempting to extract Keepa data...
+2025-07-21 00:17:33,045 - amazon_playwright_extractor - DEBUG - Keepa iframe check failed for selector iframe[id*='keepaGraph']: Page.wait_for_selector: Timeout 3000ms exceeded.
+Call log:
+  - waiting for locator("iframe[id*='keepaGraph']")
+
+2025-07-21 00:17:36,079 - amazon_playwright_extractor - DEBUG - Keepa iframe check failed for selector iframe#keepaExtension: Page.wait_for_selector: Timeout 3000ms exceeded.
+Call log:
+  - waiting for locator("iframe#keepaExtension")
+
+2025-07-21 00:17:36,177 - amazon_playwright_extractor - INFO - Keepa iframe found: iframe[id*='keepa']
+2025-07-21 00:17:36,361 - amazon_playwright_extractor - INFO - Keepa Sales Rank Details Table parsed.
+2025-07-21 00:17:36,362 - amazon_playwright_extractor - INFO - Keepa Graph AI Analysis is currently disabled as per requirements (Fix 2.4).
+2025-07-21 00:17:36,408 - amazon_playwright_extractor - INFO - Keepa Data tab found. Currently active: False
+2025-07-21 00:17:36,408 - amazon_playwright_extractor - INFO - Clicking Keepa 'Data' tab...
+2025-07-21 00:17:38,690 - amazon_playwright_extractor - INFO - Attempt 1/2: Waiting 12000ms for Product-Details wrapper...
+2025-07-21 00:17:42,933 - amazon_playwright_extractor - INFO - ✅ Product-Details wrapper appeared on attempt 1
+2025-07-21 00:17:43,022 - amazon_playwright_extractor - INFO - Parsing Keepa AG Grid for Product Details from: div#MoreTab1 div#grid-product-detail
+2025-07-21 00:17:43,086 - amazon_playwright_extractor - INFO - Primary attempt: Waiting 12 seconds for AG Grid rows to load...
+2025-07-21 00:17:44,224 - amazon_playwright_extractor - INFO - ✅ Primary attempt successful: 124 rows found
+2025-07-21 00:17:44,271 - amazon_playwright_extractor - INFO - Processing 124 rows in Keepa Product Details AG Grid.
+2025-07-21 00:17:46,680 - amazon_playwright_extractor - INFO - Found potential fee key 'FBA Pick&Pack Fee' with raw value: '£ 4.73' in Keepa AG Grid.
+2025-07-21 00:17:46,961 - amazon_playwright_extractor - INFO - Found potential fee key 'Referral Fee based on current Buy Box price' with raw value: '£ 0.88' in Keepa AG Grid.
+2025-07-21 00:17:51,308 - __main__ - INFO - 🌐 Keeping browser persistent for next run - not closing browser
+2025-07-21 00:17:51,310 - utils.browser_manager - WARNING - Error during global cleanup: no running event loop

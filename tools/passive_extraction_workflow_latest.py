@@ -3153,6 +3153,24 @@ Return ONLY valid JSON, no additional text."""
     async def _get_amazon_data(self, product_data: Dict[str, Any]) -> Optional[Dict[str, Any]]:
         """Handle Amazon search logic (EAN first, then title)."""
         supplier_ean = product_data.get("ean")
+        
+        # 🚨 FIX: Handle multiple EANs - use first valid EAN only for Amazon search
+        if supplier_ean:
+            original_ean = str(supplier_ean)
+            # Extract first valid EAN (12-14 digits) from various formats: "123/456", "123 456", "123,456", etc.
+            import re
+            ean_pattern = re.findall(r'\b\d{12,14}\b', original_ean)
+            if ean_pattern and len(ean_pattern) > 1:
+                supplier_ean = ean_pattern[0]  # Use first valid EAN found
+                self.log.info(f"🔧 Multiple EANs detected, using first valid EAN for Amazon search: '{original_ean}' → '{supplier_ean}'")
+            elif '/' in original_ean or ' ' in original_ean.strip():
+                # Fallback: split by common separators and take first part
+                for separator in ['/', ' ', ',', ';', '|']:
+                    if separator in original_ean:
+                        supplier_ean = original_ean.split(separator)[0].strip()
+                        self.log.info(f"🔧 Multiple EANs detected (separator '{separator}'), using first EAN: '{original_ean}' → '{supplier_ean}'")
+                        break
+        
         amazon_product_data = None
         actual_search_method = None  # Track which method actually worked
         
@@ -5670,7 +5688,12 @@ Return ONLY valid JSON, no additional text."""
                     amazon_asin = amazon_data.get("asin") or amazon_data.get("asin_extracted_from_page")
                     
                     # Save Amazon data to cache file  
-                    filename_identifier = supplier_ean if supplier_ean else product_data.get("title", "NO_TITLE")[:50].replace(" ", "_").replace("/", "_").replace("\\", "_")
+                    # 🚨 FIX: Sanitize supplier_ean to handle multiple EANs or invalid characters
+                    if supplier_ean:
+                        # Take first EAN if multiple exist, sanitize invalid filename characters
+                        filename_identifier = str(supplier_ean).split('/')[0].split('\\')[0].replace(" ", "_").replace(":", "_").replace("?", "_").replace("*", "_").replace("<", "_").replace(">", "_").replace("|", "_").replace('"', "_")
+                    else:
+                        filename_identifier = product_data.get("title", "NO_TITLE")[:50].replace(" ", "_").replace("/", "_").replace("\\", "_").replace(":", "_").replace("?", "_").replace("*", "_").replace("<", "_").replace(">", "_").replace("|", "_").replace('"', "_")
                     amazon_cache_path = os.path.join(self.amazon_cache_dir, f"amazon_{amazon_asin}_{filename_identifier}.json")
                     with open(amazon_cache_path, 'w', encoding='utf-8') as f:
                         json.dump(amazon_data, f, indent=2, ensure_ascii=False)

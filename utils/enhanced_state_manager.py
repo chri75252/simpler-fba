@@ -298,24 +298,9 @@ class EnhancedStateManager:
             
         self.save_state()
     
-    def hard_reset(self):
-        """🚨 CRITICAL FIX: Hard reset state manager - wipe all state and restart fresh"""
-        log.info("🔄 HARD RESET: Wiping all state data and starting fresh")
-        
-        # Delete existing state file
-        if os.path.exists(self.state_file_path):
-            try:
-                os.remove(self.state_file_path)
-                log.info(f"✅ Deleted existing state file: {self.state_file_path}")
-            except Exception as e:
-                log.warning(f"⚠️ Could not delete state file: {e}")
-        
-        # Reinitialize state data to fresh state
-        self.state_data = self._initialize_state()
-        
-        # Save fresh state
-        self.save_state()
-        log.info("✅ Hard reset completed - fresh state initialized")
+    # 🚨 REMOVED: hard_reset method removed per user request
+    # This method was causing inappropriate data loss by detecting non-empty cache files as empty
+    # and clearing processing state when resumption should have occurred
     
     def complete_category_extraction(self, category_url: str, products_found: int):
         """Mark a category as completed during extraction"""

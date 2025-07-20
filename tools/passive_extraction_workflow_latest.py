@@ -1062,15 +1062,9 @@ class PassiveExtractionWorkflow:
         self.log.info(f"📋 Loaded existing processing state for {self.supplier_name}")
         self.log.info(f"🔄 Resuming from index {self.last_processed_index}")
 
-        # Hard reset logic: General cache validation without category dependency
-        supplier_cache_file = os.path.join(self.supplier_cache_dir, f"{self.supplier_name.replace('.', '-')}_products_cache.json")
-        if not os.path.exists(supplier_cache_file) or os.path.getsize(supplier_cache_file) == 0:
-            if self.last_processed_index > 0:
-                self.log.warning("🔥 State file shows progress, but supplier cache is empty. Wiping state to restart.")
-                self.state_manager.hard_reset()
-                self.last_processed_index = 0
-            else:
-                self.log.info("✅ No previous progress found, starting fresh.")
+        # 🚨 REMOVED: Hard reset logic removed per user request - was causing incorrect cache validation
+        # System will now always attempt to resume from processing state without validation conflicts
+        self.log.info("✅ Processing state loaded - system will resume from last position")
         
         # Load the linking map for the current supplier
         self.linking_map = self._load_linking_map(self.supplier_name)
@@ -1236,26 +1230,35 @@ class PassiveExtractionWorkflow:
                     current_state = self.state_manager.get_state_summary()
                     self.log.info(f"🔍 DEBUG: State after update - last_processed_index: {current_state.get('progress', 'unknown')}")
                     
-                    # Check if product has been previously processed
-                    is_already_processed = self.state_manager.is_product_processed(product_data.get("url"))
-                    if is_already_processed:
-                        self.log.info(f"Product already processed: {product_data.get('url')}. Checking for Amazon cache generation needs.")
+                    # 🚨 CRITICAL FIX: Amazon Analysis Resumption Logic
+                    # Check linking map to avoid re-processing already analyzed Amazon products
+                    supplier_ean = product_data.get("ean") or product_data.get("barcode")
+                    supplier_url = product_data.get("url")
+                    
+                    # Check if this product already exists in linking map (Amazon analysis completed)
+                    already_in_linking_map = False
+                    if supplier_ean and self.linking_map:
+                        for entry in self.linking_map:
+                            if (entry.get("supplier_ean") == supplier_ean or 
+                                entry.get("supplier_url") == supplier_url):
+                                already_in_linking_map = True
+                                self.log.info(f"✅ AMAZON SKIP: Product '{product_data.get('title')}' already in linking map (ASIN: {entry.get('amazon_asin')}) - skipping Amazon analysis")
+                                break
+                    
+                    # Check if product has been previously processed in state manager
+                    is_already_processed = self.state_manager.is_product_processed(supplier_url)
+                    
+                    # Skip if already processed OR already in linking map (Amazon analysis complete)
+                    if is_already_processed or already_in_linking_map:
+                        if is_already_processed:
+                            self.log.info(f"SUPPLIER SKIP: Product already processed in state: {supplier_url}")
                         
-                        # Even if supplier processing is complete, we may need fresh Amazon data
-                        supplier_ean = product_data.get("ean") or product_data.get("barcode")
-                        if supplier_ean:
-                            # Try to get Amazon data to ensure cache exists
-                            amazon_data = await self._get_amazon_data(product_data)
-                            if amazon_data:
-                                amazon_asin = amazon_data.get("asin") or amazon_data.get("asin_extracted_from_page")
-                                
-                                filename_identifier = supplier_ean if supplier_ean else product_data.get("title", "NO_TITLE")[:50].replace(" ", "_").replace("/", "_").replace("\\", "_")
-                                amazon_cache_path = os.path.join(self.amazon_cache_dir, f"amazon_{amazon_asin}_{filename_identifier}.json")
-                                with open(amazon_cache_path, 'w', encoding='utf-8') as f:
-                                    json.dump(amazon_data, f, indent=2, ensure_ascii=False)
-                                self.log.info(f"💾 Generated Amazon cache for processed product: {amazon_cache_path}")
+                        # If in linking map but not marked as processed, update state
+                        if already_in_linking_map and not is_already_processed:
+                            self.state_manager.mark_product_processed(supplier_url, "completed_from_linking_map")
+                            self.log.info(f"📋 Updated state: Marked product as completed from linking map")
                         
-                        continue  # Skip further processing but cache is now generated
+                        continue  # Skip further processing - Amazon analysis already complete
 
                     # Extract Amazon data
                     self.log.info(f"🔍 DEBUG: About to extract Amazon data for product: '{product_data.get('title')}'")
@@ -1460,43 +1463,63 @@ class PassiveExtractionWorkflow:
             return []
 
     def _load_linking_map(self, supplier_name: str) -> List[Dict[str, str]]:
-        """Load linking map from supplier-specific JSON file"""
+        """Load linking map from supplier-specific JSON file with fallback patterns"""
+        # 🚨 CRITICAL FIX: Financial report triggering - add fallback for filename patterns
+        # Try original supplier name first
         linking_map_path = os.path.join(BASE_DIR, "OUTPUTS", "FBA_ANALYSIS", "linking_maps", supplier_name, "linking_map.json")
         
-        if os.path.exists(linking_map_path):
-            try:
-                with open(linking_map_path, 'r', encoding='utf-8') as f:
-                    raw_data = json.load(f)
-                
-                # Handle both formats: convert old dict format to new array format
-                if isinstance(raw_data, dict):
-                    # Old simple format: {"EAN": "ASIN", "EAN2": "ASIN2"} -> convert to array
-                    linking_map = []
-                    for ean, asin in raw_data.items():
-                        linking_map.append({
-                            "supplier_product_identifier": f"EAN_{ean}",
-                            "supplier_title_snippet": "",
-                            "chosen_amazon_asin": asin,
-                            "amazon_title_snippet": "",
-                            "amazon_ean_on_page": ean,
-                            "match_method": "EAN_cached"
-                        })
-                    self.log.info(f"✅ Converted linking map from dict format to array format from {linking_map_path} with {len(linking_map)} entries")
-                elif isinstance(raw_data, list):
-                    # New detailed format: [{"supplier_product_identifier": "EAN_123", "chosen_amazon_asin": "ABC", ...}]
-                    linking_map = raw_data
-                    self.log.info(f"✅ Loaded linking map (array format) from {linking_map_path} with {len(linking_map)} entries")
-                else:
-                    self.log.error(f"Unexpected linking map format: {type(raw_data)} - Creating new map")
-                    return []
+        # If original doesn't exist, try alternative filename patterns
+        paths_to_try = [linking_map_path]
+        
+        # Add fallback patterns for filename mismatches
+        if "_co_uk" in supplier_name:
+            # Try converting underscores to dots: poundwholesale_co_uk -> poundwholesale.co.uk
+            alt_name = supplier_name.replace("_co_uk", ".co.uk")
+            alt_path = os.path.join(BASE_DIR, "OUTPUTS", "FBA_ANALYSIS", "linking_maps", alt_name, "linking_map.json")
+            paths_to_try.append(alt_path)
+        elif ".co.uk" in supplier_name:
+            # Try converting dots to underscores: poundwholesale.co.uk -> poundwholesale_co_uk
+            alt_name = supplier_name.replace(".co.uk", "_co_uk")
+            alt_path = os.path.join(BASE_DIR, "OUTPUTS", "FBA_ANALYSIS", "linking_maps", alt_name, "linking_map.json")
+            paths_to_try.append(alt_path)
+        
+        # Try each path until we find one that exists
+        for path_attempt in paths_to_try:
+            if os.path.exists(path_attempt):
+                try:
+                    with open(path_attempt, 'r', encoding='utf-8') as f:
+                        raw_data = json.load(f)
                     
-                return linking_map
-            except (json.JSONDecodeError, UnicodeDecodeError, Exception) as e:
-                self.log.error(f"Error loading linking map: {e} - Creating new map")
-                return []
-        else:
-            self.log.info(f"✅ No existing linking map found at {linking_map_path} - Creating new map")
-            return []
+                    # Handle both formats: convert old dict format to new array format
+                    if isinstance(raw_data, dict):
+                        # Old simple format: {"EAN": "ASIN", "EAN2": "ASIN2"} -> convert to array
+                        linking_map = []
+                        for ean, asin in raw_data.items():
+                            linking_map.append({
+                                "supplier_product_identifier": f"EAN_{ean}",
+                                "supplier_title_snippet": "",
+                                "chosen_amazon_asin": asin,
+                                "amazon_title_snippet": "",
+                                "amazon_ean_on_page": ean,
+                                "match_method": "EAN_cached"
+                            })
+                        self.log.info(f"✅ Converted linking map from dict format to array format from {path_attempt} with {len(linking_map)} entries")
+                    elif isinstance(raw_data, list):
+                        # New detailed format: [{"supplier_product_identifier": "EAN_123", "chosen_amazon_asin": "ABC", ...}]
+                        linking_map = raw_data
+                        self.log.info(f"✅ Loaded linking map (array format) from {path_attempt} with {len(linking_map)} entries")
+                    else:
+                        self.log.error(f"Unexpected linking map format: {type(raw_data)} - Creating new map")
+                        return []
+                        
+                    return linking_map
+                except (json.JSONDecodeError, UnicodeDecodeError, Exception) as e:
+                    self.log.error(f"Error loading linking map from {path_attempt}: {e}")
+                    continue  # Try next path
+        
+        # No valid linking map found in any location
+        self.log.info(f"✅ No existing linking map found at any path (tried {len(paths_to_try)} patterns) - Creating new map")
+        return []
 
     def _save_linking_map(self, supplier_name: str):
         """Save linking map to supplier-specific JSON file using atomic write pattern"""

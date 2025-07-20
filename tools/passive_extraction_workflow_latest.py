@@ -1070,10 +1070,44 @@ class PassiveExtractionWorkflow:
         self.linking_map = self._load_linking_map(self.supplier_name)
         self.log.debug(f"🔍 DEBUG: linking_map loaded as type: {type(self.linking_map)}, length: {len(self.linking_map)}")
         
+        # 🚨 CRITICAL: Two-Phase Detection Logic
+        supplier_cache_file = os.path.join(self.supplier_cache_dir, f"{self.supplier_name.replace('.', '-')}_products_cache.json")
+        supplier_cache_exists = os.path.exists(supplier_cache_file)
+        supplier_cache_count = 0
+        
+        if supplier_cache_exists:
+            try:
+                with open(supplier_cache_file, 'r', encoding='utf-8') as f:
+                    supplier_products = json.load(f)
+                supplier_cache_count = len(supplier_products)
+            except Exception as e:
+                self.log.warning(f"⚠️ Could not read supplier cache for phase detection: {e}")
+        
+        linking_map_count = len(self.linking_map) if self.linking_map else 0
+        
+        # Phase detection logic
+        if supplier_cache_count == 0:
+            current_phase = "SUPPLIER_EXTRACTION"
+            self.log.info(f"🔍 PHASE DETECTION: SUPPLIER_EXTRACTION (no supplier cache found)")
+        elif linking_map_count == 0:
+            current_phase = "AMAZON_ANALYSIS"
+            self.log.info(f"🔍 PHASE DETECTION: AMAZON_ANALYSIS (supplier cache: {supplier_cache_count} products, no linking map)")
+        elif linking_map_count < supplier_cache_count:
+            current_phase = "AMAZON_ANALYSIS"
+            self.log.info(f"🔍 PHASE DETECTION: AMAZON_ANALYSIS (incomplete - supplier: {supplier_cache_count}, linking map: {linking_map_count})")
+        else:
+            current_phase = "COMPLETED"
+            self.log.info(f"🔍 PHASE DETECTION: COMPLETED (supplier: {supplier_cache_count}, linking map: {linking_map_count})")
+        
+        self.current_phase = current_phase
+        
         config_hash = str(hash(str(self.system_config)))
         runtime_settings = {
             "max_products_to_process": max_products_to_process,
-            "max_products_per_category": max_products_per_category
+            "max_products_per_category": max_products_per_category,
+            "current_phase": current_phase,
+            "supplier_cache_count": supplier_cache_count,
+            "linking_map_count": linking_map_count
         }
         self.state_manager.start_processing(config_hash, runtime_settings)
         self.log.info("✅ Processing state initialized and started")
@@ -3469,11 +3503,45 @@ Return ONLY valid JSON, no additional text."""
                 
                 self.log.info(f"🔄 Processing chunk {chunk_start//chunk_size + 1}: categories {chunk_start+1}-{chunk_end}")
                 
-                # Extract from this chunk of categories
-                chunk_products = await self._extract_supplier_products(
-                    supplier_url, supplier_name, chunk_categories, 
-                    max_products_per_category, max_products_to_process, supplier_extraction_batch_size
-                )
+                # 🚨 CRITICAL FIX: Two-Phase Resumption Logic - Check supplier cache first
+                supplier_cache_file = os.path.join(self.supplier_cache_dir, f"{supplier_name.replace('.', '-')}_products_cache.json")
+                existing_cache_count = 0
+                
+                if os.path.exists(supplier_cache_file):
+                    try:
+                        with open(supplier_cache_file, 'r', encoding='utf-8') as f:
+                            existing_products = json.load(f)
+                        existing_cache_count = len(existing_products)
+                        self.log.info(f"🔍 SUPPLIER PHASE: Found {existing_cache_count} existing products in supplier cache")
+                        
+                        # Check if current chunk categories are already fully extracted
+                        chunk_category_urls = set(chunk_categories)
+                        products_for_chunk = [p for p in existing_products if p.get('source_url', '') in chunk_category_urls]
+                        
+                        if len(products_for_chunk) >= max_products_per_category * len(chunk_categories):
+                            self.log.info(f"✅ SUPPLIER CACHE HIT: Chunk categories already extracted ({len(products_for_chunk)} products)")
+                            chunk_products = products_for_chunk
+                        else:
+                            self.log.info(f"🔄 SUPPLIER EXTRACTION: Need to extract remaining products for chunk")
+                            # Extract from this chunk of categories
+                            chunk_products = await self._extract_supplier_products(
+                                supplier_url, supplier_name, chunk_categories, 
+                                max_products_per_category, max_products_to_process, supplier_extraction_batch_size
+                            )
+                    except Exception as e:
+                        self.log.warning(f"⚠️ Could not read supplier cache: {e} - proceeding with extraction")
+                        # Extract from this chunk of categories
+                        chunk_products = await self._extract_supplier_products(
+                            supplier_url, supplier_name, chunk_categories, 
+                            max_products_per_category, max_products_to_process, supplier_extraction_batch_size
+                        )
+                else:
+                    self.log.info(f"📝 SUPPLIER PHASE: No existing cache found - starting fresh extraction")
+                    # Extract from this chunk of categories
+                    chunk_products = await self._extract_supplier_products(
+                        supplier_url, supplier_name, chunk_categories, 
+                        max_products_per_category, max_products_to_process, supplier_extraction_batch_size
+                    )
                 
                 if chunk_products:
                     # Immediately analyze these products
@@ -3483,7 +3551,7 @@ Return ONLY valid JSON, no additional text."""
                     )
                     profitable_results.extend(chunk_results)
                     
-                    # 🚨 FINANCIAL REPORT FIX: Generate financial report based on linking map entries per financial_report_batch_size
+                    # 🚨 CRITICAL FIX: Financial Report Triggering Mechanism - Monitor linking map count as TRIGGER
                     financial_batch_size = self.system_config.get("financial_report_batch_size", 2)
                     if not financial_batch_size:
                         self.log.error("❌ CONFIGURATION ERROR: financial_report_batch_size not found in system config")
@@ -3491,22 +3559,23 @@ Return ONLY valid JSON, no additional text."""
                     
                     current_linking_map_count = len(self.linking_map)
                     
+                    # ✅ CORRECTED LOGIC: financial_report_batch_size is TRIGGER MECHANISM (every N linking map entries)
                     if current_linking_map_count > 0 and current_linking_map_count % financial_batch_size == 0:
                         try:
-                            self.log.info(f"🧮 Generating financial report ({current_linking_map_count} linking map entries, batch size: {financial_batch_size})")
+                            self.log.info(f"🚨 FINANCIAL REPORT TRIGGER: Reached {current_linking_map_count} linking map entries (trigger every {financial_batch_size})")
                             from tools.FBA_Financial_calculator import run_calculations
                             financial_results = run_calculations(supplier_name)
                             if financial_results and financial_results.get('statistics', {}).get('output_file'):
-                                self.log.info(f"✅ Financial report generated: {financial_results['statistics']['output_file']}")
+                                self.log.info(f"✅ Financial report EXECUTED: {financial_results['statistics']['output_file']}")
                             else:
-                                self.log.warning("⚠️ Financial report generated but no file path returned")
+                                self.log.warning("⚠️ Financial report executed but no file path returned")
                         except ImportError as ie:
                             self.log.error(f"❌ Could not import FBA_Financial_calculator: {ie}")
                         except Exception as e:
-                            self.log.error(f"❌ Error generating financial report: {e}")
+                            self.log.error(f"❌ Error executing financial report: {e}")
                     elif current_linking_map_count > 0:
-                        next_report_count = ((current_linking_map_count // financial_batch_size) + 1) * financial_batch_size
-                        self.log.info(f"📊 Financial report scheduled for {next_report_count} linking map entries (current: {current_linking_map_count}, batch size: {financial_batch_size})")
+                        next_trigger_count = ((current_linking_map_count // financial_batch_size) + 1) * financial_batch_size
+                        self.log.info(f"💡 FINANCIAL REPORT TRIGGER: Next trigger at {next_trigger_count} linking map entries (current: {current_linking_map_count}, trigger frequency: {financial_batch_size})")
                     
                     # Check memory management
                     memory_config = hybrid_config.get("memory_management", {})

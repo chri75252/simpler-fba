@@ -597,7 +597,163 @@ The implemented fixes establish a robust foundation for the Amazon FBA Agent Sys
 
 ---
 
+## 🚨 CRITICAL ARCHITECTURAL DISCOVERIES (SESSION 2 - July 20, 2025)
+
+### **FUNDAMENTAL WORKFLOW MISUNDERSTANDING IDENTIFIED**
+
+During deep analysis using ZEN MCP tools, a **critical architectural issue** was discovered that affects all previous assumptions about system behavior:
+
+#### **🔍 HYBRID VS STANDARD WORKFLOW ARCHITECTURE**
+
+**DISCOVERY**: The current system uses **HYBRID PROCESSING** which fundamentally differs from the expected **STANDARD WORKFLOW**:
+
+- **Current (Hybrid)**: Processes categories in chunks → Immediate Amazon analysis per chunk
+- **Expected (Standard)**: Complete supplier extraction → Complete Amazon analysis → Financial reports
+
+**CONFIG EVIDENCE**:
+```json
+"hybrid_processing": {
+    "enabled": true,
+    "chunked": {
+        "enabled": true,
+        "chunk_size_categories": 1
+    }
+}
+```
+
+#### **🚨 CRITICAL RESUMPTION LOGIC ISSUE**
+
+**USER REQUIREMENT CLARIFICATION**: Two distinct resumption phases are required:
+
+1. **SUPPLIER EXTRACTION PHASE**: 
+   - Must check supplier cache file (`poundwholesale_co_uk_products_cache.json`) 
+   - Resume from cache index, NOT state manager index
+   - Complete ALL supplier extraction before Amazon analysis
+
+2. **AMAZON ANALYSIS PHASE**:
+   - Must check linking map entries
+   - Resume from linking map index
+   - Process all products through Amazon analysis
+
+**LOG EVIDENCE OF FAILURE**:
+```
+State Manager: ✅ "Loaded state for poundwholesale.co.uk - resuming from index 3"
+Workflow: ❌ Starts scraping from category 1 again (ignores state)
+```
+
+#### **💡 FINANCIAL REPORT TRIGGERING MISUNDERSTANDING**
+
+**PREVIOUS ASSUMPTION**: `financial_report_batch_size` controls batch processing
+**CORRECT UNDERSTANDING**: `financial_report_batch_size` is a **TRIGGER MECHANISM**
+
+- **Correct Logic**: Every N linking map entries → Generate financial report
+- **Similar to**: `linking_map_batch_size: 1` → Generate linking map entry per product
+- **Current Config**: `financial_report_batch_size: 5` → Report every 5 linking map entries
+
+#### **📊 LOG ANALYSIS EVIDENCE**
+
+**Files Analyzed**:
+- `run_custom_poundwholesale_20250720_065726.log` (First run)
+- `run_custom_poundwholesale_20250720_065840.log` (Resumption attempt)
+
+**Key Evidence**:
+1. **Line 38 (Second Log)**: State manager correctly loads "resuming from index 3"
+2. **Lines 61-80 (Second Log)**: System starts scraping from category 1 again
+3. **Proof**: Hybrid workflow ignores supplier cache for resumption
+
+#### **🛠️ REQUIRED ARCHITECTURAL FIXES**
+
+1. **IMPLEMENT TWO-PHASE RESUMPTION**:
+   - During supplier extraction: Check supplier cache file + use cache index
+   - During Amazon analysis: Check linking map + use linking map index
+
+2. **FIX FINANCIAL REPORT TRIGGERING**:
+   - Monitor linking map entry count
+   - Generate report every N entries (not batch-based)
+   - Implement trigger mechanism similar to linking map generation
+
+3. **RESOLVE HYBRID WORKFLOW CONFLICTS**:
+   - Either disable hybrid mode or implement proper resumption within hybrid chunks
+   - Ensure supplier cache is checked before starting extraction
+
+4. **SUPPLIER EXTRACTION RESUMPTION**:
+   - Check existing supplier cache file
+   - Count existing products in cache
+   - Resume supplier extraction from cache count, not state index
+
+#### **📋 SYSTEM FILE REFERENCES**
+
+**Key Files**:
+- **Main Workflow**: `/tools/passive_extraction_workflow_latest.py`
+- **Supplier Cache**: `/OUTPUTS/cached_products/poundwholesale_co_uk_products_cache.json`
+- **Linking Map**: `/OUTPUTS/FBA_ANALYSIS/linking_maps/poundwholesale.co.uk/linking_map.json`
+- **Processing State**: `/OUTPUTS/CACHE/processing_states/poundwholesale_co_uk_processing_state.json`
+- **System Config**: `/config/system_config.json`
+
+**Critical Code Locations**:
+- **Hybrid Processing**: Lines 51-55 in logs show hybrid chunked mode active
+- **Resumption Logic**: Lines 1060-1070 in passive_extraction_workflow_latest.py
+- **Financial Reports**: Lines 3465-3480 (currently incorrect batch-based logic)
+
+#### **⚠️ IMPACT ON PREVIOUS "COMPLETED" FIXES**
+
+Many previously marked "completed" fixes were based on **incorrect workflow understanding**:
+
+1. **Amazon Resumption Logic**: Partially correct but applied in wrong workflow phase
+2. **Financial Report Triggering**: Fixed linking map loading but trigger logic still wrong
+3. **Supplier Cache Deduplication**: Works correctly but resumption doesn't use it
+4. **Linking Map Restoration**: File restored but hybrid workflow prevents proper usage
+
+#### **🎯 CORRECTED SYSTEM REQUIREMENTS**
+
+**Phase 1 - Supplier Extraction**:
+```
+1. Check supplier cache file exists and count entries
+2. Resume supplier extraction from cache count (not state index)
+3. Complete ALL categories before moving to Amazon analysis
+4. Save products to cache with deduplication
+```
+
+**Phase 2 - Amazon Analysis**:
+```
+1. Load all supplier products from cache
+2. Check linking map for already processed products
+3. Resume Amazon analysis from linking map count
+4. Generate linking map entries (batch_size: 1 = per product)
+5. Generate financial reports (batch_size: 5 = every 5 entries)
+```
+
+**Phase 3 - Financial Reporting**:
+```
+1. Monitor linking map entry count
+2. When count % financial_report_batch_size == 0:
+   - Generate financial report
+   - Include all products with complete data
+```
+
+#### **✅ IMPLEMENTED ARCHITECTURAL FIXES (Session 2 - July 20, 2025)**
+
+**1. TWO-PHASE RESUMPTION LOGIC ✅ IMPLEMENTED**
+- **Location**: Lines 1073-1113 in passive_extraction_workflow_latest.py
+- **Phase Detection**: Automatically detects SUPPLIER_EXTRACTION, AMAZON_ANALYSIS, or COMPLETED phase
+- **Logic**: Compares supplier cache count vs linking map count to determine current phase
+- **Resumption**: Each phase resumes from appropriate file (supplier cache or linking map)
+
+**2. SUPPLIER CACHE-BASED RESUMPTION ✅ IMPLEMENTED**
+- **Location**: Lines 3472-3510 in passive_extraction_workflow_latest.py  
+- **Logic**: Checks supplier cache file before extraction, skips if categories already extracted
+- **Cache Hit**: "✅ SUPPLIER CACHE HIT: Chunk categories already extracted"
+- **Cache Miss**: "🔄 SUPPLIER EXTRACTION: Need to extract remaining products"
+
+**3. FINANCIAL REPORT TRIGGER MECHANISM ✅ IMPLEMENTED**
+- **Location**: Lines 3520-3544 in passive_extraction_workflow_latest.py
+- **Corrected Logic**: financial_report_batch_size as TRIGGER (every N linking map entries)
+- **Trigger Message**: "🚨 FINANCIAL REPORT TRIGGER: Reached X linking map entries"
+- **Execution Message**: "✅ Financial report EXECUTED: [file_path]"
+
+---
+
 **Report Generated**: July 20, 2025  
 **Analysis Tools**: ZEN MCP Tools, Direct Code Analysis, Log Investigation  
-**Implementation Status**: All critical fixes completed and ready for testing  
+**Implementation Status**: ⚠️ Critical architectural issues identified - requires major fixes  
 **Cross-Chat Continuity**: Complete documentation for seamless session continuation

@@ -36,12 +36,17 @@ from typing import Any, Dict, List, Optional, TypedDict, Annotated
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 # LangGraph imports
-from langgraph.graph import StateGraph, END, START
-from langgraph.checkpoint.memory import MemorySaver
-from langchain_core.messages import HumanMessage, AIMessage
-from langchain_core.runnables import RunnableLambda
-from langchain_openai import ChatOpenAI
-from langgraph.graph.message import add_messages
+try:
+    from langgraph.graph import StateGraph, END, START
+    from langgraph.checkpoint.memory import MemorySaver
+    from langchain_core.messages import HumanMessage, AIMessage
+    from langchain_core.runnables import RunnableLambda
+    from langchain_openai import ChatOpenAI
+    from langgraph.graph.message import add_messages
+    LANGGRAPH_AVAILABLE = True
+except ImportError as e:
+    LANGGRAPH_AVAILABLE = False
+    logging.warning(f"LangGraph imports unavailable: {e}")
 
 # Import ALL our tool integrations
 from langraph_integration.vision_enhanced_tools import create_vision_enhanced_tools
@@ -56,7 +61,7 @@ from tools.workflow_orchestrator import WorkflowOrchestrator
 try:
     from tools.passive_extraction_workflow_latest import run_workflow_main
 except ImportError:
-    log.warning("Could not import passive_extraction_workflow_latest - passive workflow integration disabled")
+    logging.warning("Could not import passive_extraction_workflow_latest - passive workflow integration disabled")
     run_workflow_main = None
 
 # Environment setup for LangSmith with graceful handling

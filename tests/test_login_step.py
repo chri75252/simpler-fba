@@ -21,6 +21,13 @@ from unittest.mock import AsyncMock, MagicMock, patch
 # Add project root to path
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
+import importlib.util
+import pytest
+
+# Skip this module if LangGraph is not installed
+if importlib.util.find_spec("langgraph") is None:
+    pytest.skip("LangGraph not installed", allow_module_level=True)
+
 from langraph_integration.complete_fba_workflow import CompleteFBAWorkflow, CompleteFBAState
 
 class TestLoginStep(unittest.TestCase):

@@ -1,0 +1,797 @@
+2025-07-20 15:50:02,995 - utils.logger - INFO - 🔧 Logging initialised – log file: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/logs/debug/run_custom_poundwholesale_20250720_155002.log
+2025-07-20 15:50:02,996 - __main__ - INFO - 📋 Debug log file: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/logs/debug/run_custom_poundwholesale_20250720_155002.log
+2025-07-20 15:50:02,996 - __main__ - DEBUG - Debug logging initialized - full system execution details will be captured
+2025-07-20 15:50:03,000 - utils.browser_manager - INFO - 🔧 BrowserManager singleton initialized
+2025-07-20 15:50:03,316 - utils.browser_manager - INFO - 🔌 Connecting to persistent Chrome on debug port 9222
+2025-07-20 15:50:04,058 - utils.browser_manager - INFO - 📄 Using existing context with 3 pages
+2025-07-20 15:50:04,058 - utils.browser_manager - INFO - ✅ Connected to persistent Chrome successfully
+2025-07-20 15:50:04,059 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 15:50:04,059 - __main__ - INFO - 🔐 Initializing authentication service for logout detection...
+2025-07-20 15:50:04,068 - __main__ - INFO - ✅ Using hardcoded credentials for poundwholesale.co.uk
+2025-07-20 15:50:04,069 - __main__ - INFO - 🌐 Connecting to existing Chrome debug port 9222 for authentication...
+2025-07-20 15:50:09,087 - tools.supplier_authentication_service - INFO - ✅ Authentication indicator found: 'logout'
+2025-07-20 15:50:09,144 - tools.supplier_authentication_service - INFO - ✅ Logout link found - user is authenticated
+2025-07-20 15:50:09,145 - tools.supplier_authentication_service - INFO - ✅ Session already authenticated - skipping login
+2025-07-20 15:50:09,149 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: output_dir = '/mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS'
+2025-07-20 15:50:09,149 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: supplier_cache_dir = '/mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products'
+2025-07-20 15:50:09,152 - PassiveExtractionWorkflow - INFO - ✅ Created supplier cache directory: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products
+2025-07-20 15:50:09,161 - PassiveExtractionWorkflow - INFO - ✅ Created amazon cache directory: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/FBA_ANALYSIS/amazon_cache
+2025-07-20 15:50:09,168 - amazon_playwright_extractor - INFO - AI features disabled in amazon_playwright_extractor - using only traditional selectors.
+2025-07-20 15:50:09,178 - amazon_playwright_extractor - INFO - Output directory set to: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/CACHE/amazon_data
+2025-07-20 15:50:09,178 - amazon_playwright_extractor - WARNING - ⚠️ BrowserManager not available, using legacy browser connection
+2025-07-20 15:50:09,183 - configurable_supplier_scraper - INFO - ✅ Loaded system configuration from /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/config/system_config.json
+2025-07-20 15:50:09,185 - configurable_supplier_scraper - INFO - 🔧 ConfigurableSupplierScraper will use centralized BrowserManager
+2025-07-20 15:50:09,185 - configurable_supplier_scraper - DEBUG - AI model from config: gpt-4.1-mini-2025-04-14
+2025-07-20 15:50:09,186 - configurable_supplier_scraper - DEBUG - Extraction targets from config: {}
+2025-07-20 15:50:09,186 - configurable_supplier_scraper - DEBUG - Discovery assistance from config: {}
+2025-07-20 15:50:09,187 - configurable_supplier_scraper - INFO - [CONFIG] Initialized with AI model: gpt-4.1-mini-2025-04-14
+2025-07-20 15:50:09,188 - configurable_supplier_scraper - INFO - [TARGET] Extraction targets loaded: []
+2025-07-20 15:50:09,188 - configurable_supplier_scraper - INFO - [ASSIST] Discovery assistance enabled: False
+2025-07-20 15:50:09,189 - PassiveExtractionWorkflow - DEBUG - 🔍 DEBUG: linking_map initialized as type: <class 'list'>
+2025-07-20 15:50:09,189 - PassiveExtractionWorkflow - INFO - ✅ Output directory set to: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS
+2025-07-20 15:50:09,190 - PassiveExtractionWorkflow - INFO - ✅ Initialization validation passed - all critical attributes verified
+2025-07-20 15:50:09,190 - PassiveExtractionWorkflow - INFO - --- Starting Passive Extraction Workflow for: poundwholesale.co.uk ---
+2025-07-20 15:50:09,191 - PassiveExtractionWorkflow - INFO - Session ID: poundwholesale.co.uk_20250720_155009
+2025-07-20 15:50:09,191 - PassiveExtractionWorkflow - INFO - 📊 CONFIGURATION VALUES:
+2025-07-20 15:50:09,191 - PassiveExtractionWorkflow - INFO -    max_products_to_process: 1000000000
+2025-07-20 15:50:09,192 - PassiveExtractionWorkflow - INFO -    max_products_per_category: 10000
+2025-07-20 15:50:09,193 - PassiveExtractionWorkflow - INFO -    max_analyzed_products: 1000000000
+2025-07-20 15:50:09,193 - PassiveExtractionWorkflow - INFO -    max_products_per_cycle: 100
+2025-07-20 15:50:09,193 - PassiveExtractionWorkflow - INFO -    supplier_extraction_batch_size: 10000
+2025-07-20 15:50:09,194 - PassiveExtractionWorkflow - INFO -    max_categories_per_request: 10000
+2025-07-20 15:50:09,203 - utils.enhanced_state_manager - INFO - Loaded state for poundwholesale.co.uk - resuming from index 4
+2025-07-20 15:50:09,203 - PassiveExtractionWorkflow - INFO - 📋 Loaded existing processing state for poundwholesale.co.uk
+2025-07-20 15:50:09,204 - PassiveExtractionWorkflow - INFO - 🔄 Resuming from index 4
+2025-07-20 15:50:09,204 - PassiveExtractionWorkflow - INFO - ✅ Processing state loaded - system will resume from last position
+2025-07-20 15:50:09,211 - PassiveExtractionWorkflow - INFO - ✅ No existing linking map found at any path (tried 2 patterns) - Creating new map
+2025-07-20 15:50:09,212 - PassiveExtractionWorkflow - DEBUG - 🔍 DEBUG: linking_map loaded as type: <class 'list'>, length: 0
+2025-07-20 15:50:09,221 - PassiveExtractionWorkflow - INFO - ✅ CACHE FOUND: expected pattern - 4 products in poundwholesale-co-uk_products_cache.json
+2025-07-20 15:50:09,221 - PassiveExtractionWorkflow - INFO - 🔍 PHASE DETECTION: AMAZON_ANALYSIS (supplier cache: 4 products, no linking map)
+2025-07-20 15:50:09,242 - PassiveExtractionWorkflow - INFO - ✅ Processing state initialized and started
+2025-07-20 15:50:09,250 - PassiveExtractionWorkflow - INFO - ✅ No existing linking map found at any path (tried 2 patterns) - Creating new map
+2025-07-20 15:50:09,251 - PassiveExtractionWorkflow - INFO - CUSTOM MODE: Using predefined category list.
+2025-07-20 15:50:09,251 - tools.passive_extraction_workflow_latest - INFO - Attempting to load predefined categories for poundwholesale.co.uk
+2025-07-20 15:50:09,261 - tools.passive_extraction_workflow_latest - INFO - ✅ Successfully loaded 276 predefined category URLs from /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/config/poundwholesale_categories.json
+2025-07-20 15:50:09,263 - PassiveExtractionWorkflow - INFO - 🌟 INFINITE MODE DETECTED: max_products=1000000000, max_products_per_category=10000
+2025-07-20 15:50:09,263 - PassiveExtractionWorkflow - INFO - 📋 Processing ALL 276 predefined categories (infinite mode)
+2025-07-20 15:50:09,264 - PassiveExtractionWorkflow - INFO - 🔄 HYBRID PROCESSING MODE: Enabled
+2025-07-20 15:50:09,264 - PassiveExtractionWorkflow - INFO - 🔄 HYBRID PROCESSING: Mode configuration loaded
+2025-07-20 15:50:09,265 - PassiveExtractionWorkflow - INFO -    switch_to_amazon_after_categories: 1
+2025-07-20 15:50:09,265 - PassiveExtractionWorkflow - INFO - 🔄 HYBRID MODE: Chunked processing (chunk size: 1 categories)
+2025-07-20 15:50:09,266 - PassiveExtractionWorkflow - INFO - 🔄 Processing chunk 1: categories 1-1
+2025-07-20 15:50:09,275 - PassiveExtractionWorkflow - INFO - ✅ CACHE FOUND: expected pattern - 4 products in poundwholesale-co-uk_products_cache.json
+2025-07-20 15:50:09,281 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Need to extract remaining products for chunk (4/10000 expected)
+2025-07-20 15:50:09,290 - PassiveExtractionWorkflow - INFO - ✅ CACHE FOUND: expected pattern - 4 products in poundwholesale-co-uk_products_cache.json
+2025-07-20 15:50:09,291 - PassiveExtractionWorkflow - WARNING - ⚠️ Error checking supplier cache freshness: name 'cached_products_path' is not defined, proceeding with scraping
+2025-07-20 15:50:09,291 - PassiveExtractionWorkflow - INFO - 🕷️ PERFORMING SUPPLIER SCRAPING from 1 categories
+2025-07-20 15:50:09,292 - PassiveExtractionWorkflow - INFO - 📦 Using supplier extraction batch size: 10000
+2025-07-20 15:50:09,300 - PassiveExtractionWorkflow - INFO - ✅ CACHE FOUND: expected pattern - 4 products in poundwholesale-co-uk_products_cache.json
+2025-07-20 15:50:09,304 - PassiveExtractionWorkflow - WARNING - ⚠️ Could not load existing cache during resumption: cannot access local variable 'json' where it is not associated with a value
+2025-07-20 15:50:09,304 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS TRACKING: Extracting from 1 categories in 1 batches
+2025-07-20 15:50:09,305 - PassiveExtractionWorkflow - INFO - 📦 Processing category batch 1/1 (1 categories)
+2025-07-20 15:50:09,305 - PassiveExtractionWorkflow - INFO - 🔐 LOGIN SCRIPT TRIGGER: Checking authentication before category_batch_1
+2025-07-20 15:50:09,310 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 15:50:09,310 - utils.browser_manager - INFO - 📄 Navigating to https://www.poundwholesale.co.uk
+2025-07-20 15:50:10,861 - utils.browser_manager - INFO - ✅ Page ready for https://www.poundwholesale.co.uk
+2025-07-20 15:50:15,372 - tools.supplier_authentication_service - INFO - ✅ Authentication indicator found: 'logout'
+2025-07-20 15:50:15,443 - tools.supplier_authentication_service - INFO - ✅ Logout link found - user is authenticated
+2025-07-20 15:50:15,443 - tools.supplier_authentication_service - INFO - ✅ Session already authenticated - skipping login
+2025-07-20 15:50:15,444 - PassiveExtractionWorkflow - INFO - ✅ LOGIN SCRIPT SUCCESS: Authentication verified for category_batch_1
+2025-07-20 15:50:15,466 - PassiveExtractionWorkflow - INFO - 🔄 EXTRACTION PROGRESS: Processing subcategory 1/1 in batch 1 (Category 1/1)
+2025-07-20 15:50:15,466 - PassiveExtractionWorkflow - INFO - Scraping category: https://www.poundwholesale.co.uk/kitchenware/wholesale-baking
+2025-07-20 15:50:15,467 - configurable_supplier_scraper - INFO - Starting enhanced scraping from https://www.poundwholesale.co.uk/kitchenware/wholesale-baking
+2025-07-20 15:50:15,467 - configurable_supplier_scraper - INFO - Setting page limiter for https://www.poundwholesale.co.uk/kitchenware/wholesale-baking
+2025-07-20 15:50:15,468 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 15:50:15,490 - configurable_supplier_scraper - INFO - ✅ Loaded VALIDATED supplier package selectors for poundwholesale.co.uk from /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/suppliers/poundwholesale-co-uk/config/product_selectors.json
+2025-07-20 15:50:15,491 - configurable_supplier_scraper - INFO - No page limiter configuration found for www.poundwholesale.co.uk
+2025-07-20 15:50:15,492 - configurable_supplier_scraper - INFO - Collecting product URLs from paginated pages starting at: https://www.poundwholesale.co.uk/kitchenware/wholesale-baking
+2025-07-20 15:50:15,492 - configurable_supplier_scraper - INFO - Processing page 1: https://www.poundwholesale.co.uk/kitchenware/wholesale-baking
+2025-07-20 15:50:15,493 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/kitchenware/wholesale-baking (attempt 1/3)
+2025-07-20 15:50:15,494 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 15:50:15,494 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/kitchenware/wholesale-baking
+2025-07-20 15:50:16,948 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/kitchenware/wholesale-baking in 1.89s...
+2025-07-20 15:50:18,844 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/kitchenware/wholesale-baking (attempt 2/3)
+2025-07-20 15:50:18,845 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 15:50:18,846 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/kitchenware/wholesale-baking
+2025-07-20 15:50:20,199 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/kitchenware/wholesale-baking
+2025-07-20 15:50:20,200 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/kitchenware/wholesale-baking
+2025-07-20 15:50:20,335 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/kitchenware/wholesale-baking (Size: 647079 bytes)
+2025-07-20 15:50:20,583 - configurable_supplier_scraper - INFO - Found 20 new product URLs on page 1
+2025-07-20 15:50:20,584 - configurable_supplier_scraper - INFO - Processing page 2: https://www.poundwholesale.co.uk/kitchenware/wholesale-baking?p=2
+2025-07-20 15:50:20,585 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/kitchenware/wholesale-baking?p=2 (attempt 1/3)
+2025-07-20 15:50:20,586 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 15:50:20,587 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/kitchenware/wholesale-baking?p=2
+2025-07-20 15:50:22,040 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/kitchenware/wholesale-baking?p=2 in 2.30s...
+2025-07-20 15:50:24,379 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/kitchenware/wholesale-baking?p=2 (attempt 2/3)
+2025-07-20 15:50:24,380 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 15:50:24,381 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/kitchenware/wholesale-baking?p=2
+2025-07-20 15:50:26,881 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/kitchenware/wholesale-baking?p=2
+2025-07-20 15:50:26,882 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/kitchenware/wholesale-baking?p=2
+2025-07-20 15:50:27,023 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/kitchenware/wholesale-baking?p=2 (Size: 637127 bytes)
+2025-07-20 15:50:27,323 - configurable_supplier_scraper - INFO - Found 20 new product URLs on page 2
+2025-07-20 15:50:27,324 - configurable_supplier_scraper - INFO - Processing page 3: https://www.poundwholesale.co.uk/kitchenware/wholesale-baking?p=3
+2025-07-20 15:50:27,324 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/kitchenware/wholesale-baking?p=3 (attempt 1/3)
+2025-07-20 15:50:27,325 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 15:50:27,325 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/kitchenware/wholesale-baking?p=3
+2025-07-20 15:50:27,830 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/kitchenware/wholesale-baking?p=3 in 1.90s...
+2025-07-20 15:50:29,729 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/kitchenware/wholesale-baking?p=3 (attempt 2/3)
+2025-07-20 15:50:29,730 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 15:50:29,731 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/kitchenware/wholesale-baking?p=3
+2025-07-20 15:50:32,472 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/kitchenware/wholesale-baking?p=3
+2025-07-20 15:50:32,473 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/kitchenware/wholesale-baking?p=3
+2025-07-20 15:50:32,607 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/kitchenware/wholesale-baking?p=3 (Size: 637627 bytes)
+2025-07-20 15:50:32,859 - configurable_supplier_scraper - INFO - Found 20 new product URLs on page 3
+2025-07-20 15:50:32,860 - configurable_supplier_scraper - INFO - Processing page 4: https://www.poundwholesale.co.uk/kitchenware/wholesale-baking?p=4
+2025-07-20 15:50:32,861 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/kitchenware/wholesale-baking?p=4 (attempt 1/3)
+2025-07-20 15:50:32,861 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 15:50:32,862 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/kitchenware/wholesale-baking?p=4
+2025-07-20 15:50:34,337 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/kitchenware/wholesale-baking?p=4 in 2.04s...
+2025-07-20 15:50:36,414 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/kitchenware/wholesale-baking?p=4 (attempt 2/3)
+2025-07-20 15:50:36,415 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 15:50:36,416 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/kitchenware/wholesale-baking?p=4
+2025-07-20 15:50:38,063 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/kitchenware/wholesale-baking?p=4
+2025-07-20 15:50:38,064 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/kitchenware/wholesale-baking?p=4
+2025-07-20 15:50:38,202 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/kitchenware/wholesale-baking?p=4 (Size: 642204 bytes)
+2025-07-20 15:50:38,450 - configurable_supplier_scraper - INFO - Found 20 new product URLs on page 4
+2025-07-20 15:50:38,450 - configurable_supplier_scraper - INFO - Processing page 5: https://www.poundwholesale.co.uk/kitchenware/wholesale-baking?p=5
+2025-07-20 15:50:38,451 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/kitchenware/wholesale-baking?p=5 (attempt 1/3)
+2025-07-20 15:50:38,452 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 15:50:38,452 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/kitchenware/wholesale-baking?p=5
+2025-07-20 15:50:39,924 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/kitchenware/wholesale-baking?p=5 in 2.02s...
+2025-07-20 15:50:41,965 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/kitchenware/wholesale-baking?p=5 (attempt 2/3)
+2025-07-20 15:50:41,967 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 15:50:41,968 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/kitchenware/wholesale-baking?p=5
+2025-07-20 15:50:43,709 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/kitchenware/wholesale-baking?p=5
+2025-07-20 15:50:43,711 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/kitchenware/wholesale-baking?p=5
+2025-07-20 15:50:43,861 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/kitchenware/wholesale-baking?p=5 (Size: 633340 bytes)
+2025-07-20 15:50:44,195 - configurable_supplier_scraper - INFO - Found 20 new product URLs on page 5
+2025-07-20 15:50:44,196 - configurable_supplier_scraper - INFO - Processing page 6: https://www.poundwholesale.co.uk/kitchenware/wholesale-baking?p=6
+2025-07-20 15:50:44,197 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/kitchenware/wholesale-baking?p=6 (attempt 1/3)
+2025-07-20 15:50:44,197 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 15:50:44,198 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/kitchenware/wholesale-baking?p=6
+2025-07-20 15:50:45,870 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/kitchenware/wholesale-baking?p=6 in 2.15s...
+2025-07-20 15:50:48,032 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/kitchenware/wholesale-baking?p=6 (attempt 2/3)
+2025-07-20 15:50:48,033 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 15:50:48,034 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/kitchenware/wholesale-baking?p=6
+2025-07-20 15:50:50,928 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/kitchenware/wholesale-baking?p=6
+2025-07-20 15:50:50,928 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/kitchenware/wholesale-baking?p=6
+2025-07-20 15:50:51,069 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/kitchenware/wholesale-baking?p=6 (Size: 641293 bytes)
+2025-07-20 15:50:51,308 - configurable_supplier_scraper - INFO - Found 20 new product URLs on page 6
+2025-07-20 15:50:51,309 - configurable_supplier_scraper - INFO - Processing page 7: https://www.poundwholesale.co.uk/kitchenware/wholesale-baking?p=7
+2025-07-20 15:50:51,310 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/kitchenware/wholesale-baking?p=7 (attempt 1/3)
+2025-07-20 15:50:51,311 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 15:50:51,312 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/kitchenware/wholesale-baking?p=7
+2025-07-20 15:50:52,806 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/kitchenware/wholesale-baking?p=7 in 1.84s...
+2025-07-20 15:50:54,660 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/kitchenware/wholesale-baking?p=7 (attempt 2/3)
+2025-07-20 15:50:54,661 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 15:50:54,662 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/kitchenware/wholesale-baking?p=7
+2025-07-20 15:50:56,859 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/kitchenware/wholesale-baking?p=7
+2025-07-20 15:50:56,860 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/kitchenware/wholesale-baking?p=7
+2025-07-20 15:50:56,970 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/kitchenware/wholesale-baking?p=7 (Size: 368806 bytes)
+2025-07-20 15:50:57,096 - configurable_supplier_scraper - INFO - Found 1 new product URLs on page 7
+2025-07-20 15:50:57,097 - configurable_supplier_scraper - INFO - Processing page 8: https://www.poundwholesale.co.uk/kitchenware/wholesale-baking?p=8
+2025-07-20 15:50:57,098 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/kitchenware/wholesale-baking?p=8 (attempt 1/3)
+2025-07-20 15:50:57,099 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 15:50:57,099 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/kitchenware/wholesale-baking?p=8
+2025-07-20 15:50:58,498 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/kitchenware/wholesale-baking?p=8 in 2.50s...
+2025-07-20 15:50:59,975 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/kitchenware/wholesale-baking?p=8 (attempt 2/3)
+2025-07-20 15:50:59,976 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 15:50:59,977 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/kitchenware/wholesale-baking?p=8
+2025-07-20 15:51:02,301 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/kitchenware/wholesale-baking?p=8
+2025-07-20 15:51:02,302 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/kitchenware/wholesale-baking?p=8
+2025-07-20 15:51:02,412 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/kitchenware/wholesale-baking?p=8 (Size: 338014 bytes)
+2025-07-20 15:51:02,536 - configurable_supplier_scraper - INFO - Found 0 new product URLs on page 8
+2025-07-20 15:51:02,537 - configurable_supplier_scraper - INFO - Collected 121 total product URLs across 8 pages
+2025-07-20 15:51:02,537 - configurable_supplier_scraper - INFO - Found 121 total product URLs across all pages
+2025-07-20 15:51:02,538 - configurable_supplier_scraper - INFO - Visiting product page 1/121: https://www.poundwholesale.co.uk/queen-of-cakes-cupcake-cases-125-pack
+2025-07-20 15:51:02,539 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/queen-of-cakes-cupcake-cases-125-pack (attempt 1/3)
+2025-07-20 15:51:02,541 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 15:51:02,542 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/queen-of-cakes-cupcake-cases-125-pack
+2025-07-20 15:51:04,151 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/queen-of-cakes-cupcake-cases-125-pack in 2.25s...
+2025-07-20 15:51:06,415 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/queen-of-cakes-cupcake-cases-125-pack (attempt 2/3)
+2025-07-20 15:51:06,416 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 15:51:06,417 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/queen-of-cakes-cupcake-cases-125-pack
+2025-07-20 15:51:08,369 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/queen-of-cakes-cupcake-cases-125-pack
+2025-07-20 15:51:08,371 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/queen-of-cakes-cupcake-cases-125-pack
+2025-07-20 15:51:08,585 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/queen-of-cakes-cupcake-cases-125-pack (Size: 668256 bytes)
+2025-07-20 15:51:08,948 - configurable_supplier_scraper - INFO - 🔄 REAL-TIME: Added product 1 to shared accumulator (total: 1)
+2025-07-20 15:51:08,949 - configurable_supplier_scraper - INFO - ✅ Extracted product 1: Queen Of Cakes Cupcake Cases 125 Pack - £0.76 (EAN: 5053249247908)
+2025-07-20 15:51:08,969 - PassiveExtractionWorkflow - INFO - 🔍 SUPPLIER STATE UPDATE: Index updated to 1/121
+2025-07-20 15:51:08,969 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS: Product 1 processed (total in cache: 1)
+2025-07-20 15:51:08,969 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Processing product 1
+2025-07-20 15:51:08,970 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: Product 1, frequency=2, enabled=True
+2025-07-20 15:51:08,970 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: List length=1, modulo=1
+2025-07-20 15:51:08,986 - configurable_supplier_scraper - INFO - Visiting product page 2/121: https://www.poundwholesale.co.uk/prima-revolving-rolling-pin-19
+2025-07-20 15:51:08,986 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/prima-revolving-rolling-pin-19 (attempt 1/3)
+2025-07-20 15:51:08,987 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 15:51:08,987 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/prima-revolving-rolling-pin-19
+2025-07-20 15:51:11,974 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/prima-revolving-rolling-pin-19 in 1.58s...
+2025-07-20 15:51:13,553 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/prima-revolving-rolling-pin-19 (attempt 2/3)
+2025-07-20 15:51:13,555 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 15:51:13,556 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/prima-revolving-rolling-pin-19
+2025-07-20 15:51:16,466 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/prima-revolving-rolling-pin-19
+2025-07-20 15:51:16,467 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/prima-revolving-rolling-pin-19
+2025-07-20 15:51:16,629 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/prima-revolving-rolling-pin-19 (Size: 664069 bytes)
+2025-07-20 15:51:16,895 - configurable_supplier_scraper - INFO - 🔄 REAL-TIME: Added product 2 to shared accumulator (total: 2)
+2025-07-20 15:51:16,895 - configurable_supplier_scraper - INFO - ✅ Extracted product 2: Prima Revolving Rolling Pin 19" - £3.31 (EAN: 5038673183299)
+2025-07-20 15:51:16,922 - PassiveExtractionWorkflow - INFO - 🔍 SUPPLIER STATE UPDATE: Index updated to 2/121
+2025-07-20 15:51:16,922 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS: Product 2 processed (total in cache: 2)
+2025-07-20 15:51:16,923 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Processing product 2
+2025-07-20 15:51:16,923 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: Product 2, frequency=2, enabled=True
+2025-07-20 15:51:16,924 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: List length=2, modulo=0
+2025-07-20 15:51:16,924 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Initial path object: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products/poundwholesale-co-uk_products_cache.json
+2025-07-20 15:51:16,925 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Path is absolute: True
+2025-07-20 15:51:16,925 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Path as_posix: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products/poundwholesale-co-uk_products_cache.json
+2025-07-20 15:51:16,926 - PassiveExtractionWorkflow - WARNING - WSL path detected: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products/poundwholesale-co-uk_products_cache.json. Using WSL-compatible approach.
+2025-07-20 15:51:16,926 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Directory extracted via os.path.dirname: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products
+2025-07-20 15:51:16,932 - PassiveExtractionWorkflow - INFO - ✅ Cache directory ensured via os.makedirs: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products
+2025-07-20 15:51:16,932 - PassiveExtractionWorkflow - INFO - 💾 CACHE SAVE: Starting save of 2 products to cache...
+2025-07-20 15:51:16,933 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Final path for file operations: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products/poundwholesale-co-uk_products_cache.json
+2025-07-20 15:51:16,942 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Loaded 4 existing products for deduplication
+2025-07-20 15:51:16,942 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Attempting to save to: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products/poundwholesale-co-uk_products_cache.json
+2025-07-20 15:51:16,955 - PassiveExtractionWorkflow - INFO - ✅ Successfully saved 6 products (2 new) to cache: poundwholesale-co-uk_products_cache.json (size: 3366 bytes)
+2025-07-20 15:51:16,956 - PassiveExtractionWorkflow - INFO - 💾 PERIODIC CACHE SAVE: Saved 2 products to cache (every 2 products)
+2025-07-20 15:51:16,973 - configurable_supplier_scraper - INFO - Visiting product page 3/121: https://www.poundwholesale.co.uk/prima-dumpling-mould-set-assorted-sizes-3-pack
+2025-07-20 15:51:16,974 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/prima-dumpling-mould-set-assorted-sizes-3-pack (attempt 1/3)
+2025-07-20 15:51:16,975 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 15:51:16,975 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/prima-dumpling-mould-set-assorted-sizes-3-pack
+2025-07-20 15:51:19,772 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/prima-dumpling-mould-set-assorted-sizes-3-pack in 2.05s...
+2025-07-20 15:51:21,828 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/prima-dumpling-mould-set-assorted-sizes-3-pack (attempt 2/3)
+2025-07-20 15:51:21,830 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 15:51:21,831 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/prima-dumpling-mould-set-assorted-sizes-3-pack
+2025-07-20 15:51:24,384 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/prima-dumpling-mould-set-assorted-sizes-3-pack
+2025-07-20 15:51:24,385 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/prima-dumpling-mould-set-assorted-sizes-3-pack
+2025-07-20 15:51:24,552 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/prima-dumpling-mould-set-assorted-sizes-3-pack (Size: 668374 bytes)
+2025-07-20 15:51:24,820 - configurable_supplier_scraper - INFO - 🔄 REAL-TIME: Added product 3 to shared accumulator (total: 3)
+2025-07-20 15:51:24,821 - configurable_supplier_scraper - INFO - ✅ Extracted product 3: Prima Dumpling Mould Set Assorted Sizes 3 Pack - £0.71 (EAN: 5038673184876)
+2025-07-20 15:51:24,851 - PassiveExtractionWorkflow - INFO - 🔍 SUPPLIER STATE UPDATE: Index updated to 3/121
+2025-07-20 15:51:24,851 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS: Product 3 processed (total in cache: 3)
+2025-07-20 15:51:24,852 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Processing product 3
+2025-07-20 15:51:24,852 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: Product 3, frequency=2, enabled=True
+2025-07-20 15:51:24,853 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: List length=3, modulo=1
+2025-07-20 15:51:24,875 - configurable_supplier_scraper - INFO - Visiting product page 4/121: https://www.poundwholesale.co.uk/prima-stainless-steel-icing-spatula-10
+2025-07-20 15:51:24,876 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/prima-stainless-steel-icing-spatula-10 (attempt 1/3)
+2025-07-20 15:51:24,876 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 15:51:24,879 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/prima-stainless-steel-icing-spatula-10
+2025-07-20 15:51:27,661 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/prima-stainless-steel-icing-spatula-10 in 1.79s...
+2025-07-20 15:51:29,461 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/prima-stainless-steel-icing-spatula-10 (attempt 2/3)
+2025-07-20 15:51:29,462 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 15:51:29,463 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/prima-stainless-steel-icing-spatula-10
+2025-07-20 15:51:31,430 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/prima-stainless-steel-icing-spatula-10
+2025-07-20 15:51:31,432 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/prima-stainless-steel-icing-spatula-10
+2025-07-20 15:51:31,614 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/prima-stainless-steel-icing-spatula-10 (Size: 667260 bytes)
+2025-07-20 15:51:31,959 - configurable_supplier_scraper - INFO - 🔄 REAL-TIME: Added product 4 to shared accumulator (total: 4)
+2025-07-20 15:51:31,960 - configurable_supplier_scraper - INFO - ✅ Extracted product 4: Prima Stainless Steel Icing Spatula 10" - £1.03 (EAN: 5038673131689)
+2025-07-20 15:51:31,985 - PassiveExtractionWorkflow - INFO - 🔍 SUPPLIER STATE UPDATE: Index updated to 4/121
+2025-07-20 15:51:31,986 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS: Product 4 processed (total in cache: 4)
+2025-07-20 15:51:31,987 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Processing product 4
+2025-07-20 15:51:31,987 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: Product 4, frequency=2, enabled=True
+2025-07-20 15:51:31,987 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: List length=4, modulo=0
+2025-07-20 15:51:31,988 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Initial path object: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products/poundwholesale-co-uk_products_cache.json
+2025-07-20 15:51:31,988 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Path is absolute: True
+2025-07-20 15:51:31,988 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Path as_posix: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products/poundwholesale-co-uk_products_cache.json
+2025-07-20 15:51:31,988 - PassiveExtractionWorkflow - WARNING - WSL path detected: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products/poundwholesale-co-uk_products_cache.json. Using WSL-compatible approach.
+2025-07-20 15:51:31,989 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Directory extracted via os.path.dirname: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products
+2025-07-20 15:51:31,993 - PassiveExtractionWorkflow - INFO - ✅ Cache directory ensured via os.makedirs: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products
+2025-07-20 15:51:31,993 - PassiveExtractionWorkflow - INFO - 💾 CACHE SAVE: Starting save of 4 products to cache...
+2025-07-20 15:51:31,993 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Final path for file operations: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products/poundwholesale-co-uk_products_cache.json
+2025-07-20 15:51:32,001 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Loaded 6 existing products for deduplication
+2025-07-20 15:51:32,002 - PassiveExtractionWorkflow - INFO - 🔄 DEDUPLICATION: Skipped 2 URL duplicates and 0 EAN duplicates.
+2025-07-20 15:51:32,002 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Attempting to save to: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products/poundwholesale-co-uk_products_cache.json
+2025-07-20 15:51:32,014 - PassiveExtractionWorkflow - INFO - ✅ Successfully saved 8 products (2 new) to cache: poundwholesale-co-uk_products_cache.json (size: 4516 bytes)
+2025-07-20 15:51:32,014 - PassiveExtractionWorkflow - INFO - 💾 PERIODIC CACHE SAVE: Saved 4 products to cache (every 2 products)
+2025-07-20 15:51:32,032 - configurable_supplier_scraper - INFO - Visiting product page 5/121: https://www.poundwholesale.co.uk/prima-stainless-steel-cake-server
+2025-07-20 15:51:32,032 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/prima-stainless-steel-cake-server (attempt 1/3)
+2025-07-20 15:51:32,033 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 15:51:32,033 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/prima-stainless-steel-cake-server
+2025-07-20 15:51:35,032 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/prima-stainless-steel-cake-server in 1.51s...
+2025-07-20 15:51:36,541 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/prima-stainless-steel-cake-server (attempt 2/3)
+2025-07-20 15:51:36,542 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 15:51:36,543 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/prima-stainless-steel-cake-server
+2025-07-20 15:51:37,659 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/prima-stainless-steel-cake-server
+2025-07-20 15:51:37,660 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/prima-stainless-steel-cake-server
+2025-07-20 15:51:38,314 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/prima-stainless-steel-cake-server (Size: 667426 bytes)
+2025-07-20 15:51:38,583 - configurable_supplier_scraper - INFO - 🔄 REAL-TIME: Added product 5 to shared accumulator (total: 5)
+2025-07-20 15:51:38,584 - configurable_supplier_scraper - INFO - ✅ Extracted product 5: Prima Stainless Steel Cake Server - £0.92 (EAN: 5038673131610)
+2025-07-20 15:51:38,606 - PassiveExtractionWorkflow - INFO - 🔍 SUPPLIER STATE UPDATE: Index updated to 5/121
+2025-07-20 15:51:38,606 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS: Product 5 processed (total in cache: 5)
+2025-07-20 15:51:38,606 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Processing product 5
+2025-07-20 15:51:38,607 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: Product 5, frequency=2, enabled=True
+2025-07-20 15:51:38,607 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: List length=5, modulo=1
+2025-07-20 15:51:38,627 - configurable_supplier_scraper - INFO - Visiting product page 6/121: https://www.poundwholesale.co.uk/kitchen-mixing-bowl-4-colours
+2025-07-20 15:51:38,627 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/kitchen-mixing-bowl-4-colours (attempt 1/3)
+2025-07-20 15:51:38,628 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 15:51:38,628 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/kitchen-mixing-bowl-4-colours
+2025-07-20 15:51:41,414 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/kitchen-mixing-bowl-4-colours in 2.36s...
+2025-07-20 15:51:43,781 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/kitchen-mixing-bowl-4-colours (attempt 2/3)
+2025-07-20 15:51:43,782 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 15:51:43,782 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/kitchen-mixing-bowl-4-colours
+2025-07-20 15:51:45,790 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/kitchen-mixing-bowl-4-colours
+2025-07-20 15:51:45,791 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/kitchen-mixing-bowl-4-colours
+2025-07-20 15:51:45,932 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/kitchen-mixing-bowl-4-colours (Size: 667882 bytes)
+2025-07-20 15:51:46,204 - configurable_supplier_scraper - INFO - 🔄 REAL-TIME: Added product 6 to shared accumulator (total: 6)
+2025-07-20 15:51:46,204 - configurable_supplier_scraper - INFO - ✅ Extracted product 6: Cookhouse Kitchen Mixing Bowl 3 Colours - £0.71 (EAN: 5015302414047)
+2025-07-20 15:51:46,216 - PassiveExtractionWorkflow - INFO - 🔍 SUPPLIER STATE UPDATE: Index updated to 6/121
+2025-07-20 15:51:46,216 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS: Product 6 processed (total in cache: 6)
+2025-07-20 15:51:46,216 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Processing product 6
+2025-07-20 15:51:46,216 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: Product 6, frequency=2, enabled=True
+2025-07-20 15:51:46,217 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: List length=6, modulo=0
+2025-07-20 15:51:46,217 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Initial path object: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products/poundwholesale-co-uk_products_cache.json
+2025-07-20 15:51:46,218 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Path is absolute: True
+2025-07-20 15:51:46,218 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Path as_posix: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products/poundwholesale-co-uk_products_cache.json
+2025-07-20 15:51:46,219 - PassiveExtractionWorkflow - WARNING - WSL path detected: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products/poundwholesale-co-uk_products_cache.json. Using WSL-compatible approach.
+2025-07-20 15:51:46,219 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Directory extracted via os.path.dirname: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products
+2025-07-20 15:51:46,224 - PassiveExtractionWorkflow - INFO - ✅ Cache directory ensured via os.makedirs: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products
+2025-07-20 15:51:46,224 - PassiveExtractionWorkflow - INFO - 💾 CACHE SAVE: Starting save of 6 products to cache...
+2025-07-20 15:51:46,225 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Final path for file operations: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products/poundwholesale-co-uk_products_cache.json
+2025-07-20 15:51:46,232 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Loaded 8 existing products for deduplication
+2025-07-20 15:51:46,232 - PassiveExtractionWorkflow - INFO - 🔄 DEDUPLICATION: Skipped 4 URL duplicates and 0 EAN duplicates.
+2025-07-20 15:51:46,233 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Attempting to save to: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products/poundwholesale-co-uk_products_cache.json
+2025-07-20 15:51:46,245 - PassiveExtractionWorkflow - INFO - ✅ Successfully saved 10 products (2 new) to cache: poundwholesale-co-uk_products_cache.json (size: 5630 bytes)
+2025-07-20 15:51:46,245 - PassiveExtractionWorkflow - INFO - 💾 PERIODIC CACHE SAVE: Saved 6 products to cache (every 2 products)
+2025-07-20 15:51:46,263 - configurable_supplier_scraper - INFO - Visiting product page 7/121: https://www.poundwholesale.co.uk/cookhouse-non-slip-assorted-colour-mixing-bowls-set-3pc
+2025-07-20 15:51:46,263 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/cookhouse-non-slip-assorted-colour-mixing-bowls-set-3pc (attempt 1/3)
+2025-07-20 15:51:46,263 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 15:51:46,264 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/cookhouse-non-slip-assorted-colour-mixing-bowls-set-3pc
+2025-07-20 15:51:49,163 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/cookhouse-non-slip-assorted-colour-mixing-bowls-set-3pc in 2.29s...
+2025-07-20 15:51:51,457 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/cookhouse-non-slip-assorted-colour-mixing-bowls-set-3pc (attempt 2/3)
+2025-07-20 15:51:51,458 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 15:51:51,459 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/cookhouse-non-slip-assorted-colour-mixing-bowls-set-3pc
+2025-07-20 15:51:53,198 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/cookhouse-non-slip-assorted-colour-mixing-bowls-set-3pc
+2025-07-20 15:51:53,199 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/cookhouse-non-slip-assorted-colour-mixing-bowls-set-3pc
+2025-07-20 15:51:53,393 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/cookhouse-non-slip-assorted-colour-mixing-bowls-set-3pc (Size: 673428 bytes)
+2025-07-20 15:51:53,769 - configurable_supplier_scraper - INFO - 🔄 REAL-TIME: Added product 7 to shared accumulator (total: 7)
+2025-07-20 15:51:53,770 - configurable_supplier_scraper - INFO - ✅ Extracted product 7: Cookhouse Non-Slip Assorted Colour Mixing Bowls Set 3pc - £3.58 (EAN: 5015302427993)
+2025-07-20 15:51:53,805 - PassiveExtractionWorkflow - INFO - 🔍 SUPPLIER STATE UPDATE: Index updated to 7/121
+2025-07-20 15:51:53,806 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS: Product 7 processed (total in cache: 7)
+2025-07-20 15:51:53,806 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Processing product 7
+2025-07-20 15:51:53,807 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: Product 7, frequency=2, enabled=True
+2025-07-20 15:51:53,807 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: List length=7, modulo=1
+2025-07-20 15:51:53,825 - configurable_supplier_scraper - INFO - Visiting product page 8/121: https://www.poundwholesale.co.uk/cake-cases-4-asst-design-pk-100
+2025-07-20 15:51:53,826 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/cake-cases-4-asst-design-pk-100 (attempt 1/3)
+2025-07-20 15:51:53,826 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 15:51:53,827 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/cake-cases-4-asst-design-pk-100
+2025-07-20 15:51:56,452 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/cake-cases-4-asst-design-pk-100 in 1.70s...
+2025-07-20 15:51:58,157 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/cake-cases-4-asst-design-pk-100 (attempt 2/3)
+2025-07-20 15:51:58,159 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 15:51:58,159 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/cake-cases-4-asst-design-pk-100
+2025-07-20 15:51:59,177 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/cake-cases-4-asst-design-pk-100
+2025-07-20 15:51:59,178 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/cake-cases-4-asst-design-pk-100
+2025-07-20 15:51:59,766 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/cake-cases-4-asst-design-pk-100 (Size: 668525 bytes)
+2025-07-20 15:52:00,040 - configurable_supplier_scraper - INFO - 🔄 REAL-TIME: Added product 8 to shared accumulator (total: 8)
+2025-07-20 15:52:00,041 - configurable_supplier_scraper - INFO - ✅ Extracted product 8: Cake Cases Assorted Designs 100 Pack - £0.71 (EAN: 5015302477202)
+2025-07-20 15:52:00,076 - PassiveExtractionWorkflow - INFO - 🔍 SUPPLIER STATE UPDATE: Index updated to 8/121
+2025-07-20 15:52:00,077 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS: Product 8 processed (total in cache: 8)
+2025-07-20 15:52:00,078 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Processing product 8
+2025-07-20 15:52:00,079 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: Product 8, frequency=2, enabled=True
+2025-07-20 15:52:00,079 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: List length=8, modulo=0
+2025-07-20 15:52:00,080 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Initial path object: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products/poundwholesale-co-uk_products_cache.json
+2025-07-20 15:52:00,081 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Path is absolute: True
+2025-07-20 15:52:00,082 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Path as_posix: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products/poundwholesale-co-uk_products_cache.json
+2025-07-20 15:52:00,083 - PassiveExtractionWorkflow - WARNING - WSL path detected: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products/poundwholesale-co-uk_products_cache.json. Using WSL-compatible approach.
+2025-07-20 15:52:00,083 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Directory extracted via os.path.dirname: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products
+2025-07-20 15:52:00,091 - PassiveExtractionWorkflow - INFO - ✅ Cache directory ensured via os.makedirs: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products
+2025-07-20 15:52:00,092 - PassiveExtractionWorkflow - INFO - 💾 CACHE SAVE: Starting save of 8 products to cache...
+2025-07-20 15:52:00,093 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Final path for file operations: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products/poundwholesale-co-uk_products_cache.json
+2025-07-20 15:52:00,104 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Loaded 10 existing products for deduplication
+2025-07-20 15:52:00,105 - PassiveExtractionWorkflow - INFO - 🔄 DEDUPLICATION: Skipped 6 URL duplicates and 0 EAN duplicates.
+2025-07-20 15:52:00,106 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Attempting to save to: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products/poundwholesale-co-uk_products_cache.json
+2025-07-20 15:52:00,124 - PassiveExtractionWorkflow - INFO - ✅ Successfully saved 12 products (2 new) to cache: poundwholesale-co-uk_products_cache.json (size: 6787 bytes)
+2025-07-20 15:52:00,125 - PassiveExtractionWorkflow - INFO - 💾 PERIODIC CACHE SAVE: Saved 8 products to cache (every 2 products)
+2025-07-20 15:52:00,155 - configurable_supplier_scraper - INFO - Visiting product page 9/121: https://www.poundwholesale.co.uk/queen-of-cakes-cake-tin-liners-large-30-pack
+2025-07-20 15:52:00,156 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/queen-of-cakes-cake-tin-liners-large-30-pack (attempt 1/3)
+2025-07-20 15:52:00,156 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 15:52:00,157 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/queen-of-cakes-cake-tin-liners-large-30-pack
+2025-07-20 15:52:01,843 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/queen-of-cakes-cake-tin-liners-large-30-pack in 1.95s...
+2025-07-20 15:52:03,802 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/queen-of-cakes-cake-tin-liners-large-30-pack (attempt 2/3)
+2025-07-20 15:52:03,803 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 15:52:03,804 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/queen-of-cakes-cake-tin-liners-large-30-pack
+2025-07-20 15:52:05,627 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/queen-of-cakes-cake-tin-liners-large-30-pack
+2025-07-20 15:52:05,628 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/queen-of-cakes-cake-tin-liners-large-30-pack
+2025-07-20 15:52:05,786 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/queen-of-cakes-cake-tin-liners-large-30-pack (Size: 670704 bytes)
+2025-07-20 15:52:06,053 - configurable_supplier_scraper - INFO - 🔄 REAL-TIME: Added product 9 to shared accumulator (total: 9)
+2025-07-20 15:52:06,053 - configurable_supplier_scraper - INFO - ✅ Extracted product 9: Queen Of Cakes Cake Tin Liners Large 30 Pack - £1.36 (EAN: 5053249252520)
+2025-07-20 15:52:06,075 - PassiveExtractionWorkflow - INFO - 🔍 SUPPLIER STATE UPDATE: Index updated to 9/121
+2025-07-20 15:52:06,075 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS: Product 9 processed (total in cache: 9)
+2025-07-20 15:52:06,076 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Processing product 9
+2025-07-20 15:52:06,076 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: Product 9, frequency=2, enabled=True
+2025-07-20 15:52:06,077 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: List length=9, modulo=1
+2025-07-20 15:52:06,091 - configurable_supplier_scraper - INFO - Visiting product page 10/121: https://www.poundwholesale.co.uk/prima-metal-strainer-12cm
+2025-07-20 15:52:06,092 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/prima-metal-strainer-12cm (attempt 1/3)
+2025-07-20 15:52:06,092 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 15:52:06,093 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/prima-metal-strainer-12cm
+2025-07-20 15:52:09,034 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/prima-metal-strainer-12cm in 1.60s...
+2025-07-20 15:52:10,643 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/prima-metal-strainer-12cm (attempt 2/3)
+2025-07-20 15:52:10,645 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 15:52:10,646 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/prima-metal-strainer-12cm
+2025-07-20 15:52:12,257 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/prima-metal-strainer-12cm
+2025-07-20 15:52:12,258 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/prima-metal-strainer-12cm
+2025-07-20 15:52:12,464 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/prima-metal-strainer-12cm (Size: 665366 bytes)
+2025-07-20 15:52:12,837 - configurable_supplier_scraper - INFO - 🔄 REAL-TIME: Added product 10 to shared accumulator (total: 10)
+2025-07-20 15:52:12,838 - configurable_supplier_scraper - INFO - ✅ Extracted product 10: Prima Metal Strainer 12cm - £0.85 (EAN: 5038673185088)
+2025-07-20 15:52:12,858 - PassiveExtractionWorkflow - INFO - 🔍 SUPPLIER STATE UPDATE: Index updated to 10/121
+2025-07-20 15:52:12,859 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS: Product 10 processed (total in cache: 10)
+2025-07-20 15:52:12,859 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Processing product 10
+2025-07-20 15:52:12,860 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: Product 10, frequency=2, enabled=True
+2025-07-20 15:52:12,860 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: List length=10, modulo=0
+2025-07-20 15:52:12,861 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Initial path object: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products/poundwholesale-co-uk_products_cache.json
+2025-07-20 15:52:12,862 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Path is absolute: True
+2025-07-20 15:52:12,862 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Path as_posix: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products/poundwholesale-co-uk_products_cache.json
+2025-07-20 15:52:12,863 - PassiveExtractionWorkflow - WARNING - WSL path detected: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products/poundwholesale-co-uk_products_cache.json. Using WSL-compatible approach.
+2025-07-20 15:52:12,863 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Directory extracted via os.path.dirname: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products
+2025-07-20 15:52:12,867 - PassiveExtractionWorkflow - INFO - ✅ Cache directory ensured via os.makedirs: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products
+2025-07-20 15:52:12,868 - PassiveExtractionWorkflow - INFO - 💾 CACHE SAVE: Starting save of 10 products to cache...
+2025-07-20 15:52:12,868 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Final path for file operations: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products/poundwholesale-co-uk_products_cache.json
+2025-07-20 15:52:12,876 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Loaded 12 existing products for deduplication
+2025-07-20 15:52:12,877 - PassiveExtractionWorkflow - INFO - 🔄 DEDUPLICATION: Skipped 8 URL duplicates and 0 EAN duplicates.
+2025-07-20 15:52:12,877 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Attempting to save to: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products/poundwholesale-co-uk_products_cache.json
+2025-07-20 15:52:12,891 - PassiveExtractionWorkflow - INFO - ✅ Successfully saved 14 products (2 new) to cache: poundwholesale-co-uk_products_cache.json (size: 7906 bytes)
+2025-07-20 15:52:12,891 - PassiveExtractionWorkflow - INFO - 💾 PERIODIC CACHE SAVE: Saved 10 products to cache (every 2 products)
+2025-07-20 15:52:12,912 - configurable_supplier_scraper - INFO - Visiting product page 11/121: https://www.poundwholesale.co.uk/round-foil-flan-dishes-18cm-x-2-5cm-8-pack
+2025-07-20 15:52:12,913 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/round-foil-flan-dishes-18cm-x-2-5cm-8-pack (attempt 1/3)
+2025-07-20 15:52:12,913 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 15:52:12,914 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/round-foil-flan-dishes-18cm-x-2-5cm-8-pack
+2025-07-20 15:52:15,618 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/round-foil-flan-dishes-18cm-x-2-5cm-8-pack in 1.55s...
+2025-07-20 15:52:17,176 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/round-foil-flan-dishes-18cm-x-2-5cm-8-pack (attempt 2/3)
+2025-07-20 15:52:17,177 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 15:52:17,178 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/round-foil-flan-dishes-18cm-x-2-5cm-8-pack
+2025-07-20 15:52:18,756 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/round-foil-flan-dishes-18cm-x-2-5cm-8-pack
+2025-07-20 15:52:18,757 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/round-foil-flan-dishes-18cm-x-2-5cm-8-pack
+2025-07-20 15:52:18,865 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/round-foil-flan-dishes-18cm-x-2-5cm-8-pack (Size: 670788 bytes)
+2025-07-20 15:52:19,137 - configurable_supplier_scraper - INFO - 🔄 REAL-TIME: Added product 11 to shared accumulator (total: 11)
+2025-07-20 15:52:19,138 - configurable_supplier_scraper - INFO - ✅ Extracted product 11: Round Foil Flan Dishes 18cm X 2.5cm 8 Pack - £0.64 (EAN: 5030481930065)
+2025-07-20 15:52:19,156 - PassiveExtractionWorkflow - INFO - 🔍 SUPPLIER STATE UPDATE: Index updated to 11/121
+2025-07-20 15:52:19,156 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS: Product 11 processed (total in cache: 11)
+2025-07-20 15:52:19,157 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Processing product 11
+2025-07-20 15:52:19,157 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: Product 11, frequency=2, enabled=True
+2025-07-20 15:52:19,157 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: List length=11, modulo=1
+2025-07-20 15:52:19,173 - configurable_supplier_scraper - INFO - Visiting product page 12/121: https://www.poundwholesale.co.uk/prima-mechanical-red-retro-kitchen-scale-3kg
+2025-07-20 15:52:19,173 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/prima-mechanical-red-retro-kitchen-scale-3kg (attempt 1/3)
+2025-07-20 15:52:19,174 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 15:52:19,174 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/prima-mechanical-red-retro-kitchen-scale-3kg
+2025-07-20 15:52:21,940 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/prima-mechanical-red-retro-kitchen-scale-3kg in 2.49s...
+2025-07-20 15:52:24,453 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/prima-mechanical-red-retro-kitchen-scale-3kg (attempt 2/3)
+2025-07-20 15:52:24,455 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 15:52:24,457 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/prima-mechanical-red-retro-kitchen-scale-3kg
+2025-07-20 15:52:27,377 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/prima-mechanical-red-retro-kitchen-scale-3kg
+2025-07-20 15:52:27,378 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/prima-mechanical-red-retro-kitchen-scale-3kg
+2025-07-20 15:52:27,542 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/prima-mechanical-red-retro-kitchen-scale-3kg (Size: 666523 bytes)
+2025-07-20 15:52:27,810 - configurable_supplier_scraper - INFO - 🔄 REAL-TIME: Added product 12 to shared accumulator (total: 12)
+2025-07-20 15:52:27,811 - configurable_supplier_scraper - INFO - ✅ Extracted product 12: Prima Mechanical Red Retro Kitchen Scale 3kg - £7.31 (EAN: 5038673183145)
+2025-07-20 15:52:27,837 - PassiveExtractionWorkflow - INFO - 🔍 SUPPLIER STATE UPDATE: Index updated to 12/121
+2025-07-20 15:52:27,837 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS: Product 12 processed (total in cache: 12)
+2025-07-20 15:52:27,838 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Processing product 12
+2025-07-20 15:52:27,838 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: Product 12, frequency=2, enabled=True
+2025-07-20 15:52:27,839 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: List length=12, modulo=0
+2025-07-20 15:52:27,839 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Initial path object: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products/poundwholesale-co-uk_products_cache.json
+2025-07-20 15:52:27,840 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Path is absolute: True
+2025-07-20 15:52:27,840 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Path as_posix: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products/poundwholesale-co-uk_products_cache.json
+2025-07-20 15:52:27,840 - PassiveExtractionWorkflow - WARNING - WSL path detected: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products/poundwholesale-co-uk_products_cache.json. Using WSL-compatible approach.
+2025-07-20 15:52:27,841 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Directory extracted via os.path.dirname: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products
+2025-07-20 15:52:27,845 - PassiveExtractionWorkflow - INFO - ✅ Cache directory ensured via os.makedirs: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products
+2025-07-20 15:52:27,846 - PassiveExtractionWorkflow - INFO - 💾 CACHE SAVE: Starting save of 12 products to cache...
+2025-07-20 15:52:27,847 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Final path for file operations: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products/poundwholesale-co-uk_products_cache.json
+2025-07-20 15:52:27,855 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Loaded 14 existing products for deduplication
+2025-07-20 15:52:27,856 - PassiveExtractionWorkflow - INFO - 🔄 DEDUPLICATION: Skipped 10 URL duplicates and 0 EAN duplicates.
+2025-07-20 15:52:27,856 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Attempting to save to: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products/poundwholesale-co-uk_products_cache.json
+2025-07-20 15:52:27,869 - PassiveExtractionWorkflow - INFO - ✅ Successfully saved 16 products (2 new) to cache: poundwholesale-co-uk_products_cache.json (size: 9058 bytes)
+2025-07-20 15:52:27,869 - PassiveExtractionWorkflow - INFO - 💾 PERIODIC CACHE SAVE: Saved 12 products to cache (every 2 products)
+2025-07-20 15:52:27,892 - configurable_supplier_scraper - INFO - Visiting product page 13/121: https://www.poundwholesale.co.uk/make-bake-kids-baking-set-14pc
+2025-07-20 15:52:27,892 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/make-bake-kids-baking-set-14pc (attempt 1/3)
+2025-07-20 15:52:27,893 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 15:52:27,893 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/make-bake-kids-baking-set-14pc
+2025-07-20 15:52:30,756 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/make-bake-kids-baking-set-14pc in 2.39s...
+2025-07-20 15:52:33,159 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/make-bake-kids-baking-set-14pc (attempt 2/3)
+2025-07-20 15:52:33,160 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 15:52:33,160 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/make-bake-kids-baking-set-14pc
+2025-07-20 15:52:34,977 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/make-bake-kids-baking-set-14pc
+2025-07-20 15:52:34,978 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/make-bake-kids-baking-set-14pc
+2025-07-20 15:52:35,102 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/make-bake-kids-baking-set-14pc (Size: 668213 bytes)
+2025-07-20 15:52:35,459 - configurable_supplier_scraper - INFO - 🔄 REAL-TIME: Added product 13 to shared accumulator (total: 13)
+2025-07-20 15:52:35,459 - configurable_supplier_scraper - INFO - ✅ Extracted product 13: Make & Bake Kids Baking Set 14pc - £6.95 (EAN: 5015302440701)
+2025-07-20 15:52:35,485 - PassiveExtractionWorkflow - INFO - 🔍 SUPPLIER STATE UPDATE: Index updated to 13/121
+2025-07-20 15:52:35,486 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS: Product 13 processed (total in cache: 13)
+2025-07-20 15:52:35,487 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Processing product 13
+2025-07-20 15:52:35,488 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: Product 13, frequency=2, enabled=True
+2025-07-20 15:52:35,489 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: List length=13, modulo=1
+2025-07-20 15:52:35,506 - configurable_supplier_scraper - INFO - Visiting product page 14/121: https://www.poundwholesale.co.uk/prima-stainless-steel-round-dough-cutter
+2025-07-20 15:52:35,507 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/prima-stainless-steel-round-dough-cutter (attempt 1/3)
+2025-07-20 15:52:35,507 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 15:52:35,507 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/prima-stainless-steel-round-dough-cutter
+2025-07-20 15:52:38,432 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/prima-stainless-steel-round-dough-cutter in 2.44s...
+2025-07-20 15:52:40,877 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/prima-stainless-steel-round-dough-cutter (attempt 2/3)
+2025-07-20 15:52:40,877 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 15:52:40,878 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/prima-stainless-steel-round-dough-cutter
+2025-07-20 15:52:43,389 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/prima-stainless-steel-round-dough-cutter
+2025-07-20 15:52:43,390 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/prima-stainless-steel-round-dough-cutter
+2025-07-20 15:52:43,505 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/prima-stainless-steel-round-dough-cutter (Size: 667122 bytes)
+2025-07-20 15:52:43,794 - configurable_supplier_scraper - INFO - 🔄 REAL-TIME: Added product 14 to shared accumulator (total: 14)
+2025-07-20 15:52:43,795 - configurable_supplier_scraper - INFO - ✅ Extracted product 14: Prima Stainless Steel Round Dough Cutter - £0.92 (EAN: 5038673131597)
+2025-07-20 15:52:43,815 - PassiveExtractionWorkflow - INFO - 🔍 SUPPLIER STATE UPDATE: Index updated to 14/121
+2025-07-20 15:52:43,815 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS: Product 14 processed (total in cache: 14)
+2025-07-20 15:52:43,816 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Processing product 14
+2025-07-20 15:52:43,816 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: Product 14, frequency=2, enabled=True
+2025-07-20 15:52:43,817 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: List length=14, modulo=0
+2025-07-20 15:52:43,817 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Initial path object: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products/poundwholesale-co-uk_products_cache.json
+2025-07-20 15:52:43,817 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Path is absolute: True
+2025-07-20 15:52:43,817 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Path as_posix: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products/poundwholesale-co-uk_products_cache.json
+2025-07-20 15:52:43,818 - PassiveExtractionWorkflow - WARNING - WSL path detected: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products/poundwholesale-co-uk_products_cache.json. Using WSL-compatible approach.
+2025-07-20 15:52:43,818 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Directory extracted via os.path.dirname: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products
+2025-07-20 15:52:43,822 - PassiveExtractionWorkflow - INFO - ✅ Cache directory ensured via os.makedirs: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products
+2025-07-20 15:52:43,823 - PassiveExtractionWorkflow - INFO - 💾 CACHE SAVE: Starting save of 14 products to cache...
+2025-07-20 15:52:43,823 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Final path for file operations: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products/poundwholesale-co-uk_products_cache.json
+2025-07-20 15:52:43,835 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Loaded 16 existing products for deduplication
+2025-07-20 15:52:43,835 - PassiveExtractionWorkflow - INFO - 🔄 DEDUPLICATION: Skipped 12 URL duplicates and 0 EAN duplicates.
+2025-07-20 15:52:43,836 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Attempting to save to: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products/poundwholesale-co-uk_products_cache.json
+2025-07-20 15:52:43,847 - PassiveExtractionWorkflow - INFO - ✅ Successfully saved 18 products (2 new) to cache: poundwholesale-co-uk_products_cache.json (size: 10180 bytes)
+2025-07-20 15:52:43,848 - PassiveExtractionWorkflow - INFO - 💾 PERIODIC CACHE SAVE: Saved 14 products to cache (every 2 products)
+2025-07-20 15:52:43,864 - configurable_supplier_scraper - INFO - Visiting product page 15/121: https://www.poundwholesale.co.uk/did-stainless-steel-strainer-18cm
+2025-07-20 15:52:43,864 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/did-stainless-steel-strainer-18cm (attempt 1/3)
+2025-07-20 15:52:43,865 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 15:52:43,865 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/did-stainless-steel-strainer-18cm
+2025-07-20 15:52:46,728 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/did-stainless-steel-strainer-18cm in 2.04s...
+2025-07-20 15:52:48,772 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/did-stainless-steel-strainer-18cm (attempt 2/3)
+2025-07-20 15:52:48,773 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 15:52:48,775 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/did-stainless-steel-strainer-18cm
+2025-07-20 15:52:50,154 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/did-stainless-steel-strainer-18cm
+2025-07-20 15:52:50,155 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/did-stainless-steel-strainer-18cm
+2025-07-20 15:52:50,334 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/did-stainless-steel-strainer-18cm (Size: 669120 bytes)
+2025-07-20 15:52:50,608 - configurable_supplier_scraper - INFO - 🔄 REAL-TIME: Added product 15 to shared accumulator (total: 15)
+2025-07-20 15:52:50,609 - configurable_supplier_scraper - INFO - ✅ Extracted product 15: DID Stainless Steel Strainer 18cm - £0.65 (EAN: 5056338382764)
+2025-07-20 15:52:50,640 - PassiveExtractionWorkflow - INFO - 🔍 SUPPLIER STATE UPDATE: Index updated to 15/121
+2025-07-20 15:52:50,640 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS: Product 15 processed (total in cache: 15)
+2025-07-20 15:52:50,641 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Processing product 15
+2025-07-20 15:52:50,642 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: Product 15, frequency=2, enabled=True
+2025-07-20 15:52:50,643 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: List length=15, modulo=1
+2025-07-20 15:52:50,670 - configurable_supplier_scraper - INFO - Visiting product page 16/121: https://www.poundwholesale.co.uk/extra-wide-baking-paper-5m-x-37cm
+2025-07-20 15:52:50,670 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/extra-wide-baking-paper-5m-x-37cm (attempt 1/3)
+2025-07-20 15:52:50,671 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 15:52:50,672 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/extra-wide-baking-paper-5m-x-37cm
+2025-07-20 15:52:53,340 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/extra-wide-baking-paper-5m-x-37cm in 1.87s...
+2025-07-20 15:52:55,224 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/extra-wide-baking-paper-5m-x-37cm (attempt 2/3)
+2025-07-20 15:52:55,224 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 15:52:55,225 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/extra-wide-baking-paper-5m-x-37cm
+2025-07-20 15:52:58,082 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/extra-wide-baking-paper-5m-x-37cm
+2025-07-20 15:52:58,083 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/extra-wide-baking-paper-5m-x-37cm
+2025-07-20 15:52:58,248 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/extra-wide-baking-paper-5m-x-37cm (Size: 672098 bytes)
+2025-07-20 15:52:58,621 - configurable_supplier_scraper - INFO - 🔄 REAL-TIME: Added product 16 to shared accumulator (total: 16)
+2025-07-20 15:52:58,622 - configurable_supplier_scraper - INFO - ✅ Extracted product 16: Extra Wide Baking Paper 5m X 37cm - £0.99 (EAN: 5030481930539)
+2025-07-20 15:52:58,644 - PassiveExtractionWorkflow - INFO - 🔍 SUPPLIER STATE UPDATE: Index updated to 16/121
+2025-07-20 15:52:58,645 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS: Product 16 processed (total in cache: 16)
+2025-07-20 15:52:58,646 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Processing product 16
+2025-07-20 15:52:58,646 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: Product 16, frequency=2, enabled=True
+2025-07-20 15:52:58,647 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: List length=16, modulo=0
+2025-07-20 15:52:58,647 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Initial path object: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products/poundwholesale-co-uk_products_cache.json
+2025-07-20 15:52:58,648 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Path is absolute: True
+2025-07-20 15:52:58,648 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Path as_posix: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products/poundwholesale-co-uk_products_cache.json
+2025-07-20 15:52:58,648 - PassiveExtractionWorkflow - WARNING - WSL path detected: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products/poundwholesale-co-uk_products_cache.json. Using WSL-compatible approach.
+2025-07-20 15:52:58,649 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Directory extracted via os.path.dirname: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products
+2025-07-20 15:52:58,653 - PassiveExtractionWorkflow - INFO - ✅ Cache directory ensured via os.makedirs: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products
+2025-07-20 15:52:58,653 - PassiveExtractionWorkflow - INFO - 💾 CACHE SAVE: Starting save of 16 products to cache...
+2025-07-20 15:52:58,654 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Final path for file operations: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products/poundwholesale-co-uk_products_cache.json
+2025-07-20 15:52:58,661 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Loaded 18 existing products for deduplication
+2025-07-20 15:52:58,661 - PassiveExtractionWorkflow - INFO - 🔄 DEDUPLICATION: Skipped 14 URL duplicates and 0 EAN duplicates.
+2025-07-20 15:52:58,661 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Attempting to save to: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products/poundwholesale-co-uk_products_cache.json
+2025-07-20 15:52:58,675 - PassiveExtractionWorkflow - INFO - ✅ Successfully saved 20 products (2 new) to cache: poundwholesale-co-uk_products_cache.json (size: 11292 bytes)
+2025-07-20 15:52:58,675 - PassiveExtractionWorkflow - INFO - 💾 PERIODIC CACHE SAVE: Saved 16 products to cache (every 2 products)
+2025-07-20 15:52:58,694 - configurable_supplier_scraper - INFO - Visiting product page 17/121: https://www.poundwholesale.co.uk/1l-stainless-steel-vaccum-flask
+2025-07-20 15:52:58,695 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/1l-stainless-steel-vaccum-flask (attempt 1/3)
+2025-07-20 15:52:58,696 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 15:52:58,696 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/1l-stainless-steel-vaccum-flask
+2025-07-20 15:53:01,566 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/1l-stainless-steel-vaccum-flask in 1.96s...
+2025-07-20 15:53:03,535 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/1l-stainless-steel-vaccum-flask (attempt 2/3)
+2025-07-20 15:53:03,536 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 15:53:03,537 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/1l-stainless-steel-vaccum-flask
+2025-07-20 15:53:05,258 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/1l-stainless-steel-vaccum-flask
+2025-07-20 15:53:05,259 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/1l-stainless-steel-vaccum-flask
+2025-07-20 15:53:05,385 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/1l-stainless-steel-vaccum-flask (Size: 666743 bytes)
+2025-07-20 15:53:05,657 - configurable_supplier_scraper - INFO - 🔄 REAL-TIME: Added product 17 to shared accumulator (total: 17)
+2025-07-20 15:53:05,658 - configurable_supplier_scraper - INFO - ✅ Extracted product 17: Prima Stainless Steel Vacuum Flask 1l - £4.37 (EAN: 5038673171524)
+2025-07-20 15:53:05,687 - PassiveExtractionWorkflow - INFO - 🔍 SUPPLIER STATE UPDATE: Index updated to 17/121
+2025-07-20 15:53:05,688 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS: Product 17 processed (total in cache: 17)
+2025-07-20 15:53:05,689 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Processing product 17
+2025-07-20 15:53:05,690 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: Product 17, frequency=2, enabled=True
+2025-07-20 15:53:05,690 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: List length=17, modulo=1
+2025-07-20 15:53:05,711 - configurable_supplier_scraper - INFO - Visiting product page 18/121: https://www.poundwholesale.co.uk/prima-non-stick-oblong-roasting-tray-33cm-x-22cm
+2025-07-20 15:53:05,712 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/prima-non-stick-oblong-roasting-tray-33cm-x-22cm (attempt 1/3)
+2025-07-20 15:53:05,712 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 15:53:05,713 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/prima-non-stick-oblong-roasting-tray-33cm-x-22cm
+2025-07-20 15:53:07,438 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/prima-non-stick-oblong-roasting-tray-33cm-x-22cm in 1.69s...
+2025-07-20 15:53:09,130 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/prima-non-stick-oblong-roasting-tray-33cm-x-22cm (attempt 2/3)
+2025-07-20 15:53:09,131 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 15:53:09,133 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/prima-non-stick-oblong-roasting-tray-33cm-x-22cm
+2025-07-20 15:53:10,634 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/prima-non-stick-oblong-roasting-tray-33cm-x-22cm
+2025-07-20 15:53:10,635 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/prima-non-stick-oblong-roasting-tray-33cm-x-22cm
+2025-07-20 15:53:10,800 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/prima-non-stick-oblong-roasting-tray-33cm-x-22cm (Size: 666599 bytes)
+2025-07-20 15:53:11,067 - configurable_supplier_scraper - INFO - 🔄 REAL-TIME: Added product 18 to shared accumulator (total: 18)
+2025-07-20 15:53:11,068 - configurable_supplier_scraper - INFO - ✅ Extracted product 18: Prima Non-Stick Oblong Roasting Tray 33cm X 22cm - £1.41 (EAN: 5038673151045)
+2025-07-20 15:53:11,102 - PassiveExtractionWorkflow - INFO - 🔍 SUPPLIER STATE UPDATE: Index updated to 18/121
+2025-07-20 15:53:11,103 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS: Product 18 processed (total in cache: 18)
+2025-07-20 15:53:11,104 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Processing product 18
+2025-07-20 15:53:11,104 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: Product 18, frequency=2, enabled=True
+2025-07-20 15:53:11,105 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: List length=18, modulo=0
+2025-07-20 15:53:11,106 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Initial path object: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products/poundwholesale-co-uk_products_cache.json
+2025-07-20 15:53:11,106 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Path is absolute: True
+2025-07-20 15:53:11,107 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Path as_posix: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products/poundwholesale-co-uk_products_cache.json
+2025-07-20 15:53:11,107 - PassiveExtractionWorkflow - WARNING - WSL path detected: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products/poundwholesale-co-uk_products_cache.json. Using WSL-compatible approach.
+2025-07-20 15:53:11,108 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Directory extracted via os.path.dirname: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products
+2025-07-20 15:53:11,113 - PassiveExtractionWorkflow - INFO - ✅ Cache directory ensured via os.makedirs: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products
+2025-07-20 15:53:11,114 - PassiveExtractionWorkflow - INFO - 💾 CACHE SAVE: Starting save of 18 products to cache...
+2025-07-20 15:53:11,115 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Final path for file operations: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products/poundwholesale-co-uk_products_cache.json
+2025-07-20 15:53:11,123 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Loaded 20 existing products for deduplication
+2025-07-20 15:53:11,124 - PassiveExtractionWorkflow - INFO - 🔄 DEDUPLICATION: Skipped 16 URL duplicates and 0 EAN duplicates.
+2025-07-20 15:53:11,125 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Attempting to save to: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products/poundwholesale-co-uk_products_cache.json
+2025-07-20 15:53:11,138 - PassiveExtractionWorkflow - INFO - ✅ Successfully saved 22 products (2 new) to cache: poundwholesale-co-uk_products_cache.json (size: 12436 bytes)
+2025-07-20 15:53:11,139 - PassiveExtractionWorkflow - INFO - 💾 PERIODIC CACHE SAVE: Saved 18 products to cache (every 2 products)
+2025-07-20 15:53:11,166 - configurable_supplier_scraper - INFO - Visiting product page 19/121: https://www.poundwholesale.co.uk/swirly-bake-complete-baking-kit-50pc
+2025-07-20 15:53:11,166 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/swirly-bake-complete-baking-kit-50pc (attempt 1/3)
+2025-07-20 15:53:11,167 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 15:53:11,168 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/swirly-bake-complete-baking-kit-50pc
+2025-07-20 15:53:13,623 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/swirly-bake-complete-baking-kit-50pc in 1.76s...
+2025-07-20 15:53:15,392 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/swirly-bake-complete-baking-kit-50pc (attempt 2/3)
+2025-07-20 15:53:15,394 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 15:53:15,395 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/swirly-bake-complete-baking-kit-50pc
+2025-07-20 15:53:16,481 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/swirly-bake-complete-baking-kit-50pc
+2025-07-20 15:53:16,482 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/swirly-bake-complete-baking-kit-50pc
+2025-07-20 15:53:16,617 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/swirly-bake-complete-baking-kit-50pc (Size: 517667 bytes)
+2025-07-20 15:53:16,929 - configurable_supplier_scraper - INFO - 🔄 REAL-TIME: Added product 19 to shared accumulator (total: 19)
+2025-07-20 15:53:16,930 - configurable_supplier_scraper - INFO - ✅ Extracted product 19: Swirly Bake Complete Baking Kit 50pc - £1.5 (EAN: 0742574301564)
+2025-07-20 15:53:16,952 - PassiveExtractionWorkflow - INFO - 🔍 SUPPLIER STATE UPDATE: Index updated to 19/121
+2025-07-20 15:53:16,953 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS: Product 19 processed (total in cache: 19)
+2025-07-20 15:53:16,953 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Processing product 19
+2025-07-20 15:53:16,954 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: Product 19, frequency=2, enabled=True
+2025-07-20 15:53:16,954 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: List length=19, modulo=1
+2025-07-20 15:53:16,967 - configurable_supplier_scraper - INFO - Visiting product page 20/121: https://www.poundwholesale.co.uk/prima-metal-strainer-14cm
+2025-07-20 15:53:16,967 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/prima-metal-strainer-14cm (attempt 1/3)
+2025-07-20 15:53:16,968 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 15:53:16,968 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/prima-metal-strainer-14cm
+2025-07-20 15:53:19,755 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/prima-metal-strainer-14cm in 2.04s...
+2025-07-20 15:53:21,802 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/prima-metal-strainer-14cm (attempt 2/3)
+2025-07-20 15:53:21,803 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 15:53:21,803 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/prima-metal-strainer-14cm
+2025-07-20 15:53:23,823 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/prima-metal-strainer-14cm
+2025-07-20 15:53:23,827 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/prima-metal-strainer-14cm
+2025-07-20 15:53:23,953 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/prima-metal-strainer-14cm (Size: 664297 bytes)
+2025-07-20 15:53:24,225 - configurable_supplier_scraper - INFO - 🔄 REAL-TIME: Added product 20 to shared accumulator (total: 20)
+2025-07-20 15:53:24,226 - configurable_supplier_scraper - INFO - ✅ Extracted product 20: Prima Metal Strainer 14cm - £0.92 (EAN: 5038673185095)
+2025-07-20 15:53:24,251 - PassiveExtractionWorkflow - INFO - 🔍 SUPPLIER STATE UPDATE: Index updated to 20/121
+2025-07-20 15:53:24,251 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS: Product 20 processed (total in cache: 20)
+2025-07-20 15:53:24,252 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Processing product 20
+2025-07-20 15:53:24,252 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: Product 20, frequency=2, enabled=True
+2025-07-20 15:53:24,253 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: List length=20, modulo=0
+2025-07-20 15:53:24,253 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Initial path object: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products/poundwholesale-co-uk_products_cache.json
+2025-07-20 15:53:24,254 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Path is absolute: True
+2025-07-20 15:53:24,254 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Path as_posix: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products/poundwholesale-co-uk_products_cache.json
+2025-07-20 15:53:24,254 - PassiveExtractionWorkflow - WARNING - WSL path detected: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products/poundwholesale-co-uk_products_cache.json. Using WSL-compatible approach.
+2025-07-20 15:53:24,254 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Directory extracted via os.path.dirname: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products
+2025-07-20 15:53:24,258 - PassiveExtractionWorkflow - INFO - ✅ Cache directory ensured via os.makedirs: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products
+2025-07-20 15:53:24,259 - PassiveExtractionWorkflow - INFO - 💾 CACHE SAVE: Starting save of 20 products to cache...
+2025-07-20 15:53:24,259 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Final path for file operations: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products/poundwholesale-co-uk_products_cache.json
+2025-07-20 15:53:24,265 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Loaded 22 existing products for deduplication
+2025-07-20 15:53:24,266 - PassiveExtractionWorkflow - INFO - 🔄 DEDUPLICATION: Skipped 18 URL duplicates and 0 EAN duplicates.
+2025-07-20 15:53:24,267 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Attempting to save to: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products/poundwholesale-co-uk_products_cache.json
+2025-07-20 15:53:24,275 - PassiveExtractionWorkflow - INFO - ✅ Successfully saved 24 products (2 new) to cache: poundwholesale-co-uk_products_cache.json (size: 13541 bytes)
+2025-07-20 15:53:24,276 - PassiveExtractionWorkflow - INFO - 💾 PERIODIC CACHE SAVE: Saved 20 products to cache (every 2 products)
+2025-07-20 15:53:24,289 - configurable_supplier_scraper - INFO - Visiting product page 21/121: https://www.poundwholesale.co.uk/measuring-jug-2-litre
+2025-07-20 15:53:24,290 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/measuring-jug-2-litre (attempt 1/3)
+2025-07-20 15:53:24,290 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 15:53:24,290 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/measuring-jug-2-litre
+2025-07-20 15:53:27,170 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/measuring-jug-2-litre in 2.49s...
+2025-07-20 15:53:29,669 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/measuring-jug-2-litre (attempt 2/3)
+2025-07-20 15:53:29,670 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 15:53:29,670 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/measuring-jug-2-litre
+2025-07-20 15:53:32,683 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/measuring-jug-2-litre
+2025-07-20 15:53:32,684 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/measuring-jug-2-litre
+2025-07-20 15:53:32,787 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/measuring-jug-2-litre (Size: 667475 bytes)
+2025-07-20 15:53:33,069 - configurable_supplier_scraper - INFO - 🔄 REAL-TIME: Added product 21 to shared accumulator (total: 21)
+2025-07-20 15:53:33,070 - configurable_supplier_scraper - INFO - ✅ Extracted product 21: Royale Home Measuring Jug 2l - £0.85 (EAN: 5015302450700)
+2025-07-20 15:53:33,085 - PassiveExtractionWorkflow - INFO - 🔍 SUPPLIER STATE UPDATE: Index updated to 21/121
+2025-07-20 15:53:33,086 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS: Product 21 processed (total in cache: 21)
+2025-07-20 15:53:33,086 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Processing product 21
+2025-07-20 15:53:33,086 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: Product 21, frequency=2, enabled=True
+2025-07-20 15:53:33,087 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: List length=21, modulo=1
+2025-07-20 15:53:33,102 - configurable_supplier_scraper - INFO - Visiting product page 22/121: https://www.poundwholesale.co.uk/prima-stainless-steel-german-mixing-bowl-22cm
+2025-07-20 15:53:33,102 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/prima-stainless-steel-german-mixing-bowl-22cm (attempt 1/3)
+2025-07-20 15:53:33,103 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 15:53:33,103 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/prima-stainless-steel-german-mixing-bowl-22cm
+2025-07-20 15:53:35,770 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/prima-stainless-steel-german-mixing-bowl-22cm in 2.38s...
+2025-07-20 15:53:37,077 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/prima-stainless-steel-german-mixing-bowl-22cm (attempt 2/3)
+2025-07-20 15:53:37,078 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 15:53:37,079 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/prima-stainless-steel-german-mixing-bowl-22cm
+2025-07-20 15:53:39,437 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/prima-stainless-steel-german-mixing-bowl-22cm
+2025-07-20 15:53:39,438 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/prima-stainless-steel-german-mixing-bowl-22cm
+2025-07-20 15:53:39,567 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/prima-stainless-steel-german-mixing-bowl-22cm (Size: 666836 bytes)
+2025-07-20 15:53:39,930 - configurable_supplier_scraper - INFO - 🔄 REAL-TIME: Added product 22 to shared accumulator (total: 22)
+2025-07-20 15:53:39,931 - configurable_supplier_scraper - INFO - ✅ Extracted product 22: Prima Stainless Steel German Mixing Bowl 22cm - £1.73 (EAN: 5038673170237)
+2025-07-20 15:53:39,956 - PassiveExtractionWorkflow - INFO - 🔍 SUPPLIER STATE UPDATE: Index updated to 22/121
+2025-07-20 15:53:39,956 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS: Product 22 processed (total in cache: 22)
+2025-07-20 15:53:39,957 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Processing product 22
+2025-07-20 15:53:39,958 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: Product 22, frequency=2, enabled=True
+2025-07-20 15:53:39,958 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: List length=22, modulo=0
+2025-07-20 15:53:39,959 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Initial path object: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products/poundwholesale-co-uk_products_cache.json
+2025-07-20 15:53:39,959 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Path is absolute: True
+2025-07-20 15:53:39,960 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Path as_posix: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products/poundwholesale-co-uk_products_cache.json
+2025-07-20 15:53:39,960 - PassiveExtractionWorkflow - WARNING - WSL path detected: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products/poundwholesale-co-uk_products_cache.json. Using WSL-compatible approach.
+2025-07-20 15:53:39,961 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Directory extracted via os.path.dirname: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products
+2025-07-20 15:53:39,966 - PassiveExtractionWorkflow - INFO - ✅ Cache directory ensured via os.makedirs: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products
+2025-07-20 15:53:39,966 - PassiveExtractionWorkflow - INFO - 💾 CACHE SAVE: Starting save of 22 products to cache...
+2025-07-20 15:53:39,967 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Final path for file operations: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products/poundwholesale-co-uk_products_cache.json
+2025-07-20 15:53:39,975 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Loaded 24 existing products for deduplication
+2025-07-20 15:53:39,975 - PassiveExtractionWorkflow - INFO - 🔄 DEDUPLICATION: Skipped 20 URL duplicates and 0 EAN duplicates.
+2025-07-20 15:53:39,976 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Attempting to save to: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products/poundwholesale-co-uk_products_cache.json
+2025-07-20 15:53:39,991 - PassiveExtractionWorkflow - INFO - ✅ Successfully saved 26 products (2 new) to cache: poundwholesale-co-uk_products_cache.json (size: 14660 bytes)
+2025-07-20 15:53:39,992 - PassiveExtractionWorkflow - INFO - 💾 PERIODIC CACHE SAVE: Saved 22 products to cache (every 2 products)
+2025-07-20 15:53:40,013 - configurable_supplier_scraper - INFO - Visiting product page 23/121: https://www.poundwholesale.co.uk/make-bake-kids-cookie-cutters-assorted-10-pack
+2025-07-20 15:53:40,014 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/make-bake-kids-cookie-cutters-assorted-10-pack (attempt 1/3)
+2025-07-20 15:53:40,014 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 15:53:40,015 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/make-bake-kids-cookie-cutters-assorted-10-pack
+2025-07-20 15:53:42,867 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/make-bake-kids-cookie-cutters-assorted-10-pack in 1.98s...
+2025-07-20 15:53:44,857 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/make-bake-kids-cookie-cutters-assorted-10-pack (attempt 2/3)
+2025-07-20 15:53:44,859 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 15:53:44,860 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/make-bake-kids-cookie-cutters-assorted-10-pack
+2025-07-20 15:53:47,266 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/make-bake-kids-cookie-cutters-assorted-10-pack
+2025-07-20 15:53:47,267 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/make-bake-kids-cookie-cutters-assorted-10-pack
+2025-07-20 15:53:47,414 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/make-bake-kids-cookie-cutters-assorted-10-pack (Size: 670115 bytes)
+2025-07-20 15:53:47,687 - configurable_supplier_scraper - INFO - 🔄 REAL-TIME: Added product 23 to shared accumulator (total: 23)
+2025-07-20 15:53:47,688 - configurable_supplier_scraper - INFO - ✅ Extracted product 23: Make & Bake Kids Cookie Cutters Assorted 10 Pack - £0.4 (EAN: 5015302441180)
+2025-07-20 15:53:47,715 - PassiveExtractionWorkflow - INFO - 🔍 SUPPLIER STATE UPDATE: Index updated to 23/121
+2025-07-20 15:53:47,716 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS: Product 23 processed (total in cache: 23)
+2025-07-20 15:53:47,717 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Processing product 23
+2025-07-20 15:53:47,717 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: Product 23, frequency=2, enabled=True
+2025-07-20 15:53:47,718 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: List length=23, modulo=1
+2025-07-20 15:53:47,748 - configurable_supplier_scraper - INFO - Visiting product page 24/121: https://www.poundwholesale.co.uk/swirly-bake-disposable-piping-bags-set-100-pack
+2025-07-20 15:53:47,748 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/swirly-bake-disposable-piping-bags-set-100-pack (attempt 1/3)
+2025-07-20 15:53:47,749 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 15:53:47,750 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/swirly-bake-disposable-piping-bags-set-100-pack
+2025-07-20 15:53:50,914 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/swirly-bake-disposable-piping-bags-set-100-pack in 1.80s...
+2025-07-20 15:53:52,712 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/swirly-bake-disposable-piping-bags-set-100-pack (attempt 2/3)
+2025-07-20 15:53:52,713 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 15:53:52,714 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/swirly-bake-disposable-piping-bags-set-100-pack
+2025-07-20 15:53:54,177 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/swirly-bake-disposable-piping-bags-set-100-pack
+2025-07-20 15:53:54,178 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/swirly-bake-disposable-piping-bags-set-100-pack
+2025-07-20 15:53:54,340 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/swirly-bake-disposable-piping-bags-set-100-pack (Size: 671610 bytes)
+2025-07-20 15:53:54,618 - configurable_supplier_scraper - INFO - 🔄 REAL-TIME: Added product 24 to shared accumulator (total: 24)
+2025-07-20 15:53:54,619 - configurable_supplier_scraper - INFO - ✅ Extracted product 24: Swirly Bake Disposable Piping Bags Set 100 Pack - £0.65 (EAN: B08Y79SWK5)
+2025-07-20 15:53:54,643 - PassiveExtractionWorkflow - INFO - 🔍 SUPPLIER STATE UPDATE: Index updated to 24/121
+2025-07-20 15:53:54,644 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS: Product 24 processed (total in cache: 24)
+2025-07-20 15:53:54,644 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Processing product 24
+2025-07-20 15:53:54,645 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: Product 24, frequency=2, enabled=True
+2025-07-20 15:53:54,645 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: List length=24, modulo=0
+2025-07-20 15:53:54,646 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Initial path object: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products/poundwholesale-co-uk_products_cache.json
+2025-07-20 15:53:54,647 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Path is absolute: True
+2025-07-20 15:53:54,647 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Path as_posix: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products/poundwholesale-co-uk_products_cache.json
+2025-07-20 15:53:54,648 - PassiveExtractionWorkflow - WARNING - WSL path detected: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products/poundwholesale-co-uk_products_cache.json. Using WSL-compatible approach.
+2025-07-20 15:53:54,648 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Directory extracted via os.path.dirname: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products
+2025-07-20 15:53:54,655 - PassiveExtractionWorkflow - INFO - ✅ Cache directory ensured via os.makedirs: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products
+2025-07-20 15:53:54,656 - PassiveExtractionWorkflow - INFO - 💾 CACHE SAVE: Starting save of 24 products to cache...
+2025-07-20 15:53:54,656 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Final path for file operations: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products/poundwholesale-co-uk_products_cache.json
+2025-07-20 15:53:54,666 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Loaded 26 existing products for deduplication
+2025-07-20 15:53:54,667 - PassiveExtractionWorkflow - INFO - 🔄 DEDUPLICATION: Skipped 22 URL duplicates and 0 EAN duplicates.
+2025-07-20 15:53:54,667 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Attempting to save to: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products/poundwholesale-co-uk_products_cache.json
+2025-07-20 15:53:54,682 - PassiveExtractionWorkflow - INFO - ✅ Successfully saved 28 products (2 new) to cache: poundwholesale-co-uk_products_cache.json (size: 15828 bytes)
+2025-07-20 15:53:54,683 - PassiveExtractionWorkflow - INFO - 💾 PERIODIC CACHE SAVE: Saved 24 products to cache (every 2 products)
+2025-07-20 15:53:54,705 - configurable_supplier_scraper - INFO - Visiting product page 25/121: https://www.poundwholesale.co.uk/prima-round-mechanical-kitchen-scale-5kg
+2025-07-20 15:53:54,705 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/prima-round-mechanical-kitchen-scale-5kg (attempt 1/3)
+2025-07-20 15:53:54,706 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 15:53:54,707 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/prima-round-mechanical-kitchen-scale-5kg
+2025-07-20 15:53:57,618 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/prima-round-mechanical-kitchen-scale-5kg in 1.55s...
+2025-07-20 15:53:59,166 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/prima-round-mechanical-kitchen-scale-5kg (attempt 2/3)
+2025-07-20 15:53:59,167 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 15:53:59,168 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/prima-round-mechanical-kitchen-scale-5kg
+2025-07-20 15:54:01,883 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/prima-round-mechanical-kitchen-scale-5kg
+2025-07-20 15:54:01,884 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/prima-round-mechanical-kitchen-scale-5kg
+2025-07-20 15:54:02,049 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/prima-round-mechanical-kitchen-scale-5kg (Size: 666328 bytes)
+2025-07-20 15:54:02,410 - configurable_supplier_scraper - INFO - 🔄 REAL-TIME: Added product 25 to shared accumulator (total: 25)
+2025-07-20 15:54:02,411 - configurable_supplier_scraper - INFO - ✅ Extracted product 25: Prima Round Mechanical Kitchen Scale 5kg - £5.49 (EAN: 5038673181622)
+2025-07-20 15:54:02,431 - PassiveExtractionWorkflow - INFO - 🔍 SUPPLIER STATE UPDATE: Index updated to 25/121
+2025-07-20 15:54:02,432 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS: Product 25 processed (total in cache: 25)
+2025-07-20 15:54:02,432 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Processing product 25
+2025-07-20 15:54:02,432 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: Product 25, frequency=2, enabled=True
+2025-07-20 15:54:02,433 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: List length=25, modulo=1
+2025-07-20 15:54:02,449 - configurable_supplier_scraper - INFO - Visiting product page 26/121: https://www.poundwholesale.co.uk/prima-stainless-steel-strainer-6-5cm
+2025-07-20 15:54:02,449 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/prima-stainless-steel-strainer-6-5cm (attempt 1/3)
+2025-07-20 15:54:02,450 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 15:54:02,450 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/prima-stainless-steel-strainer-6-5cm
+2025-07-20 15:54:05,562 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/prima-stainless-steel-strainer-6-5cm in 2.33s...
+2025-07-20 15:54:06,709 - __main__ - INFO - 🌐 Keeping browser persistent for next run - not closing browser
+2025-07-20 15:54:06,711 - utils.browser_manager - WARNING - Error during global cleanup: no running event loop

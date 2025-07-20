@@ -810,17 +810,8 @@ class FixedAmazonExtractor(AmazonExtractor):
             title_search_results = await self.search_by_title_using_search_bar(supplier_product_title, page=page)
             if title_search_results and "error" not in title_search_results and title_search_results.get("results"):
                 log.info(f"Title search successful for '{supplier_product_title}' after EAN '{ean}' failed")
-                # FIXED: Extract complete data for title search result instead of returning search result only
-                fallback_asin = title_search_results["results"][0].get("asin")
-                if fallback_asin:
-                    log.info(f"Extracting complete data for fallback ASIN {fallback_asin} from title search")
-                    product_data = await super().extract_data(fallback_asin)
-                    if product_data and "error" not in product_data:
-                        # Set search method for linking map
-                        product_data["_search_method_used"] = "title"
-                    return product_data
-                else:
-                    return {"error": f"No ASIN found in title search result for EAN {ean}"}
+                # Return the best result from title search
+                return title_search_results["results"][0] if title_search_results["results"] else {"error": f"No results for EAN {ean} or title search"}
             else:
                 log.warning(f"Both EAN '{ean}' and title '{supplier_product_title}' searches failed")
                 return {"error": f"No results for EAN {ean} or title search"}
@@ -1392,27 +1383,6 @@ class PassiveExtractionWorkflow:
                         self.log.info(f"✅ Added linking map entry: {actual_search_method.upper()} search {supplier_ean or 'NO_EAN'} → ASIN {asin}")
                         self.log.info(f"🔍 DEBUG: Current linking_map size: {len(self.linking_map)} entries")
                         self.log.info(f"🔍 DEBUG: Linking entry created: {linking_entry}")
-                        
-                        # 🚨 CRITICAL FIX: Check financial report trigger after each linking map entry
-                        financial_batch_size = self.system_config.get("financial_report_batch_size", 5)
-                        current_linking_map_count = len(self.linking_map)
-                        
-                        if current_linking_map_count > 0 and current_linking_map_count % financial_batch_size == 0:
-                            try:
-                                self.log.info(f"🚨 FINANCIAL REPORT TRIGGER: Reached {current_linking_map_count} linking map entries (trigger every {financial_batch_size})")
-                                from tools.FBA_Financial_calculator import run_calculations
-                                financial_results = run_calculations(self.supplier_name)
-                                if financial_results and financial_results.get('statistics', {}).get('output_file'):
-                                    self.log.info(f"✅ Financial report EXECUTED: {financial_results['statistics']['output_file']}")
-                                else:
-                                    self.log.warning("⚠️ Financial report executed but no file path returned")
-                            except ImportError as ie:
-                                self.log.error(f"❌ Could not import FBA_Financial_calculator: {ie}")
-                            except Exception as e:
-                                self.log.error(f"❌ Error executing financial report: {e}")
-                        elif current_linking_map_count > 0:
-                            next_trigger_count = ((current_linking_map_count // financial_batch_size) + 1) * financial_batch_size
-                            self.log.info(f"💡 FINANCIAL REPORT TRIGGER: Next trigger at {next_trigger_count} linking map entries (current: {current_linking_map_count}, trigger frequency: {financial_batch_size})")
                     else:
                         self.log.error(f"❌ CRITICAL: Could not create linking map entry - condition failed!")
                         self.log.error(f"   supplier_ean: '{supplier_ean}' (bool: {bool(supplier_ean)})")
@@ -2834,7 +2804,6 @@ Return ONLY valid JSON, no additional text."""
 
     async def _extract_supplier_products(self, supplier_url: str, supplier_name: str, category_urls: List[str], max_products_per_category: int, max_products_to_process: int = None, supplier_extraction_batch_size: int = 3) -> List[Dict[str, Any]]:
         """Extract products from a list of category URLs with overall product limit enforcement."""
-        import json  # Import at function level to ensure availability
         
         # 🔄 SUPPLIER CACHE FRESHNESS CHECK
         # If we have cached products and processing state indicates progress, skip supplier scraping
@@ -2849,13 +2818,13 @@ Return ONLY valid JSON, no additional text."""
                     
                     # Check cache file age (fresh within 24 hours)
                     import time
-                    cache_age_hours = (time.time() - os.path.getmtime(actual_cache_file)) / 3600
+                    cache_age_hours = (time.time() - os.path.getmtime(cached_products_path)) / 3600
                     cache_is_fresh = cache_age_hours < 24
                     
                     if last_index > 0 and cache_is_fresh:
                         # Check if supplier extraction is complete before returning cache
                         import json
-                        with open(actual_cache_file, 'r', encoding='utf-8') as f:
+                        with open(cached_products_path, 'r', encoding='utf-8') as f:
                             cached_products = json.load(f)
                         
                         # Get extraction progress from state
@@ -2896,7 +2865,7 @@ Return ONLY valid JSON, no additional text."""
                     elif last_index > 0:
                         # This handles the case where cache exists but extraction was incomplete
                         import json
-                        with open(actual_cache_file, 'r', encoding='utf-8') as f:
+                        with open(cached_products_path, 'r', encoding='utf-8') as f:
                             cached_products = json.load(f)
                         extraction_progress = self.state_manager.state_data.get('supplier_extraction_progress', {})
                         products_extracted = extraction_progress.get('products_extracted_total', len(cached_products))
@@ -3231,13 +3200,11 @@ Return ONLY valid JSON, no additional text."""
                     # Cached data is incomplete - trigger fresh scraping
                     self.log.warning(f"⚠️ Cached data for EAN {supplier_ean} missing price fields. Triggering fresh scraping.")
                     amazon_product_data = await self.extractor.search_by_ean_and_extract_data(supplier_ean, product_data["title"])
-                    # Don't hardcode method - let extractor set it based on what actually worked
-                    actual_search_method = amazon_product_data.get("_search_method_used", "EAN") if amazon_product_data else "EAN"
+                    actual_search_method = "EAN"  # Will be EAN since we're doing fresh search
             else:
                 # No cache found - perform EAN search
                 amazon_product_data = await self.extractor.search_by_ean_and_extract_data(supplier_ean, product_data["title"])
-                # Don't hardcode method - let extractor set it based on what actually worked
-                actual_search_method = amazon_product_data.get("_search_method_used", "EAN") if amazon_product_data else "EAN"
+                actual_search_method = "EAN"  # Will be EAN since we're doing fresh search
             
             if amazon_product_data and "error" not in amazon_product_data:
                 # EAN search succeeded (or we used cached data)
@@ -3245,8 +3212,7 @@ Return ONLY valid JSON, no additional text."""
                 
                 if found_asin and actual_search_method != "EAN_cached":
                     # For fresh EAN search results, check if we need to copy to EAN-specific cache file
-                    # Keep the actual search method as determined by the extractor
-                    pass  # Don't override actual_search_method here
+                    actual_search_method = "EAN"  # EAN search succeeded
                 elif not found_asin:
                     actual_search_method = "EAN"  # EAN search succeeded but no ASIN found
                 
@@ -5640,23 +5606,6 @@ Return ONLY valid JSON, no additional text."""
                 current_index = start_idx + i + 1
                 self.log.info(f"--- Processing supplier product {current_index}/{len(price_filtered_products)}: '{product_data.get('title')}' ---")
                 
-                # 🔄 UPDATE PROCESSING STATE: Update detailed progress tracking for hybrid mode
-                if hasattr(self, 'state_manager') and self.state_manager:
-                    # Calculate current category and subcategory indexes
-                    # For hybrid mode, we process by chunks, so category index = batch_num + 1
-                    self.state_manager.update_supplier_extraction_progress(
-                        category_index=batch_num + 1,
-                        total_categories=total_batches,
-                        subcategory_index=i + 1,
-                        total_subcategories=len(batch_products),
-                        batch_number=batch_num + 1,
-                        total_batches=total_batches,
-                        category_url=product_data.get('source_url', 'unknown'),
-                        extraction_phase="amazon_analysis"
-                    )
-                    # Also update the main processing index
-                    self.state_manager.update_processing_index(current_index, len(price_filtered_products))
-                
                 # Check if product has been previously processed
                 if self.state_manager.is_product_processed(product_data.get("url")):
                     self.log.info(f"Product already processed: {product_data.get('url')}. Skipping.")
@@ -5699,27 +5648,6 @@ Return ONLY valid JSON, no additional text."""
                             "supplier_url": product_data.get("url")
                         }
                         self.linking_map.append(linking_entry)
-                        
-                        # 🚨 CRITICAL FIX: Check financial report trigger after each linking map entry
-                        financial_batch_size = self.system_config.get("financial_report_batch_size", 5)
-                        current_linking_map_count = len(self.linking_map)
-                        
-                        if current_linking_map_count > 0 and current_linking_map_count % financial_batch_size == 0:
-                            try:
-                                self.log.info(f"🚨 FINANCIAL REPORT TRIGGER: Reached {current_linking_map_count} linking map entries (trigger every {financial_batch_size})")
-                                from tools.FBA_Financial_calculator import run_calculations
-                                financial_results = run_calculations(self.supplier_name)
-                                if financial_results and financial_results.get('statistics', {}).get('output_file'):
-                                    self.log.info(f"✅ Financial report EXECUTED: {financial_results['statistics']['output_file']}")
-                                else:
-                                    self.log.warning("⚠️ Financial report executed but no file path returned")
-                            except ImportError as ie:
-                                self.log.error(f"❌ Could not import FBA_Financial_calculator: {ie}")
-                            except Exception as e:
-                                self.log.error(f"❌ Error executing financial report: {e}")
-                        elif current_linking_map_count > 0:
-                            next_trigger_count = ((current_linking_map_count // financial_batch_size) + 1) * financial_batch_size
-                            self.log.info(f"💡 FINANCIAL REPORT TRIGGER: Next trigger at {next_trigger_count} linking map entries (current: {current_linking_map_count}, trigger frequency: {financial_batch_size})")
                     
                     # Combine supplier and Amazon data
                     combined_data = {**product_data, **amazon_data}
@@ -5765,12 +5693,10 @@ Return ONLY valid JSON, no additional text."""
                         self.log.info(f"❌ Not profitable product: {product_data.get('title')}")
                         self.state_manager.mark_product_processed(product_data.get("url"), "completed_not_profitable")
                 
-                # Save state periodically using configurable batch size
-                linking_map_batch = self.system_config.get("linking_map_batch_size", 1)
-                if current_index % linking_map_batch == 0:
+                # Save state periodically
+                if current_index % 5 == 0:
                     self.state_manager.save_state()
                     self._save_linking_map(self.supplier_name)
-                    self.log.info(f"📊 Periodic save at product {current_index} (linking_map_batch_size: {linking_map_batch})")
         
         try:
             # Final save of linking map with all entries

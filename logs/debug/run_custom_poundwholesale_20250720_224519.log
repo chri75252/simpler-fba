@@ -1,0 +1,136 @@
+2025-07-20 22:45:19,199 - utils.logger - INFO - 🔧 Logging initialised – log file: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/logs/debug/run_custom_poundwholesale_20250720_224519.log
+2025-07-20 22:45:19,200 - __main__ - INFO - 📋 Debug log file: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/logs/debug/run_custom_poundwholesale_20250720_224519.log
+2025-07-20 22:45:19,201 - __main__ - DEBUG - Debug logging initialized - full system execution details will be captured
+2025-07-20 22:45:19,210 - utils.browser_manager - INFO - 🔧 BrowserManager singleton initialized
+2025-07-20 22:45:19,825 - utils.browser_manager - INFO - 🔌 Connecting to persistent Chrome on debug port 9222
+2025-07-20 22:45:20,359 - utils.browser_manager - INFO - 📄 Using existing context with 2 pages
+2025-07-20 22:45:20,361 - utils.browser_manager - INFO - ✅ Connected to persistent Chrome successfully
+2025-07-20 22:45:20,362 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 22:45:20,362 - __main__ - INFO - 🔐 Initializing authentication service for logout detection...
+2025-07-20 22:45:20,375 - __main__ - INFO - ✅ Using hardcoded credentials for poundwholesale.co.uk
+2025-07-20 22:45:20,375 - __main__ - INFO - 🌐 Connecting to existing Chrome debug port 9222 for authentication...
+2025-07-20 22:45:25,338 - tools.supplier_authentication_service - INFO - ✅ Authentication indicator found: 'logout'
+2025-07-20 22:45:25,414 - tools.supplier_authentication_service - INFO - ✅ Logout link found - user is authenticated
+2025-07-20 22:45:25,415 - tools.supplier_authentication_service - INFO - ✅ Session already authenticated - skipping login
+2025-07-20 22:45:25,419 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: output_dir = '/mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS'
+2025-07-20 22:45:25,419 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: supplier_cache_dir = '/mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products'
+2025-07-20 22:45:25,425 - PassiveExtractionWorkflow - INFO - ✅ Created supplier cache directory: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products
+2025-07-20 22:45:25,433 - PassiveExtractionWorkflow - INFO - ✅ Created amazon cache directory: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/FBA_ANALYSIS/amazon_cache
+2025-07-20 22:45:25,438 - amazon_playwright_extractor - INFO - AI features disabled in amazon_playwright_extractor - using only traditional selectors.
+2025-07-20 22:45:25,446 - amazon_playwright_extractor - INFO - Output directory set to: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/CACHE/amazon_data
+2025-07-20 22:45:25,446 - amazon_playwright_extractor - WARNING - ⚠️ BrowserManager not available, using legacy browser connection
+2025-07-20 22:45:25,450 - configurable_supplier_scraper - INFO - ✅ Loaded system configuration from /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/config/system_config.json
+2025-07-20 22:45:25,452 - configurable_supplier_scraper - INFO - 🔧 ConfigurableSupplierScraper will use centralized BrowserManager
+2025-07-20 22:45:25,453 - configurable_supplier_scraper - DEBUG - AI model from config: gpt-4.1-mini-2025-04-14
+2025-07-20 22:45:25,453 - configurable_supplier_scraper - DEBUG - Extraction targets from config: {}
+2025-07-20 22:45:25,454 - configurable_supplier_scraper - DEBUG - Discovery assistance from config: {}
+2025-07-20 22:45:25,454 - configurable_supplier_scraper - INFO - [CONFIG] Initialized with AI model: gpt-4.1-mini-2025-04-14
+2025-07-20 22:45:25,455 - configurable_supplier_scraper - INFO - [TARGET] Extraction targets loaded: []
+2025-07-20 22:45:25,456 - configurable_supplier_scraper - INFO - [ASSIST] Discovery assistance enabled: False
+2025-07-20 22:45:25,457 - PassiveExtractionWorkflow - DEBUG - 🔍 DEBUG: linking_map initialized as type: <class 'list'>
+2025-07-20 22:45:25,457 - PassiveExtractionWorkflow - INFO - ✅ Output directory set to: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS
+2025-07-20 22:45:25,458 - PassiveExtractionWorkflow - INFO - ✅ Initialization validation passed - all critical attributes verified
+2025-07-20 22:45:25,459 - PassiveExtractionWorkflow - INFO - --- Starting Passive Extraction Workflow for: poundwholesale.co.uk ---
+2025-07-20 22:45:25,459 - PassiveExtractionWorkflow - INFO - Session ID: poundwholesale.co.uk_20250720_224525
+2025-07-20 22:45:25,460 - PassiveExtractionWorkflow - INFO - 📊 CONFIGURATION VALUES:
+2025-07-20 22:45:25,460 - PassiveExtractionWorkflow - INFO -    max_products_to_process: 20
+2025-07-20 22:45:25,461 - PassiveExtractionWorkflow - INFO -    max_products_per_category: 3
+2025-07-20 22:45:25,461 - PassiveExtractionWorkflow - INFO -    max_analyzed_products: 12
+2025-07-20 22:45:25,462 - PassiveExtractionWorkflow - INFO -    max_products_per_cycle: 100
+2025-07-20 22:45:25,463 - PassiveExtractionWorkflow - INFO -    supplier_extraction_batch_size: 1
+2025-07-20 22:45:25,463 - PassiveExtractionWorkflow - INFO -    max_categories_per_request: 5
+2025-07-20 22:45:25,476 - utils.enhanced_state_manager - INFO - Loaded state for poundwholesale.co.uk - resuming from index 4
+2025-07-20 22:45:25,477 - PassiveExtractionWorkflow - INFO - 📋 Loaded existing processing state for poundwholesale.co.uk
+2025-07-20 22:45:25,478 - PassiveExtractionWorkflow - INFO - 🔄 Resuming from index 4
+2025-07-20 22:45:25,478 - PassiveExtractionWorkflow - INFO - ✅ Processing state loaded - system will resume from last position
+2025-07-20 22:45:25,489 - PassiveExtractionWorkflow - INFO - ✅ Loaded linking map (array format) from /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/FBA_ANALYSIS/linking_maps/poundwholesale.co.uk/linking_map.json with 3 entries
+2025-07-20 22:45:25,489 - PassiveExtractionWorkflow - DEBUG - 🔍 DEBUG: linking_map loaded as type: <class 'list'>, length: 3
+2025-07-20 22:45:25,496 - PassiveExtractionWorkflow - INFO - ✅ CACHE FOUND: expected pattern - 4 products in poundwholesale-co-uk_products_cache.json
+2025-07-20 22:45:25,497 - PassiveExtractionWorkflow - INFO - 🔍 PHASE DETECTION: AMAZON_ANALYSIS (incomplete - supplier: 4, linking map: 3)
+2025-07-20 22:45:25,518 - PassiveExtractionWorkflow - INFO - ✅ Processing state initialized and started
+2025-07-20 22:45:25,536 - PassiveExtractionWorkflow - INFO - ✅ Loaded linking map (array format) from /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/FBA_ANALYSIS/linking_maps/poundwholesale.co.uk/linking_map.json with 3 entries
+2025-07-20 22:45:25,536 - PassiveExtractionWorkflow - INFO - CUSTOM MODE: Using predefined category list.
+2025-07-20 22:45:25,537 - tools.passive_extraction_workflow_latest - INFO - Attempting to load predefined categories for poundwholesale.co.uk
+2025-07-20 22:45:25,547 - tools.passive_extraction_workflow_latest - INFO - ✅ Successfully loaded 276 predefined category URLs from /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/config/poundwholesale_categories.json
+2025-07-20 22:45:25,549 - PassiveExtractionWorkflow - INFO - 📊 FINITE MODE: 20 max_products ÷ 3 max_products_per_category = 7 categories needed
+2025-07-20 22:45:25,549 - PassiveExtractionWorkflow - INFO - 📋 Processing 7 predefined categories (finite mode)
+2025-07-20 22:45:25,550 - PassiveExtractionWorkflow - INFO - 🔄 HYBRID PROCESSING MODE: Enabled
+2025-07-20 22:45:25,551 - PassiveExtractionWorkflow - INFO - 🔄 HYBRID PROCESSING: Mode configuration loaded
+2025-07-20 22:45:25,551 - PassiveExtractionWorkflow - INFO -    switch_to_amazon_after_categories: 1
+2025-07-20 22:45:25,552 - PassiveExtractionWorkflow - INFO - 🔄 HYBRID MODE: Chunked processing (chunk size: 1 categories)
+2025-07-20 22:45:25,553 - PassiveExtractionWorkflow - INFO - 🔄 Processing chunk 1: categories 1-1
+2025-07-20 22:45:25,567 - PassiveExtractionWorkflow - INFO - ✅ CACHE FOUND: expected pattern - 4 products in poundwholesale-co-uk_products_cache.json
+2025-07-20 22:45:25,576 - PassiveExtractionWorkflow - INFO - ✅ SUPPLIER CACHE HIT: Chunk categories already extracted (3 products)
+2025-07-20 22:45:25,577 - PassiveExtractionWorkflow - INFO - 🔍 Processing 3 products with main workflow logic
+2025-07-20 22:45:25,578 - PassiveExtractionWorkflow - INFO - --- Processing supplier product 1/3: 'Jaunty Metallic Foil Happy Birthday Balloon 16" Assorted Colours' ---
+2025-07-20 22:45:25,617 - PassiveExtractionWorkflow - INFO - Product already processed: https://www.poundwholesale.co.uk/jaunty-metallic-foil-happy-birthday-balloon-16-assorted-colours. Skipping.
+2025-07-20 22:45:25,618 - PassiveExtractionWorkflow - INFO - --- Processing supplier product 2/3: 'Jaunty 6" Ocean Adventure Shark & Mermaid Metallic Silver Party Hats 4 Pack Assorted' ---
+2025-07-20 22:45:25,661 - PassiveExtractionWorkflow - INFO - Product already processed: https://www.poundwholesale.co.uk/jaunty-6-ocean-adventure-shark-mermaid-metallic-silver-party-hats-4-pack-assorted. Skipping.
+2025-07-20 22:45:25,662 - PassiveExtractionWorkflow - INFO - --- Processing supplier product 3/3: 'Jaunty 6" Metallic Gold Wild Animal Leopard & Giraffe Party Hats 4 Pack Assorted' ---
+2025-07-20 22:45:25,715 - PassiveExtractionWorkflow - INFO - Product already processed: https://www.poundwholesale.co.uk/jaunty-6-metallic-gold-wild-animal-leopard-giraffe-party-hats-4-pack-assorted. Skipping.
+2025-07-20 22:45:25,716 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: _save_linking_map called with 3 entries for supplier poundwholesale.co.uk
+2025-07-20 22:45:25,717 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: linking_map type: <class 'list'>, entries: 3, sample: {'supplier_ean': '5056683920345', 'amazon_asin': 'B0837YY9PJ', 'supplier_title': 'Jaunty Metallic Foil Happy Birthday Balloon 16" As...', 'amazon_title': 'Ponmoo Foil Balloon Number 16/61 Silver, Giant Num...', 'supplier_price': 0.61, 'amazon_price': 6.99, 'match_method': 'EAN_cached', 'confidence': 'low', 'created_at': '2025-07-20T22:43:24.901477', 'supplier_url': 'https://www.poundwholesale.co.uk/jaunty-metallic-f...'}
+2025-07-20 22:45:25,728 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Target file path: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/FBA_ANALYSIS/linking_maps/poundwholesale.co.uk/linking_map.json
+2025-07-20 22:45:25,740 - PassiveExtractionWorkflow - INFO - ✅ Directory created: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/FBA_ANALYSIS/linking_maps/poundwholesale.co.uk
+2025-07-20 22:45:25,741 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Temporary file path: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/FBA_ANALYSIS/linking_maps/poundwholesale.co.uk/linking_map.json.tmp
+2025-07-20 22:45:25,742 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Writing linking map data to temporary file...
+2025-07-20 22:45:25,750 - PassiveExtractionWorkflow - INFO - ✅ Temporary file written successfully: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/FBA_ANALYSIS/linking_maps/poundwholesale.co.uk/linking_map.json.tmp
+2025-07-20 22:45:25,751 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Moving temporary file to final location...
+2025-07-20 22:45:25,763 - PassiveExtractionWorkflow - INFO - ✅ Successfully saved linking map with 3 entries to /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/FBA_ANALYSIS/linking_maps/poundwholesale.co.uk/linking_map.json
+2025-07-20 22:45:25,772 - PassiveExtractionWorkflow - INFO - ✅ VERIFICATION: File exists at /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/FBA_ANALYSIS/linking_maps/poundwholesale.co.uk/linking_map.json with size 2044 bytes
+2025-07-20 22:45:25,773 - PassiveExtractionWorkflow - INFO - ✅ Chunk processing: Final linking map save completed
+2025-07-20 22:45:25,774 - PassiveExtractionWorkflow - INFO - --- Chunk Processing with Main Workflow Logic Finished ---
+2025-07-20 22:45:25,775 - PassiveExtractionWorkflow - INFO - 🚨 FINANCIAL REPORT TRIGGER: Reached 3 linking map entries (trigger every 3)
+2025-07-20 22:45:25,833 - tools.FBA_Financial_calculator - INFO - FBA_Financial_calculator: amazon_dir confirmed to exist and is a directory: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/FBA_ANALYSIS/amazon_cache
+2025-07-20 22:45:25,981 - PassiveExtractionWorkflow - INFO - ✅ Financial report EXECUTED: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/FBA_ANALYSIS/financial_reports/poundwholesale-co-uk/fba_financial_report_20250720_224525.csv
+2025-07-20 22:45:25,982 - PassiveExtractionWorkflow - INFO - 🧹 Clearing cache between processing phases
+2025-07-20 22:45:25,983 - PassiveExtractionWorkflow - INFO - 🔄 Processing chunk 2: categories 2-2
+2025-07-20 22:45:25,993 - PassiveExtractionWorkflow - INFO - ✅ CACHE FOUND: expected pattern - 4 products in poundwholesale-co-uk_products_cache.json
+2025-07-20 22:45:26,000 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Need to extract remaining products for chunk (1/3 expected)
+2025-07-20 22:45:26,013 - PassiveExtractionWorkflow - INFO - ✅ CACHE FOUND: expected pattern - 4 products in poundwholesale-co-uk_products_cache.json
+2025-07-20 22:45:26,027 - PassiveExtractionWorkflow - INFO - 🔄 RESUMPTION DETECTED: Found 1 cached products but resuming from index 4
+2025-07-20 22:45:26,027 - PassiveExtractionWorkflow - INFO - 🔄 EXTRACTION NEEDED: Continuing supplier extraction to complete interrupted category
+2025-07-20 22:45:26,028 - PassiveExtractionWorkflow - INFO - 🔄 CHUNK CACHE MISS: No cached products found for chunk categories: ['https://www.poundwholesale.co.uk/kitchenware/wholesale-baking']
+2025-07-20 22:45:26,028 - PassiveExtractionWorkflow - INFO - 🔄 EXTRACTION NEEDED: Continuing with supplier extraction for new categories
+2025-07-20 22:45:26,028 - PassiveExtractionWorkflow - INFO - 🕷️ PERFORMING SUPPLIER SCRAPING from 1 categories
+2025-07-20 22:45:26,029 - PassiveExtractionWorkflow - INFO - 📦 Using supplier extraction batch size: 1
+2025-07-20 22:45:26,036 - PassiveExtractionWorkflow - INFO - ✅ CACHE FOUND: expected pattern - 4 products in poundwholesale-co-uk_products_cache.json
+2025-07-20 22:45:26,041 - PassiveExtractionWorkflow - INFO - ✅ RESUMPTION: Loaded 4 existing products from cache file: poundwholesale-co-uk_products_cache.json
+2025-07-20 22:45:26,042 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS TRACKING: Extracting from 1 categories in 1 batches
+2025-07-20 22:45:26,043 - PassiveExtractionWorkflow - INFO - 📦 Processing category batch 1/1 (1 categories)
+2025-07-20 22:45:26,043 - PassiveExtractionWorkflow - INFO - 🔐 LOGIN SCRIPT TRIGGER: Checking authentication before category_batch_1
+2025-07-20 22:45:26,050 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 22:45:26,050 - utils.browser_manager - INFO - 📄 Navigating to https://www.poundwholesale.co.uk
+2025-07-20 22:45:27,557 - utils.browser_manager - INFO - ✅ Page ready for https://www.poundwholesale.co.uk
+2025-07-20 22:45:30,408 - tools.supplier_authentication_service - INFO - ✅ Authentication indicator found: 'logout'
+2025-07-20 22:45:30,466 - tools.supplier_authentication_service - INFO - ✅ Logout link found - user is authenticated
+2025-07-20 22:45:30,466 - tools.supplier_authentication_service - INFO - ✅ Session already authenticated - skipping login
+2025-07-20 22:45:30,467 - PassiveExtractionWorkflow - INFO - ✅ LOGIN SCRIPT SUCCESS: Authentication verified for category_batch_1
+2025-07-20 22:45:30,488 - PassiveExtractionWorkflow - INFO - 🔄 EXTRACTION PROGRESS: Processing subcategory 1/1 in batch 1 (Category 1/1)
+2025-07-20 22:45:30,489 - PassiveExtractionWorkflow - INFO - Scraping category: https://www.poundwholesale.co.uk/kitchenware/wholesale-baking
+2025-07-20 22:45:30,489 - configurable_supplier_scraper - INFO - Starting enhanced scraping from https://www.poundwholesale.co.uk/kitchenware/wholesale-baking
+2025-07-20 22:45:30,489 - configurable_supplier_scraper - INFO - Setting page limiter for https://www.poundwholesale.co.uk/kitchenware/wholesale-baking
+2025-07-20 22:45:30,490 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 22:45:30,515 - configurable_supplier_scraper - INFO - ✅ Loaded VALIDATED supplier package selectors for poundwholesale.co.uk from /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/suppliers/poundwholesale-co-uk/config/product_selectors.json
+2025-07-20 22:45:30,516 - configurable_supplier_scraper - INFO - No page limiter configuration found for www.poundwholesale.co.uk
+2025-07-20 22:45:30,517 - configurable_supplier_scraper - INFO - Collecting product URLs from paginated pages starting at: https://www.poundwholesale.co.uk/kitchenware/wholesale-baking
+2025-07-20 22:45:30,517 - configurable_supplier_scraper - INFO - Processing page 1: https://www.poundwholesale.co.uk/kitchenware/wholesale-baking
+2025-07-20 22:45:30,518 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/kitchenware/wholesale-baking (attempt 1/3)
+2025-07-20 22:45:30,518 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 22:45:30,519 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/kitchenware/wholesale-baking
+2025-07-20 22:45:31,965 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/kitchenware/wholesale-baking in 2.06s...
+2025-07-20 22:45:34,030 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/kitchenware/wholesale-baking (attempt 2/3)
+2025-07-20 22:45:34,032 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 22:45:34,033 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/kitchenware/wholesale-baking
+2025-07-20 22:45:35,386 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/kitchenware/wholesale-baking
+2025-07-20 22:45:35,388 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/kitchenware/wholesale-baking
+2025-07-20 22:45:35,587 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/kitchenware/wholesale-baking (Size: 647079 bytes)
+2025-07-20 22:45:35,821 - configurable_supplier_scraper - INFO - Found 3 new product URLs on page 1
+2025-07-20 22:45:35,822 - configurable_supplier_scraper - INFO - Collected 3 total product URLs across 1 pages
+2025-07-20 22:45:35,823 - configurable_supplier_scraper - INFO - Found 3 total product URLs across all pages
+2025-07-20 22:45:35,823 - configurable_supplier_scraper - INFO - Visiting product page 1/3: https://www.poundwholesale.co.uk/royalford-black-nylon-whisk-30-5cm
+2025-07-20 22:45:35,824 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/royalford-black-nylon-whisk-30-5cm (attempt 1/3)
+2025-07-20 22:45:35,824 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 22:45:35,824 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/royalford-black-nylon-whisk-30-5cm
+2025-07-20 22:45:35,843 - __main__ - INFO - 🌐 Keeping browser persistent for next run - not closing browser
+2025-07-20 22:45:35,844 - utils.browser_manager - WARNING - Error during global cleanup: no running event loop

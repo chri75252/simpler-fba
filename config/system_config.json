@@ -15,12 +15,12 @@
       "description": "Archive system with supplier-specific targeting. Modes: 'full' (all files) or 'specific_supplier' (target_supplier only)"
     },
     "force_ai_scraping": true,
-    "max_products": 30,
-    "max_analyzed_products": 12,
-    "max_products_per_category":6,
-    "max_products_per_cycle": 100,
-    "linking_map_batch_size": 2,
-    "financial_report_batch_size": 5,
+    "max_products": 0,
+    "max_analyzed_products": 0,
+    "max_products_per_category": 0,
+    "max_products_per_cycle": 20,
+    "linking_map_batch_size": 1,
+    "financial_report_batch_size": 40,
     "headless_probe_seconds": 0,
     "reuse_browser": true,
     "max_tabs": 2,
@@ -30,9 +30,9 @@
     "enable_supplier_parser": false,
     "force_ai_category_suggestion": false,
     "supplier_extraction_batch_size": 1,
-    "max_categories_to_process": 1
+    "max_categories_to_process": 0
   },
-     "max_categories_per_request": 2,
+     "max_categories_per_request": 0,
       "dynamic_reordering": {
         "enabled": false,
         "trigger_interval_categories": 5,
@@ -104,7 +104,7 @@
       }
     },
     "memory_management": {
-      "clear_cache_between_phases": true,
+      "clear_cache_between_phases": false,
       "max_memory_threshold_mb": 16384
     }
   },

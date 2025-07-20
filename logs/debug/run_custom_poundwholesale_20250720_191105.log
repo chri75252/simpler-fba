@@ -1,0 +1,45 @@
+2025-07-20 19:11:05,769 - utils.logger - INFO - 🔧 Logging initialised – log file: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/logs/debug/run_custom_poundwholesale_20250720_191105.log
+2025-07-20 19:11:05,770 - __main__ - INFO - 📋 Debug log file: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/logs/debug/run_custom_poundwholesale_20250720_191105.log
+2025-07-20 19:11:05,771 - __main__ - DEBUG - Debug logging initialized - full system execution details will be captured
+2025-07-20 19:11:05,777 - utils.browser_manager - INFO - 🔧 BrowserManager singleton initialized
+2025-07-20 19:11:06,096 - utils.browser_manager - INFO - 🔌 Connecting to persistent Chrome on debug port 9222
+2025-07-20 19:11:34,805 - utils.browser_manager - ERROR - ❌ Could not connect to persistent Chrome on port 9222. Error: BrowserType.connect_over_cdp: Timeout 30000ms exceeded.
+Call log:
+  - <ws preparing> retrieving websocket url from http://localhost:9222
+  -   - <ws connecting> ws://localhost:9222/devtools/browser/641a467c-decd-4301-b40d-7aa9261a0653
+  -   - <ws connected> ws://localhost:9222/devtools/browser/641a467c-decd-4301-b40d-7aa9261a0653
+
+2025-07-20 19:11:34,806 - utils.browser_manager - ERROR - ❌ Please ensure Chrome is running with --remote-debugging-port=9222
+2025-07-20 19:11:34,807 - utils.browser_manager - ERROR - ❌ Command: chrome --remote-debugging-port=9222 --user-data-dir=/tmp/chrome-debug
+2025-07-20 19:11:34,819 - __main__ - CRITICAL - 💥 A critical error occurred in the main workflow: Failed to connect to persistent Chrome on port 9222. Please start Chrome with debug port.
+Traceback (most recent call last):
+  File "/mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/utils/browser_manager.py", line 65, in launch_browser
+    self.browser = await self.playwright.chromium.connect_over_cdp(f"http://localhost:{cdp_port}")
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/playwright/async_api/_generated.py", line 14835, in connect_over_cdp
+    await self._impl_obj.connect_over_cdp(
+  File "/usr/local/lib/python3.12/dist-packages/playwright/_impl/_browser_type.py", line 183, in connect_over_cdp
+    response = await self._channel.send_return_as_dict("connectOverCDP", params)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/playwright/_impl/_connection.py", line 67, in send_return_as_dict
+    return await self._connection.wrap_api_call(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/playwright/_impl/_connection.py", line 528, in wrap_api_call
+    raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+playwright._impl._errors.TimeoutError: BrowserType.connect_over_cdp: Timeout 30000ms exceeded.
+Call log:
+  - <ws preparing> retrieving websocket url from http://localhost:9222
+  -   - <ws connecting> ws://localhost:9222/devtools/browser/641a467c-decd-4301-b40d-7aa9261a0653
+  -   - <ws connected> ws://localhost:9222/devtools/browser/641a467c-decd-4301-b40d-7aa9261a0653
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/run_custom_poundwholesale.py", line 36, in main
+    await browser_manager.launch_browser(cdp_port=chrome_debug_port)
+  File "/mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/utils/browser_manager.py", line 82, in launch_browser
+    raise Exception(f"Failed to connect to persistent Chrome on port {cdp_port}. Please start Chrome with debug port.")
+Exception: Failed to connect to persistent Chrome on port 9222. Please start Chrome with debug port.
+2025-07-20 19:11:34,828 - __main__ - INFO - 🌐 Keeping browser persistent for next run - not closing browser
+2025-07-20 19:11:34,829 - utils.browser_manager - WARNING - Error during global cleanup: no running event loop

@@ -1,0 +1,362 @@
+2025-07-20 15:44:36,729 - utils.logger - INFO - 🔧 Logging initialised – log file: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/logs/debug/run_custom_poundwholesale_20250720_154436.log
+2025-07-20 15:44:36,729 - __main__ - INFO - 📋 Debug log file: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/logs/debug/run_custom_poundwholesale_20250720_154436.log
+2025-07-20 15:44:36,730 - __main__ - DEBUG - Debug logging initialized - full system execution details will be captured
+2025-07-20 15:44:36,736 - utils.browser_manager - INFO - 🔧 BrowserManager singleton initialized
+2025-07-20 15:44:37,055 - utils.browser_manager - INFO - 🔌 Connecting to persistent Chrome on debug port 9222
+2025-07-20 15:44:37,828 - utils.browser_manager - INFO - 📄 Using existing context with 3 pages
+2025-07-20 15:44:37,833 - utils.browser_manager - INFO - ✅ Connected to persistent Chrome successfully
+2025-07-20 15:44:37,834 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 15:44:37,835 - __main__ - INFO - 🔐 Initializing authentication service for logout detection...
+2025-07-20 15:44:37,844 - __main__ - INFO - ✅ Using hardcoded credentials for poundwholesale.co.uk
+2025-07-20 15:44:37,845 - __main__ - INFO - 🌐 Connecting to existing Chrome debug port 9222 for authentication...
+2025-07-20 15:44:42,283 - tools.supplier_authentication_service - INFO - ✅ Authentication indicator found: 'logout'
+2025-07-20 15:44:42,348 - tools.supplier_authentication_service - INFO - ✅ Logout link found - user is authenticated
+2025-07-20 15:44:42,349 - tools.supplier_authentication_service - INFO - ✅ Session already authenticated - skipping login
+2025-07-20 15:44:42,353 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: output_dir = '/mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS'
+2025-07-20 15:44:42,353 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: supplier_cache_dir = '/mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products'
+2025-07-20 15:44:42,360 - PassiveExtractionWorkflow - INFO - ✅ Created supplier cache directory: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products
+2025-07-20 15:44:42,366 - PassiveExtractionWorkflow - INFO - ✅ Created amazon cache directory: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/FBA_ANALYSIS/amazon_cache
+2025-07-20 15:44:42,372 - amazon_playwright_extractor - INFO - AI features disabled in amazon_playwright_extractor - using only traditional selectors.
+2025-07-20 15:44:42,382 - amazon_playwright_extractor - INFO - Output directory set to: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/CACHE/amazon_data
+2025-07-20 15:44:42,382 - amazon_playwright_extractor - WARNING - ⚠️ BrowserManager not available, using legacy browser connection
+2025-07-20 15:44:42,387 - configurable_supplier_scraper - INFO - ✅ Loaded system configuration from /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/config/system_config.json
+2025-07-20 15:44:42,389 - configurable_supplier_scraper - INFO - 🔧 ConfigurableSupplierScraper will use centralized BrowserManager
+2025-07-20 15:44:42,389 - configurable_supplier_scraper - DEBUG - AI model from config: gpt-4.1-mini-2025-04-14
+2025-07-20 15:44:42,390 - configurable_supplier_scraper - DEBUG - Extraction targets from config: {}
+2025-07-20 15:44:42,390 - configurable_supplier_scraper - DEBUG - Discovery assistance from config: {}
+2025-07-20 15:44:42,391 - configurable_supplier_scraper - INFO - [CONFIG] Initialized with AI model: gpt-4.1-mini-2025-04-14
+2025-07-20 15:44:42,391 - configurable_supplier_scraper - INFO - [TARGET] Extraction targets loaded: []
+2025-07-20 15:44:42,392 - configurable_supplier_scraper - INFO - [ASSIST] Discovery assistance enabled: False
+2025-07-20 15:44:42,392 - PassiveExtractionWorkflow - DEBUG - 🔍 DEBUG: linking_map initialized as type: <class 'list'>
+2025-07-20 15:44:42,393 - PassiveExtractionWorkflow - INFO - ✅ Output directory set to: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS
+2025-07-20 15:44:42,393 - PassiveExtractionWorkflow - INFO - ✅ Initialization validation passed - all critical attributes verified
+2025-07-20 15:44:42,394 - PassiveExtractionWorkflow - INFO - --- Starting Passive Extraction Workflow for: poundwholesale.co.uk ---
+2025-07-20 15:44:42,394 - PassiveExtractionWorkflow - INFO - Session ID: poundwholesale.co.uk_20250720_154442
+2025-07-20 15:44:42,395 - PassiveExtractionWorkflow - INFO - 📊 CONFIGURATION VALUES:
+2025-07-20 15:44:42,395 - PassiveExtractionWorkflow - INFO -    max_products_to_process: 0
+2025-07-20 15:44:42,396 - PassiveExtractionWorkflow - INFO -    max_products_per_category: 0
+2025-07-20 15:44:42,396 - PassiveExtractionWorkflow - INFO -    max_analyzed_products: 0
+2025-07-20 15:44:42,397 - PassiveExtractionWorkflow - INFO -    max_products_per_cycle: 100
+2025-07-20 15:44:42,397 - PassiveExtractionWorkflow - INFO -    supplier_extraction_batch_size: 1
+2025-07-20 15:44:42,398 - PassiveExtractionWorkflow - INFO -    max_categories_per_request: 300
+2025-07-20 15:44:42,401 - utils.enhanced_state_manager - INFO - No existing state file found for poundwholesale.co.uk, starting fresh
+2025-07-20 15:44:42,401 - PassiveExtractionWorkflow - INFO - 📋 Loaded existing processing state for poundwholesale.co.uk
+2025-07-20 15:44:42,402 - PassiveExtractionWorkflow - INFO - 🔄 Resuming from index 0
+2025-07-20 15:44:42,402 - PassiveExtractionWorkflow - INFO - ✅ Processing state loaded - system will resume from last position
+2025-07-20 15:44:42,407 - PassiveExtractionWorkflow - INFO - ✅ No existing linking map found at any path (tried 2 patterns) - Creating new map
+2025-07-20 15:44:42,407 - PassiveExtractionWorkflow - DEBUG - 🔍 DEBUG: linking_map loaded as type: <class 'list'>, length: 0
+2025-07-20 15:44:42,415 - PassiveExtractionWorkflow - INFO - 📝 NO CACHE FOUND: No supplier cache file found for poundwholesale.co.uk
+2025-07-20 15:44:42,415 - PassiveExtractionWorkflow - INFO - 🔍 PHASE DETECTION: SUPPLIER_EXTRACTION (no supplier cache found)
+2025-07-20 15:44:42,434 - PassiveExtractionWorkflow - INFO - ✅ Processing state initialized and started
+2025-07-20 15:44:42,440 - PassiveExtractionWorkflow - INFO - ✅ No existing linking map found at any path (tried 2 patterns) - Creating new map
+2025-07-20 15:44:42,440 - PassiveExtractionWorkflow - INFO - CUSTOM MODE: Using predefined category list.
+2025-07-20 15:44:42,440 - tools.passive_extraction_workflow_latest - INFO - Attempting to load predefined categories for poundwholesale.co.uk
+2025-07-20 15:44:42,446 - tools.passive_extraction_workflow_latest - INFO - ✅ Successfully loaded 276 predefined category URLs from /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/config/poundwholesale_categories.json
+2025-07-20 15:44:42,448 - PassiveExtractionWorkflow - INFO - 🌟 INFINITE MODE DETECTED: max_products=0, max_products_per_category=0
+2025-07-20 15:44:42,448 - PassiveExtractionWorkflow - INFO - 📋 Processing ALL 276 predefined categories (infinite mode)
+2025-07-20 15:44:42,448 - PassiveExtractionWorkflow - INFO - 🔄 HYBRID PROCESSING MODE: Enabled
+2025-07-20 15:44:42,449 - PassiveExtractionWorkflow - INFO - 🔄 HYBRID PROCESSING: Mode configuration loaded
+2025-07-20 15:44:42,450 - PassiveExtractionWorkflow - INFO -    switch_to_amazon_after_categories: 1
+2025-07-20 15:44:42,450 - PassiveExtractionWorkflow - INFO - 🔄 HYBRID MODE: Chunked processing (chunk size: 1 categories)
+2025-07-20 15:44:42,450 - PassiveExtractionWorkflow - INFO - 🔄 Processing chunk 1: categories 1-1
+2025-07-20 15:44:42,458 - PassiveExtractionWorkflow - INFO - 📝 NO CACHE FOUND: No supplier cache file found for poundwholesale.co.uk
+2025-07-20 15:44:42,458 - PassiveExtractionWorkflow - INFO - 📝 SUPPLIER PHASE: No existing cache found - starting fresh extraction
+2025-07-20 15:44:42,465 - PassiveExtractionWorkflow - INFO - 📝 NO CACHE FOUND: No supplier cache file found for poundwholesale.co.uk
+2025-07-20 15:44:42,465 - PassiveExtractionWorkflow - INFO - 🕷️ PERFORMING SUPPLIER SCRAPING from 1 categories
+2025-07-20 15:44:42,466 - PassiveExtractionWorkflow - INFO - 📦 Using supplier extraction batch size: 1
+2025-07-20 15:44:42,471 - PassiveExtractionWorkflow - INFO - 📝 NO CACHE FOUND: No supplier cache file found for poundwholesale.co.uk
+2025-07-20 15:44:42,472 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS TRACKING: Extracting from 1 categories in 1 batches
+2025-07-20 15:44:42,472 - PassiveExtractionWorkflow - INFO - 📦 Processing category batch 1/1 (1 categories)
+2025-07-20 15:44:42,472 - PassiveExtractionWorkflow - INFO - 🔐 LOGIN SCRIPT TRIGGER: Checking authentication before category_batch_1
+2025-07-20 15:44:42,478 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 15:44:42,478 - utils.browser_manager - INFO - 📄 Navigating to https://www.poundwholesale.co.uk
+2025-07-20 15:44:43,958 - utils.browser_manager - INFO - ✅ Page ready for https://www.poundwholesale.co.uk
+2025-07-20 15:44:48,720 - tools.supplier_authentication_service - INFO - ✅ Authentication indicator found: 'logout'
+2025-07-20 15:44:48,771 - tools.supplier_authentication_service - INFO - ✅ Logout link found - user is authenticated
+2025-07-20 15:44:48,772 - tools.supplier_authentication_service - INFO - ✅ Session already authenticated - skipping login
+2025-07-20 15:44:48,773 - PassiveExtractionWorkflow - INFO - ✅ LOGIN SCRIPT SUCCESS: Authentication verified for category_batch_1
+2025-07-20 15:44:48,794 - PassiveExtractionWorkflow - INFO - 🔄 EXTRACTION PROGRESS: Processing subcategory 1/1 in batch 1 (Category 1/1)
+2025-07-20 15:44:48,794 - PassiveExtractionWorkflow - INFO - Scraping category: https://www.poundwholesale.co.uk/kitchenware/wholesale-baking
+2025-07-20 15:44:48,795 - configurable_supplier_scraper - INFO - Starting enhanced scraping from https://www.poundwholesale.co.uk/kitchenware/wholesale-baking
+2025-07-20 15:44:48,795 - configurable_supplier_scraper - INFO - Setting page limiter for https://www.poundwholesale.co.uk/kitchenware/wholesale-baking
+2025-07-20 15:44:48,796 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 15:44:48,818 - configurable_supplier_scraper - INFO - ✅ Loaded VALIDATED supplier package selectors for poundwholesale.co.uk from /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/suppliers/poundwholesale-co-uk/config/product_selectors.json
+2025-07-20 15:44:48,819 - configurable_supplier_scraper - INFO - No page limiter configuration found for www.poundwholesale.co.uk
+2025-07-20 15:44:48,820 - configurable_supplier_scraper - INFO - Collecting product URLs from paginated pages starting at: https://www.poundwholesale.co.uk/kitchenware/wholesale-baking
+2025-07-20 15:44:48,821 - configurable_supplier_scraper - INFO - Collected 0 total product URLs across 1 pages
+2025-07-20 15:44:48,821 - configurable_supplier_scraper - WARNING - No product URLs found across all pages for https://www.poundwholesale.co.uk/kitchenware/wholesale-baking
+2025-07-20 15:44:48,821 - PassiveExtractionWorkflow - INFO - 📊 Category completed: 0 raw products extracted, 0 total products accumulated
+2025-07-20 15:44:48,822 - PassiveExtractionWorkflow - INFO - ✅ Completed batch 1: 0 total products extracted so far
+2025-07-20 15:44:48,823 - PassiveExtractionWorkflow - INFO - 🔄 Processing chunk 2: categories 2-2
+2025-07-20 15:44:48,832 - PassiveExtractionWorkflow - INFO - 📝 NO CACHE FOUND: No supplier cache file found for poundwholesale.co.uk
+2025-07-20 15:44:48,833 - PassiveExtractionWorkflow - INFO - 📝 SUPPLIER PHASE: No existing cache found - starting fresh extraction
+2025-07-20 15:44:48,842 - PassiveExtractionWorkflow - INFO - 📝 NO CACHE FOUND: No supplier cache file found for poundwholesale.co.uk
+2025-07-20 15:44:48,842 - PassiveExtractionWorkflow - INFO - 🕷️ PERFORMING SUPPLIER SCRAPING from 1 categories
+2025-07-20 15:44:48,843 - PassiveExtractionWorkflow - INFO - 📦 Using supplier extraction batch size: 1
+2025-07-20 15:44:48,849 - PassiveExtractionWorkflow - INFO - 📝 NO CACHE FOUND: No supplier cache file found for poundwholesale.co.uk
+2025-07-20 15:44:48,850 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS TRACKING: Extracting from 1 categories in 1 batches
+2025-07-20 15:44:48,850 - PassiveExtractionWorkflow - INFO - 📦 Processing category batch 1/1 (1 categories)
+2025-07-20 15:44:48,851 - PassiveExtractionWorkflow - INFO - 🔐 LOGIN SCRIPT TRIGGER: Checking authentication before category_batch_1
+2025-07-20 15:44:48,859 - utils.browser_manager - INFO - ♻️ Reusing cached page for https://www.poundwholesale.co.uk
+2025-07-20 15:44:53,596 - tools.supplier_authentication_service - INFO - ✅ Authentication indicator found: 'logout'
+2025-07-20 15:44:53,655 - tools.supplier_authentication_service - INFO - ✅ Logout link found - user is authenticated
+2025-07-20 15:44:53,656 - tools.supplier_authentication_service - INFO - ✅ Session already authenticated - skipping login
+2025-07-20 15:44:53,656 - PassiveExtractionWorkflow - INFO - ✅ LOGIN SCRIPT SUCCESS: Authentication verified for category_batch_1
+2025-07-20 15:44:53,677 - PassiveExtractionWorkflow - INFO - 🔄 EXTRACTION PROGRESS: Processing subcategory 1/1 in batch 1 (Category 1/1)
+2025-07-20 15:44:53,677 - PassiveExtractionWorkflow - INFO - Scraping category: https://www.poundwholesale.co.uk/health-beauty/wholesale-skin-care
+2025-07-20 15:44:53,678 - configurable_supplier_scraper - INFO - Starting enhanced scraping from https://www.poundwholesale.co.uk/health-beauty/wholesale-skin-care
+2025-07-20 15:44:53,678 - configurable_supplier_scraper - INFO - Setting page limiter for https://www.poundwholesale.co.uk/health-beauty/wholesale-skin-care
+2025-07-20 15:44:53,678 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 15:44:53,679 - configurable_supplier_scraper - INFO - No page limiter configuration found for www.poundwholesale.co.uk
+2025-07-20 15:44:53,679 - configurable_supplier_scraper - INFO - Collecting product URLs from paginated pages starting at: https://www.poundwholesale.co.uk/health-beauty/wholesale-skin-care
+2025-07-20 15:44:53,679 - configurable_supplier_scraper - INFO - Collected 0 total product URLs across 1 pages
+2025-07-20 15:44:53,680 - configurable_supplier_scraper - WARNING - No product URLs found across all pages for https://www.poundwholesale.co.uk/health-beauty/wholesale-skin-care
+2025-07-20 15:44:53,680 - PassiveExtractionWorkflow - INFO - 📊 Category completed: 0 raw products extracted, 0 total products accumulated
+2025-07-20 15:44:53,680 - PassiveExtractionWorkflow - INFO - ✅ Completed batch 1: 0 total products extracted so far
+2025-07-20 15:44:53,681 - PassiveExtractionWorkflow - INFO - 🔄 Processing chunk 3: categories 3-3
+2025-07-20 15:44:53,687 - PassiveExtractionWorkflow - INFO - 📝 NO CACHE FOUND: No supplier cache file found for poundwholesale.co.uk
+2025-07-20 15:44:53,688 - PassiveExtractionWorkflow - INFO - 📝 SUPPLIER PHASE: No existing cache found - starting fresh extraction
+2025-07-20 15:44:53,694 - PassiveExtractionWorkflow - INFO - 📝 NO CACHE FOUND: No supplier cache file found for poundwholesale.co.uk
+2025-07-20 15:44:53,695 - PassiveExtractionWorkflow - INFO - 🕷️ PERFORMING SUPPLIER SCRAPING from 1 categories
+2025-07-20 15:44:53,695 - PassiveExtractionWorkflow - INFO - 📦 Using supplier extraction batch size: 1
+2025-07-20 15:44:53,701 - PassiveExtractionWorkflow - INFO - 📝 NO CACHE FOUND: No supplier cache file found for poundwholesale.co.uk
+2025-07-20 15:44:53,701 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS TRACKING: Extracting from 1 categories in 1 batches
+2025-07-20 15:44:53,702 - PassiveExtractionWorkflow - INFO - 📦 Processing category batch 1/1 (1 categories)
+2025-07-20 15:44:53,702 - PassiveExtractionWorkflow - INFO - 🔐 LOGIN SCRIPT TRIGGER: Checking authentication before category_batch_1
+2025-07-20 15:44:53,708 - utils.browser_manager - INFO - ♻️ Reusing cached page for https://www.poundwholesale.co.uk
+2025-07-20 15:44:58,368 - tools.supplier_authentication_service - INFO - ✅ Authentication indicator found: 'logout'
+2025-07-20 15:44:58,425 - tools.supplier_authentication_service - INFO - ✅ Logout link found - user is authenticated
+2025-07-20 15:44:58,426 - tools.supplier_authentication_service - INFO - ✅ Session already authenticated - skipping login
+2025-07-20 15:44:58,427 - PassiveExtractionWorkflow - INFO - ✅ LOGIN SCRIPT SUCCESS: Authentication verified for category_batch_1
+2025-07-20 15:44:58,451 - PassiveExtractionWorkflow - INFO - 🔄 EXTRACTION PROGRESS: Processing subcategory 1/1 in batch 1 (Category 1/1)
+2025-07-20 15:44:58,451 - PassiveExtractionWorkflow - INFO - Scraping category: https://www.poundwholesale.co.uk/homeware/wholesale-home-fragrance-candles-accessories
+2025-07-20 15:44:58,452 - configurable_supplier_scraper - INFO - Starting enhanced scraping from https://www.poundwholesale.co.uk/homeware/wholesale-home-fragrance-candles-accessories
+2025-07-20 15:44:58,453 - configurable_supplier_scraper - INFO - Setting page limiter for https://www.poundwholesale.co.uk/homeware/wholesale-home-fragrance-candles-accessories
+2025-07-20 15:44:58,454 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 15:44:58,455 - configurable_supplier_scraper - INFO - No page limiter configuration found for www.poundwholesale.co.uk
+2025-07-20 15:44:58,455 - configurable_supplier_scraper - INFO - Collecting product URLs from paginated pages starting at: https://www.poundwholesale.co.uk/homeware/wholesale-home-fragrance-candles-accessories
+2025-07-20 15:44:58,456 - configurable_supplier_scraper - INFO - Collected 0 total product URLs across 1 pages
+2025-07-20 15:44:58,456 - configurable_supplier_scraper - WARNING - No product URLs found across all pages for https://www.poundwholesale.co.uk/homeware/wholesale-home-fragrance-candles-accessories
+2025-07-20 15:44:58,457 - PassiveExtractionWorkflow - INFO - 📊 Category completed: 0 raw products extracted, 0 total products accumulated
+2025-07-20 15:44:58,457 - PassiveExtractionWorkflow - INFO - ✅ Completed batch 1: 0 total products extracted so far
+2025-07-20 15:44:58,458 - PassiveExtractionWorkflow - INFO - 🔄 Processing chunk 4: categories 4-4
+2025-07-20 15:44:58,466 - PassiveExtractionWorkflow - INFO - 📝 NO CACHE FOUND: No supplier cache file found for poundwholesale.co.uk
+2025-07-20 15:44:58,466 - PassiveExtractionWorkflow - INFO - 📝 SUPPLIER PHASE: No existing cache found - starting fresh extraction
+2025-07-20 15:44:58,473 - PassiveExtractionWorkflow - INFO - 📝 NO CACHE FOUND: No supplier cache file found for poundwholesale.co.uk
+2025-07-20 15:44:58,473 - PassiveExtractionWorkflow - INFO - 🕷️ PERFORMING SUPPLIER SCRAPING from 1 categories
+2025-07-20 15:44:58,474 - PassiveExtractionWorkflow - INFO - 📦 Using supplier extraction batch size: 1
+2025-07-20 15:44:58,481 - PassiveExtractionWorkflow - INFO - 📝 NO CACHE FOUND: No supplier cache file found for poundwholesale.co.uk
+2025-07-20 15:44:58,482 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS TRACKING: Extracting from 1 categories in 1 batches
+2025-07-20 15:44:58,482 - PassiveExtractionWorkflow - INFO - 📦 Processing category batch 1/1 (1 categories)
+2025-07-20 15:44:58,482 - PassiveExtractionWorkflow - INFO - 🔐 LOGIN SCRIPT TRIGGER: Checking authentication before category_batch_1
+2025-07-20 15:44:58,487 - utils.browser_manager - INFO - ♻️ Reusing cached page for https://www.poundwholesale.co.uk
+2025-07-20 15:45:03,109 - tools.supplier_authentication_service - INFO - ✅ Authentication indicator found: 'logout'
+2025-07-20 15:45:03,161 - tools.supplier_authentication_service - INFO - ✅ Logout link found - user is authenticated
+2025-07-20 15:45:03,162 - tools.supplier_authentication_service - INFO - ✅ Session already authenticated - skipping login
+2025-07-20 15:45:03,163 - PassiveExtractionWorkflow - INFO - ✅ LOGIN SCRIPT SUCCESS: Authentication verified for category_batch_1
+2025-07-20 15:45:03,182 - PassiveExtractionWorkflow - INFO - 🔄 EXTRACTION PROGRESS: Processing subcategory 1/1 in batch 1 (Category 1/1)
+2025-07-20 15:45:03,183 - PassiveExtractionWorkflow - INFO - Scraping category: https://www.poundwholesale.co.uk/diy/wholesale-painting-decorating
+2025-07-20 15:45:03,183 - configurable_supplier_scraper - INFO - Starting enhanced scraping from https://www.poundwholesale.co.uk/diy/wholesale-painting-decorating
+2025-07-20 15:45:03,184 - configurable_supplier_scraper - INFO - Setting page limiter for https://www.poundwholesale.co.uk/diy/wholesale-painting-decorating
+2025-07-20 15:45:03,184 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 15:45:03,185 - configurable_supplier_scraper - INFO - No page limiter configuration found for www.poundwholesale.co.uk
+2025-07-20 15:45:03,185 - configurable_supplier_scraper - INFO - Collecting product URLs from paginated pages starting at: https://www.poundwholesale.co.uk/diy/wholesale-painting-decorating
+2025-07-20 15:45:03,186 - configurable_supplier_scraper - INFO - Collected 0 total product URLs across 1 pages
+2025-07-20 15:45:03,186 - configurable_supplier_scraper - WARNING - No product URLs found across all pages for https://www.poundwholesale.co.uk/diy/wholesale-painting-decorating
+2025-07-20 15:45:03,186 - PassiveExtractionWorkflow - INFO - 📊 Category completed: 0 raw products extracted, 0 total products accumulated
+2025-07-20 15:45:03,187 - PassiveExtractionWorkflow - INFO - ✅ Completed batch 1: 0 total products extracted so far
+2025-07-20 15:45:03,187 - PassiveExtractionWorkflow - INFO - 🔄 Processing chunk 5: categories 5-5
+2025-07-20 15:45:03,195 - PassiveExtractionWorkflow - INFO - 📝 NO CACHE FOUND: No supplier cache file found for poundwholesale.co.uk
+2025-07-20 15:45:03,196 - PassiveExtractionWorkflow - INFO - 📝 SUPPLIER PHASE: No existing cache found - starting fresh extraction
+2025-07-20 15:45:03,205 - PassiveExtractionWorkflow - INFO - 📝 NO CACHE FOUND: No supplier cache file found for poundwholesale.co.uk
+2025-07-20 15:45:03,205 - PassiveExtractionWorkflow - INFO - 🕷️ PERFORMING SUPPLIER SCRAPING from 1 categories
+2025-07-20 15:45:03,206 - PassiveExtractionWorkflow - INFO - 📦 Using supplier extraction batch size: 1
+2025-07-20 15:45:03,214 - PassiveExtractionWorkflow - INFO - 📝 NO CACHE FOUND: No supplier cache file found for poundwholesale.co.uk
+2025-07-20 15:45:03,215 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS TRACKING: Extracting from 1 categories in 1 batches
+2025-07-20 15:45:03,215 - PassiveExtractionWorkflow - INFO - 📦 Processing category batch 1/1 (1 categories)
+2025-07-20 15:45:03,216 - PassiveExtractionWorkflow - INFO - 🔐 LOGIN SCRIPT TRIGGER: Checking authentication before category_batch_1
+2025-07-20 15:45:03,223 - utils.browser_manager - INFO - ♻️ Reusing cached page for https://www.poundwholesale.co.uk
+2025-07-20 15:45:07,906 - tools.supplier_authentication_service - INFO - ✅ Authentication indicator found: 'logout'
+2025-07-20 15:45:07,964 - tools.supplier_authentication_service - INFO - ✅ Logout link found - user is authenticated
+2025-07-20 15:45:07,965 - tools.supplier_authentication_service - INFO - ✅ Session already authenticated - skipping login
+2025-07-20 15:45:07,965 - PassiveExtractionWorkflow - INFO - ✅ LOGIN SCRIPT SUCCESS: Authentication verified for category_batch_1
+2025-07-20 15:45:07,987 - PassiveExtractionWorkflow - INFO - 🔄 EXTRACTION PROGRESS: Processing subcategory 1/1 in batch 1 (Category 1/1)
+2025-07-20 15:45:07,987 - PassiveExtractionWorkflow - INFO - Scraping category: https://www.poundwholesale.co.uk/diy/wholesale-car-care/cleaning-air-fresheners
+2025-07-20 15:45:07,987 - configurable_supplier_scraper - INFO - Starting enhanced scraping from https://www.poundwholesale.co.uk/diy/wholesale-car-care/cleaning-air-fresheners
+2025-07-20 15:45:07,988 - configurable_supplier_scraper - INFO - Setting page limiter for https://www.poundwholesale.co.uk/diy/wholesale-car-care/cleaning-air-fresheners
+2025-07-20 15:45:07,988 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 15:45:07,988 - configurable_supplier_scraper - INFO - No page limiter configuration found for www.poundwholesale.co.uk
+2025-07-20 15:45:07,989 - configurable_supplier_scraper - INFO - Collecting product URLs from paginated pages starting at: https://www.poundwholesale.co.uk/diy/wholesale-car-care/cleaning-air-fresheners
+2025-07-20 15:45:07,989 - configurable_supplier_scraper - INFO - Collected 0 total product URLs across 1 pages
+2025-07-20 15:45:07,990 - configurable_supplier_scraper - WARNING - No product URLs found across all pages for https://www.poundwholesale.co.uk/diy/wholesale-car-care/cleaning-air-fresheners
+2025-07-20 15:45:07,990 - PassiveExtractionWorkflow - INFO - 📊 Category completed: 0 raw products extracted, 0 total products accumulated
+2025-07-20 15:45:07,990 - PassiveExtractionWorkflow - INFO - ✅ Completed batch 1: 0 total products extracted so far
+2025-07-20 15:45:07,991 - PassiveExtractionWorkflow - INFO - 🔄 Processing chunk 6: categories 6-6
+2025-07-20 15:45:07,997 - PassiveExtractionWorkflow - INFO - 📝 NO CACHE FOUND: No supplier cache file found for poundwholesale.co.uk
+2025-07-20 15:45:07,997 - PassiveExtractionWorkflow - INFO - 📝 SUPPLIER PHASE: No existing cache found - starting fresh extraction
+2025-07-20 15:45:08,004 - PassiveExtractionWorkflow - INFO - 📝 NO CACHE FOUND: No supplier cache file found for poundwholesale.co.uk
+2025-07-20 15:45:08,004 - PassiveExtractionWorkflow - INFO - 🕷️ PERFORMING SUPPLIER SCRAPING from 1 categories
+2025-07-20 15:45:08,004 - PassiveExtractionWorkflow - INFO - 📦 Using supplier extraction batch size: 1
+2025-07-20 15:45:08,012 - PassiveExtractionWorkflow - INFO - 📝 NO CACHE FOUND: No supplier cache file found for poundwholesale.co.uk
+2025-07-20 15:45:08,012 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS TRACKING: Extracting from 1 categories in 1 batches
+2025-07-20 15:45:08,013 - PassiveExtractionWorkflow - INFO - 📦 Processing category batch 1/1 (1 categories)
+2025-07-20 15:45:08,014 - PassiveExtractionWorkflow - INFO - 🔐 LOGIN SCRIPT TRIGGER: Checking authentication before category_batch_1
+2025-07-20 15:45:08,020 - utils.browser_manager - INFO - ♻️ Reusing cached page for https://www.poundwholesale.co.uk
+2025-07-20 15:45:12,646 - tools.supplier_authentication_service - INFO - ✅ Authentication indicator found: 'logout'
+2025-07-20 15:45:12,693 - tools.supplier_authentication_service - INFO - ✅ Logout link found - user is authenticated
+2025-07-20 15:45:12,693 - tools.supplier_authentication_service - INFO - ✅ Session already authenticated - skipping login
+2025-07-20 15:45:12,693 - PassiveExtractionWorkflow - INFO - ✅ LOGIN SCRIPT SUCCESS: Authentication verified for category_batch_1
+2025-07-20 15:45:12,710 - PassiveExtractionWorkflow - INFO - 🔄 EXTRACTION PROGRESS: Processing subcategory 1/1 in batch 1 (Category 1/1)
+2025-07-20 15:45:12,711 - PassiveExtractionWorkflow - INFO - Scraping category: https://www.poundwholesale.co.uk/health-beauty/wholesale-dental
+2025-07-20 15:45:12,711 - configurable_supplier_scraper - INFO - Starting enhanced scraping from https://www.poundwholesale.co.uk/health-beauty/wholesale-dental
+2025-07-20 15:45:12,712 - configurable_supplier_scraper - INFO - Setting page limiter for https://www.poundwholesale.co.uk/health-beauty/wholesale-dental
+2025-07-20 15:45:12,712 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 15:45:12,712 - configurable_supplier_scraper - INFO - No page limiter configuration found for www.poundwholesale.co.uk
+2025-07-20 15:45:12,713 - configurable_supplier_scraper - INFO - Collecting product URLs from paginated pages starting at: https://www.poundwholesale.co.uk/health-beauty/wholesale-dental
+2025-07-20 15:45:12,713 - configurable_supplier_scraper - INFO - Collected 0 total product URLs across 1 pages
+2025-07-20 15:45:12,713 - configurable_supplier_scraper - WARNING - No product URLs found across all pages for https://www.poundwholesale.co.uk/health-beauty/wholesale-dental
+2025-07-20 15:45:12,713 - PassiveExtractionWorkflow - INFO - 📊 Category completed: 0 raw products extracted, 0 total products accumulated
+2025-07-20 15:45:12,714 - PassiveExtractionWorkflow - INFO - ✅ Completed batch 1: 0 total products extracted so far
+2025-07-20 15:45:12,714 - PassiveExtractionWorkflow - INFO - 🔄 Processing chunk 7: categories 7-7
+2025-07-20 15:45:12,721 - PassiveExtractionWorkflow - INFO - 📝 NO CACHE FOUND: No supplier cache file found for poundwholesale.co.uk
+2025-07-20 15:45:12,722 - PassiveExtractionWorkflow - INFO - 📝 SUPPLIER PHASE: No existing cache found - starting fresh extraction
+2025-07-20 15:45:12,730 - PassiveExtractionWorkflow - INFO - 📝 NO CACHE FOUND: No supplier cache file found for poundwholesale.co.uk
+2025-07-20 15:45:12,730 - PassiveExtractionWorkflow - INFO - 🕷️ PERFORMING SUPPLIER SCRAPING from 1 categories
+2025-07-20 15:45:12,730 - PassiveExtractionWorkflow - INFO - 📦 Using supplier extraction batch size: 1
+2025-07-20 15:45:12,737 - PassiveExtractionWorkflow - INFO - 📝 NO CACHE FOUND: No supplier cache file found for poundwholesale.co.uk
+2025-07-20 15:45:12,737 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS TRACKING: Extracting from 1 categories in 1 batches
+2025-07-20 15:45:12,738 - PassiveExtractionWorkflow - INFO - 📦 Processing category batch 1/1 (1 categories)
+2025-07-20 15:45:12,738 - PassiveExtractionWorkflow - INFO - 🔐 LOGIN SCRIPT TRIGGER: Checking authentication before category_batch_1
+2025-07-20 15:45:12,743 - utils.browser_manager - INFO - ♻️ Reusing cached page for https://www.poundwholesale.co.uk
+2025-07-20 15:45:16,291 - tools.supplier_authentication_service - INFO - ✅ Authentication indicator found: 'logout'
+2025-07-20 15:45:16,351 - tools.supplier_authentication_service - INFO - ✅ Logout link found - user is authenticated
+2025-07-20 15:45:16,352 - tools.supplier_authentication_service - INFO - ✅ Session already authenticated - skipping login
+2025-07-20 15:45:16,353 - PassiveExtractionWorkflow - INFO - ✅ LOGIN SCRIPT SUCCESS: Authentication verified for category_batch_1
+2025-07-20 15:45:16,371 - PassiveExtractionWorkflow - INFO - 🔄 EXTRACTION PROGRESS: Processing subcategory 1/1 in batch 1 (Category 1/1)
+2025-07-20 15:45:16,372 - PassiveExtractionWorkflow - INFO - Scraping category: https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners
+2025-07-20 15:45:16,372 - configurable_supplier_scraper - INFO - Starting enhanced scraping from https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners
+2025-07-20 15:45:16,372 - configurable_supplier_scraper - INFO - Setting page limiter for https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners
+2025-07-20 15:45:16,373 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 15:45:16,373 - configurable_supplier_scraper - INFO - No page limiter configuration found for www.poundwholesale.co.uk
+2025-07-20 15:45:16,374 - configurable_supplier_scraper - INFO - Collecting product URLs from paginated pages starting at: https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners
+2025-07-20 15:45:16,374 - configurable_supplier_scraper - INFO - Collected 0 total product URLs across 1 pages
+2025-07-20 15:45:16,374 - configurable_supplier_scraper - WARNING - No product URLs found across all pages for https://www.poundwholesale.co.uk/wholesale-cleaning/cleaning-wipes-sprays/multi-purpose-cleaners
+2025-07-20 15:45:16,374 - PassiveExtractionWorkflow - INFO - 📊 Category completed: 0 raw products extracted, 0 total products accumulated
+2025-07-20 15:45:16,375 - PassiveExtractionWorkflow - INFO - ✅ Completed batch 1: 0 total products extracted so far
+2025-07-20 15:45:16,375 - PassiveExtractionWorkflow - INFO - 🔄 Processing chunk 8: categories 8-8
+2025-07-20 15:45:16,381 - PassiveExtractionWorkflow - INFO - 📝 NO CACHE FOUND: No supplier cache file found for poundwholesale.co.uk
+2025-07-20 15:45:16,382 - PassiveExtractionWorkflow - INFO - 📝 SUPPLIER PHASE: No existing cache found - starting fresh extraction
+2025-07-20 15:45:16,390 - PassiveExtractionWorkflow - INFO - 📝 NO CACHE FOUND: No supplier cache file found for poundwholesale.co.uk
+2025-07-20 15:45:16,391 - PassiveExtractionWorkflow - INFO - 🕷️ PERFORMING SUPPLIER SCRAPING from 1 categories
+2025-07-20 15:45:16,391 - PassiveExtractionWorkflow - INFO - 📦 Using supplier extraction batch size: 1
+2025-07-20 15:45:16,400 - PassiveExtractionWorkflow - INFO - 📝 NO CACHE FOUND: No supplier cache file found for poundwholesale.co.uk
+2025-07-20 15:45:16,400 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS TRACKING: Extracting from 1 categories in 1 batches
+2025-07-20 15:45:16,401 - PassiveExtractionWorkflow - INFO - 📦 Processing category batch 1/1 (1 categories)
+2025-07-20 15:45:16,401 - PassiveExtractionWorkflow - INFO - 🔐 LOGIN SCRIPT TRIGGER: Checking authentication before category_batch_1
+2025-07-20 15:45:16,406 - utils.browser_manager - INFO - ♻️ Reusing cached page for https://www.poundwholesale.co.uk
+2025-07-20 15:45:20,845 - tools.supplier_authentication_service - INFO - ✅ Authentication indicator found: 'logout'
+2025-07-20 15:45:20,903 - tools.supplier_authentication_service - INFO - ✅ Logout link found - user is authenticated
+2025-07-20 15:45:20,904 - tools.supplier_authentication_service - INFO - ✅ Session already authenticated - skipping login
+2025-07-20 15:45:20,904 - PassiveExtractionWorkflow - INFO - ✅ LOGIN SCRIPT SUCCESS: Authentication verified for category_batch_1
+2025-07-20 15:45:20,921 - PassiveExtractionWorkflow - INFO - 🔄 EXTRACTION PROGRESS: Processing subcategory 1/1 in batch 1 (Category 1/1)
+2025-07-20 15:45:20,921 - PassiveExtractionWorkflow - INFO - Scraping category: https://www.poundwholesale.co.uk/wholesale-cleaning/sponges-scourers-cloths
+2025-07-20 15:45:20,922 - configurable_supplier_scraper - INFO - Starting enhanced scraping from https://www.poundwholesale.co.uk/wholesale-cleaning/sponges-scourers-cloths
+2025-07-20 15:45:20,922 - configurable_supplier_scraper - INFO - Setting page limiter for https://www.poundwholesale.co.uk/wholesale-cleaning/sponges-scourers-cloths
+2025-07-20 15:45:20,922 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 15:45:20,923 - configurable_supplier_scraper - INFO - No page limiter configuration found for www.poundwholesale.co.uk
+2025-07-20 15:45:20,923 - configurable_supplier_scraper - INFO - Collecting product URLs from paginated pages starting at: https://www.poundwholesale.co.uk/wholesale-cleaning/sponges-scourers-cloths
+2025-07-20 15:45:20,923 - configurable_supplier_scraper - INFO - Collected 0 total product URLs across 1 pages
+2025-07-20 15:45:20,923 - configurable_supplier_scraper - WARNING - No product URLs found across all pages for https://www.poundwholesale.co.uk/wholesale-cleaning/sponges-scourers-cloths
+2025-07-20 15:45:20,924 - PassiveExtractionWorkflow - INFO - 📊 Category completed: 0 raw products extracted, 0 total products accumulated
+2025-07-20 15:45:20,924 - PassiveExtractionWorkflow - INFO - ✅ Completed batch 1: 0 total products extracted so far
+2025-07-20 15:45:20,925 - PassiveExtractionWorkflow - INFO - 🔄 Processing chunk 9: categories 9-9
+2025-07-20 15:45:20,932 - PassiveExtractionWorkflow - INFO - 📝 NO CACHE FOUND: No supplier cache file found for poundwholesale.co.uk
+2025-07-20 15:45:20,933 - PassiveExtractionWorkflow - INFO - 📝 SUPPLIER PHASE: No existing cache found - starting fresh extraction
+2025-07-20 15:45:20,939 - PassiveExtractionWorkflow - INFO - 📝 NO CACHE FOUND: No supplier cache file found for poundwholesale.co.uk
+2025-07-20 15:45:20,940 - PassiveExtractionWorkflow - INFO - 🕷️ PERFORMING SUPPLIER SCRAPING from 1 categories
+2025-07-20 15:45:20,940 - PassiveExtractionWorkflow - INFO - 📦 Using supplier extraction batch size: 1
+2025-07-20 15:45:20,947 - PassiveExtractionWorkflow - INFO - 📝 NO CACHE FOUND: No supplier cache file found for poundwholesale.co.uk
+2025-07-20 15:45:20,948 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS TRACKING: Extracting from 1 categories in 1 batches
+2025-07-20 15:45:20,948 - PassiveExtractionWorkflow - INFO - 📦 Processing category batch 1/1 (1 categories)
+2025-07-20 15:45:20,949 - PassiveExtractionWorkflow - INFO - 🔐 LOGIN SCRIPT TRIGGER: Checking authentication before category_batch_1
+2025-07-20 15:45:20,953 - utils.browser_manager - INFO - ♻️ Reusing cached page for https://www.poundwholesale.co.uk
+2025-07-20 15:45:25,505 - tools.supplier_authentication_service - INFO - ✅ Authentication indicator found: 'logout'
+2025-07-20 15:45:25,557 - tools.supplier_authentication_service - INFO - ✅ Logout link found - user is authenticated
+2025-07-20 15:45:25,557 - tools.supplier_authentication_service - INFO - ✅ Session already authenticated - skipping login
+2025-07-20 15:45:25,558 - PassiveExtractionWorkflow - INFO - ✅ LOGIN SCRIPT SUCCESS: Authentication verified for category_batch_1
+2025-07-20 15:45:25,574 - PassiveExtractionWorkflow - INFO - 🔄 EXTRACTION PROGRESS: Processing subcategory 1/1 in batch 1 (Category 1/1)
+2025-07-20 15:45:25,575 - PassiveExtractionWorkflow - INFO - Scraping category: https://www.poundwholesale.co.uk/toys/wholesale-slime-squish-toys
+2025-07-20 15:45:25,575 - configurable_supplier_scraper - INFO - Starting enhanced scraping from https://www.poundwholesale.co.uk/toys/wholesale-slime-squish-toys
+2025-07-20 15:45:25,576 - configurable_supplier_scraper - INFO - Setting page limiter for https://www.poundwholesale.co.uk/toys/wholesale-slime-squish-toys
+2025-07-20 15:45:25,576 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 15:45:25,576 - configurable_supplier_scraper - INFO - No page limiter configuration found for www.poundwholesale.co.uk
+2025-07-20 15:45:25,577 - configurable_supplier_scraper - INFO - Collecting product URLs from paginated pages starting at: https://www.poundwholesale.co.uk/toys/wholesale-slime-squish-toys
+2025-07-20 15:45:25,577 - configurable_supplier_scraper - INFO - Collected 0 total product URLs across 1 pages
+2025-07-20 15:45:25,577 - configurable_supplier_scraper - WARNING - No product URLs found across all pages for https://www.poundwholesale.co.uk/toys/wholesale-slime-squish-toys
+2025-07-20 15:45:25,578 - PassiveExtractionWorkflow - INFO - 📊 Category completed: 0 raw products extracted, 0 total products accumulated
+2025-07-20 15:45:25,578 - PassiveExtractionWorkflow - INFO - ✅ Completed batch 1: 0 total products extracted so far
+2025-07-20 15:45:25,578 - PassiveExtractionWorkflow - INFO - 🔄 Processing chunk 10: categories 10-10
+2025-07-20 15:45:25,584 - PassiveExtractionWorkflow - INFO - 📝 NO CACHE FOUND: No supplier cache file found for poundwholesale.co.uk
+2025-07-20 15:45:25,585 - PassiveExtractionWorkflow - INFO - 📝 SUPPLIER PHASE: No existing cache found - starting fresh extraction
+2025-07-20 15:45:25,590 - PassiveExtractionWorkflow - INFO - 📝 NO CACHE FOUND: No supplier cache file found for poundwholesale.co.uk
+2025-07-20 15:45:25,591 - PassiveExtractionWorkflow - INFO - 🕷️ PERFORMING SUPPLIER SCRAPING from 1 categories
+2025-07-20 15:45:25,591 - PassiveExtractionWorkflow - INFO - 📦 Using supplier extraction batch size: 1
+2025-07-20 15:45:25,598 - PassiveExtractionWorkflow - INFO - 📝 NO CACHE FOUND: No supplier cache file found for poundwholesale.co.uk
+2025-07-20 15:45:25,598 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS TRACKING: Extracting from 1 categories in 1 batches
+2025-07-20 15:45:25,598 - PassiveExtractionWorkflow - INFO - 📦 Processing category batch 1/1 (1 categories)
+2025-07-20 15:45:25,599 - PassiveExtractionWorkflow - INFO - 🔐 LOGIN SCRIPT TRIGGER: Checking authentication before category_batch_1
+2025-07-20 15:45:25,604 - utils.browser_manager - INFO - ♻️ Reusing cached page for https://www.poundwholesale.co.uk
+2025-07-20 15:45:30,574 - tools.supplier_authentication_service - INFO - ✅ Authentication indicator found: 'logout'
+2025-07-20 15:45:30,628 - tools.supplier_authentication_service - INFO - ✅ Logout link found - user is authenticated
+2025-07-20 15:45:30,628 - tools.supplier_authentication_service - INFO - ✅ Session already authenticated - skipping login
+2025-07-20 15:45:30,629 - PassiveExtractionWorkflow - INFO - ✅ LOGIN SCRIPT SUCCESS: Authentication verified for category_batch_1
+2025-07-20 15:45:30,654 - PassiveExtractionWorkflow - INFO - 🔄 EXTRACTION PROGRESS: Processing subcategory 1/1 in batch 1 (Category 1/1)
+2025-07-20 15:45:30,654 - PassiveExtractionWorkflow - INFO - Scraping category: https://www.poundwholesale.co.uk/toys/wholesale-kids-art-craft-music-toys
+2025-07-20 15:45:30,655 - configurable_supplier_scraper - INFO - Starting enhanced scraping from https://www.poundwholesale.co.uk/toys/wholesale-kids-art-craft-music-toys
+2025-07-20 15:45:30,655 - configurable_supplier_scraper - INFO - Setting page limiter for https://www.poundwholesale.co.uk/toys/wholesale-kids-art-craft-music-toys
+2025-07-20 15:45:30,656 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 15:45:30,657 - configurable_supplier_scraper - INFO - No page limiter configuration found for www.poundwholesale.co.uk
+2025-07-20 15:45:30,657 - configurable_supplier_scraper - INFO - Collecting product URLs from paginated pages starting at: https://www.poundwholesale.co.uk/toys/wholesale-kids-art-craft-music-toys
+2025-07-20 15:45:30,658 - configurable_supplier_scraper - INFO - Collected 0 total product URLs across 1 pages
+2025-07-20 15:45:30,658 - configurable_supplier_scraper - WARNING - No product URLs found across all pages for https://www.poundwholesale.co.uk/toys/wholesale-kids-art-craft-music-toys
+2025-07-20 15:45:30,659 - PassiveExtractionWorkflow - INFO - 📊 Category completed: 0 raw products extracted, 0 total products accumulated
+2025-07-20 15:45:30,660 - PassiveExtractionWorkflow - INFO - ✅ Completed batch 1: 0 total products extracted so far
+2025-07-20 15:45:30,660 - PassiveExtractionWorkflow - INFO - 🔄 Processing chunk 11: categories 11-11
+2025-07-20 15:45:30,670 - PassiveExtractionWorkflow - INFO - 📝 NO CACHE FOUND: No supplier cache file found for poundwholesale.co.uk
+2025-07-20 15:45:30,670 - PassiveExtractionWorkflow - INFO - 📝 SUPPLIER PHASE: No existing cache found - starting fresh extraction
+2025-07-20 15:45:30,690 - PassiveExtractionWorkflow - INFO - 📝 NO CACHE FOUND: No supplier cache file found for poundwholesale.co.uk
+2025-07-20 15:45:30,691 - PassiveExtractionWorkflow - INFO - 🕷️ PERFORMING SUPPLIER SCRAPING from 1 categories
+2025-07-20 15:45:30,691 - PassiveExtractionWorkflow - INFO - 📦 Using supplier extraction batch size: 1
+2025-07-20 15:45:30,703 - PassiveExtractionWorkflow - INFO - 📝 NO CACHE FOUND: No supplier cache file found for poundwholesale.co.uk
+2025-07-20 15:45:30,704 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS TRACKING: Extracting from 1 categories in 1 batches
+2025-07-20 15:45:30,705 - PassiveExtractionWorkflow - INFO - 📦 Processing category batch 1/1 (1 categories)
+2025-07-20 15:45:30,705 - PassiveExtractionWorkflow - INFO - 🔐 LOGIN SCRIPT TRIGGER: Checking authentication before category_batch_1
+2025-07-20 15:45:30,711 - utils.browser_manager - INFO - ♻️ Reusing cached page for https://www.poundwholesale.co.uk
+2025-07-20 15:45:35,646 - tools.supplier_authentication_service - INFO - ✅ Authentication indicator found: 'logout'
+2025-07-20 15:45:35,710 - tools.supplier_authentication_service - INFO - ✅ Logout link found - user is authenticated
+2025-07-20 15:45:35,711 - tools.supplier_authentication_service - INFO - ✅ Session already authenticated - skipping login
+2025-07-20 15:45:35,711 - PassiveExtractionWorkflow - INFO - ✅ LOGIN SCRIPT SUCCESS: Authentication verified for category_batch_1
+2025-07-20 15:45:35,736 - PassiveExtractionWorkflow - INFO - 🔄 EXTRACTION PROGRESS: Processing subcategory 1/1 in batch 1 (Category 1/1)
+2025-07-20 15:45:35,737 - PassiveExtractionWorkflow - INFO - Scraping category: https://www.poundwholesale.co.uk/health-beauty/wholesale-first-aid-medical
+2025-07-20 15:45:35,737 - configurable_supplier_scraper - INFO - Starting enhanced scraping from https://www.poundwholesale.co.uk/health-beauty/wholesale-first-aid-medical
+2025-07-20 15:45:35,738 - configurable_supplier_scraper - INFO - Setting page limiter for https://www.poundwholesale.co.uk/health-beauty/wholesale-first-aid-medical
+2025-07-20 15:45:35,738 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 15:45:35,739 - configurable_supplier_scraper - INFO - No page limiter configuration found for www.poundwholesale.co.uk
+2025-07-20 15:45:35,739 - configurable_supplier_scraper - INFO - Collecting product URLs from paginated pages starting at: https://www.poundwholesale.co.uk/health-beauty/wholesale-first-aid-medical
+2025-07-20 15:45:35,740 - configurable_supplier_scraper - INFO - Collected 0 total product URLs across 1 pages
+2025-07-20 15:45:35,740 - configurable_supplier_scraper - WARNING - No product URLs found across all pages for https://www.poundwholesale.co.uk/health-beauty/wholesale-first-aid-medical
+2025-07-20 15:45:35,741 - PassiveExtractionWorkflow - INFO - 📊 Category completed: 0 raw products extracted, 0 total products accumulated
+2025-07-20 15:45:35,741 - PassiveExtractionWorkflow - INFO - ✅ Completed batch 1: 0 total products extracted so far
+2025-07-20 15:45:35,741 - PassiveExtractionWorkflow - INFO - 🔄 Processing chunk 12: categories 12-12
+2025-07-20 15:45:35,749 - PassiveExtractionWorkflow - INFO - 📝 NO CACHE FOUND: No supplier cache file found for poundwholesale.co.uk
+2025-07-20 15:45:35,749 - PassiveExtractionWorkflow - INFO - 📝 SUPPLIER PHASE: No existing cache found - starting fresh extraction
+2025-07-20 15:45:35,757 - PassiveExtractionWorkflow - INFO - 📝 NO CACHE FOUND: No supplier cache file found for poundwholesale.co.uk
+2025-07-20 15:45:35,757 - PassiveExtractionWorkflow - INFO - 🕷️ PERFORMING SUPPLIER SCRAPING from 1 categories
+2025-07-20 15:45:35,758 - PassiveExtractionWorkflow - INFO - 📦 Using supplier extraction batch size: 1
+2025-07-20 15:45:35,764 - PassiveExtractionWorkflow - INFO - 📝 NO CACHE FOUND: No supplier cache file found for poundwholesale.co.uk
+2025-07-20 15:45:35,765 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS TRACKING: Extracting from 1 categories in 1 batches
+2025-07-20 15:45:35,765 - PassiveExtractionWorkflow - INFO - 📦 Processing category batch 1/1 (1 categories)
+2025-07-20 15:45:35,766 - PassiveExtractionWorkflow - INFO - 🔐 LOGIN SCRIPT TRIGGER: Checking authentication before category_batch_1
+2025-07-20 15:45:35,772 - utils.browser_manager - INFO - ♻️ Reusing cached page for https://www.poundwholesale.co.uk
+2025-07-20 15:45:38,198 - __main__ - INFO - 🌐 Keeping browser persistent for next run - not closing browser
+2025-07-20 15:45:38,200 - utils.browser_manager - WARNING - Error during global cleanup: no running event loop

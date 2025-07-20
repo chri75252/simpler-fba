@@ -11,6 +11,9 @@ Enterprise-grade Amazon FBA product research and profitability analysis tool tha
 - `utils/path_manager.py`: Centralized path management
 - `monitoring/comprehensive_system_monitor.py`: Real-time monitoring
 
+## Browser Automation Note
+Playwright is the default automation framework. When Playwright cannot be used (e.g., in restricted environments), utilize the `browser_automation` package which provides a Playwright-compatible API implemented with Selenium.
+
 ## Path Management Standards (CRITICAL)
 **ALWAYS use path_manager.py instead of hardcoded paths:**
 

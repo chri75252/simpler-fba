@@ -10,6 +10,8 @@ This document provides a detailed breakdown of the individual "agents" or autono
 
 The system operates as a sequential pipeline, where the output of one agent often becomes the input for the next. The `PassiveExtractionWorkflow` class acts as the central orchestrator, coordinating the execution of these agents.
 
+**Browser Automation Note:** Playwright is the primary library for browser automation. If Playwright cannot be installed, use the `browser_automation` Selenium adapter which mimics the Playwright API.
+
 ```
 [ Start ]
     |

@@ -12,6 +12,13 @@ import os
 from datetime import datetime
 from pathlib import Path
 from typing import Dict, Any, Optional
+import inspect
+
+async def maybe_await(result):
+    """Await the result if it is awaitable"""
+    if inspect.isawaitable(result):
+        return await result
+    return result
 
 # Configure logging
 logging.basicConfig(
@@ -27,8 +34,15 @@ try:
     from playwright.async_api import async_playwright
     PLAYWRIGHT_AVAILABLE = True
 except ImportError:
-    PLAYWRIGHT_AVAILABLE = False
-    log.error("Playwright not available. Install with: pip install playwright")
+    try:
+        from browser_automation import async_playwright
+        PLAYWRIGHT_AVAILABLE = True
+        log.info("Using Selenium-based Playwright adapter")
+    except ImportError:
+        PLAYWRIGHT_AVAILABLE = False
+        log.error(
+            "Playwright not available and selenium adapter missing. Install with: pip install playwright or selenium"
+        )
 
 async def test_poundwholesale_with_headed_browser():
     """Test poundwholesale.co.uk using headed Playwright browser."""
@@ -50,68 +64,76 @@ async def test_poundwholesale_with_headed_browser():
     
     log.info(f"Loaded selectors: {selectors}")
     
-    async with async_playwright() as p:
-        # Launch browser in headed mode
-        browser = await p.chromium.launch(
-            headless=False,  # Key: headed mode to bypass bot detection
-            args=[
-                '--disable-blink-features=AutomationControlled',
-                '--no-first-run',
-                '--disable-web-security',
-                '--disable-features=VizDisplayCompositor'
-            ]
-        )
-        
-        try:
-            context = await browser.new_context(
-                user_agent='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+    p_ctx = async_playwright()
+    if hasattr(p_ctx, "__aenter__"):
+        p = await p_ctx.__aenter__()
+        exit_func = p_ctx.__aexit__
+    else:
+        p = p_ctx.__enter__()
+        exit_func = p_ctx.__exit__
+
+    try:
+        browser = await maybe_await(
+            p.chromium.launch(
+                headless=False,
+                args=[
+                    "--disable-blink-features=AutomationControlled",
+                    "--no-first-run",
+                    "--disable-web-security",
+                    "--disable-features=VizDisplayCompositor",
+                ],
             )
-            
-            page = await context.new_page()
-            
+        )
+
+        try:
+            context = await maybe_await(
+                browser.new_context(
+                    user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+                )
+            )
+
+            page = await maybe_await(context.new_page())
             # Navigate to poundwholesale
             url = "https://www.poundwholesale.co.uk/"
             log.info(f"Navigating to: {url}")
-            
+
             try:
-                await page.goto(url, timeout=30000)
+                await maybe_await(page.goto(url, timeout=30000))
                 log.info("✅ Successfully loaded poundwholesale.co.uk")
-                
-                # Wait for page to load completely
-                await page.wait_for_load_state('networkidle')
-                
-                # Test selector extraction
+
+                await maybe_await(page.wait_for_load_state('networkidle'))
+
                 results = await extract_data_with_selectors(page, selectors)
-                
-                # Save results
+
                 await save_test_results(results)
-                
+
                 return results
-                
             except Exception as e:
                 log.error(f"❌ Failed to load page: {e}")
-                
-                # Create stub HTML for testing selectors offline
+
                 stub_html = create_stub_html()
                 log.info("📄 Creating stub HTML for offline selector testing")
-                
-                await page.set_content(stub_html)
-                
-                # Test selectors against stub
+
+                await maybe_await(page.set_content(stub_html))
+
                 results = await extract_data_with_selectors(page, selectors, is_stub=True)
                 await save_test_results(results, is_stub=True)
-                
+
                 return results
-                
         finally:
-            await browser.close()
+            await maybe_await(browser.close())
+    finally:
+        if hasattr(p_ctx, "__aenter__"):
+            await p_ctx.__aexit__(None, None, None)
+        else:
+            p_ctx.__exit__(None, None, None)
 
 async def extract_data_with_selectors(page, selectors: Dict[str, Any], is_stub: bool = False):
     """Extract data using configured selectors."""
     
     results = {
         'timestamp': datetime.now().isoformat(),
-        'url': await page.url(),
+        'url': await maybe_await(page.url()),
         'is_stub': is_stub,
         'extractions': {},
         'selector_tests': {}
@@ -131,7 +153,7 @@ async def extract_data_with_selectors(page, selectors: Dict[str, Any], is_stub: 
         for selector in field_selectors:
             try:
                 # Test if selector finds elements
-                elements = await page.query_selector_all(selector)
+                elements = await maybe_await(page.query_selector_all(selector))
                 
                 if elements:
                     log.info(f"✅ Selector '{selector}' found {len(elements)} elements for {field_name}")
@@ -142,16 +164,16 @@ async def extract_data_with_selectors(page, selectors: Dict[str, Any], is_stub: 
                         try:
                             if field_name == 'price' and 'login' in selector.lower():
                                 # For login-required price, just check presence
-                                text = await element.inner_text()
+                                text = await maybe_await(element.inner_text())
                                 sample_values.append(f"LOGIN_REQUIRED: {text}")
                             elif field_name in ['url', 'image']:
                                 # For URLs and images, get href/src
-                                href = await element.get_attribute('href')
-                                src = await element.get_attribute('src')
-                                sample_values.append(href or src or await element.inner_text())
+                                href = await maybe_await(element.get_attribute('href'))
+                                src = await maybe_await(element.get_attribute('src'))
+                                sample_values.append(href or src or await maybe_await(element.inner_text()))
                             else:
                                 # For other fields, get text content
-                                text = await element.inner_text()
+                                text = await maybe_await(element.inner_text())
                                 sample_values.append(text)
                         except Exception as e:
                             sample_values.append(f"ERROR: {e}")

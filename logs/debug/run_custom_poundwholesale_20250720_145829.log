@@ -1,0 +1,306 @@
+2025-07-20 14:58:29,577 - utils.logger - INFO - 🔧 Logging initialised – log file: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/logs/debug/run_custom_poundwholesale_20250720_145829.log
+2025-07-20 14:58:29,578 - __main__ - INFO - 📋 Debug log file: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/logs/debug/run_custom_poundwholesale_20250720_145829.log
+2025-07-20 14:58:29,578 - __main__ - DEBUG - Debug logging initialized - full system execution details will be captured
+2025-07-20 14:58:29,583 - utils.browser_manager - INFO - 🔧 BrowserManager singleton initialized
+2025-07-20 14:58:30,174 - utils.browser_manager - INFO - 🔌 Connecting to persistent Chrome on debug port 9222
+2025-07-20 14:58:30,818 - utils.browser_manager - INFO - 📄 Using existing context with 3 pages
+2025-07-20 14:58:30,818 - utils.browser_manager - INFO - ✅ Connected to persistent Chrome successfully
+2025-07-20 14:58:30,819 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 14:58:30,820 - __main__ - INFO - 🔐 Initializing authentication service for logout detection...
+2025-07-20 14:58:30,830 - __main__ - INFO - ✅ Using hardcoded credentials for poundwholesale.co.uk
+2025-07-20 14:58:30,835 - __main__ - INFO - 🌐 Connecting to existing Chrome debug port 9222 for authentication...
+2025-07-20 14:58:35,905 - tools.supplier_authentication_service - INFO - ✅ Authentication indicator found: 'logout'
+2025-07-20 14:58:35,966 - tools.supplier_authentication_service - INFO - ✅ Logout link found - user is authenticated
+2025-07-20 14:58:35,967 - tools.supplier_authentication_service - INFO - ✅ Session already authenticated - skipping login
+2025-07-20 14:58:35,970 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: output_dir = '/mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS'
+2025-07-20 14:58:35,970 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: supplier_cache_dir = '/mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products'
+2025-07-20 14:58:35,975 - PassiveExtractionWorkflow - INFO - ✅ Created supplier cache directory: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products
+2025-07-20 14:58:35,980 - PassiveExtractionWorkflow - INFO - ✅ Created amazon cache directory: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/FBA_ANALYSIS/amazon_cache
+2025-07-20 14:58:35,984 - amazon_playwright_extractor - INFO - AI features disabled in amazon_playwright_extractor - using only traditional selectors.
+2025-07-20 14:58:35,991 - amazon_playwright_extractor - INFO - Output directory set to: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/CACHE/amazon_data
+2025-07-20 14:58:35,991 - amazon_playwright_extractor - WARNING - ⚠️ BrowserManager not available, using legacy browser connection
+2025-07-20 14:58:35,994 - configurable_supplier_scraper - INFO - ✅ Loaded system configuration from /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/config/system_config.json
+2025-07-20 14:58:35,995 - configurable_supplier_scraper - INFO - 🔧 ConfigurableSupplierScraper will use centralized BrowserManager
+2025-07-20 14:58:35,996 - configurable_supplier_scraper - DEBUG - AI model from config: gpt-4.1-mini-2025-04-14
+2025-07-20 14:58:35,996 - configurable_supplier_scraper - DEBUG - Extraction targets from config: {}
+2025-07-20 14:58:35,996 - configurable_supplier_scraper - DEBUG - Discovery assistance from config: {}
+2025-07-20 14:58:35,997 - configurable_supplier_scraper - INFO - [CONFIG] Initialized with AI model: gpt-4.1-mini-2025-04-14
+2025-07-20 14:58:35,997 - configurable_supplier_scraper - INFO - [TARGET] Extraction targets loaded: []
+2025-07-20 14:58:35,998 - configurable_supplier_scraper - INFO - [ASSIST] Discovery assistance enabled: False
+2025-07-20 14:58:35,998 - PassiveExtractionWorkflow - DEBUG - 🔍 DEBUG: linking_map initialized as type: <class 'list'>
+2025-07-20 14:58:35,999 - PassiveExtractionWorkflow - INFO - ✅ Output directory set to: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS
+2025-07-20 14:58:35,999 - PassiveExtractionWorkflow - INFO - ✅ Initialization validation passed - all critical attributes verified
+2025-07-20 14:58:36,000 - PassiveExtractionWorkflow - INFO - --- Starting Passive Extraction Workflow for: poundwholesale.co.uk ---
+2025-07-20 14:58:36,000 - PassiveExtractionWorkflow - INFO - Session ID: poundwholesale.co.uk_20250720_145836
+2025-07-20 14:58:36,001 - PassiveExtractionWorkflow - INFO - 📊 CONFIGURATION VALUES:
+2025-07-20 14:58:36,001 - PassiveExtractionWorkflow - INFO -    max_products_to_process: 30
+2025-07-20 14:58:36,001 - PassiveExtractionWorkflow - INFO -    max_products_per_category: 6
+2025-07-20 14:58:36,001 - PassiveExtractionWorkflow - INFO -    max_analyzed_products: 12
+2025-07-20 14:58:36,002 - PassiveExtractionWorkflow - INFO -    max_products_per_cycle: 100
+2025-07-20 14:58:36,002 - PassiveExtractionWorkflow - INFO -    supplier_extraction_batch_size: 1
+2025-07-20 14:58:36,003 - PassiveExtractionWorkflow - INFO -    max_categories_per_request: 2
+2025-07-20 14:58:36,009 - utils.enhanced_state_manager - INFO - Loaded state for poundwholesale.co.uk - resuming from index 10
+2025-07-20 14:58:36,009 - PassiveExtractionWorkflow - INFO - 📋 Loaded existing processing state for poundwholesale.co.uk
+2025-07-20 14:58:36,010 - PassiveExtractionWorkflow - INFO - 🔄 Resuming from index 10
+2025-07-20 14:58:36,010 - PassiveExtractionWorkflow - INFO - ✅ Processing state loaded - system will resume from last position
+2025-07-20 14:58:36,015 - PassiveExtractionWorkflow - INFO - ✅ No existing linking map found at any path (tried 2 patterns) - Creating new map
+2025-07-20 14:58:36,016 - PassiveExtractionWorkflow - DEBUG - 🔍 DEBUG: linking_map loaded as type: <class 'list'>, length: 0
+2025-07-20 14:58:36,025 - PassiveExtractionWorkflow - INFO - ✅ CACHE FOUND: expected pattern - 18 products in poundwholesale-co-uk_products_cache.json
+2025-07-20 14:58:36,025 - PassiveExtractionWorkflow - INFO - 🔍 PHASE DETECTION: AMAZON_ANALYSIS (supplier cache: 18 products, no linking map)
+2025-07-20 14:58:36,040 - PassiveExtractionWorkflow - INFO - ✅ Processing state initialized and started
+2025-07-20 14:58:36,046 - PassiveExtractionWorkflow - INFO - ✅ No existing linking map found at any path (tried 2 patterns) - Creating new map
+2025-07-20 14:58:36,047 - PassiveExtractionWorkflow - INFO - CUSTOM MODE: Using predefined category list.
+2025-07-20 14:58:36,047 - tools.passive_extraction_workflow_latest - INFO - Attempting to load predefined categories for poundwholesale.co.uk
+2025-07-20 14:58:36,053 - tools.passive_extraction_workflow_latest - INFO - ✅ Successfully loaded 276 predefined category URLs from /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/config/poundwholesale_categories.json
+2025-07-20 14:58:36,054 - PassiveExtractionWorkflow - INFO - 📊 FINITE MODE: 30 max_products ÷ 6 max_products_per_category = 5 categories needed
+2025-07-20 14:58:36,055 - PassiveExtractionWorkflow - INFO - 📋 Processing 5 predefined categories (finite mode)
+2025-07-20 14:58:36,055 - PassiveExtractionWorkflow - INFO - 🔄 HYBRID PROCESSING MODE: Enabled
+2025-07-20 14:58:36,056 - PassiveExtractionWorkflow - INFO - 🔄 HYBRID PROCESSING: Mode configuration loaded
+2025-07-20 14:58:36,056 - PassiveExtractionWorkflow - INFO -    switch_to_amazon_after_categories: 1
+2025-07-20 14:58:36,056 - PassiveExtractionWorkflow - INFO - 🔄 HYBRID MODE: Chunked processing (chunk size: 1 categories)
+2025-07-20 14:58:36,057 - PassiveExtractionWorkflow - INFO - 🔄 Processing chunk 1: categories 1-1
+2025-07-20 14:58:36,066 - PassiveExtractionWorkflow - INFO - ✅ CACHE FOUND: expected pattern - 18 products in poundwholesale-co-uk_products_cache.json
+2025-07-20 14:58:36,071 - PassiveExtractionWorkflow - INFO - ✅ SUPPLIER CACHE HIT: Chunk categories already extracted (10 products)
+2025-07-20 14:58:36,072 - PassiveExtractionWorkflow - INFO - 🔍 Processing 10 products with main workflow logic
+2025-07-20 14:58:36,072 - PassiveExtractionWorkflow - INFO - --- Processing supplier product 1/10: 'Queen of Cakes Loaf Tin Liners 40 Pack' ---
+2025-07-20 14:58:36,073 - PassiveExtractionWorkflow - INFO - Attempting Amazon search using EAN: 5053249012698
+2025-07-20 14:58:36,105 - tools.passive_extraction_workflow_latest - INFO - Connecting to Chrome browser on debug port 9222 (FixedAmazonExtractor)
+2025-07-20 14:58:37,203 - tools.passive_extraction_workflow_latest - INFO - Successfully connected to Chrome on port 9222 (FixedAmazonExtractor)
+2025-07-20 14:58:37,204 - tools.passive_extraction_workflow_latest - INFO - Found 3 existing pages (FixedAmazonExtractor)
+2025-07-20 14:58:37,204 - tools.passive_extraction_workflow_latest - INFO - Using existing page: https://www.poundwholesale.co.uk/ (FixedAmazonExtractor)
+2025-07-20 14:58:37,229 - tools.passive_extraction_workflow_latest - INFO - Searching Amazon by EAN: 5053249012698 for supplier product: 'Queen of Cakes Loaf Tin Liners 40 Pack' (FixedAmazonExtractor)
+2025-07-20 14:58:37,229 - tools.passive_extraction_workflow_latest - INFO - No page provided to search_by_ean, getting one from BrowserManager.
+2025-07-20 14:58:37,230 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 14:58:37,230 - utils.browser_manager - INFO - 📄 Navigating to https://www.amazon.co.uk
+2025-07-20 14:58:38,552 - utils.browser_manager - INFO - ✅ Page ready for https://www.amazon.co.uk
+2025-07-20 14:58:38,553 - tools.passive_extraction_workflow_latest - INFO - Navigating to Amazon UK to search for EAN: 5053249012698
+2025-07-20 14:58:39,726 - tools.passive_extraction_workflow_latest - INFO - Waiting for search results page to load for EAN 5053249012698...
+2025-07-20 14:58:40,090 - tools.passive_extraction_workflow_latest - INFO - Found search results container with selector: div.s-search-results
+2025-07-20 14:58:42,177 - tools.passive_extraction_workflow_latest - INFO - Found 16 search result elements using selector: div.s-result-item[data-asin]:not([data-asin=''])
+2025-07-20 14:58:42,178 - tools.passive_extraction_workflow_latest - INFO - Processing 16 search result elements for EAN 5053249012698
+2025-07-20 14:58:42,199 - tools.passive_extraction_workflow_latest - DEBUG - Processing element 1: ASIN B0898CHPFB
+2025-07-20 14:58:42,218 - tools.passive_extraction_workflow_latest - DEBUG - ASIN B0898CHPFB HTML structure sample: <div role="listitem" data-asin="B0898CHPFB" data-index="2" data-uuid="d966dbc9-216f-4853-8caf-1892f8b98901" id="d966dbc9-216f-4853-8caf-1892f8b98901" data-component-type="s-search-result" class="sg-col-4-of-4 sg-col-4-of-24 sg-col-4-of-12 s-result-item s-asin sg-col-4-of-16 AdHolder sg-col s-widget-spacing-small sg-col-4-of-8 sg-col-4-of-20" data-component-id="5" data-cel-widget="search_result_0"><div class="sg-col-inner"><div cel_widget_id="MAIN-SEARCH_RESULTS-2" class="s-widget-container s-spacing-small s-widget-container-height-small celwidget slot=MAIN template=SEARCH_RESULTS widgetId=sear...
+2025-07-20 14:58:42,219 - tools.passive_extraction_workflow_latest - DEBUG - Error checking sponsored badge for ASIN B0898CHPFB: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:58:42,220 - tools.passive_extraction_workflow_latest - DEBUG - Error checking aria-label for ASIN B0898CHPFB: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:58:42,260 - tools.passive_extraction_workflow_latest - INFO - Skipping sponsored result: ASIN B0898CHPFB (detected by ad-specific class: 'AdHolder')
+2025-07-20 14:58:42,314 - tools.passive_extraction_workflow_latest - DEBUG - Processing element 2: ASIN B07MD2TPVS
+2025-07-20 14:58:42,356 - tools.passive_extraction_workflow_latest - DEBUG - ASIN B07MD2TPVS HTML structure sample: <div role="listitem" data-asin="B07MD2TPVS" data-index="3" data-uuid="89f402cc-b4d8-45fc-92d3-0b8310b1711d" id="89f402cc-b4d8-45fc-92d3-0b8310b1711d" data-component-type="s-search-result" class="sg-col-4-of-4 sg-col-4-of-24 sg-col-4-of-12 s-result-item s-asin sg-col-4-of-16 AdHolder sg-col s-widget-spacing-small sg-col-4-of-8 sg-col-4-of-20" data-component-id="8" data-cel-widget="search_result_1"><div class="sg-col-inner"><div cel_widget_id="MAIN-SEARCH_RESULTS-3" class="s-widget-container s-spacing-small s-widget-container-height-small celwidget slot=MAIN template=SEARCH_RESULTS widgetId=sear...
+2025-07-20 14:58:42,356 - tools.passive_extraction_workflow_latest - DEBUG - Error checking sponsored badge for ASIN B07MD2TPVS: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:58:42,357 - tools.passive_extraction_workflow_latest - DEBUG - Error checking aria-label for ASIN B07MD2TPVS: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:58:42,432 - tools.passive_extraction_workflow_latest - INFO - Skipping sponsored result: ASIN B07MD2TPVS (detected by ad-specific class: 'AdHolder')
+2025-07-20 14:58:42,452 - tools.passive_extraction_workflow_latest - DEBUG - Processing element 3: ASIN B075LH1T6Q
+2025-07-20 14:58:42,468 - tools.passive_extraction_workflow_latest - DEBUG - ASIN B075LH1T6Q HTML structure sample: <div role="listitem" data-asin="B075LH1T6Q" data-index="4" data-uuid="3eedde16-e28a-423c-bbca-8f8ca578fa64" id="3eedde16-e28a-423c-bbca-8f8ca578fa64" data-component-type="s-search-result" class="sg-col-4-of-4 sg-col-4-of-24 sg-col-4-of-12 s-result-item s-asin sg-col-4-of-16 AdHolder sg-col s-widget-spacing-small sg-col-4-of-8 sg-col-4-of-20" data-component-id="11" data-cel-widget="search_result_2"><div class="sg-col-inner"><div cel_widget_id="MAIN-SEARCH_RESULTS-4" class="s-widget-container s-spacing-small s-widget-container-height-small celwidget slot=MAIN template=SEARCH_RESULTS widgetId=sea...
+2025-07-20 14:58:42,468 - tools.passive_extraction_workflow_latest - DEBUG - Error checking sponsored badge for ASIN B075LH1T6Q: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:58:42,469 - tools.passive_extraction_workflow_latest - DEBUG - Error checking aria-label for ASIN B075LH1T6Q: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:58:42,508 - tools.passive_extraction_workflow_latest - INFO - Skipping sponsored result: ASIN B075LH1T6Q (detected by ad-specific class: 'AdHolder')
+2025-07-20 14:58:42,530 - tools.passive_extraction_workflow_latest - DEBUG - Processing element 4: ASIN B0DWDWL66T
+2025-07-20 14:58:42,531 - tools.passive_extraction_workflow_latest - DEBUG - Error checking sponsored badge for ASIN B0DWDWL66T: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:58:42,531 - tools.passive_extraction_workflow_latest - DEBUG - Error checking aria-label for ASIN B0DWDWL66T: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:58:42,569 - tools.passive_extraction_workflow_latest - INFO - Skipping sponsored result: ASIN B0DWDWL66T (detected by ad-specific class: 'AdHolder')
+2025-07-20 14:58:42,589 - tools.passive_extraction_workflow_latest - DEBUG - Processing element 5: ASIN B0CJJM3B97
+2025-07-20 14:58:42,589 - tools.passive_extraction_workflow_latest - DEBUG - Error checking sponsored badge for ASIN B0CJJM3B97: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:58:42,590 - tools.passive_extraction_workflow_latest - DEBUG - Error checking aria-label for ASIN B0CJJM3B97: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:58:42,628 - tools.passive_extraction_workflow_latest - INFO - Skipping sponsored result: ASIN B0CJJM3B97 (detected by ad-specific class: 'AdHolder')
+2025-07-20 14:58:42,650 - tools.passive_extraction_workflow_latest - DEBUG - Processing element 6: ASIN B0CFW1BMCX
+2025-07-20 14:58:42,651 - tools.passive_extraction_workflow_latest - DEBUG - Error checking sponsored badge for ASIN B0CFW1BMCX: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:58:42,651 - tools.passive_extraction_workflow_latest - DEBUG - Error checking aria-label for ASIN B0CFW1BMCX: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:58:42,697 - tools.passive_extraction_workflow_latest - INFO - Skipping sponsored result: ASIN B0CFW1BMCX (detected by ad-specific class: 'AdHolder')
+2025-07-20 14:58:42,718 - tools.passive_extraction_workflow_latest - DEBUG - Processing element 7: ASIN B0DWDM6VZ8
+2025-07-20 14:58:42,719 - tools.passive_extraction_workflow_latest - DEBUG - Error checking sponsored badge for ASIN B0DWDM6VZ8: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:58:42,719 - tools.passive_extraction_workflow_latest - DEBUG - Error checking aria-label for ASIN B0DWDM6VZ8: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:58:42,780 - tools.passive_extraction_workflow_latest - INFO - Skipping sponsored result: ASIN B0DWDM6VZ8 (detected by ad-specific class: 'AdHolder')
+2025-07-20 14:58:42,805 - tools.passive_extraction_workflow_latest - DEBUG - Processing element 8: ASIN B0C1NVZPX1
+2025-07-20 14:58:42,807 - tools.passive_extraction_workflow_latest - DEBUG - Error checking sponsored badge for ASIN B0C1NVZPX1: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:58:42,808 - tools.passive_extraction_workflow_latest - DEBUG - Error checking aria-label for ASIN B0C1NVZPX1: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:58:42,860 - tools.passive_extraction_workflow_latest - INFO - Skipping sponsored result: ASIN B0C1NVZPX1 (detected by ad-specific class: 'AdHolder')
+2025-07-20 14:58:42,891 - tools.passive_extraction_workflow_latest - DEBUG - Processing element 9: ASIN B0DQPQPSF8
+2025-07-20 14:58:42,891 - tools.passive_extraction_workflow_latest - DEBUG - Error checking sponsored badge for ASIN B0DQPQPSF8: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:58:42,892 - tools.passive_extraction_workflow_latest - DEBUG - Error checking aria-label for ASIN B0DQPQPSF8: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:58:42,925 - tools.passive_extraction_workflow_latest - INFO - Skipping sponsored result: ASIN B0DQPQPSF8 (detected by ad-specific class: 'AdHolder')
+2025-07-20 14:58:42,946 - tools.passive_extraction_workflow_latest - DEBUG - Processing element 10: ASIN B0DHSG5LF6
+2025-07-20 14:58:42,946 - tools.passive_extraction_workflow_latest - DEBUG - Error checking sponsored badge for ASIN B0DHSG5LF6: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:58:42,947 - tools.passive_extraction_workflow_latest - DEBUG - Error checking aria-label for ASIN B0DHSG5LF6: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:58:42,990 - tools.passive_extraction_workflow_latest - INFO - Skipping sponsored result: ASIN B0DHSG5LF6 (detected by ad-specific class: 'AdHolder')
+2025-07-20 14:58:43,011 - tools.passive_extraction_workflow_latest - DEBUG - Processing element 11: ASIN B0DSHQX8PC
+2025-07-20 14:58:43,012 - tools.passive_extraction_workflow_latest - DEBUG - Error checking sponsored badge for ASIN B0DSHQX8PC: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:58:43,012 - tools.passive_extraction_workflow_latest - DEBUG - Error checking aria-label for ASIN B0DSHQX8PC: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:58:43,052 - tools.passive_extraction_workflow_latest - INFO - Skipping sponsored result: ASIN B0DSHQX8PC (detected by ad-specific class: 'AdHolder')
+2025-07-20 14:58:43,072 - tools.passive_extraction_workflow_latest - DEBUG - Processing element 12: ASIN B0DWF1W82X
+2025-07-20 14:58:43,073 - tools.passive_extraction_workflow_latest - DEBUG - Error checking sponsored badge for ASIN B0DWF1W82X: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:58:43,073 - tools.passive_extraction_workflow_latest - DEBUG - Error checking aria-label for ASIN B0DWF1W82X: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:58:43,117 - tools.passive_extraction_workflow_latest - INFO - Skipping sponsored result: ASIN B0DWF1W82X (detected by ad-specific class: 'AdHolder')
+2025-07-20 14:58:43,138 - tools.passive_extraction_workflow_latest - DEBUG - Processing element 13: ASIN B0CFVZNGK7
+2025-07-20 14:58:43,139 - tools.passive_extraction_workflow_latest - DEBUG - Error checking sponsored badge for ASIN B0CFVZNGK7: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:58:43,140 - tools.passive_extraction_workflow_latest - DEBUG - Error checking aria-label for ASIN B0CFVZNGK7: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:58:43,171 - tools.passive_extraction_workflow_latest - INFO - Skipping sponsored result: ASIN B0CFVZNGK7 (detected by ad-specific class: 'AdHolder')
+2025-07-20 14:58:43,196 - tools.passive_extraction_workflow_latest - DEBUG - Processing element 14: ASIN B0BV7C9VQQ
+2025-07-20 14:58:43,197 - tools.passive_extraction_workflow_latest - DEBUG - Error checking sponsored badge for ASIN B0BV7C9VQQ: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:58:43,197 - tools.passive_extraction_workflow_latest - DEBUG - Error checking aria-label for ASIN B0BV7C9VQQ: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:58:43,234 - tools.passive_extraction_workflow_latest - INFO - Skipping sponsored result: ASIN B0BV7C9VQQ (detected by ad-specific class: 'AdHolder')
+2025-07-20 14:58:43,257 - tools.passive_extraction_workflow_latest - DEBUG - Processing element 15: ASIN B0CWH3FX31
+2025-07-20 14:58:43,258 - tools.passive_extraction_workflow_latest - DEBUG - Error checking sponsored badge for ASIN B0CWH3FX31: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:58:43,258 - tools.passive_extraction_workflow_latest - DEBUG - Error checking aria-label for ASIN B0CWH3FX31: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:58:43,304 - tools.passive_extraction_workflow_latest - INFO - Skipping sponsored result: ASIN B0CWH3FX31 (detected by ad-specific class: 'AdHolder')
+2025-07-20 14:58:43,304 - tools.passive_extraction_workflow_latest - WARNING - EAN 5053249012698 returned no organic results - skipping
+2025-07-20 14:58:43,305 - tools.passive_extraction_workflow_latest - WARNING - No Amazon results or error for EAN '5053249012698'. Details: no_organic_results
+2025-07-20 14:58:43,306 - tools.passive_extraction_workflow_latest - INFO - Falling back to title search for supplier product: 'Queen of Cakes Loaf Tin Liners 40 Pack'
+2025-07-20 14:58:43,307 - tools.passive_extraction_workflow_latest - INFO - Searching Amazon by title using search bar: 'Queen of Cakes Loaf Tin Liners 40 Pack'
+2025-07-20 14:58:43,308 - tools.passive_extraction_workflow_latest - INFO - Navigating to Amazon UK to search for title: Queen of Cakes Loaf Tin Liners 40 Pack
+2025-07-20 14:58:45,995 - tools.passive_extraction_workflow_latest - INFO - Title search found 1 elements using selector: div.s-search-results > div[data-asin]
+2025-07-20 14:58:46,015 - tools.passive_extraction_workflow_latest - WARNING - No valid ASINs found for title 'Queen of Cakes Loaf Tin Liners 40 Pack'
+2025-07-20 14:58:46,017 - tools.passive_extraction_workflow_latest - WARNING - Both EAN '5053249012698' and title 'Queen of Cakes Loaf Tin Liners 40 Pack' searches failed
+2025-07-20 14:58:46,025 - PassiveExtractionWorkflow - INFO - ❌ EAN search failed for 5053249012698. Will fall back to title search.
+2025-07-20 14:58:46,028 - PassiveExtractionWorkflow - INFO - EAN search failed. Falling back to title search.
+2025-07-20 14:58:46,029 - tools.passive_extraction_workflow_latest - INFO - Searching Amazon by title using search bar: 'Queen of Cakes Loaf Tin Liners 40 Pack'
+2025-07-20 14:58:46,029 - tools.passive_extraction_workflow_latest - INFO - No page provided to search_by_title, getting one from BrowserManager.
+2025-07-20 14:58:46,030 - utils.browser_manager - INFO - ♻️ Reusing cached page for https://www.amazon.co.uk
+2025-07-20 14:58:46,031 - tools.passive_extraction_workflow_latest - INFO - Navigating to Amazon UK to search for title: Queen of Cakes Loaf Tin Liners 40 Pack
+2025-07-20 14:58:48,570 - tools.passive_extraction_workflow_latest - INFO - Title search found 1 elements using selector: div.s-search-results > div[data-asin]
+2025-07-20 14:58:48,595 - tools.passive_extraction_workflow_latest - WARNING - No valid ASINs found for title 'Queen of Cakes Loaf Tin Liners 40 Pack'
+2025-07-20 14:58:48,596 - PassiveExtractionWorkflow - WARNING - No Amazon results for title 'Queen of Cakes Loaf Tin Liners 40 Pack'. Skipping.
+2025-07-20 14:58:48,600 - PassiveExtractionWorkflow - INFO - --- Processing supplier product 2/10: 'Royalford Grey Silicone Egg Whisk 26cm' ---
+2025-07-20 14:58:48,601 - PassiveExtractionWorkflow - INFO - Product already processed: https://www.poundwholesale.co.uk/royalford-grey-silicone-egg-whisk-26cm. Skipping.
+2025-07-20 14:58:48,601 - PassiveExtractionWorkflow - INFO - --- Processing supplier product 3/10: 'Coco & Gray Round Non-Stick Cake Tin 9"' ---
+2025-07-20 14:58:48,602 - PassiveExtractionWorkflow - INFO - Product already processed: https://www.poundwholesale.co.uk/coco-gray-round-non-stick-cake-tin-9. Skipping.
+2025-07-20 14:58:48,603 - PassiveExtractionWorkflow - INFO - --- Processing supplier product 4/10: 'Queen of Cakes Mini Muffin Cases 200 Pack' ---
+2025-07-20 14:58:48,603 - PassiveExtractionWorkflow - INFO - Attempting Amazon search using EAN: 5053249260402
+2025-07-20 14:58:48,654 - tools.passive_extraction_workflow_latest - INFO - Searching Amazon by EAN: 5053249260402 for supplier product: 'Queen of Cakes Mini Muffin Cases 200 Pack' (FixedAmazonExtractor)
+2025-07-20 14:58:48,654 - tools.passive_extraction_workflow_latest - INFO - No page provided to search_by_ean, getting one from BrowserManager.
+2025-07-20 14:58:48,655 - utils.browser_manager - INFO - ♻️ Reusing cached page for https://www.amazon.co.uk
+2025-07-20 14:58:48,656 - tools.passive_extraction_workflow_latest - INFO - Navigating to Amazon UK to search for EAN: 5053249260402
+2025-07-20 14:58:50,812 - tools.passive_extraction_workflow_latest - INFO - Waiting for search results page to load for EAN 5053249260402...
+2025-07-20 14:58:51,076 - tools.passive_extraction_workflow_latest - INFO - Found search results container with selector: div.s-search-results
+2025-07-20 14:58:53,151 - tools.passive_extraction_workflow_latest - INFO - Found 8 search result elements using selector: div.s-result-item[data-asin]:not([data-asin=''])
+2025-07-20 14:58:53,151 - tools.passive_extraction_workflow_latest - INFO - Processing 8 search result elements for EAN 5053249260402
+2025-07-20 14:58:53,172 - tools.passive_extraction_workflow_latest - DEBUG - Processing element 1: ASIN B0CR4BPQYT
+2025-07-20 14:58:53,192 - tools.passive_extraction_workflow_latest - DEBUG - ASIN B0CR4BPQYT HTML structure sample: <div role="listitem" data-asin="B0CR4BPQYT" data-index="4" data-uuid="577f5da5-3b81-487f-8678-e61f56ef1305" id="577f5da5-3b81-487f-8678-e61f56ef1305" data-component-type="s-search-result" class="sg-col-4-of-4 sg-col-4-of-24 sg-col-4-of-12 s-result-item s-asin sg-col-4-of-16 AdHolder sg-col s-widget-spacing-small sg-col-4-of-8 sg-col-4-of-20" data-component-id="9" data-cel-widget="search_result_0"><div class="sg-col-inner"><div cel_widget_id="MAIN-SEARCH_RESULTS-4" class="s-widget-container s-spacing-small s-widget-container-height-small celwidget slot=MAIN template=SEARCH_RESULTS widgetId=sear...
+2025-07-20 14:58:53,193 - tools.passive_extraction_workflow_latest - DEBUG - Error checking sponsored badge for ASIN B0CR4BPQYT: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:58:53,194 - tools.passive_extraction_workflow_latest - DEBUG - Error checking aria-label for ASIN B0CR4BPQYT: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:58:53,234 - tools.passive_extraction_workflow_latest - INFO - Skipping sponsored result: ASIN B0CR4BPQYT (detected by ad-specific class: 'AdHolder')
+2025-07-20 14:58:53,255 - tools.passive_extraction_workflow_latest - DEBUG - Processing element 2: ASIN B0C6HY512F
+2025-07-20 14:58:53,279 - tools.passive_extraction_workflow_latest - DEBUG - ASIN B0C6HY512F HTML structure sample: <div role="listitem" data-asin="B0C6HY512F" data-index="5" data-uuid="989ca08c-8706-4e8e-a6ab-40987735f5d0" id="989ca08c-8706-4e8e-a6ab-40987735f5d0" data-component-type="s-search-result" class="sg-col-4-of-4 sg-col-4-of-24 sg-col-4-of-12 s-result-item s-asin sg-col-4-of-16 AdHolder sg-col s-widget-spacing-small sg-col-4-of-8 sg-col-4-of-20" data-component-id="12" data-cel-widget="search_result_1"><div class="sg-col-inner"><div cel_widget_id="MAIN-SEARCH_RESULTS-5" class="s-widget-container s-spacing-small s-widget-container-height-small celwidget slot=MAIN template=SEARCH_RESULTS widgetId=sea...
+2025-07-20 14:58:53,280 - tools.passive_extraction_workflow_latest - DEBUG - Error checking sponsored badge for ASIN B0C6HY512F: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:58:53,281 - tools.passive_extraction_workflow_latest - DEBUG - Error checking aria-label for ASIN B0C6HY512F: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:58:53,325 - tools.passive_extraction_workflow_latest - INFO - Skipping sponsored result: ASIN B0C6HY512F (detected by ad-specific class: 'AdHolder')
+2025-07-20 14:58:53,348 - tools.passive_extraction_workflow_latest - DEBUG - Processing element 3: ASIN B01273KPQ6
+2025-07-20 14:58:53,367 - tools.passive_extraction_workflow_latest - DEBUG - ASIN B01273KPQ6 HTML structure sample: <div role="listitem" data-asin="B01273KPQ6" data-index="6" data-uuid="74d833cc-837e-43eb-a76b-c56391527326" id="74d833cc-837e-43eb-a76b-c56391527326" data-component-type="s-search-result" class="sg-col-4-of-4 sg-col-4-of-24 sg-col-4-of-12 s-result-item s-asin sg-col-4-of-16 AdHolder sg-col s-widget-spacing-small sg-col-4-of-8 sg-col-4-of-20" data-component-id="15" data-cel-widget="search_result_2"><div class="sg-col-inner"><div cel_widget_id="MAIN-SEARCH_RESULTS-6" class="s-widget-container s-spacing-small s-widget-container-height-small celwidget slot=MAIN template=SEARCH_RESULTS widgetId=sea...
+2025-07-20 14:58:53,367 - tools.passive_extraction_workflow_latest - DEBUG - Error checking sponsored badge for ASIN B01273KPQ6: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:58:53,368 - tools.passive_extraction_workflow_latest - DEBUG - Error checking aria-label for ASIN B01273KPQ6: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:58:53,399 - tools.passive_extraction_workflow_latest - INFO - Skipping sponsored result: ASIN B01273KPQ6 (detected by ad-specific class: 'AdHolder')
+2025-07-20 14:58:53,419 - tools.passive_extraction_workflow_latest - DEBUG - Processing element 4: ASIN B006ZDQJN8
+2025-07-20 14:58:53,420 - tools.passive_extraction_workflow_latest - DEBUG - Error checking sponsored badge for ASIN B006ZDQJN8: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:58:53,420 - tools.passive_extraction_workflow_latest - DEBUG - Error checking aria-label for ASIN B006ZDQJN8: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:58:53,458 - tools.passive_extraction_workflow_latest - INFO - Skipping sponsored result: ASIN B006ZDQJN8 (detected by ad-specific class: 'AdHolder')
+2025-07-20 14:58:53,478 - tools.passive_extraction_workflow_latest - DEBUG - Processing element 5: ASIN B006ZDQSAC
+2025-07-20 14:58:53,479 - tools.passive_extraction_workflow_latest - DEBUG - Error checking sponsored badge for ASIN B006ZDQSAC: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:58:53,480 - tools.passive_extraction_workflow_latest - DEBUG - Error checking aria-label for ASIN B006ZDQSAC: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:58:53,517 - tools.passive_extraction_workflow_latest - INFO - Skipping sponsored result: ASIN B006ZDQSAC (detected by ad-specific class: 'AdHolder')
+2025-07-20 14:58:53,535 - tools.passive_extraction_workflow_latest - DEBUG - Processing element 6: ASIN B006ZDRJYG
+2025-07-20 14:58:53,536 - tools.passive_extraction_workflow_latest - DEBUG - Error checking sponsored badge for ASIN B006ZDRJYG: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:58:53,537 - tools.passive_extraction_workflow_latest - DEBUG - Error checking aria-label for ASIN B006ZDRJYG: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:58:53,570 - tools.passive_extraction_workflow_latest - INFO - Skipping sponsored result: ASIN B006ZDRJYG (detected by ad-specific class: 'AdHolder')
+2025-07-20 14:58:53,591 - tools.passive_extraction_workflow_latest - DEBUG - Processing element 7: ASIN B0DPKSQCLJ
+2025-07-20 14:58:53,592 - tools.passive_extraction_workflow_latest - DEBUG - Error checking sponsored badge for ASIN B0DPKSQCLJ: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:58:53,592 - tools.passive_extraction_workflow_latest - DEBUG - Error checking aria-label for ASIN B0DPKSQCLJ: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:58:53,629 - tools.passive_extraction_workflow_latest - INFO - Skipping sponsored result: ASIN B0DPKSQCLJ (detected by ad-specific class: 'AdHolder')
+2025-07-20 14:58:53,651 - tools.passive_extraction_workflow_latest - DEBUG - Processing element 8: ASIN B003E2OFAW
+2025-07-20 14:58:53,652 - tools.passive_extraction_workflow_latest - DEBUG - Error checking sponsored badge for ASIN B003E2OFAW: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:58:53,652 - tools.passive_extraction_workflow_latest - DEBUG - Error checking aria-label for ASIN B003E2OFAW: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:58:53,685 - tools.passive_extraction_workflow_latest - INFO - Skipping sponsored result: ASIN B003E2OFAW (detected by ad-specific class: 'AdHolder')
+2025-07-20 14:58:53,685 - tools.passive_extraction_workflow_latest - WARNING - EAN 5053249260402 returned no organic results - skipping
+2025-07-20 14:58:53,686 - tools.passive_extraction_workflow_latest - WARNING - No Amazon results or error for EAN '5053249260402'. Details: no_organic_results
+2025-07-20 14:58:53,687 - tools.passive_extraction_workflow_latest - INFO - Falling back to title search for supplier product: 'Queen of Cakes Mini Muffin Cases 200 Pack'
+2025-07-20 14:58:53,687 - tools.passive_extraction_workflow_latest - INFO - Searching Amazon by title using search bar: 'Queen of Cakes Mini Muffin Cases 200 Pack'
+2025-07-20 14:58:53,688 - tools.passive_extraction_workflow_latest - INFO - Navigating to Amazon UK to search for title: Queen of Cakes Mini Muffin Cases 200 Pack
+2025-07-20 14:58:56,261 - tools.passive_extraction_workflow_latest - INFO - Title search found 1 elements using selector: div.s-search-results > div[data-asin]
+2025-07-20 14:58:56,287 - tools.passive_extraction_workflow_latest - WARNING - No valid ASINs found for title 'Queen of Cakes Mini Muffin Cases 200 Pack'
+2025-07-20 14:58:56,287 - tools.passive_extraction_workflow_latest - WARNING - Both EAN '5053249260402' and title 'Queen of Cakes Mini Muffin Cases 200 Pack' searches failed
+2025-07-20 14:58:56,288 - PassiveExtractionWorkflow - INFO - ❌ EAN search failed for 5053249260402. Will fall back to title search.
+2025-07-20 14:58:56,288 - PassiveExtractionWorkflow - INFO - EAN search failed. Falling back to title search.
+2025-07-20 14:58:56,289 - tools.passive_extraction_workflow_latest - INFO - Searching Amazon by title using search bar: 'Queen of Cakes Mini Muffin Cases 200 Pack'
+2025-07-20 14:58:56,290 - tools.passive_extraction_workflow_latest - INFO - No page provided to search_by_title, getting one from BrowserManager.
+2025-07-20 14:58:56,290 - utils.browser_manager - INFO - ♻️ Reusing cached page for https://www.amazon.co.uk
+2025-07-20 14:58:56,291 - tools.passive_extraction_workflow_latest - INFO - Navigating to Amazon UK to search for title: Queen of Cakes Mini Muffin Cases 200 Pack
+2025-07-20 14:58:58,841 - tools.passive_extraction_workflow_latest - INFO - Title search found 1 elements using selector: div.s-search-results > div[data-asin]
+2025-07-20 14:58:58,878 - tools.passive_extraction_workflow_latest - WARNING - No valid ASINs found for title 'Queen of Cakes Mini Muffin Cases 200 Pack'
+2025-07-20 14:58:58,878 - PassiveExtractionWorkflow - WARNING - No Amazon results for title 'Queen of Cakes Mini Muffin Cases 200 Pack'. Skipping.
+2025-07-20 14:58:58,879 - PassiveExtractionWorkflow - INFO - --- Processing supplier product 5/10: 'Royalford Black Nylon Whisk 30.5cm' ---
+2025-07-20 14:58:58,879 - PassiveExtractionWorkflow - INFO - Attempting Amazon search using EAN: 6294015575095
+2025-07-20 14:58:58,916 - tools.passive_extraction_workflow_latest - INFO - Searching Amazon by EAN: 6294015575095 for supplier product: 'Royalford Black Nylon Whisk 30.5cm' (FixedAmazonExtractor)
+2025-07-20 14:58:58,916 - tools.passive_extraction_workflow_latest - INFO - No page provided to search_by_ean, getting one from BrowserManager.
+2025-07-20 14:58:58,917 - utils.browser_manager - INFO - ♻️ Reusing cached page for https://www.amazon.co.uk
+2025-07-20 14:58:58,917 - tools.passive_extraction_workflow_latest - INFO - Navigating to Amazon UK to search for EAN: 6294015575095
+2025-07-20 14:59:01,197 - tools.passive_extraction_workflow_latest - INFO - Waiting for search results page to load for EAN 6294015575095...
+2025-07-20 14:59:01,622 - tools.passive_extraction_workflow_latest - INFO - Found search results container with selector: div.s-search-results
+2025-07-20 14:59:03,719 - tools.passive_extraction_workflow_latest - INFO - Found 16 search result elements using selector: div.s-result-item[data-asin]:not([data-asin=''])
+2025-07-20 14:59:03,720 - tools.passive_extraction_workflow_latest - INFO - Processing 16 search result elements for EAN 6294015575095
+2025-07-20 14:59:03,740 - tools.passive_extraction_workflow_latest - DEBUG - Processing element 1: ASIN B07RBW1WVL
+2025-07-20 14:59:03,761 - tools.passive_extraction_workflow_latest - DEBUG - ASIN B07RBW1WVL HTML structure sample: <div role="listitem" data-asin="B07RBW1WVL" data-index="2" data-uuid="607d0347-f788-416d-8097-baa346a901e0" id="607d0347-f788-416d-8097-baa346a901e0" data-component-type="s-search-result" class="sg-col-4-of-4 sg-col-4-of-24 sg-col-4-of-12 s-result-item s-asin sg-col-4-of-16 AdHolder sg-col s-widget-spacing-small sg-col-4-of-8 sg-col-4-of-20" data-component-id="5" data-cel-widget="search_result_0"><div class="sg-col-inner"><div cel_widget_id="MAIN-SEARCH_RESULTS-2" class="s-widget-container s-spacing-small s-widget-container-height-small celwidget slot=MAIN template=SEARCH_RESULTS widgetId=sear...
+2025-07-20 14:59:03,762 - tools.passive_extraction_workflow_latest - DEBUG - Error checking sponsored badge for ASIN B07RBW1WVL: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:59:03,763 - tools.passive_extraction_workflow_latest - DEBUG - Error checking aria-label for ASIN B07RBW1WVL: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:59:03,806 - tools.passive_extraction_workflow_latest - INFO - Skipping sponsored result: ASIN B07RBW1WVL (detected by ad-specific class: 'AdHolder')
+2025-07-20 14:59:03,822 - tools.passive_extraction_workflow_latest - DEBUG - Processing element 2: ASIN B09XMDZMGR
+2025-07-20 14:59:03,843 - tools.passive_extraction_workflow_latest - DEBUG - ASIN B09XMDZMGR HTML structure sample: <div role="listitem" data-asin="B09XMDZMGR" data-index="3" data-uuid="832b82b2-e16e-4ea7-b2b2-45aaf55ae6e8" id="832b82b2-e16e-4ea7-b2b2-45aaf55ae6e8" data-component-type="s-search-result" class="sg-col-4-of-4 sg-col-4-of-24 sg-col-4-of-12 s-result-item s-asin sg-col-4-of-16 AdHolder sg-col s-widget-spacing-small sg-col-4-of-8 sg-col-4-of-20" data-component-id="9" data-cel-widget="search_result_1"><div class="sg-col-inner"><div cel_widget_id="MAIN-SEARCH_RESULTS-3" class="s-widget-container s-spacing-small s-widget-container-height-small celwidget slot=MAIN template=SEARCH_RESULTS widgetId=sear...
+2025-07-20 14:59:03,843 - tools.passive_extraction_workflow_latest - DEBUG - Error checking sponsored badge for ASIN B09XMDZMGR: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:59:03,844 - tools.passive_extraction_workflow_latest - DEBUG - Error checking aria-label for ASIN B09XMDZMGR: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:59:03,874 - tools.passive_extraction_workflow_latest - INFO - Skipping sponsored result: ASIN B09XMDZMGR (detected by ad-specific class: 'AdHolder')
+2025-07-20 14:59:03,893 - tools.passive_extraction_workflow_latest - DEBUG - Processing element 3: ASIN B09QQ932ZH
+2025-07-20 14:59:03,910 - tools.passive_extraction_workflow_latest - DEBUG - ASIN B09QQ932ZH HTML structure sample: <div role="listitem" data-asin="B09QQ932ZH" data-index="4" data-uuid="1f1c9f7d-876c-4b8c-a9cd-517475da1049" id="1f1c9f7d-876c-4b8c-a9cd-517475da1049" data-component-type="s-search-result" class="sg-col-4-of-4 sg-col-4-of-24 sg-col-4-of-12 s-result-item s-asin sg-col-4-of-16 AdHolder sg-col s-widget-spacing-small sg-col-4-of-8 sg-col-4-of-20" data-component-id="12" data-cel-widget="search_result_2"><div class="sg-col-inner"><div cel_widget_id="MAIN-SEARCH_RESULTS-4" class="s-widget-container s-spacing-small s-widget-container-height-small celwidget slot=MAIN template=SEARCH_RESULTS widgetId=sea...
+2025-07-20 14:59:03,910 - tools.passive_extraction_workflow_latest - DEBUG - Error checking sponsored badge for ASIN B09QQ932ZH: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:59:03,911 - tools.passive_extraction_workflow_latest - DEBUG - Error checking aria-label for ASIN B09QQ932ZH: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:59:03,953 - tools.passive_extraction_workflow_latest - INFO - Skipping sponsored result: ASIN B09QQ932ZH (detected by ad-specific class: 'AdHolder')
+2025-07-20 14:59:03,978 - tools.passive_extraction_workflow_latest - DEBUG - Processing element 4: ASIN B0DFH9JPQ5
+2025-07-20 14:59:03,978 - tools.passive_extraction_workflow_latest - DEBUG - Error checking sponsored badge for ASIN B0DFH9JPQ5: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:59:03,979 - tools.passive_extraction_workflow_latest - DEBUG - Error checking aria-label for ASIN B0DFH9JPQ5: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:59:04,027 - tools.passive_extraction_workflow_latest - INFO - Skipping sponsored result: ASIN B0DFH9JPQ5 (detected by ad-specific class: 'AdHolder')
+2025-07-20 14:59:04,056 - tools.passive_extraction_workflow_latest - DEBUG - Processing element 5: ASIN B0BFXG5KB1
+2025-07-20 14:59:04,057 - tools.passive_extraction_workflow_latest - DEBUG - Error checking sponsored badge for ASIN B0BFXG5KB1: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:59:04,057 - tools.passive_extraction_workflow_latest - DEBUG - Error checking aria-label for ASIN B0BFXG5KB1: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:59:04,085 - tools.passive_extraction_workflow_latest - INFO - Skipping sponsored result: ASIN B0BFXG5KB1 (detected by ad-specific class: 'AdHolder')
+2025-07-20 14:59:04,100 - tools.passive_extraction_workflow_latest - DEBUG - Processing element 6: ASIN B084HNP8C4
+2025-07-20 14:59:04,100 - tools.passive_extraction_workflow_latest - DEBUG - Error checking sponsored badge for ASIN B084HNP8C4: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:59:04,101 - tools.passive_extraction_workflow_latest - DEBUG - Error checking aria-label for ASIN B084HNP8C4: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:59:04,125 - tools.passive_extraction_workflow_latest - INFO - Skipping sponsored result: ASIN B084HNP8C4 (detected by ad-specific class: 'AdHolder')
+2025-07-20 14:59:04,151 - tools.passive_extraction_workflow_latest - DEBUG - Processing element 7: ASIN B0D7PTHTGW
+2025-07-20 14:59:04,152 - tools.passive_extraction_workflow_latest - DEBUG - Error checking sponsored badge for ASIN B0D7PTHTGW: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:59:04,152 - tools.passive_extraction_workflow_latest - DEBUG - Error checking aria-label for ASIN B0D7PTHTGW: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:59:04,180 - tools.passive_extraction_workflow_latest - INFO - Skipping sponsored result: ASIN B0D7PTHTGW (detected by ad-specific class: 'AdHolder')
+2025-07-20 14:59:04,215 - tools.passive_extraction_workflow_latest - DEBUG - Processing element 8: ASIN B0DGTTJQWB
+2025-07-20 14:59:04,216 - tools.passive_extraction_workflow_latest - DEBUG - Error checking sponsored badge for ASIN B0DGTTJQWB: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:59:04,217 - tools.passive_extraction_workflow_latest - DEBUG - Error checking aria-label for ASIN B0DGTTJQWB: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:59:04,266 - tools.passive_extraction_workflow_latest - INFO - Skipping sponsored result: ASIN B0DGTTJQWB (detected by ad-specific class: 'AdHolder')
+2025-07-20 14:59:04,286 - tools.passive_extraction_workflow_latest - DEBUG - Processing element 9: ASIN B0DFPYQ49P
+2025-07-20 14:59:04,287 - tools.passive_extraction_workflow_latest - DEBUG - Error checking sponsored badge for ASIN B0DFPYQ49P: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:59:04,287 - tools.passive_extraction_workflow_latest - DEBUG - Error checking aria-label for ASIN B0DFPYQ49P: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:59:04,332 - tools.passive_extraction_workflow_latest - INFO - Skipping sponsored result: ASIN B0DFPYQ49P (detected by ad-specific class: 'AdHolder')
+2025-07-20 14:59:04,349 - tools.passive_extraction_workflow_latest - DEBUG - Processing element 10: ASIN B0C9BXWPZ7
+2025-07-20 14:59:04,350 - tools.passive_extraction_workflow_latest - DEBUG - Error checking sponsored badge for ASIN B0C9BXWPZ7: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:59:04,350 - tools.passive_extraction_workflow_latest - DEBUG - Error checking aria-label for ASIN B0C9BXWPZ7: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:59:04,383 - tools.passive_extraction_workflow_latest - INFO - Skipping sponsored result: ASIN B0C9BXWPZ7 (detected by ad-specific class: 'AdHolder')
+2025-07-20 14:59:04,403 - tools.passive_extraction_workflow_latest - DEBUG - Processing element 11: ASIN B0D5LYVBY6
+2025-07-20 14:59:04,404 - tools.passive_extraction_workflow_latest - DEBUG - Error checking sponsored badge for ASIN B0D5LYVBY6: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:59:04,404 - tools.passive_extraction_workflow_latest - DEBUG - Error checking aria-label for ASIN B0D5LYVBY6: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:59:04,442 - tools.passive_extraction_workflow_latest - INFO - Skipping sponsored result: ASIN B0D5LYVBY6 (detected by ad-specific class: 'AdHolder')
+2025-07-20 14:59:04,463 - tools.passive_extraction_workflow_latest - DEBUG - Processing element 12: ASIN B0CZLKQMG6
+2025-07-20 14:59:04,464 - tools.passive_extraction_workflow_latest - DEBUG - Error checking sponsored badge for ASIN B0CZLKQMG6: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:59:04,464 - tools.passive_extraction_workflow_latest - DEBUG - Error checking aria-label for ASIN B0CZLKQMG6: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:59:04,493 - tools.passive_extraction_workflow_latest - INFO - Skipping sponsored result: ASIN B0CZLKQMG6 (detected by ad-specific class: 'AdHolder')
+2025-07-20 14:59:04,524 - tools.passive_extraction_workflow_latest - DEBUG - Processing element 13: ASIN B0DXL2CJ3M
+2025-07-20 14:59:04,532 - tools.passive_extraction_workflow_latest - DEBUG - Error checking sponsored badge for ASIN B0DXL2CJ3M: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:59:04,533 - tools.passive_extraction_workflow_latest - DEBUG - Error checking aria-label for ASIN B0DXL2CJ3M: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:59:04,594 - tools.passive_extraction_workflow_latest - INFO - Skipping sponsored result: ASIN B0DXL2CJ3M (detected by ad-specific class: 'AdHolder')
+2025-07-20 14:59:04,617 - tools.passive_extraction_workflow_latest - DEBUG - Processing element 14: ASIN B0F1TR3PTJ
+2025-07-20 14:59:04,618 - tools.passive_extraction_workflow_latest - DEBUG - Error checking sponsored badge for ASIN B0F1TR3PTJ: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:59:04,618 - tools.passive_extraction_workflow_latest - DEBUG - Error checking aria-label for ASIN B0F1TR3PTJ: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:59:04,661 - tools.passive_extraction_workflow_latest - INFO - Skipping sponsored result: ASIN B0F1TR3PTJ (detected by ad-specific class: 'AdHolder')
+2025-07-20 14:59:04,679 - tools.passive_extraction_workflow_latest - DEBUG - Processing element 15: ASIN B0DJT9FNM9
+2025-07-20 14:59:04,679 - tools.passive_extraction_workflow_latest - DEBUG - Error checking sponsored badge for ASIN B0DJT9FNM9: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:59:04,680 - tools.passive_extraction_workflow_latest - DEBUG - Error checking aria-label for ASIN B0DJT9FNM9: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:59:04,712 - tools.passive_extraction_workflow_latest - INFO - Skipping sponsored result: ASIN B0DJT9FNM9 (detected by ad-specific class: 'AdHolder')
+2025-07-20 14:59:04,713 - tools.passive_extraction_workflow_latest - WARNING - EAN 6294015575095 returned no organic results - skipping
+2025-07-20 14:59:04,713 - tools.passive_extraction_workflow_latest - WARNING - No Amazon results or error for EAN '6294015575095'. Details: no_organic_results
+2025-07-20 14:59:04,714 - tools.passive_extraction_workflow_latest - INFO - Falling back to title search for supplier product: 'Royalford Black Nylon Whisk 30.5cm'
+2025-07-20 14:59:04,715 - tools.passive_extraction_workflow_latest - INFO - Searching Amazon by title using search bar: 'Royalford Black Nylon Whisk 30.5cm'
+2025-07-20 14:59:04,715 - tools.passive_extraction_workflow_latest - INFO - Navigating to Amazon UK to search for title: Royalford Black Nylon Whisk 30.5cm
+2025-07-20 14:59:06,720 - __main__ - INFO - 🌐 Keeping browser persistent for next run - not closing browser
+2025-07-20 14:59:06,722 - utils.browser_manager - WARNING - Error during global cleanup: no running event loop

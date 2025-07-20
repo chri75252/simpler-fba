@@ -1,0 +1,51 @@
+2025-07-20 12:18:49,989 - utils.logger - INFO - 🔧 Logging initialised – log file: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/logs/debug/run_custom_poundwholesale_20250720_121849.log
+2025-07-20 12:18:49,990 - __main__ - INFO - 📋 Debug log file: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/logs/debug/run_custom_poundwholesale_20250720_121849.log
+2025-07-20 12:18:49,991 - __main__ - DEBUG - Debug logging initialized - full system execution details will be captured
+2025-07-20 12:18:50,004 - utils.browser_manager - INFO - 🔧 BrowserManager singleton initialized
+2025-07-20 12:18:50,365 - utils.browser_manager - INFO - 🔌 Connecting to persistent Chrome on debug port 9222
+2025-07-20 12:18:51,083 - utils.browser_manager - INFO - 📄 Using existing context with 3 pages
+2025-07-20 12:18:51,083 - utils.browser_manager - INFO - ✅ Connected to persistent Chrome successfully
+2025-07-20 12:18:51,084 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 12:18:51,085 - __main__ - INFO - 🔐 Initializing authentication service for logout detection...
+2025-07-20 12:18:51,096 - __main__ - INFO - ✅ Using hardcoded credentials for poundwholesale.co.uk
+2025-07-20 12:18:51,097 - __main__ - INFO - 🌐 Connecting to existing Chrome debug port 9222 for authentication...
+2025-07-20 12:18:56,264 - tools.supplier_authentication_service - INFO - ✅ Authentication indicator found: 'logout'
+2025-07-20 12:18:56,320 - tools.supplier_authentication_service - INFO - ✅ Logout link found - user is authenticated
+2025-07-20 12:18:56,321 - tools.supplier_authentication_service - INFO - ✅ Session already authenticated - skipping login
+2025-07-20 12:18:56,328 - amazon_playwright_extractor - INFO - AI features disabled in amazon_playwright_extractor - using only traditional selectors.
+2025-07-20 12:18:56,335 - amazon_playwright_extractor - INFO - Output directory set to: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/CACHE/amazon_data
+2025-07-20 12:18:56,336 - amazon_playwright_extractor - WARNING - ⚠️ BrowserManager not available, using legacy browser connection
+2025-07-20 12:18:56,342 - configurable_supplier_scraper - INFO - ✅ Loaded system configuration from /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/config/system_config.json
+2025-07-20 12:18:56,343 - configurable_supplier_scraper - INFO - 🔧 ConfigurableSupplierScraper will use centralized BrowserManager
+2025-07-20 12:18:56,343 - configurable_supplier_scraper - DEBUG - AI model from config: gpt-4.1-mini-2025-04-14
+2025-07-20 12:18:56,344 - configurable_supplier_scraper - DEBUG - Extraction targets from config: {}
+2025-07-20 12:18:56,344 - configurable_supplier_scraper - DEBUG - Discovery assistance from config: {}
+2025-07-20 12:18:56,344 - configurable_supplier_scraper - INFO - [CONFIG] Initialized with AI model: gpt-4.1-mini-2025-04-14
+2025-07-20 12:18:56,345 - configurable_supplier_scraper - INFO - [TARGET] Extraction targets loaded: []
+2025-07-20 12:18:56,346 - configurable_supplier_scraper - INFO - [ASSIST] Discovery assistance enabled: False
+2025-07-20 12:18:56,346 - PassiveExtractionWorkflow - DEBUG - 🔍 DEBUG: linking_map initialized as type: <class 'list'>
+2025-07-20 12:18:56,347 - PassiveExtractionWorkflow - INFO - ✅ Output directory set to: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS
+2025-07-20 12:18:56,347 - PassiveExtractionWorkflow - INFO - ✅ Initialization validation passed - all critical attributes verified
+2025-07-20 12:18:56,348 - PassiveExtractionWorkflow - INFO - --- Starting Passive Extraction Workflow for: poundwholesale.co.uk ---
+2025-07-20 12:18:56,348 - PassiveExtractionWorkflow - INFO - Session ID: poundwholesale.co.uk_20250720_121856
+2025-07-20 12:18:56,349 - PassiveExtractionWorkflow - INFO - 📊 CONFIGURATION VALUES:
+2025-07-20 12:18:56,349 - PassiveExtractionWorkflow - INFO -    max_products_to_process: 20
+2025-07-20 12:18:56,349 - PassiveExtractionWorkflow - INFO -    max_products_per_category: 5
+2025-07-20 12:18:56,350 - PassiveExtractionWorkflow - INFO -    max_analyzed_products: 12
+2025-07-20 12:18:56,351 - PassiveExtractionWorkflow - INFO -    max_products_per_cycle: 100
+2025-07-20 12:18:56,351 - PassiveExtractionWorkflow - INFO -    supplier_extraction_batch_size: 1
+2025-07-20 12:18:56,352 - PassiveExtractionWorkflow - INFO -    max_categories_per_request: 5
+2025-07-20 12:18:56,370 - utils.enhanced_state_manager - INFO - Loaded state for poundwholesale.co.uk - resuming from index 4
+2025-07-20 12:18:56,371 - PassiveExtractionWorkflow - INFO - 📋 Loaded existing processing state for poundwholesale.co.uk
+2025-07-20 12:18:56,372 - PassiveExtractionWorkflow - INFO - 🔄 Resuming from index 4
+2025-07-20 12:18:56,374 - PassiveExtractionWorkflow - WARNING - 🔥 State file shows progress, but supplier cache is empty. Wiping state to restart.
+2025-07-20 12:18:56,375 - __main__ - CRITICAL - 💥 A critical error occurred in the main workflow: 'EnhancedStateManager' object has no attribute 'hard_reset'
+Traceback (most recent call last):
+  File "/mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/run_custom_poundwholesale.py", line 64, in main
+    await workflow.run()
+  File "/mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/tools/passive_extraction_workflow_latest.py", line 1070, in run
+    self.state_manager.hard_reset()
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'EnhancedStateManager' object has no attribute 'hard_reset'
+2025-07-20 12:18:56,408 - __main__ - INFO - 🌐 Keeping browser persistent for next run - not closing browser
+2025-07-20 12:18:56,409 - utils.browser_manager - WARNING - Error during global cleanup: no running event loop

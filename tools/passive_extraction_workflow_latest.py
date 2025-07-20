@@ -923,8 +923,20 @@ class PassiveExtractionWorkflow:
         self.output_dir = self._initialize_output_directory()
         self.supplier_cache_dir = os.path.join(self.output_dir, 'cached_products')
         self.amazon_cache_dir = os.path.join(self.output_dir, 'FBA_ANALYSIS', 'amazon_cache')
-        os.makedirs(self.supplier_cache_dir, exist_ok=True)
-        os.makedirs(self.amazon_cache_dir, exist_ok=True)
+        
+        # 🚨 CRITICAL FIX: Enhanced directory creation with error handling
+        try:
+            self.log.info(f"🔍 DEBUG: output_dir = '{self.output_dir}'")
+            self.log.info(f"🔍 DEBUG: supplier_cache_dir = '{self.supplier_cache_dir}'")
+            os.makedirs(self.supplier_cache_dir, exist_ok=True)
+            self.log.info(f"✅ Created supplier cache directory: {self.supplier_cache_dir}")
+            os.makedirs(self.amazon_cache_dir, exist_ok=True)
+            self.log.info(f"✅ Created amazon cache directory: {self.amazon_cache_dir}")
+        except Exception as e:
+            self.log.error(f"🚨 CRITICAL: Failed to create cache directories: {e}")
+            self.log.error(f"🚨 Output dir: {self.output_dir}")
+            self.log.error(f"🚨 Supplier cache dir: {self.supplier_cache_dir}")
+            raise
         self.state_manager = EnhancedStateManager(self.supplier_name)
         
         # Pass the single browser_manager instance to the tools
@@ -1191,6 +1203,8 @@ class PassiveExtractionWorkflow:
             
             # Save supplier products to cache immediately after extraction
             supplier_cache_file = os.path.join(self.supplier_cache_dir, f"{self.supplier_name.replace('.', '-')}_products_cache.json")
+            self.log.info(f"🔍 DEBUG: supplier_cache_dir = '{self.supplier_cache_dir}'")
+            self.log.info(f"🔍 DEBUG: supplier_cache_file = '{supplier_cache_file}'")
             self._save_products_to_cache(supplier_products, supplier_cache_file)
 
             # Filter products based on price and validity
@@ -2448,79 +2462,109 @@ Return ONLY valid JSON, no additional text."""
 
         return "unknown"
 
-    def _save_products_to_cache(self, products: List[Dict[str, Any]], cache_file_path: Union[str, Path]):
-        """
-        Save products to a cache file, ensuring the directory exists.
-        This now handles both new and existing products with deduplication.
-        """
+    def _save_products_to_cache(self, products: list, cache_file_path: str):
+        """Save products to cache file with deduplication and robust path correction."""
         try:
-            cache_file_path = Path(cache_file_path)
-            cache_dir = cache_file_path.parent
+            # --- PATH CORRECTION FIX V5 ---
+            # Use pathlib for robust, cross-platform path handling.
+            path_obj = Path(str(cache_file_path))
+            self.log.info(f"🔍 DEBUG: Initial path object: {path_obj}")
+            self.log.info(f"🔍 DEBUG: Path is absolute: {path_obj.is_absolute()}")
+            self.log.info(f"🔍 DEBUG: Path as_posix: {path_obj.as_posix()}")
 
-            # Ensure the cache directory exists
-            if not cache_dir.exists():
-                self.log.info(f"Cache directory not found. Creating directory: {cache_dir}")
-                try:
-                    cache_dir.mkdir(parents=True, exist_ok=True)
-                    self.log.info(f"✅ Cache directory ensured: {cache_dir}")
-                except Exception as dir_error:
-                    self.log.critical(f"🚨 CRITICAL: Failed to create directory {cache_dir}: {dir_error}")
-                    return
-
-            # Load existing products if cache file exists
-            existing_products = []
-            if cache_file_path.exists():
-                try:
-                    with open(cache_file_path, 'r', encoding='utf-8') as f:
-                        existing_products = json.load(f)
-                except (json.JSONDecodeError, Exception) as e:
-                    self.log.warning(f"Could not load existing cache: {e}")
-
-            # Deduplicate products before saving
-            existing_urls = {p.get('url') for p in existing_products if p.get('url')}
-            existing_eans = {p.get('ean') for p in existing_products if p.get('ean') and p.get('ean') != 'None'}
+            # 🚨 CRITICAL FIX: WSL path handling with proper directory extraction
+            original_path = str(path_obj)
             
+            # If the path is a WSL path, handle it specially
+            if path_obj.as_posix().startswith('/mnt/'):
+                self.log.warning(f"WSL path detected: {path_obj}. Using WSL-compatible approach.")
+                try:
+                    # For WSL paths, use the original path for operations but ensure directory exists
+                    # Extract directory using string operations instead of pathlib .parent
+                    directory_str = os.path.dirname(original_path)
+                    self.log.info(f"🔍 DEBUG: Directory extracted via os.path.dirname: {directory_str}")
+                    
+                    # Create directory using os.makedirs (more reliable in WSL)
+                    os.makedirs(directory_str, exist_ok=True)
+                    self.log.info(f"✅ Cache directory ensured via os.makedirs: {directory_str}")
+                    
+                    # Use original WSL path for file operations
+                    final_path = original_path
+                    
+                except Exception as e:
+                    self.log.error(f"Failed WSL path handling: {e}. Falling back to pathlib.")
+                    directory = path_obj.parent
+                    directory.mkdir(parents=True, exist_ok=True)
+                    final_path = str(path_obj)
+            else:
+                # For non-WSL paths, use pathlib normally
+                directory = path_obj.parent
+                self.log.info(f"🔍 DEBUG: Extracted directory: {directory}")
+                directory.mkdir(parents=True, exist_ok=True)
+                self.log.info(f"✅ Cache directory ensured: {directory}")
+                final_path = str(path_obj)
+
+            # Get cache control configuration
+            cache_config = self.system_config.get("supplier_cache_control", {})
+            if cache_config.get("enabled", True):
+                self.log.info(f"💾 CACHE SAVE: Starting save of {len(products)} products to cache...")
+                
+            self.log.info(f"🔍 DEBUG: Final path for file operations: {final_path}")
+
+            # --- DEDUPLICATION LOGIC ---
+            existing_products = []
+            if os.path.exists(final_path):
+                try:
+                    with open(final_path, 'r', encoding='utf-8') as f:
+                        existing_products = json.load(f)
+                    self.log.info(f"🔍 DEBUG: Loaded {len(existing_products)} existing products for deduplication")
+                except Exception as e:
+                    self.log.warning(f"Could not load existing cache for deduplication: {e}")
+
+            existing_urls = {p.get('url', '') for p in existing_products if p.get('url')}
+            existing_eans = {p.get('ean', '') for p in existing_products if p.get('ean') and p.get('ean') != 'None'}
+
             new_products = []
-            url_duplicates_skipped = 0
             ean_duplicates_skipped = 0
+            url_duplicates_skipped = 0
 
             for p in products:
-                product_url = p.get('url')
-                product_ean = p.get('ean')
+                product_url = p.get('url', '')
+                product_ean = p.get('ean', '')
 
                 if product_url and product_url in existing_urls:
                     url_duplicates_skipped += 1
                     continue
-                
+
                 if product_ean and product_ean != 'None' and product_ean in existing_eans:
                     ean_duplicates_skipped += 1
                     continue
-                
+
                 new_products.append(p)
-                
-                # Add to tracking sets to prevent duplicates within current batch
-                if product_url:
-                    existing_urls.add(product_url)
-                if product_ean and product_ean != 'None':
-                    existing_eans.add(product_ean)
+                if product_url: existing_urls.add(product_url)
+                if product_ean and product_ean != 'None': existing_eans.add(product_ean)
+
+            if url_duplicates_skipped > 0 or ean_duplicates_skipped > 0:
+                self.log.info(f"🔄 DEDUPLICATION: Skipped {url_duplicates_skipped} URL duplicates and {ean_duplicates_skipped} EAN duplicates.")
 
             all_products = existing_products + new_products
+            # --- END OF DEDUPLICATION LOGIC ---
 
-            # Save to cache
-            with open(cache_file_path, 'w', encoding='utf-8') as f:
+            # --- ATTEMPT TO SAVE ---
+            self.log.info(f"🔍 DEBUG: Attempting to save to: {final_path}")
+            with open(final_path, 'w', encoding='utf-8') as f:
                 json.dump(all_products, f, indent=2, ensure_ascii=False)
-
-            # Enhanced progress feedback with deduplication statistics
-            cache_config = self.system_config.get("product_cache", {})
-            if cache_config.get("enabled", True):
-                self.log.info(f"✅ CACHE SAVE: Successfully saved {len(all_products)} products ({len(new_products)} new) to {os.path.basename(cache_file_path)}")
-                if ean_duplicates_skipped > 0 or url_duplicates_skipped > 0:
-                    self.log.info(f"🔄 DEDUPLICATION: Skipped {ean_duplicates_skipped} EAN duplicates and {url_duplicates_skipped} URL duplicates")
+            
+            # Verify file was actually created
+            if os.path.exists(final_path):
+                file_size = os.path.getsize(final_path)
+                self.log.info(f"✅ Successfully saved {len(all_products)} products ({len(new_products)} new) to cache: {os.path.basename(final_path)} (size: {file_size} bytes)")
             else:
-                self.log.info(f"Saved {len(all_products)} products to cache ({len(new_products)} new)")
+                self.log.error(f"🚨 CRITICAL: File save appeared successful but file does not exist: {final_path}")
+                raise FileNotFoundError(f"Cache file was not created: {final_path}")
 
         except Exception as e:
-            self.log.error(f"Error saving products to cache: {e}")
+            self.log.error(f"❌ An unexpected error occurred while saving the product cache: {e}", exc_info=True)
 
     def _check_category_exhaustion_status(self, discovered_categories: list, processed_categories: list) -> dict:
         """Check how many categories of each type remain to be processed"""
@@ -2977,12 +3021,11 @@ Return ONLY valid JSON, no additional text."""
                     len(self._current_all_products) > 0 and
                     self._supplier_product_counter % update_frequency == 0):
                     
-
-                    
-
-                    
+                    # 🚨 FIX: Use consistent path construction (same as main save method)
                     cache_filename = f"{self.supplier_name.replace('.', '-')}_products_cache.json"
                     cache_file_path = os.path.join(self.supplier_cache_dir, cache_filename)
+                    
+                    # Save current products to cache
                     self._save_products_to_cache(self._current_all_products, cache_file_path)
                     self.log.info(f"💾 PERIODIC CACHE SAVE: Saved {len(self._current_all_products)} products to cache (every {update_frequency} products)")
                     
@@ -3241,82 +3284,7 @@ Return ONLY valid JSON, no additional text."""
         amazon_product_data["_search_method_used"] = actual_search_method
         return amazon_product_data
 
-    def _save_products_to_cache(self, products: List[Dict[str, Any]], cache_file_path: Union[str, Path]):
-        """
-        Save products to a cache file, ensuring the directory exists.
-        This now handles both new and existing products with deduplication.
-        """
-        try:
-            cache_file_path = Path(cache_file_path)
-            cache_dir = cache_file_path.parent
-
-            # Ensure the cache directory exists
-            if not cache_dir.exists():
-                self.log.info(f"Cache directory not found. Creating directory: {cache_dir}")
-                try:
-                    cache_dir.mkdir(parents=True, exist_ok=True)
-                    self.log.info(f"✅ Cache directory ensured: {cache_dir}")
-                except Exception as dir_error:
-                    self.log.critical(f"🚨 CRITICAL: Failed to create directory {cache_dir}: {dir_error}")
-                    return
-
-            # Load existing products if cache file exists
-            existing_products = []
-            if cache_file_path.exists():
-                try:
-                    with open(cache_file_path, 'r', encoding='utf-8') as f:
-                        existing_products = json.load(f)
-                except (json.JSONDecodeError, Exception) as e:
-                    self.log.warning(f"Could not load existing cache: {e}")
-
-            # Deduplicate products before saving
-            existing_urls = {p.get('url') for p in existing_products if p.get('url')}
-            existing_eans = {p.get('ean') for p in existing_products if p.get('ean') and p.get('ean') != 'None'}
-            
-            new_products = []
-            url_duplicates_skipped = 0
-            ean_duplicates_skipped = 0
-
-            for p in products:
-                product_url = p.get('url')
-                product_ean = p.get('ean')
-
-                if product_url and product_url in existing_urls:
-                    url_duplicates_skipped += 1
-                    continue
-                
-                if product_ean and product_ean != 'None' and product_ean in existing_eans:
-                    ean_duplicates_skipped += 1
-                    continue
-                
-                new_products.append(p)
-                
-                # Add to tracking sets to prevent duplicates within current batch
-                if product_url:
-                    existing_urls.add(product_url)
-                if product_ean and product_ean != 'None':
-                    existing_eans.add(product_ean)
-
-            all_products = existing_products + new_products
-
-            # Save to cache
-            with open(cache_file_path, 'w', encoding='utf-8') as f:
-                json.dump(all_products, f, indent=2, ensure_ascii=False)
-
-            # Enhanced progress feedback with deduplication statistics
-            cache_config = self.system_config.get("product_cache", {})
-            if cache_config.get("enabled", True):
-                self.log.info(f"✅ CACHE SAVE: Successfully saved {len(all_products)} products ({len(new_products)} new) to {os.path.basename(cache_file_path)}")
-                if ean_duplicates_skipped > 0 or url_duplicates_skipped > 0:
-                    self.log.info(f"🔄 DEDUPLICATION: Skipped {ean_duplicates_skipped} EAN duplicates and {url_duplicates_skipped} URL duplicates")
-            else:
-                self.log.info(f"Saved {len(all_products)} products to cache ({len(new_products)} new)")
-
-        except Exception as e:
-            self.log.error(f"Error saving products to cache: {e}")
-
     def _save_final_report(self, profitable_results: List[Dict[str, Any]], supplier_name: str):
-        """Save the final list of profitable products to a JSON file."""
         """Generate CSV financial report using FBA_Financial_calculator."""
         self.log.info(f"🔍 DEBUG: _save_final_report called with {len(profitable_results) if profitable_results else 0} profitable results")
         
@@ -6067,6 +6035,3 @@ Return ONLY valid JSON, no additional text."""
         """Process existing cached products with Amazon extraction only"""
         self.log.info(f"🔄 Processing {len(products)} existing products with Amazon extraction")
         return await self._process_chunk_with_main_workflow_logic(products, max_products_per_cycle)
-
-
-

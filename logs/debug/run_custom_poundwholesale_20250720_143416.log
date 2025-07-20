@@ -1,0 +1,364 @@
+2025-07-20 14:34:16,230 - utils.logger - INFO - 🔧 Logging initialised – log file: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/logs/debug/run_custom_poundwholesale_20250720_143416.log
+2025-07-20 14:34:16,231 - __main__ - INFO - 📋 Debug log file: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/logs/debug/run_custom_poundwholesale_20250720_143416.log
+2025-07-20 14:34:16,232 - __main__ - DEBUG - Debug logging initialized - full system execution details will be captured
+2025-07-20 14:34:16,237 - utils.browser_manager - INFO - 🔧 BrowserManager singleton initialized
+2025-07-20 14:34:16,561 - utils.browser_manager - INFO - 🔌 Connecting to persistent Chrome on debug port 9222
+2025-07-20 14:34:17,278 - utils.browser_manager - INFO - 📄 Using existing context with 3 pages
+2025-07-20 14:34:17,278 - utils.browser_manager - INFO - ✅ Connected to persistent Chrome successfully
+2025-07-20 14:34:17,279 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 14:34:17,279 - __main__ - INFO - 🔐 Initializing authentication service for logout detection...
+2025-07-20 14:34:17,284 - __main__ - INFO - ✅ Using hardcoded credentials for poundwholesale.co.uk
+2025-07-20 14:34:17,284 - __main__ - INFO - 🌐 Connecting to existing Chrome debug port 9222 for authentication...
+2025-07-20 14:34:22,436 - tools.supplier_authentication_service - INFO - ✅ Authentication indicator found: 'logout'
+2025-07-20 14:34:22,509 - tools.supplier_authentication_service - INFO - ✅ Logout link found - user is authenticated
+2025-07-20 14:34:22,510 - tools.supplier_authentication_service - INFO - ✅ Session already authenticated - skipping login
+2025-07-20 14:34:22,514 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: output_dir = '/mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS'
+2025-07-20 14:34:22,514 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: supplier_cache_dir = '/mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products'
+2025-07-20 14:34:22,518 - PassiveExtractionWorkflow - INFO - ✅ Created supplier cache directory: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products
+2025-07-20 14:34:22,526 - PassiveExtractionWorkflow - INFO - ✅ Created amazon cache directory: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/FBA_ANALYSIS/amazon_cache
+2025-07-20 14:34:22,531 - amazon_playwright_extractor - INFO - AI features disabled in amazon_playwright_extractor - using only traditional selectors.
+2025-07-20 14:34:22,540 - amazon_playwright_extractor - INFO - Output directory set to: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/CACHE/amazon_data
+2025-07-20 14:34:22,540 - amazon_playwright_extractor - WARNING - ⚠️ BrowserManager not available, using legacy browser connection
+2025-07-20 14:34:22,545 - configurable_supplier_scraper - INFO - ✅ Loaded system configuration from /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/config/system_config.json
+2025-07-20 14:34:22,547 - configurable_supplier_scraper - INFO - 🔧 ConfigurableSupplierScraper will use centralized BrowserManager
+2025-07-20 14:34:22,547 - configurable_supplier_scraper - DEBUG - AI model from config: gpt-4.1-mini-2025-04-14
+2025-07-20 14:34:22,548 - configurable_supplier_scraper - DEBUG - Extraction targets from config: {}
+2025-07-20 14:34:22,549 - configurable_supplier_scraper - DEBUG - Discovery assistance from config: {}
+2025-07-20 14:34:22,550 - configurable_supplier_scraper - INFO - [CONFIG] Initialized with AI model: gpt-4.1-mini-2025-04-14
+2025-07-20 14:34:22,550 - configurable_supplier_scraper - INFO - [TARGET] Extraction targets loaded: []
+2025-07-20 14:34:22,551 - configurable_supplier_scraper - INFO - [ASSIST] Discovery assistance enabled: False
+2025-07-20 14:34:22,551 - PassiveExtractionWorkflow - DEBUG - 🔍 DEBUG: linking_map initialized as type: <class 'list'>
+2025-07-20 14:34:22,552 - PassiveExtractionWorkflow - INFO - ✅ Output directory set to: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS
+2025-07-20 14:34:22,552 - PassiveExtractionWorkflow - INFO - ✅ Initialization validation passed - all critical attributes verified
+2025-07-20 14:34:22,553 - PassiveExtractionWorkflow - INFO - --- Starting Passive Extraction Workflow for: poundwholesale.co.uk ---
+2025-07-20 14:34:22,553 - PassiveExtractionWorkflow - INFO - Session ID: poundwholesale.co.uk_20250720_143422
+2025-07-20 14:34:22,554 - PassiveExtractionWorkflow - INFO - 📊 CONFIGURATION VALUES:
+2025-07-20 14:34:22,555 - PassiveExtractionWorkflow - INFO -    max_products_to_process: 20
+2025-07-20 14:34:22,556 - PassiveExtractionWorkflow - INFO -    max_products_per_category: 5
+2025-07-20 14:34:22,556 - PassiveExtractionWorkflow - INFO -    max_analyzed_products: 12
+2025-07-20 14:34:22,557 - PassiveExtractionWorkflow - INFO -    max_products_per_cycle: 100
+2025-07-20 14:34:22,557 - PassiveExtractionWorkflow - INFO -    supplier_extraction_batch_size: 1
+2025-07-20 14:34:22,558 - PassiveExtractionWorkflow - INFO -    max_categories_per_request: 5
+2025-07-20 14:34:22,576 - utils.enhanced_state_manager - INFO - Loaded state for poundwholesale.co.uk - resuming from index 2
+2025-07-20 14:34:22,577 - PassiveExtractionWorkflow - INFO - 📋 Loaded existing processing state for poundwholesale.co.uk
+2025-07-20 14:34:22,577 - PassiveExtractionWorkflow - INFO - 🔄 Resuming from index 2
+2025-07-20 14:34:22,578 - PassiveExtractionWorkflow - INFO - ✅ Processing state loaded - system will resume from last position
+2025-07-20 14:34:22,587 - PassiveExtractionWorkflow - INFO - ✅ No existing linking map found at any path (tried 2 patterns) - Creating new map
+2025-07-20 14:34:22,588 - PassiveExtractionWorkflow - DEBUG - 🔍 DEBUG: linking_map loaded as type: <class 'list'>, length: 0
+2025-07-20 14:34:22,593 - PassiveExtractionWorkflow - INFO - ✅ CACHE FOUND: expected pattern - 2 products in poundwholesale-co-uk_products_cache.json
+2025-07-20 14:34:22,593 - PassiveExtractionWorkflow - INFO - 🔍 PHASE DETECTION: AMAZON_ANALYSIS (supplier cache: 2 products, no linking map)
+2025-07-20 14:34:22,614 - PassiveExtractionWorkflow - INFO - ✅ Processing state initialized and started
+2025-07-20 14:34:22,622 - PassiveExtractionWorkflow - INFO - ✅ No existing linking map found at any path (tried 2 patterns) - Creating new map
+2025-07-20 14:34:22,623 - PassiveExtractionWorkflow - INFO - CUSTOM MODE: Using predefined category list.
+2025-07-20 14:34:22,624 - tools.passive_extraction_workflow_latest - INFO - Attempting to load predefined categories for poundwholesale.co.uk
+2025-07-20 14:34:22,632 - tools.passive_extraction_workflow_latest - INFO - ✅ Successfully loaded 276 predefined category URLs from /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/config/poundwholesale_categories.json
+2025-07-20 14:34:22,633 - PassiveExtractionWorkflow - INFO - 📊 FINITE MODE: 20 max_products ÷ 5 max_products_per_category = 4 categories needed
+2025-07-20 14:34:22,633 - PassiveExtractionWorkflow - INFO - 📋 Processing 4 predefined categories (finite mode)
+2025-07-20 14:34:22,634 - PassiveExtractionWorkflow - INFO - 🔄 HYBRID PROCESSING MODE: Enabled
+2025-07-20 14:34:22,634 - PassiveExtractionWorkflow - INFO - 🔄 HYBRID PROCESSING: Mode configuration loaded
+2025-07-20 14:34:22,635 - PassiveExtractionWorkflow - INFO -    switch_to_amazon_after_categories: 1
+2025-07-20 14:34:22,635 - PassiveExtractionWorkflow - INFO - 🔄 HYBRID MODE: Chunked processing (chunk size: 1 categories)
+2025-07-20 14:34:22,636 - PassiveExtractionWorkflow - INFO - 🔄 Processing chunk 1: categories 1-1
+2025-07-20 14:34:22,646 - PassiveExtractionWorkflow - INFO - ✅ CACHE FOUND: expected pattern - 2 products in poundwholesale-co-uk_products_cache.json
+2025-07-20 14:34:22,651 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Need to extract remaining products for chunk (2/5 expected)
+2025-07-20 14:34:22,661 - PassiveExtractionWorkflow - INFO - ✅ CACHE FOUND: expected pattern - 2 products in poundwholesale-co-uk_products_cache.json
+2025-07-20 14:34:22,662 - PassiveExtractionWorkflow - WARNING - ⚠️ Error checking supplier cache freshness: name 'cached_products_path' is not defined, proceeding with scraping
+2025-07-20 14:34:22,662 - PassiveExtractionWorkflow - INFO - 🕷️ PERFORMING SUPPLIER SCRAPING from 1 categories
+2025-07-20 14:34:22,663 - PassiveExtractionWorkflow - INFO - 📦 Using supplier extraction batch size: 1
+2025-07-20 14:34:22,668 - PassiveExtractionWorkflow - INFO - ✅ CACHE FOUND: expected pattern - 2 products in poundwholesale-co-uk_products_cache.json
+2025-07-20 14:34:22,671 - PassiveExtractionWorkflow - WARNING - ⚠️ Could not load existing cache during resumption: cannot access local variable 'json' where it is not associated with a value
+2025-07-20 14:34:22,671 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS TRACKING: Extracting from 1 categories in 1 batches
+2025-07-20 14:34:22,671 - PassiveExtractionWorkflow - INFO - 📦 Processing category batch 1/1 (1 categories)
+2025-07-20 14:34:22,689 - PassiveExtractionWorkflow - INFO - 🔄 EXTRACTION PROGRESS: Processing subcategory 1/1 in batch 1 (Category 1/1)
+2025-07-20 14:34:22,690 - PassiveExtractionWorkflow - INFO - Scraping category: https://www.poundwholesale.co.uk/kitchenware/wholesale-baking
+2025-07-20 14:34:22,690 - configurable_supplier_scraper - INFO - Starting enhanced scraping from https://www.poundwholesale.co.uk/kitchenware/wholesale-baking
+2025-07-20 14:34:22,691 - configurable_supplier_scraper - INFO - Setting page limiter for https://www.poundwholesale.co.uk/kitchenware/wholesale-baking
+2025-07-20 14:34:22,691 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 14:34:22,709 - configurable_supplier_scraper - INFO - ✅ Loaded VALIDATED supplier package selectors for poundwholesale.co.uk from /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/suppliers/poundwholesale-co-uk/config/product_selectors.json
+2025-07-20 14:34:22,710 - configurable_supplier_scraper - INFO - No page limiter configuration found for www.poundwholesale.co.uk
+2025-07-20 14:34:22,710 - configurable_supplier_scraper - INFO - Collecting product URLs from paginated pages starting at: https://www.poundwholesale.co.uk/kitchenware/wholesale-baking
+2025-07-20 14:34:22,711 - configurable_supplier_scraper - INFO - Processing page 1: https://www.poundwholesale.co.uk/kitchenware/wholesale-baking
+2025-07-20 14:34:22,711 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/kitchenware/wholesale-baking (attempt 1/3)
+2025-07-20 14:34:22,711 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 14:34:22,712 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/kitchenware/wholesale-baking
+2025-07-20 14:34:24,334 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/kitchenware/wholesale-baking in 1.84s...
+2025-07-20 14:34:26,175 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/kitchenware/wholesale-baking (attempt 2/3)
+2025-07-20 14:34:26,176 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 14:34:26,177 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/kitchenware/wholesale-baking
+2025-07-20 14:34:28,829 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/kitchenware/wholesale-baking
+2025-07-20 14:34:28,830 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/kitchenware/wholesale-baking
+2025-07-20 14:34:29,000 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/kitchenware/wholesale-baking (Size: 647079 bytes)
+2025-07-20 14:34:29,237 - configurable_supplier_scraper - INFO - Found 5 new product URLs on page 1
+2025-07-20 14:34:29,238 - configurable_supplier_scraper - INFO - Collected 5 total product URLs across 1 pages
+2025-07-20 14:34:29,239 - configurable_supplier_scraper - INFO - Found 5 total product URLs across all pages
+2025-07-20 14:34:29,240 - configurable_supplier_scraper - INFO - Visiting product page 1/5: https://www.poundwholesale.co.uk/coco-gray-round-non-stick-cake-tin-9
+2025-07-20 14:34:29,240 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/coco-gray-round-non-stick-cake-tin-9 (attempt 1/3)
+2025-07-20 14:34:29,241 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 14:34:29,242 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/coco-gray-round-non-stick-cake-tin-9
+2025-07-20 14:34:31,672 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/coco-gray-round-non-stick-cake-tin-9 in 2.34s...
+2025-07-20 14:34:33,120 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/coco-gray-round-non-stick-cake-tin-9 (attempt 2/3)
+2025-07-20 14:34:33,121 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 14:34:33,122 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/coco-gray-round-non-stick-cake-tin-9
+2025-07-20 14:34:35,067 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/coco-gray-round-non-stick-cake-tin-9
+2025-07-20 14:34:35,069 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/coco-gray-round-non-stick-cake-tin-9
+2025-07-20 14:34:35,210 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/coco-gray-round-non-stick-cake-tin-9 (Size: 572435 bytes)
+2025-07-20 14:34:35,526 - configurable_supplier_scraper - INFO - 🔄 REAL-TIME: Added product 1 to shared accumulator (total: 1)
+2025-07-20 14:34:35,527 - configurable_supplier_scraper - INFO - ✅ Extracted product 1: Coco & Gray Round Non-Stick Cake Tin 9" - £1.79 (EAN: 5015302452926)
+2025-07-20 14:34:35,543 - PassiveExtractionWorkflow - INFO - 🔍 SUPPLIER STATE UPDATE: Index updated to 1/5
+2025-07-20 14:34:35,544 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS: Product 1 processed (total in cache: 1)
+2025-07-20 14:34:35,544 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Processing product 1
+2025-07-20 14:34:35,545 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: Product 1, frequency=2, enabled=True
+2025-07-20 14:34:35,545 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: List length=1, modulo=1
+2025-07-20 14:34:35,570 - configurable_supplier_scraper - INFO - Visiting product page 2/5: https://www.poundwholesale.co.uk/queen-of-cakes-loaf-tin-liners-40-pack
+2025-07-20 14:34:35,571 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/queen-of-cakes-loaf-tin-liners-40-pack (attempt 1/3)
+2025-07-20 14:34:35,571 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 14:34:35,572 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/queen-of-cakes-loaf-tin-liners-40-pack
+2025-07-20 14:34:37,123 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/queen-of-cakes-loaf-tin-liners-40-pack in 1.64s...
+2025-07-20 14:34:38,777 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/queen-of-cakes-loaf-tin-liners-40-pack (attempt 2/3)
+2025-07-20 14:34:38,778 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 14:34:38,779 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/queen-of-cakes-loaf-tin-liners-40-pack
+2025-07-20 14:34:40,363 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/queen-of-cakes-loaf-tin-liners-40-pack
+2025-07-20 14:34:40,364 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/queen-of-cakes-loaf-tin-liners-40-pack
+2025-07-20 14:34:40,482 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/queen-of-cakes-loaf-tin-liners-40-pack (Size: 669756 bytes)
+2025-07-20 14:34:40,758 - configurable_supplier_scraper - INFO - 🔄 REAL-TIME: Added product 2 to shared accumulator (total: 2)
+2025-07-20 14:34:40,759 - configurable_supplier_scraper - INFO - ✅ Extracted product 2: Queen of Cakes Loaf Tin Liners 40 Pack - £1.38 (EAN: 5053249012698)
+2025-07-20 14:34:40,780 - PassiveExtractionWorkflow - INFO - 🔍 SUPPLIER STATE UPDATE: Index updated to 2/5
+2025-07-20 14:34:40,781 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS: Product 2 processed (total in cache: 2)
+2025-07-20 14:34:40,781 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Processing product 2
+2025-07-20 14:34:40,781 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: Product 2, frequency=2, enabled=True
+2025-07-20 14:34:40,782 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: List length=2, modulo=0
+2025-07-20 14:34:40,782 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Initial path object: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products/poundwholesale-co-uk_products_cache.json
+2025-07-20 14:34:40,783 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Path is absolute: True
+2025-07-20 14:34:40,783 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Path as_posix: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products/poundwholesale-co-uk_products_cache.json
+2025-07-20 14:34:40,783 - PassiveExtractionWorkflow - WARNING - WSL path detected: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products/poundwholesale-co-uk_products_cache.json. Using WSL-compatible approach.
+2025-07-20 14:34:40,784 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Directory extracted via os.path.dirname: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products
+2025-07-20 14:34:40,787 - PassiveExtractionWorkflow - INFO - ✅ Cache directory ensured via os.makedirs: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products
+2025-07-20 14:34:40,787 - PassiveExtractionWorkflow - INFO - 💾 CACHE SAVE: Starting save of 2 products to cache...
+2025-07-20 14:34:40,788 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Final path for file operations: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products/poundwholesale-co-uk_products_cache.json
+2025-07-20 14:34:40,793 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Loaded 2 existing products for deduplication
+2025-07-20 14:34:40,794 - PassiveExtractionWorkflow - INFO - 🔄 DEDUPLICATION: Skipped 1 URL duplicates and 0 EAN duplicates.
+2025-07-20 14:34:40,794 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Attempting to save to: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products/poundwholesale-co-uk_products_cache.json
+2025-07-20 14:34:40,806 - PassiveExtractionWorkflow - INFO - ✅ Successfully saved 3 products (1 new) to cache: poundwholesale-co-uk_products_cache.json (size: 1690 bytes)
+2025-07-20 14:34:40,806 - PassiveExtractionWorkflow - INFO - 💾 PERIODIC CACHE SAVE: Saved 2 products to cache (every 2 products)
+2025-07-20 14:34:40,823 - configurable_supplier_scraper - INFO - Visiting product page 3/5: https://www.poundwholesale.co.uk/queen-of-bakes-mini-muffin-cases-200-pack
+2025-07-20 14:34:40,823 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/queen-of-bakes-mini-muffin-cases-200-pack (attempt 1/3)
+2025-07-20 14:34:40,824 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 14:34:40,825 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/queen-of-bakes-mini-muffin-cases-200-pack
+2025-07-20 14:34:43,308 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/queen-of-bakes-mini-muffin-cases-200-pack in 1.77s...
+2025-07-20 14:34:45,094 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/queen-of-bakes-mini-muffin-cases-200-pack (attempt 2/3)
+2025-07-20 14:34:45,095 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 14:34:45,096 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/queen-of-bakes-mini-muffin-cases-200-pack
+2025-07-20 14:34:46,150 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/queen-of-bakes-mini-muffin-cases-200-pack
+2025-07-20 14:34:46,151 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/queen-of-bakes-mini-muffin-cases-200-pack
+2025-07-20 14:34:46,407 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/queen-of-bakes-mini-muffin-cases-200-pack (Size: 671266 bytes)
+2025-07-20 14:34:46,695 - configurable_supplier_scraper - INFO - 🔄 REAL-TIME: Added product 3 to shared accumulator (total: 3)
+2025-07-20 14:34:46,696 - configurable_supplier_scraper - INFO - ✅ Extracted product 3: Queen of Cakes Mini Muffin Cases 200 Pack - £0.74 (EAN: 5053249260402)
+2025-07-20 14:34:46,713 - PassiveExtractionWorkflow - INFO - 🔍 SUPPLIER STATE UPDATE: Index updated to 3/5
+2025-07-20 14:34:46,714 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS: Product 3 processed (total in cache: 3)
+2025-07-20 14:34:46,714 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Processing product 3
+2025-07-20 14:34:46,715 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: Product 3, frequency=2, enabled=True
+2025-07-20 14:34:46,715 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: List length=3, modulo=1
+2025-07-20 14:34:46,730 - configurable_supplier_scraper - INFO - Visiting product page 4/5: https://www.poundwholesale.co.uk/royalford-grey-silicone-egg-whisk-26cm
+2025-07-20 14:34:46,731 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/royalford-grey-silicone-egg-whisk-26cm (attempt 1/3)
+2025-07-20 14:34:46,731 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 14:34:46,731 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/royalford-grey-silicone-egg-whisk-26cm
+2025-07-20 14:34:48,271 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/royalford-grey-silicone-egg-whisk-26cm in 2.09s...
+2025-07-20 14:34:50,379 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/royalford-grey-silicone-egg-whisk-26cm (attempt 2/3)
+2025-07-20 14:34:50,380 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 14:34:50,381 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/royalford-grey-silicone-egg-whisk-26cm
+2025-07-20 14:34:52,710 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/royalford-grey-silicone-egg-whisk-26cm
+2025-07-20 14:34:52,711 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/royalford-grey-silicone-egg-whisk-26cm
+2025-07-20 14:34:52,837 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/royalford-grey-silicone-egg-whisk-26cm (Size: 666704 bytes)
+2025-07-20 14:34:53,207 - configurable_supplier_scraper - INFO - 🔄 REAL-TIME: Added product 4 to shared accumulator (total: 4)
+2025-07-20 14:34:53,208 - configurable_supplier_scraper - INFO - ✅ Extracted product 4: Royalford Grey Silicone Egg Whisk 26cm - £1.28 (EAN: N/A)
+2025-07-20 14:34:53,232 - PassiveExtractionWorkflow - INFO - 🔍 SUPPLIER STATE UPDATE: Index updated to 4/5
+2025-07-20 14:34:53,232 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS: Product 4 processed (total in cache: 4)
+2025-07-20 14:34:53,233 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Processing product 4
+2025-07-20 14:34:53,233 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: Product 4, frequency=2, enabled=True
+2025-07-20 14:34:53,233 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: List length=4, modulo=0
+2025-07-20 14:34:53,234 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Initial path object: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products/poundwholesale-co-uk_products_cache.json
+2025-07-20 14:34:53,234 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Path is absolute: True
+2025-07-20 14:34:53,235 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Path as_posix: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products/poundwholesale-co-uk_products_cache.json
+2025-07-20 14:34:53,235 - PassiveExtractionWorkflow - WARNING - WSL path detected: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products/poundwholesale-co-uk_products_cache.json. Using WSL-compatible approach.
+2025-07-20 14:34:53,236 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Directory extracted via os.path.dirname: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products
+2025-07-20 14:34:53,242 - PassiveExtractionWorkflow - INFO - ✅ Cache directory ensured via os.makedirs: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products
+2025-07-20 14:34:53,242 - PassiveExtractionWorkflow - INFO - 💾 CACHE SAVE: Starting save of 4 products to cache...
+2025-07-20 14:34:53,242 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Final path for file operations: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products/poundwholesale-co-uk_products_cache.json
+2025-07-20 14:34:53,251 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Loaded 3 existing products for deduplication
+2025-07-20 14:34:53,252 - PassiveExtractionWorkflow - INFO - 🔄 DEDUPLICATION: Skipped 3 URL duplicates and 0 EAN duplicates.
+2025-07-20 14:34:53,252 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Attempting to save to: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products/poundwholesale-co-uk_products_cache.json
+2025-07-20 14:34:53,265 - PassiveExtractionWorkflow - INFO - ✅ Successfully saved 4 products (1 new) to cache: poundwholesale-co-uk_products_cache.json (size: 2263 bytes)
+2025-07-20 14:34:53,265 - PassiveExtractionWorkflow - INFO - 💾 PERIODIC CACHE SAVE: Saved 4 products to cache (every 2 products)
+2025-07-20 14:34:53,284 - configurable_supplier_scraper - INFO - Visiting product page 5/5: https://www.poundwholesale.co.uk/royalford-black-nylon-whisk-30-5cm
+2025-07-20 14:34:53,284 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/royalford-black-nylon-whisk-30-5cm (attempt 1/3)
+2025-07-20 14:34:53,285 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 14:34:53,285 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/royalford-black-nylon-whisk-30-5cm
+2025-07-20 14:34:54,794 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/royalford-black-nylon-whisk-30-5cm in 2.19s...
+2025-07-20 14:34:56,985 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/royalford-black-nylon-whisk-30-5cm (attempt 2/3)
+2025-07-20 14:34:56,986 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 14:34:56,987 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/royalford-black-nylon-whisk-30-5cm
+2025-07-20 14:34:59,017 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/royalford-black-nylon-whisk-30-5cm
+2025-07-20 14:34:59,018 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/royalford-black-nylon-whisk-30-5cm
+2025-07-20 14:34:59,132 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/royalford-black-nylon-whisk-30-5cm (Size: 665843 bytes)
+2025-07-20 14:34:59,404 - configurable_supplier_scraper - INFO - 🔄 REAL-TIME: Added product 5 to shared accumulator (total: 5)
+2025-07-20 14:34:59,405 - configurable_supplier_scraper - INFO - ✅ Extracted product 5: Royalford Black Nylon Whisk 30.5cm - £1.28 (EAN: 6294015575095)
+2025-07-20 14:34:59,427 - PassiveExtractionWorkflow - INFO - 🔍 SUPPLIER STATE UPDATE: Index updated to 5/5
+2025-07-20 14:34:59,428 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS: Product 5 processed (total in cache: 5)
+2025-07-20 14:34:59,429 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Processing product 5
+2025-07-20 14:34:59,429 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: Product 5, frequency=2, enabled=True
+2025-07-20 14:34:59,430 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: List length=5, modulo=1
+2025-07-20 14:34:59,454 - configurable_supplier_scraper - INFO - Successfully extracted 5 products from https://www.poundwholesale.co.uk/kitchenware/wholesale-baking
+2025-07-20 14:34:59,455 - PassiveExtractionWorkflow - INFO - 📊 Category completed: 5 raw products extracted, 5 total products accumulated
+2025-07-20 14:34:59,456 - PassiveExtractionWorkflow - INFO - ✅ Completed batch 1: 5 total products extracted so far
+2025-07-20 14:34:59,456 - PassiveExtractionWorkflow - INFO - 🔍 Processing 5 products with main workflow logic
+2025-07-20 14:34:59,457 - PassiveExtractionWorkflow - INFO - --- Processing supplier product 1/5: 'Coco & Gray Round Non-Stick Cake Tin 9"' ---
+2025-07-20 14:34:59,457 - PassiveExtractionWorkflow - INFO - Attempting Amazon search using EAN: 5015302452926
+2025-07-20 14:34:59,485 - tools.passive_extraction_workflow_latest - INFO - Connecting to Chrome browser on debug port 9222 (FixedAmazonExtractor)
+2025-07-20 14:35:00,543 - tools.passive_extraction_workflow_latest - INFO - Successfully connected to Chrome on port 9222 (FixedAmazonExtractor)
+2025-07-20 14:35:00,544 - tools.passive_extraction_workflow_latest - INFO - Found 3 existing pages (FixedAmazonExtractor)
+2025-07-20 14:35:00,544 - tools.passive_extraction_workflow_latest - INFO - Using existing page: https://www.poundwholesale.co.uk/royalford-black-nylon-whisk-30-5cm (FixedAmazonExtractor)
+2025-07-20 14:35:00,564 - tools.passive_extraction_workflow_latest - INFO - Searching Amazon by EAN: 5015302452926 for supplier product: 'Coco & Gray Round Non-Stick Cake Tin 9"' (FixedAmazonExtractor)
+2025-07-20 14:35:00,564 - tools.passive_extraction_workflow_latest - INFO - No page provided to search_by_ean, getting one from BrowserManager.
+2025-07-20 14:35:00,565 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 14:35:00,565 - utils.browser_manager - INFO - 📄 Navigating to https://www.amazon.co.uk
+2025-07-20 14:35:02,344 - utils.browser_manager - INFO - ✅ Page ready for https://www.amazon.co.uk
+2025-07-20 14:35:02,345 - tools.passive_extraction_workflow_latest - INFO - Navigating to Amazon UK to search for EAN: 5015302452926
+2025-07-20 14:35:04,045 - tools.passive_extraction_workflow_latest - INFO - Waiting for search results page to load for EAN 5015302452926...
+2025-07-20 14:35:04,439 - tools.passive_extraction_workflow_latest - INFO - Found search results container with selector: div.s-search-results
+2025-07-20 14:35:06,599 - tools.passive_extraction_workflow_latest - INFO - Found 8 search result elements using selector: div.s-result-item[data-asin]:not([data-asin=''])
+2025-07-20 14:35:06,600 - tools.passive_extraction_workflow_latest - INFO - Processing 8 search result elements for EAN 5015302452926
+2025-07-20 14:35:06,679 - tools.passive_extraction_workflow_latest - DEBUG - Processing element 1: ASIN B0CR4BPQYT
+2025-07-20 14:35:06,711 - tools.passive_extraction_workflow_latest - DEBUG - ASIN B0CR4BPQYT HTML structure sample: <div role="listitem" data-asin="B0CR4BPQYT" data-index="4" data-uuid="ff3fe047-73b8-42dd-95df-903f2c44c01e" id="ff3fe047-73b8-42dd-95df-903f2c44c01e" data-component-type="s-search-result" class="sg-col-4-of-4 sg-col-4-of-24 sg-col-4-of-12 s-result-item s-asin sg-col-4-of-16 AdHolder sg-col s-widget-spacing-small sg-col-4-of-8 sg-col-4-of-20" data-component-id="9" data-cel-widget="search_result_0"><div class="sg-col-inner"><div cel_widget_id="MAIN-SEARCH_RESULTS-4" class="s-widget-container s-spacing-small s-widget-container-height-small celwidget slot=MAIN template=SEARCH_RESULTS widgetId=sear...
+2025-07-20 14:35:06,712 - tools.passive_extraction_workflow_latest - DEBUG - Error checking sponsored badge for ASIN B0CR4BPQYT: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:35:06,712 - tools.passive_extraction_workflow_latest - DEBUG - Error checking aria-label for ASIN B0CR4BPQYT: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:35:06,771 - tools.passive_extraction_workflow_latest - INFO - Skipping sponsored result: ASIN B0CR4BPQYT (detected by ad-specific class: 'AdHolder')
+2025-07-20 14:35:06,802 - tools.passive_extraction_workflow_latest - DEBUG - Processing element 2: ASIN B0CHY7S7RW
+2025-07-20 14:35:06,825 - tools.passive_extraction_workflow_latest - DEBUG - ASIN B0CHY7S7RW HTML structure sample: <div role="listitem" data-asin="B0CHY7S7RW" data-index="5" data-uuid="cbc63dfc-8fe0-4039-b524-405ba70552a4" id="cbc63dfc-8fe0-4039-b524-405ba70552a4" data-component-type="s-search-result" class="sg-col-4-of-4 sg-col-4-of-24 sg-col-4-of-12 s-result-item s-asin sg-col-4-of-16 AdHolder sg-col s-widget-spacing-small sg-col-4-of-8 sg-col-4-of-20" data-component-id="12" data-cel-widget="search_result_1"><div class="sg-col-inner"><div cel_widget_id="MAIN-SEARCH_RESULTS-5" class="s-widget-container s-spacing-small s-widget-container-height-small celwidget slot=MAIN template=SEARCH_RESULTS widgetId=sea...
+2025-07-20 14:35:06,825 - tools.passive_extraction_workflow_latest - DEBUG - Error checking sponsored badge for ASIN B0CHY7S7RW: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:35:06,826 - tools.passive_extraction_workflow_latest - DEBUG - Error checking aria-label for ASIN B0CHY7S7RW: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:35:06,868 - tools.passive_extraction_workflow_latest - INFO - Skipping sponsored result: ASIN B0CHY7S7RW (detected by ad-specific class: 'AdHolder')
+2025-07-20 14:35:06,894 - tools.passive_extraction_workflow_latest - DEBUG - Processing element 3: ASIN B09B2DBBCC
+2025-07-20 14:35:06,914 - tools.passive_extraction_workflow_latest - DEBUG - ASIN B09B2DBBCC HTML structure sample: <div role="listitem" data-asin="B09B2DBBCC" data-index="6" data-uuid="6d3579ba-673d-4ce6-9ad5-ec572be03b32" id="6d3579ba-673d-4ce6-9ad5-ec572be03b32" data-component-type="s-search-result" class="sg-col-4-of-4 sg-col-4-of-24 sg-col-4-of-12 s-result-item s-asin sg-col-4-of-16 AdHolder sg-col s-widget-spacing-small sg-col-4-of-8 sg-col-4-of-20" data-component-id="15" data-cel-widget="search_result_2"><div class="sg-col-inner"><div cel_widget_id="MAIN-SEARCH_RESULTS-6" class="s-widget-container s-spacing-small s-widget-container-height-small celwidget slot=MAIN template=SEARCH_RESULTS widgetId=sea...
+2025-07-20 14:35:06,915 - tools.passive_extraction_workflow_latest - DEBUG - Error checking sponsored badge for ASIN B09B2DBBCC: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:35:06,915 - tools.passive_extraction_workflow_latest - DEBUG - Error checking aria-label for ASIN B09B2DBBCC: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:35:06,964 - tools.passive_extraction_workflow_latest - INFO - Skipping sponsored result: ASIN B09B2DBBCC (detected by ad-specific class: 'AdHolder')
+2025-07-20 14:35:06,991 - tools.passive_extraction_workflow_latest - DEBUG - Processing element 4: ASIN B0F6CBWRMR
+2025-07-20 14:35:06,992 - tools.passive_extraction_workflow_latest - DEBUG - Error checking sponsored badge for ASIN B0F6CBWRMR: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:35:06,992 - tools.passive_extraction_workflow_latest - DEBUG - Error checking aria-label for ASIN B0F6CBWRMR: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:35:07,032 - tools.passive_extraction_workflow_latest - INFO - Skipping sponsored result: ASIN B0F6CBWRMR (detected by ad-specific class: 'AdHolder')
+2025-07-20 14:35:07,057 - tools.passive_extraction_workflow_latest - DEBUG - Processing element 5: ASIN B0DDY56YJY
+2025-07-20 14:35:07,058 - tools.passive_extraction_workflow_latest - DEBUG - Error checking sponsored badge for ASIN B0DDY56YJY: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:35:07,059 - tools.passive_extraction_workflow_latest - DEBUG - Error checking aria-label for ASIN B0DDY56YJY: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:35:07,107 - tools.passive_extraction_workflow_latest - INFO - Skipping sponsored result: ASIN B0DDY56YJY (detected by ad-specific class: 'AdHolder')
+2025-07-20 14:35:07,127 - tools.passive_extraction_workflow_latest - DEBUG - Processing element 6: ASIN B0FC1V4F8L
+2025-07-20 14:35:07,128 - tools.passive_extraction_workflow_latest - DEBUG - Error checking sponsored badge for ASIN B0FC1V4F8L: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:35:07,128 - tools.passive_extraction_workflow_latest - DEBUG - Error checking aria-label for ASIN B0FC1V4F8L: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:35:07,160 - tools.passive_extraction_workflow_latest - INFO - Skipping sponsored result: ASIN B0FC1V4F8L (detected by ad-specific class: 'AdHolder')
+2025-07-20 14:35:07,177 - tools.passive_extraction_workflow_latest - DEBUG - Processing element 7: ASIN B0CP3RCXCM
+2025-07-20 14:35:07,178 - tools.passive_extraction_workflow_latest - DEBUG - Error checking sponsored badge for ASIN B0CP3RCXCM: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:35:07,179 - tools.passive_extraction_workflow_latest - DEBUG - Error checking aria-label for ASIN B0CP3RCXCM: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:35:07,208 - tools.passive_extraction_workflow_latest - INFO - Skipping sponsored result: ASIN B0CP3RCXCM (detected by ad-specific class: 'AdHolder')
+2025-07-20 14:35:07,227 - tools.passive_extraction_workflow_latest - DEBUG - Processing element 8: ASIN B0C7Q5CDTJ
+2025-07-20 14:35:07,227 - tools.passive_extraction_workflow_latest - DEBUG - Error checking sponsored badge for ASIN B0C7Q5CDTJ: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:35:07,228 - tools.passive_extraction_workflow_latest - DEBUG - Error checking aria-label for ASIN B0C7Q5CDTJ: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:35:07,263 - tools.passive_extraction_workflow_latest - INFO - Skipping sponsored result: ASIN B0C7Q5CDTJ (detected by ad-specific class: 'AdHolder')
+2025-07-20 14:35:07,263 - tools.passive_extraction_workflow_latest - WARNING - EAN 5015302452926 returned no organic results - skipping
+2025-07-20 14:35:07,264 - tools.passive_extraction_workflow_latest - WARNING - No Amazon results or error for EAN '5015302452926'. Details: no_organic_results
+2025-07-20 14:35:07,264 - tools.passive_extraction_workflow_latest - INFO - Falling back to title search for supplier product: 'Coco & Gray Round Non-Stick Cake Tin 9"'
+2025-07-20 14:35:07,264 - tools.passive_extraction_workflow_latest - INFO - Searching Amazon by title using search bar: 'Coco & Gray Round Non-Stick Cake Tin 9"'
+2025-07-20 14:35:07,265 - tools.passive_extraction_workflow_latest - INFO - Navigating to Amazon UK to search for title: Coco & Gray Round Non-Stick Cake Tin 9"
+2025-07-20 14:35:11,479 - tools.passive_extraction_workflow_latest - INFO - Title search found 75 elements using selector: div.s-search-results > div[data-asin]
+2025-07-20 14:35:12,313 - tools.passive_extraction_workflow_latest - DEBUG - ASIN B0CM5KK7CR title extracted using selector 'h2 span.a-size-base-plus': ECCOGREAT...
+2025-07-20 14:35:12,603 - tools.passive_extraction_workflow_latest - DEBUG - ASIN B004OWR7P6 title extracted using selector 'h2 span.a-size-base-plus': Bake-O-Glide...
+2025-07-20 14:35:12,739 - tools.passive_extraction_workflow_latest - DEBUG - ASIN B0D177VPCS title extracted using selector 'h2 span.a-size-base-plus': Herogo...
+2025-07-20 14:35:12,924 - tools.passive_extraction_workflow_latest - DEBUG - ASIN B0F843S51H title extracted using selector 'h2 span.a-size-base-plus': Samuel Groves...
+2025-07-20 14:35:13,145 - tools.passive_extraction_workflow_latest - DEBUG - ASIN B084T4QBBL title extracted using selector 'h2 span.a-size-base-plus': Samuel Groves...
+2025-07-20 14:35:13,323 - tools.passive_extraction_workflow_latest - DEBUG - ASIN B0CNZ3ML4M title extracted using selector 'h2 span.a-size-base-plus': NCOALE...
+2025-07-20 14:35:13,559 - tools.passive_extraction_workflow_latest - DEBUG - ASIN B0001IX3M8 title extracted using selector 'h2 span.a-size-base-plus': MasterClass...
+2025-07-20 14:35:13,789 - tools.passive_extraction_workflow_latest - DEBUG - ASIN B09TL21RZW title extracted using selector 'h2 span.a-size-base-plus': Prestige...
+2025-07-20 14:35:13,789 - tools.passive_extraction_workflow_latest - INFO - Title search found 8 results for 'Coco & Gray Round Non-Stick Cake Tin 9"'
+2025-07-20 14:35:13,790 - tools.passive_extraction_workflow_latest - INFO - Title search successful for 'Coco & Gray Round Non-Stick Cake Tin 9"' after EAN '5015302452926' failed
+2025-07-20 14:35:13,791 - PassiveExtractionWorkflow - INFO - ✅ EAN search successful for 5015302452926. Using EAN result without title fallback.
+2025-07-20 14:35:13,798 - PassiveExtractionWorkflow - INFO - 💾 Saved Amazon data to /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/FBA_ANALYSIS/amazon_cache/amazon_B0CM5KK7CR_5015302452926.json
+2025-07-20 14:35:13,798 - PassiveExtractionWorkflow - DEBUG - 🔍 DEBUG: linking_map type: <class 'list'>, size: 0 entries
+2025-07-20 14:35:13,799 - PassiveExtractionWorkflow - INFO - ❌ Not profitable product: Coco & Gray Round Non-Stick Cake Tin 9"
+2025-07-20 14:35:13,818 - PassiveExtractionWorkflow - INFO - --- Processing supplier product 2/5: 'Queen of Cakes Loaf Tin Liners 40 Pack' ---
+2025-07-20 14:35:13,819 - PassiveExtractionWorkflow - INFO - Attempting Amazon search using EAN: 5053249012698
+2025-07-20 14:35:13,851 - tools.passive_extraction_workflow_latest - INFO - Searching Amazon by EAN: 5053249012698 for supplier product: 'Queen of Cakes Loaf Tin Liners 40 Pack' (FixedAmazonExtractor)
+2025-07-20 14:35:13,852 - tools.passive_extraction_workflow_latest - INFO - No page provided to search_by_ean, getting one from BrowserManager.
+2025-07-20 14:35:13,852 - utils.browser_manager - INFO - ♻️ Reusing cached page for https://www.amazon.co.uk
+2025-07-20 14:35:13,853 - tools.passive_extraction_workflow_latest - INFO - Navigating to Amazon UK to search for EAN: 5053249012698
+2025-07-20 14:35:16,482 - tools.passive_extraction_workflow_latest - INFO - Waiting for search results page to load for EAN 5053249012698...
+2025-07-20 14:35:16,692 - tools.passive_extraction_workflow_latest - INFO - Found search results container with selector: div.s-search-results
+2025-07-20 14:35:18,848 - tools.passive_extraction_workflow_latest - INFO - Found 16 search result elements using selector: div.s-result-item[data-asin]:not([data-asin=''])
+2025-07-20 14:35:18,849 - tools.passive_extraction_workflow_latest - INFO - Processing 16 search result elements for EAN 5053249012698
+2025-07-20 14:35:18,895 - tools.passive_extraction_workflow_latest - DEBUG - Processing element 1: ASIN B0DWF1N45H
+2025-07-20 14:35:18,912 - tools.passive_extraction_workflow_latest - DEBUG - ASIN B0DWF1N45H HTML structure sample: <div role="listitem" data-asin="B0DWF1N45H" data-index="2" data-uuid="efbb73b0-903b-45f0-9e85-dfc4ed0e933b" id="efbb73b0-903b-45f0-9e85-dfc4ed0e933b" data-component-type="s-search-result" class="sg-col-4-of-4 sg-col-4-of-24 sg-col-4-of-12 s-result-item s-asin sg-col-4-of-16 AdHolder sg-col s-widget-spacing-small sg-col-4-of-8 sg-col-4-of-20" data-component-id="5" data-cel-widget="search_result_0"><div class="sg-col-inner"><div cel_widget_id="MAIN-SEARCH_RESULTS-2" class="s-widget-container s-spacing-small s-widget-container-height-small celwidget slot=MAIN template=SEARCH_RESULTS widgetId=sear...
+2025-07-20 14:35:18,912 - tools.passive_extraction_workflow_latest - DEBUG - Error checking sponsored badge for ASIN B0DWF1N45H: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:35:18,913 - tools.passive_extraction_workflow_latest - DEBUG - Error checking aria-label for ASIN B0DWF1N45H: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:35:18,947 - tools.passive_extraction_workflow_latest - INFO - Skipping sponsored result: ASIN B0DWF1N45H (detected by ad-specific class: 'AdHolder')
+2025-07-20 14:35:18,968 - tools.passive_extraction_workflow_latest - DEBUG - Processing element 2: ASIN B0DWDJVSVG
+2025-07-20 14:35:18,983 - tools.passive_extraction_workflow_latest - DEBUG - ASIN B0DWDJVSVG HTML structure sample: <div role="listitem" data-asin="B0DWDJVSVG" data-index="3" data-uuid="fe5de058-b2f5-4e08-be81-2411f73e09b8" id="fe5de058-b2f5-4e08-be81-2411f73e09b8" data-component-type="s-search-result" class="sg-col-4-of-4 sg-col-4-of-24 sg-col-4-of-12 s-result-item s-asin sg-col-4-of-16 AdHolder sg-col s-widget-spacing-small sg-col-4-of-8 sg-col-4-of-20" data-component-id="8" data-cel-widget="search_result_1"><div class="sg-col-inner"><div cel_widget_id="MAIN-SEARCH_RESULTS-3" class="s-widget-container s-spacing-small s-widget-container-height-small celwidget slot=MAIN template=SEARCH_RESULTS widgetId=sear...
+2025-07-20 14:35:18,983 - tools.passive_extraction_workflow_latest - DEBUG - Error checking sponsored badge for ASIN B0DWDJVSVG: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:35:18,984 - tools.passive_extraction_workflow_latest - DEBUG - Error checking aria-label for ASIN B0DWDJVSVG: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:35:19,027 - tools.passive_extraction_workflow_latest - INFO - Skipping sponsored result: ASIN B0DWDJVSVG (detected by ad-specific class: 'AdHolder')
+2025-07-20 14:35:19,050 - tools.passive_extraction_workflow_latest - DEBUG - Processing element 3: ASIN B0CH35MVXP
+2025-07-20 14:35:19,073 - tools.passive_extraction_workflow_latest - DEBUG - ASIN B0CH35MVXP HTML structure sample: <div role="listitem" data-asin="B0CH35MVXP" data-index="4" data-uuid="48359afa-69a7-4633-b19c-9a54ccb86742" id="48359afa-69a7-4633-b19c-9a54ccb86742" data-component-type="s-search-result" class="sg-col-4-of-4 sg-col-4-of-24 sg-col-4-of-12 s-result-item s-asin sg-col-4-of-16 AdHolder sg-col s-widget-spacing-small sg-col-4-of-8 sg-col-4-of-20" data-component-id="11" data-cel-widget="search_result_2"><div class="sg-col-inner"><div cel_widget_id="MAIN-SEARCH_RESULTS-4" class="s-widget-container s-spacing-small s-widget-container-height-small celwidget slot=MAIN template=SEARCH_RESULTS widgetId=sea...
+2025-07-20 14:35:19,074 - tools.passive_extraction_workflow_latest - DEBUG - Error checking sponsored badge for ASIN B0CH35MVXP: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:35:19,074 - tools.passive_extraction_workflow_latest - DEBUG - Error checking aria-label for ASIN B0CH35MVXP: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:35:19,119 - tools.passive_extraction_workflow_latest - INFO - Skipping sponsored result: ASIN B0CH35MVXP (detected by ad-specific class: 'AdHolder')
+2025-07-20 14:35:19,148 - tools.passive_extraction_workflow_latest - DEBUG - Processing element 4: ASIN B0DHSF1PW6
+2025-07-20 14:35:19,149 - tools.passive_extraction_workflow_latest - DEBUG - Error checking sponsored badge for ASIN B0DHSF1PW6: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:35:19,150 - tools.passive_extraction_workflow_latest - DEBUG - Error checking aria-label for ASIN B0DHSF1PW6: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:35:19,206 - tools.passive_extraction_workflow_latest - INFO - Skipping sponsored result: ASIN B0DHSF1PW6 (detected by ad-specific class: 'AdHolder')
+2025-07-20 14:35:19,230 - tools.passive_extraction_workflow_latest - DEBUG - Processing element 5: ASIN B0CFW33ZM7
+2025-07-20 14:35:19,231 - tools.passive_extraction_workflow_latest - DEBUG - Error checking sponsored badge for ASIN B0CFW33ZM7: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:35:19,231 - tools.passive_extraction_workflow_latest - DEBUG - Error checking aria-label for ASIN B0CFW33ZM7: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:35:19,269 - tools.passive_extraction_workflow_latest - INFO - Skipping sponsored result: ASIN B0CFW33ZM7 (detected by ad-specific class: 'AdHolder')
+2025-07-20 14:35:19,290 - tools.passive_extraction_workflow_latest - DEBUG - Processing element 6: ASIN B0D8T9K7XB
+2025-07-20 14:35:19,291 - tools.passive_extraction_workflow_latest - DEBUG - Error checking sponsored badge for ASIN B0D8T9K7XB: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:35:19,291 - tools.passive_extraction_workflow_latest - DEBUG - Error checking aria-label for ASIN B0D8T9K7XB: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:35:19,321 - tools.passive_extraction_workflow_latest - INFO - Skipping sponsored result: ASIN B0D8T9K7XB (detected by ad-specific class: 'AdHolder')
+2025-07-20 14:35:19,339 - tools.passive_extraction_workflow_latest - DEBUG - Processing element 7: ASIN B0DJQH8CK1
+2025-07-20 14:35:19,340 - tools.passive_extraction_workflow_latest - DEBUG - Error checking sponsored badge for ASIN B0DJQH8CK1: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:35:19,341 - tools.passive_extraction_workflow_latest - DEBUG - Error checking aria-label for ASIN B0DJQH8CK1: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:35:19,372 - tools.passive_extraction_workflow_latest - INFO - Skipping sponsored result: ASIN B0DJQH8CK1 (detected by ad-specific class: 'AdHolder')
+2025-07-20 14:35:19,392 - tools.passive_extraction_workflow_latest - DEBUG - Processing element 8: ASIN B0CWH1Q8B4
+2025-07-20 14:35:19,392 - tools.passive_extraction_workflow_latest - DEBUG - Error checking sponsored badge for ASIN B0CWH1Q8B4: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:35:19,393 - tools.passive_extraction_workflow_latest - DEBUG - Error checking aria-label for ASIN B0CWH1Q8B4: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:35:19,423 - tools.passive_extraction_workflow_latest - INFO - Skipping sponsored result: ASIN B0CWH1Q8B4 (detected by ad-specific class: 'AdHolder')
+2025-07-20 14:35:19,442 - tools.passive_extraction_workflow_latest - DEBUG - Processing element 9: ASIN B0DG4LY3Z8
+2025-07-20 14:35:19,442 - tools.passive_extraction_workflow_latest - DEBUG - Error checking sponsored badge for ASIN B0DG4LY3Z8: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:35:19,443 - tools.passive_extraction_workflow_latest - DEBUG - Error checking aria-label for ASIN B0DG4LY3Z8: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:35:19,482 - tools.passive_extraction_workflow_latest - INFO - Skipping sponsored result: ASIN B0DG4LY3Z8 (detected by ad-specific class: 'AdHolder')
+2025-07-20 14:35:19,504 - tools.passive_extraction_workflow_latest - DEBUG - Processing element 10: ASIN B0D3LB4Y79
+2025-07-20 14:35:19,504 - tools.passive_extraction_workflow_latest - DEBUG - Error checking sponsored badge for ASIN B0D3LB4Y79: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:35:19,504 - tools.passive_extraction_workflow_latest - DEBUG - Error checking aria-label for ASIN B0D3LB4Y79: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:35:19,537 - tools.passive_extraction_workflow_latest - INFO - Skipping sponsored result: ASIN B0D3LB4Y79 (detected by ad-specific class: 'AdHolder')
+2025-07-20 14:35:19,569 - tools.passive_extraction_workflow_latest - DEBUG - Processing element 11: ASIN B0DWDSPKLS
+2025-07-20 14:35:19,569 - tools.passive_extraction_workflow_latest - DEBUG - Error checking sponsored badge for ASIN B0DWDSPKLS: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:35:19,570 - tools.passive_extraction_workflow_latest - DEBUG - Error checking aria-label for ASIN B0DWDSPKLS: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:35:19,608 - tools.passive_extraction_workflow_latest - INFO - Skipping sponsored result: ASIN B0DWDSPKLS (detected by ad-specific class: 'AdHolder')
+2025-07-20 14:35:19,632 - tools.passive_extraction_workflow_latest - DEBUG - Processing element 12: ASIN B0CC7X9ZS8
+2025-07-20 14:35:19,633 - tools.passive_extraction_workflow_latest - DEBUG - Error checking sponsored badge for ASIN B0CC7X9ZS8: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:35:19,633 - tools.passive_extraction_workflow_latest - DEBUG - Error checking aria-label for ASIN B0CC7X9ZS8: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:35:19,678 - tools.passive_extraction_workflow_latest - INFO - Skipping sponsored result: ASIN B0CC7X9ZS8 (detected by ad-specific class: 'AdHolder')
+2025-07-20 14:35:19,699 - tools.passive_extraction_workflow_latest - DEBUG - Processing element 13: ASIN B0DWDWL66T
+2025-07-20 14:35:19,700 - tools.passive_extraction_workflow_latest - DEBUG - Error checking sponsored badge for ASIN B0DWDWL66T: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:35:19,700 - tools.passive_extraction_workflow_latest - DEBUG - Error checking aria-label for ASIN B0DWDWL66T: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:35:19,742 - tools.passive_extraction_workflow_latest - INFO - Skipping sponsored result: ASIN B0DWDWL66T (detected by ad-specific class: 'AdHolder')
+2025-07-20 14:35:19,762 - tools.passive_extraction_workflow_latest - DEBUG - Processing element 14: ASIN B0DHSG5LF6
+2025-07-20 14:35:19,763 - tools.passive_extraction_workflow_latest - DEBUG - Error checking sponsored badge for ASIN B0DHSG5LF6: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:35:19,764 - tools.passive_extraction_workflow_latest - DEBUG - Error checking aria-label for ASIN B0DHSG5LF6: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:35:19,802 - tools.passive_extraction_workflow_latest - INFO - Skipping sponsored result: ASIN B0DHSG5LF6 (detected by ad-specific class: 'AdHolder')
+2025-07-20 14:35:19,821 - tools.passive_extraction_workflow_latest - DEBUG - Processing element 15: ASIN B0DPMM47RZ
+2025-07-20 14:35:19,822 - tools.passive_extraction_workflow_latest - DEBUG - Error checking sponsored badge for ASIN B0DPMM47RZ: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:35:19,822 - tools.passive_extraction_workflow_latest - DEBUG - Error checking aria-label for ASIN B0DPMM47RZ: 'ElementHandle' object has no attribute 'locator'
+2025-07-20 14:35:19,856 - tools.passive_extraction_workflow_latest - INFO - Skipping sponsored result: ASIN B0DPMM47RZ (detected by ad-specific class: 'AdHolder')
+2025-07-20 14:35:19,856 - tools.passive_extraction_workflow_latest - WARNING - EAN 5053249012698 returned no organic results - skipping
+2025-07-20 14:35:19,857 - tools.passive_extraction_workflow_latest - WARNING - No Amazon results or error for EAN '5053249012698'. Details: no_organic_results
+2025-07-20 14:35:19,857 - tools.passive_extraction_workflow_latest - INFO - Falling back to title search for supplier product: 'Queen of Cakes Loaf Tin Liners 40 Pack'
+2025-07-20 14:35:19,858 - tools.passive_extraction_workflow_latest - INFO - Searching Amazon by title using search bar: 'Queen of Cakes Loaf Tin Liners 40 Pack'
+2025-07-20 14:35:19,858 - tools.passive_extraction_workflow_latest - INFO - Navigating to Amazon UK to search for title: Queen of Cakes Loaf Tin Liners 40 Pack
+2025-07-20 14:35:19,925 - __main__ - INFO - 🌐 Keeping browser persistent for next run - not closing browser
+2025-07-20 14:35:19,927 - utils.browser_manager - WARNING - Error during global cleanup: no running event loop

@@ -1,0 +1,167 @@
+2025-07-20 13:37:04,267 - utils.logger - INFO - 🔧 Logging initialised – log file: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/logs/debug/run_custom_poundwholesale_20250720_133704.log
+2025-07-20 13:37:04,268 - __main__ - INFO - 📋 Debug log file: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/logs/debug/run_custom_poundwholesale_20250720_133704.log
+2025-07-20 13:37:04,269 - __main__ - DEBUG - Debug logging initialized - full system execution details will be captured
+2025-07-20 13:37:04,275 - utils.browser_manager - INFO - 🔧 BrowserManager singleton initialized
+2025-07-20 13:37:04,605 - utils.browser_manager - INFO - 🔌 Connecting to persistent Chrome on debug port 9222
+2025-07-20 13:37:05,292 - utils.browser_manager - INFO - 📄 Using existing context with 3 pages
+2025-07-20 13:37:05,293 - utils.browser_manager - INFO - ✅ Connected to persistent Chrome successfully
+2025-07-20 13:37:05,294 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 13:37:05,294 - __main__ - INFO - 🔐 Initializing authentication service for logout detection...
+2025-07-20 13:37:05,301 - __main__ - INFO - ✅ Using hardcoded credentials for poundwholesale.co.uk
+2025-07-20 13:37:05,301 - __main__ - INFO - 🌐 Connecting to existing Chrome debug port 9222 for authentication...
+2025-07-20 13:37:10,343 - tools.supplier_authentication_service - INFO - ✅ Authentication indicator found: 'logout'
+2025-07-20 13:37:10,405 - tools.supplier_authentication_service - INFO - ✅ Logout link found - user is authenticated
+2025-07-20 13:37:10,406 - tools.supplier_authentication_service - INFO - ✅ Session already authenticated - skipping login
+2025-07-20 13:37:10,408 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: output_dir = '/mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS'
+2025-07-20 13:37:10,409 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: supplier_cache_dir = '/mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products'
+2025-07-20 13:37:10,413 - PassiveExtractionWorkflow - INFO - ✅ Created supplier cache directory: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products
+2025-07-20 13:37:10,420 - PassiveExtractionWorkflow - INFO - ✅ Created amazon cache directory: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/FBA_ANALYSIS/amazon_cache
+2025-07-20 13:37:10,425 - amazon_playwright_extractor - INFO - AI features disabled in amazon_playwright_extractor - using only traditional selectors.
+2025-07-20 13:37:10,431 - amazon_playwright_extractor - INFO - Output directory set to: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/CACHE/amazon_data
+2025-07-20 13:37:10,432 - amazon_playwright_extractor - WARNING - ⚠️ BrowserManager not available, using legacy browser connection
+2025-07-20 13:37:10,435 - configurable_supplier_scraper - INFO - ✅ Loaded system configuration from /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/config/system_config.json
+2025-07-20 13:37:10,436 - configurable_supplier_scraper - INFO - 🔧 ConfigurableSupplierScraper will use centralized BrowserManager
+2025-07-20 13:37:10,437 - configurable_supplier_scraper - DEBUG - AI model from config: gpt-4.1-mini-2025-04-14
+2025-07-20 13:37:10,437 - configurable_supplier_scraper - DEBUG - Extraction targets from config: {}
+2025-07-20 13:37:10,437 - configurable_supplier_scraper - DEBUG - Discovery assistance from config: {}
+2025-07-20 13:37:10,438 - configurable_supplier_scraper - INFO - [CONFIG] Initialized with AI model: gpt-4.1-mini-2025-04-14
+2025-07-20 13:37:10,438 - configurable_supplier_scraper - INFO - [TARGET] Extraction targets loaded: []
+2025-07-20 13:37:10,438 - configurable_supplier_scraper - INFO - [ASSIST] Discovery assistance enabled: False
+2025-07-20 13:37:10,439 - PassiveExtractionWorkflow - DEBUG - 🔍 DEBUG: linking_map initialized as type: <class 'list'>
+2025-07-20 13:37:10,439 - PassiveExtractionWorkflow - INFO - ✅ Output directory set to: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS
+2025-07-20 13:37:10,439 - PassiveExtractionWorkflow - INFO - ✅ Initialization validation passed - all critical attributes verified
+2025-07-20 13:37:10,440 - PassiveExtractionWorkflow - INFO - --- Starting Passive Extraction Workflow for: poundwholesale.co.uk ---
+2025-07-20 13:37:10,440 - PassiveExtractionWorkflow - INFO - Session ID: poundwholesale.co.uk_20250720_133710
+2025-07-20 13:37:10,440 - PassiveExtractionWorkflow - INFO - 📊 CONFIGURATION VALUES:
+2025-07-20 13:37:10,441 - PassiveExtractionWorkflow - INFO -    max_products_to_process: 20
+2025-07-20 13:37:10,441 - PassiveExtractionWorkflow - INFO -    max_products_per_category: 5
+2025-07-20 13:37:10,441 - PassiveExtractionWorkflow - INFO -    max_analyzed_products: 12
+2025-07-20 13:37:10,442 - PassiveExtractionWorkflow - INFO -    max_products_per_cycle: 100
+2025-07-20 13:37:10,442 - PassiveExtractionWorkflow - INFO -    supplier_extraction_batch_size: 1
+2025-07-20 13:37:10,442 - PassiveExtractionWorkflow - INFO -    max_categories_per_request: 5
+2025-07-20 13:37:10,452 - utils.enhanced_state_manager - INFO - Loaded state for poundwholesale.co.uk - resuming from index 5
+2025-07-20 13:37:10,452 - PassiveExtractionWorkflow - INFO - 📋 Loaded existing processing state for poundwholesale.co.uk
+2025-07-20 13:37:10,453 - PassiveExtractionWorkflow - INFO - 🔄 Resuming from index 5
+2025-07-20 13:37:10,453 - PassiveExtractionWorkflow - INFO - ✅ Processing state loaded - system will resume from last position
+2025-07-20 13:37:10,462 - PassiveExtractionWorkflow - INFO - ✅ Loaded linking map (array format) from /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/FBA_ANALYSIS/linking_maps/poundwholesale.co.uk/linking_map.json with 25 entries
+2025-07-20 13:37:10,463 - PassiveExtractionWorkflow - DEBUG - 🔍 DEBUG: linking_map loaded as type: <class 'list'>, length: 25
+2025-07-20 13:37:10,472 - PassiveExtractionWorkflow - INFO - 📝 NO CACHE FOUND: No supplier cache file found for poundwholesale.co.uk
+2025-07-20 13:37:10,472 - PassiveExtractionWorkflow - INFO - 🔍 PHASE DETECTION: SUPPLIER_EXTRACTION (no supplier cache found)
+2025-07-20 13:37:10,491 - PassiveExtractionWorkflow - INFO - ✅ Processing state initialized and started
+2025-07-20 13:37:10,503 - PassiveExtractionWorkflow - INFO - ✅ Loaded linking map (array format) from /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/FBA_ANALYSIS/linking_maps/poundwholesale.co.uk/linking_map.json with 25 entries
+2025-07-20 13:37:10,503 - PassiveExtractionWorkflow - INFO - CUSTOM MODE: Using predefined category list.
+2025-07-20 13:37:10,504 - tools.passive_extraction_workflow_latest - INFO - Attempting to load predefined categories for poundwholesale.co.uk
+2025-07-20 13:37:10,510 - tools.passive_extraction_workflow_latest - INFO - ✅ Successfully loaded 276 predefined category URLs from /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/config/poundwholesale_categories.json
+2025-07-20 13:37:10,512 - PassiveExtractionWorkflow - INFO - 📊 FINITE MODE: 20 max_products ÷ 5 max_products_per_category = 4 categories needed
+2025-07-20 13:37:10,512 - PassiveExtractionWorkflow - INFO - 📋 Processing 4 predefined categories (finite mode)
+2025-07-20 13:37:10,512 - PassiveExtractionWorkflow - INFO - 🔄 HYBRID PROCESSING MODE: Enabled
+2025-07-20 13:37:10,513 - PassiveExtractionWorkflow - INFO - 🔄 HYBRID PROCESSING: Mode configuration loaded
+2025-07-20 13:37:10,513 - PassiveExtractionWorkflow - INFO -    switch_to_amazon_after_categories: 1
+2025-07-20 13:37:10,514 - PassiveExtractionWorkflow - INFO - 🔄 HYBRID MODE: Chunked processing (chunk size: 1 categories)
+2025-07-20 13:37:10,514 - PassiveExtractionWorkflow - INFO - 🔄 Processing chunk 1: categories 1-1
+2025-07-20 13:37:10,521 - PassiveExtractionWorkflow - INFO - 📝 NO CACHE FOUND: No supplier cache file found for poundwholesale.co.uk
+2025-07-20 13:37:10,522 - PassiveExtractionWorkflow - INFO - 📝 SUPPLIER PHASE: No existing cache found - starting fresh extraction
+2025-07-20 13:37:10,536 - PassiveExtractionWorkflow - INFO - 📝 NO CACHE FOUND: No supplier cache file found for poundwholesale.co.uk
+2025-07-20 13:37:10,537 - PassiveExtractionWorkflow - INFO - 🕷️ PERFORMING SUPPLIER SCRAPING from 1 categories
+2025-07-20 13:37:10,537 - PassiveExtractionWorkflow - INFO - 📦 Using supplier extraction batch size: 1
+2025-07-20 13:37:10,544 - PassiveExtractionWorkflow - INFO - 📝 NO CACHE FOUND: No supplier cache file found for poundwholesale.co.uk
+2025-07-20 13:37:10,545 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS TRACKING: Extracting from 1 categories in 1 batches
+2025-07-20 13:37:10,545 - PassiveExtractionWorkflow - INFO - 📦 Processing category batch 1/1 (1 categories)
+2025-07-20 13:37:10,566 - PassiveExtractionWorkflow - INFO - 🔄 EXTRACTION PROGRESS: Processing subcategory 1/1 in batch 1 (Category 1/1)
+2025-07-20 13:37:10,566 - PassiveExtractionWorkflow - INFO - Scraping category: https://www.poundwholesale.co.uk/health-beauty/wholesale-skin-care
+2025-07-20 13:37:10,567 - configurable_supplier_scraper - INFO - Starting enhanced scraping from https://www.poundwholesale.co.uk/health-beauty/wholesale-skin-care
+2025-07-20 13:37:10,567 - configurable_supplier_scraper - INFO - Setting page limiter for https://www.poundwholesale.co.uk/health-beauty/wholesale-skin-care
+2025-07-20 13:37:10,568 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 13:37:10,587 - configurable_supplier_scraper - INFO - ✅ Loaded VALIDATED supplier package selectors for poundwholesale.co.uk from /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/suppliers/poundwholesale-co-uk/config/product_selectors.json
+2025-07-20 13:37:10,587 - configurable_supplier_scraper - INFO - No page limiter configuration found for www.poundwholesale.co.uk
+2025-07-20 13:37:10,588 - configurable_supplier_scraper - INFO - Collecting product URLs from paginated pages starting at: https://www.poundwholesale.co.uk/health-beauty/wholesale-skin-care
+2025-07-20 13:37:10,588 - configurable_supplier_scraper - INFO - Processing page 1: https://www.poundwholesale.co.uk/health-beauty/wholesale-skin-care
+2025-07-20 13:37:10,589 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/health-beauty/wholesale-skin-care (attempt 1/3)
+2025-07-20 13:37:10,589 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 13:37:10,590 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/health-beauty/wholesale-skin-care
+2025-07-20 13:37:12,201 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/health-beauty/wholesale-skin-care in 2.36s...
+2025-07-20 13:37:13,743 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/health-beauty/wholesale-skin-care (attempt 2/3)
+2025-07-20 13:37:13,744 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 13:37:13,744 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/health-beauty/wholesale-skin-care
+2025-07-20 13:37:14,928 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/health-beauty/wholesale-skin-care
+2025-07-20 13:37:14,929 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/health-beauty/wholesale-skin-care
+2025-07-20 13:37:15,061 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/health-beauty/wholesale-skin-care (Size: 672640 bytes)
+2025-07-20 13:37:15,298 - configurable_supplier_scraper - INFO - Found 5 new product URLs on page 1
+2025-07-20 13:37:15,300 - configurable_supplier_scraper - INFO - Collected 5 total product URLs across 1 pages
+2025-07-20 13:37:15,301 - configurable_supplier_scraper - INFO - Found 5 total product URLs across all pages
+2025-07-20 13:37:15,301 - configurable_supplier_scraper - INFO - Visiting product page 1/5: https://www.poundwholesale.co.uk/bettina-premium-face-cloth-assorted-colours
+2025-07-20 13:37:15,302 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/bettina-premium-face-cloth-assorted-colours (attempt 1/3)
+2025-07-20 13:37:15,302 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 13:37:15,303 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/bettina-premium-face-cloth-assorted-colours
+2025-07-20 13:37:16,833 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/bettina-premium-face-cloth-assorted-colours in 1.70s...
+2025-07-20 13:37:18,548 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/bettina-premium-face-cloth-assorted-colours (attempt 2/3)
+2025-07-20 13:37:18,549 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 13:37:18,550 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/bettina-premium-face-cloth-assorted-colours
+2025-07-20 13:37:20,707 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/bettina-premium-face-cloth-assorted-colours
+2025-07-20 13:37:20,708 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/bettina-premium-face-cloth-assorted-colours
+2025-07-20 13:37:20,837 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/bettina-premium-face-cloth-assorted-colours (Size: 672231 bytes)
+2025-07-20 13:37:21,165 - configurable_supplier_scraper - INFO - 🔄 REAL-TIME: Added product 1 to shared accumulator (total: 1)
+2025-07-20 13:37:21,165 - configurable_supplier_scraper - INFO - ✅ Extracted product 1: Bettina Premium Face Cloth Assorted Colours - £0.71 (EAN: 5052578042000)
+2025-07-20 13:37:21,190 - PassiveExtractionWorkflow - INFO - 🔍 SUPPLIER STATE UPDATE: Index updated to 1/5
+2025-07-20 13:37:21,191 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS: Product 1 processed (total in cache: 1)
+2025-07-20 13:37:21,191 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Processing product 1
+2025-07-20 13:37:21,192 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: Product 1, frequency=2, enabled=True
+2025-07-20 13:37:21,193 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: List length=1, modulo=1
+2025-07-20 13:37:21,218 - configurable_supplier_scraper - INFO - Visiting product page 2/5: https://www.poundwholesale.co.uk/nuage-day-cream-50ml
+2025-07-20 13:37:21,219 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/nuage-day-cream-50ml (attempt 1/3)
+2025-07-20 13:37:21,219 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 13:37:21,220 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/nuage-day-cream-50ml
+2025-07-20 13:37:22,754 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/nuage-day-cream-50ml in 2.30s...
+2025-07-20 13:37:25,062 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/nuage-day-cream-50ml (attempt 2/3)
+2025-07-20 13:37:25,063 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 13:37:25,064 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/nuage-day-cream-50ml
+2025-07-20 13:37:26,214 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/nuage-day-cream-50ml
+2025-07-20 13:37:26,215 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/nuage-day-cream-50ml
+2025-07-20 13:37:26,335 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/nuage-day-cream-50ml (Size: 666470 bytes)
+2025-07-20 13:37:26,623 - configurable_supplier_scraper - INFO - 🔄 REAL-TIME: Added product 2 to shared accumulator (total: 2)
+2025-07-20 13:37:26,623 - configurable_supplier_scraper - INFO - ✅ Extracted product 2: Nuage Day Cream 50ml - £0.95 (EAN: 5053249276229)
+2025-07-20 13:37:26,645 - PassiveExtractionWorkflow - INFO - 🔍 SUPPLIER STATE UPDATE: Index updated to 2/5
+2025-07-20 13:37:26,646 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS: Product 2 processed (total in cache: 2)
+2025-07-20 13:37:26,646 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Processing product 2
+2025-07-20 13:37:26,647 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: Product 2, frequency=2, enabled=True
+2025-07-20 13:37:26,647 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: List length=2, modulo=0
+2025-07-20 13:37:26,648 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Initial path object: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products/poundwholesale-co-uk_products_cache.json
+2025-07-20 13:37:26,648 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Path is absolute: True
+2025-07-20 13:37:26,649 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Path as_posix: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products/poundwholesale-co-uk_products_cache.json
+2025-07-20 13:37:26,649 - PassiveExtractionWorkflow - WARNING - WSL path detected: /mnt/c/Users/chris/Desktop/Amazon-FBA-Agent-System-v32/OUTPUTS/cached_products/poundwholesale-co-uk_products_cache.json. Attempting conversion.
+2025-07-20 13:37:26,650 - PassiveExtractionWorkflow - INFO - Path converted to Windows format: C:\Users\chris\Desktop\Amazon-FBA-Agent-System-v32\OUTPUTS\cached_products\poundwholesale-co-uk_products_cache.json
+2025-07-20 13:37:26,650 - PassiveExtractionWorkflow - INFO - 💾 CACHE SAVE: Starting save of 2 products to cache...
+2025-07-20 13:37:26,650 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Extracted directory: .
+2025-07-20 13:37:26,651 - PassiveExtractionWorkflow - INFO - 🔍 DEBUG: Directory is absolute: False
+2025-07-20 13:37:26,651 - PassiveExtractionWorkflow - INFO - ✅ Cache directory ensured: .
+2025-07-20 13:37:26,657 - PassiveExtractionWorkflow - INFO - 🔄 DEDUPLICATION: Skipped 2 URL duplicates and 0 EAN duplicates.
+2025-07-20 13:37:26,662 - PassiveExtractionWorkflow - INFO - ✅ Successfully saved 9 products (0 new) to cache: C:\Users\chris\Desktop\Amazon-FBA-Agent-System-v32\OUTPUTS\cached_products\poundwholesale-co-uk_products_cache.json
+2025-07-20 13:37:26,663 - PassiveExtractionWorkflow - INFO - 💾 PERIODIC CACHE SAVE: Saved 2 products to cache (every 2 products)
+2025-07-20 13:37:26,686 - configurable_supplier_scraper - INFO - Visiting product page 3/5: https://www.poundwholesale.co.uk/nuage-ceramide-face-body-hydrating-moisturiser-200ml
+2025-07-20 13:37:26,687 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/nuage-ceramide-face-body-hydrating-moisturiser-200ml (attempt 1/3)
+2025-07-20 13:37:26,687 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 13:37:26,687 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/nuage-ceramide-face-body-hydrating-moisturiser-200ml
+2025-07-20 13:37:28,347 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/nuage-ceramide-face-body-hydrating-moisturiser-200ml in 1.79s...
+2025-07-20 13:37:30,136 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/nuage-ceramide-face-body-hydrating-moisturiser-200ml (attempt 2/3)
+2025-07-20 13:37:30,137 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 13:37:30,137 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/nuage-ceramide-face-body-hydrating-moisturiser-200ml
+2025-07-20 13:37:31,417 - configurable_supplier_scraper - INFO - 🔧 BrowserManager already navigated to https://www.poundwholesale.co.uk/nuage-ceramide-face-body-hydrating-moisturiser-200ml
+2025-07-20 13:37:31,418 - configurable_supplier_scraper - INFO - 🔧 BrowserManager navigation assumed successful for https://www.poundwholesale.co.uk/nuage-ceramide-face-body-hydrating-moisturiser-200ml
+2025-07-20 13:37:31,538 - configurable_supplier_scraper - INFO - Successfully fetched content from https://www.poundwholesale.co.uk/nuage-ceramide-face-body-hydrating-moisturiser-200ml (Size: 672308 bytes)
+2025-07-20 13:37:31,817 - configurable_supplier_scraper - INFO - 🔄 REAL-TIME: Added product 3 to shared accumulator (total: 3)
+2025-07-20 13:37:31,818 - configurable_supplier_scraper - INFO - ✅ Extracted product 3: Nuage Ceramide Face & Body Hydrating Moisturiser 200ml - £1.46 (EAN: 5053249265513)
+2025-07-20 13:37:31,838 - PassiveExtractionWorkflow - INFO - 🔍 SUPPLIER STATE UPDATE: Index updated to 3/5
+2025-07-20 13:37:31,839 - PassiveExtractionWorkflow - INFO - 📊 PROGRESS: Product 3 processed (total in cache: 3)
+2025-07-20 13:37:31,839 - PassiveExtractionWorkflow - INFO - 🔄 SUPPLIER EXTRACTION: Processing product 3
+2025-07-20 13:37:31,840 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: Product 3, frequency=2, enabled=True
+2025-07-20 13:37:31,840 - PassiveExtractionWorkflow - INFO - 🔍 CACHE CHECK: List length=3, modulo=1
+2025-07-20 13:37:31,855 - configurable_supplier_scraper - INFO - Visiting product page 4/5: https://www.poundwholesale.co.uk/nuage-night-cream-50ml
+2025-07-20 13:37:31,856 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/nuage-night-cream-50ml (attempt 1/3)
+2025-07-20 13:37:31,856 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 13:37:31,857 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/nuage-night-cream-50ml
+2025-07-20 13:37:33,499 - configurable_supplier_scraper - INFO - Retrying https://www.poundwholesale.co.uk/nuage-night-cream-50ml in 1.93s...
+2025-07-20 13:37:35,431 - configurable_supplier_scraper - INFO - Fetching page content from: https://www.poundwholesale.co.uk/nuage-night-cream-50ml (attempt 2/3)
+2025-07-20 13:37:35,432 - utils.browser_manager - INFO - ♻️ Reusing existing page in context.
+2025-07-20 13:37:35,433 - configurable_supplier_scraper - INFO - 🔧 Using passed BrowserManager page for https://www.poundwholesale.co.uk/nuage-night-cream-50ml
+2025-07-20 13:37:35,797 - __main__ - INFO - 🌐 Keeping browser persistent for next run - not closing browser
+2025-07-20 13:37:35,799 - utils.browser_manager - WARNING - Error during global cleanup: no running event loop

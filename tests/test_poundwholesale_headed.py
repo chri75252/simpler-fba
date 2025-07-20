@@ -11,6 +11,8 @@ import sys
 import os
 from datetime import datetime
 from pathlib import Path
+
+from utils.path_manager import get_log_path, path_manager
 from typing import Dict, Any, Optional
 
 # Configure logging
@@ -40,7 +42,7 @@ async def test_poundwholesale_with_headed_browser():
     log.info("🔍 Testing poundwholesale.co.uk with headed browser")
     
     # Load selector configuration
-    selector_config_path = Path("config/supplier_configs/poundwholesale.co.uk.json")
+    selector_config_path = path_manager.get_config_path("supplier_configs/poundwholesale.co.uk.json")
     if not selector_config_path.exists():
         log.error(f"Selector config not found: {selector_config_path}")
         return None
@@ -241,18 +243,11 @@ def create_stub_html() -> str:
 async def save_test_results(results: Dict[str, Any], is_stub: bool = False):
     """Save test results to log files according to claude.md standards."""
     
-    # Ensure log directories exist
-    log_dir = Path("logs/tests")
-    debug_dir = Path("logs/debug")
-    
-    log_dir.mkdir(parents=True, exist_ok=True)
-    debug_dir.mkdir(parents=True, exist_ok=True)
-    
     # Generate filenames with date
     date_str = datetime.now().strftime('%Y%m%d')
-    
-    # Save to test log
-    test_log_file = log_dir / f"pytest_run_{date_str}.log"
+
+    # Save to test log using standardized paths
+    test_log_file = get_log_path("tests", f"pytest_run_{date_str}.log")
     with open(test_log_file, 'a', encoding='utf-8') as f:
         f.write(f"\n=== Poundwholesale Headed Browser Test - {datetime.now().isoformat()} ===\n")
         f.write(f"Stub Mode: {is_stub}\n")
@@ -289,8 +284,8 @@ async def save_test_results(results: Dict[str, Any], is_stub: bool = False):
         else:
             f.write(f"Price detected: {price_val}\n")
     
-    # Save detailed results to debug log
-    debug_log_file = debug_dir / f"supplier_scraping_debug_{date_str}.log"
+    # Save detailed results to debug log using standardized path
+    debug_log_file = get_log_path("debug", f"supplier_scraping_debug_{date_str}.log")
     with open(debug_log_file, 'a', encoding='utf-8') as f:
         f.write(f"\n=== Poundwholesale Detailed Debug - {datetime.now().isoformat()} ===\n")
         f.write(json.dumps(results, indent=2, default=str))

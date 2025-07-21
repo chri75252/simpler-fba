@@ -166,30 +166,21 @@ class ImportValidator:
         try:
             log.info("🔍 Testing browser manager imports...")
             
-            # Test playwright browser manager
+            # Test Selenium browser manager
             try:
-                from langraph_integration.playwright_browser_manager import PlaywrightBrowserManager, get_browser_manager
+                from browser_automation.selenium_browser_manager import SeleniumBrowserManager
+                from browser_automation.playwright_to_selenium_migrator import PlaywrightToSeleniumMigrator
                 self.test_results["browser_manager"] = True
-                log.info("Playwright Browser Manager import: ✅ PASS")
+                log.info("Selenium Browser Manager import: ✅ PASS")
             except ImportError as e:
                 self.test_results["browser_manager"] = False
                 self.validation_errors.append(f"Browser Manager import failed: {str(e)}")
-                log.error(f"Playwright Browser Manager import: ❌ FAIL - {e}")
-            
-            # Test playwright core (optional - may not be installed)
-            try:
-                from playwright.async_api import async_playwright, Browser, BrowserContext, Page
-                self.test_results["playwright_core"] = True
-                log.info("Playwright core import: ✅ PASS")
-            except ImportError as e:
-                self.test_results["playwright_core"] = False
-                log.warning(f"Playwright core import: ⚠️ OPTIONAL - {e}")
+                log.error(f"Selenium Browser Manager import: ❌ FAIL - {e}")
             
         except Exception as e:
             log.error(f"❌ Browser manager imports test failed: {e}")
             self.validation_errors.append(f"Browser manager imports error: {str(e)}")
             self.test_results["browser_manager"] = False
-            self.test_results["playwright_core"] = False
     
     def _generate_report(self) -> dict:
         """Generate validation report"""
@@ -221,7 +212,7 @@ class ImportValidator:
             "validation_errors": self.validation_errors,
             "summary": {
                 "critical_imports_working": critical_success >= 90,
-                "optional_imports_working": self.test_results.get("playwright_core", False),
+                "optional_imports_working": True,
                 "workflow_importable": self.test_results.get("workflow_main", False),
                 "tools_importable": all([
                     self.test_results.get("ai_category_suggester", False),

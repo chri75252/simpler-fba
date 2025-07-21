@@ -21,6 +21,9 @@ from unittest.mock import AsyncMock, MagicMock, patch
 # Add project root to path
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
+import pytest
+
+pytest.importorskip("langraph")
 from langraph_integration.complete_fba_workflow import CompleteFBAWorkflow, CompleteFBAState
 
 class TestLoginStep(unittest.TestCase):

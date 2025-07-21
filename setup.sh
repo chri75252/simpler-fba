@@ -35,10 +35,9 @@ else
     echo "⚠️ Warning: requirements.txt not found. Skipping dependency installation."
 fi
 
-# 4. Install Playwright and its browser dependencies
-# This is a critical step for any web scraping and automation tasks.
-echo "🌐 Installing Playwright and its browser dependencies (this may take a few minutes)..."
-playwright install --with-deps
+# 4. Set up Selenium environment
+echo "🌐 Installing Selenium browser dependencies..."
+./codex_environment_setup.sh
 
 echo "✅ Environment setup complete. The system is ready to run."
 

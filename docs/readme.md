@@ -7,7 +7,7 @@
 
 This repository hosts the simplified Amazon FBA Agent workflow used to scrape supplier products, match them to Amazon listings and calculate profitability.
 
-The process is orchestrated by `PassiveExtractionWorkflow` and progresses through authentication, supplier scraping, Amazon data extraction, financial analysis and state management.
+The process is orchestrated by `PassiveExtractionWorkflow` and progresses through authentication, supplier scraping, Amazon data extraction, financial analysis and state management. Browser automation now relies on Selenium with an undetected Chrome driver for stability in the Codex container.
 
 See [docs/readme.md](docs/readme.md) for the full documentation and historical notes.
 
@@ -15,6 +15,9 @@ See [docs/readme.md](docs/readme.md) for the full documentation and historical n
 ```bash
 # install dependencies
 pip install -r requirements.txt
+
+# install Chrome and ChromeDriver for Selenium
+sudo bash codex_environment_setup.sh
 
 # run the workflow (Chrome must be running with debug port 9222)
 python run_custom_poundwholesale.py
